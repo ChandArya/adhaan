@@ -16,10 +16,7 @@ export default [
       path: 'companysetting',
       component: Companysettings
    },
-   {
-      path: 'localization',
-      component: Localization
-   },
+   
    {
       path: 'theme-settings',
       component: Themesettings
