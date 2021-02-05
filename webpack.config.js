@@ -83,7 +83,7 @@ module.exports = {
    rules: [
      { // config for es6 jsx
        test: /\.(js|jsx)$/,
-      
+       exclude: /node_modules/,
        use: {
          loader: "babel-loader"
        }

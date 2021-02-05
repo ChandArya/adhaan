@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "homepage": "",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "webpack-dev-server --mode development --inline --progress",
     "build": "webpack --mode production",
