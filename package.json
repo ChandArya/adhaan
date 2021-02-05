@@ -12,7 +12,7 @@
     
     "dev": "webpack-dev-server",
     "production": "webpack --mode production",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client" 
+    "heroku-postbuild": " npm install --prefix client && npm run build --prefix client" 
   },
   "keywords": [
     "reactjs",
