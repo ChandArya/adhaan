@@ -7,6 +7,10 @@ import {headerlogo,lnEnglish,lnFrench,lnHindi, Avatar_02,Avatar_03,Avatar_05,
   Avatar_06,Avatar_08,Avatar_09,Avatar_13,Avatar_17,Avatar_21} from '../../Entryfile/imagepath'
 
 class Header extends Component {
+  submitProfile=(e)=>{
+    alert("click")
+
+  }
 
    render() {
     const {  location } = this.props
@@ -17,7 +21,7 @@ class Header extends Component {
         {/* Logo */}
         <div className="header-left">
           <a href="#" className="logo">
-            <img src={headerlogo} width={40} height={40} alt="" />
+            <img src={headerlogo} width={60} height={60} alt="" />
           </a>
         </div>
         {/* /Logo */}
@@ -31,23 +35,10 @@ class Header extends Component {
         <div className="page-title-box">
           <h3>Adhaan pvt ltd.</h3>
         </div>
-        {/* /Header Title */}
-        {/* <a id="mobile_btn" className="mobile_btn" href="#sidebar"><i className="fa fa-bars" /></a> */}
+       
         {/* Header Menu */}
         <ul className="nav user-menu">
-          {/* Search */}
-          {/* <li className="nav-item">
-            <div className="top-nav-search">
-              <a href="" className="responsive-search">
-                <i className="fa fa-search" />
-              </a>
-              <form action="/blue/app/pages/search">
-                <input className="form-control" type="text" placeholder="Search here" />
-                <button className="btn" type="submit"><i className="fa fa-search" /></button>
-              </form>
-            </div>
-          </li> */}
-          {/* /Search */}
+         
           {/* Flag */}
           <li className="nav-item dropdown has-arrow flag-nav">
             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">

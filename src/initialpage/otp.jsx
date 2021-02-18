@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import {Applogo} from '../Entryfile/imagepath.jsx'
+import {submitOtp,resendOtp} from '../initialpage/services'
+var axios = require('axios');
 
 class OTPscreen extends Component {
     constructor(...props)
@@ -12,7 +14,10 @@ class OTPscreen extends Component {
       super(...props)
       this.state={
         
-        f_otp:''
+        f_otp:'',
+        error:'',
+        mobileno:'',
+        id:''
         
         
       }
@@ -23,7 +28,7 @@ class OTPscreen extends Component {
       
       const value = e.target.value;
       // alert("got data"+value)
-    
+     
       this.setState({f_otp:this.state.f_otp+value });
       
 
@@ -33,16 +38,84 @@ class OTPscreen extends Component {
       
       if(this.state.f_otp.length!=4)
       {
-        alert("not valid otp"+this.state.f_otp)
-
+        // alert(""+this.state.f_otp)
+        // error
+        
+        this.setState({error:"Please Enter valid otp"})
       }else{
-        let path='app/profile/candidate-profile';
-        this.props.history.push(path)
+
+        var user_id=this.props.location.state.userid
+        var empid=this.props.location.state.empid
+        var user_type=this.props.location.state.usertype
+        var otp=this.state.f_otp
+        this.setState({mobileno:empid,id:user_id})
+        var data = JSON.stringify({"user_id": user_id,
+        "OTP": otp,
+        "user_type": user_type});
+        var self=this
+        var config1 = {
+          method: 'post',
+          url:'http://adhaan.eastus.cloudapp.azure.com:8000/api/users/otp-verification/',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+        };
+        console.log("here",config1)
+        axios(config1)
+        .then(function (ee) {
+          // mobileno=self.state.
+          self.setState({error:ee.data.message})
+          console.log("resend otp",ee)
+          if(ee.data.status==true)
+          {
+            let path='/adhar';
+          self.props.history.push({pathname: path,
+            state:self.state})
+          }
+          
+          
+          
+        })
+        .catch(function (error) {
+          console.log(error);
+          // datareturn=error
+        });
+        
       }
     }
+
     resend=(e)=>{
       e.preventDefault();
-      alert("resend click")
+      // console.log(this.props)
+      // console.log(this.props.location.state)
+      var isd=this.props.location.state.isd
+      var mobile=this.props.location.state.empid
+      console.log(this.props.location)
+      var data = JSON.stringify({"isd":""+isd,"mobile_no":""+mobile});
+      var self=this
+      var config1 = {
+        method: 'post',
+        url:'http://adhaan.eastus.cloudapp.azure.com:8000/api/users/otp-generation/',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      console.log("here",config1)
+      axios(config1)
+      .then(function (ee) {
+        self.setState({error:ee.data.message})
+        // console.log("resend otp",ee)
+        //  datareturn=ee
+        
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+        // datareturn=error
+      });
+      
     }
    render() {
      
@@ -53,7 +126,7 @@ class OTPscreen extends Component {
                <meta name="description" content="Login page"/>					
          </Helmet>
       <div className="account-content">
-        {/* <a href="/blue/applyjob/joblist" className="btn btn-primary apply-btn">Apply Job</a> */}
+        
         <div className="container">
           {/* Account Logo */}
           <div className="account-logo">
@@ -79,6 +152,7 @@ class OTPscreen extends Component {
                 <div className="account-footer">
                   <p>Not yet received? <a href="" onClick={this.resend}>Resend OTP</a></p>
                 </div>
+                <label className="text-danger">{this.state.error}</label>
               </form>
               {/* /Account Form */}
             </div>

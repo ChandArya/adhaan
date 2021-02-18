@@ -4,10 +4,852 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import {Avatar_02,Avatar_05,Avatar_09,Avatar_10,Avatar_16 } from '../../../Entryfile/imagepath'
+import {addEducation,addBank,addProfileData,addOtherDetailsData,addpersonalInfo,addReference,addFamily,addExperience} from './call'
+import Moment from 'moment';
+import { DatePicker } from 'antd';
+var axios = require('axios');
 
 export default class EmployeeProfile extends Component {
+  constructor(...props){
+    super(...props)
+    this.setStartDate = this.setStartDate.bind(this);
+    this.state={
+      error: null,
+      isLoaded: false,
+      name:'',
+      profilepic:Avatar_02,
+      alternate_mobile_no: '',
+      designation: '',
+      client: null,
+      father_name: '',
+      department: '',
+      job_location: '',
+      zone: '',
+      u_state: '',
+      source: '',
+      user: 54,
+      created_by: 1,
+      isd: "91",
+      mobile_no:'',
+      user_type: '',
+      c_country: '',
+      c_state: '',
+      c_city: '',
+      c_house_no: '',
+      c_full_address: '',
+      c_mobile_no: '',
+      c_email: '',
+      c_pin_code:'',
+      p_country: '',
+      p_state: '',
+      p_city: '',
+      p_house_no: '',
+      p_full_address: '',
+      p_mobile_no: '',
+      p_email: '',
+      p_pin_code:'',
+      dob:'',
+      marital_status:'',
+      marrage_date: '',
+      gender: "",
+      category: "",
+      nationality: "",
+      blood_group: "",
+      mother_tongue: "",
+      religion: "",
+     
+      branch_name:'',
+      account_number:'',
+      ifsc_code:'',
+      bank_name:'',
+      reference:[],
+      family:[],
+      ref_name:'',
+      ref_relation:'',
+      ref_no:'',
+      ref_loc:'',
+      candidate_other_data:{name:'',esic_address:'',esic_name:'',esic_no:'',uan:'',pf_no:'',aadhaar_no:'',eid_no:'',pan_card_no:'',vehicle_no:'',valid_up_to:'',place_of_issue:'',dl_no:''},
+      education_data:{},
+      candidate_work_history_data:[],
+      candidate_documents_data:[],
+      candidate_doc_list:['Resume/Bio-DATA','Aadhar Card','Driving License','Voter ID','PAN Card','Ration Card','Passport Size Photos','Rent Agreement','Passbook / Cancelled Cheque','Marriage Certificate','Signature','Thumb Impression'],
+      isNomniee:false,
+      family_adhar:'',
+      family_name:'',
+      family_relation:'',
+      family_dob:'',
+      exprienceDesignation:'',
+      experienceOrgination:'',
+      reasonforSep:'',
+      startDate_emp:'',
+      enddate_emp:'',
+      degree:'',
+      board:'',
+      percentage:'',
+      edu_location:'',
+      passing_year:'',
+      school:'',
+      edutype:''
+     
+
+
+      
+        
+    }
+   
+    
+  }
+  addBasicDetails=(e)=>{
+    e.preventDefault();
+    addProfileData(this.state)
+   
+  }
+  addPersonalInfoData=(e)=>
+  {
+    e.preventDefault();
+    console.log("clickfound")
+    addpersonalInfo(this.state);
+  }
+  
+  addBankDetails=(e)=>{
+    
+    e.preventDefault();
+    console.log("clickfound")
+    addBank(this.state.bank_name,this.state.branch_name,this.state.account_number,this.state.ifsc_code,this.state.user);
+  }
+
+  //add education data
+  setDegree=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({degree:value});
+  }
+  setBoard=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({board:value});
+  }
+  setSchool=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({school:value});
+  }
+  setLocationEducation=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({location:value});
+  }
+  setPassingYear=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({passing_year:value});
+  }
+  setPercentage=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({percentage:value});
+  }
+  
+  addEducationData=(e)=>{
+    e.preventDefault();
+   
+    var data={"degree":this.state.degree,"board_university":this.state.board,"school":this.state.school,"location":this.state.edu_location,"passing_year":this.state.passing_year,"percentage":this.state.percentage,"candidate":this.state.user }
+    addEducation(data);
+  }
+  //end education data
+  //experience data
+  setExperienceOrgination=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({experienceOrgination:value});
+  }
+  setExprienceDesignation=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({exprienceDesignation:value});
+  }
+  setReason=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({reasonforSep:value});
+  }
+  setStartDate(e)
+  {
+    alert("change",e)
+    // const value = e.format();
+    // this.setState({startDate_emp:Moment(value).format('YYYY-MM-DD')});
+  }
+  setEndDate=(e)=>
+  {
+    const value = e.target.value;
+    
+    this.setState({enddate_emp:Moment(value).format('YYYY-MM-DD')});
+  }
+  addExperienceData=(e)=>{
+    e.preventDefault();
+    var data={"organization":this.state.experienceOrgination,"designation":this.state.exprienceDesignation,"reason_for_leaving":this.state.reasonforSep,"candidate":this.state.user,"start_date":this.state.startDate_emp,"end_date":this.state.enddate_emp }
+    addExperience(data);
+  }
+  //end experience data
+  addOtherDetails=(e)=>
+  {
+    e.preventDefault();
+    addOtherDetailsData(this.state.candidate_other_data)
+  }
+  setNameAsDl=(e)=>
+  {
+   
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":value,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setNameAsDlNo=(e)=>
+  {
+   
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":value}
+    this.setState({candidate_other_data:data});
+  }
+  setplaceOfIssue=(e)=>
+  {
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":value,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+
+  }
+  setValidUpto=(e)=>
+  {
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":value,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+
+  }
+  setVehicleNo=(e)=>
+  {
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":value,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setPanNo=(e)=>
+  {
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":value,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setEidNo=(e)=>{
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":value,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setAdharNo=(e)=>{
+    e.preventDefault();
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":value,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setEsicAdd=(e)=>
+  {
+   
+    
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":value,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setEsicName=(e)=>
+  {
+   
+    
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":value,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setEsicNo=(e)=>
+  {
+   
+    
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":value,"uan":this.state.candidate_other_data.uan,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setUan=(e)=>
+  {
+   
+    
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":value,"pf_no":this.state.candidate_other_data.pf_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setPf=(e)=>
+  {
+   
+    
+    const value = e.target.value;
+    var data={"name":this.state.candidate_other_data.name,"esic_address":this.state.candidate_other_data.esic_address,"esic_name":this.state.candidate_other_data.esic_name,"esic_no":this.state.candidate_other_data.esic_no,"uan":this.state.candidate_other_data.uan,"pf_no":value,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,"eid_no":this.state.candidate_other_data.eid_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,"vehicle_no":this.state.candidate_other_data.vehicle_no,"valid_up_to":this.state.candidate_other_data.valid_up_to,"place_of_issue":this.state.candidate_other_data.place_of_issue,"dl_no":this.state.candidate_other_data.dl_no}
+    this.setState({candidate_other_data:data});
+  }
+  setBankName=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({bank_name:value });
+  }
+  setBranchName=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({branch_name:value });
+  }
+  setIfsc_Code=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({ifsc_code:value });
+  }
+  setAccountNo=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({account_number:value });
+  }
+  setName=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({name:value });
+    
+  }
+  
+  
+  setFat_Name=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({father_name:value });
+    
+  }
+   setDob=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({dob:value });
+    
+  }
+  setgender=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({gender:value });
+    
+  }
+  setcurrentFullAdd=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({c_full_address:value });
+    
+  }
+  setcurrentState=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({c_state:value,job_location:value });
+    
+  }
+  setcurrentCity=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({c_city:value,job_location:value });
+    
+  }
+  setPermnanetCity=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({p_city:value,job_location:value });
+    
+  }
+  onFileChange=(e)=>{
+    const value = e.target.file[0];
+    // alert("got data"+value)
+    
+    this.setState({profilepic:value });
+  }
+  setcurrentCountry=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({c_country:value });
+    
+  }
+  setcurrentPin=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({c_pin_code:value });
+    
+  }
+  setcurrentPhone=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({c_mobile_no:value });
+    
+  }
+  setPermanentFullAdd=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({p_full_address:value });
+    
+  }
+  setPermanentState=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({p_state:value });
+    
+  }
+  setPermanentPin=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({p_pin_code:value });
+    
+  }
+  setPermanentMobile=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({p_mobile_no:value });
+    
+  }
+  setDepartment=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({department:value });
+    
+  }
+  setDesigination=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({designation:value });
+    
+  }
+  setReferBy=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({created_by:value });
+    
+  }
+  setPermanentCountry=(e)=>{
+    const value = e.target.value;
+    // alert("got data"+value)
+    
+    this.setState({p_country:value });
+    
+  }
+  setEmail=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({c_email:value})
+  }
+ 
+  addEducationForm=()=>{
+        var data={"10": {
+          "id": '',
+          "level": "",
+          "degree": "",
+          "board_university": "",
+          "school": "",
+          "location": "",
+          "passing_year": '',
+          "percentage": ''
+      }}
+      this.setState(
+        {
+          education_data:data
+        });
+  }
+  setCategory=(e)=>{
+    const value = e.target.value;
+    this.setState({category:this.state.category.join(value)})
+
+  }
+  setBloodGroup=(e)=>{
+    const value = e.target.value;
+    this.setState({blood_group:value})
+
+  }
+  setMothertounge=(e)=>{
+    const value = e.target.value;
+    this.setState({mother_tongue:value})
+
+  }
+  setMarriageDate=(e)=>{
+    const value = e.target.value;
+    this.setState({marrage_date:value})
+
+  }
+  setMarriageStatus=(e)=>{
+    const value = e.target.value;
+    this.setState({marital_status:value})
+
+  }
+  setReligion=(e)=>{
+    const value = e.target.value;
+    this.setState({religion:value})
+
+  }
+  setNationility=(e)=>{
+    const value = e.target.value;
+    this.setState({nationality:value})
+
+  }
+  //refrerence data
+  setReferencename=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({ref_name:value})
+  }
+  setReferencerleation=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({ref_loc:value})
+  }
+  setReferenceNumber=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({ref_no:value})
+  }
+  setReferenceLocation=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({ref_loc:value})
+  }
+  addRef=(e)=>
+  {
+    e.preventDefault();
+    var data={"name":this.state.ref_name,"location":this.state.ref_loc,"mobile_no":this.state.ref_no,"candidate":this.state.user,"relationship":this.state.ref_relation }
+    addReference(data);
+  }
+  //end reference
+  //family data
+  setIsNominee=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({isNomniee:value})
+  }
+  setFamilyName=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({family_name:value})
+  }
+  setFamilyRelation=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({family_relation:value})
+  }
+  setFamilyDob=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({family_adhar:value})
+  }
+  setFamilyAdhar=(e)=>
+  {
+    const value = e.target.value;
+    this.setState({ref_loc:value})
+  }
+  addFamilyData=(e)=>
+  {
+    e.preventDefault();
+    var data={"relation":this.state.family_relation,"name":this.state.family_name,"aadhaar_no":this.state.family_adhar,"dob":this.state.family_dob,"is_nominee":this.state.isNomniee,"candidate":this.state.user }
+    addFamily(data);
+  }
+  //endfamily data
+  componentDidMount=()=> 
+  {
+      console.log(this.props.location.state,"thissssssss")
+      this.setState({user:this.props.location.state.id})
+      var config = {
+        method: 'get',
+        url: 'http://adhaan.eastus.cloudapp.azure.com:8000/api/candidate/full-information/'+this.props.location.state.id,
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : ''
+      };
+     
+      axios(config)
+      .then( (response)=> {
+        var data=response.data;
+        // var candidate_education_data_len=Object.keys(data.candidate_education_data).length
+        // if(candidate_education_data_len>0)
+        // {
+        //   var candidate_education_data=data.candidate_education_data
+        //   this.setState(
+        //     {
+        //       education_data:candidate_education_data
+        //     }
+        //   );
+        // }else{
+        //   var data={"10": {
+        //     "id": '',
+        //     "level": "",
+        //     "degree": "",
+        //     "board_university": "",
+        //     "school": "",
+        //     "location": "",
+        //     "passing_year": '',
+        //     "percentage": ''
+        // }}
+        // this.setState(
+        //   {
+        //     education_data:data
+        //   });
+        // }
+        var candidate_bank_data_len=Object.keys(data.candidate_bank_data).length
+        if(candidate_bank_data_len>0)
+        {
+          var candidate_bank_data=data.candidate_bank_data
+          this.setState({
+            
+           
+            bank_name:candidate_bank_data.bank_name,
+            branch_name: candidate_bank_data.branch_name,
+            account_number: candidate_bank_data.account_number,
+            ifsc_code: candidate_bank_data.ifsc_code,
+           
+           
+            
+          });
+        }
+        try {
+          var basic_details_len=Object.keys(data.candidate_personal_data.basic_details).length
+          var basic_details=data.candidate_personal_data.basic_details
+          if(basic_details_len>0 ){
+            this.setState({
+              isLoaded: true,
+              name: basic_details.name,
+              alternate_mobile_no: basic_details.alternate_mobile_no,
+              designation: basic_details.designation,
+              client:  basic_details.client,
+              father_name:  basic_details.father_name,
+              department:  basic_details.department,
+              job_location:  basic_details.job_location,
+              zone:  basic_details.zone,
+              u_state: basic_details.u_state,
+              source:  basic_details.source,
+              user:  basic_details.user,
+              created_by:  basic_details.created_by,
+              isd:  basic_details.isd,
+              mobile_no: basic_details.mobile_no,
+              user_type:  basic_details.user_type
+              
+            });
+          }
+        }
+        catch(err) {
+          console.log("error",err)
+          // document.getElementById("demo").innerHTML = err.message;
+        }
+      try{
+        var current_address_data_len=Object.keys(data.candidate_personal_data.address_details.current_address_data).length
+        var current_address_data=data.candidate_personal_data.address_details.current_address_data
+        if(current_address_data_len>0)
+        {
+          this.setState({
+            c_country: current_address_data.country,
+            c_state: current_address_data.state,
+            c_city: current_address_data.city,
+            c_house_no: current_address_data.house_no,
+            c_full_address: current_address_data.full_address,
+            c_mobile_no: current_address_data.mobile_no,
+            c_email: current_address_data.email,
+            c_pin_code:current_address_data.pin_code
+           
+            
+          });
+        }
+      }
+      
+      catch(err) {
+        console.log("error",err)
+        // document.getElementById("demo").innerHTML = err.message;
+      }
+      try{
+        var permanent_address_data_len=Object.keys(data.candidate_personal_data.address_details.permanent_address_data).length
+        // var other_details_len=Object.keys(data.candidate_personal_data.other_details).length
+       
+       
+        var permanent_address_data=data.candidate_personal_data.address_details.permanent_address_data
+       
+        // var candidate_documents_data_len=data.candidate_documents_data.document.length
+       
+       
+
+        if(permanent_address_data_len>0)
+        {
+          this.setState({
+            p_country: permanent_address_data.country,
+            p_state: permanent_address_data.state,
+            p_city: permanent_address_data.city,
+            p_house_no: permanent_address_data.house_no,
+            p_full_address: permanent_address_data.full_address,
+            p_mobile_no: permanent_address_data.mobile_no,
+            p_email: permanent_address_data.email,
+            p_pin_code:permanent_address_data.pin_code
+           
+            
+          });
+        }
+      }
+
+      catch(err) {
+        console.log("error",err)
+        // document.getElementById("demo").innerHTML = err.message;
+      }
+        
+    //   if(other_details_len>0)
+    //   {
+    //     var other_details=data.candidate_personal_data.other_details
+    //     this.setState({
+    //       dob: other_details.dob,
+         
+    //       marital_status:other_details.marital_status,
+    //       marrage_date: other_details.marrage_date,
+    //       gender: other_details.gender,
+    //       category: other_details.category,
+    //       nationality: other_details.nationality,
+    //       blood_group:other_details.blood_group,
+    //       mother_tongue: other_details.mother_tongue,
+    //       religion: other_details.religion
+         
+          
+    //     });
+    //   }
+     try{
+      var candidate_reference_data=data.candidate_reference_data.reference.length
+    
+      if(candidate_reference_data>0)
+      {
+        var candidate_reference_data=data.candidate_reference_data.reference
+       
+        this.setState({
+          
+         reference:candidate_reference_data
+           
+        });
+      }
+     } catch(err) {
+        console.log("error",err)
+        // document.getElementById("demo").innerHTML = err.message;
+      }
+    try{
+        var candidate_family_data=data.candidate_family_data.family.length
+      if(candidate_family_data>0)
+      {
+        var candidate_family_data=data.candidate_family_data.family
+        this.setState({
+          family:candidate_family_data
+         
+      });
+    }
+    }catch(err) {
+      console.log("error",err)
+      // document.getElementById("demo").innerHTML = err.message;
+    }
+    try{
+        var candidate_other_data_len=Object.keys(data.candidate_other_data).length
+      if(candidate_other_data_len>0)
+      {
+        var candidate_other_data=data.candidate_other_data
+       
+        this.setState({
+          
+          candidate_other_data:candidate_other_data
+         
+        });
+      }
+    }catch(err) {
+      console.log("error",err)
+      // document.getElementById("demo").innerHTML = err.message;
+    }
+    try{
+          var candidate_work_history_data_len=data.candidate_work_history_data.work_experience.length
+     
+      if(candidate_work_history_data_len>0)
+      {
+        var candidate_work_history_data=data.candidate_work_history_data.work_experience
+       
+        this.setState({
+          
+          candidate_work_history_data:candidate_work_history_data
+         
+        });
+      }
+      if(candidate_documents_data_len>0){
+        var candidate_documents_data=data.candidate_documents_data.document
+       
+        this.setState({
+          
+          candidate_documents_data:candidate_documents_data
+         
+        });
+      }
+    }catch(err) {
+      console.log("error",err)
+      // document.getElementById("demo").innerHTML = err.message;
+    }
+  
+      })
+      .catch( (error)=> {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+        console.log("error");
+      });
+      
+  }
+  //  removelement=(item)=> {
+  //   var candidate_doc_list=this.state.candidate_doc_list
+  //   var index = candidate_doc_list.indexOf(item.document_type);
+  //   if (index !== -1) {
+  //     candidate_doc_list.splice(index, 1);
+  //   }
+  //   console.log("reach")
+  //   this.setState({
+  //     candidate_doc_list:candidate_doc_list
+  //   });
+    
+  // }
   render() {
+    const can_reference = this.state.reference;
+    const family_data = this.state.family;
+    const work_history_data=this.state.candidate_work_history_data
+    const education_list=Object.keys(this.state.education_data)
+    const edu_data=this.state.education_data
+    const candidate_documents_data= this.state.candidate_documents_data
+    const candidate_doc_list=this.state.candidate_doc_list
+    // candidate_documents_data.map(this.removelement);
+    console.log("found"+edu_data+education_list)
+    const rec_option={'1':'Gourav sharma'}
+
     return (
+      
+
+        
         <div className="page-wrapper">
             <Helmet>
               <title>Candidate Profile - Adhaan</title>
@@ -16,17 +858,7 @@ export default class EmployeeProfile extends Component {
             {/* Page Content */}
             <div className="content container-fluid">
               {/* Page Header */}
-              {/* <div className="page-header">
-                <div className="row">
-                  <div className="col-sm-12">
-                    <h3 className="page-title">Profile</h3>
-                    <ul className="breadcrumb">
-                      <li className="breadcrumb-item"><a href="/blue/app/main/dashboard">Dashboard</a></li>
-                      <li className="breadcrumb-item active">Profile</li>
-                    </ul>
-                  </div>
-                </div>
-              </div> */}
+             
               {/* /Page Header */}
               <div className="card mb-0">
                 <div className="card-body">
@@ -42,25 +874,25 @@ export default class EmployeeProfile extends Component {
                           <div className="row">
                             <div className="col-md-5">
                               <div className="profile-info-left">
-                                <h3 className="user-name m-t-0 mb-0">John Doe</h3>
-                                <h6 className="text-muted">S/o John mario</h6>
-                                <small className="text-muted">Delivery Boy</small>
+                                <h3 className="user-name m-t-0 mb-0">{this.state.name}</h3>
+                                <h6 className="text-muted">S/o {this.state.father_name}</h6>
+                                <small className="text-muted">{this.state.designation}</small>
                                 <ul className="personal-info">
                                   <li>
-                                    <div class="title">Location: </div>
-                                    <div className="text">Delhi</div>
+                                    <div className="title">Location: </div>
+                                    <div className="text">{this.state.job_location}</div>
                                   </li>
                                   <li>
                                     <div className="title">Dept: </div>
-                                    <div className="text">Nontech</div>
+                                    <div className="text">{this.state.department}</div>
                                   </li>
                                   <li>
                                     <div className="title">Current Address: </div>
-                                    <div className="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</div>
+                                    <div className="text">{this.state.c_full_address}</div>
                                   </li>
                                   <li>
                                     <div className="title">Email: </div>
-                                    <div className="text">johndoe@example.com</div>
+                                    <div className="text">{this.state.c_email}</div>
                                   </li>
                                 </ul>
                               </div>
@@ -69,27 +901,21 @@ export default class EmployeeProfile extends Component {
                               <ul className="personal-info">
                                 <li>
                                   <div className="title">Phone:</div>
-                                  <div className="text">9876543210</div>
+                                  <div className="text">{this.state.c_mobile_no}</div>
                                 </li>
-                                {/* <li>
-                                  <div className="title">Email:</div>
-                                  <div className="text"><a href="">johndoe@example.com</a></div>
-                                </li> */}
+                               
                                 <li>
                                   <div className="title">Birthday:</div>
-                                  <div className="text">24th July 1980</div>
+                                  <div className="text">{this.state.dob}</div>
                                 </li>
                                 <li>
                                   <div className="title">Permanent Address:</div>
-                                  <div className="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</div>
+                                  <div className="text">{this.state.p_full_address}</div>
                                 </li>
-                                 {/* <li>
-                                  <div className="title">Email:</div>
-                                  <div className="text">johndoe@example.com</div>
-                                </li> */}
+                                
                                 <li>
                                   <div className="title">Gender:</div>
-                                  <div className="text">Male</div>
+                                  <div className="text">{this.state.gender}</div>
                                 </li>
                                 <li>
                                   <div className="title">Refer By:</div>
@@ -100,7 +926,7 @@ export default class EmployeeProfile extends Component {
                                       </div>
                                     </div>
                                     <a href="#">
-                                    Sk1020
+                                    {this.state.created_by}
                                     </a>
                                   </div>
                                 </li>
@@ -132,40 +958,37 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6 d-flex">
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
-                          <h3 className="card-title">Personal Informations <a href="#" className="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i className="fa fa-pencil" /></a></h3>
+                          <h3 className="card-title">Personal  Informations <a href="#" className="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i className="fa fa-pencil" /></a></h3>
                           <ul className="personal-info">
                             <li>
                               <div className="title">Category.</div>
-                              <div className="text">SC</div>
+                              <div className="text">{this.state.category}</div>
                             </li>
                             <li>
                               <div className="title">Blood Group</div>
-                              <div className="text">B+</div>
+                              <div className="text">{this.state.blood_group}</div>
                             </li>
                             <li>
                               <div className="title">Mother Tongue</div>
-                              <div className="text">Hindi</div>
+                              <div className="text">{this.state.mother_tongue}</div>
                             </li>
                             <li>
                               <div className="title">Nationality</div>
-                              <div className="text">Indian</div>
+                              <div className="text">{this.state.nationality}</div>
                             </li>
                             <li>
                               <div className="title">Religion</div>
-                              <div className="text">Christian</div>
+                              <div className="text">{this.state.religion}</div>
                             </li>
                             <li>
                               <div className="title">Marital status</div>
-                              <div className="text">Married</div>
+                              <div className="text">{this.state.marital_status}</div>
                             </li>
                             <li>
                               <div className="title">Marriage Date</div>
-                              <div className="text">20/01/2019</div>
+                              <div className="text">{this.state.marrage_date}</div>
                             </li>
-                            {/* <li>
-                              <div className="title">No. of children</div>
-                              <div className="text">2</div>
-                            </li> */}
+                            
                           </ul>
                         </div>
                       </div>
@@ -174,45 +997,29 @@ export default class EmployeeProfile extends Component {
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
                           <h3 className="card-title">References<a href="#" className="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i className="fa fa-pencil" /></a></h3>
-                          {/* <h5 className="section-title">Primary</h5> */}
-                          <ul className="personal-info">
+                          {can_reference.map(reference => (
+                            <ul className="personal-info" key={reference.key}>
                             <li>
                               <div className="title">Name</div>
-                              <div className="text">John Doe</div>
+                              <div className="text">{reference.name}</div>
                             </li>
-                            <li>
-                              <div className="title">Relationship</div>
-                              <div className="text">Father</div>
-                            </li>
+                            
                             <li>
                               <div className="title">Phone </div>
-                              <div className="text">9876543210</div>
+                          <div className="text">{reference.mobile_no}</div>
                             </li>
                             <li>
                               <div className="title">Location </div>
-                              <div className="text">Delhi</div>
+                              <div className="text">{reference.location}</div>
                             </li>
+
+                            <hr />
                           </ul>
-                          <hr />
-                          {/* <h5 className="section-title">Secondary</h5> */}
-                          <ul className="personal-info">
-                            <li>
-                              <div className="title">Name</div>
-                              <div className="text">Karen Wills</div>
-                            </li>
-                            <li>
-                              <div className="title">Relationship</div>
-                              <div className="text">Brother</div>
-                            </li>
-                            <li>
-                              <div className="title">Phone </div>
-                              <div className="text">9876543210</div>
-                            </li>
-                            <li>
-                              <div className="title">Location </div>
-                              <div className="text">Delhi</div>
-                            </li>
-                          </ul>
+                          
+                           
+                          ))}
+                        
+                          
                         </div>
                       </div>
                     </div>
@@ -226,19 +1033,19 @@ export default class EmployeeProfile extends Component {
                           <ul className="personal-info">
                             <li>
                               <div className="title">Bank name</div>
-                              <div className="text">ICICI Bank</div>
+                              <div className="text">{this.state.bank_name}</div>
                             </li>
                             <li>
                               <div className="title">Bank account No.</div>
-                              <div className="text">159843014641</div>
+                          <div className="text">{this.state.account_number}</div>
                             </li>
                             <li>
                               <div className="title">IFSC Code</div>
-                              <div className="text">ICI24504</div>
+                          <div className="text">{this.state.ifsc_code}</div>
                             </li>
                             <li>
                               <div className="title">Branch</div>
-                              <div className="text">Delhi</div>
+                              <div className="text">{this.state.branch_name}</div>
                             </li>
                           </ul>
                         </div>
@@ -260,21 +1067,24 @@ export default class EmployeeProfile extends Component {
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>Leo</td>
-                                  <td>Brother</td>
-                                  <td>Feb 16th, 2019</td>
-                                  <td>9876543210</td>
-                                  <td className="text-right">
-                                    <div className="dropdown dropdown-action">
-                                      <a aria-expanded="false" data-toggle="dropdown" className="action-icon dropdown-toggle" href="#"><i className="material-icons">more_vert</i></a>
-                                      <div className="dropdown-menu dropdown-menu-right">
-                                        <a href="#" className="dropdown-item"><i className="fa fa-pencil m-r-5" /> Edit</a>
-                                        <a href="#" className="dropdown-item"><i className="fa fa-trash-o m-r-5" /> Delete</a>
-                                      </div>
+                              {family_data.map(family => (
+                                <tr key={family.key}>
+                                <td>{family.name}</td>
+                                <td>{family.relation}</td>
+                                <td>{family.dob}</td>
+                                <td>{family.aadhaar_no}</td>
+                                <td className="text-right">
+                                  <div className="dropdown dropdown-action">
+                                    <a aria-expanded="false" data-toggle="dropdown" className="action-icon dropdown-toggle" href="#"><i className="material-icons">more_vert</i></a>
+                                    <div className="dropdown-menu dropdown-menu-right">
+                                      <a href="#" className="dropdown-item"><i className="fa fa-pencil m-r-5" /> Edit</a>
+                                      <a href="#" className="dropdown-item"><i className="fa fa-trash-o m-r-5" /> Delete</a>
                                     </div>
-                                  </td>
-                                </tr>
+                                  </div>
+                                </td>
+                              </tr>
+                              ))}
+                                
                               </tbody>
                             </table>
                           </div>
@@ -289,30 +1099,21 @@ export default class EmployeeProfile extends Component {
                           <h3 className="card-title">Education Informations <a href="#" className="edit-icon" data-toggle="modal" data-target="#education_info"><i className="fa fa-pencil" /></a></h3>
                           <div className="experience-box">
                             <ul className="experience-list">
+                            {education_list.map(education => (
                               <li>
-                                <div className="experience-user">
-                                  <div className="before-circle" />
+                              <div className="experience-user">
+                                <div className="before-circle" />
+                              </div>
+                              <div className="experience-content">
+                                <div className="timeline-content">
+                            <a href="/" className="name">{education} from {edu_data[''+education].board_university}</a>
+                                  <div>{edu_data[''+education].school}</div>
+                                  <span className="time">{edu_data[''+education].passing_year}</span>
                                 </div>
-                                <div className="experience-content">
-                                  <div className="timeline-content">
-                                    <a href="/" className="name">International College of Arts and Science (UG)</a>
-                                    <div>Bsc Computer Science</div>
-                                    <span className="time">2000 - 2003</span>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="experience-user">
-                                  <div className="before-circle" />
-                                </div>
-                                <div className="experience-content">
-                                  <div className="timeline-content">
-                                    <a href="/" className="name">International College of Arts and Science (PG)</a>
-                                    <div>Msc Computer Science</div>
-                                    <span className="time">2000 - 2003</span>
-                                  </div>
-                                </div>
-                              </li>
+                              </div>
+                            </li>
+                            ))}
+
                             </ul>
                           </div>
                         </div>
@@ -322,43 +1123,29 @@ export default class EmployeeProfile extends Component {
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
                           <h3 className="card-title">Experience <a href="#" className="edit-icon" data-toggle="modal" data-target="#experience_info"><i className="fa fa-pencil" /></a></h3>
+                          
+                          
                           <div className="experience-box">
                             <ul className="experience-list">
-                              <li>
-                                <div className="experience-user">
-                                  <div className="before-circle" />
+                            {work_history_data.map(work => (
+                              <li key={work.key}>
+                              <div className="experience-user">
+                                <div className="before-circle" />
+                              </div>
+                              <div className="experience-content">
+                                <div className="timeline-content">
+                            <a href="/" className="name">{work.designation}  at {work.organization}</a>
+                                  <span className="time">{work.start_date}-{work.end_date}</span>
                                 </div>
-                                <div className="experience-content">
-                                  <div className="timeline-content">
-                                    <a href="/" className="name">Web Designer at Zen Corporation</a>
-                                    <span className="time">Jan 2013 - Present (5 years 2 months)</span>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="experience-user">
-                                  <div className="before-circle" />
-                                </div>
-                                <div className="experience-content">
-                                  <div className="timeline-content">
-                                    <a href="/" className="name">Web Designer at Ron-tech</a>
-                                    <span className="time">Jan 2013 - Present (5 years 2 months)</span>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="experience-user">
-                                  <div className="before-circle" />
-                                </div>
-                                <div className="experience-content">
-                                  <div className="timeline-content">
-                                    <a href="/" className="name">Web Designer at Dalt Technology</a>
-                                    <span className="time">Jan 2013 - Present (5 years 2 months)</span>
-                                  </div>
-                                </div>
-                              </li>
+                              </div>
+                            </li>
+                          ))}
+                              
+                             
+                              
                             </ul>
                           </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -371,55 +1158,55 @@ export default class EmployeeProfile extends Component {
                           <ul className="personal-info">
                             <li>
                               <div className="title">Name (As per Driving License)</div>
-                              <div className="text">Chandan Gupta</div>
+                              <div className="text">{this.state.candidate_other_data.name}</div>
                             </li>
                             <li>
                               <div className="title">Driving License No.</div>
-                              <div className="text">DL593783328</div>
+                              <div className="text">{this.state.candidate_other_data.dl_no}</div>
                             </li>
                             <li>
                               <div className="title">Place of Issue</div>
-                              <div className="text">Delhi</div>
+                              <div className="text">{this.state.candidate_other_data.place_of_issue}</div>
                             </li>
                             <li>
                               <div className="title">Valid Upto (mm-dd-yyyy)</div>
-                              <div className="text">02-10-2023</div>
+                              <div className="text">{this.state.candidate_other_data.valid_up_to}</div>
                             </li>
                             <li>
                               <div className="title">Vehicle No.</div>
-                              <div className="text">DL-1C-W-3181</div>
+                              <div className="text">{this.state.candidate_other_data.vehicle_no}</div>
                             </li>
                             <li>
                               <div className="title">PAN Card Number</div>
-                              <div className="text">K8959KHH4</div>
+                              <div className="text">{this.state.candidate_other_data.pan_card_no}</div>
                             </li>
                             <li>
                               <div className="title">Election ID Number</div>
-                              <div className="text">DL859347347</div>
+                              <div className="text">{this.state.candidate_other_data.eid_no}</div>
                             </li>
                             <li>
                               <div className="title">Aadhar Card</div>
-                              <div className="text">53535363635</div>
+                              <div className="text">{this.state.candidate_other_data.aadhaar_no}</div>
                             </li>
                             <li>
                               <div className="title">Old PF No.</div>
-                              <div className="text">53535363635</div>
+                              <div className="text">{this.state.candidate_other_data.pf_no}</div>
                             </li>
                             <li>
                               <div className="title">Old UAN No.</div>
-                              <div className="text">53535363635</div>
+                              <div className="text">{this.state.candidate_other_data.uan}</div>
                             </li>
                             <li>
                               <div className="title">Old ESIC No.</div>
-                              <div className="text">53535363635</div>
+                              <div className="text">{this.state.candidate_other_data.esic_no}</div>
                             </li>
                             <li>
                               <div className="title">Old ESIC Dispensory Name</div>
-                              <div className="text">Green Park</div>
+                              <div className="text">{this.state.candidate_other_data.esic_name}</div>
                             </li>
                             <li>
                               <div className="title">Old ESIC Dispensory Address</div>
-                              <div className="text">7/70, Green Park</div>
+                              <div className="text">{this.state.candidate_other_data.esic_address}</div>
                             </li>
                           </ul>
                         </div>
@@ -430,54 +1217,20 @@ export default class EmployeeProfile extends Component {
                         <div className="card-body">
                           <h3 className="card-title">Document Checklist<a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-pencil" /></a></h3>
                           <ul className="personal-info">
-                            <li>
-                              <div className="title">Resume/Bio-Data</div>
+                          {candidate_documents_data.map(document => (
+                              <li key={document.key}>
+                              <div className="title">{document.document_type}</div>
+                              <div className="text"><input type="checkbox" className="" checked="true"/></div>
+                            </li>
+                          ))}
+                         
+                         {candidate_doc_list.map(document => (
+                              <li key={document.key}>
+                              <div className="title">{document}</div>
                               <div className="text"><input type="checkbox" className="" /></div>
                             </li>
-                            <li>
-                              <div className="title">Aadhar Card</div>
-                              <div className="text"><input type="checkbox" className="" checked /></div>
-                            </li>
-                            <li>
-                              <div className="title">Driving License</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">Voter ID</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">PAN Card</div>
-                              <div className="text"><input type="checkbox" className="" checked /></div>
-                            </li>
-                            <li>
-                              <div className="title">Ration Card</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">Passport Size Photos</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">Rent Agreement</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">Passbook / Cancelled Cheque</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">Marriage Certificate</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">Signature</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
-                            <li>
-                              <div className="title">Thumb Impression</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
-                            </li>
+                          ))}
+                            
                           </ul>
                         </div>
                       </div>
@@ -966,37 +1719,37 @@ export default class EmployeeProfile extends Component {
                       <div className="row">
                         <div className="col-md-12">
                           <div className="profile-img-wrap edit-img">
-                            <img className="inline-block" src={Avatar_02} alt="user" />
+                            <img className="inline-block" src={this.state.profilepic} alt="user" />
                             <div className="fileupload btn">
                               <span className="btn-text">edit</span>
-                              <input className="upload" type="file" />
+                              <input className="upload" type="file" accept="image/*" onChange={this.onFileChange}/>
                             </div>
                           </div>
                           <div className="row">
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" className="form-control" defaultValue="John" />
+                                <input type="text" className="form-control"  onChange={this.setName}/>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Father Name</label>
-                                <input type="text" className="form-control" defaultValue="Doe" />
+                                <input type="text" className="form-control" onChange={this.setFat_Name} />
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Birth Date</label>
                                 <div className="cal-icon">
-                                  <input className="form-control datetimepicker" type="text" defaultValue="05/06/1985" />
+                                  <input className="form-control datetimepicker" type="text" onChange={this.setDob} />
                                 </div>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Gender</label>
-                                <select className="select form-control">
+                                <select className="select form-control" onChange={this.setgender}>
                                   <option value="male selected">Male</option>
                                   <option value="female">Female</option>
                                 </select>
@@ -1009,55 +1762,68 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-12">
                           <div className="form-group">
                             <label>Current Address</label>
-                            <input type="text" className="form-control" defaultValue="Safdargung enclave" />
+                            <input type="text" className="form-control"  onChange={this.setcurrentFullAdd}/>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label>City</label>
+                            <input type="text" className="form-control" onChange={this.setcurrentCity}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>State</label>
-                            <input type="text" className="form-control" defaultValue="Delhi" />
+                            <input type="text" className="form-control" onChange={this.setcurrentState} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Country</label>
-                            <input type="text" className="form-control" defaultValue="India" />
+                            <input type="text" className="form-control" onChange={this.setcurrentCountry}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Pin Code</label>
-                            <input type="text" className="form-control" defaultValue={122003} />
+                            <input type="text" className="form-control" onChange={this.setcurrentPin} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Phone Number</label>
-                            <input type="text" className="form-control" defaultValue="631-889-3206" />
+                            <input type="text" className="form-control" onChange={this.setcurrentPhone} />
                           </div>
                         </div>
                         <div className="col-md-12">
                           <div className="form-group">
                             <label>Permanent Address</label>
-                            <input type="text" className="form-control" defaultValue="Nsp delhi" />
+                            <input type="text" className="form-control" onChange={this.setPermanentFullAdd} />
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label>City</label>
+                            <input type="text" className="form-control" onChange={this.setPermnanetCity} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>State</label>
-                            <input type="text" className="form-control" defaultValue="Delhi" />
+                            <input type="text" className="form-control" onChange={this.setPermanentState} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Country</label>
-                            <input type="text" className="form-control" defaultValue="India" />
+                            <input type="text" className="form-control" onChange={this.setPermanentCountry} />
                           </div>
                         </div>
+                        
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Pin Code</label>
-                            <input type="text" className="form-control" defaultValue={122001} />
+                            <input type="text" className="form-control" onChange={this.setPermanentPin} />
                           </div>
                         </div>
 
@@ -1068,44 +1834,36 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Phone Number</label>
-                            <input type="text" className="form-control" defaultValue="631-889-3206" />
+                            <input type="text" className="form-control" onChange={this.setPermanentMobile} />
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label>Email</label>
+                            <input type="text" className="form-control" onChange={this.setEmail} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Department <span className="text-danger">*</span></label>
-                            <select className="select">
-                              <option>Select Department</option>
-                              <option>Web Development</option>
-                              <option>IT Management</option>
-                              <option>Marketing</option>
-                            </select>
+                            <input type="text" className="form-control" onChange={this.setDepartment} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Designation <span className="text-danger">*</span></label>
-                            <select className="select">
-                              <option>Select Designation</option>
-                              <option>Web Designer</option>
-                              <option>Web Developer</option>
-                              <option>Android Developer</option>
-                            </select>
+                            <input type="text" className="form-control" onChange={this.setDesigination} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Refer By  <span className="text-danger">*</span></label>
-                            <select className="select">
-                              
-                              <option>Wilmer Deluna</option>
-                              
-                            </select>
+                            <input type="text" className="form-control" onChange={this.setReferBy} />
                           </div>
                         </div>
                       </div>
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1126,20 +1884,7 @@ export default class EmployeeProfile extends Component {
                   <div className="modal-body">
                     <form>
                       <div className="row">
-                        {/* <div className="col-md-6">
-                          <div className="form-group">
-                            <label>Passport No</label>
-                            <input type="text" className="form-control" />
-                          </div>
-                        </div> */}
-                        {/* <div className="col-md-6">
-                          <div className="form-group">
-                            <label>Passport Expiry Date</label>
-                            <div className="cal-icon">
-                              <input className="form-control datetimepicker" type="text" />
-                            </div>
-                          </div>
-                        </div> */}
+                       
                         <div className="col-md-6">
                        
                           <div className="form-group">
@@ -1147,54 +1892,54 @@ export default class EmployeeProfile extends Component {
                             <div className='clearfix'></div>
                             <div className="row">
                               <div className="col">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                                <label for="vehicle1" className="ml-2">SC</label>
+                                <input type="checkbox" id="vehicle13" name="vehicle1" value="Bike" onChange={this.setCategory}/>
+                                <label htmlFor="vehicle" className="ml-2" >SC</label>
                               </div>
                               <div className="col">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                                <label for="vehicle1" className="ml-2">ST</label>
+                                <input type="checkbox" id="vehicle14" name="vehicle1" value="Bike"onChange={this.setCategory}/>
+                                <label htmlFor="vehicle1" className="ml-2">ST</label>
                               </div>
                               <div className="col">
-                                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car"/>
-                                <label for="vehicle2" className="ml-2">OBC</label>
+                                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" onChange={this.setCategory}/>
+                                <label htmlFor="vehicle2" className="ml-2">OBC</label>
                               </div>
                               <div className="col">
-                                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"/>
-                                <label for="vehicle3" className="ml-2">OPEN</label>
+                                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" onChange={this.setCategory}/>
+                                <label htmlFor="vehicle3" className="ml-2">OPEN</label>
                               </div>
                             </div>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Nationality <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" />
+                            <label>Nationality <span className="text-danger" >*</span></label>
+                            <input className="form-control" type="text" onChange={this.setNationility}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Blood group <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setBloodGroup} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Mother Tongue <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setMothertounge}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Marriage Date</label>
                             <div className="cal-icon">
-                              <input className="form-control" type="text" />
+                              <input className="form-control" type="text"onChange={this.setMarriageDate} />
                             </div>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Marital status <span className="text-danger">*</span></label>
-                            <select className="select form-control">
+                            <select className="select form-control" onChange={this.setMarriageStatus}>
                               <option>-</option>
                               <option>Single</option>
                               <option>Married</option>
@@ -1204,18 +1949,13 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Religion</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setReligion} />
                           </div>
                         </div>
-                        {/* <div className="col-md-6">
-                          <div className="form-group">
-                            <label>No. of children </label>
-                            <input className="form-control" type="text" />
-                          </div>
-                        </div> */}
+                       
                       </div>
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1240,84 +1980,84 @@ export default class EmployeeProfile extends Component {
                        
                           <div className="form-group">
                             <label>Name <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setNameAsDl} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Driving License No.<span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setNameAsDlNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Place of Issue<span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setplaceOfIssue}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Valid Upto (mm-dd-yyyy)<span className="text-danger">*</span></label>
-                            <input className="form-control" type="date" />
+                            <input className="form-control" type="date" onChange={this.setValidUpto} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Vehicle Number</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setVehicleNo} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>PAN Card Number<span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setPanNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Election ID Number</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setEidNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Aadhar card</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setAdharNo} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old PF No.</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setPF}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old UAN No.</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setUan}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old ESIC No.</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setEsicNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Old ESIC Dispensory No.</label>
-                            <input className="form-control" type="text" />
+                            <label>Old ESIC Dispensory Name.</label>
+                            <input className="form-control" type="text" onChange={this.setEsicName}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old ESIC Dispensory Address</label>
-                            <input className="form-control" type="text" />
+                            <input className="form-control" type="text" onChange={this.setEsicAdd}/>
                           </div>
                         </div>
                       </div>
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1429,7 +2169,9 @@ export default class EmployeeProfile extends Component {
                       <div className="form-scroll">
                         <div className="card">
                           <div className="card-body">
-                            <h3 className="card-title">Family Member <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a></h3>
+                            <h3 className="card-title">Family Member
+                             {/* <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a> */}
+                             </h3>
                             <div className="row">
                               <div className="col-md-6">
                                 <div className="form-group">
@@ -1457,56 +2199,17 @@ export default class EmployeeProfile extends Component {
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group">
-                                  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+                                  <input type="checkbox" id="vehicle10" name="vehicle1" value="Bike"/>
                                   <label className="ml-2">Is Nominee</label>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div className="card">
-                          <div className="card-body">
-                            <h3 className="card-title">Family Member <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a></h3>
-                            <div className="row">
-                              <div className="col-md-6">
-                                <div className="form-group">
-                                  <label>Name <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group">
-                                  <label>Relationship <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group">
-                                  <label>Date of birth <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group">
-                                  <label>Aadhar Number <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group">
-                                  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                                  <label className="ml-2">Is Nominee</label>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="add-more">
-                              <a href=""><i className="fa fa-plus-circle" /> Add More</a>
-                            </div>
-                          </div>
-                        </div>
+                        
                       </div>
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn"onClick={this.addFamilyData      }>Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1533,31 +2236,31 @@ export default class EmployeeProfile extends Component {
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Name <span className="text-danger">*</span></label>
-                                <input type="text" className="form-control" />
+                                <input type="text" className="form-control" onChange={this.setReferencename}/>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Relationship <span className="text-danger">*</span></label>
-                                <input className="form-control" type="text" />
+                                <input className="form-control" type="text"onChange={this.setReferencerleation} />
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Phone <span className="text-danger">*</span></label>
-                                <input className="form-control" type="text" />
+                                <input className="form-control" type="text" onChange={this.setReferenceNumber}/>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Location</label>
-                                <input className="form-control" type="text" />
+                                <input className="form-control" type="text"onChange={this.setReferenceLocation} />
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="card">
+                      {/* <div className="card">
                         <div className="card-body">
                           <h3 className="card-title">2</h3>
                           <div className="row">
@@ -1587,9 +2290,9 @@ export default class EmployeeProfile extends Component {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn" onClick={this.addRef}>Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1617,25 +2320,25 @@ export default class EmployeeProfile extends Component {
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Bank Name <span className="text-danger">*</span></label>
-                                <input type="text" className="form-control" />
+                                <input type="text" className="form-control" onChange={this.setBankName} />
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Account number <span className="text-danger">*</span></label>
-                                <input className="form-control" type="text" />
+                                <input className="form-control" type="text" onChange={this.setAccountNo} />
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Ifsc code <span className="text-danger">*</span></label>
-                                <input className="form-control" type="text" />
+                                <input className="form-control" type="text" onChange={this.setIfsc_Code}/>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Branch</label>
-                                <input className="form-control" type="text" />
+                                <input className="form-control" type="text" onChange={this.setBranchName} />
                               </div>
                             </div>
                           </div>
@@ -1643,7 +2346,7 @@ export default class EmployeeProfile extends Component {
                       </div>
                       
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button onClick={this.addBankDetails}className="btn btn-primary submit-btn">Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1667,60 +2370,58 @@ export default class EmployeeProfile extends Component {
                   <div className="modal-body">
                     <form>
                       <div className="form-scroll">
-                        <div className="card">
-                          <div className="card-body">
-                            <h3 className="card-title">Education Informations <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a></h3>
-                            <div className="row">
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="Delhi univercity" className="form-control floating" />
-                                  <label className="focus-label">School/College name</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="Delhi" className="form-control floating" />
-                                  <label className="focus-label">Location</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <div className="cal-icon">
-                                    <input type="text" defaultValue="01/06/2002" className="form-control floating datetimepicker" />
-                                  </div>
-                                  <label className="focus-label">Year of passing</label>
-                                </div>
-                              </div>
-                              {/* <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <div className="cal-icon">
-                                    <input type="text" defaultValue="31/05/2006" className="form-control floating datetimepicker" />
-                                  </div>
-                                  <label className="focus-label">Complete Date</label>
-                                </div>
-                              </div> */}
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="CBSE" className="form-control floating" />
-                                  <label className="focus-label">Board/Univercity</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="10th std" className="form-control floating" />
-                                  <label className="focus-label">Degree</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="90" className="form-control floating" />
-                                  <label className="focus-label">% Marks/Cgpa</label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="card">
+                      {/* {education_list.map(education => ( */}
+                               <div className="card" >
+                               <div className="card-body">
+                                 <h3 className="card-title">10  
+                                 {/* <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a> */}
+                                 </h3>
+                                 <div className="row">
+                                   <div className="col-md-6">
+                                     <div className="form-group form-focus focused">
+                                       <input type="text"  className="form-control floating" onChange={this.setSchool} />
+                                       <label className="focus-label">School/Univercity</label>
+                                     </div>
+                                   </div>
+                                   <div className="col-md-6">
+                                     <div className="form-group form-focus focused">
+                                       <input type="text"   className="form-control floating" onChange={this.setLocationEducation} />
+                                       <label className="focus-label">Location</label>
+                                     </div>
+                                   </div>
+                                   <div className="col-md-6">
+                                     <div className="form-group form-focus focused">
+                                       <div className="cal-icon">
+                                         <input type="text"  className="form-control floating datetimepicker" onChange={this.setPassingYear} />
+                                       </div>
+                                       <label className="focus-label">Year of passing</label>
+                                     </div>
+                                   </div>
+                                   
+                                   <div className="col-md-6">
+                                     <div className="form-group form-focus focused">
+                                       <input type="text"  className="form-control floating" onChange={this.setBoard}  />
+                                       <label className="focus-label">Board/Univercity</label>
+                                     </div>
+                                   </div>
+                                   <div className="col-md-6">
+                                     <div className="form-group form-focus focused">
+                                       <input type="text" className="form-control floating" onChange={this.setDegree} />
+                                       <label className="focus-label">Degree</label>
+                                     </div>
+                                   </div>
+                                   <div className="col-md-6">
+                                     <div className="form-group form-focus focused">
+                                       <input type="text" className="form-control floating" onChange={this.setPercentage}/>
+                                       <label className="focus-label">% Marks/Cgpa</label>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                          {/* ))} */}
+                       
+                        {/* <div className="card">
                           <div className="card-body">
                             <h3 className="card-title">Education Informations <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a></h3>
                             <div className="row">
@@ -1744,14 +2445,7 @@ export default class EmployeeProfile extends Component {
                                   <label className="focus-label">Year of passing</label>
                                 </div>
                               </div>
-                              {/* <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <div className="cal-icon">
-                                    <input type="text" defaultValue="31/05/2006" className="form-control floating datetimepicker" />
-                                  </div>
-                                  <label className="focus-label">Complete Date</label>
-                                </div>
-                              </div> */}
+                             
                               <div className="col-md-6">
                                 <div className="form-group form-focus focused">
                                   <input type="text" defaultValue="12th std" className="form-control floating" />
@@ -1771,14 +2465,15 @@ export default class EmployeeProfile extends Component {
                                 </div>
                               </div>
                             </div>
-                            <div className="add-more">
-                              <a href=""><i className="fa fa-plus-circle" /> Add More</a>
-                            </div>
+                           
                           </div>
-                        </div>
+                        </div> */}
+                         {/* <div className="add-more" onClick={this.addEducationForm}>
+                              <i className="fa fa-plus-circle" /> Add More
+                            </div> */}
                       </div>
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn" onClick={this.addEducationData}>Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1801,38 +2496,40 @@ export default class EmployeeProfile extends Component {
                       <div className="form-scroll">
                         <div className="card">
                           <div className="card-body">
-                            <h3 className="card-title">Experience Informations <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a></h3>
+                            <h3 className="card-title">Experience Informations
+                             {/* <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a> */}
+                            </h3>
                             <div className="row">
                               <div className="col-md-6">
                                 <div className="form-group form-focus">
-                                  <input type="text" className="form-control floating" defaultValue="Flipkart" />
+                                  <input type="text" className="form-control floating" onChange={this.setExperienceOrgination} />
                                   <label className="focus-label">Organisation</label>
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group form-focus">
-                                  <input type="text" className="form-control floating" defaultValue="no growth" />
+                                  <input type="text" className="form-control floating"  onChange={this.setReason}/>
                                   <label className="focus-label">Reason for sepration</label>
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group form-focus">
-                                  <input type="text" className="form-control floating" defaultValue="Delevery boy" />
+                                  <input type="text" className="form-control floating" onChange={this.setExprienceDesignation} />
                                   <label className="focus-label">Designation</label>
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group form-focus">
                                   <div className="cal-icon">
-                                    <input type="text" className="form-control floating datetimepicker" defaultValue="01/07/2007" />
+                                    <DatePicker  className="form-control floating datetimepicker" onChange={(e)=>this.setStartDate(e)}></DatePicker>
                                   </div>
-                                  <label className="focus-label">Period From</label>
+                                  {/* <label className="focus-label">Period From</label> */}
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group form-focus">
                                   <div className="cal-icon">
-                                    <input type="text" className="form-control floating datetimepicker" defaultValue="08/06/2018" />
+                                    <input type="text" className="form-control floating datetimepicker" onChange={this.setEndDate} />
                                   </div>
                                   <label className="focus-label">Period To</label>
                                 </div>
@@ -1840,53 +2537,10 @@ export default class EmployeeProfile extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="card">
-                          <div className="card-body">
-                            <h3 className="card-title">Experience Informations <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a></h3>
-                            <div className="row">
-                              <div className="col-md-6">
-                                <div className="form-group form-focus">
-                                  <input type="text" className="form-control floating" defaultValue="Amazon" />
-                                  <label className="focus-label">Organisation</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus">
-                                  <input type="text" className="form-control floating" defaultValue="some personal reason" />
-                                  <label className="focus-label">Reason for sepration</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus">
-                                  <input type="text" className="form-control floating" defaultValue="Loader" />
-                                  <label className="focus-label">Designation</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus">
-                                  <div className="cal-icon">
-                                    <input type="text" className="form-control floating datetimepicker" defaultValue="01/07/2007" />
-                                  </div>
-                                  <label className="focus-label">Period From</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus">
-                                  <div className="cal-icon">
-                                    <input type="text" className="form-control floating datetimepicker" defaultValue="08/06/2018" />
-                                  </div>
-                                  <label className="focus-label">Period To</label>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="add-more">
-                              <a href=""><i className="fa fa-plus-circle" /> Add More</a>
-                            </div>
-                          </div>
-                        </div>
+                       
                       </div>
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn" onClick={this.addExperienceData}>Submit</button>
                       </div>
                     </form>
                   </div>
@@ -1895,7 +2549,10 @@ export default class EmployeeProfile extends Component {
             </div>
             {/* /Experience Modal */}
           </div>
+                          
+                          
        
     );
+    
   }
 }

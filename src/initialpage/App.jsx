@@ -82,18 +82,18 @@ export default class App extends Component {
                     {/* <Redirect exact from={`${match.url}/`} to={`${match.url}/login`} /> */}
                     <Route path="/login" component={LoginPage} />
                     <Route path="/adhar" component={Adhar} />
-                    <Route path="/forgotpassword" component={ForgotPassword} />
-                    <Route path="/register" component={RegistrationPage} />
+                    {/* <Route path="/forgotpassword" component={ForgotPassword} />
+                    <Route path="/register" component={RegistrationPage} /> */}
                     <Route path="/otp" component={OTP} />
-                    <Route path="/lockscreen" component={LockScreen} />
-                    <Route path="/applyjob" component={ApplyJobs} />
+                    {/* <Route path="/lockscreen" component={LockScreen} />
+                    <Route path="/applyjob" component={ApplyJobs} /> */}
 
                     <Route path="/app" component={DefaultLayout} />
-                    <Route path="/settings" component={Settinglayout} />
+                    {/* <Route path="/settings" component={Settinglayout} />
                     <Route path="/tasks" component={Tasklayout} />
                     <Route path="/email" component={Emaillayout} />
                     <Route path="/conversation" component={chatlayout} />
-                    
+                     */}
                     <Route path="/ui-components" component={uicomponents} />
                     <Route path="/error-404" component={Error404} />
                     <Route path="/error-500" component={Error500} />

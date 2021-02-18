@@ -58,7 +58,12 @@ module.exports = {
   compress: true,
   port: 8001, // port number
   historyApiFallback: true,
-  quiet: true
+  quiet: true,
+  compress:true,
+  disableHostCheck:true,
+  allowedHosts:[
+    'azurewebsites.net'
+  ]
 },
  externals: {
   // global app config object
