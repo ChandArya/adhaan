@@ -1,6 +1,6 @@
 var axios = require('axios');
 
-var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
+var baseurl='https://aadhaan.ddns.net'
   export const addBank=(bankname,branchname,acountno,ifsc,userid)=>{
     console.log("bankdetails",bankname,branchname,acountno,ifsc,userid)
     var data = JSON.stringify({
@@ -55,14 +55,14 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
     formData.append("permanenet_email",""+data.c_email)
     formData.append("permanenet_pin_code",""+data.p_pin_code)
      formData.append("dob",""+data.dob)
-    formData.append("marital_status",""+data.marital_status)
-    formData.append("marrage_date",""+data.marrage_date)
+    // formData.append("marital_status",""+data.marital_status)
+    // formData.append("marrage_date",""+data.marrage_date)
     formData.append("gender",""+data.gender)
      formData.append("category",""+data.category)
-    formData.append("nationality",""+data.nationality)
-    formData.append("blood_group",""+data.blood_group)
-    formData.append("mother_tongue",""+data.mother_tongue)
-     formData.append("religion",""+data.religion)
+    // formData.append("nationality",""+data.nationality)
+    // formData.append("blood_group",""+data.blood_group)
+    // formData.append("mother_tongue",""+data.mother_tongue)
+    //  formData.append("religion",""+data.religion)
     formData.append("candidate",""+data.user)
     formData.append("recruiter_id",""+data.created_by)
     formData.append("profile_picture",""+data.profilepic)
@@ -88,22 +88,16 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
 
   export const addOtherDetailsData=(data)=>{
     
-    console.log("otherdetails"+JSON.stringify(data))
-    var data = JSON.stringify({
-        "candidate": userid,
-        "bank_name": bankname,
-        "branch_name": branchname,
-        "account_number": acountno,
-        "ifsc_code": ifsc
-    });
+    console.log("otherdetails",data)
+   
     console.log("called")
     var config = {
-      method: 'post',
-      url: 'http://adhaan.eastus.cloudapp.azure.com:8000/api/candidate/other-details',
+      method: 'PUT',
+      url: 'https://aadhaan.ddns.net/api/candidate/miscellaneous-other-details',
       headers: { 
         'Content-Type': 'application/json'
       },
-      data : data
+      data : JSON.stringify(data)
     };
 
     axios(config)
@@ -116,19 +110,25 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
   }
 
   export const addpersonalInfo=(data)=>{
-    
+    data.candidate=data.id
     console.log("addpersonalInfo"+JSON.stringify(data))
     var data = JSON.stringify({
-        "candidate": userid,
-        "bank_name": bankname,
-        "branch_name": branchname,
-        "account_number": acountno,
-        "ifsc_code": ifsc
-    });
-    console.log("called")
+      // "marital_status":data.marital_status.toLowerCase() ,
+      "marital_status":"married",
+      "marrage_date": data.marrage_date,
+      "gender": data.gender,
+      "category": data.category,
+      "nationality": data.nationality,
+      "blood_group": data.blood_group,
+      "mother_tongue": data.mother_tongue,
+      "religion": data.religion,
+      "candidate": data.user,
+      
+  });
+    console.log("called",data)
     var config = {
-      method: 'post',
-      url: 'http://adhaan.eastus.cloudapp.azure.com:8000/api/candidate/other-details',
+      method: 'PUT',
+      url: 'https://aadhaan.ddns.net/api/candidate/personal-information',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -147,13 +147,7 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
   export const addReference=(data)=>{
     
     console.log("refrences"+JSON.stringify(data))
-    // var data = JSON.stringify({
-    //     "candidate": userid,
-    //     "name": bankname,
-    //     "mobile_no": branchname,
-    //     "location": acountno,
-    //     "Relation": ifsc
-    // });
+   
     console.log("called")
     var config = {
       method: 'post',
@@ -177,17 +171,11 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
   export const addFamily=(data)=>{
     
     console.log("Family"+JSON.stringify(data))
-    var data = JSON.stringify({
-        "candidate": userid,
-        "bank_name": bankname,
-        "branch_name": branchname,
-        "account_number": acountno,
-        "ifsc_code": ifsc
-    });
+    
     console.log("called")
     var config = {
       method: 'post',
-      url: 'http://adhaan.eastus.cloudapp.azure.com:8000/api/candidate/other-details',
+      url: 'https://aadhaan.ddns.net/api/candidate/family-details',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -206,13 +194,7 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
   export const addExperience=(data)=>{
     
     console.log("Experience",data)
-    // var data = JSON.stringify({
-    //     "candidate": userid,
-    //     "bank_name": bankname,
-    //     "branch_name": branchname,
-    //     "account_number": acountno,
-    //     "ifsc_code": ifsc
-    // });
+    
     console.log("called")
     var config = {
       method: 'post',
@@ -235,17 +217,11 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
   export const addEducation=(data)=>{
     
     console.log("Education"+JSON.stringify(data))
-    var data = JSON.stringify({
-        "candidate": userid,
-        "bank_name": bankname,
-        "branch_name": branchname,
-        "account_number": acountno,
-        "ifsc_code": ifsc
-    });
+    
     console.log("called")
     var config = {
       method: 'post',
-      url: 'http://adhaan.eastus.cloudapp.azure.com:8000/api/candidate/other-details',
+      url: 'https://aadhaan.ddns.net/api/candidate/education-data',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -259,6 +235,35 @@ var baseurl='http://adhaan.eastus.cloudapp.azure.com:8000'
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  export const documentUpload=(self,data,document_type,candidate)=>{
+    // console.log("dadsggshfdhgdsghffsd"+JSON.stringify(self.state))
+    
+    let formData=new FormData();
+    formData.append("document_type",""+document_type)
+    formData.append("document",data)
+    formData.append("candidate",""+candidate)
+   
+    console.log("documentData"+formData)
+    var config = {
+      method: 'post',
+      url: baseurl+'/api/candidate/documents-upload',
+      headers: { 
+        'Content-Type': 'multipart/form-data'
+      },
+      data : formData
+    };
+
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+    
   }
   
 

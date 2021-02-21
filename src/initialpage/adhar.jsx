@@ -14,12 +14,60 @@ class Adhar extends Component {
       currentpage:'/',
       adharno:'',
       error:'',
-      id:''
+      id:'',
+      kyc:''
       
     }
     
   }
-
+  componentDidMount=()=> 
+  {
+      // console.log(this.props.location.state,"thissssssss")
+      this.setState({user:this.props.location.state.id})
+      var config = {
+        method: 'get',
+        url: 'https://aadhaan.ddns.net/api/candidate/full-information/'+this.props.location.state.id,
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : ''
+      };
+     
+      axios(config)
+      .then( (response)=> {
+        var data=response.data;
+        console.log(data)
+     
+       
+    try{
+      console.log(data.candidate_other_data.id,"hgfkdshfgdhkgkfhgkhfjkjhfdjdgfhkjhffjkhdg",data.candidate_other_data)
+        var candidate_other_data_len=Object.keys(data.candidate_other_data).length
+      if(candidate_other_data_len>0)
+      {
+        var candidate_other_data=data.candidate_other_data
+       
+        this.setState({
+          // other_details_id:candidate_other_data.id,
+          adharno:candidate_other_data.aadhaar_no
+         
+        });
+      }
+    }catch(err) {
+      console.log("error",err)
+      // document.getElementById("demo").innerHTML = err.message;
+    }
+    
+  
+      })
+      .catch( (error)=> {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+        console.log("error");
+      });
+      
+  }
 
   updateInput=(e)=>{
     e.preventDefault();
@@ -30,6 +78,17 @@ class Adhar extends Component {
     this.setState({adharno: value,id:id });
 
     
+  }
+  notverified=(e)=>
+  {
+    let path='app/profile/candidate-profile';
+         
+          
+          this.props.history.push({ 
+            pathname: path,
+            state:this.state
+            
+           })
   }
   loginClick=(e)=>{
     e.preventDefault();
@@ -60,21 +119,30 @@ class Adhar extends Component {
         if(response.data.last_digits ==getno)
         {
           console.log(response.data.data.last_digits,)
-          self.setState({error:response.data.message})
-        }else{
+          self.setState({error:"Kyc verified"})
           let path='app/profile/candidate-profile';
-          // self.setState({usertype:response.data.user_info.user_role_type,userid:response.data.user_info.user_id})
+         
           
           self.props.history.push({ 
             pathname: path,
             state:self.state
             
            })
+        }else{
+          let path='app/profile/candidate-profile';
+          self.setState({kyc:"notverfied",error:"This aadhar no is not matched with this mobile number"+mobileno})
+          
+          // self.props.history.push({ 
+          //   pathname: path,
+          //   state:self.state
+            
+          //  })
         }
         
       })
       .catch(function (error) {
         console.log(error);
+        self.setState({error:"this is not a valid aadhar no"})
       });
       
       // let path='/otp';
@@ -111,7 +179,8 @@ class Adhar extends Component {
                 <form action="">
                   <div className="form-group">
                     <label>Please Enter Your Adhar Number</label>
-                    <input className="form-control" type="text" placeholder="Enter adhaar number " onChange={this.updateInput} maxLength="12" />
+                    <input className="form-control" type="text" placeholder="Enter adhaar number " defaultValue={this.state.adharno}onChange={this.updateInput} maxLength="12" />
+                    
                     <label className="text-danger">{this.state.error}</label>
                     
                   </div>
@@ -119,7 +188,9 @@ class Adhar extends Component {
                   <div className="form-group text-center">
                     <button onClick={this.loginClick}className="btn btn-primary account-btn" >
                     Submit</button>
+                    
                   </div>
+                  <button type="button" className="btn btn-primary account-btn" disabled={!this.state.kyc} onClick={this.notverified}>Skip</button>
                  
                 </form>
                 {/* /Account Form */}

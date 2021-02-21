@@ -4,19 +4,26 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import {Avatar_02,Avatar_05,Avatar_09,Avatar_10,Avatar_16 } from '../../../Entryfile/imagepath'
-import {addEducation,addBank,addProfileData,addOtherDetailsData,addpersonalInfo,addReference,addFamily,addExperience} from './call'
+import {addEducation} from './call'
 import Moment from 'moment';
 import { DatePicker } from 'antd';
 var axios = require('axios');
+var baseurl='https://aadhaan.ddns.net'
+// var FormData = require('form-data');
+// var fs = require('fs');
 
 export default class EmployeeProfile extends Component {
   constructor(...props){
     super(...props)
     this.setStartDate = this.setStartDate.bind(this);
+    this.onFileChangeForDoc = this.onFileChangeForDoc.bind(this);
+    this.setDocName = this.setDocName.bind(this);
     this.state={
-      error: null,
+      
       isLoaded: false,
       name:'',
+      error:'',
+      other_details_id:'',
       profilepic:Avatar_02,
       alternate_mobile_no: '',
       designation: '',
@@ -27,7 +34,7 @@ export default class EmployeeProfile extends Component {
       zone: '',
       u_state: '',
       source: '',
-      user: 54,
+      user: '',
       created_by: 1,
       isd: "91",
       mobile_no:'',
@@ -72,7 +79,7 @@ export default class EmployeeProfile extends Component {
       education_data:{},
       candidate_work_history_data:[],
       candidate_documents_data:[],
-      candidate_doc_list:['Resume/Bio-DATA','Aadhar Card','Driving License','Voter ID','PAN Card','Ration Card','Passport Size Photos','Rent Agreement','Passbook / Cancelled Cheque','Marriage Certificate','Signature','Thumb Impression'],
+      candidate_doc_list:['Resume/ Bio-DATA','Aadhar Card','Driving License','Voter ID','PAN Card','Ration Card','Passport Size Photos','Rent Agreement','Passbook / Cancelled Cheque','Marriage Certificate','Signature','Thumb Impression'],
       isNomniee:false,
       family_adhar:'',
       family_name:'',
@@ -89,7 +96,9 @@ export default class EmployeeProfile extends Component {
       edu_location:'',
       passing_year:'',
       school:'',
-      edutype:''
+      edutype:'',
+      resume_file:'',
+      docname:''
      
 
 
@@ -101,21 +110,21 @@ export default class EmployeeProfile extends Component {
   }
   addBasicDetails=(e)=>{
     e.preventDefault();
-    addProfileData(this.state)
+    this.addProfileData(this,this.state)
    
   }
   addPersonalInfoData=(e)=>
   {
     e.preventDefault();
     console.log("clickfound")
-    addpersonalInfo(this.state);
+    this.addpersonalInfo(this,this.state);
   }
   
   addBankDetails=(e)=>{
     
     e.preventDefault();
     console.log("clickfound")
-    addBank(this.state.bank_name,this.state.branch_name,this.state.account_number,this.state.ifsc_code,this.state.user);
+    this.addBank(this,this.state.bank_name,this.state.branch_name,this.state.account_number,this.state.ifsc_code,this.state.user);
   }
 
   //add education data
@@ -154,7 +163,12 @@ export default class EmployeeProfile extends Component {
     e.preventDefault();
    
     var data={"degree":this.state.degree,"board_university":this.state.board,"school":this.state.school,"location":this.state.edu_location,"passing_year":this.state.passing_year,"percentage":this.state.percentage,"candidate":this.state.user }
-    addEducation(data);
+    var data1={'candidate':this.state.user}
+    let final = {
+      ...data,
+      ...data1
+    };
+    this.addEducation(this,final);
   }
   //end education data
   //experience data
@@ -175,26 +189,39 @@ export default class EmployeeProfile extends Component {
   }
   setStartDate(e)
   {
-    alert("change",e)
-    // const value = e.format();
-    // this.setState({startDate_emp:Moment(value).format('YYYY-MM-DD')});
+    // alert("change",e)
+    const value = e.format();
+    this.setState({startDate_emp:Moment(value).format('YYYY-MM-DD')});
   }
   setEndDate=(e)=>
   {
-    const value = e.target.value;
+    const value = e.format();
     
     this.setState({enddate_emp:Moment(value).format('YYYY-MM-DD')});
   }
   addExperienceData=(e)=>{
     e.preventDefault();
     var data={"organization":this.state.experienceOrgination,"designation":this.state.exprienceDesignation,"reason_for_leaving":this.state.reasonforSep,"candidate":this.state.user,"start_date":this.state.startDate_emp,"end_date":this.state.enddate_emp }
-    addExperience(data);
+    
+    var data1={'candidate':this.state.user}
+    let final = {
+      ...data,
+      ...data1
+    };
+    this.addExperience(this,final);
   }
   //end experience data
   addOtherDetails=(e)=>
   {
     e.preventDefault();
-    addOtherDetailsData(this.state.candidate_other_data)
+    var data=this.state.candidate_other_data
+    var data1={'candidate':this.state.user,'other_detail_id':this.state.other_details_id}
+    let final = {
+      ...data,
+      ...data1
+    };
+  
+    this.addOtherDetailsData(this,final)
   }
   setNameAsDl=(e)=>
   {
@@ -377,10 +404,30 @@ export default class EmployeeProfile extends Component {
     
   }
   onFileChange=(e)=>{
+
     const value = e.target.file[0];
+//  var files = e.target.files;
+      console.log("files",value)
+      
+      // const value = files[0];
     // alert("got data"+value)
     
     this.setState({profilepic:value });
+  }
+    onFileChangeForDoc(e){
+    try{
+      console.log("files",e.target.files)
+      var files = e.target.files;
+      console.log("files",JSON.stringify(files))
+      const value = files[0];
+      // alert("got data"+value)
+      
+      this.setState({resume_file:value });
+    }catch(err) {
+      console.log("error",err)
+      // document.getElementById("demo").innerHTML = err.message;
+    }
+   
   }
   setcurrentCountry=(e)=>{
     const value = e.target.value;
@@ -466,20 +513,20 @@ export default class EmployeeProfile extends Component {
   }
  
   addEducationForm=()=>{
-        var data={"10": {
-          "id": '',
-          "level": "",
-          "degree": "",
-          "board_university": "",
-          "school": "",
-          "location": "",
-          "passing_year": '',
-          "percentage": ''
-      }}
-      this.setState(
-        {
-          education_data:data
-        });
+      //   var data={"10": {
+      //     "id": '',
+      //     "level": "",
+      //     "degree": "",
+      //     "board_university": "",
+      //     "school": "",
+      //     "location": "",
+      //     "passing_year": '',
+      //     "percentage": ''
+      // }}
+      // this.setState(
+      //   {
+      //     education_data:data
+      //   });
   }
   setCategory=(e)=>{
     const value = e.target.value;
@@ -541,7 +588,7 @@ export default class EmployeeProfile extends Component {
   {
     e.preventDefault();
     var data={"name":this.state.ref_name,"location":this.state.ref_loc,"mobile_no":this.state.ref_no,"candidate":this.state.user,"relationship":this.state.ref_relation }
-    addReference(data);
+    this.addReference(this,data);
   }
   //end reference
   //family data
@@ -562,28 +609,37 @@ export default class EmployeeProfile extends Component {
   }
   setFamilyDob=(e)=>
   {
-    const value = e.target.value;
-    this.setState({family_adhar:value})
+    const value = e.format();
+    this.setState({family_dob:Moment(value).format('YYYY-MM-DD')});
+   
+  }
+  setDocName(value)
+  {
+    // let val = e.target.dataset.value;
+    console.log(value);
+    
+    this.setState({docname:value})
   }
   setFamilyAdhar=(e)=>
   {
     const value = e.target.value;
-    this.setState({ref_loc:value})
+    this.setState({family_adhar:value})
   }
   addFamilyData=(e)=>
   {
     e.preventDefault();
     var data={"relation":this.state.family_relation,"name":this.state.family_name,"aadhaar_no":this.state.family_adhar,"dob":this.state.family_dob,"is_nominee":this.state.isNomniee,"candidate":this.state.user }
-    addFamily(data);
+    console.log("dayyaya",data)
+    this.addFamily(this,data);
   }
   //endfamily data
   componentDidMount=()=> 
   {
-      console.log(this.props.location.state,"thissssssss")
+      // console.log(this.props.location.state,"thissssssss")
       this.setState({user:this.props.location.state.id})
       var config = {
         method: 'get',
-        url: 'http://adhaan.eastus.cloudapp.azure.com:8000/api/candidate/full-information/'+this.props.location.state.id,
+        url: 'https://aadhaan.ddns.net/api/candidate/full-information/'+this.props.location.state.id,
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -593,31 +649,42 @@ export default class EmployeeProfile extends Component {
       axios(config)
       .then( (response)=> {
         var data=response.data;
-        // var candidate_education_data_len=Object.keys(data.candidate_education_data).length
-        // if(candidate_education_data_len>0)
-        // {
-        //   var candidate_education_data=data.candidate_education_data
-        //   this.setState(
-        //     {
-        //       education_data:candidate_education_data
-        //     }
-        //   );
-        // }else{
-        //   var data={"10": {
-        //     "id": '',
-        //     "level": "",
-        //     "degree": "",
-        //     "board_university": "",
-        //     "school": "",
-        //     "location": "",
-        //     "passing_year": '',
-        //     "percentage": ''
-        // }}
-        // this.setState(
-        //   {
-        //     education_data:data
-        //   });
-        // }
+        console.log(data)
+      try{
+
+      
+        var candidate_education_data_len=Object.keys(data.candidate_education_data).length
+        if(candidate_education_data_len>0)
+        {
+          var candidate_education_data=data.candidate_education_data
+          this.setState(
+            {
+              education_data:candidate_education_data
+            }
+          );
+        }
+      //   else{
+      //   //   var data={"10": {
+      //   //     "id": '',
+      //   //     "level": "",
+      //   //     "degree": "",
+      //   //     "board_university": "",
+      //   //     "school": "",
+      //   //     "location": "",
+      //   //     "passing_year": '',
+      //   //     "percentage": ''
+      //   // }
+      // // }
+      //   this.setState(
+      //     {
+      //       education_data:data
+      //     });
+      //   }
+      } catch(err) {
+        console.log("error",err)
+        // document.getElementById("demo").innerHTML = err.message;
+      }
+      try{
         var candidate_bank_data_len=Object.keys(data.candidate_bank_data).length
         if(candidate_bank_data_len>0)
         {
@@ -634,6 +701,11 @@ export default class EmployeeProfile extends Component {
             
           });
         }
+      } catch(err) {
+        console.log("error",err)
+        // document.getElementById("demo").innerHTML = err.message;
+      }
+        
         try {
           var basic_details_len=Object.keys(data.candidate_personal_data.basic_details).length
           var basic_details=data.candidate_personal_data.basic_details
@@ -689,12 +761,12 @@ export default class EmployeeProfile extends Component {
       }
       try{
         var permanent_address_data_len=Object.keys(data.candidate_personal_data.address_details.permanent_address_data).length
-        // var other_details_len=Object.keys(data.candidate_personal_data.other_details).length
+       
        
        
         var permanent_address_data=data.candidate_personal_data.address_details.permanent_address_data
        
-        // var candidate_documents_data_len=data.candidate_documents_data.document.length
+        
        
        
 
@@ -719,25 +791,32 @@ export default class EmployeeProfile extends Component {
         console.log("error",err)
         // document.getElementById("demo").innerHTML = err.message;
       }
-        
-    //   if(other_details_len>0)
-    //   {
-    //     var other_details=data.candidate_personal_data.other_details
-    //     this.setState({
-    //       dob: other_details.dob,
-         
-    //       marital_status:other_details.marital_status,
-    //       marrage_date: other_details.marrage_date,
-    //       gender: other_details.gender,
-    //       category: other_details.category,
-    //       nationality: other_details.nationality,
-    //       blood_group:other_details.blood_group,
-    //       mother_tongue: other_details.mother_tongue,
-    //       religion: other_details.religion
-         
-          
-    //     });
-    //   }
+      try{
+        var other_details_len=Object.keys(data.candidate_personal_data.other_details).length
+        if(other_details_len>0)
+        {
+          var other_details=data.candidate_personal_data.other_details
+          this.setState({
+
+            dob: other_details.dob,
+           
+            marital_status:other_details.marital_status,
+            marrage_date: other_details.marrage_date,
+            gender: other_details.gender,
+            category: other_details.category,
+            nationality: other_details.nationality,
+            blood_group:other_details.blood_group,
+            mother_tongue: other_details.mother_tongue,
+            religion: other_details.religion
+           
+            
+          });
+        }
+      } catch(err) {
+        console.log("error",err)
+        // document.getElementById("demo").innerHTML = err.message;
+      }
+      
      try{
       var candidate_reference_data=data.candidate_reference_data.reference.length
     
@@ -770,13 +849,14 @@ export default class EmployeeProfile extends Component {
       // document.getElementById("demo").innerHTML = err.message;
     }
     try{
+      console.log(data.candidate_other_data.id,"hgfkdshfgdhkgkfhgkhfjkjhfdjdgfhkjhffjkhdg",data.candidate_other_data)
         var candidate_other_data_len=Object.keys(data.candidate_other_data).length
       if(candidate_other_data_len>0)
       {
         var candidate_other_data=data.candidate_other_data
        
         this.setState({
-          
+          other_details_id:candidate_other_data.id,
           candidate_other_data:candidate_other_data
          
         });
@@ -798,6 +878,7 @@ export default class EmployeeProfile extends Component {
          
         });
       }
+      var candidate_documents_data_len=data.candidate_documents_data.document.length
       if(candidate_documents_data_len>0){
         var candidate_documents_data=data.candidate_documents_data.document
        
@@ -822,29 +903,30 @@ export default class EmployeeProfile extends Component {
       });
       
   }
-  //  removelement=(item)=> {
-  //   var candidate_doc_list=this.state.candidate_doc_list
-  //   var index = candidate_doc_list.indexOf(item.document_type);
-  //   if (index !== -1) {
-  //     candidate_doc_list.splice(index, 1);
-  //   }
-  //   console.log("reach")
-  //   this.setState({
-  //     candidate_doc_list:candidate_doc_list
-  //   });
+
+  uploadDoc=(e)=>
+  {
+    e.preventDefault();
+    console.log("click",)
+    var datat=this.state.resume_file
+    console.log("datat",datat)
+    // var d='Resume/ Bio-DATA'
+    var d=this.state.docname
+    this.documentUpload(this,datat,d,this.state.user);
     
-  // }
+  }
+  
   render() {
     const can_reference = this.state.reference;
     const family_data = this.state.family;
     const work_history_data=this.state.candidate_work_history_data
     const education_list=Object.keys(this.state.education_data)
     const edu_data=this.state.education_data
-    const candidate_documents_data= this.state.candidate_documents_data
-    const candidate_doc_list=this.state.candidate_doc_list
-    // candidate_documents_data.map(this.removelement);
-    console.log("found"+edu_data+education_list)
-    const rec_option={'1':'Gourav sharma'}
+    var candidate_documents_data= this.state.candidate_documents_data
+    var candidate_doc_list=this.state.candidate_doc_list
+    // candidate_documents_data= candidate_documents_data.map(candidate_doc_list);
+    // console.log("found"+edu_data+education_list)
+    // const rec_option={'1':'Gourav sharma'}
 
     return (
       
@@ -945,8 +1027,8 @@ export default class EmployeeProfile extends Component {
                   <div className="col-lg-12 col-md-12 col-sm-12 line-tabs">
                     <ul className="nav nav-tabs nav-tabs-bottom">
                       <li className="nav-item"><a href="#emp_profile" data-toggle="tab" className="nav-link active">Profile</a></li>
-                      <li className="nav-item"><a href="#emp_projects" data-toggle="tab" className="nav-link">PF</a></li>
-                      <li className="nav-item"><a href="#bank_statutory" data-toggle="tab" className="nav-link">ESIC</a></li>
+                      {/* <li className="nav-item"><a href="#emp_projects" data-toggle="tab" className="nav-link">PF</a></li>
+                      <li className="nav-item"><a href="#bank_statutory" data-toggle="tab" className="nav-link">ESIC</a></li> */}
                     </ul>
                   </div>
                 </div>
@@ -1100,7 +1182,7 @@ export default class EmployeeProfile extends Component {
                           <div className="experience-box">
                             <ul className="experience-list">
                             {education_list.map(education => (
-                              <li>
+                              <li key={education.key}>
                               <div className="experience-user">
                                 <div className="before-circle" />
                               </div>
@@ -1126,6 +1208,7 @@ export default class EmployeeProfile extends Component {
                           
                           
                           <div className="experience-box">
+                       
                             <ul className="experience-list">
                             {work_history_data.map(work => (
                               <li key={work.key}>
@@ -1156,6 +1239,10 @@ export default class EmployeeProfile extends Component {
                         <div className="card-body">
                           <h3 className="card-title">Other Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#other_details"><i className="fa fa-pencil" /></a></h3>
                           <ul className="personal-info">
+                          <li>
+                              <div className="title">Aadhar Card</div>
+                              <div className="text">{this.state.candidate_other_data.aadhaar_no}</div>
+                            </li>
                             <li>
                               <div className="title">Name (As per Driving License)</div>
                               <div className="text">{this.state.candidate_other_data.name}</div>
@@ -1169,7 +1256,7 @@ export default class EmployeeProfile extends Component {
                               <div className="text">{this.state.candidate_other_data.place_of_issue}</div>
                             </li>
                             <li>
-                              <div className="title">Valid Upto (mm-dd-yyyy)</div>
+                              <div className="title">Valid Upto (YYYY-MM-DD)</div>
                               <div className="text">{this.state.candidate_other_data.valid_up_to}</div>
                             </li>
                             <li>
@@ -1184,12 +1271,9 @@ export default class EmployeeProfile extends Component {
                               <div className="title">Election ID Number</div>
                               <div className="text">{this.state.candidate_other_data.eid_no}</div>
                             </li>
+                            
                             <li>
-                              <div className="title">Aadhar Card</div>
-                              <div className="text">{this.state.candidate_other_data.aadhaar_no}</div>
-                            </li>
-                            <li>
-                              <div className="title">Old PF No.</div>
+                              <div className="title"></div>
                               <div className="text">{this.state.candidate_other_data.pf_no}</div>
                             </li>
                             <li>
@@ -1215,19 +1299,22 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6 d-flex">
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
-                          <h3 className="card-title">Document Checklist<a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-pencil" /></a></h3>
+                          <h3 className="card-title">Document Checklist</h3>
                           <ul className="personal-info">
                           {candidate_documents_data.map(document => (
-                              <li key={document.key}>
+                              <li key={document.key} >
                               <div className="title">{document.document_type}</div>
-                              <div className="text"><input type="checkbox" className="" checked="true"/></div>
+                              <div className="text"><input type="checkbox" className="" defaultChecked="true"/></div>
+                              <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)}/></a>
                             </li>
                           ))}
                          
                          {candidate_doc_list.map(document => (
-                              <li key={document.key}>
+                              <li key={document.key} >
                               <div className="title">{document}</div>
-                              <div className="text"><input type="checkbox" className="" /></div>
+                              <div className="text"><input type="checkbox" className="" />
+                              <a href="#" className="edit-icon"  data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)}/></a>
+                              </div>
                             </li>
                           ))}
                             
@@ -1865,6 +1952,7 @@ export default class EmployeeProfile extends Component {
                       <div className="submit-section">
                         <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Submit</button>
                       </div>
+                         <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -1957,6 +2045,7 @@ export default class EmployeeProfile extends Component {
                       <div className="submit-section">
                         <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -1997,7 +2086,7 @@ export default class EmployeeProfile extends Component {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Valid Upto (mm-dd-yyyy)<span className="text-danger">*</span></label>
+                            <label>Valid Upto (YYYY-MM-DD)<span className="text-danger">*</span></label>
                             <input className="form-control" type="date" onChange={this.setValidUpto} />
                           </div>
                         </div>
@@ -2022,7 +2111,7 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Aadhar card</label>
-                            <input className="form-control" type="text" onChange={this.setAdharNo} />
+                            <input className="form-control" type="text" readOnly value={this.state.candidate_other_data.aadhaar_no} />
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -2059,6 +2148,7 @@ export default class EmployeeProfile extends Component {
                       <div className="submit-section">
                         <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -2078,13 +2168,13 @@ export default class EmployeeProfile extends Component {
                   <div className="modal-body">
                     <form>
                       <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-12">
                           <div className="form-group row">
-                            <label className="col my-auto">Resume/Bio-Data</label>
-                            <input type="file" className="form-control col" />
+                            <label className="col my-auto">{this.state.docname}</label>
+                            <input type="file" className="form-control col" onChange={(event)=>this.onFileChangeForDoc(event)}/>
                           </div>
                         </div>
-                        <div className="col-md-6">
+                        {/* <div className="col-md-6">
                           <div className="form-group row">
                             <label className="col my-auto">Aadhar Card <span className="text-danger">*</span></label>
                             <input type="file" className="form-control col" />
@@ -2143,11 +2233,12 @@ export default class EmployeeProfile extends Component {
                             <label className="col my-auto">Thumb Impression</label>
                             <input type="file" className="form-control col" />
                           </div>
-                        </div>
-                      </div>
+                        </div>*/}
+                      </div> 
                       <div className="submit-section">
-                        <button className="btn btn-primary submit-btn">Submit</button>
+                        <button className="btn btn-primary submit-btn" onClick={this.uploadDoc}>Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -2176,30 +2267,29 @@ export default class EmployeeProfile extends Component {
                               <div className="col-md-6">
                                 <div className="form-group">
                                   <label>Name <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
+                                  <input className="form-control" type="text"  onChange={this.setFamilyName} />
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group">
                                   <label>Relationship <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
+                                  <input className="form-control" type="text"  onChange={this.setFamilyRelation}/>
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group">
-                                  <label>Date of birth <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
+                                  <label>Date of birth <DatePicker  className="form-control floating datetimepicker" onChange={(e)=>this.setFamilyDob(e)}></DatePicker> </label>
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group">
                                   <label>Aadhar Number <span className="text-danger">*</span></label>
-                                  <input className="form-control" type="text" />
+                                  <input className="form-control" type="text"  onChange={this.setFamilyAdhar} />
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group">
-                                  <input type="checkbox" id="vehicle10" name="vehicle1" value="Bike"/>
+                                  <input type="checkbox" id="vehicle10" name="vehicle1" value="1"  onChange={this.setIsNominee}/>
                                   <label className="ml-2">Is Nominee</label>
                                 </div>
                               </div>
@@ -2211,6 +2301,7 @@ export default class EmployeeProfile extends Component {
                       <div className="submit-section">
                         <button className="btn btn-primary submit-btn"onClick={this.addFamilyData      }>Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -2294,6 +2385,7 @@ export default class EmployeeProfile extends Component {
                       <div className="submit-section">
                         <button className="btn btn-primary submit-btn" onClick={this.addRef}>Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -2348,6 +2440,7 @@ export default class EmployeeProfile extends Component {
                       <div className="submit-section">
                         <button onClick={this.addBankDetails}className="btn btn-primary submit-btn">Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -2419,62 +2512,14 @@ export default class EmployeeProfile extends Component {
                                  </div>
                                </div>
                              </div>
-                          {/* ))} */}
+                         
                        
-                        {/* <div className="card">
-                          <div className="card-body">
-                            <h3 className="card-title">Education Informations <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a></h3>
-                            <div className="row">
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="Patna University" className="form-control floating" />
-                                  <label className="focus-label">School/College name</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="Patna" className="form-control floating" />
-                                  <label className="focus-label">Location</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <div className="cal-icon">
-                                    <input type="text" defaultValue="01/06/2002" className="form-control floating datetimepicker" />
-                                  </div>
-                                  <label className="focus-label">Year of passing</label>
-                                </div>
-                              </div>
-                             
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="12th std" className="form-control floating" />
-                                  <label className="focus-label">Degree</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="BSEB" className="form-control floating" />
-                                  <label className="focus-label">Board/Univercity</label>
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group form-focus focused">
-                                  <input type="text" defaultValue="80" className="form-control floating" />
-                                  <label className="focus-label">% Marks/Cgpa</label>
-                                </div>
-                              </div>
-                            </div>
-                           
-                          </div>
-                        </div> */}
-                         {/* <div className="add-more" onClick={this.addEducationForm}>
-                              <i className="fa fa-plus-circle" /> Add More
-                            </div> */}
+                        
                       </div>
                       <div className="submit-section">
                         <button className="btn btn-primary submit-btn" onClick={this.addEducationData}>Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -2520,7 +2565,7 @@ export default class EmployeeProfile extends Component {
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group form-focus">
-                                  <div className="cal-icon">
+                                  <div className="">
                                     <DatePicker  className="form-control floating datetimepicker" onChange={(e)=>this.setStartDate(e)}></DatePicker>
                                   </div>
                                   {/* <label className="focus-label">Period From</label> */}
@@ -2528,8 +2573,9 @@ export default class EmployeeProfile extends Component {
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group form-focus">
-                                  <div className="cal-icon">
-                                    <input type="text" className="form-control floating datetimepicker" onChange={this.setEndDate} />
+                                  <div className="">
+                                  <DatePicker  className="form-control floating datetimepicker" onChange={(e)=>this.setEndDate(e)}></DatePicker>
+                                    {/* <input type="text" className="form-control floating datetimepicker" onChange={this.} /> */}
                                   </div>
                                   <label className="focus-label">Period To</label>
                                 </div>
@@ -2542,6 +2588,7 @@ export default class EmployeeProfile extends Component {
                       <div className="submit-section">
                         <button className="btn btn-primary submit-btn" onClick={this.addExperienceData}>Submit</button>
                       </div>
+                      <label className="text-danger">{this.state.error}</label>
                     </form>
                   </div>
                 </div>
@@ -2554,5 +2601,286 @@ export default class EmployeeProfile extends Component {
        
     );
     
+  }
+  //upload bank
+  addBank=(self,bankname,branchname,acountno,ifsc,userid)=>{
+    console.log("bankdetails",bankname,branchname,acountno,ifsc,userid)
+    var data = JSON.stringify({
+        "candidate": userid,
+        "bank_name": bankname,
+        "branch_name": branchname,
+        "account_number": acountno,
+        "ifsc_code": ifsc
+    });
+    console.log("called")
+    var config = {
+      method: 'post',
+      url: baseurl+'/api/candidate/bank-details',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      self.setState({error:response.data.message})
+    })
+    .catch(function (error) {
+      console.log(error);
+      self.setState({error:"network issue"})
+    });
+  }
+  //upload profile
+ addProfileData=(self,data)=>{
+    console.log("addProfileData")
+   
+    let formData=new FormData();
+    formData.append("name",""+data.name)
+    formData.append("father_name",""+data.father_name)
+    formData.append("desiganition",""+data.designation)
+    formData.append("job_location",""+data.job_location)
+    formData.append("department",""+data.department)
+    formData.append("communication_country",""+data.c_country)
+    formData.append("communication_state",""+data.c_state)
+    formData.append("communication_city",""+data.c_city)
+    formData.append("communication_landmark",""+data.c_full_address)
+    formData.append("communication_address",""+data.c_full_address)
+    formData.append("communication_mobile_no",""+data.c_mobile_no)
+    formData.append("communication_email",""+data.c_email)
+    formData.append("communication_pin_code",""+data.c_pin_code)
+    formData.append("permanenet_country",""+data.p_country)
+    formData.append("permanenet_state",""+data.p_state)
+    formData.append("permanenet_city",""+data.p_city)
+    formData.append("permanenet_landmark",""+data.p_full_address)
+     formData.append("permanenet_address",""+data.p_full_address)
+    formData.append("permanenet_mobile_no",""+data.p_mobile_no)
+    formData.append("permanenet_email",""+data.c_email)
+    formData.append("permanenet_pin_code",""+data.p_pin_code)
+     formData.append("dob",""+data.dob)
+    // formData.append("marital_status",""+data.marital_status)
+    // formData.append("marrage_date",""+data.marrage_date)
+    formData.append("gender",""+data.gender)
+     formData.append("category",""+data.category)
+    // formData.append("nationality",""+data.nationality)
+    // formData.append("blood_group",""+data.blood_group)
+    // formData.append("mother_tongue",""+data.mother_tongue)
+    //  formData.append("religion",""+data.religion)
+    formData.append("candidate",""+data.user)
+    formData.append("recruiter_id",""+data.created_by)
+    formData.append("profile_picture",""+data.profilepic)
+    
+    console.log("profiledtat"+formData)
+    var config = {
+      method: 'post',
+      url: baseurl+'/api/candidate/personal-details',
+      headers: { 
+        'Content-Type': 'multipart/form-data'
+      },
+      data : formData
+    };
+
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      self.setState({error:response.data.message})
+    })
+    .catch(function (error) {
+      console.log(error);
+      self.setState({error:"Network issue"})
+    });
+  }
+//add experiences
+ addExperience=(self,data)=>{
+    
+  console.log("Experience",data)
+  
+  console.log("called")
+  var config = {
+    method: 'post',
+    url: baseurl+'/api/candidate/work-experience',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(function (response) {
+    self.setState({error:response.data.message})
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+    self.setState({error:"Network issue"})
+  });
+}
+//add family
+addFamily=(self,data)=>{
+    
+  console.log("Family"+JSON.stringify(data))
+  
+  console.log("called")
+  var config = {
+    method: 'post',
+    url: 'https://aadhaan.ddns.net/api/candidate/family-details',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(function (response) {
+    self.setState({error:response.data.message})
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+    self.setState({error:"Network issue"})
+  });
+}
+addOtherDetailsData=(self,data)=>{
+    
+  console.log("otherdetails",data)
+ 
+  console.log("called")
+  var config = {
+    method: 'PUT',
+    url: 'https://aadhaan.ddns.net/api/candidate/miscellaneous-other-details',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : JSON.stringify(data)
+  };
+
+  axios(config)
+  .then(function (response) {
+    self.setState({error:response.data.message})
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    self.setState({error:"Network isuue"})
+    console.log(error);
+  });
+}
+//add personal info
+addpersonalInfo=(self,data)=>{
+  data.candidate=data.id
+  console.log("addpersonalInfo"+JSON.stringify(data))
+  var data = JSON.stringify({
+    // "marital_status":data.marital_status.toLowerCase() ,
+    "marital_status":"married",
+    "marrage_date": data.marrage_date,
+    "gender": data.gender,
+    "category": data.category,
+    "nationality": data.nationality,
+    "blood_group": data.blood_group,
+    "mother_tongue": data.mother_tongue,
+    "religion": data.religion,
+    "candidate": data.user,
+    
+});
+  console.log("called",data)
+  var config = {
+    method: 'PUT',
+    url: 'https://aadhaan.ddns.net/api/candidate/personal-information',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(function (response) {
+    self.setState({error:response.data.message})
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    self.setState({error:"Network isuue"})
+    console.log(error);
+  });
+}
+  //upload doc
+  documentUpload=(self,data,document_type,candidate)=>{
+    // console.log("dadsggshfdhgdsghffsd"+JSON.stringify(self.state))
+    
+    let formData=new FormData();
+    formData.append("document_type",""+document_type)
+    formData.append("document",data)
+    formData.append("candidate",""+candidate)
+   
+    console.log("documentData"+formData)
+    var config = {
+      method: 'post',
+      url: baseurl+'/api/candidate/documents-upload',
+      headers: { 
+        'Content-Type': 'multipart/form-data'
+      },
+      data : formData
+    };
+
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      self.setState({error:response.data.message})
+    })
+    .catch(function (error) {
+      console.log(error);
+      self.setState({error:"File not found"})
+    });
+    
+    
+  }
+  //add education
+addEducation=(self,data)=>{
+    
+    console.log("Education"+JSON.stringify(data))
+    
+    console.log("called")
+    var config = {
+      method: 'post',
+      url: 'https://aadhaan.ddns.net/api/candidate/education-data',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      self.setState({error:response.data.message})
+    })
+    .catch(function (error) {
+      console.log(error);
+      self.setState({error:"Nework issue"})
+    });
+  }
+  //add references
+ addReference=(self,data)=>{
+    
+    console.log("refrences"+JSON.stringify(data))
+   
+    console.log("called")
+    var config = {
+      method: 'post',
+      url: baseurl+'/api/candidate/reference-details',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      self.setState({error:response.data.message})
+    })
+    .catch(function (error) {
+      console.log(error);
+      self.setState({error:"Nework issue"})
+    });
   }
 }

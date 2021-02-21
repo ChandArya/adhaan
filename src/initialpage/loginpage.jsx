@@ -41,7 +41,7 @@ class Loginpage extends Component {
 
       var config = {
         method: 'post',
-        url: 'http://adhaan.eastus.cloudapp.azure.com:8000/api/users/otp-generation/',
+        url: 'https://aadhaan.ddns.net/api/users/otp-generation',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -70,7 +70,7 @@ class Loginpage extends Component {
       });
      
     }else{
-      this.setState({error:'Please enter valid Mobile Number ' })
+      this.setState({error:'Please enter valid mobile number ' })
       
     }
 

@@ -55,7 +55,7 @@ class OTPscreen extends Component {
         var self=this
         var config1 = {
           method: 'post',
-          url:'http://adhaan.eastus.cloudapp.azure.com:8000/api/users/otp-verification/',
+          url:'https://aadhaan.ddns.net/api/users/otp-verification',
           headers: { 
             'Content-Type': 'application/json'
           },
@@ -96,7 +96,7 @@ class OTPscreen extends Component {
       var self=this
       var config1 = {
         method: 'post',
-        url:'http://adhaan.eastus.cloudapp.azure.com:8000/api/users/otp-generation/',
+        url:'https://aadhaan.ddns.net/api/users/otp-generation',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -147,7 +147,7 @@ class OTPscreen extends Component {
                   <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
                 </div>
                 <div className="form-group text-center">
-                  <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Enter</button>
+                  <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Submit</button>
                 </div>
                 <div className="account-footer">
                   <p>Not yet received? <a href="" onClick={this.resend}>Resend OTP</a></p>
