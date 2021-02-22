@@ -9,12 +9,12 @@ var axios = require('axios');
 class Adhar extends Component {
   constructor(...props){
     super(...props)
-    // console.log(this.props,"hhhhhhhhhhhhh")
+    console.log(this.props,"hhhhhhhhhhhhh")
     this.state={
       currentpage:'/',
       adharno:'',
       error:'',
-      id:'',
+      id:this.props.location.state.id,
       kyc:''
       
     }
@@ -22,7 +22,8 @@ class Adhar extends Component {
   }
   componentDidMount=()=> 
   {
-      // console.log(this.props.location.state,"thissssssss")
+    // alert("this.props.location.state.id",this.props.location.state.id)
+      console.log(this.props.location.state,"thissssssss")
       this.setState({user:this.props.location.state.id})
       var config = {
         method: 'get',
@@ -82,7 +83,10 @@ class Adhar extends Component {
   notverified=(e)=>
   {
     let path='app/profile/candidate-profile';
-         
+    var id=this.props.location.state.id
+    alert("iiiiid",id)
+    console.log("hhhhhhhhh",id)
+    this.setState({id:id });
           
           this.props.history.push({ 
             pathname: path,
@@ -92,7 +96,9 @@ class Adhar extends Component {
   }
   loginClick=(e)=>{
     e.preventDefault();
-    
+    var id=this.props.location.state.id
+    console.log("hhhhhhhhh",id)
+    this.setState({id:id });
     if(this.state.adharno !=undefined && this.state.adharno.trim() != ""&& this.state.adharno.length == 12)
     {
       var data = JSON.stringify({
@@ -116,9 +122,9 @@ class Adhar extends Component {
         
         var getno=mobileno.substring(mobileno.length - 3)
         
-        if(response.data.last_digits ==getno)
+        if(response.data.data.last_digits ==getno)
         {
-          console.log(response.data.data.last_digits,)
+          console.log(response.data.data.last_digits)
           self.setState({error:"Kyc verified"})
           let path='app/profile/candidate-profile';
          

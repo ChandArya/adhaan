@@ -22,6 +22,7 @@ export default class EmployeeProfile extends Component {
       
       isLoaded: false,
       name:'',
+      edulevel:'10',
       error:'',
       other_details_id:'',
       profilepic:Avatar_02,
@@ -29,7 +30,7 @@ export default class EmployeeProfile extends Component {
       designation: '',
       client: null,
       father_name: '',
-      department: '',
+      department: '     ',
       job_location: '',
       zone: '',
       u_state: '',
@@ -43,22 +44,22 @@ export default class EmployeeProfile extends Component {
       c_state: '',
       c_city: '',
       c_house_no: '',
-      c_full_address: '',
+      c_full_address: '                           ',
       c_mobile_no: '',
-      c_email: '',
+      c_email: '                      ',
       c_pin_code:'',
       p_country: '',
       p_state: '',
       p_city: '',
       p_house_no: '',
-      p_full_address: '',
+      p_full_address: '                                                        ',
       p_mobile_no: '',
       p_email: '',
       p_pin_code:'',
       dob:'',
       marital_status:'',
       marrage_date: '',
-      gender: "",
+      gender: "male",
       category: "",
       nationality: "",
       blood_group: "",
@@ -79,7 +80,7 @@ export default class EmployeeProfile extends Component {
       education_data:{},
       candidate_work_history_data:[],
       candidate_documents_data:[],
-      candidate_doc_list:['Resume/ Bio-DATA','Aadhar Card','Driving License','Voter ID','PAN Card','Ration Card','Passport Size Photos','Rent Agreement','Passbook / Cancelled Cheque','Marriage Certificate','Signature','Thumb Impression'],
+      candidate_doc_list:['Resume/ Bio-DATA','Adhaar Card Front','Adhaar Card Back','Driving License Front','Driving License Back','Pan Card','Ration Card','Passport Size Photo','Rent Agreement','Passbook','Marriage Certificate','Signature','Thumb Impression'],
       isNomniee:false,
       family_adhar:'',
       family_name:'',
@@ -162,13 +163,21 @@ export default class EmployeeProfile extends Component {
   addEducationData=(e)=>{
     e.preventDefault();
    
-    var data={"degree":this.state.degree,"board_university":this.state.board,"school":this.state.school,"location":this.state.edu_location,"passing_year":this.state.passing_year,"percentage":this.state.percentage,"candidate":this.state.user }
+    var data={"degree":this.state.degree,"board_university":this.state.board,"school":this.state.school,"location":this.state.edu_location,"passing_year":this.state.passing_year,"percentage":this.state.percentage,"candidate":this.state.user,"education_level": this.state.edulevel}
     var data1={'candidate':this.state.user}
     let final = {
       ...data,
       ...data1
     };
-    this.addEducation(this,final);
+    if(this.state.edulevel=='0')
+    {
+
+      this.setState({error:"Please select education level"})
+      // console.log("valuee")
+    }else{
+      this.addEducation(this,final);
+    }
+   
   }
   //end education data
   //experience data
@@ -362,10 +371,9 @@ export default class EmployeeProfile extends Component {
     
   }
    setDob=(e)=>{
-    const value = e.target.value;
-    // alert("got data"+value)
+    const value = e.format();
     
-    this.setState({dob:value });
+    this.setState({dob:Moment(value).format('YYYY-MM-DD')});
     
   }
   setgender=(e)=>{
@@ -530,12 +538,17 @@ export default class EmployeeProfile extends Component {
   }
   setCategory=(e)=>{
     const value = e.target.value;
-    this.setState({category:this.state.category.join(value)})
+    if(this.state.category.includes(value)){
+      this.setState({category:this.state.category.replace(value,'')})
+    }else{
+      this.setState({category:this.state.category.concat(value)})
+    }
+    
 
   }
   setBloodGroup=(e)=>{
     const value = e.target.value;
-    this.setState({blood_group:value})
+    this.setState({blood_group:value.toUpperCase()})
 
   }
   setMothertounge=(e)=>{
@@ -544,8 +557,10 @@ export default class EmployeeProfile extends Component {
 
   }
   setMarriageDate=(e)=>{
-    const value = e.target.value;
-    this.setState({marrage_date:value})
+    const value = e.format();
+    
+    this.setState({marrage_date:Moment(value).format('YYYY-MM-DD')});
+    
 
   }
   setMarriageStatus=(e)=>{
@@ -881,6 +896,23 @@ export default class EmployeeProfile extends Component {
       var candidate_documents_data_len=data.candidate_documents_data.document.length
       if(candidate_documents_data_len>0){
         var candidate_documents_data=data.candidate_documents_data.document
+        console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
+       
+        this.setState({
+          
+          candidate_documents_data:candidate_documents_data
+         
+        });
+      }
+    }catch(err) {
+      console.log("error",err)
+      // document.getElementById("demo").innerHTML = err.message;
+    }
+    try{
+      var candidate_documents_data_len=data.candidate_documents_data.document.length
+      if(candidate_documents_data_len>0){
+        var candidate_documents_data=data.candidate_documents_data.document
+        console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
        
         this.setState({
           
@@ -903,11 +935,19 @@ export default class EmployeeProfile extends Component {
       });
       
   }
-
+  educationChane=(e)=>{
+    // alert("click")
+    var val=e.target.value;
+   
+    this.setState({edulevel:val})
+    console.log("click",val)
+    
+    
+  }
   uploadDoc=(e)=>
   {
     e.preventDefault();
-    console.log("click",)
+    console.log("click")
     var datat=this.state.resume_file
     console.log("datat",datat)
     // var d='Resume/ Bio-DATA'
@@ -915,7 +955,7 @@ export default class EmployeeProfile extends Component {
     this.documentUpload(this,datat,d,this.state.user);
     
   }
-  
+ 
   render() {
     const can_reference = this.state.reference;
     const family_data = this.state.family;
@@ -923,10 +963,23 @@ export default class EmployeeProfile extends Component {
     const education_list=Object.keys(this.state.education_data)
     const edu_data=this.state.education_data
     var candidate_documents_data= this.state.candidate_documents_data
+    // alert("ddd",candidate_documents_data,"ggg",candidate_doc_list)
     var candidate_doc_list=this.state.candidate_doc_list
-    // candidate_documents_data= candidate_documents_data.map(candidate_doc_list);
-    // console.log("found"+edu_data+education_list)
-    // const rec_option={'1':'Gourav sharma'}
+    // console.log(candidate_doc_list,"chandan kumar",candidate_documents_data)
+    for(var i=0;i<candidate_documents_data.length;i++)
+    {
+      var ff=candidate_documents_data[i].document_type
+      
+      var index=candidate_doc_list.indexOf(ff)
+      // console.log(ff,"fffff",index)
+      if (index > -1) {
+        candidate_doc_list.splice(index, 1);
+      }
+    }
+        
+
+      
+  
 
     return (
       
@@ -1159,8 +1212,8 @@ export default class EmployeeProfile extends Component {
                                   <div className="dropdown dropdown-action">
                                     <a aria-expanded="false" data-toggle="dropdown" className="action-icon dropdown-toggle" href="#"><i className="material-icons">more_vert</i></a>
                                     <div className="dropdown-menu dropdown-menu-right">
-                                      <a href="#" className="dropdown-item"><i className="fa fa-pencil m-r-5" /> Edit</a>
-                                      <a href="#" className="dropdown-item"><i className="fa fa-trash-o m-r-5" /> Delete</a>
+                                      {/* <a href="#" className="dropdown-item"><i className="fa fa-pencil m-r-5" /> Edit</a>
+                                      <a href="#" className="dropdown-item"><i className="fa fa-trash-o m-r-5" /> Delete</a> */}
                                     </div>
                                   </div>
                                 </td>
@@ -1816,28 +1869,25 @@ export default class EmployeeProfile extends Component {
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Name</label>
-                                <input type="text" className="form-control"  onChange={this.setName}/>
+                                <input type="text" className="form-control"  onChange={this.setName}defaultValue={this.state.name}/>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Father Name</label>
-                                <input type="text" className="form-control" onChange={this.setFat_Name} />
+                                <input type="text" className="form-control" onChange={this.setFat_Name} defaultValue={this.state.father_name}/>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
-                                <label>Birth Date</label>
-                                <div className="cal-icon">
-                                  <input className="form-control datetimepicker" type="text" onChange={this.setDob} />
-                                </div>
+                                <label>Birth Date<DatePicker  className="form-control floating datetimepicker" onChange={(e)=>this.setDob(e)}defaultValue={this.state.dob}></DatePicker> </label>
                               </div>
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
                                 <label>Gender</label>
-                                <select className="select form-control" onChange={this.setgender}>
-                                  <option value="male selected">Male</option>
+                                <select defaultValue={this.state.gender}className=" form-control" onChange={this.setgender}>
+                                  <option value="male">Male</option>
                                   <option value="female">Female</option>
                                 </select>
                               </div>
@@ -1849,68 +1899,68 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-12">
                           <div className="form-group">
                             <label>Current Address</label>
-                            <input type="text" className="form-control"  onChange={this.setcurrentFullAdd}/>
+                            <input type="text"defaultValue={this.state.c_full_address} className="form-control"  onChange={this.setcurrentFullAdd}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>City</label>
-                            <input type="text" className="form-control" onChange={this.setcurrentCity}/>
+                            <input type="text" defaultValue={this.state.c_state}className="form-control" onChange={this.setcurrentCity}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>State</label>
-                            <input type="text" className="form-control" onChange={this.setcurrentState} />
+                            <input type="text" defaultValue={this.state.c_state}className="form-control" onChange={this.setcurrentState} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Country</label>
-                            <input type="text" className="form-control" onChange={this.setcurrentCountry}/>
+                            <input type="text"defaultValue={this.state.c_country} className="form-control" onChange={this.setcurrentCountry}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Pin Code</label>
-                            <input type="text" className="form-control" onChange={this.setcurrentPin} />
+                            <input type="text"defaultValue={this.state.c_pin_code} className="form-control" onChange={this.setcurrentPin} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Phone Number</label>
-                            <input type="text" className="form-control" onChange={this.setcurrentPhone} />
+                            <input type="text" defaultValue={this.state.c_mobile_no}className="form-control" onChange={this.setcurrentPhone} />
                           </div>
                         </div>
                         <div className="col-md-12">
                           <div className="form-group">
                             <label>Permanent Address</label>
-                            <input type="text" className="form-control" onChange={this.setPermanentFullAdd} />
+                            <input type="text"defaultValue={this.state.p_full_address} className="form-control" onChange={this.setPermanentFullAdd} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>City</label>
-                            <input type="text" className="form-control" onChange={this.setPermnanetCity} />
+                            <input type="text" defaultValue={this.state.p_city}className="form-control" onChange={this.setPermnanetCity} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>State</label>
-                            <input type="text" className="form-control" onChange={this.setPermanentState} />
+                            <input type="text" defaultValue={this.state.p_state}className="form-control" onChange={this.setPermanentState} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Country</label>
-                            <input type="text" className="form-control" onChange={this.setPermanentCountry} />
+                            <input type="text" defaultValue={this.state.p_country}className="form-control" onChange={this.setPermanentCountry} />
                           </div>
                         </div>
                         
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Pin Code</label>
-                            <input type="text" className="form-control" onChange={this.setPermanentPin} />
+                            <input type="text" defaultValue={this.state.p_pin_code}className="form-control" onChange={this.setPermanentPin} />
                           </div>
                         </div>
 
@@ -1921,31 +1971,31 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Phone Number</label>
-                            <input type="text" className="form-control" onChange={this.setPermanentMobile} />
+                            <input type="text"defaultValue={this.state.p_mobile_no} className="form-control" onChange={this.setPermanentMobile} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Email</label>
-                            <input type="text" className="form-control" onChange={this.setEmail} />
+                            <input type="text" defaultValue={this.state.c_email}className="form-control" onChange={this.setEmail} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Department <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" onChange={this.setDepartment} />
+                            <input type="text" defaultValue={this.state.department}className="form-control" onChange={this.setDepartment} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Designation <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" onChange={this.setDesigination} />
+                            <input type="text"defaultValue={this.state.designation} className="form-control" onChange={this.setDesigination} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Refer By  <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" onChange={this.setReferBy} />
+                            <input type="text" defaultValue={this.state.created_by} readOnly className="form-control" onChange={this.setReferBy} />
                           </div>
                         </div>
                       </div>
@@ -1980,19 +2030,19 @@ export default class EmployeeProfile extends Component {
                             <div className='clearfix'></div>
                             <div className="row">
                               <div className="col">
-                                <input type="checkbox" id="vehicle13" name="vehicle1" value="Bike" onChange={this.setCategory}/>
+                                <input type="checkbox" id="vehicle13" name="vehicle1" value="SC" onChange={this.setCategory}/>
                                 <label htmlFor="vehicle" className="ml-2" >SC</label>
                               </div>
                               <div className="col">
-                                <input type="checkbox" id="vehicle14" name="vehicle1" value="Bike"onChange={this.setCategory}/>
+                                <input type="checkbox" id="vehicle14" name="vehicle1" value="ST"onChange={this.setCategory}/>
                                 <label htmlFor="vehicle1" className="ml-2">ST</label>
                               </div>
                               <div className="col">
-                                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" onChange={this.setCategory}/>
+                                <input type="checkbox" id="vehicle2" name="vehicle2" value="OBC" onChange={this.setCategory}/>
                                 <label htmlFor="vehicle2" className="ml-2">OBC</label>
                               </div>
                               <div className="col">
-                                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" onChange={this.setCategory}/>
+                                <input type="checkbox" id="vehicle3" name="vehicle3" value="OPEN" onChange={this.setCategory}/>
                                 <label htmlFor="vehicle3" className="ml-2">OPEN</label>
                               </div>
                             </div>
@@ -2001,33 +2051,33 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Nationality <span className="text-danger" >*</span></label>
-                            <input className="form-control" type="text" onChange={this.setNationility}/>
+                            <input defaultValue={this.state.nationality}className="form-control" type="text" onChange={this.setNationility}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Blood group <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" onChange={this.setBloodGroup} />
+                            <input className="form-control" Style="text-transform:uppercase" defaultValue={this.state.blood_group}type="text" onChange={this.setBloodGroup} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Mother Tongue <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" onChange={this.setMothertounge}/>
+                            <input className="form-control"defaultValue={this.state.mother_tongue} type="text" onChange={this.setMothertounge}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Marriage Date</label>
-                            <div className="cal-icon">
-                              <input className="form-control" type="text"onChange={this.setMarriageDate} />
-                            </div>
+                            <label>Marriage Date<DatePicker  defaultValue={this.state.marrage_date}className="form-control floating datetimepicker" onChange={(e)=>this.setMarriageDate(e)}></DatePicker> </label>
+                            {/* // <div className="cal-icon">
+                            //   <input className="form-control" type="text"onChange={this.setMarriageDate} />
+                            </div> */}
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Marital status <span className="text-danger">*</span></label>
-                            <select className="select form-control" onChange={this.setMarriageStatus}>
+                            <select defaultValue={this.state.marital_status} className=" form-control" onChange={this.setMarriageStatus}>
                               <option>-</option>
                               <option>Single</option>
                               <option>Married</option>
@@ -2037,7 +2087,7 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Religion</label>
-                            <input className="form-control" type="text" onChange={this.setReligion} />
+                            <input defaultValue={this.state.religion}className="form-control" type="text" onChange={this.setReligion} />
                           </div>
                         </div>
                        
@@ -2069,73 +2119,80 @@ export default class EmployeeProfile extends Component {
                        
                           <div className="form-group">
                             <label>Name <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" onChange={this.setNameAsDl} />
+                            
+                            <input defaultValue={this.state.candidate_other_data.name}className="form-control" type="text" onChange={this.setNameAsDl} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Driving License No.<span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" onChange={this.setNameAsDlNo}/>
+                            <input defaultValue={this.state.candidate_other_data.dl_no}className="form-control" type="text" onChange={this.setNameAsDlNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Place of Issue<span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" onChange={this.setplaceOfIssue}/>
+                            <input defaultValue={this.state.candidate_other_data.place_of_issue}className="form-control" type="text" onChange={this.setplaceOfIssue}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Valid Upto (YYYY-MM-DD)<span className="text-danger">*</span></label>
-                            <input className="form-control" type="date" onChange={this.setValidUpto} />
+                            
+                            <input defaultValue={this.state.candidate_other_data.valid_up_to}className="form-control" type="date" onChange={this.setValidUpto} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Vehicle Number</label>
-                            <input className="form-control" type="text" onChange={this.setVehicleNo} />
+                            
+                            <input defaultValue={this.state.candidate_other_data.vehicle_no}className="form-control" type="text" onChange={this.setVehicleNo} />
                           </div>
                         </div>
+                        
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>PAN Card Number<span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" onChange={this.setPanNo}/>
+                            <input defaultValue={this.state.candidate_other_data.pan_card_no}className="form-control" type="text" onChange={this.setPanNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Election ID Number</label>
-                            <input className="form-control" type="text" onChange={this.setEidNo}/>
+                            <input defaultValue={this.state.candidate_other_data.eid_no} className="form-control" type="text" onChange={this.setEidNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Aadhar card</label>
-                            <input className="form-control" type="text" readOnly value={this.state.candidate_other_data.aadhaar_no} />
+                            
+                            <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old PF No.</label>
-                            <input className="form-control" type="text" onChange={this.setPF}/>
+                            
+                            <input defaultValue={this.state.candidate_other_data.pf_no}className="form-control" type="text" onChange={this.setPF}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old UAN No.</label>
-                            <input className="form-control" type="text" onChange={this.setUan}/>
+                            <input defaultValue={this.state.candidate_other_data.uan}className="form-control" type="text" onChange={this.setUan}/>
                           </div>
                         </div>
+                       
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old ESIC No.</label>
-                            <input className="form-control" type="text" onChange={this.setEsicNo}/>
+                            <input defaultValue={this.state.candidate_other_data.esic_no}className="form-control" type="text" onChange={this.setEsicNo}/>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Old ESIC Dispensory Name.</label>
-                            <input className="form-control" type="text" onChange={this.setEsicName}/>
+                            <input defaultValue={this.state.candidate_other_data.esic_name}className="form-control" type="text" onChange={this.setEsicName}/>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -2466,10 +2523,23 @@ export default class EmployeeProfile extends Component {
                       {/* {education_list.map(education => ( */}
                                <div className="card" >
                                <div className="card-body">
-                                 <h3 className="card-title">10  
+                                 {/* <h3 className="card-title">10   */}
                                  {/* <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a> */}
-                                 </h3>
+                                 {/* </h3> */}
                                  <div className="row">
+                                 <div className="col-md-6">
+                                 {/* <label>Education-Level</label> */}
+
+                                  <select  className=" form-control" onChange={this.educationChane} >
+                                  {/* <option value='0'>Select Education Level </option> */}
+                                    
+                                    <option value="10">10</option>
+                                    <option value="12">12</option>
+                                    <option value="graduate">Graduate</option>
+                                    <option value="post_graduate">Post Graduate</option>
+                                    <option value="other">Other</option>
+                                  </select>
+                                  </div>
                                    <div className="col-md-6">
                                      <div className="form-group form-focus focused">
                                        <input type="text"  className="form-control floating" onChange={this.setSchool} />
@@ -2635,7 +2705,7 @@ export default class EmployeeProfile extends Component {
   //upload profile
  addProfileData=(self,data)=>{
     console.log("addProfileData")
-   
+    self.setState({error:"Please wait profile is updating"})
     let formData=new FormData();
     formData.append("name",""+data.name)
     formData.append("father_name",""+data.father_name)
@@ -2805,7 +2875,7 @@ addpersonalInfo=(self,data)=>{
   //upload doc
   documentUpload=(self,data,document_type,candidate)=>{
     // console.log("dadsggshfdhgdsghffsd"+JSON.stringify(self.state))
-    
+    self.setState({error:"Please wait file is uploading"})
     let formData=new FormData();
     formData.append("document_type",""+document_type)
     formData.append("document",data)
