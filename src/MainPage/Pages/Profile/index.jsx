@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import EmployeeProfile from "./employeeprofile"
 import ClientProfile from "./clientprofile"
 import Candidate from './candidateprofile'
+import ApplicationForm from './applicationform'
 
 
 const subscriptionroute = ({ match }) => (
@@ -15,6 +16,7 @@ const subscriptionroute = ({ match }) => (
         {/* <Route path={`${match.url}/employee-profile`} component={EmployeeProfile} />
         <Route path={`${match.url}/client-profile`} component={ClientProfile} /> */}
         <Route path={`${match.url}/candidate-profile`} component={Candidate} />
+        <Route path={`${match.url}/applcation-form`} component={ApplicationForm} />
     </Switch>
 );
 

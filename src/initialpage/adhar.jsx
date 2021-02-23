@@ -14,7 +14,7 @@ class Adhar extends Component {
       currentpage:'/',
       adharno:'',
       error:'',
-      id:this.props.location.state.id,
+      user:this.props.location.state.id,
       kyc:''
       
     }
@@ -27,7 +27,7 @@ class Adhar extends Component {
       this.setState({user:this.props.location.state.id})
       var config = {
         method: 'get',
-        url: 'https://aadhaan.ddns.net/api/candidate/full-information/'+this.props.location.state.id,
+        url: 'https://aadhaan.ddns.net/api/candidate/full-information/'+this.state.user,
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -76,7 +76,7 @@ class Adhar extends Component {
     
     var id=this.props.location.state.id
     console.log("hhhhhhhhh",id)
-    this.setState({adharno: value,id:id });
+    this.setState({adharno: value,user:id });
 
     
   }
@@ -84,9 +84,9 @@ class Adhar extends Component {
   {
     let path='app/profile/candidate-profile';
     var id=this.props.location.state.id
-    alert("iiiiid",id)
+   // alert("iiiiid",id)
     console.log("hhhhhhhhh",id)
-    this.setState({id:id });
+    this.setState({user:id });
           
           this.props.history.push({ 
             pathname: path,
@@ -98,7 +98,7 @@ class Adhar extends Component {
     e.preventDefault();
     var id=this.props.location.state.id
     console.log("hhhhhhhhh",id)
-    this.setState({id:id });
+    this.setState({user:id });
     if(this.state.adharno !=undefined && this.state.adharno.trim() != ""&& this.state.adharno.length == 12)
     {
       var data = JSON.stringify({

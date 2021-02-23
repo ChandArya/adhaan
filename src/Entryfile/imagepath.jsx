@@ -6,6 +6,9 @@
 // export default imagepaths
 
 export {default as headerlogo} from 'Assets/img/logo.png';
+export {default as Upload_Photo} from 'Assets/img/upload-photo.png';
+export {default as Sign} from 'Assets/img/sign.png';
+// export {default as Applogo} from 'Assets/img/logo2.png';
 
 export {default as Applogo} from 'Assets/img/logo2.png';
 export {default as logo3} from 'Assets/img/logo3.png';

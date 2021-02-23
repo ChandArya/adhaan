@@ -18,6 +18,7 @@ export default class EmployeeProfile extends Component {
     this.setStartDate = this.setStartDate.bind(this);
     this.onFileChangeForDoc = this.onFileChangeForDoc.bind(this);
     this.setDocName = this.setDocName.bind(this);
+    console.log("constructor",this.props.location)
     this.state={
       
       isLoaded: false,
@@ -35,7 +36,7 @@ export default class EmployeeProfile extends Component {
       zone: '',
       u_state: '',
       source: '',
-      user: '',
+      user: this.props.location.state.user,
       created_by: 1,
       isd: "91",
       mobile_no:'',
@@ -647,14 +648,29 @@ export default class EmployeeProfile extends Component {
     console.log("dayyaya",data)
     this.addFamily(this,data);
   }
+  previewClick=(e)=>
+  {
+    let path='./applcation-form';
+    // var id=this.props.location.state.id
+   // alert("iiiiid",id)
+    // console.log("hhhhhhhhh",id)
+    // this.setState({id:id });
+          
+          this.props.history.push({ 
+            pathname: path,
+            state:this.state
+            
+           })
+
+  }
   //endfamily data
   componentDidMount=()=> 
   {
       // console.log(this.props.location.state,"thissssssss")
-      this.setState({user:this.props.location.state.id})
+      // this.setState({user:this.props.location.state.id})
       var config = {
         method: 'get',
-        url: 'https://aadhaan.ddns.net/api/candidate/full-information/'+this.props.location.state.id,
+        url: 'https://aadhaan.ddns.net/api/candidate/full-information/'+this.state.user,
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -996,15 +1012,20 @@ export default class EmployeeProfile extends Component {
              
               {/* /Page Header */}
               <div className="card mb-0">
+              <div className="col-auto float-right ml-auto">
+                            <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview</button>
+                        </div>
                 <div className="card-body">
                   <div className="row">
                     <div className="col-md-12">
                       <div className="profile-view">
+                      
                         <div className="profile-img-wrap">
                           <div className="profile-img">
                             <a href="#"><img alt="" src={Avatar_02} /></a>
                           </div>
                         </div>
+                       
                         <div className="profile-basic">
                           <div className="row">
                             <div className="col-md-5">
@@ -1093,7 +1114,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6 d-flex">
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
-                          <h3 className="card-title">Personal  Informations <a href="#" className="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i className="fa fa-pencil" /></a></h3>
+                          <h3 className="card-title">Personal  Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i className="fa fa-pencil" /></a></h3>
                           <ul className="personal-info">
                             <li>
                               <div className="title">Category.</div>
@@ -1366,7 +1387,7 @@ export default class EmployeeProfile extends Component {
                               <li key={document.key} >
                               <div className="title">{document}</div>
                               <div className="text"><input type="checkbox" className="" />
-                              <a href="#" className="edit-icon"  data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)}/></a>
+                              <a href="#" className="edit-icon"  data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload"  onClick={() => this.setDocName(document)}/></a>
                               </div>
                             </li>
                           ))}
@@ -2014,7 +2035,7 @@ export default class EmployeeProfile extends Component {
               <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title">Personal Information</h5>
+                    <h5 className="modal-title">Personal Details</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
