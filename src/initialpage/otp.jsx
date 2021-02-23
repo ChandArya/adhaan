@@ -86,9 +86,10 @@ class OTPscreen extends Component {
     }
 
     resend=(e)=>{
-      e.preventDefault();
+      // e.preventDefault();
       // console.log(this.props)
       // console.log(this.props.location.state)
+      this.setState({f_otp:'' });
       var isd=this.props.location.state.isd
       var mobile=this.props.location.state.empid
       console.log(this.props.location)
@@ -141,10 +142,10 @@ class OTPscreen extends Component {
               {/* Account Form */}
               <form action="#">
                 <div className="otp-wrap">
-                  <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
-                  <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
-                  <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
-                  <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
+                  <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
+                  <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
+                  <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
+                  <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
                 </div>
                 <div className="form-group text-center">
                   <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Submit</button>

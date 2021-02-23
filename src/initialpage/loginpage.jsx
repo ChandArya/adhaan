@@ -93,7 +93,7 @@ class Loginpage extends Component {
          
          <div className="main-wrapper">
            <Helmet>
-               <title>Login - Adhaan HRMS Admin Template</title>
+               <title>Login - Adhaan HRMS </title>
                <meta name="description" content="Login page"/>					
          </Helmet>
         <div className="account-content">
@@ -108,17 +108,17 @@ class Loginpage extends Component {
             {/* /Account Logo */}
             <div className="account-box">
               <div className="account-wrapper">
-               
+               <h1>Candidate Onboarding</h1>
                 <form action="">
                   <div className="form-group">
-                    <label>Please Enter Your Mobile Number</label>
-                    <input className="form-control" type="text" maxLength="10" placeholder="Enter mobile number " onChange={this.updateInput}/>
+                    <label>Please Enter Mobile Number</label>
+                    <input className="form-control" type="text" maxLength="10" placeholder=" Linked Aadhar Mobile Number " onChange={this.updateInput}/>
                     <label className="text-danger">{this.state.error}</label>
                   </div>
                   
                   <div className="form-group text-center ">
                     <button onClick={this.loginClick}className="btn btn-primary account-btn" >
-                    Submit</button>
+                    Submit to Continue</button>
                   </div>
                  
                 </form>

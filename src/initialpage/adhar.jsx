@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import {Applogo} from '../Entryfile/imagepath.jsx'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css' 
 var axios = require('axios');
 class Adhar extends Component {
   constructor(...props){
@@ -72,6 +74,7 @@ class Adhar extends Component {
 
   updateInput=(e)=>{
     e.preventDefault();
+    
     const value = e.target.value;
     
     var id=this.props.location.state.id
@@ -127,26 +130,58 @@ class Adhar extends Component {
           console.log(response.data.data.last_digits)
           self.setState({error:"Kyc verified"})
           let path='app/profile/candidate-profile';
+          confirmAlert({
+            title: 'Aadhar Verification',
+            message: 'Congratulation Your kyc verified ✅',
+            buttons: [
+              {
+                label: 'Continue',
+                onClick: () => { self.props.history.push({ 
+                  pathname: path,
+                  state:self.state
+                  
+                 })}
+              }
+            ]
+          })
+          
          
-          
-          self.props.history.push({ 
-            pathname: path,
-            state:self.state
-            
-           })
         }else{
-          let path='app/profile/candidate-profile';
+         
           self.setState({kyc:"notverfied",error:"This aadhar no is not matched with this mobile number"+mobileno})
-          
-          // self.props.history.push({ 
-          //   pathname: path,
-          //   state:self.state
-            
-          //  })
+        
+        confirmAlert({
+          title: 'Aadhar Verification',
+          message: 'The enter aadhar number does not match your Linked mobile number Continue to onboarding?',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: () => { 
+                let path='app/profile/candidate-profile';
+                self.props.history.push({ 
+                pathname: path,
+                state:self.state
+                
+               })}
+               
+            },
+            {
+              label: 'No',
+                onClick: () => { 
+                  let path='login';
+                  self.props.history.push({ 
+                  pathname: path,
+                  state:self.state
+                  
+                })}
+            }
+          ]
+        })
         }
         
       })
       .catch(function (error) {
+       
         console.log(error);
         self.setState({error:"this is not a valid aadhar no"})
       });
@@ -168,7 +203,7 @@ class Adhar extends Component {
          
          <div className="main-wrapper">
            <Helmet>
-               <title>Adhaar - Adhaan HRMS Admin Template</title>
+               <title>Adhaar - Adhaan HRMS </title>
                <meta name="description" content="Login page"/>					
          </Helmet>
         <div className="account-content">
@@ -181,6 +216,7 @@ class Adhar extends Component {
            
             <div className="account-box">
               <div className="account-wrapper">
+                <h3>Please Re-confirm your aadhar number </h3>
                <div></div>
                 <form action="">
                   <div className="form-group">
@@ -193,10 +229,10 @@ class Adhar extends Component {
                  
                   <div className="form-group text-center">
                     <button onClick={this.loginClick}className="btn btn-primary account-btn" >
-                    Submit</button>
+                    Verify</button>
                     
                   </div>
-                  <button type="button" className="btn btn-primary account-btn" disabled={!this.state.kyc} onClick={this.notverified}>Skip</button>
+                  {/* <button type="button" className="btn btn-primary account-btn" disabled={!this.state.kyc} onClick={this.notverified}>Skip</button> */}
                  
                 </form>
                 {/* /Account Form */}

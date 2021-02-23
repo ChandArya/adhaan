@@ -302,7 +302,91 @@ class ApplicationForm extends Component {
                })
     }
     render() {
-        console.log("this previe=",this.props.location.state.user)
+        var _10thdata={"degree":'',"board_university":"","location":"",
+        "percentage":"",
+        "school":"","passing_year":""}
+        try{
+            _10thdata={"degree":this.state.education_data[10].degree,"board_university":this.state.education_data[10].board_university,"location":this.state.education_data[10].location,
+            "percentage":this.state.education_data[10].percentage,
+            "school":this.state.education_data[10].school,"passing_year":this.state.education_data[10].passing_year}
+        }catch(err)
+        {
+            console.log("hjhj",err)
+        }
+
+
+
+        var _12thdata={"degree":'',"board_university":"","location":"",
+        "percentage":"",
+        "school":"","passing_year":""}
+        try{
+            _12thdata={"degree":this.state.education_data[12].degree,"board_university":this.state.education_data[12].board_university,"location":this.state.education_data[12].location,
+            "percentage":this.state.education_data[12].percentage,
+            "school":this.state.education_data[12].school,"passing_year":this.state.education_data[12].passing_year}
+        }catch(err)
+        {
+            console.log("hjhj",err)
+        }
+        
+
+        var graduate={"degree":'',"board_university":"","location":"",
+        "percentage":"",
+        "school":"","passing_year":""}
+        try{
+            graduate={"degree":this.state.education_data['graduate'].degree,"board_university":this.state.education_data['graduate'].board_university,"location":this.state.education_data['graduate'].location,
+            "percentage":this.state.education_data['graduate'].percentage,
+            "school":this.state.education_data['graduate'].school,"passing_year":this.state.education_data['graduate'].passing_year}
+        }catch(err)
+        {
+            console.log("hjhj",err)
+        }
+        
+        var post_graduate={"degree":'',"board_university":"","location":"",
+        "percentage":"",
+        "school":"","passing_year":""}
+        try{
+            post_graduate={"degree":this.state.education_data['post_graduate'].degree,"board_university":this.state.education_data['post_graduate'].board_university,"location":this.state.education_data['post_graduate'].location,
+            "percentage":this.state.education_data['post_graduate'].percentage,
+            "school":this.state.education_data['post_graduate'].school,"passing_year":this.state.education_data['post_graduate'].passing_year}
+        }catch(err)
+        {
+            console.log("hjhj",err)
+        }
+
+        var other={"degree":'',"board_university":"","location":"",
+        "percentage":"",
+        "school":"","passing_year":""}
+        try{
+            other={"degree":this.state.education_data['other'].degree,"board_university":this.state.education_data['other'].board_university,"location":this.state.education_data['other'].location,
+            "percentage":this.state.education_data['other'].percentage,
+            "school":this.state.education_data['other'].school,"passing_year":this.state.education_data['other'].passing_year}
+        }catch(err)
+        {
+            console.log("hjhj",err)
+        }
+
+
+
+   
+        var otherdetails ={"name":'',"dl_no":"","place_of_issue":"","valid_up_to":"","vehicle_no":"",
+        "pan_card_no":"","eid_no":"","aadhaar_no":"","pf_no":'',"uan":"","esic_no":"","esic_name":"","esic_address":""}
+
+try{
+    console.log(this.state)
+    otherdetails={"name":this.state.candidate_other_data.name, "dl_no":this.state.candidate_other_data.dl_no,
+    "place_of_issue":this.state.candidate_other_data.place_of_issue, "valid_up_to":this.state.candidate_other_data.valid_up_to,
+    "vehicle_no":this.state.candidate_other_data.vehicle_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,
+    "eid_no":this.state.candidate_other_data.eid_no,"aadhaar_no":this.state.candidate_other_data.aadhaar_no,
+    "pf_no":this.state.candidate_other_data.pf_no,"uan":this.state.candidate_other_data.uan,
+    "esic_no":this.state.candidate_other_data.esic_no,"esic_name":this.state.candidate_other_data.esic_name,
+    "esic_address":this.state.candidate_other_data.esic_address}
+}
+    
+catch(err)
+{
+    console.log("hjhj",err);
+}
+        console.log("this previe=",otherdetails)
         return ( 
         <div className="page-wrapper">
             <Helmet>
@@ -398,7 +482,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Designation:</label>
                                             </div>
-                                            <input type="text" name="designation" className="px-0 mx-2 py-1 form-control" />
+                                            <input defaultValue={this.state.designation} type="text" name="designation" className="px-0 mx-2 py-1 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -406,7 +490,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Location</label> 
                                             </div>
-                                            <input type="text" name="location" className="px-0 mx-2 py-1 form-control" />
+                                            <input  defaultValue={this.state.job_location} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -414,7 +498,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto"> 
                                                 <label className="m-0 text-uppercase">Department</label>
                                             </div>
-                                            <input type="text" name="department" className="px-0 ml-2 py-1 form-control" />
+                                            <input defaultValue={this.state.department} type="text" name="department" className="px-0 ml-2 py-1 form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -424,7 +508,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Communication Address</label>
                                             </div>
-                                            <input type="text" name="communication-address" className="px-0 ml-2 py-1 form-control" />
+                                            <input  defaultValue={this.state.c_country}  type="text" name="communication-address" className="px-0 ml-2 py-1 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -432,7 +516,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Landmark:</label> 
                                             </div>
-                                            <input type="text" name="landmark" className="px-0 py-1 mx-2 form-control" />
+                                            <input  defaultValue={this.state.c_house_no} type="text" name="landmark" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -440,7 +524,8 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">City:</label> 
                                             </div>
-                                            <input type="text" name="city" className="px-0 py-1 ml-2 form-control" />
+              
+                                            <input defaultValue={this.state.c_city} type="text" name="city" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -448,7 +533,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">State:</label>
                                             </div>
-                                            <input type="text" name="state" className="px-0 py-1 mx-2 form-control" />
+                                            <input defaultValue={this.state.c_state} type="text" name="state" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -456,7 +541,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Pin Code:</label> 
                                             </div>
-                                            <input type="text" name="pincode" className="px-0 py-1 mx-2 form-control" />
+                                            <input defaultValue={this.state.c_pin_code} type="text" name="pincode" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -464,7 +549,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Mobile Number:</label>
                                             </div>
-                                            <input type="text" name="mobile-number" className="px-0 py-1 ml-2 form-control" />
+                                            <input  defaultValue={this.state.c_mobile_no} type="text" name="mobile-number" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +559,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Parmement Address</label>
                                             </div>
-                                            <input type="text" name="parmement-address" className="px-0 py-1 ml-2 form-control" />
+                                            <input  defaultValue={this.state.p_country} type="text" name="parmement-address" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -482,7 +567,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Landmark:</label> 
                                             </div>
-                                            <input type="text" name="landmark" className="px-0 py-1 mx-2 form-control" />
+                                            <input  defaultValue={this.state.p_house_no} type="text" name="landmark" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -490,7 +575,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">City:</label>  
                                             </div>
-                                            <input type="text" name="city" className="px-0 py-1 ml-2 form-control" />
+                                            <input defaultValue={this.state.p_city}type="text" name="city" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -498,7 +583,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">State:</label>
                                             </div>
-                                            <input type="text" name="state" className="px-0 py-1 mx-2 form-control" />
+                                            <input  defaultValue={this.state.p_state} type="text" name="state" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -506,7 +591,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Pin Code:</label> 
                                             </div>
-                                            <input type="text" name="pincode" className="px-0 py-1 mx-2 form-control" />
+                                            <input defaultValue={this.state.p_pin_code} type="text" name="pincode" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -514,7 +599,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Mobile Number:</label>
                                             </div>
-                                            <input type="text" name="mobile-number2" className="px-0 py-1 ml-2 form-control" />
+                                            <input defaultValue={this.state.mobile_no} type="text" name="mobile-number2" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -522,7 +607,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Emergency Mobile No.:</label> 
                                             </div>
-                                            <input type="text" name="emergency-mobile" className="px-0 py-1 mx-2 form-control" />
+                                            <input defaultValue={this.state. p_mobile_no} type="text" name="emergency-mobile" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -530,7 +615,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Person Name:</label> 
                                             </div>
-                                            <input type="text" name="person-name" className="px-0 py-1 ml-2 form-control" />
+                                            <input defaultValue={this.state.name}type="text" name="person-name" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
@@ -538,7 +623,7 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">E-Mail:</label>
                                             </div>
-                                            <input type="email" name="email" className="px-0 py-1 ml-2 form-control" />
+                                            <input  defaultValue={this.state.p_email} type="email" name="email" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -549,22 +634,22 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Date of Birth</label>
                                             </div>
-                                            <input type="text" name="dob" className="px-0 py-1 ml-2 form-control" />
+                                            <input  defaultValue={this.state.dob} type="text" name="dob" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                         <div className="form-group">
                                             <label className="text-uppercase d-block">*Marital Status:</label>
                                             <div className="row">
                                                 <div className="col-sm-8 text-uppercase">Married</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Married" /></div>
+                                                <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Married"  defaultValue={this.state.marital_status}/></div>
                                                 <div className="col-sm-8 text-uppercase">Unmarried</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Unmarried" /></div>
+                                                <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Unmarried"  defaultValue={this.state.marital_status} /></div>
                                             </div>
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Marriage Date</label>
                                             </div>
-                                            <input type="text" name="dom" className="px-0 py-1 ml-2 form-control" />
+                                            <input  defaultValue={this.state.marrage_date} type="text" name="dom" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-2 border-right border-dark p-2">
@@ -572,9 +657,9 @@ class ApplicationForm extends Component {
                                             <label className="text-uppercase d-block">Sex:</label>              
                                             <div className="row">
                                                 <div className="col-sm-8 text-uppercase">Male</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="gender" value="male" /></div>
+                                                <div className="col-sm-4 text-right"><input type="radio" name="gender" value="male" defaultValue={this.state.gender}/></div>
                                                 <div className="col-sm-8 text-uppercase">Female</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="gender" value="female" /></div>
+                                                <div className="col-sm-4 text-right"><input type="radio" name="gender" value="female" defaultValue={this.state.gender}/></div>
                                             </div>
                                         </div>
                                     </div>
@@ -583,34 +668,34 @@ class ApplicationForm extends Component {
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Category:</label>
                                             </div> 
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto" /> SC
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto" /> ST
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto" /> OBC
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto" /> OPEN
+                                            <input type="checkbox" className="ml-4 mr-2 my-auto"  defaultValue={this.state.category}/> SC
+                                            <input type="checkbox" className="ml-4 mr-2 my-auto" defaultValue={this.state.category}/> ST
+                                            <input type="checkbox" className="ml-4 mr-2 my-auto"defaultValue={this.state.category} /> OBC
+                                            <input type="checkbox" className="ml-4 mr-2 my-auto" defaultValue={this.state.category}/> OPEN
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Nationality</label> 
                                             </div>
-                                            <input type="text" name="nationality" className="px-0 py-1 ml-2 form-control" />
+                                            <input defaultValue={this.state.nationality} type="text" name="nationality" className="px-0 py-1 ml-2 form-control"  />
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">*Blood Group</label> 
                                             </div>
-                                            <input type="text" name="blood-group" className="px-0 py-1 ml-2 form-control" />
+                                            <input defaultValue={this.state.blood_group}type="text" name="blood-group" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Mother Tongue</label> 
                                             </div>
-                                            <input type="text" name="mother-tongue" className="px-0 py-1 ml-2 form-control" />
+                                            <input defaultValue={this.state.mother_tongue} type="text" name="mother-tongue" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Religion</label> 
                                             </div>
-                                            <input type="text" name="religion" className="px-0 py-1 ml-2 form-control" />
+                                            <input defaultValue={this.state.religion} type="text" name="religion" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -626,48 +711,48 @@ class ApplicationForm extends Component {
                                     </tr>
                                     <tr>
                                         <td className="text-uppercase font-weight-bold">X Std(10<sup>th</sup>)</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.degree}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.dboard_university} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={_10thdata.school} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.location}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={_10thdata.passing_year} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.percentage}/></td>
                                     </tr>
                                     <tr>
                                         <td className="text-uppercase font-weight-bold">XII Std/Equiv.(12<sup>th</sup>)</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={_12thdata.degree} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={_12thdata.dboard_university}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={_12thdata.school} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={_12thdata.location} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={_12thdata.passing_year} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.percentage} /></td>
                                     </tr>
                                     <tr>
                                         <td className="text-uppercase font-weight-bold">Graduate</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.degree}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.dboard_university}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.school}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={graduate.location} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={graduate.passing_year} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.percentage}/></td>
                                     </tr>
                                     <tr>
                                         <td className="text-uppercase font-weight-bold">P.G.</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={post_graduate.degree} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={post_graduate.dboard_university} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={post_graduate.school} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.location}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.passing_year}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.percentage}/></td>
                                     </tr>
                                     <tr>
                                         <td className="text-uppercase font-weight-bold">Others</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.degree} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={other.dboard_university} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.school}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.location}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.passing_year}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.percentage}/></td>
                                     </tr>
                                 </table>
                                 <table width="100%" className="table mb-0 border-dark table-bordered" cellspacing="0">
@@ -732,10 +817,10 @@ class ApplicationForm extends Component {
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Valid Up To (MM-DD-YYYY)</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={otherdetails.name}  /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.dl_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={otherdetails.place_of_issue}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.valid_up_to}/></td>
                                     </tr>
                                     <tr>
                                         <th className="text-uppercase font-weight-bold text-center">Vehicle Number</th>
@@ -744,10 +829,10 @@ class ApplicationForm extends Component {
                                         <th className="text-uppercase font-weight-bold text-center">*Aadhar Card No.</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.vehicle_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.pan_card_no}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.eid_no}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.aadhaar_no}/></td>
                                     </tr>
                                     <tr>
                                         <th className="text-uppercase font-weight-bold text-center">*Old PF No.</th>
@@ -756,10 +841,10 @@ class ApplicationForm extends Component {
                                         <th className="text-uppercase font-weight-bold text-center">*Old ESIC Dispensory Name & Address</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.pf_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.uan} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.esic_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.esic_address} /></td>
                                     </tr>
                                 </table>
                                 <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Bank Details:</h5>
@@ -771,10 +856,10 @@ class ApplicationForm extends Component {
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Branch Name</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.bank_name} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.account_number}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.ifsc_code}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={this.state.branch_name} /></td>
                                     </tr>
                                 </table>
                                 <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Family Details:</h5>
@@ -788,9 +873,9 @@ class ApplicationForm extends Component {
                                     </tr>
                                     <tr>
                                         <td className="text-uppercase font-weight-bold">Father</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.father_name}/></td>
+                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={this.state.dob} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={this.state.aadhaar_no}/></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
                                     </tr>
                                     <tr>

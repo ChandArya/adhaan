@@ -8,10 +8,7 @@
     "npm": "6.x"
   },
   "scripts": {
-    
-
     "start": " webpack-dev-server --mode development --inline --progress",
-   
     "build": "webpack --mode production",
     "dev": "webpack-dev-server",
     "production": "webpack --mode production"
@@ -54,6 +51,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
+    "react-confirm-alert": "^2.7.0",
     "react-dom": "^16.13.1",
     "react-fetch": "0.0.9",
     "react-helmet": "^6.1.0",
