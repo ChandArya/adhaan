@@ -93,7 +93,8 @@ class ApplicationForm extends Component {
                 created_by:  basic_details.created_by,
                 isd:  basic_details.isd,
                 mobile_no: basic_details.mobile_no,
-                user_type:  basic_details.user_type
+                user_type:  basic_details.user_type,
+                profilepic:"https://aadhaan.ddns.net"+basic_details.profile_picture
                 
               });
             }
@@ -451,7 +452,7 @@ catch(err)
                                             <div className="image-upload">
                                                 <label for="Uploadphoto" className="mb-0">
                                                 {/* <img src="upload-photo.png" id="photo" alt="Upload Photo" className="img-fluid" /> */}
-                                                <img alt="" src={Upload_Photo} id="photo" alt="Upload Photo" className="img-fluid" />
+                                                <img alt="" src={this.state.profilepic} id="photo" alt="Upload Photo" className="img-fluid" />
                                                 </label>
                                                 <input id="Uploadphoto" type="file" onchange="readURL(this);" />
                                             </div>

@@ -38,6 +38,7 @@
     "antd": "^4.5.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
+    "file-system": "^2.2.2",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^5.2.0",
     "history": "^5.0.0",

@@ -21,10 +21,17 @@ class OTPscreen extends Component {
         
         
       }
+      // window.location.reload(false);
     }
+    // componentDidMount=()=>
+    // {
+    //   this.setState({f_otp:'' })
+    //   // 
+  
+    // }
     onChange=(e)=>
     {
-      e.preventDefault();
+      // e.preventDefault();
       
       const value = e.target.value;
       // alert("got data"+value)
@@ -143,9 +150,9 @@ class OTPscreen extends Component {
               <form action="#">
                 <div className="otp-wrap">
                   <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
-                  <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
-                  <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
-                  <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
+                  <input  type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
+                  <input  type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
+                  <input  type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange}/>
                 </div>
                 <div className="form-group text-center">
                   <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Submit</button>

@@ -27,13 +27,16 @@ export default class EmployeeProfile extends Component {
       name:'',
       edulevel:'10',
       error:'',
+      recruiter_name:'',
+      recruiter_employee_id:'',
       other_details_id:'',
       profilepic:Avatar_02,
       alternate_mobile_no: '',
       designation: '',
+      profilepic1:Avatar_02,
       client: null,
       father_name: '',
-      department: '     ',
+      department: '',
       job_location: '',
       zone: '',
       u_state: '',
@@ -439,6 +442,7 @@ export default class EmployeeProfile extends Component {
     // alert("got data"+value)
     
     this.setState({profilepic:URL.createObjectURL(value) });
+    this.setState({profilepic1:value });
   }
     onFileChangeForDoc(e){
     try{
@@ -774,7 +778,12 @@ export default class EmployeeProfile extends Component {
               created_by:  basic_details.created_by,
               isd:  basic_details.isd,
               mobile_no: basic_details.mobile_no,
-              user_type:  basic_details.user_type
+              user_type:  basic_details.user_type,
+              recruiter_name:basic_details.recruiter_name,
+              created_by:basic_details.recruiter_id,
+              recruiter_employee_id:basic_details.recruiter_employee_id,
+              // profile_picture
+              profilepic:"https://aadhaan.ddns.net"+basic_details.profile_picture
               
             });
           }
@@ -2786,7 +2795,7 @@ export default class EmployeeProfile extends Component {
   }
   //upload profile
  addProfileData=(self,data)=>{
-    console.log("addProfileData",)
+    console.log("addProfileData",data.profilepic)
     // this.isBlank(data.name)
     if(this.isBlank(data.name) || this.isBlank(data.father_name)||
     this.isBlank(data.designation) || this.isBlank(data.job_location)||
@@ -2809,7 +2818,7 @@ export default class EmployeeProfile extends Component {
     let formData=new FormData();
     formData.append("name",""+data.name)
     formData.append("father_name",""+data.father_name)
-    formData.append("desiganition",""+data.designation)
+    formData.append("designation",""+data.designation)
     formData.append("job_location",""+data.job_location)
     formData.append("department",""+data.department)
     formData.append("communication_country",""+data.c_country)
@@ -2839,9 +2848,9 @@ export default class EmployeeProfile extends Component {
     //  formData.append("religion",""+data.religion)
     formData.append("candidate",""+data.user)
     formData.append("recruiter_id",""+data.created_by)
-    formData.append("profile_picture",""+data.profilepic)
-    
-    console.log("profiledtat"+formData)
+    formData.append("profile_picture",data.profilepic1)
+    // const aa = [...formData.entries()];
+    // console.log("profiledtat"+aa)
     var config = {
       method: 'post',
       url: baseurl+'/api/candidate/personal-details',
