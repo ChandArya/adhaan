@@ -10,7 +10,9 @@ import { DatePicker } from 'antd';
 var axios = require('axios');
 var baseurl='https://aadhaan.ddns.net'
 import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import Circle from 'react-circle';
+
 // var FormData = require('form-data');
 // var fs = require('fs');
 
@@ -35,6 +37,7 @@ export default class EmployeeProfile extends Component {
       designation: '',
       profilepic1:Avatar_02,
       client: null,
+      signn:null,
       father_name: '',
       department: '',
       job_location: '',
@@ -689,11 +692,19 @@ export default class EmployeeProfile extends Component {
   {
       // console.log(this.props.location.state,"thissssssss")
       // this.setState({user:this.props.location.state.id})
+      var url1='https://aadhaan.ddns.net/api/candidate/full-information/'+this.state.user
+      var url='https://aadhaan.ddns.net/api/candidate/dashboard';
       var config = {
         method: 'get',
-        url: 'https://aadhaan.ddns.net/api/candidate/full-information/'+this.state.user,
+        url:"https://aadhaan.ddns.net/api/recruiter/onboard-list" ,
         headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          
+            
+            "Origin": "https://aadhaan.ddns.net",
+            "Access-Control-Request-Method": "GET",
+            "Access-Control-Request-Headers": "X-Custom-Header"
+            
         },
         data : ''
       };
@@ -701,7 +712,7 @@ export default class EmployeeProfile extends Component {
       axios(config)
       .then( (response)=> {
         var data=response.data;
-        console.log(data)
+        console.log("fgdfgfggf",data)
       try{
 
       
@@ -764,11 +775,11 @@ export default class EmployeeProfile extends Component {
           if(basic_details_len>0 ){
             this.setState({
               isLoaded: true,
-              name: basic_details.name,
+              name: basic_details.name.toUpperCase(),
               alternate_mobile_no: basic_details.alternate_mobile_no,
               designation: basic_details.designation,
               client:  basic_details.client,
-              father_name:  basic_details.father_name,
+              father_name:  basic_details.father_name.toUpperCase(),
               department:  basic_details.department,
               job_location:  basic_details.job_location,
               zone:  basic_details.zone,
@@ -853,11 +864,16 @@ export default class EmployeeProfile extends Component {
         if(other_details_len>0)
         {
           var other_details=data.candidate_personal_data.other_details
+          var single=other_details.marital_status
+          if(single=='un_married')
+          {
+            single="Single";
+          }
           this.setState({
 
             dob: other_details.dob,
            
-            marital_status:other_details.marital_status,
+            marital_status:other_details.single,
             marrage_date: other_details.marrage_date,
             gender: other_details.gender,
             category: other_details.category,
@@ -955,12 +971,17 @@ export default class EmployeeProfile extends Component {
       if(candidate_documents_data_len>0){
         var candidate_documents_data=data.candidate_documents_data.document
         console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
-       
+        var sign=null;
+        // if(candidate_documents_data.document_type=="Signature"){
+        //   sign=""+candidate_documents_data.document
+        // }
+
         this.setState({
           
           candidate_documents_data:candidate_documents_data
          
         });
+        // signn
       }
     }catch(err) {
       console.log("error",err)
@@ -1049,15 +1070,37 @@ export default class EmployeeProfile extends Component {
                         <div className="profile-img-wrap">
                           <div className="profile-img">
                             <a href="#"><img alt="" src={this.state.profilepic} ></img></a>
+                            <div className="precent_box">
+                        <Circle height={100}
+  width='100px'
+  animate={true} // Boolean: Animated/Static progress
+  responsive={true} // Boolean: Make SVG adapt to parent size
+  size={1} // Number: Defines the size of the circle.
+  lineWidth={14} // Number: Defines the thickness of the circle's stroke. 
+  progress={69} // Number: Update to change the progress and percentage.
+  progressColor="green"  // String: Color of "progress" portion of circle.
+  bgColor="whitesmoke" // String: Color of "empty" portion of circle.
+  textColor="#00c5fb" // String: Color of percentage text color.
+  textStyle={{ 
+    font: 'bold 5rem Helvetica, Arial, sans-serif' // CSSProperties: Custom styling for percentage.
+  }}
+  
+  percentSpacing={10} // Number: Adjust spacing of "%" symbol and number.
+  roundedStroke={true} // Boolean: Rounded/Flat line ends
+  showPercentage={true} // Boolean: Show/hide percentage.
+  showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
+/>
+                        </div>
                           </div>
                         </div>
-                       
+
+                        
                         <div className="profile-basic">
                           <div className="row">
                             <div className="col-md-5">
                               <div className="profile-info-left">
                                 <h3 className="user-name m-t-0 mb-0">{this.state.name}</h3>
-                                <h6 className="text-muted">Father Name {this.state.father_name}</h6>
+                                <h6 className="text-muted">Father Name: {this.state.father_name}</h6>
                                 <small className="text-muted">{this.state.designation}</small>
                                 <ul className="personal-info">
                                   <li>
@@ -1220,7 +1263,7 @@ export default class EmployeeProfile extends Component {
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
                         
-                          <h3 className="card-title">Bank information <a href="#" className="edit-icon" data-toggle="modal" data-target="#bank_contact_modal"><i className="fa fa-pencil" /></a></h3>
+                          <h3 className="card-title">Bank Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#bank_contact_modal"><i className="fa fa-pencil" /></a></h3>
                           <ul className="personal-info">
                             <li>
                               <div className="title">Bank name</div>
@@ -1245,7 +1288,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6 d-flex">
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
-                          <h3 className="card-title">Family Informations <a href="#" className="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i className="fa fa-pencil" /></a></h3>
+                          <h3 className="card-title">Family Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i className="fa fa-pencil" /></a></h3>
                           <div className="table-responsive">
                             <table className="table table-nowrap">
                               <thead>
@@ -1287,7 +1330,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6 d-flex">
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
-                          <h3 className="card-title">Education Informations <a href="#" className="edit-icon" data-toggle="modal" data-target="#education_info"><i className="fa fa-pencil" /></a></h3>
+                          <h3 className="card-title">Education Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#education_info"><i className="fa fa-pencil" /></a></h3>
                           <div className="experience-box">
                             <ul className="experience-list">
                             {education_list.map(education => (
@@ -1313,7 +1356,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6 d-flex">
                       <div className="card profile-box flex-fill">
                         <div className="card-body">
-                          <h3 className="card-title">Experience <a href="#" className="edit-icon" data-toggle="modal" data-target="#experience_info"><i className="fa fa-pencil" /></a></h3>
+                          <h3 className="card-title">Work Experience <a href="#" className="edit-icon" data-toggle="modal" data-target="#experience_info"><i className="fa fa-pencil" /></a></h3>
                           
                           
                           <div className="experience-box">
@@ -1377,7 +1420,7 @@ export default class EmployeeProfile extends Component {
                               <div className="text">{this.state.candidate_other_data.pan_card_no}</div>
                             </li>
                             <li>
-                              <div className="title">Election ID Number</div>
+                              <div className="title">Election ID Number </div>
                               <div className="text">{this.state.candidate_other_data.eid_no}</div>
                             </li>
                             
@@ -1386,7 +1429,7 @@ export default class EmployeeProfile extends Component {
                               <div className="text">{this.state.candidate_other_data.pf_no}</div>
                             </li>
                             <li>
-                              <div className="title">Old UAN No.</div>
+                              <div className="title">Old UAN No. </div>
                               <div className="text">{this.state.candidate_other_data.uan}</div>
                             </li>
                             <li>
@@ -1417,7 +1460,7 @@ export default class EmployeeProfile extends Component {
                               <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)}/></a>
                             </li>
                           ))}
-                         
+                         <br></br>
                          {candidate_doc_list.map(document => (
                               <li key={document.key} >
                               <div className="title">{document}</div>
@@ -1692,7 +1735,7 @@ export default class EmployeeProfile extends Component {
                 <div className="tab-pane fade" id="bank_statutory">
                   <div className="card">
                     <div className="card-body">
-                      <h3 className="card-title"> Basic Salary Information</h3>
+                      <h3 className="card-title"> Basic Salary Details</h3>
                       <form>
                         <div className="row">
                           <div className="col-sm-4">
@@ -1905,7 +1948,7 @@ export default class EmployeeProfile extends Component {
               <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title">Profile Information</h5>
+                    <h5 className="modal-title">Profile Details</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
@@ -1917,14 +1960,14 @@ export default class EmployeeProfile extends Component {
                           <div className="profile-img-wrap edit-img">
                             <img className="inline-block" src={this.state.profilepic} alt="user" />
                             <div className="fileupload btn">
-                              <span className="btn-text">edit</span>
+                              <span className="btn-text">Upload</span>
                               <input className="upload" type="file" accept="image/*" onChange={this.onFileChange}/>
                             </div>
                           </div>
                           <div className="row">
                             <div className="col-md-6">
                               <div className="form-group">
-                                <label>Name<span className="text-danger">*</span></label>
+                                <label>Full Name<span className="text-danger">*</span></label>
                                 <input type="text" className="form-control"  onChange={this.setName}defaultValue={this.state.name}/>
                               </div>
                             </div>
@@ -2226,7 +2269,7 @@ export default class EmployeeProfile extends Component {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Election ID Number</label>
+                            <label>Election ID Number </label>
                             <input defaultValue={this.state.candidate_other_data.eid_no} className="form-control" type="text" onChange={this.setEidNo}/>
                           </div>
                         </div>
@@ -2246,7 +2289,7 @@ export default class EmployeeProfile extends Component {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Old UAN No.<span className="text-danger">*</span></label>
+                            <label>Old UAN No. <span className="text-danger">*</span></label>
                             <input defaultValue={this.state.candidate_other_data.uan}className="form-control" type="text" onChange={this.setUan}/>
                           </div>
                         </div>
@@ -2375,7 +2418,7 @@ export default class EmployeeProfile extends Component {
               <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title"> Family Informations</h5>
+                    <h5 className="modal-title"> Family Details</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
@@ -2403,7 +2446,7 @@ export default class EmployeeProfile extends Component {
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group">
-                                  <label>Date of birth <DatePicker  className="form-control floating datetimepicker" onChange={(e)=>this.setFamilyDob(e)}></DatePicker> </label>
+                                  <label>Date of birth <span className="text-danger">*</span><DatePicker  className="form-control floating datetimepicker" onChange={(e)=>this.setFamilyDob(e)}></DatePicker> </label>
                                 </div>
                               </div>
                               <div className="col-md-6">
@@ -2554,7 +2597,7 @@ export default class EmployeeProfile extends Component {
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
-                                <label>Branch</label>
+                                <label>Branch Name</label>
                                 <input className="form-control" type="text" onChange={this.setBranchName} />
                               </div>
                             </div>
@@ -2580,7 +2623,7 @@ export default class EmployeeProfile extends Component {
               <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title"> Education Informations</h5>
+                    <h5 className="modal-title"> Education Details</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
@@ -2611,7 +2654,7 @@ export default class EmployeeProfile extends Component {
                                    <div className="col-md-6">
                                      <div className="form-group form-focus focused">
                                        <input type="text"  className="form-control floating" onChange={this.setSchool} />
-                                       <label className="focus-label">School/Univercity<span className="text-danger">*</span></label>
+                                       <label className="focus-label">School/University<span className="text-danger">*</span></label>
                                      </div>
                                    </div>
                                    <div className="col-md-6">
@@ -2632,13 +2675,13 @@ export default class EmployeeProfile extends Component {
                                    <div className="col-md-6">
                                      <div className="form-group form-focus focused">
                                        <input type="text"  className="form-control floating" onChange={this.setBoard}  />
-                                       <label className="focus-label">Board/Univercity<span className="text-danger">*</span></label>
+                                       <label className="focus-label">Board/University<span className="text-danger">*</span></label>
                                      </div>
                                    </div>
                                    <div className="col-md-6">
                                      <div className="form-group form-focus focused">
                                        <input type="text" className="form-control floating" onChange={this.setDegree} />
-                                       <label className="focus-label">Degree<span className="text-danger">*</span></label>
+                                       <label className="focus-label">Degree</label>
                                      </div>
                                    </div>
                                    <div className="col-md-6">
@@ -2669,7 +2712,7 @@ export default class EmployeeProfile extends Component {
               <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title">Experience Informations</h5>
+                    <h5 className="modal-title">Experience Details</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
@@ -2679,7 +2722,7 @@ export default class EmployeeProfile extends Component {
                       <div className="form-scroll">
                         <div className="card">
                           <div className="card-body">
-                            <h3 className="card-title">Experience Informations
+                            <h3 className="card-title">Experience Details
                              {/* <a href="" className="delete-icon"><i className="fa fa-trash-o" /></a> */}
                             </h3>
                             <div className="row">
@@ -2801,13 +2844,11 @@ export default class EmployeeProfile extends Component {
     this.isBlank(data.designation) || this.isBlank(data.job_location)||
     this.isBlank(data.department) || this.isBlank(data.c_country)||
     this.isBlank(data.c_state) || this.isBlank(data.c_city)||
-    this.isBlank(data.c_full_address) || this.isBlank(data.c_mobile_no)||
+    this.isBlank(data.c_full_address) || 
    this.isBlank(data.c_pin_code)||
     this.isBlank(data.p_country) || this.isBlank(data.p_state)||
-    this.isBlank(data.p_city) || this.isBlank(data.p_mobile_no)||
-    this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)||
-    this.isBlank(data.gender)||
-    this.isBlank(data.dob)
+    this.isBlank(data.p_city) || 
+    this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)
     
     )
     {
@@ -2962,13 +3003,10 @@ addFamily=(self,data)=>{
 }
 addOtherDetailsData=(self,data)=>{
   
-  if( this.isBlank(data.dl_no)||this.isBlank(data.pan_card_no)||
-  this.isBlank(data.aadhaar_no)||this.isBlank(data.pf_no)||this.isBlank(data.uan)||
-  this.isBlank(data.place_of_issue)||
-  this.isBlank(data.valid_up_to)||
-  this.isBlank(data.esic_no) ){
-    self.setState({error:"Please fill all required details"})
-  }else{
+  // if( this.isBlank(data.dl_no)||this.isBlank(data.pan_card_no)||
+  // this.isBlank(data.pf_no)||this.isBlank(data.uan) ){
+  //   self.setState({error:"Please fill all required details"})
+  // }else{
   console.log("called")
   var config = {
     method: 'PUT',
@@ -2996,7 +3034,8 @@ addOtherDetailsData=(self,data)=>{
     self.setState({error:"Network isuue"})
     console.log(error);
   });
-}
+
+// }
 }
 //add personal info
 addpersonalInfo=(self,data)=>{
@@ -3006,7 +3045,7 @@ addpersonalInfo=(self,data)=>{
     self.setState({error:"Please fill all required details"})
   }else{
     let statusm='';
-    if(data.marital_status.toLowerCase()=="single")
+    if(data.marital_status=="Single")
     {
       statusm="un_married"
     }else{
@@ -3100,7 +3139,7 @@ addEducation=(self,data)=>{
     
     console.log("Education"+JSON.stringify(data))
     
-    if(this.isBlank(data.degree) || this.isBlank(data.percentage)||
+    if( this.isBlank(data.percentage)||
   this.isBlank(data.school)||this.isBlank(data.passing_year)){
     self.setState({error:"Please fill all required details"})
   }else{

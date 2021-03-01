@@ -74,11 +74,16 @@ class OTPscreen extends Component {
           // mobileno=self.state.
           self.setState({error:ee.data.message})
           console.log("resend otp",ee)
-          if(ee.data.status==true)
+          if(ee.data.is_kyc_verified==true)
           {
-            let path='/adhar';
+            let path='/app/profile/candidate-profile';
           self.props.history.push({pathname: path,
             state:self.state})
+          }else
+          {
+            let path='/adhar';
+            self.props.history.push({pathname: path,
+              state:self.state})
           }
           
           
@@ -136,6 +141,8 @@ class OTPscreen extends Component {
       <div className="account-content">
         
         <div className="container">
+        <div className="center_box">
+
           {/* Account Logo */}
           <div className="account-logo">
             <a href="#"><img src={Applogo} alt="Adhaan Solution Pvt. Ltd. " /></a>
@@ -163,6 +170,7 @@ class OTPscreen extends Component {
                 <label className="text-danger">{this.state.error}</label>
               </form>
               {/* /Account Form */}
+              </div>
             </div>
           </div>
         </div>

@@ -97,8 +97,38 @@ class Adhar extends Component {
             
            })
   }
+  isVerfied=(data)=>{
+   
+    // /api/candidate/aadhaar-verification
+      var data1 = JSON.stringify({"candidate":""+data.id,"kyc_id":data.adharno,"aadhaar_response_data":data.data});
+      console.log("data",data1)
+      var config = {
+        method: 'post',
+        url: "https://aadhaan.ddns.net/api/candidate/aadhaar-verification",
+        headers: { 
+          'Content-Type': 'application/json',
+          'cache-control':"no-cache"
+        },
+        data : data1
+      };
+      var self=this
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+       
+        
+      })
+      .catch(function (error) {
+        console.log("ttt",error);
+      });
+     
+   
+
+   }
   loginClick=(e)=>{
     e.preventDefault();
+    // this.isVerfied({"id":95,"data":{},"adharno":'333889'});
+    // return
     var id=this.props.location.state.id
     console.log("hhhhhhhhh",id)
     this.setState({user:id });
@@ -118,6 +148,7 @@ class Adhar extends Component {
         data : data
       };
       var self=this
+     
       axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
@@ -127,12 +158,14 @@ class Adhar extends Component {
         
         if(response.data.data.last_digits ==getno)
         {
+          
+
           console.log(response.data.data.last_digits)
           self.setState({error:"Kyc verified"})
           let path='app/profile/candidate-profile';
           confirmAlert({
-            title: 'Aadhar Verification',
-            message: 'Congratulation Your kyc verified ✅',
+            title: 'Aadhar Verification \n Congratulation Your kyc  verified ✅',
+            message: '',
             buttons: [
               {
                 label: 'Continue',
@@ -209,7 +242,8 @@ class Adhar extends Component {
         <div className="account-content">
          
           <div className="container">
-           
+          <div className="center_box">
+
             <div className="account-logo">
               <a href="#"><img src={Applogo} alt="Adhaan" /></a>
             </div>
@@ -220,7 +254,7 @@ class Adhar extends Component {
                <div></div>
                 <form action="">
                   <div className="form-group">
-                    <label>Please Enter Your Adhar Number</label>
+                   
                     <input className="form-control" type="text" placeholder="Enter adhaar number " defaultValue={this.state.adharno}onChange={this.updateInput} maxLength="12" />
                     
                     <label className="text-danger">{this.state.error}</label>
@@ -236,6 +270,7 @@ class Adhar extends Component {
                  
                 </form>
                 {/* /Account Form */}
+                </div>
               </div>
             </div>
           </div>

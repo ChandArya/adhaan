@@ -3,20 +3,21 @@ import { Helmet } from "react-helmet";
 var axios = require('axios');
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
-import { Upload_Photo, Sign, Applogo } from "../../../Entryfile/imagepath"
+import { avatarUpload_Photo,Avatar_01, Sign, Applogo } from "../../../Entryfile/imagepath"
 import "../../antdstyle.css"
 
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
-        this.state=this.props.location.state
+        
+        this.state={...this.props.location.state,profilepic:Applogo,sign:Sign}
         
         
         
     }
     componentDidMount=()=> 
     {
-        console.log("thissssssss",this.state)
+        // console.log("thissssssss",this.state)
         // alert("user",this.state)
         // console.log(this.props.location.state,"thissssssss")
         // this.setState({user:this.props.location.state.id})
@@ -94,7 +95,7 @@ class ApplicationForm extends Component {
                 isd:  basic_details.isd,
                 mobile_no: basic_details.mobile_no,
                 user_type:  basic_details.user_type,
-                profilepic:"https://aadhaan.ddns.net"+basic_details.profile_picture
+                profilepic: "https://aadhaan.ddns.net"+basic_details.profile_picture
                 
               });
             }
@@ -239,10 +240,11 @@ class ApplicationForm extends Component {
         if(candidate_work_history_data_len>0)
         {
           var candidate_work_history_data=data.candidate_work_history_data.work_experience
-         
+         // console.log("tttttttt",candidate_work_history_data);
           this.setState({
             
             candidate_work_history_data:candidate_work_history_data
+           
            
           });
         }
@@ -250,7 +252,7 @@ class ApplicationForm extends Component {
         if(candidate_documents_data_len>0){
           var candidate_documents_data=data.candidate_documents_data.document
           console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
-         
+         console.log(this.state)
           this.setState({
             
             candidate_documents_data:candidate_documents_data
@@ -266,6 +268,32 @@ class ApplicationForm extends Component {
         if(candidate_documents_data_len>0){
           var candidate_documents_data=data.candidate_documents_data.document
           console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
+          var signa=null;
+          for(var i =0;i<candidate_documents_data_len;i++)
+          {
+            if(candidate_documents_data[i].document_type=="Signature"){
+                 signa="https://aadhaan.ddns.net"+candidate_documents_data[i].document
+                console.log("fghdsjfhkjsakhjkahdjfkhjfdshjfkdhjdkjhfjkh",sign)
+              }
+          }
+          
+  
+          this.setState({
+            sign:signa,
+            candidate_documents_data:candidate_documents_data
+           
+          });
+          // signn
+        }
+      }catch(err) {
+        console.log("error",err)
+        // document.getElementById("demo").innerHTML = err.message;
+      }
+      try{
+        var candidate_documents_data_len=data.candidate_documents_data.document.length
+        if(candidate_documents_data_len>0){
+          var candidate_documents_data=data.candidate_documents_data.document
+        //   console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
          
           this.setState({
             
@@ -293,7 +321,7 @@ class ApplicationForm extends Component {
         let path='./candidate-profile';
         var id=this.props.location.state.user
        // alert("iiiiid",id)
-        console.log("hhhhhhhhh",id)
+        // console.log("hhhhhhhhh",id)
         this.setState({id:id });
               
               this.props.history.push({ 
@@ -373,7 +401,7 @@ class ApplicationForm extends Component {
         "pan_card_no":"","eid_no":"","aadhaar_no":"","pf_no":'',"uan":"","esic_no":"","esic_name":"","esic_address":""}
 
 try{
-    console.log(this.state)
+    // console.log(this.state)
     otherdetails={"name":this.state.candidate_other_data.name, "dl_no":this.state.candidate_other_data.dl_no,
     "place_of_issue":this.state.candidate_other_data.place_of_issue, "valid_up_to":this.state.candidate_other_data.valid_up_to,
     "vehicle_no":this.state.candidate_other_data.vehicle_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,
@@ -387,7 +415,146 @@ catch(err)
 {
     console.log("hjhj",err);
 }
-        console.log("this previe=",otherdetails)
+
+ var work_experience ={"organization": '',"designation":'', "end_date":'',"reason_for_leaving":'','start_date':''}
+    
+try{
+    // console.log( "tttt",this.state.candidate_work_history_data[0].organization);
+    work_experience={"organization":this.state.candidate_work_history_data[0].organization,"designation":this.state.candidate_work_history_data[0].designation,
+    "end_date":this.state.candidate_work_history_data[0].end_date,"reason_for_leaving":this.state.candidate_work_history_data[0].reason_for_leaving,
+    "start_date":this.state.candidate_work_history_data[0].start_date}
+}
+catch(err)
+{
+    console.log("ttt",err);
+}
+
+var work_experience1 ={"organization": '',"designation":'', "end_date":'',"reason_for_leaving":'','start_date':''}
+    
+try{
+    // console.log( "tttt",this.state.candidate_work_history_data[1].organization);
+    work_experience1={"organization":this.state.candidate_work_history_data[1].organization,"designation":this.state.candidate_work_history_data[1].designation,
+    "end_date":this.state.candidate_work_history_data[1].end_date,"reason_for_leaving":this.state.candidate_work_history_data[1].reason_for_leaving,
+    "start_date":this.state.candidate_work_history_data[1].start_date}
+}
+catch(err)
+{
+    console.log("ttt",err);
+}
+var work_experience2 ={"organization": '',"designation":'', "end_date":'',"reason_for_leaving":'','start_date':''}
+    
+try{
+    // console.log( "tttt",this.state.candidate_work_history_data[2].organization);
+    work_experience2={"organization":this.state.candidate_work_history_data[2].organization,"designation":this.state.candidate_work_history_data[2].designation,
+    "end_date":this.state.candidate_work_history_data[2].end_date,"reason_for_leaving":this.state.candidate_work_history_data[2].reason_for_leaving,
+    "start_date":this.state.candidate_work_history_data[2].start_date}
+}
+catch(err)
+{
+    console.log("ttt",err);
+}
+
+
+
+
+var reference={"name":'',"mobile_no":'', "location":''}
+try{
+    // console.log('references',this.state)
+    reference={'name':this.state.reference[0].name,'mobile_no':this.state.reference[0].mobile_no,
+    'location':this.state.reference[0].location}
+}
+
+catch(err)
+{
+    console.log("refrence",err);
+}
+
+
+
+var reference1={"name":'',"mobile_no":'', "location":''}
+try{
+    reference1={'name':this.state.reference[1].name,'mobile_no':this.state.reference[1].mobile_no,
+    'location':this.state.reference[1].location}
+}
+
+catch(err)
+{
+    console.log("refrence1",err);
+ }
+
+//family data
+ var family={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
+ try{
+    // console.log('family1111',this.state.family)
+    family={'name':this.state.family[0].name,'aadhaar_no':this.state.family[0].aadhaar_no,
+     'dob':this.state.family[0].dob,'is_nominee':this.state.family[0].is_nominee,'relation':this.state.family[0].relation}
+ }
+ 
+ catch(err)
+ {
+     console.log("family111",err);
+  }
+ 
+  var family1={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
+ try{
+    // console.log('family111',this.state.family)
+    family1={'name':this.state.family[1].name,'aadhaar_no':this.state.family[1].aadhaar_no,
+     'dob':this.state.family[1].dob,'is_nominee':this.state.family[1].is_nominee,'relation':this.state.family[1].relation}
+ }
+ 
+ catch(err)
+ {
+     //console.log("family222",err);
+  }
+  var family2={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
+  try{
+     //console.log('family11',this.state.family)
+     family2={'name':this.state.family[2].name,'aadhaar_no':this.state.family[2].aadhaar_no,
+      'dob':this.state.family[2].dob,'is_nominee':this.state.family[2].is_nominee,'relation':this.state.family[2].relation}
+  }
+  
+  catch(err)
+  {
+     // console.log("family111",err);
+   }
+   var family3={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
+   try{
+      //console.log('family1111',this.state.family)
+      family3={'name':this.state.family[3].name,'aadhaar_no':this.state.family[3].aadhaar_no,
+       'dob':this.state.family[3].dob,'is_nominee':this.state.family[3].is_nominee,'relation':this.state.family[3].relation}
+   }
+   
+   catch(err)
+   {
+      // console.log("family111",err);
+    }
+    var family4={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'' ,'relation':''}
+    try{
+    //    console.log('family1111',this.state.family)
+       family4={'name':this.state.family[4].name,'aadhaar_no':this.state.family[4].aadhaar_no,
+        'dob':this.state.family[4].dob,'is_nominee':this.state.family[4].is_nominee,'relation':this.state.family[4].relation}
+    }
+    
+    catch(err)
+    {
+        //console.log("family111",err);
+     }
+     var family5={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
+     try{
+        // console.log('family1111',this.state.family)
+        family5={'name':this.state.family[5].name,'aadhaar_no':this.state.family[5].aadhaar_no,
+         'dob':this.state.family[5].dob,'is_nominee':this.state.family[5].is_nominee, 'relation':this.state.family[5].relation}
+     }
+     
+     catch(err)
+     {
+         //console.log("family111",err);
+      }
+      
+
+
+
+        // console.log("this previe=",otherdetails)
         return ( 
         <div className="page-wrapper">
             <Helmet>
@@ -454,7 +621,7 @@ catch(err)
                                                 {/* <img src="upload-photo.png" id="photo" alt="Upload Photo" className="img-fluid" /> */}
                                                 <img alt="" src={this.state.profilepic} id="photo" alt="Upload Photo" className="img-fluid" />
                                                 </label>
-                                                <input id="Uploadphoto" type="file" onchange="readURL(this);" />
+                                                {/* <input id="Uploadphoto" type="file" onchange="readURL(this);" /> */}
                                             </div>
                                         </div>
                                     </div>
@@ -641,9 +808,9 @@ catch(err)
                                             <label className="text-uppercase d-block">*Marital Status:</label>
                                             <div className="row">
                                                 <div className="col-sm-8 text-uppercase">Married</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Married"  defaultValue={this.state.marital_status}/></div>
+                                                <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Married" checked={this.state.marital_status === "married"}  defaultValue={this.state.marital_status}/></div>
                                                 <div className="col-sm-8 text-uppercase">Unmarried</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Unmarried"  defaultValue={this.state.marital_status} /></div>
+                                                <div className="col-sm-4 text-right"><input type="radio"   checked={this.state.marital_status === "un_married"}  name="marital-status" value="Unmarried"   /></div>
                                             </div>
                                         </div>
                                         <div className="form-group input-group">
@@ -658,9 +825,9 @@ catch(err)
                                             <label className="text-uppercase d-block">Sex:</label>              
                                             <div className="row">
                                                 <div className="col-sm-8 text-uppercase">Male</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="gender" value="male" defaultValue={this.state.gender}/></div>
+                                                <div className="col-sm-4 text-right"><input type="radio"  checked={this.state.gender === "male"} name="gender" value="male" defaultValue={this.state.gender}/></div>
                                                 <div className="col-sm-8 text-uppercase">Female</div>
-                                                <div className="col-sm-4 text-right"><input type="radio" name="gender" value="female" defaultValue={this.state.gender}/></div>
+                                                <div className="col-sm-4 text-right"><input type="radio" checked={this.state.gender === "female"}  name="gender" value="female" defaultValue={this.state.gender}/></div>
                                             </div>
                                         </div>
                                     </div>
@@ -669,10 +836,10 @@ catch(err)
                                             <div className="input-group-prepend my-auto">
                                                 <label for="" className="m-0 text-uppercase">Category:</label>
                                             </div> 
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto"  defaultValue={this.state.category}/> SC
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto" defaultValue={this.state.category}/> ST
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto"defaultValue={this.state.category} /> OBC
-                                            <input type="checkbox" className="ml-4 mr-2 my-auto" defaultValue={this.state.category}/> OPEN
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="sc"  checked={this.state.category === "SC"} /> SC
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="st" checked={this.state.category === "ST"}/> ST
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="obc"checked={this.state.category === "OBC"} /> OBC
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="open" checked={this.state.category === "OPEN"}/> OPEN
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
@@ -767,25 +934,33 @@ catch(err)
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Reason for Separation</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" placeholder="From" onfocus="(this.type='date')" /></td>
-                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" placeholder="To" onfocus="(this.type='date')" /></td>
-                                        <td><textarea className="px-0 py-0 border-0 form-control"></textarea></td>
-                                        <td><textarea className="px-0 py-0 border-0 form-control"></textarea></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization}/></td>
+                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" 
+
+                                         placeholder="From" onfocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
+                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+
+                                         placeholder="To" onfocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
+                                        <td><textarea className="px-0 py-0 border-0 form-control" defaultValue={work_experience.designation}></textarea></td>
+                                        <td><textarea className="px-0 py-0 border-0 form-control"defaultValue={work_experience.reason_for_leaving}></textarea></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" placeholder="From" onfocus="(this.type='date')" /></td>
-                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" placeholder="To" onfocus="(this.type='date')" /></td>
-                                        <td><textarea className="px-0 py-0 border-0 form-control"></textarea></td>
-                                        <td><textarea className="px-0 py-0 border-0 form-control"></textarea></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.organization}/></td>
+                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" 
+                                        placeholder="From" onfocus="(this.type='date')"  defaultValue={work_experience1.start_date} /></td>
+                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                         placeholder="To" onfocus="(this.type='date')" defaultValue={work_experience1.end_date} /></td>
+                                        <td><textarea className="px-0 py-0 border-0 form-control"  defaultValue={work_experience1.designation}></textarea></td>
+                                        <td><textarea className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.reason_for_leaving}></textarea></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" placeholder="From" onfocus="(this.type='date')" /></td>
-                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" placeholder="To" onfocus="(this.type='date')" /></td>
-                                        <td><textarea className="px-0 py-0 border-0 form-control"></textarea></td>
-                                        <td><textarea className="px-0 py-0 border-0 form-control"></textarea></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={work_experience2.organization} /></td>
+                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                         placeholder="From" onfocus="(this.type='date')"  defaultValue={work_experience2.start_date} /></td>
+                                        <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control" 
+                                        placeholder="To" onfocus="(this.type='date')" defaultValue={work_experience2.end_date} /></td>
+                                        <td><textarea className="px-0 py-0 border-0 form-control"  defaultValue={work_experience2.designation}></textarea></td>
+                                        <td><textarea className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.reason_for_leaving}></textarea></td>
                                     </tr>
                                     <tr>
                                         <td colspan="5" height="30"></td>
@@ -797,16 +972,16 @@ catch(err)
                                         <th className="text-uppercase font-weight-bold text-center">Location</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" placeholder="1." /></td>
-                                        <td colspan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" placeholder="1."/></td>
+                                        <td colspan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference.name} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference.mobile_no}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={reference.location} /></td>
                                     </tr>
                                     <tr>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" placeholder="2." /></td>
-                                        <td colspan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td colspan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference1.name} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference1.mobile_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={reference1.location}/></td>
                                     </tr>
                                 </table>
                                 <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Others Details:</h5>
@@ -845,7 +1020,7 @@ catch(err)
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.pf_no} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.uan} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.esic_no} /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.esic_address} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.esic_name+""+otherdetails.esic_address} /></td>
                                     </tr>
                                 </table>
                                 <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Bank Details:</h5>
@@ -873,46 +1048,46 @@ catch(err)
                                         <th width="15%" className="text-uppercase text-center small font-weight-bold">Write "Yes" if add as Nominee</th>
                                     </tr>
                                     <tr>
-                                        <td className="text-uppercase font-weight-bold">Father</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.father_name}/></td>
-                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={this.state.dob} /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={this.state.aadhaar_no}/></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td className="text-uppercase font-weight-bold">{family.relation}</td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.name}/></td>
+                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family.dob} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.aadhaar_no}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.is_nominee} /></td>
                                     </tr>
                                     <tr>
-                                        <td className="text-uppercase font-weight-bold">Mother</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td className="text-uppercase font-weight-bold">{family1.relation}</td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.name} /></td>
+                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family1.dob} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.aadhaar_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family1.is_nominee} /></td>
                                     </tr>
                                     <tr>
-                                        <td className="text-uppercase font-weight-bold">Husband</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td className="text-uppercase font-weight-bold">{family2.relation}</td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={family2.name}/></td>
+                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family2.dob}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={family2.aadhaar_no}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.is_nominee}/></td>
                                     </tr>
                                     <tr>
-                                        <td className="text-uppercase font-weight-bold">Wife</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td className="text-uppercase font-weight-bold">{family3.relation}</td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.name} /></td>
+                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control"defaultValue={family3.dob} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.aadhaar_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family3.is_nominee} /></td>
                                     </tr>
                                     <tr>
-                                        <td className="text-uppercase font-weight-bold">Daughter</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td className="text-uppercase font-weight-bold">{family4.relation}</td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family4.name} /></td>
+                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control"defaultValue={family4.dob} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={family4.aadhaar_no}/></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family.is4_nominee} /></td>
                                     </tr>
                                     <tr>
-                                        <td className="text-uppercase font-weight-bold">Son</td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                        <td className="text-uppercase font-weight-bold">{family5.relation}</td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family5.name} /></td>
+                                        <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family5.dob} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.aadhaar_no} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family5.is_nominee} /></td>
                                     </tr>
                                 </table>
                                 <div className="row no-gutters border border-dark p-2">
@@ -961,11 +1136,11 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="border border-dark p-1 text-center">
                                             <div className="image-upload sign-upload">
-                                                <label for="Uploadsign" className="mb-0">
+                                                {/* <label for="Uploadsign" className="mb-0"> */}
                                                     {/* <img src="sign.png" id="sign" alt="Upload Sign" className="img-fluid" /> */}
-                                                    <img src={Sign} id="sign" alt="Upload Sign" className="img-fluid" />
-                                                </label>
-                                                <input id="Uploadsign" type="file" onchange="readSign(this);" />
+                                                    <img src={this.state.sign} height='50px' width='100px' id="sign" alt="Upload Sign" className="img-fluid" />
+                                                {/* </label> */}
+                                                {/* <input id="Uploadsign" type="file" onchange="readSign(this);" /> */}
                                             </div>
                                         </div>
                                     </div>

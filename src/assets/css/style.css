@@ -1142,10 +1142,10 @@ table.dataTable thead > tr > td.sorting {
 .header .header-left {
 	float: left;
 	height: 60px;
-	padding: 0 20px;
+	padding: 0 0 0 20px;
 	position: relative;
 	text-align: center;
-	width: 230px;
+	/* width: 230px; */
 	z-index: 1;
 	transition: all 0.2s ease-in-out;
 }
@@ -1210,10 +1210,10 @@ table.dataTable thead > tr > td.sorting {
 }
 .page-title-box {
 	border-radius: 0;
-	float: left;
-	height: 60px;
-	margin-bottom: 0;
-	padding: 17px 20px;
+    float: left;
+    height: 60px;
+    margin-bottom: 0;
+    padding: 17px 10px;
 }
 .page-title-box h3 {
 	color: #fff;
@@ -1696,7 +1696,8 @@ table.dataTable thead > tr > td.sorting {
     display: block;
     font-size: 22px;
     padding: 10px 26px;
-    width: 100%;
+	width: 100%;
+	font-weight:600;
 }
 .account-box .account-btn:hover,
 .account-box .account-btn:focus {
@@ -2130,11 +2131,11 @@ table.dataTable thead > tr > td.sorting {
 -----------------------*/
 
 .profile-img-wrap {
-	height: 120px;
+	/* height: 120px; */
 	position: absolute;
 	width: 120px;
 	background: #fff;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 .profile-basic {
 	margin-left: 140px;
@@ -8194,4 +8195,35 @@ ul.comment-list li ul.children {
 		font-size: 14px;
 		min-width: inherit;
 	}
+}
+
+.center_box{
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 40%;
+    position: absolute;
+}
+.react-confirm-alert-body{
+    text-align: center;
+    width: 500px;
+    padding: 40px;
+}
+.react-confirm-alert-button-group{
+    display: flex;
+    justify-content: center;
+}
+.react-confirm-alert-button-group button{
+    padding: 10px 30px;
+    background: #666;
+    font-size: 16px;
+}
+.precent_box{
+	height: 100px;
+    z-index: 1;
+    width: 100px;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    left: 0;
+    margin: auto;
 }

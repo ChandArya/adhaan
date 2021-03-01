@@ -100,6 +100,9 @@ class Loginpage extends Component {
           {/* <a href="/blue/applyjob/joblist" className="btn btn-primary apply-btn">Apply Job</a> */}
      
           <div className="container">
+            <div className="center_box">
+
+            
           <div>{this.state.result}</div>
             {/* Account Logo */}
             <div className="account-logo">
@@ -108,7 +111,7 @@ class Loginpage extends Component {
             {/* /Account Logo */}
             <div className="account-box">
               <div className="account-wrapper">
-               <h1>Candidate Onboarding</h1>
+               <h2>Candidate Onboarding</h2>
                 <form action="">
                   <div className="form-group">
                     <label>Please Enter Mobile Number</label>
@@ -123,6 +126,7 @@ class Loginpage extends Component {
                  
                 </form>
                 {/* /Account Form */}
+                </div>
               </div>
             </div>
           </div>
