@@ -12,6 +12,7 @@ var baseurl='https://aadhaan.ddns.net'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Circle from 'react-circle';
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 // var FormData = require('form-data');
 // var fs = require('fs');
@@ -74,6 +75,7 @@ export default class EmployeeProfile extends Component {
       blood_group: "",
       mother_tongue: "",
       religion: "",
+      profile_percent:0,
      
       branch_name:'',
       account_number:'',
@@ -546,26 +548,11 @@ export default class EmployeeProfile extends Component {
   }
  
   addEducationForm=()=>{
-      //   var data={"10": {
-      //     "id": '',
-      //     "level": "",
-      //     "degree": "",
-      //     "board_university": "",
-      //     "school": "",
-      //     "location": "",
-      //     "passing_year": '',
-      //     "percentage": ''
-      // }}
-      // this.setState(
-      //   {
-      //     education_data:data
-      //   });
+     
   }
   setCategory=(e)=>{
     const value = e.target.value;
-    // if(this.state.category.includes(value)){
-    //   this.setState({category:this.state.category.replace(value,'')})
-    // }else{
+   
       this.setState({category:value})
     
     
@@ -696,14 +683,11 @@ export default class EmployeeProfile extends Component {
       var url='https://aadhaan.ddns.net/api/candidate/dashboard';
       var config = {
         method: 'get',
-        url:"https://aadhaan.ddns.net/api/recruiter/onboard-list" ,
+        url:url1 ,
         headers: { 
           'Content-Type': 'application/json',
           
-            
-            "Origin": "https://aadhaan.ddns.net",
-            "Access-Control-Request-Method": "GET",
-            "Access-Control-Request-Headers": "X-Custom-Header"
+          
             
         },
         data : ''
@@ -711,6 +695,7 @@ export default class EmployeeProfile extends Component {
      
       axios(config)
       .then( (response)=> {
+        console.log("fgdfgfggf")
         var data=response.data;
         console.log("fgdfgfggf",data)
       try{
@@ -726,23 +711,7 @@ export default class EmployeeProfile extends Component {
             }
           );
         }
-      //   else{
-      //   //   var data={"10": {
-      //   //     "id": '',
-      //   //     "level": "",
-      //   //     "degree": "",
-      //   //     "board_university": "",
-      //   //     "school": "",
-      //   //     "location": "",
-      //   //     "passing_year": '',
-      //   //     "percentage": ''
-      //   // }
-      // // }
-      //   this.setState(
-      //     {
-      //       education_data:data
-      //     });
-      //   }
+     
       } catch(err) {
         console.log("error",err)
         // document.getElementById("demo").innerHTML = err.message;
@@ -786,6 +755,7 @@ export default class EmployeeProfile extends Component {
               u_state: basic_details.u_state,
               source:  basic_details.source,
               user:  basic_details.user,
+              profile_percent:basic_details.profile_percent,
               created_by:  basic_details.created_by,
               isd:  basic_details.isd,
               mobile_no: basic_details.mobile_no,
@@ -1077,7 +1047,7 @@ export default class EmployeeProfile extends Component {
   responsive={true} // Boolean: Make SVG adapt to parent size
   size={1} // Number: Defines the size of the circle.
   lineWidth={14} // Number: Defines the thickness of the circle's stroke. 
-  progress={69} // Number: Update to change the progress and percentage.
+  progress={parseInt(this.state.profile_percent)} // Number: Update to change the progress and percentage.
   progressColor="green"  // String: Color of "progress" portion of circle.
   bgColor="whitesmoke" // String: Color of "empty" portion of circle.
   textColor="#00c5fb" // String: Color of percentage text color.
@@ -1154,11 +1124,11 @@ export default class EmployeeProfile extends Component {
                                   <div className="title">Refer By:</div>
                                   <div className="text">
                                     <div className="avatar-box">
-                                      <div className="avatar avatar-xs">
-                                        <img src={Avatar_16} alt="" />
+                                      <div className="avatar ">
+                                        <img src={Avatar_05} alt="" />
                                       </div>
                                     </div>
-                                    <a href="#">
+                                    <a href="">
                                     {this.state.created_by}
                                     </a>
                                   </div>
@@ -2017,6 +1987,13 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Country<span className="text-danger">*</span></label>
+                            {/* <CountryDropdown
+          value={this.state.c_country}
+          onChange={(val) => this.selectCountry(val)} /> */}
+        {/* <RegionDropdown
+          country={country}
+          value={region}
+          onChange={(val) => this.selectRegion(val)} /> */}
                             <input type="text"defaultValue={this.state.c_country} className="form-control" onChange={this.setcurrentCountry}/>
                           </div>
                         </div>

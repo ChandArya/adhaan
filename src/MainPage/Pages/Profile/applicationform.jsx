@@ -3,21 +3,23 @@ import { Helmet } from "react-helmet";
 var axios = require('axios');
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
-import { avatarUpload_Photo,Avatar_01, Sign, Applogo } from "../../../Entryfile/imagepath"
+import { Upload_Photo, Sign, Applogo } from "../../../Entryfile/imagepath"
 import "../../antdstyle.css"
 
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
+        this.state=this.props.location.state
+       
         
-        this.state={...this.props.location.state,profilepic:Applogo,sign:Sign}
-        
-        
+         
+
+          
         
     }
     componentDidMount=()=> 
     {
-        // console.log("thissssssss",this.state)
+        console.log("thissssssss",this.state)
         // alert("user",this.state)
         // console.log(this.props.location.state,"thissssssss")
         // this.setState({user:this.props.location.state.id})
@@ -95,7 +97,7 @@ class ApplicationForm extends Component {
                 isd:  basic_details.isd,
                 mobile_no: basic_details.mobile_no,
                 user_type:  basic_details.user_type,
-                profilepic: "https://aadhaan.ddns.net"+basic_details.profile_picture
+                profilepic:"https://aadhaan.ddns.net"+basic_details.profile_picture
                 
               });
             }
@@ -268,33 +270,10 @@ class ApplicationForm extends Component {
         if(candidate_documents_data_len>0){
           var candidate_documents_data=data.candidate_documents_data.document
           console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
-          var signa=null;
-          for(var i =0;i<candidate_documents_data_len;i++)
-          {
-            if(candidate_documents_data[i].document_type=="Signature"){
-                 signa="https://aadhaan.ddns.net"+candidate_documents_data[i].document
-                console.log("fghdsjfhkjsakhjkahdjfkhjfdshjfkdhjdkjhfjkh",sign)
-              }
-          }
-          
-  
-          this.setState({
-            sign:signa,
-            candidate_documents_data:candidate_documents_data
-           
-          });
-          // signn
-        }
-      }catch(err) {
-        console.log("error",err)
-        // document.getElementById("demo").innerHTML = err.message;
-      }
-      try{
-        var candidate_documents_data_len=data.candidate_documents_data.document.length
-        if(candidate_documents_data_len>0){
-          var candidate_documents_data=data.candidate_documents_data.document
-        //   console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
-         
+         for (var i=0;i<candidate_documents_data.length;i++)
+         {
+             
+         }
           this.setState({
             
             candidate_documents_data:candidate_documents_data
@@ -321,7 +300,7 @@ class ApplicationForm extends Component {
         let path='./candidate-profile';
         var id=this.props.location.state.user
        // alert("iiiiid",id)
-        // console.log("hhhhhhhhh",id)
+        console.log("hhhhhhhhh",id)
         this.setState({id:id });
               
               this.props.history.push({ 
@@ -329,8 +308,150 @@ class ApplicationForm extends Component {
                 state:this.state
                 
                })
-    }
+
+
+             
+
+
+    
+
+
+    
+}
+
+    
+
+
+    
     render() {
+
+        
+      
+
+       // var candidate_documents_data ={"id":'',"document_url":'',"document":"","document_type":"",}
+      var candidate_doc_list=['Resume/ Bio-DATA','Adhaar Card Front','Adhaar Card Back','Driving License Front','Driving License Back','Pan Card','Ration Card','Passport Size Photo','Rent Agreement','Passbook','Marriage Certificate','Signature','Thumb Impression']
+
+        try{
+            console.log(this.state.candidate_doc_list)
+            console.log('1122', this.state.candidate_documents_data)
+
+
+
+            candidate_doc_list={ "document_type":this.candidate_documents_data.document_type,'Resume/ Bio-DATA':this.candidate_documents_data.Resume/ Bio-DATA,'Adhaar Card Front':this.candidate_documents_data.AdhaarCardFront,
+            'Driving License Back':this.candidate_documents_data.DrivingLicenseBack,'Pan Card':this.candidate_documents_data.PanCard,'Ration Card':this.candidate_documents_data.RationCard}
+            for(var i=0;i<candidate_documents_data.length;i++)
+            {
+              var ff=candidate_documents_data[i].document_type
+            
+             
+              var index=candidate_doc_list.indexOf(ff)
+            // console.log(ff,"fffff",index)
+              if (index > -1) {
+                candidate_doc_list.splice(index, 1);
+
+              }
+
+              
+            
+            }
+          
+           // candidate_documents_data={"id":this.state.candidate_documents_data[0].id,'document_type':this.candidate_documents_data[0].document_type}
+
+        }
+catch(err){
+console.log(err)
+
+}
+var candidate_documents_data ={"document_type":"",}
+
+
+try{
+    console.log('wwww',this.state.candidate_doc_list)
+
+    console.log('sssss',this.state.candidate_documents_data[1].document_type);
+    console.log('sssss',this.state.candidate_documents_data[0].document_type)
+  
+    candidate_documents_data ={'document_type':this.candidate_documents_data[0].document_type}
+   
+
+
+}
+catch(err){
+console.log(err)
+} //var candidate_documents_data2 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data2', this.state.candidate_documents_data)
+//     candidate_documents_data2={'document_type':this.candidate_documents_data[2].document_type}
+// }
+// catch(err){
+// console.log(err)
+// } var candidate_documents_data3 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data3', this.state.candidate_documents_data)
+//     candidate_documents_data3={'document_type':this.candidate_documents_data[3].document_type}
+// }
+// catch(err){
+// console.log(err)
+// } var candidate_documents_data4 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data4', this.state.candidate_documents_data)
+//     candidate_documents_data4={'document_type':this.candidate_documents_data[4].document_type}
+// }
+// catch(err){
+// console.log(err)
+// } var candidate_documents_data5 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data5', this.state.candidate_documents_data)
+//     candidate_documents_data={'document_type':this.candidate_documents_data[5].document_type}
+// }
+// catch(err){
+// console.log(err)
+// } var candidate_documents_data6 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data6', this.state.candidate_documents_data)
+//     candidate_documents_data6={'document_type':this.candidate_documents_data[6].document_type}
+// }
+// catch(err){
+// console.log(err)
+// } var candidate_documents_data7 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data7', this.state.candidate_documents_data)
+//     candidate_documents_data7={'document_type':this.candidate_documents_data[7].document_type}
+// }
+// catch(err){
+// console.log(err)
+// } var candidate_documents_data8 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data8', this.state.candidate_documents_data)
+//     candidate_documents_data8={'document_type':this.candidate_documents_data[8].document_type}
+// }
+// catch(err){
+// console.log(err)
+// } var candidate_documents_data9 ={"document_type":"",}
+
+// try{
+//     console.log(this.state.candidate_doc_list)
+//     console.log('candidate_documents_data9', this.state.candidate_documents_data)
+//     candidate_documents_data9={'document_type':this.candidate_documents_data[9].document_type}
+// }
+// catch(err){
+// console.log(err)
+// }
+
         var _10thdata={"degree":'',"board_university":"","location":"",
         "percentage":"",
         "school":"","passing_year":""}
@@ -401,7 +522,7 @@ class ApplicationForm extends Component {
         "pan_card_no":"","eid_no":"","aadhaar_no":"","pf_no":'',"uan":"","esic_no":"","esic_name":"","esic_address":""}
 
 try{
-    // console.log(this.state)
+    console.log(this.state)
     otherdetails={"name":this.state.candidate_other_data.name, "dl_no":this.state.candidate_other_data.dl_no,
     "place_of_issue":this.state.candidate_other_data.place_of_issue, "valid_up_to":this.state.candidate_other_data.valid_up_to,
     "vehicle_no":this.state.candidate_other_data.vehicle_no,"pan_card_no":this.state.candidate_other_data.pan_card_no,
@@ -419,7 +540,7 @@ catch(err)
  var work_experience ={"organization": '',"designation":'', "end_date":'',"reason_for_leaving":'','start_date':''}
     
 try{
-    // console.log( "tttt",this.state.candidate_work_history_data[0].organization);
+    console.log( "tttt",this.state.candidate_work_history_data[0].organization);
     work_experience={"organization":this.state.candidate_work_history_data[0].organization,"designation":this.state.candidate_work_history_data[0].designation,
     "end_date":this.state.candidate_work_history_data[0].end_date,"reason_for_leaving":this.state.candidate_work_history_data[0].reason_for_leaving,
     "start_date":this.state.candidate_work_history_data[0].start_date}
@@ -432,7 +553,7 @@ catch(err)
 var work_experience1 ={"organization": '',"designation":'', "end_date":'',"reason_for_leaving":'','start_date':''}
     
 try{
-    // console.log( "tttt",this.state.candidate_work_history_data[1].organization);
+    console.log( "tttt",this.state.candidate_work_history_data[1].organization);
     work_experience1={"organization":this.state.candidate_work_history_data[1].organization,"designation":this.state.candidate_work_history_data[1].designation,
     "end_date":this.state.candidate_work_history_data[1].end_date,"reason_for_leaving":this.state.candidate_work_history_data[1].reason_for_leaving,
     "start_date":this.state.candidate_work_history_data[1].start_date}
@@ -444,7 +565,7 @@ catch(err)
 var work_experience2 ={"organization": '',"designation":'', "end_date":'',"reason_for_leaving":'','start_date':''}
     
 try{
-    // console.log( "tttt",this.state.candidate_work_history_data[2].organization);
+    console.log( "tttt",this.state.candidate_work_history_data[2].organization);
     work_experience2={"organization":this.state.candidate_work_history_data[2].organization,"designation":this.state.candidate_work_history_data[2].designation,
     "end_date":this.state.candidate_work_history_data[2].end_date,"reason_for_leaving":this.state.candidate_work_history_data[2].reason_for_leaving,
     "start_date":this.state.candidate_work_history_data[2].start_date}
@@ -459,7 +580,7 @@ catch(err)
 
 var reference={"name":'',"mobile_no":'', "location":''}
 try{
-    // console.log('references',this.state)
+    console.log('references',this.state)
     reference={'name':this.state.reference[0].name,'mobile_no':this.state.reference[0].mobile_no,
     'location':this.state.reference[0].location}
 }
@@ -485,7 +606,7 @@ catch(err)
 //family data
  var family={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
  try{
-    // console.log('family1111',this.state.family)
+    console.log('family1111',this.state.family)
     family={'name':this.state.family[0].name,'aadhaar_no':this.state.family[0].aadhaar_no,
      'dob':this.state.family[0].dob,'is_nominee':this.state.family[0].is_nominee,'relation':this.state.family[0].relation}
  }
@@ -497,7 +618,7 @@ catch(err)
  
   var family1={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
  try{
-    // console.log('family111',this.state.family)
+    console.log('family111',this.state.family)
     family1={'name':this.state.family[1].name,'aadhaar_no':this.state.family[1].aadhaar_no,
      'dob':this.state.family[1].dob,'is_nominee':this.state.family[1].is_nominee,'relation':this.state.family[1].relation}
  }
@@ -530,7 +651,7 @@ catch(err)
     }
     var family4={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'' ,'relation':''}
     try{
-    //    console.log('family1111',this.state.family)
+       console.log('family1111',this.state.family)
        family4={'name':this.state.family[4].name,'aadhaar_no':this.state.family[4].aadhaar_no,
         'dob':this.state.family[4].dob,'is_nominee':this.state.family[4].is_nominee,'relation':this.state.family[4].relation}
     }
@@ -541,7 +662,7 @@ catch(err)
      }
      var family5={"name":'',"aadhaar_no":'', "dob":'','is_nominee':'','relation':''}
      try{
-        // console.log('family1111',this.state.family)
+        console.log('family1111',this.state.family)
         family5={'name':this.state.family[5].name,'aadhaar_no':this.state.family[5].aadhaar_no,
          'dob':this.state.family[5].dob,'is_nominee':this.state.family[5].is_nominee, 'relation':this.state.family[5].relation}
      }
@@ -554,7 +675,7 @@ catch(err)
 
 
 
-        // console.log("this previe=",otherdetails)
+        console.log("this previe=",otherdetails)
         return ( 
         <div className="page-wrapper">
             <Helmet>
@@ -613,11 +734,13 @@ catch(err)
                                     </div>
                                     <div className="col-sm-4 my-auto"> 
                                         <h2 className="text-center"><u>APPLICATION BLANK</u></h2>
+                                       
                                     </div>
+                                    
                                     <div className="col-sm-4 my-auto"> 
                                         <div className="float-right border border-dark small w-25 p-1 mr-4 text-center">
                                             <div className="image-upload">
-                                                <label for="Uploadphoto" className="mb-0">
+                                                <label htmlFor="Uploadphoto" className="mb-0">
                                                 {/* <img src="upload-photo.png" id="photo" alt="Upload Photo" className="img-fluid" /> */}
                                                 <img alt="" src={this.state.profilepic} id="photo" alt="Upload Photo" className="img-fluid" />
                                                 </label>
@@ -635,13 +758,13 @@ catch(err)
                                 <div className="row no-gutters border border-dark p-2">
                                     <div className="col-sm-12">
                                         <div className="mb-3"> 
-                                            <label for="" className="mb-0 text-uppercase">* Name in Full (In block letters)[As per Aadhar Card]</label>
+                                            <label htmlFor="" className="mb-0 text-uppercase">* Name in Full (In block letters)[As per Aadhar Card]</label>
                                             <input type="text" name="name" defaultValue={this.state.name}className="px-0 py-1 form-control" /> 
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-3"> 
-                                            <label for="" className="mb-0 text-uppercase">* Father's Name in Full (In block letters)[As per Aadhar Card]</label> 
+                                            <label htmlFor="" className="mb-0 text-uppercase">* Father's Name in Full (In block letters)[As per Aadhar Card]</label> 
                                             <input defaultValue={this.state.father_name}type="text" name="father-name" className="px-0 py-1 form-control" />
                                         </div>
                                     </div>
@@ -674,7 +797,7 @@ catch(err)
                                     <div className="col-sm-12">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Communication Address</label>
+                                                <label htmlFor="" className="m-0 text-uppercase">Communication Address</label>
                                             </div>
                                             <input  defaultValue={this.state.c_country}  type="text" name="communication-address" className="px-0 ml-2 py-1 form-control" />
                                         </div>
@@ -682,7 +805,7 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Landmark:</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">Landmark:</label> 
                                             </div>
                                             <input  defaultValue={this.state.c_house_no} type="text" name="landmark" className="px-0 py-1 mx-2 form-control" />
                                         </div>
@@ -690,7 +813,7 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">City:</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">City:</label> 
                                             </div>
               
                                             <input defaultValue={this.state.c_city} type="text" name="city" className="px-0 py-1 ml-2 form-control" />
@@ -725,7 +848,7 @@ catch(err)
                                     <div className="col-sm-12">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Parmement Address</label>
+                                                <label htmlFor="" className="m-0 text-uppercase">Parmement Address</label>
                                             </div>
                                             <input  defaultValue={this.state.p_country} type="text" name="parmement-address" className="px-0 py-1 ml-2 form-control" />
                                         </div>
@@ -733,7 +856,7 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Landmark:</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">Landmark:</label> 
                                             </div>
                                             <input  defaultValue={this.state.p_house_no} type="text" name="landmark" className="px-0 py-1 mx-2 form-control" />
                                         </div>
@@ -741,7 +864,7 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">City:</label>  
+                                                <label htmlFor="" className="m-0 text-uppercase">City:</label>  
                                             </div>
                                             <input defaultValue={this.state.p_city}type="text" name="city" className="px-0 py-1 ml-2 form-control" />
                                         </div>
@@ -773,7 +896,7 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Emergency Mobile No.:</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">Emergency Mobile No.:</label> 
                                             </div>
                                             <input defaultValue={this.state. p_mobile_no} type="text" name="emergency-mobile" className="px-0 py-1 mx-2 form-control" />
                                         </div>
@@ -781,7 +904,7 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Person Name:</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">Person Name:</label> 
                                             </div>
                                             <input defaultValue={this.state.name}type="text" name="person-name" className="px-0 py-1 ml-2 form-control" />
                                         </div>
@@ -789,7 +912,7 @@ catch(err)
                                     <div className="col-sm-12">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">E-Mail:</label>
+                                                <label htmlFor="" className="m-0 text-uppercase">E-Mail:</label>
                                             </div>
                                             <input  defaultValue={this.state.p_email} type="email" name="email" className="px-0 py-1 ml-2 form-control" />
                                         </div>
@@ -800,7 +923,7 @@ catch(err)
                                     <div className="col-sm-4 border-right border-dark p-2">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Date of Birth</label>
+                                                <label htmlFor="" className="m-0 text-uppercase">Date of Birth</label>
                                             </div>
                                             <input  defaultValue={this.state.dob} type="text" name="dob" className="px-0 py-1 ml-2 form-control" />
                                         </div>
@@ -815,7 +938,7 @@ catch(err)
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Marriage Date</label>
+                                                <label htmlFor="" className="m-0 text-uppercase">Marriage Date</label>
                                             </div>
                                             <input  defaultValue={this.state.marrage_date} type="text" name="dom" className="px-0 py-1 ml-2 form-control" />
                                         </div>
@@ -825,7 +948,7 @@ catch(err)
                                             <label className="text-uppercase d-block">Sex:</label>              
                                             <div className="row">
                                                 <div className="col-sm-8 text-uppercase">Male</div>
-                                                <div className="col-sm-4 text-right"><input type="radio"  checked={this.state.gender === "male"} name="gender" value="male" defaultValue={this.state.gender}/></div>
+                                                <div className="col-sm-4 text-right"><input type="radio"  checked={this.state.gender === "male"} name="gender" value="male" defaultValue={this.state.gender} /></div>
                                                 <div className="col-sm-8 text-uppercase">Female</div>
                                                 <div className="col-sm-4 text-right"><input type="radio" checked={this.state.gender === "female"}  name="gender" value="female" defaultValue={this.state.gender}/></div>
                                             </div>
@@ -834,40 +957,41 @@ catch(err)
                                     <div className="col-sm-6 p-2">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Category:</label>
+                                                <label htmlFor="" className="m-0 text-uppercase">Category:</label>
                                             </div> 
-                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="sc"  checked={this.state.category === "SC"} /> SC
-                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="st" checked={this.state.category === "ST"}/> ST
-                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="obc"checked={this.state.category === "OBC"} /> OBC
-                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="open" checked={this.state.category === "OPEN"}/> OPEN
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="SC"  checked={this.state.category === "SC"} /> SC
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="ST" checked={this.state.category === "ST"}/> ST
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  value="OBC"checked={this.state.category === "OBC"} /> OBC
+                                            <input type="radio" className="ml-4 mr-2 my-auto"  /> OPEN
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Nationality</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">Nationality</label> 
                                             </div>
                                             <input defaultValue={this.state.nationality} type="text" name="nationality" className="px-0 py-1 ml-2 form-control"  />
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">*Blood Group</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">*Blood Group</label> 
                                             </div>
                                             <input defaultValue={this.state.blood_group}type="text" name="blood-group" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Mother Tongue</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">Mother Tongue</label> 
                                             </div>
                                             <input defaultValue={this.state.mother_tongue} type="text" name="mother-tongue" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0 text-uppercase">Religion</label> 
+                                                <label htmlFor="" className="m-0 text-uppercase">Religion</label> 
                                             </div>
                                             <input defaultValue={this.state.religion} type="text" name="religion" className="px-0 py-1 ml-2 form-control" />
                                         </div>
                                     </div>
                                 </div>
-                                <table width="100%" className="table mb-4 border-dark table-bordered" cellspacing="0">
+                                <div className="table-responsive">
+                                <table width="100%" className="table mb-4 border-dark table-bordered" cellSpacing="0">
                                     <tr>
                                         <th width="15%" className="text-uppercase text-center">Education Level</th>
                                         <th width="10%" className="text-uppercase text-center">Degree</th>
@@ -923,13 +1047,15 @@ catch(err)
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.percentage}/></td>
                                     </tr>
                                 </table>
-                                <table width="100%" className="table mb-0 border-dark table-bordered" cellspacing="0">
+                                </div>
+                                <div className="table-responsive">
+                                <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                     <tr>
-                                        <td colspan="5"><h5 className="text-uppercase font-weight-bold">Work Experience</h5></td>
+                                        <td colSpan="5"><h5 className="text-uppercase font-weight-bold">Work Experience</h5></td>
                                     </tr>
                                     <tr>
                                         <th width="30%" className="text-uppercase font-weight-bold text-center">Organisation</th>
-                                        <th width="20%" colspan="2" className="text-uppercase font-weight-bold text-center">Period</th>
+                                        <th width="20%" colSpan="2" className="text-uppercase font-weight-bold text-center">Period</th>
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Designation at the Time of Leaving</th>
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Reason for Separation</th>
                                     </tr>
@@ -963,29 +1089,31 @@ catch(err)
                                         <td><textarea className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.reason_for_leaving}></textarea></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5" height="30"></td>
+                                        <td colSpan="5" height="30"></td>
                                     </tr>
                                     <tr>
                                         <th className="text-uppercase font-weight-bold text-center">References</th>
-                                        <th colspan="2" className="text-uppercase font-weight-bold small text-center">Name</th>
+                                        <th colSpan="2" className="text-uppercase font-weight-bold small text-center">Name</th>
                                         <th className="text-uppercase font-weight-bold text-center">Mobile Number</th>
                                         <th className="text-uppercase font-weight-bold text-center">Location</th>
                                     </tr>
                                     <tr>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" placeholder="1."/></td>
-                                        <td colspan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference.name} /></td>
+                                        <td colSpan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference.name} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference.mobile_no}/></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={reference.location} /></td>
                                     </tr>
                                     <tr>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" placeholder="2." /></td>
-                                        <td colspan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference1.name} /></td>
+                                        <td colSpan="2"><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference1.name} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={reference1.mobile_no} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={reference1.location}/></td>
                                     </tr>
-                                </table>
+                                </table></div>
+                                
+                                <div className="table-responsive">
                                 <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Others Details:</h5>
-                                <table width="100%" className="table mb-0 border-dark table-bordered" cellspacing="0">
+                                <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                     <tr>
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Name (As Per Driving License)</th>
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">*Driving License No.</th>
@@ -1022,9 +1150,11 @@ catch(err)
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.esic_no} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={otherdetails.esic_name+""+otherdetails.esic_address} /></td>
                                     </tr>
-                                </table>
+                                </table></div>
+                                <div className="table-responsive">
                                 <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Bank Details:</h5>
-                                <table width="100%" className="table mb-0 border-dark table-bordered" cellspacing="0">
+
+                                <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                     <tr>
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Bank Name</th>
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Account No.</th>
@@ -1037,9 +1167,10 @@ catch(err)
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.ifsc_code}/></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={this.state.branch_name} /></td>
                                     </tr>
-                                </table>
+                                </table></div>
+                                <div className="table-responsive">
                                 <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Family Details:</h5>
-                                <table width="100%" className="table mb-0 border-dark table-bordered" cellspacing="0">
+                                <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                     <tr>
                                         <th width="20%" className="text-uppercase text-center">Family Member (Relationship)</th>
                                         <th width="30%" className="text-uppercase text-center">Person Name as per Aadhar Card</th>
@@ -1080,7 +1211,7 @@ catch(err)
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family4.name} /></td>
                                         <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control"defaultValue={family4.dob} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  defaultValue={family4.aadhaar_no}/></td>
-                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family.is4_nominee} /></td>
+                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family4.is_nominee} /></td>
                                     </tr>
                                     <tr>
                                         <td className="text-uppercase font-weight-bold">{family5.relation}</td>
@@ -1089,38 +1220,67 @@ catch(err)
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.aadhaar_no} /></td>
                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"defaultValue={family5.is_nominee} /></td>
                                     </tr>
-                                </table>
+                                </table></div>
                                 <div className="row no-gutters border border-dark p-2">
                                     <div className="col-md-6">
                                         <div className="row">
                                             <div className="col-sm-8 py-2 text-uppercase font-weight-bold">Documents Checklist:</div>
                                             <div className="col-sm-4 py-2 text-center text-uppercase font-weight-bold">Tick</div>
-                                            <div className="col-sm-8 py-1">1. Resume/Bio-Data</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
-                                            <div className="col-sm-8 py-1">2. Aadhar Card</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
-                                            <div className="col-sm-8 py-1">3. Driving License</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
-                                            <div className="col-sm-8 py-1">4. Voter Card</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
-                                            <div className="col-sm-8 py-1">5. Pan Card</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
+
+                                            <div className="col-sm-8 py-1">1. Aadhar Card</div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"  /></div>
+                                            <div className="col-sm-8 py-1">2.  PanCard</div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"/></div>
+                                            <div className="col-sm-8 py-1">3.Voter ID Card</div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"  /></div>
+                                            <div className="col-sm-8 py-1">4.Driving License Front</div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"    /></div>
+                                            <div className="col-sm-8 py-1">5.Resume/Bio Data </div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"  /></div>
+
+
+
+
+                                            {/* {candidate_documents_data.map(document => (
+                              <div key={document.key} > */}
+
+                          {/* <ul className="personal-info">
+                          {candidate_documents_data.map(document => (
+                              <li key={document.key} >
+                              <div className="title">{document.document_type}</div>
+                              <div className="text"><input type="checkbox" className="" defaultChecked="true"/></div>
+                              <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"id={document.document_type}></a>
+                            </li>
+                          ))} */}
+
+{/* {candidate_doc_list.map(document => (
+                              <li key={document.key} >
+                              <div className="title">{document}</div>
+                              <div className="text"><input type="checkbox" className="" />
+                              <a href="#" className="edit-icon"  data-toggle="modal" data-target="#document_checklist"></a>
+                              </div>
+                            </li>
+                          ))}
+                          </ul> */}
                                         </div>
+                                        
+                                             {/* ) )}
+                                             </div> */}
                                     </div>
                                     <div className="col-md-6">
                                         <div className="row">
                                             <div className="col-sm-8 py-2 text-uppercase font-weight-bold">Documents Checklist:</div>
                                             <div className="col-sm-4 py-2 text-center text-uppercase font-weight-bold">Tick</div>
                                             <div className="col-sm-8 py-1">6. Ration Card</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"   /></div>
                                             <div className="col-sm-8 py-1">7. Passport Size Photos</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"  /></div>
                                             <div className="col-sm-8 py-1">8. Rent Agreement</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"  /></div>
                                             <div className="col-sm-8 py-1">9. Passport/Cancelled Cheque</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"    /></div>
                                             <div className="col-sm-8 py-1">10. Marriage Certificate</div>
-                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox" /></div>
+                                            <div className="col-sm-4 py-1 text-center"><input type="checkbox"   /></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1128,7 +1288,7 @@ catch(err)
                                     <div className="col-sm-6 pt-4">            
                                         <div className="form-group mb-0 input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label for="" className="m-0">Place</label>
+                                                <label htmlFor="" className="m-0">Place</label>
                                             </div>
                                             <input type="text" name="place" className="px-0 py-1 mx-2 form-control" />
                                         </div>
@@ -1136,10 +1296,10 @@ catch(err)
                                     <div className="col-sm-6">
                                         <div className="border border-dark p-1 text-center">
                                             <div className="image-upload sign-upload">
-                                                {/* <label for="Uploadsign" className="mb-0"> */}
+                                                <label htmlFor="Uploadsign" className="mb-0">
                                                     {/* <img src="sign.png" id="sign" alt="Upload Sign" className="img-fluid" /> */}
-                                                    <img src={this.state.sign} height='50px' width='100px' id="sign" alt="Upload Sign" className="img-fluid" />
-                                                {/* </label> */}
+                                                    <img src={Sign} id="sign" alt="Upload Sign" className="img-fluid" />
+                                                </label>
                                                 {/* <input id="Uploadsign" type="file" onchange="readSign(this);" /> */}
                                             </div>
                                         </div>

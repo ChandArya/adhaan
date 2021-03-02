@@ -104,7 +104,7 @@ class Adhar extends Component {
       console.log("data",data1)
       var config = {
         method: 'post',
-        url: "https://aadhaan.ddns.net/api/candidate/aadhaar-verification",
+        url: "https://aadhaan.ddns.net/api/recruiter/aadhaar-verification",
         headers: { 
           'Content-Type': 'application/json',
           'cache-control':"no-cache"
@@ -127,7 +127,7 @@ class Adhar extends Component {
    }
   loginClick=(e)=>{
     e.preventDefault();
-    // this.isVerfied({"id":95,"data":{},"adharno":'333889'});
+    // 
     // return
     var id=this.props.location.state.id
     console.log("hhhhhhhhh",id)
@@ -153,7 +153,7 @@ class Adhar extends Component {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         var  mobileno=self.props.location.state.mobileno
-        
+        // self.isVerfied({"id":self.user,"data":response.data,"adharno":''+self.state.adharno});
         var getno=mobileno.substring(mobileno.length - 3)
         
         if(response.data.data.last_digits ==getno)

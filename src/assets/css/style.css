@@ -267,9 +267,32 @@ select.form-control[multiple], select.form-control[size] {
     padding: 7px;
 }
 
+
+
+
+/*-----------------
+	login 
+-----------------------*/
+.container{
+	transform: translate(-50%,-50%);
+	position:absolute;
+	left: 50%;
+	top:40%
+}
+
+
+
+
 /*-----------------
 	2. Table
 -----------------------*/
+
+
+/* @media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) 
+{
+	
+} */
 
 .table {
 	color: #333;
@@ -291,6 +314,12 @@ table.table td h2 {
 	margin: 0;
 	padding: 0;
 	vertical-align: middle;
+}
+.center_box{
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 40%;
+    position: absolute;
 }
 table.table td h2.table-avatar {
     align-items: center;
@@ -1547,7 +1576,7 @@ table.dataTable thead > tr > td.sorting {
 
 .page-wrapper {
 	left: 0;
-	
+	margin-left: 60px;
 	padding-top: 60px;
 	position: relative;
 	transition: all 0.2s ease-in-out;
@@ -1642,14 +1671,13 @@ table.dataTable thead > tr > td.sorting {
 
 .account-page {
 	align-items: center ;
-	/* display: flex; */
+	display: flex;
 }
 .account-page .main-wrapper {
 	display: flex;
     flex-wrap: wrap;
     justify-content: center;
-	width: 100%;
-	
+    width: 100%;
 }
 .account-content {
 	padding: 20px 0;
@@ -2476,7 +2504,8 @@ table.dataTable thead > tr > td.sorting {
     border-radius: 50%;
     display: block;
     overflow: hidden;
-    width: 100%;
+	width: 100%;
+	height: 40px;
 }
 .chat.chat-left .chat-bubble:first-child .chat-content {
 	border-top-left-radius: 20px;
@@ -8197,12 +8226,7 @@ ul.comment-list li ul.children {
 	}
 }
 
-.center_box{
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 40%;
-    position: absolute;
-}
+
 .react-confirm-alert-body{
     text-align: center;
     width: 500px;
@@ -8227,3 +8251,21 @@ ul.comment-list li ul.children {
     left: 0;
     margin: auto;
 }
+@media screen and (max-width: 480px) {
+	.precent_box{
+		height: 50px;
+		z-index: 1;
+		width: 50px;
+		position: absolute;
+		
+		right: 250px;
+		left:0;
+		margin: auto;
+	}
+	.center_box{
+		margin: 10 10 10 10px;
+		width: 100%;
+		
+		position: absolute;
+	}
+  }
