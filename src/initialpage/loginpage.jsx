@@ -16,7 +16,8 @@ class Loginpage extends Component {
       result:null,
       error:'',
       userid:0,
-      usertype:''
+      usertype:'',
+      
       
     }
   }
@@ -57,7 +58,7 @@ class Loginpage extends Component {
         }else{
           let path='/otp';
           self.setState({usertype:response.data.user_info.user_role_type,userid:response.data.user_info.user_id})
-          
+          localStorage.setItem("count",0)
           self.props.history.push({ 
             pathname: path,
             state:self.state

@@ -5,13 +5,19 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import {Applogo} from '../Entryfile/imagepath.jsx'
-import {submitOtp,resendOtp} from '../initialpage/services'
+
 var axios = require('axios');
 
 class OTPscreen extends Component {
     constructor(...props)
     {
       super(...props)
+      if(localStorage.getItem("count")==0)
+      {
+        window.location.reload(false);
+        localStorage.setItem("count",1);
+      }
+      console.log("debug","",localStorage.getItem("count"))
       this.state={
         
         f_otp:'',
@@ -21,7 +27,8 @@ class OTPscreen extends Component {
         
         
       }
-      // window.location.reload(false);
+      
+      // 
     }
     // componentDidMount=()=>
     // {
@@ -165,7 +172,7 @@ class OTPscreen extends Component {
                   <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Submit</button>
                 </div>
                 <div className="account-footer">
-                  <p>Not yet received? <a href="" onClick={this.resend}>Resend OTP</a></p>
+                  <p>OTP Not Recieved? <a href="" onClick={this.resend}>Resend OTP</a></p>
                 </div>
                 <label className="text-danger">{this.state.error}</label>
               </form>

@@ -164,7 +164,7 @@ class Adhar extends Component {
           self.setState({error:"Kyc verified"})
           let path='app/profile/candidate-profile';
           confirmAlert({
-            title: 'Aadhar Verification \n Congratulation Your kyc  verified ✅',
+            title: 'Aadhar Verification \n Congratulation Your kyc  verified \u2713',
             message: '',
             buttons: [
               {

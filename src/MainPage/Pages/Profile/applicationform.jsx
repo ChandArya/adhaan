@@ -98,7 +98,7 @@ class ApplicationForm extends Component {
                 mobile_no: basic_details.mobile_no,
                 user_type:  basic_details.user_type,
                 profilepic:"https://aadhaan.ddns.net"+basic_details.profile_picture
-                
+               
               });
             }
           }
@@ -339,10 +339,14 @@ class ApplicationForm extends Component {
 
             candidate_doc_list={ "document_type":this.candidate_documents_data.document_type,'Resume/ Bio-DATA':this.candidate_documents_data.Resume/ Bio-DATA,'Adhaar Card Front':this.candidate_documents_data.AdhaarCardFront,
             'Driving License Back':this.candidate_documents_data.DrivingLicenseBack,'Pan Card':this.candidate_documents_data.PanCard,'Ration Card':this.candidate_documents_data.RationCard}
+            
             for(var i=0;i<candidate_documents_data.length;i++)
             {
               var ff=candidate_documents_data[i].document_type
-            
+              if((candidate_documents_data[i].document_type=='Thumb Impression')||(candidate_documents_data[i].document_type=='Signature'))
+              {
+                  this.setState({Sign:"https://aadhaan.ddns.net"+candidate_documents_data[i].document})
+              }
              
               var index=candidate_doc_list.indexOf(ff)
             // console.log(ff,"fffff",index)
@@ -350,7 +354,7 @@ class ApplicationForm extends Component {
                 candidate_doc_list.splice(index, 1);
 
               }
-
+              
               
             
             }
@@ -751,7 +755,7 @@ catch(err)
                                 </div>
                                 <div className="row no-gutters mb-2">
                                     <div className="col-sm-12">
-                                        <p style={{lineHeight: "1"}}>1. Please answer reach column fully and neatly in your own handwriting. (Blue or Black pen)<br/>
+                                        <p style={{lineHeight: "1"}}>1. Please answer each column fully and neatly in your own handwriting. (Blue or Black pen)<br/>
                                         2. Please &#10004; in the <span style={{fontSize: "20px"}}>&#x25A1;</span> wherever applicable</p>
                                     </div>
                                 </div>
@@ -848,7 +852,7 @@ catch(err)
                                     <div className="col-sm-12">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label htmlFor="" className="m-0 text-uppercase">Parmement Address</label>
+                                                <label htmlFor="" className="m-0 text-uppercase">Permament Address</label>
                                             </div>
                                             <input  defaultValue={this.state.p_country} type="text" name="parmement-address" className="px-0 py-1 ml-2 form-control" />
                                         </div>
@@ -1112,7 +1116,7 @@ catch(err)
                                 </table></div>
                                 
                                 <div className="table-responsive">
-                                <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Others Details:</h5>
+                                <h5 className="text-uppercase font-weight-bold mt-2 mb-1">Other Details:</h5>
                                 <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                     <tr>
                                         <th width="25%" className="text-uppercase font-weight-bold text-center">Name (As Per Driving License)</th>
@@ -1298,7 +1302,7 @@ catch(err)
                                             <div className="image-upload sign-upload">
                                                 <label htmlFor="Uploadsign" className="mb-0">
                                                     {/* <img src="sign.png" id="sign" alt="Upload Sign" className="img-fluid" /> */}
-                                                    <img src={Sign} id="sign" alt="Upload Sign" className="img-fluid" />
+                                                    <img src={this.state.Sign} id="sign" alt="Upload Sign" className="img-fluid" />
                                                 </label>
                                                 {/* <input id="Uploadsign" type="file" onchange="readSign(this);" /> */}
                                             </div>
