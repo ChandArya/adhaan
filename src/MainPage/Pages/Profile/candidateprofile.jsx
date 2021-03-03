@@ -81,7 +81,7 @@ export default class EmployeeProfile extends Component {
       p_mobile_no: '',
       p_email: '',
       p_pin_code:'',
-      dob:'',
+      dob:moment(new Date()).format("YYYY/MM/DD"),
       marital_status:'',
       marrage_date: '',
       gender: "",

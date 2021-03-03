@@ -253,7 +253,7 @@ class ApplicationForm extends Component {
         var candidate_documents_data_len=data.candidate_documents_data.document.length
         if(candidate_documents_data_len>0){
           var candidate_documents_data=data.candidate_documents_data.document
-          console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
+        //   console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
          console.log(this.state)
           this.setState({
             
@@ -269,7 +269,7 @@ class ApplicationForm extends Component {
         var candidate_documents_data_len=data.candidate_documents_data.document.length
         if(candidate_documents_data_len>0){
           var candidate_documents_data=data.candidate_documents_data.document
-          console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
+        //   console.log("hgjdhjgfgjhjfhj",candidate_documents_data)
          for (var i=0;i<candidate_documents_data.length;i++)
          {
              
@@ -300,7 +300,7 @@ class ApplicationForm extends Component {
         let path='./candidate-profile';
         var id=this.props.location.state.user
        // alert("iiiiid",id)
-        console.log("hhhhhhhhh",id)
+        // console.log("hhhhhhhhh",id)
         this.setState({id:id });
               
               this.props.history.push({ 
@@ -332,8 +332,8 @@ class ApplicationForm extends Component {
       var candidate_doc_list=['Resume/ Bio-DATA','Adhaar Card Front','Adhaar Card Back','Driving License Front','Driving License Back','Pan Card','Ration Card','Passport Size Photo','Rent Agreement','Passbook','Marriage Certificate','Signature','Thumb Impression']
 
         try{
-            console.log(this.state.candidate_doc_list)
-            console.log('1122', this.state.candidate_documents_data)
+            // console.log(this.state.candidate_doc_list)
+            // console.log('1122', this.state.candidate_documents_data)
 
 
 
@@ -343,9 +343,11 @@ class ApplicationForm extends Component {
             for(var i=0;i<candidate_documents_data.length;i++)
             {
               var ff=candidate_documents_data[i].document_type
-              if((candidate_documents_data[i].document_type=='Thumb Impression')||(candidate_documents_data[i].document_type=='Signature'))
+              console.log("sonu","https://aadhaan.ddns.net"+candidate_documents_data[i].document)
+              if((candidate_documents_data[i].document_type=='Thumb Impression')|(candidate_documents_data[i].document_type=='Signature'))
               {
-                  this.setState({Sign:"https://aadhaan.ddns.net"+candidate_documents_data[i].document})
+                  console.log("hhhh","https://aadhaan.ddns.net"+candidate_documents_data[i].document)
+                  this.setState({Sign:"https://aadhaan.ddns.net/"+candidate_documents_data[i].document})
               }
              
               var index=candidate_doc_list.indexOf(ff)
