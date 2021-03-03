@@ -42,14 +42,14 @@ class Adhar extends Component {
 
 
         try {
-          var profile_picture;
-          profile_picture = "https://aadhaan.ddns.net" + data.candidate_personal_data.basic_details.profile_picture
+          // var profile_picture;
+          // profile_picture = "https://aadhaan.ddns.net" + data.candidate_personal_data.basic_details.profile_picture
           console.log(data.candidate_personal_data, "hgfkdshfgdhkgkfhgkhfjkjhfdjdgfhkjhffjkhdg", data.candidate_other_data)
           var candidate_other_data_len = Object.keys(data.candidate_other_data).length
           if (candidate_other_data_len > 0) {
             var candidate_other_data = data.candidate_other_data
             localStorage.setItem("candidateName", data.candidate_personal_data.basic_details.name)
-            localStorage.setItem("candidateImg", profile_picture)
+            // localStorage.setItem("candidateImg", profile_picture)
             this.setState({
               // other_details_id:candidate_other_data.id,
               adharno: candidate_other_data.aadhaar_no

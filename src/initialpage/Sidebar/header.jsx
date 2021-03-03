@@ -11,7 +11,7 @@ import {
 class Header extends Component {
   constructor(...props) {
     super(...props)
-    this.state = { img: URL.createObjectURL("" + localStorage.getItem("candidateImg")) }
+    this.state = { img: "" + localStorage.getItem("candidateImg") }
 
   }
 
