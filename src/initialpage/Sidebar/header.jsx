@@ -3,21 +3,30 @@
  */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import {headerlogo,lnEnglish,lnFrench,lnHindi, Avatar_02,Avatar_03,Avatar_05,
-  Avatar_06,Avatar_08,Avatar_09,Avatar_13,Avatar_17,Avatar_21} from '../../Entryfile/imagepath'
+import {
+  headerlogo, lnEnglish, lnFrench, lnHindi, Avatar_02, Avatar_03, Avatar_05,
+  Avatar_06, Avatar_08, Avatar_09, Avatar_13, Avatar_17, Avatar_21
+} from '../../Entryfile/imagepath'
 
 class Header extends Component {
-  submitProfile=(e)=>{
+  constructor(...props) {
+    super(...props)
+    this.state = { img: URL.createObjectURL("" + localStorage.getItem("candidateImg")) }
+
+  }
+
+  submitProfile = (e) => {
     alert("click")
 
   }
 
-   render() {
-    const {  location } = this.props
+  render() {
+    const { location } = this.props
     let pathname = location.pathname
-    
-      return (
-         <div className="header" style={{right:"0px"}}>
+    console.log("########### this.state")
+    console.log(this.state)
+    return (
+      <div className="header" style={{ right: "0px" }}>
         {/* Logo */}
         <div className="header-left">
           <a href="#" className="logo">
@@ -35,28 +44,28 @@ class Header extends Component {
         <div className="page-title-box">
           <h3>Adhaan pvt ltd.</h3>
         </div>
-       
+
         {/* Header Menu */}
         <ul className="nav user-menu">
-         
+
           {/* Flag */}
           <li className="nav-item dropdown has-arrow flag-nav">
             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
               <img src={lnEnglish} alt="" height={20} /> <span>English</span>
             </a>
             <div className="dropdown-menu dropdown-menu-right">
-            <a href="" className="dropdown-item">
-                    <img src={lnEnglish} alt="" height={16} /> English
+              <a href="" className="dropdown-item">
+                <img src={lnEnglish} alt="" height={16} /> English
                   </a>
-                   <a href="" className="dropdown-item">
-                    <img src={lnHindi} alt="" height={16} /> Hindi
+              <a href="" className="dropdown-item">
+                <img src={lnHindi} alt="" height={16} /> Hindi
                   </a>
-                  {/* <a href="" className="dropdown-item">
+              {/* <a href="" className="dropdown-item">
                     <img src={lnSpanish} alt="" height={16} /> Spanish
                   </a>
                   <a href="" className="dropdown-item">
                     <img src={lnGerman} alt="" height={16} /> German
-                  </a> */} 
+                  </a> */}
             </div>
           </li>
           {/* /Flag */}
@@ -85,7 +94,7 @@ class Header extends Component {
                       </div>
                     </a>
                   </li> */}
-                  {/* <li className="notification-message">
+          {/* <li className="notification-message">
                     <a href="/blue/app/administrator/activities">
                       <div className="media">
                         <span className="avatar">
@@ -252,15 +261,16 @@ class Header extends Component {
           {/* /Message Notifications */}
           <li className="nav-item dropdown has-arrow main-drop">
             <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-              <span className="user-img"><img src={Avatar_21} alt="" />
+              <span className="user-img"><img src={this.state.img} alt="" />
                 <span className="status online" /></span>
-              <span>Candidate</span>
+              <span>&nbsp;{localStorage.getItem("candidateName")}</span>
+
             </a>
-            {/* <div className="dropdown-menu">
-              <a className="dropdown-item" href="/blue/app/profile/employee-profile">My Profile</a>
-              <a className="dropdown-item" href="/blue/settings/companysetting">Settings</a>
+            <div className="dropdown-menu">
+              {/* <a className="dropdown-item" href="/blue/app/profile/employee-profile">My Profile</a>
+              <a className="dropdown-item" href="/blue/settings/companysetting">Settings</a> */}
               <a className="dropdown-item" href="/blue/login">Logout</a>
-            </div> */}
+            </div>
           </li>
         </ul>
         {/* /Header Menu */}
@@ -268,16 +278,16 @@ class Header extends Component {
         <div className="dropdown mobile-user-menu">
           <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i className="fa fa-ellipsis-v" /></a>
           <div className="dropdown-menu dropdown-menu-right">
-            <a className="dropdown-item" href="/blue/app/profile/employee-profile">My Profile</a>
-            <a className="dropdown-item" href="/blue/settings/companysetting">Settings</a>
+            {/* <a className="dropdown-item" href="/blue/app/profile/employee-profile">My Profile</a>
+            <a className="dropdown-item" href="/blue/settings/companysetting">Settings</a> */}
             <a className="dropdown-item" href="/blue/login">Logout</a>
           </div>
         </div>
         {/* /Mobile Menu */}
       </div>
-       
-      );
-   }
+
+    );
+  }
 }
 
 export default withRouter(Header);

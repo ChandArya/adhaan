@@ -8274,3 +8274,8 @@ ul.comment-list li ul.children {
 		position: absolute;
 	}
   }
+  .sign-upload{
+	  height: 50px;
+	  width: 50px;
+	  margin:auto;
+  }
