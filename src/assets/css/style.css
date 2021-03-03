@@ -8278,3 +8278,8 @@ ul.comment-list li ul.children {
   .react-confirm-alert-overlay{
 	  background: rgb(255 255 255 / 95%);
   }
+  .sign-upload{
+	  height: 50px;
+	  width: 50px;
+	  margin:auto;
+  }
