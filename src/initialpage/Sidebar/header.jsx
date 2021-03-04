@@ -11,7 +11,7 @@ import {
 class Header extends Component {
   constructor(...props) {
     super(...props)
-    this.state = { img: "" + localStorage.getItem("candidateImg") }
+    this.state = { img:localStorage.getItem("candidateImg") }
 
   }
 
@@ -261,8 +261,8 @@ class Header extends Component {
           {/* /Message Notifications */}
           <li className="nav-item dropdown has-arrow main-drop">
             <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-              <span className="user-img"><img src={this.state.img} alt="" />
-                <span className="status online" /></span>
+              {/* <span className="user-img">
+                <span className="status online" /></span> */}
               <span>&nbsp;{localStorage.getItem("candidateName")}</span>
 
             </a>

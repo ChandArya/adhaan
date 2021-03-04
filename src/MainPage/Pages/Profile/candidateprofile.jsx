@@ -401,14 +401,14 @@ export default class EmployeeProfile extends Component {
     const value = e.target.value;
     // alert("got data"+value)
 
-    this.setState({ c_state: value, job_location: value });
+    this.setState({ c_state: value });
 
   }
   setcurrentCity = (e) => {
     const value = e.target.value;
     // alert("got data"+value)
 
-    this.setState({ c_city: value, job_location: value });
+    this.setState({ c_city: value });
 
   }
   setPermnanetCity = (e) => {
@@ -630,7 +630,7 @@ export default class EmployeeProfile extends Component {
   }
   addFamilyData = (e) => {
     e.preventDefault();
-    var data = { "relation": this.state.family_relation, "name": this.state.family_name, "aadhaar_no": this.state.family_adhar, "dob": this.state.family_dob, "is_nominee": this.state.isNomniee, "candidate": this.state.user }
+    var data = { "relation": this.state.family_relation, "name": this.state.family_name, "aadhaar_no": this.state.family_adhar, "dob": moment(this.state.family_dob).format("YYYY/MM/DD"), "is_nominee": this.state.isNomniee, "candidate": this.state.user }
     console.log("dayyaya", data)
     this.addFamily(this, data);
   }
@@ -758,6 +758,8 @@ export default class EmployeeProfile extends Component {
               c_mobile_no: current_address_data.mobile_no,
               c_email: current_address_data.email,
               c_pin_code: current_address_data.pin_code,
+              stateListOfCountry:worldMapData.getAllStatesFromCountry(current_address_data.country)
+             
               // allcountry:[current_address_data.country],
               // stateListOfCountry:[current_address_data.state]
 
@@ -790,8 +792,8 @@ export default class EmployeeProfile extends Component {
               p_full_address: permanent_address_data.full_address,
               p_mobile_no: permanent_address_data.mobile_no,
               p_email: permanent_address_data.email,
-              p_pin_code: permanent_address_data.pin_code
-
+              p_pin_code: permanent_address_data.pin_code,
+              pstateListOfCountry:worldMapData.getAllStatesFromCountry(permanent_address_data.country)
 
             });
           }
@@ -811,7 +813,7 @@ export default class EmployeeProfile extends Component {
             }
             this.setState({
 
-              dob: other_details.dob,
+              dob: Moment(other_details.dob).format("YYYY/MM/DD"),
 
               marital_status: single,
               marrage_date: other_details.marrage_date,
@@ -923,7 +925,23 @@ export default class EmployeeProfile extends Component {
           console.log("error", err)
           // document.getElementById("demo").innerHTML = err.message;
         }
+        try {
+          // var recruiter_information = data.recruiter_information.length
+          // if (recruiter_information > 0) {
+            console.log("recuriter", data.recruiter_information.employee_id, data.recruiter_information.employee_id)
+            this.setState({
 
+              created_by: data.recruiter_information.user,
+              recruiter_employee_id:data.recruiter_information.employee_id
+
+            });
+            // signn
+          // }
+        } catch (err) {
+          console.log("recuriter", err)
+          
+        }
+        
       })
       .catch((error) => {
         this.setState({
@@ -1093,7 +1111,7 @@ export default class EmployeeProfile extends Component {
                                       </div>
                                     </div> */}
                                 <a href="">
-                                  {this.state.created_by}
+                                  {this.state.recruiter_employee_id}
                                 </a>
                               </div>
                             </li>
@@ -1197,7 +1215,9 @@ export default class EmployeeProfile extends Component {
                   <div className="card profile-box flex-fill">
                     <div className="card-body">
 
-                      <h3 className="card-title">Bank Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#bank_contact_modal"><i className="fa fa-pencil" /></a></h3>
+                      <h3 className="card-title">Bank Details
+                      { this.state.bank_name?<a></a>: <a href="#" className="edit-icon" data-toggle="modal" data-target="#bank_contact_modal">
+                      <i className="fa fa-pencil" /></a>}</h3>
                       <ul className="personal-info">
                         <li>
                           <div className="title">Bank name</div>
@@ -1913,13 +1933,16 @@ export default class EmployeeProfile extends Component {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Birth Date<DatePicker className="form-control floating datetimepicker" onChange={(e) => this.setDob(e)} defaultValue={this.state.dob}></DatePicker> </label>
+                            <label>Birth Date<DatePicker className="form-control floating datetimepicker" onChange={(e) => this.setDob(e)}value={
+                              
+                              this.state.dob? Moment(this.state.dob, 'YYYY-MM-DD') : Moment()}></DatePicker> </label>
                           </div>
+                         {/* <label>{this.state.dob} </label> */}
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Gender<span className="text-danger">*</span></label>
-                            <select defaultValue={this.state.gender} className=" form-control" onChange={this.setgender}>
+                            <select value={this.state.gender} className=" form-control" onChange={this.setgender}>
                               <option value="male">Male</option>
                               <option value="female">Female</option>
                               <option value="other">Other</option>
@@ -1940,7 +1963,7 @@ export default class EmployeeProfile extends Component {
                       <div className="form-group">
                         <label> Country <span className="text-danger">*</span></label>
 
-                        <select defaultValue={this.state.c_country} className=" form-control" onChange={this.setcurrentCountry}>
+                        <select value={this.state.c_country} className=" form-control" onChange={this.setcurrentCountry}>
                           {
                             this.state.allcountry.map((country) =>
                               <option>{country.name}</option>
@@ -1954,7 +1977,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>State<span className="text-danger">*</span></label>
-                        <select defaultValue={this.state.c_state} className=" form-control" onChange={this.setcurrentState}>
+                        <select value={this.state.c_state} className=" form-control" onChange={this.setcurrentState}>
                           {
                             this.state.stateListOfCountry.map((country) =>
                               <option>{country.name}</option>
@@ -1981,21 +2004,21 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Phone Number<span className="text-danger">*</span></label>
-                        <input type="text" maxLength="10" defaultValue={this.state.c_mobile_no} className="form-control" onChange={this.setcurrentPhone} />
+                        <input type="text" pattern="\d*" maxLength="10" defaultValue={this.state.c_mobile_no} className="form-control" onChange={this.setcurrentPhone} />
                       </div>
                     </div>
 
                     <div className="col-md-12">
                       <div className="form-group">
                         <label>Permanent Address<span className="text-danger">*</span></label>
-                        <input type="text" defaultValue={this.state.p_full_address} className="form-control" onChange={this.setPermanentFullAdd} />
+                        <input type="text" value={this.state.p_full_address} className="form-control" onChange={this.setPermanentFullAdd} />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label> Country <span className="text-danger">*</span></label>
 
-                        <select defaultValue={this.state.c_country} className=" form-control" onChange={this.setPermanentCountry}>
+                        <select value={this.state.c_country} className=" form-control" onChange={this.setPermanentCountry}>
                           {
                             this.state.allcountry.map((country) =>
                               <option>{country.name}</option>
@@ -2010,7 +2033,7 @@ export default class EmployeeProfile extends Component {
                       <div className="form-group">
                         <label> State <span className="text-danger">*</span></label>
 
-                        <select defaultValue={this.state.c_state} className=" form-control" onChange={this.setPermanentState}>
+                        <select value={this.state.c_state} className=" form-control" onChange={this.setPermanentState}>
                           {
                             this.state.pstateListOfCountry.map((state) =>
                               <option>{state.name}</option>
@@ -2032,7 +2055,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Pin Code<span className="text-danger">*</span></label>
-                        <input maxLenght="6" type="text" defaultValue={this.state.p_pin_code} className="form-control" onChange={this.setPermanentPin} />
+                        <input maxLength="6" type="text" defaultValue={this.state.p_pin_code} className="form-control" onChange={this.setPermanentPin} />
                       </div>
                     </div>
 
@@ -2067,7 +2090,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Refer By  <span className="text-danger">*</span></label>
-                        <input type="text" defaultValue={this.state.created_by} readOnly className="form-control" onChange={this.setReferBy} />
+                        <input type="text" defaultValue={this.state.recruiter_employee_id} readOnly className="form-control" onChange={this.setReferBy} />
                       </div>
                     </div>
                   </div>
@@ -2102,19 +2125,19 @@ export default class EmployeeProfile extends Component {
                         <div className='clearfix'></div>
                         <div className="row">
                           <div className="col">
-                            <input type="radio" id="vehicle13" name="vehicle1" value="SC" onChange={this.setCategory} />
+                            <input type="radio" id="vehicle13" name="vehicle1" checked ={this.state.category=="SC"}value="SC" onChange={this.setCategory} />
                             <label htmlFor="vehicle" className="ml-2" >SC</label>
                           </div>
                           <div className="col">
-                            <input type="radio" id="vehicle14" name="vehicle1" value="ST" onChange={this.setCategory} />
+                            <input type="radio" id="vehicle14" name="vehicle1"checked ={this.state.category=="ST"} value="ST" onChange={this.setCategory} />
                             <label htmlFor="vehicle1" className="ml-2">ST</label>
                           </div>
                           <div className="col">
-                            <input type="radio" id="vehicle2" name="vehicle1" value="OBC" onChange={this.setCategory} />
+                            <input type="radio" id="vehicle2"checked ={this.state.category=="OBC"}name="vehicle1" value="OBC" onChange={this.setCategory} />
                             <label htmlFor="radio" className="ml-2">OBC</label>
                           </div>
                           <div className="col">
-                            <input type="radio" id="vehicle3" name="vehicle1" value="OPEN" onChange={this.setCategory} />
+                            <input type="radio" id="vehicle3" name="vehicle1" checked ={this.state.category=="OPEN"}value="OPEN" onChange={this.setCategory} />
                             <label htmlFor="vehicle3" className="ml-2">OPEN</label>
                           </div>
                         </div>
@@ -2130,7 +2153,7 @@ export default class EmployeeProfile extends Component {
                       <div className="form-group">
                         <label>Blood group <span className="text-danger">*</span></label>
 
-                        <select className=" form-control" onChange={this.setBloodGroup}>
+                        <select className=" form-control" value={this.state.blood_group}onChange={this.setBloodGroup}>
                           <option>A+</option>
                           <option>A-</option>
                           <option>B+</option>
@@ -2151,7 +2174,9 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Marriage Date<DatePicker defaultValue={this.state.marrage_date} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
+                        <label>Marriage Date<DatePicker value={
+                              
+                              this.state.marrage_date? Moment(this.state.dob, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
                         {/* // <div className="cal-icon">
                             //   <input className="form-control" type="text"onChange={this.setMarriageDate} />
                             </div> */}
@@ -2462,7 +2487,7 @@ export default class EmployeeProfile extends Component {
                 <form>
                   <div className="card">
                     <div className="card-body">
-                      <h3 className="card-title">1</h3>
+                      {/* <h3 className="card-title">1</h3> */}
                       <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
@@ -2581,6 +2606,39 @@ export default class EmployeeProfile extends Component {
                     <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Submit</button>
                   </div>
                   <label className="text-danger">{this.state.error}</label>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* /Bank Modal */}
+
+          {/* Bank Modal */}
+          <div id="confirm_contact_modal" className="modal custom-modal fade" role="dialog">
+          <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Please wait</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <form>
+                  <div className="card">
+                    <div className="card-body">
+                      {/* <h3 className="card-title">1</h3> */}
+                      <div className="row">
+                        
+                      <label className="text-danger">{this.state.error}</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="submit-section">
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">Submit</button>
+                  </div>
+                  
                 </form>
               </div>
             </div>
@@ -2807,6 +2865,21 @@ export default class EmployeeProfile extends Component {
         });
     }
   }
+  alert=(data)=>
+  {
+    confirmAlert({
+      title: ''+data,
+      message: '',
+      buttons: [
+        {
+          label: 'Ok',
+          onClick: () => {
+           
+          }
+        }
+      ]
+    })
+  }
   //upload profile
   addProfileData = (self, data) => {
     // console.log(data.designation,"addProfileData",data.name,data.father_name,data.department,",",data.c_country)
@@ -2824,9 +2897,11 @@ export default class EmployeeProfile extends Component {
       this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)
 
     ) {
+        // this.alert("Please fill all required fields.");
       self.setState({ error: "Please fill all required fields." })
       // return
     } else {
+      // this.alert("Please wait profile is updating");
       self.setState({ error: "Please wait profile is updating" })
       let formData = new FormData();
       formData.append("name", "" + data.name)
@@ -2850,7 +2925,7 @@ export default class EmployeeProfile extends Component {
       formData.append("permanenet_mobile_no", "" + data.p_mobile_no)
       formData.append("permanenet_email", "" + data.c_email)
       formData.append("permanenet_pin_code", "" + data.p_pin_code)
-      formData.append("dob", "" + data.dob)
+      formData.append("dob", "" + Moment(data.dob).format("YYYY-MM-DD"))
       // formData.append("marital_status",""+data.marital_status)
       // formData.append("marrage_date",""+data.marrage_date)
       formData.append("gender", "" + data.gender)

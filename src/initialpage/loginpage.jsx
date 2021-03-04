@@ -19,7 +19,9 @@ class Loginpage extends Component {
       usertype:'',
       
       
+      
     }
+    localStorage.clear();
   }
 
 
@@ -52,7 +54,7 @@ class Loginpage extends Component {
       axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        if(response.data.message !='Otp Generate successfully')
+        if(response.data.message !='Otp generated successfully')
         {
           self.setState({error:response.data.message})
         }else{

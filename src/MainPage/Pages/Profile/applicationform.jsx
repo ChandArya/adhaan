@@ -271,7 +271,42 @@ class ApplicationForm extends Component {
                     console.log("error", err)
                     // document.getElementById("demo").innerHTML = err.message;
                 }
+                var candidate_doc_list = ['Resume/ Bio-DATA', 'Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression']
 
+                try {
+                    console.log(this.state.candidate_doc_list)
+                    console.log('1122', this.state.candidate_documents_data)
+        
+        
+                    candidate_doc_list = {
+                        "document_type": this.candidate_documents_data.document_type, 'Resume/ Bio-DATA': this.candidate_documents_data.Resume / Bio - DATA, 'Adhaar Card Front': this.candidate_documents_data.AdhaarCardFront,
+                        'Driving License Back': this.candidate_documents_data.DrivingLicenseBack, 'Pan Card': this.candidate_documents_data.PanCard, 'Ration Card': this.candidate_documents_data.RationCard
+                    }
+        
+                    for (var i = 0; i < candidate_documents_data.length; i++) {
+                        var ff = candidate_documents_data[i].document_type
+                        console.log("dsfgsdfgsdfgdfsg")
+                        console.log(ff)
+                       
+        
+                        var index = candidate_doc_list.indexOf(ff)
+                        // console.log(ff,"fffff",index)
+                        if (index > -1) {
+                            candidate_doc_list.splice(index, 1);
+        
+                        }
+        
+        
+        
+                    }
+        
+        
+                }
+                catch (err) {
+                    console.log(err)
+        
+                }
+        
             })
             .catch((error) => {
                 this.setState({
@@ -314,47 +349,6 @@ class ApplicationForm extends Component {
 
 
 
-        // var candidate_documents_data ={"id":'',"document_url":'',"document":"","document_type":"",}
-        var candidate_doc_list = ['Resume/ Bio-DATA', 'Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression']
-
-        try {
-            console.log(this.state.candidate_doc_list)
-            console.log('1122', this.state.candidate_documents_data)
-
-
-            candidate_doc_list = {
-                "document_type": this.candidate_documents_data.document_type, 'Resume/ Bio-DATA': this.candidate_documents_data.Resume / Bio - DATA, 'Adhaar Card Front': this.candidate_documents_data.AdhaarCardFront,
-                'Driving License Back': this.candidate_documents_data.DrivingLicenseBack, 'Pan Card': this.candidate_documents_data.PanCard, 'Ration Card': this.candidate_documents_data.RationCard
-            }
-
-            for (var i = 0; i < candidate_documents_data.length; i++) {
-                var ff = candidate_documents_data[i].document_type
-                console.log("dsfgsdfgsdfgdfsg")
-                console.log(ff)
-                // if ((candidate_documents_data[i].document_type == 'Thumb Impression') || (candidate_documents_data[i].document_type == 'Signature')) {
-                //     this.setState({ Sign: "https://aadhaan.ddns.net" + candidate_documents_data[i].document })
-                // }
-
-                var index = candidate_doc_list.indexOf(ff)
-                // console.log(ff,"fffff",index)
-                if (index > -1) {
-                    candidate_doc_list.splice(index, 1);
-
-                }
-
-
-
-            }
-
-            // candidate_documents_data={"id":this.state.candidate_documents_data[0].id,'document_type':this.candidate_documents_data[0].document_type}
-
-        }
-        catch (err) {
-            console.log(err)
-
-        }
-        var candidate_documents_data = { "document_type": "", }
-
 
         try {
             console.log('wwww', this.state.candidate_doc_list)
@@ -369,79 +363,7 @@ class ApplicationForm extends Component {
         }
         catch (err) {
             console.log(err)
-        } //var candidate_documents_data2 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data2', this.state.candidate_documents_data)
-        //     candidate_documents_data2={'document_type':this.candidate_documents_data[2].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // } var candidate_documents_data3 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data3', this.state.candidate_documents_data)
-        //     candidate_documents_data3={'document_type':this.candidate_documents_data[3].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // } var candidate_documents_data4 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data4', this.state.candidate_documents_data)
-        //     candidate_documents_data4={'document_type':this.candidate_documents_data[4].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // } var candidate_documents_data5 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data5', this.state.candidate_documents_data)
-        //     candidate_documents_data={'document_type':this.candidate_documents_data[5].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // } var candidate_documents_data6 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data6', this.state.candidate_documents_data)
-        //     candidate_documents_data6={'document_type':this.candidate_documents_data[6].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // } var candidate_documents_data7 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data7', this.state.candidate_documents_data)
-        //     candidate_documents_data7={'document_type':this.candidate_documents_data[7].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // } var candidate_documents_data8 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data8', this.state.candidate_documents_data)
-        //     candidate_documents_data8={'document_type':this.candidate_documents_data[8].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // } var candidate_documents_data9 ={"document_type":"",}
-
-        // try{
-        //     console.log(this.state.candidate_doc_list)
-        //     console.log('candidate_documents_data9', this.state.candidate_documents_data)
-        //     candidate_documents_data9={'document_type':this.candidate_documents_data[9].document_type}
-        // }
-        // catch(err){
-        // console.log(err)
-        // }
+        } 
 
         var _10thdata = {
             "degree": '', "board_university": "", "location": "",
@@ -709,7 +631,7 @@ class ApplicationForm extends Component {
         catch (error) {
             console.log(error)
         }
-        console.log(this.state.candidate_documents_data)
+        // console.log(this.state.candidate_documents_data)
         return (
             <div className="page-wrapper">
                 <Helmet>
