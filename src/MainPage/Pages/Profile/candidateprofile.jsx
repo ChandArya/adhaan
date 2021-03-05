@@ -27,9 +27,9 @@ import { buildTimeColsModel } from '@fullcalendar/timegrid';
 export default class EmployeeProfile extends Component {
   constructor(...props) {
     super(...props)
-    if (localStorage.getItem("count") == 1) {
+    if (localStorage.getItem("count") == 2) {
       window.location.reload(false);
-      localStorage.setItem("count", 2);
+      localStorage.setItem("count", 3);
     }
     this.setStartDate = this.setStartDate.bind(this);
     this.onFileChangeForDoc = this.onFileChangeForDoc.bind(this);
@@ -39,7 +39,8 @@ export default class EmployeeProfile extends Component {
 
       isLoaded: false,
       name: '',
-      allcountry: worldMapData.getAllCountries(),
+      pallcountry: worldMapData.getAllCountries(),
+      callcountry: worldMapData.getAllCountries(),
       edulevel: '10',
       error: '',
       stateListOfCountry: [],
@@ -298,9 +299,17 @@ export default class EmployeeProfile extends Component {
   }
   setAdharNo = (e) => {
     e.preventDefault();
+    const re=/^[0-9]+$/;
     const value = e.target.value;
+    // alert("got data"+value)
+    
+    // const value = e.target.value;
     var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": this.state.candidate_other_data.uan, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": value, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
-    this.setState({ candidate_other_data: data });
+    if(value===''||value.match(re))
+    {
+      this.setState({ candidate_other_data: data });
+    }
+    
   }
   setEsicAdd = (e) => {
 
@@ -455,22 +464,31 @@ export default class EmployeeProfile extends Component {
     const value = e.target.value;
     // var france = lookup.countries({name: value});
     // alert("got data"+value)
-    console.log(value,)
+    // console.log(value,)
     this.setState({ stateListOfCountry: worldMapData.getAllStatesFromCountry(value), c_country: value });
 
   }
   setcurrentPin = (e) => {
+    
+    // alert("got data"+value)
+    const re=/^[0-9]+$/;
     const value = e.target.value;
     // alert("got data"+value)
-
+    if(value===''||value.match(re))
+    {
     this.setState({ c_pin_code: value });
+    }
 
   }
   setcurrentPhone = (e) => {
+    const re=/^[0-9]+$/;
     const value = e.target.value;
     // alert("got data"+value)
-
-    this.setState({ c_mobile_no: value });
+    if(value===''||value.match(re))
+    {
+      this.setState({ c_mobile_no: value });
+    }
+   
 
   }
   setPermanentFullAdd = (e) => {
@@ -488,17 +506,28 @@ export default class EmployeeProfile extends Component {
 
   }
   setPermanentPin = (e) => {
+   
+    // alert("got data"+value)
+    const re=/^[0-9]+$/;
     const value = e.target.value;
     // alert("got data"+value)
-
+    if(value===''||value.match(re))
+    {
     this.setState({ p_pin_code: value });
+    }
 
   }
   setPermanentMobile = (e) => {
+    // const value = e.target.value;
+    const re=/^[0-9]+$/;
     const value = e.target.value;
+    // alert("got data"+value)
+    if(value===''||value.match(re))
+    {
     // alert("got data"+value)
 
     this.setState({ p_mobile_no: value });
+    }
 
   }
   setDepartment = (e) => {
@@ -587,8 +616,17 @@ export default class EmployeeProfile extends Component {
     this.setState({ ref_loc: value })
   }
   setReferenceNumber = (e) => {
+    // const value = e.target.value;
+    const re=/^[0-9]+$/;
     const value = e.target.value;
-    this.setState({ ref_no: value })
+    // alert("got data"+value)
+    
+    
+    if(value===''||value.match(re))
+    {
+      this.setState({ ref_no: value })
+    }
+    
   }
   setReferenceLocation = (e) => {
     const value = e.target.value;
@@ -625,12 +663,21 @@ export default class EmployeeProfile extends Component {
     this.setState({ docname: value })
   }
   setFamilyAdhar = (e) => {
+    const re=/^[0-9]+$/;
     const value = e.target.value;
-    this.setState({ family_adhar: value })
+    // alert("got data"+value)
+    
+    
+    if(value===''||value.match(re))
+    {
+      this.setState({ family_adhar: value })
+    }
+    // const value = e.target.value;
+    
   }
   addFamilyData = (e) => {
     e.preventDefault();
-    var data = { "relation": this.state.family_relation, "name": this.state.family_name, "aadhaar_no": this.state.family_adhar, "dob": moment(this.state.family_dob).format("YYYY/MM/DD"), "is_nominee": this.state.isNomniee, "candidate": this.state.user }
+    var data = { "relation": this.state.family_relation, "name": this.state.family_name, "aadhaar_no": this.state.family_adhar, "dob": Moment(this.state.family_dob).format("YYYY-MM-DD"), "is_nominee": this.state.isNomniee, "candidate": this.state.user }
     console.log("dayyaya", data)
     this.addFamily(this, data);
   }
@@ -1410,17 +1457,19 @@ export default class EmployeeProfile extends Component {
                         {candidate_documents_data.map(document => (
                           <li key={document.key} >
                             <div className="title">{document.document_type}</div>
-                            <div className="text"><input type="checkbox" className="" defaultChecked="true" /></div>
+                            <input type="checkbox" className="" defaultChecked="true" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
+                            
                           </li>
                         ))}
-                        <br></br>
+                        
                         {candidate_doc_list.map(document => (
                           <li key={document.key} >
                             <div className="title">{document}</div>
-                            <div className="text"><input type="checkbox" className="" />
+                            <input type="checkbox" className="" />
                               <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
-                            </div>
+                              
+                            
                           </li>
                         ))}
 
@@ -1965,7 +2014,7 @@ export default class EmployeeProfile extends Component {
 
                         <select value={this.state.c_country} className=" form-control" onChange={this.setcurrentCountry}>
                           {
-                            this.state.allcountry.map((country) =>
+                            this.state.callcountry.map((country) =>
                               <option>{country.name}</option>
                             )
                           }
@@ -1998,13 +2047,13 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Pin Code<span className="text-danger">*</span></label>
-                        <input maxLength="6" type="text" defaultValue={this.state.c_pin_code} className="form-control" onChange={this.setcurrentPin} />
+                        <input maxLength="6" type="text" value={this.state.c_pin_code} className="form-control" onChange={this.setcurrentPin} />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Phone Number<span className="text-danger">*</span></label>
-                        <input type="text" pattern="\d*" maxLength="10" defaultValue={this.state.c_mobile_no} className="form-control" onChange={this.setcurrentPhone} />
+                        <input type="text" maxLength="10" value={this.state.c_mobile_no} className="form-control" onChange={this.setcurrentPhone} />
                       </div>
                     </div>
 
@@ -2018,9 +2067,9 @@ export default class EmployeeProfile extends Component {
                       <div className="form-group">
                         <label> Country <span className="text-danger">*</span></label>
 
-                        <select value={this.state.c_country} className=" form-control" onChange={this.setPermanentCountry}>
+                        <select value={this.state.p_country} className=" form-control" onChange={this.setPermanentCountry}>
                           {
-                            this.state.allcountry.map((country) =>
+                            this.state.pallcountry.map((country) =>
                               <option>{country.name}</option>
                             )
                           }
@@ -2033,7 +2082,7 @@ export default class EmployeeProfile extends Component {
                       <div className="form-group">
                         <label> State <span className="text-danger">*</span></label>
 
-                        <select value={this.state.c_state} className=" form-control" onChange={this.setPermanentState}>
+                        <select value={this.state.p_state} className=" form-control" onChange={this.setPermanentState}>
                           {
                             this.state.pstateListOfCountry.map((state) =>
                               <option>{state.name}</option>
@@ -2055,7 +2104,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Pin Code<span className="text-danger">*</span></label>
-                        <input maxLength="6" type="text" defaultValue={this.state.p_pin_code} className="form-control" onChange={this.setPermanentPin} />
+                        <input maxLength="6" type="text" value={this.state.p_pin_code} className="form-control" onChange={this.setPermanentPin} />
                       </div>
                     </div>
 
@@ -2066,7 +2115,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Phone Number<span className="text-danger">*</span></label>
-                        <input maxLength="10" type="text" defaultValue={this.state.p_mobile_no} className="form-control" onChange={this.setPermanentMobile} />
+                        <input maxLength="10" type="text" value={this.state.p_mobile_no} className="form-control" onChange={this.setPermanentMobile} />
                       </div>
                     </div>
                     <div className="col-md-6">
@@ -2176,7 +2225,7 @@ export default class EmployeeProfile extends Component {
                       <div className="form-group">
                         <label>Marriage Date<DatePicker value={
                               
-                              this.state.marrage_date? Moment(this.state.dob, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
+                              this.state.marrage_date? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
                         {/* // <div className="cal-icon">
                             //   <input className="form-control" type="text"onChange={this.setMarriageDate} />
                             </div> */}

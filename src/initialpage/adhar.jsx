@@ -11,6 +11,10 @@ var axios = require('axios');
 class Adhar extends Component {
   constructor(...props) {
     super(...props)
+    if (localStorage.getItem("count") == 1) {
+      window.location.reload(false);
+      localStorage.setItem("count", 2);
+    }
     console.log(this.props, "hhhhhhhhhhhhh")
     this.state = {
       currentpage: '/',
@@ -46,21 +50,24 @@ class Adhar extends Component {
           // profile_picture = "https://aadhaan.ddns.net" + data.candidate_personal_data.basic_details.profile_picture
           console.log(data.candidate_personal_data, "hgfkdshfgdhkgkfhgkhfjkjhfdjdgfhkjhffjkhdg", data.candidate_other_data)
           var candidate_other_data_len = Object.keys(data.candidate_other_data).length
+         
           if (candidate_other_data_len > 0) {
             var candidate_other_data = data.candidate_other_data
-            localStorage.setItem("candidateName", data.candidate_personal_data.basic_details.name)
+            this.setState({
+              // other_details_id:candidate_other_data.id,
+              adharno: candidate_other_data.aadhaar_no
+  
+            });
+            
             try{
+              localStorage.setItem("candidateName", data.candidate_personal_data.basic_details.name)
               localStorage.setItem("candidateImg",  URL.createObjectURL("https://aadhaan.ddns.net" + data.candidate_personal_data.basic_details.profile_picture))
             }catch(err)
             {
               localStorage.setItem("candidateImg", Applogo)
             }
             
-            this.setState({
-              // other_details_id:candidate_other_data.id,
-              adharno: candidate_other_data.aadhaar_no
-
-            });
+           
           }
         } catch (err) {
           console.log("error", err)
