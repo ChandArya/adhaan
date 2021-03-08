@@ -8273,6 +8273,13 @@ ul.comment-list li ul.children {
 		
 		position: absolute;
 	}
+	.ant-picker-dropdown
+  {
+	position: fixed;
+    transform: translate(-50%,-50%);
+    left: 50% !important;
+    top: 50% !important;
+  }
   }
   /* nitin */
   .react-confirm-alert-overlay{
@@ -8342,3 +8349,4 @@ ul.comment-list li ul.children {
   .slider.round:before {
 	border-radius: 50%;
   }
+  

@@ -54,7 +54,7 @@ export default class EmployeeProfile extends Component {
         profilepic: Avatar_02,
         alternate_mobile_no: '',
         designation: '',
-        profilepic1: '',
+        profilepic1: 'null',
         client: null,
         signn: null,
         father_name: '',
@@ -464,9 +464,17 @@ export default class EmployeeProfile extends Component {
       var files = e.target.files;
       console.log("files", JSON.stringify(files))
       const value = files[0];
+      console.log("files", value.size)
+      if(value.size > 1048576 ){
+        alert("File is too big!");
+        this.value = "";
+        
+     }else{
+      this.setState({ resume_file: value });
+     }
       // alert("got data"+value)
 
-      this.setState({ resume_file: value });
+      
     } catch (err) {
       console.log("error", err)
       // document.getElementById("demo").innerHTML = err.message;
@@ -2518,8 +2526,9 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-12">
                       <div className="form-group row">
                         <label className="col my-auto">{this.state.docname}</label>
-                        <input type="file" className="form-control col" onChange={(event) => this.onFileChangeForDoc(event)} />
+                        <input type="file" className="form-control col" onChange={(event) => this.onFileChangeForDoc(event)} /><label className="col my-auto">Max{ } Size{ } 1{ } mb</label>
                       </div>
+                      
                     </div>
                     
                   </div>
@@ -3082,6 +3091,7 @@ export default class EmployeeProfile extends Component {
             alert('Personl details successfully submitted ✅')
             // window.location.reload(false);
             $("#profile_info").modal("hide");
+            self.setState({ error: "",error1:'' })
 
 
           }
@@ -3124,6 +3134,7 @@ export default class EmployeeProfile extends Component {
             //let path='app/profile/candidate-profile';
             alert('Work experience details successfully submitted ✅')
             // $("#experience_info").modal("hide");
+            self.setState({ error: "",error1:'' })
             self.apicall();
              $("#experience_info").modal("hide");
 
@@ -3164,6 +3175,7 @@ export default class EmployeeProfile extends Component {
             //let path='app/profile/candidate-profile';
             alert('Family details successfully submitted ✅')
             self.apicall();
+            self.setState({ error: "" ,error1:''})
             $("#family_info_modal").modal("hide");
 
 
@@ -3199,7 +3211,7 @@ export default class EmployeeProfile extends Component {
           //let path='app/profile/candidate-profile';
           alert('Other presonal details successfully submitted ✅')
            $("#other_details").modal("hide");
-          
+           self.setState({ error: "",error1:'' })
           // window.location.reload(false);
 
 
@@ -3260,7 +3272,7 @@ export default class EmployeeProfile extends Component {
             alert('Personal details successfully submitted ✅')
             // window.location.reload(false);
             $("#personal_info_modal").modal("hide");
-
+            self.setState({ error: "",error1:'' })
 
           }
         })
@@ -3298,7 +3310,7 @@ export default class EmployeeProfile extends Component {
           alert(document_type + ' uploaded successfully  ✅')
           self.apicall();
           $("#document_checklist").modal("hide");
-
+          self.setState({ error: "",error1:'' })
 
         }
       })
@@ -3337,7 +3349,7 @@ export default class EmployeeProfile extends Component {
             alert('Education details successfully submitted ✅')
             self.apicall();
              $("#education_info").modal("hide");
-
+             self.setState({ error: "" ,error1:''})
 
           }
 
@@ -3370,6 +3382,7 @@ export default class EmployeeProfile extends Component {
         alert('References details successfully submitted ✅')
         self.apicall();
         $("#emergency_contact_modal").modal("hide");
+        self.setState({ error: "",error1:'' })
       })
       .catch(function (error) {
         console.log(error);

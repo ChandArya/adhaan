@@ -620,7 +620,7 @@ class ApplicationForm extends Component {
                                                 <input type="radio" className="ml-4 mr-2 my-auto" value="SC" checked={this.state.category === "SC"} /> SC
                                             <input type="radio" className="ml-4 mr-2 my-auto" value="ST" checked={this.state.category === "ST"} /> ST
                                             <input type="radio" className="ml-4 mr-2 my-auto" value="OBC" checked={this.state.category === "OBC"} /> OBC
-                                            <input type="radio" className="ml-4 mr-2 my-auto" /> OPEN
+                                            <input type="radio" className="ml-4 mr-2 my-auto"checked={this.state.category === "OPEN"} /> OPEN
                                         </div>
                                             <div className="form-group input-group">
                                                 <div className="input-group-prepend my-auto">
