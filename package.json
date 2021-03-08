@@ -74,6 +74,7 @@
     "react-sticky": "^6.0.3",
     "react-sticky-box": "^0.9.3",
     "react-summernote": "^2.0.2",
+    "react-switch": "^6.0.0",
     "reactjs-percentage-circle": "^1.0.0",
     "reactstrap": "^8.5.1",
     "recharts": "^1.8.5",

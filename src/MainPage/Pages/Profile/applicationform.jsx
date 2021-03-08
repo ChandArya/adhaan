@@ -17,318 +17,20 @@ class ApplicationForm extends Component {
 
 
     }
-    componentDidMount = () => {
-        console.log("thissssssss", this.state)
-        // alert("user",this.state)
-        // console.log(this.props.location.state,"thissssssss")
-        // this.setState({user:this.props.location.state.id})
-        var config = {
-            method: 'get',
-            url: 'https://aadhaan.ddns.net/api/candidate/full-information/' + this.state.user,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: ''
-        };
 
-        axios(config)
-            .then((response) => {
-                var data = response.data;
-                console.log(data)
-                try {
-
-
-                    var candidate_education_data_len = Object.keys(data.candidate_education_data).length
-                    if (candidate_education_data_len > 0) {
-                        var candidate_education_data = data.candidate_education_data
-                        this.setState(
-                            {
-                                education_data: candidate_education_data
-                            }
-                        );
-                    }
-
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    var candidate_bank_data_len = Object.keys(data.candidate_bank_data).length
-                    if (candidate_bank_data_len > 0) {
-                        var candidate_bank_data = data.candidate_bank_data
-                        this.setState({
-
-
-                            bank_name: candidate_bank_data.bank_name,
-                            branch_name: candidate_bank_data.branch_name,
-                            account_number: candidate_bank_data.account_number,
-                            ifsc_code: candidate_bank_data.ifsc_code,
-
-
-
-                        });
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-
-                try {
-                    var basic_details_len = Object.keys(data.candidate_personal_data.basic_details).length
-                    var basic_details = data.candidate_personal_data.basic_details
-                    if (basic_details_len > 0) {
-                        this.setState({
-                            isLoaded: true,
-                            name: basic_details.name,
-                            alternate_mobile_no: basic_details.alternate_mobile_no,
-                            designation: basic_details.designation,
-                            client: basic_details.client,
-                            father_name: basic_details.father_name,
-                            department: basic_details.department,
-                            job_location: basic_details.job_location,
-                            zone: basic_details.zone,
-                            u_state: basic_details.u_state,
-                            source: basic_details.source,
-                            user: basic_details.user,
-                            created_by: basic_details.created_by,
-                            isd: basic_details.isd,
-                            mobile_no: basic_details.mobile_no,
-                            user_type: basic_details.user_type,
-                            profilepic: "https://aadhaan.ddns.net" + basic_details.profile_picture
-                        });
-                    }
-                }
-                catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    var current_address_data_len = Object.keys(data.candidate_personal_data.address_details.current_address_data).length
-                    var current_address_data = data.candidate_personal_data.address_details.current_address_data
-                    if (current_address_data_len > 0) {
-                        this.setState({
-                            c_country: current_address_data.country,
-                            c_state: current_address_data.state,
-                            c_city: current_address_data.city,
-                            c_house_no: current_address_data.house_no,
-                            c_full_address: current_address_data.full_address,
-                            c_mobile_no: current_address_data.mobile_no,
-                            c_email: current_address_data.email,
-                            c_pin_code: current_address_data.pin_code
-
-
-                        });
-                    }
-                }
-
-                catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    var permanent_address_data_len = Object.keys(data.candidate_personal_data.address_details.permanent_address_data).length
-
-
-
-                    var permanent_address_data = data.candidate_personal_data.address_details.permanent_address_data
-
-
-
-
-
-                    if (permanent_address_data_len > 0) {
-                        this.setState({
-                            p_country: permanent_address_data.country,
-                            p_state: permanent_address_data.state,
-                            p_city: permanent_address_data.city,
-                            p_house_no: permanent_address_data.house_no,
-                            p_full_address: permanent_address_data.full_address,
-                            p_mobile_no: permanent_address_data.mobile_no,
-                            p_email: permanent_address_data.email,
-                            p_pin_code: permanent_address_data.pin_code
-
-
-                        });
-                    }
-                }
-
-                catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    var other_details_len = Object.keys(data.candidate_personal_data.other_details).length
-                    if (other_details_len > 0) {
-                        var other_details = data.candidate_personal_data.other_details
-                        this.setState({
-
-                            dob: other_details.dob,
-
-                            marital_status: other_details.marital_status,
-                            marrage_date: other_details.marrage_date,
-                            gender: other_details.gender,
-                            category: other_details.category,
-                            nationality: other_details.nationality,
-                            blood_group: other_details.blood_group,
-                            mother_tongue: other_details.mother_tongue,
-                            religion: other_details.religion
-
-
-                        });
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-
-                try {
-                    var candidate_reference_data = data.candidate_reference_data.reference.length
-
-                    if (candidate_reference_data > 0) {
-                        var candidate_reference_data = data.candidate_reference_data.reference
-
-                        this.setState({
-
-                            reference: candidate_reference_data
-
-                        });
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    var candidate_family_data = data.candidate_family_data.family.length
-                    if (candidate_family_data > 0) {
-                        var candidate_family_data = data.candidate_family_data.family
-                        this.setState({
-                            family: candidate_family_data
-
-                        });
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    console.log(data.candidate_other_data.id, "hgfkdshfgdhkgkfhgkhfjkjhfdjdgfhkjhffjkhdg", data.candidate_other_data)
-                    var candidate_other_data_len = Object.keys(data.candidate_other_data).length
-                    if (candidate_other_data_len > 0) {
-                        var candidate_other_data = data.candidate_other_data
-
-                        this.setState({
-                            other_details_id: candidate_other_data.id,
-                            candidate_other_data: candidate_other_data
-
-                        });
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    var candidate_work_history_data_len = data.candidate_work_history_data.work_experience.length
-
-                    if (candidate_work_history_data_len > 0) {
-                        var candidate_work_history_data = data.candidate_work_history_data.work_experience
-                        // console.log("tttttttt",candidate_work_history_data);
-                        this.setState({
-
-                            candidate_work_history_data: candidate_work_history_data
-
-
-                        });
-                    }
-                    var candidate_documents_data_len = data.candidate_documents_data.document.length
-                    if (candidate_documents_data_len > 0) {
-                        var candidate_documents_data = data.candidate_documents_data.document
-                        console.log("hgjdhjgfgjhjfhj", candidate_documents_data)
-                        console.log(this.state)
-                        this.setState({
-
-                            candidate_documents_data: candidate_documents_data
-
-                        });
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                try {
-                    var candidate_documents_data_len = data.candidate_documents_data.document.length
-                    if (candidate_documents_data_len > 0) {
-                        var candidate_documents_data = data.candidate_documents_data.document
-                        for (var i = 0; i < candidate_documents_data.length; i++) {
-
-                        }
-                        this.setState({
-
-                            candidate_documents_data: candidate_documents_data
-
-                        });
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
-                var candidate_doc_list = ['Resume/ Bio-DATA', 'Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression']
-
-                try {
-                    console.log(this.state.candidate_doc_list)
-                    console.log('1122', this.state.candidate_documents_data)
-        
-        
-                    candidate_doc_list = {
-                        "document_type": this.candidate_documents_data.document_type, 'Resume/ Bio-DATA': this.candidate_documents_data.Resume / Bio - DATA, 'Adhaar Card Front': this.candidate_documents_data.AdhaarCardFront,
-                        'Driving License Back': this.candidate_documents_data.DrivingLicenseBack, 'Pan Card': this.candidate_documents_data.PanCard, 'Ration Card': this.candidate_documents_data.RationCard
-                    }
-        
-                    for (var i = 0; i < candidate_documents_data.length; i++) {
-                        var ff = candidate_documents_data[i].document_type
-                        console.log("dsfgsdfgsdfgdfsg")
-                        console.log(ff)
-                       
-        
-                        var index = candidate_doc_list.indexOf(ff)
-                        // console.log(ff,"fffff",index)
-                        if (index > -1) {
-                            candidate_doc_list.splice(index, 1);
-        
-                        }
-        
-        
-        
-                    }
-        
-        
-                }
-                catch (err) {
-                    console.log(err)
-        
-                }
-        
-            })
-            .catch((error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-                console.log("error");
-            });
-
-    }
     backClick = (e) => {
         let path = './candidate-profile';
         var id = this.props.location.state.user
         // alert("iiiiid",id)
         console.log("hhhhhhhhh", id)
-        this.setState({ id: id });
+        this.setState({ id: id,back:true });
 
         this.props.history.push({
             pathname: path,
             state: this.state
 
         })
+        // this.props.history.go(-1)
 
 
 
@@ -889,7 +591,7 @@ class ApplicationForm extends Component {
                                                     <div className="col-sm-8 text-uppercase">Married</div>
                                                     <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Married" checked={this.state.marital_status === "married"} defaultValue={this.state.marital_status} /></div>
                                                     <div className="col-sm-8 text-uppercase">Unmarried</div>
-                                                    <div className="col-sm-4 text-right"><input type="radio" checked={this.state.marital_status === "un_married"} name="marital-status" value="Unmarried" /></div>
+                                                    <div className="col-sm-4 text-right"><input type="radio" checked={this.state.marital_status === "Single"} name="marital-status" value="Unmarried" /></div>
                                                 </div>
                                             </div>
                                             <div className="form-group input-group">
@@ -1019,7 +721,7 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization} /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
 
-                                                    placeholder="From" onfocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
+                                                    placeholder="From" onFocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
 
                                                     placeholder="To" onfocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
