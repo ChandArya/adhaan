@@ -163,6 +163,7 @@ export default class EmployeeProfile extends Component {
   addPersonalInfoData = (e) => {
     e.preventDefault();
     console.log("clickfound")
+    this.setState({error1:"This field can not be empty"})
     this.addpersonalInfo(this, this.state);
   }
 
@@ -170,6 +171,7 @@ export default class EmployeeProfile extends Component {
 
     e.preventDefault();
     console.log("clickfound")
+    this.setState({error1:"This field can not be empty"})
     this.addBank(this, this.state.bank_name, this.state.branch_name, this.state.account_number, this.state.ifsc_code, this.state.user);
   }
 
@@ -201,7 +203,7 @@ export default class EmployeeProfile extends Component {
 
   addEducationData = (e) => {
     e.preventDefault();
-
+    this.setState({error1:"This field can not be empty"})
     var data = { "degree": this.state.degree, "board_university": this.state.board, "school": this.state.school, "location": this.state.edu_location, "passing_year": this.state.passing_year, "percentage": this.state.percentage, "candidate": this.state.user, "education_level": this.state.edulevel }
     var data1 = { 'candidate': this.state.user }
     let final = {
@@ -243,6 +245,7 @@ export default class EmployeeProfile extends Component {
   }
   addExperienceData = (e) => {
     e.preventDefault();
+    this.setState({error1:"This field can not be empty"})
     var data = { "organization": this.state.experienceOrgination, "designation": this.state.exprienceDesignation, "reason_for_leaving": this.state.reasonforSep, "candidate": this.state.user, "start_date": this.state.startDate_emp, "end_date": this.state.enddate_emp }
 
     var data1 = { 'candidate': this.state.user }
@@ -255,6 +258,7 @@ export default class EmployeeProfile extends Component {
   //end experience data
   addOtherDetails = (e) => {
     e.preventDefault();
+    this.setState({error1:"This field can not be empty"})
     var data = this.state.candidate_other_data
     var data1 = { 'candidate': this.state.user, 'other_detail_id': this.state.other_details_id }
     let final = {
@@ -664,6 +668,7 @@ export default class EmployeeProfile extends Component {
   }
   addRef = (e) => {
     e.preventDefault();
+    this.setState({error1:"This field can not be empty"})
     var data = { "name": this.state.ref_name, "location": this.state.ref_loc, "mobile_no": this.state.ref_no, "candidate": this.state.user, "relationship": this.state.ref_relation }
     this.addReference(this, data);
   }
@@ -705,8 +710,31 @@ export default class EmployeeProfile extends Component {
     // const value = e.target.value;
     
   }
+
+
+
+  sameAddDAta = (e)=>{
+    console.log("qqq")
+    if(e.target.checked)
+    {
+      this.setState({p_full_address:this.state.c_full_address,
+        p_city:this.state.c_city,
+        p_country:this.state.c_country ,
+        p_state:this.state.c_state,pstateListOfCountry:this.state.stateListOfCountry,
+        p_pin_code:this.state.c_pin_code,
+        p_mobile_no:this.state.c_mobile_no,
+        location:this.state.job_location,
+        p_email:this.state.c_email
+})
+    }
+   
+  }
+
+
+
   addFamilyData = (e) => {
     e.preventDefault();
+    this.setState({error1:"This field can not be empty"})
     var data = { "relation": this.state.family_relation, "name": this.state.family_name, "aadhaar_no": this.state.family_adhar, "dob": Moment(this.state.family_dob).format("YYYY-MM-DD"), "is_nominee": this.state.isNomniee, "candidate": this.state.user }
     console.log("dayyaya", data)
     this.addFamily(this, data);
@@ -843,6 +871,7 @@ export default class EmployeeProfile extends Component {
           }
         }
 
+
         catch (err) {
           console.log("error", err)
           // document.getElementById("demo").innerHTML = err.message;
@@ -854,7 +883,7 @@ export default class EmployeeProfile extends Component {
 
           var permanent_address_data = data.candidate_personal_data.address_details.permanent_address_data
 
-
+          console.log('111111',permanent_address_data)
 
 
 
@@ -878,6 +907,18 @@ export default class EmployeeProfile extends Component {
           console.log("error", err)
           // document.getElementById("demo").innerHTML = err.message;
         }
+
+
+
+
+
+
+      
+       
+        
+
+
+        
         try {
           var other_details_len = Object.keys(data.candidate_personal_data.other_details).length
           if (other_details_len > 0) {
@@ -2138,17 +2179,26 @@ export default class EmployeeProfile extends Component {
                       }
                     </div>
 
-                    <div className="col-md-12">
+                    <div className="col-md-7">
                       <div className="form-group">
                         <label>Permanent Address<span className="text-danger">*</span></label>
                         <input type="text" value={this.state.p_full_address} className="form-control" onChange={this.setPermanentFullAdd} />
+
+                       
                       </div>
+                     
                       {this.isBlank(this.state.p_full_address) ?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                             ''
                       }
                     </div>
+                    <div className="col-md-5 mt-3">
+                    <div className="add " style={{float:'left', }}>
+                          <input type="checkbox" onChange={this.sameAddDAta}  defaultChecked={false}/>
+                       <label  style={{paddingLeft: '10px' ,marginTop:'25px' ,    fontWeight: 'bold' }}>Same As Current Address</label>
+                      </div>
+                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label> Country <span className="text-danger">*</span></label>
@@ -2344,7 +2394,15 @@ export default class EmployeeProfile extends Component {
                           <option>AB-</option>
                         </select>
                         {/* <input className="form-control" Style="text-transform:uppercase" defaultValue={this.state.blood_group}type="text" onChange={this.} /> */}
+                       
                       </div>
+                      {this.isBlank(this.state.blood_group )?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
@@ -2419,26 +2477,65 @@ export default class EmployeeProfile extends Component {
                         <label>Name <span className="text-danger">*</span></label>
 
                         <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
-                      </div>
+
+                       </div>
+                       {this.isBlank(this.state.candidate_other_data.name)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Driving License No.<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
+
                       </div>
+
+                      {this.isBlank(this.state.candidate_other_data.dl_no)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Place of Issue<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
+
+                        
+
                       </div>
+                      {this.isBlank(this.state.place_of_issue)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Valid Upto (YYYY-MM-DD)<span className="text-danger">*</span></label>
 
                         <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
+
+
+
                       </div>
+                      {this.isBlank(this.state.candidate_other_data.valid_up_to)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
+                      
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
@@ -2453,6 +2550,14 @@ export default class EmployeeProfile extends Component {
                         <label>PAN Card Number<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.pan_card_no} className="form-control" type="text" onChange={this.setPanNo} />
                       </div>
+                      {this.isBlank(this.state.candidate_other_data.pan_card_no)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
@@ -2466,6 +2571,15 @@ export default class EmployeeProfile extends Component {
 
                         <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
                       </div>
+                      {this.isBlank(this.state.candidate_other_data.aadhaar_no)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
@@ -2473,12 +2587,25 @@ export default class EmployeeProfile extends Component {
 
                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
                       </div>
+                      {this.isBlank(this.state.uan)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Old UAN No. <span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
                       </div>
+
+                      {this.isBlank(this.state.uan)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
                     </div>
 
                     <div className="col-md-6">
@@ -2486,18 +2613,42 @@ export default class EmployeeProfile extends Component {
                         <label>Old ESIC No.<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
                       </div>
+                      {this.isBlank(this.state.esic_no)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Old ESIC Dispensory Name.<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
                       </div>
+                      {this.isBlank(this.state.esic_name)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
+
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Old ESIC Dispensory Address<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.esic_address} className="form-control" type="text" onChange={this.setEsicAdd} />
                       </div>
+
+
+
+                      {this.isBlank(this.state.esic_address)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
                     </div>
                   </div>
                   <div className="submit-section">
@@ -2564,19 +2715,45 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <label>Name <span className="text-danger">*</span></label>
-                              <input className="form-control" type="text" onChange={this.setFamilyName} />
+                              <input className="form-control" type="text" onChange={this.setFamilyName} v />
                             </div>
+
+                            {this.isBlank(this.state.family_name)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
                               <label>Relationship <span className="text-danger">*</span></label>
                               <input className="form-control" type="text" onChange={this.setFamilyRelation} />
                             </div>
+
+
+                            {this.isBlank(this.state.family_relation)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
                               <label>Date of birth <span className="text-danger">*</span><DatePicker className="form-control floating datetimepicker" onChange={(e) => this.setFamilyDob(e)}></DatePicker> </label>
                             </div>
+
+                            {/* {this.isBlank(this.state.family_dob =='Invalid date'? Moment(this.state.family_dob, 'YYYY-MM-DD') : Moment())?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            } */}
+
+
+
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
@@ -2626,18 +2803,43 @@ export default class EmployeeProfile extends Component {
                             <label>Name <span className="text-danger">*</span></label>
                             <input type="text" className="form-control" onChange={this.setReferencename} />
                           </div>
+
+                          {this.isBlank(this.state.ref_name)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
+
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Relationship <span className="text-danger">*</span></label>
                             <input className="form-control" type="text" onChange={this.setReferencerleation} />
                           </div>
+
+
+                          {this.isBlank(this.state.ref_relation)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Phone <span className="text-danger">*</span></label>
                             <input className="form-control" type="text" maxLength="10" value={this.state.ref_no} onChange={this.setReferenceNumber} />
                           </div>
+
+
+                          {this.isBlank(this.state.ref_no)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
@@ -2711,18 +2913,43 @@ export default class EmployeeProfile extends Component {
                             <label>Bank Name <span className="text-danger">*</span></label>
                             <input type="text" className="form-control" onChange={this.setBankName} />
                           </div>
+
+                          {this.isBlank(this.state.bank_name)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Account number <span className="text-danger">*</span></label>
                             <input className="form-control" type="text" onChange={this.setAccountNo} />
                           </div>
+
+
+
+
+                          {this.isBlank(this.state.account_number)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Ifsc code <span className="text-danger">*</span></label>
                             <input className="form-control" type="text" onChange={this.setIfsc_Code} />
                           </div>
+
+
+
+                          {this.isBlank(this.state.ifsc_code)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
@@ -2818,6 +3045,14 @@ export default class EmployeeProfile extends Component {
                               <input type="text" className="form-control floating" onChange={this.setSchool} />
                               <label className="focus-label">School/University<span className="text-danger">*</span></label>
                             </div>
+
+
+
+                            {this.isBlank(this.state.school)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
@@ -2832,6 +3067,14 @@ export default class EmployeeProfile extends Component {
                               </div>
                               <label className="focus-label">Year of passing<span className="text-danger">*</span></label>
                             </div>
+
+
+                            
+                            {this.isBlank(this.state.passing_year)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
                           </div>
 
                           <div className="col-md-6">
@@ -2839,6 +3082,15 @@ export default class EmployeeProfile extends Component {
                               <input type="text" className="form-control floating" onChange={this.setBoard} />
                               <label className="focus-label">Board/University<span className="text-danger">*</span></label>
                             </div>
+
+
+                            {this.isBlank(this.state.board_university)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
+
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
@@ -2851,6 +3103,14 @@ export default class EmployeeProfile extends Component {
                               <input type="text" className="form-control floating" onChange={this.setPercentage} />
                               <label className="focus-label">% Marks/Cgpa<span className="text-danger">*</span></label>
                             </div>
+
+
+                            
+                            {this.isBlank(this.state.percentage)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
                           </div>
                         </div>
                       </div>
@@ -2894,6 +3154,11 @@ export default class EmployeeProfile extends Component {
                               <input type="text" placeholder="Organisation" className="form-control floating" onChange={this.setExperienceOrgination} />
 
                             </div>
+                            {this.isBlank(this.state.experienceOrgination)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
 
                           </div>
                           <div className="col-md-6">
@@ -2911,6 +3176,12 @@ export default class EmployeeProfile extends Component {
 
                             </div>
 
+                            {this.isBlank(this.state.exprienceDesignation)?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            }
+
                           </div>
                           <div className="col-md-6">
                             <label className="focus-label">Period From<span className="text-danger">*</span></label>
@@ -2921,6 +3192,15 @@ export default class EmployeeProfile extends Component {
                               </div>
 
                             </div>
+
+                           
+                            {this.isBlank(this.state.startDate_emp ? Moment(this.state.family_dob, 'YYYY-MM-DD') : Moment())?
+                              <span className="text-danger">{this.state.error1}</span>
+                              :
+                              ''
+                            } 
+
+
                           </div>
                           <div className="col-md-6">
                             <label className="focus-label">Period To<span className="text-danger">*</span></label>
@@ -3189,10 +3469,10 @@ export default class EmployeeProfile extends Component {
   }
   addOtherDetailsData = (self, data) => {
 
-    // if( this.isBlank(data.dl_no)||this.isBlank(data.pan_card_no)||
-    // this.isBlank(data.pf_no)||this.isBlank(data.uan) ){
-    //   self.setState({error:"Please fill all required details"})
-    // }else{
+    if( this.isBlank(data.dl_no)||this.isBlank(data.pan_card_no)||
+    this.isBlank(data.pf_no)||this.isBlank(data.uan) ){
+      self.setState({error:"Please fill all required details"})
+    }else{
     console.log("called")
     var config = {
       method: 'PUT',
@@ -3222,7 +3502,7 @@ export default class EmployeeProfile extends Component {
         console.log(error);
       });
 
-    // }
+     }
   }
   //add personal info
   addpersonalInfo = (self, data) => {
@@ -3235,6 +3515,7 @@ export default class EmployeeProfile extends Component {
       let statusm = '';
       if (data.marital_status == "Single") {
         statusm = "un_married"
+        data.marrage_date=null
       } else {
         statusm = "married"
       }
@@ -3364,7 +3645,11 @@ export default class EmployeeProfile extends Component {
   addReference = (self, data) => {
 
     console.log("refrences" + JSON.stringify(data))
-
+    if (this.isBlank(data.ref_name) ||
+    this.isBlank(data.ref_relation) || this.isBlank(data.ref_no)) {
+    self.setState({ error: "Please fill all required details" })
+  }
+  else{
     console.log("called")
     var config = {
       method: 'post',
@@ -3389,4 +3674,5 @@ export default class EmployeeProfile extends Component {
         self.setState({ error: "Nework issue" })
       });
   }
+}
 }
