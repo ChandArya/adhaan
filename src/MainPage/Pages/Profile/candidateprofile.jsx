@@ -434,7 +434,7 @@ export default class EmployeeProfile extends Component {
     const value = e.target.value;
     // alert("got data"+value)
 
-    this.setState({ c_city: value });
+    this.setState({ c_city: value, job_location: value });
 
   }
   setPermnanetCity = (e) => {
@@ -469,7 +469,7 @@ export default class EmployeeProfile extends Component {
       console.log("files", JSON.stringify(files))
       const value = files[0];
       console.log("files", value.size)
-      if(value.size > 1048576 ){
+      if(value.size > 10048576 ){
         alert("File is too big!");
         this.value = "";
         
@@ -647,7 +647,7 @@ export default class EmployeeProfile extends Component {
   }
   setReferencerleation = (e) => {
     const value = e.target.value;
-    this.setState({ ref_loc: value })
+    this.setState({ ref_relation: value })
   }
   setReferenceNumber = (e) => {
     // const value = e.target.value;
@@ -723,7 +723,7 @@ export default class EmployeeProfile extends Component {
         p_state:this.state.c_state,pstateListOfCountry:this.state.stateListOfCountry,
         p_pin_code:this.state.c_pin_code,
         p_mobile_no:this.state.c_mobile_no,
-        location:this.state.job_location,
+        job_location:this.state.job_location,
         p_email:this.state.c_email
 })
     }
@@ -785,7 +785,9 @@ export default class EmployeeProfile extends Component {
                 education_data: candidate_education_data
               }
             );
+            console.log("educationdata",candidate_education_data);
           }
+         
 
         } catch (err) {
           console.log("error", err)
@@ -1100,6 +1102,7 @@ export default class EmployeeProfile extends Component {
     const family_data = this.state.family;
     const work_history_data = this.state.candidate_work_history_data
     const education_list = Object.keys(this.state.education_data)
+
     const edu_data = this.state.education_data
     var candidate_documents_data = this.state.candidate_documents_data
     // alert("ddd",candidate_documents_data,"ggg",candidate_doc_list)
@@ -1871,7 +1874,7 @@ export default class EmployeeProfile extends Component {
                           <select className="select">
                             <option>Select PF contribution</option>
                             <option>Yes</option>
-                            <option>No</option>
+                            <option>no</option>
                           </select>
                         </div>
                       </div>
@@ -2023,12 +2026,12 @@ export default class EmployeeProfile extends Component {
         </div>
         {/* /Page Content */}
         {/* Profile Modal */}
-        <div id="profile_info" className="modal custom-modal fade" role="dialog">
+        <div id="profile_info" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Profile Details</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close"  onClick={this.closeProfile} >
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -2324,12 +2327,12 @@ export default class EmployeeProfile extends Component {
         </div>
         {/* /Profile Modal */}
         {/* Personal Info Modal */}
-        <div id="personal_info_modal" className="modal custom-modal fade" role="dialog">
+        <div id="personal_info_modal" className="modal custom-modal fade" role="dialog"data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Personal Details</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" onClick={this.closePersonalDetails}>
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -2420,9 +2423,7 @@ export default class EmployeeProfile extends Component {
                         <label>Marriage Date<DatePicker value={
                               
                               this.state.marrage_date? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
-                        {/* // <div className="cal-icon">
-                            //   <input className="form-control" type="text"onChange={this.setMarriageDate} />
-                            </div> */}
+                        
                       </div>
                     </div>
                     <div className="col-md-6">
@@ -2459,12 +2460,12 @@ export default class EmployeeProfile extends Component {
         </div>
         {/* /Personal Info Modal */}
         {/* Other Details Modal */}
-        <div id="other_details" className="modal custom-modal fade" role="dialog">
+        <div id="other_details" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Other Details</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" onClick={this.closeOther}>
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -2511,7 +2512,7 @@ export default class EmployeeProfile extends Component {
                         
 
                       </div>
-                      {this.isBlank(this.state.place_of_issue)?
+                      {this.isBlank(this.state.candidate_other_data.place_of_issue)?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -2587,7 +2588,7 @@ export default class EmployeeProfile extends Component {
 
                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
                       </div>
-                      {this.isBlank(this.state.uan)?
+                      {this.isBlank(this.state.candidate_other_data.uan)?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -2601,7 +2602,7 @@ export default class EmployeeProfile extends Component {
                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
                       </div>
 
-                      {this.isBlank(this.state.uan)?
+                      {this.isBlank(this.state.candidate_other_data.uan)?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -2613,7 +2614,7 @@ export default class EmployeeProfile extends Component {
                         <label>Old ESIC No.<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
                       </div>
-                      {this.isBlank(this.state.esic_no)?
+                      {this.isBlank(this.state.candidate_other_data.esic_no)?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -2627,7 +2628,7 @@ export default class EmployeeProfile extends Component {
                         <label>Old ESIC Dispensory Name.<span className="text-danger">*</span></label>
                         <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
                       </div>
-                      {this.isBlank(this.state.esic_name)?
+                      {this.isBlank(this.state.candidate_other_data.esic_name)?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -2644,7 +2645,7 @@ export default class EmployeeProfile extends Component {
 
 
 
-                      {this.isBlank(this.state.esic_address)?
+                      {this.isBlank(this.state.candidate_other_data.esic_address)?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -2662,12 +2663,12 @@ export default class EmployeeProfile extends Component {
         </div>
         {/* /Other Details Modal */}
         {/* Document Checklist Modal */}
-        <div id="document_checklist" className="modal custom-modal fade" role="dialog">
+        <div id="document_checklist" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Document Checklist</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" onClick={this.closeDocument}>
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -2677,7 +2678,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-12">
                       <div className="form-group row">
                         <label className="col my-auto">{this.state.docname}</label>
-                        <input type="file" className="form-control col" onChange={(event) => this.onFileChangeForDoc(event)} /><label className="col my-auto">Max{ } Size{ } 1{ } mb</label>
+                        <input type="file" className="form-control col" onChange={(event) => this.onFileChangeForDoc(event)} /><label className="col my-auto">Max{ } Size{ } 10{ } mb</label>
                       </div>
                       
                     </div>
@@ -2694,12 +2695,12 @@ export default class EmployeeProfile extends Component {
         </div>
         {/* /Document Checklist Modal */}
         {/* Family Info Modal */}
-        <div id="family_info_modal" className="modal custom-modal fade" role="dialog">
+        <div id="family_info_modal" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title"> Family Details</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" onClick={this.closeFamilyDetails}>
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -2715,7 +2716,7 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <label>Name <span className="text-danger">*</span></label>
-                              <input className="form-control" type="text" onChange={this.setFamilyName} v />
+                              <input value={this.state.family_name}className="form-control" type="text" onChange={this.setFamilyName}  />
                             </div>
 
                             {this.isBlank(this.state.family_name)?
@@ -2729,7 +2730,7 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <label>Relationship <span className="text-danger">*</span></label>
-                              <input className="form-control" type="text" onChange={this.setFamilyRelation} />
+                              <input className="form-control" type="text" value={this.state.family_relation} onChange={this.setFamilyRelation} />
                             </div>
 
 
@@ -2758,7 +2759,7 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <label>Aadhar Number </label>
-                              <input className="form-control" type="text" maxlength="12"value={this.state.family_adhar}onChange={this.setFamilyAdhar} />
+                              <input className="form-control" type="text" maxLength="12"value={this.state.family_adhar}onChange={this.setFamilyAdhar} />
                             </div>
                           </div>
                           <div className="col-md-6">
@@ -2783,12 +2784,12 @@ export default class EmployeeProfile extends Component {
         </div>
         {/* /Family Info Modal */}
         {/* Emergency Contact Modal */}
-        <div id="emergency_contact_modal" className="modal custom-modal fade" role="dialog">
+        <div id="emergency_contact_modal" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">References</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" type="button" className="close"  onClick={this.closeRef}>
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -2801,7 +2802,7 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Name <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" onChange={this.setReferencename} />
+                            <input type="text" className="form-control" value={this.state.ref_name}onChange={this.setReferencename} />
                           </div>
 
                           {this.isBlank(this.state.ref_name)?
@@ -2816,7 +2817,7 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Relationship <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" onChange={this.setReferencerleation} />
+                            <input className="form-control" value={this.state.ref_relation}type="text" onChange={this.setReferencerleation} />
                           </div>
 
 
@@ -2830,7 +2831,7 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Phone <span className="text-danger">*</span></label>
-                            <input className="form-control" type="text" maxLength="10" value={this.state.ref_no} onChange={this.setReferenceNumber} />
+                            <input className="form-control"value={this.state.ref_no} type="text" maxLength="10" value={this.state.ref_no} onChange={this.setReferenceNumber} />
                           </div>
 
 
@@ -2844,43 +2845,13 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Location</label>
-                            <input className="form-control" type="text" onChange={this.setReferenceLocation} />
+                            <input className="form-control" value={this.state.ref_loc} type="text" onChange={this.setReferenceLocation} />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/* <div className="card">
-                        <div className="card-body">
-                          <h3 className="card-title">2</h3>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div className="form-group">
-                                <label>Name <span className="text-danger">*</span></label>
-                                <input type="text" className="form-control" />
-                              </div>
-                            </div>
-                            <div className="col-md-6">
-                              <div className="form-group">
-                                <label>Relationship <span className="text-danger">*</span></label>
-                                <input className="form-control" type="text" />
-                              </div>
-                            </div>
-                            <div className="col-md-6">
-                              <div className="form-group">
-                                <label>Phone <span className="text-danger">*</span></label>
-                                <input className="form-control" type="text" />
-                              </div>
-                            </div>
-                            <div className="col-md-6">
-                              <div className="form-group">
-                                <label>Location</label>
-                                <input className="form-control" type="text" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
+                 
                   <div className="submit-section">
                     <button className="btn btn-primary submit-btn" onClick={this.addRef}>Submit</button>
                   </div>
@@ -2893,12 +2864,12 @@ export default class EmployeeProfile extends Component {
         {/* /Emergency Contact Modal */}
 
         {/* Bank Modal */}
-        <div id="bank_contact_modal" className="modal custom-modal fade" role="dialog">
+        <div id="bank_contact_modal" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Bank Details</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close"  onClick={this.closeBankDetails}>
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -2973,7 +2944,7 @@ export default class EmployeeProfile extends Component {
         {/* /Bank Modal */}
 
           {/* Bank Modal */}
-          <div id="confirm_contact_modal" className="modal custom-modal fade" role="dialog">
+          <div id="confirm_contact_modal" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -3008,12 +2979,12 @@ export default class EmployeeProfile extends Component {
 
 
         {/* Education Modal */}
-        <div id="education_info" className="modal custom-modal fade" role="dialog">
+        <div id="education_info" className="modal custom-modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title"> Education Details</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="close" onClick={this.closeEducationDetails}>
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -3042,7 +3013,7 @@ export default class EmployeeProfile extends Component {
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
-                              <input type="text" className="form-control floating" onChange={this.setSchool} />
+                              <input type="text" className="form-control floating" onChange={this.setSchool}value={this.state.school} />
                               <label className="focus-label">School/University<span className="text-danger">*</span></label>
                             </div>
 
@@ -3056,14 +3027,14 @@ export default class EmployeeProfile extends Component {
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
-                              <input type="text" className="form-control floating" onChange={this.setLocationEducation} />
+                              <input type="text" className="form-control floating" onChange={this.setLocationEducation} value={this.state.location}/>
                               <label className="focus-label">Location</label>
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
                               <div className="cal-icon">
-                                <input type="text" className="form-control floating datetimepicker" onChange={this.setPassingYear} />
+                                <input type="text" className="form-control floating datetimepicker" onChange={this.setPassingYear} value={this.state.passing_year}/>
                               </div>
                               <label className="focus-label">Year of passing<span className="text-danger">*</span></label>
                             </div>
@@ -3079,12 +3050,12 @@ export default class EmployeeProfile extends Component {
 
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
-                              <input type="text" className="form-control floating" onChange={this.setBoard} />
+                              <input type="text" className="form-control floating" onChange={this.setBoard} value={this.state.board}/>
                               <label className="focus-label">Board/University<span className="text-danger">*</span></label>
                             </div>
 
 
-                            {this.isBlank(this.state.board_university)?
+                            {this.isBlank(this.state.board)?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -3094,13 +3065,13 @@ export default class EmployeeProfile extends Component {
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
-                              <input type="text" className="form-control floating" onChange={this.setDegree} />
+                              <input type="text" className="form-control floating" onChange={this.setDegree} value={this.state.degree} />
                               <label className="focus-label">Degree</label>
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
-                              <input type="text" className="form-control floating" onChange={this.setPercentage} />
+                              <input type="text" className="form-control floating" value={this.state.percentage}onChange={this.setPercentage} />
                               <label className="focus-label">% Marks/Cgpa<span className="text-danger">*</span></label>
                             </div>
 
@@ -3135,7 +3106,7 @@ export default class EmployeeProfile extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Experience Details</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" onClick={this.closeWorkDetails} className="close">
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
@@ -3151,7 +3122,7 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <label className="focus-label">Organisation<span className="text-danger">*</span></label>
                             <div className="form-group form-focus">
-                              <input type="text" placeholder="Organisation" className="form-control floating" onChange={this.setExperienceOrgination} />
+                              <input type="text" placeholder="Organisation" className="form-control floating" onChange={this.setExperienceOrgination} value={this.state.experienceOrgination} />
 
                             </div>
                             {this.isBlank(this.state.experienceOrgination)?
@@ -3164,7 +3135,7 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <label className="focus-label">Reason for sepration</label>
                             <div className="form-group form-focus">
-                              <input placeholder="Reason for sepration" type="text" className="form-control floating" onChange={this.setReason} />
+                              <input placeholder="Reason for sepration" type="text" className="form-control floating" onChange={this.setReason}value={this.state.reasonforSep} />
 
                             </div>
 
@@ -3172,7 +3143,7 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <label className="focus-label">Designation<span className="text-danger">*</span></label>
                             <div className="form-group form-focus">
-                              <input type="text" placeholder="Designation" className="form-control floating" onChange={this.setExprienceDesignation} />
+                              <input type="text" placeholder="Designation" className="form-control floating" onChange={this.setExprienceDesignation} value={this.state.exprienceDesignation}/>
 
                             </div>
 
@@ -3267,6 +3238,7 @@ export default class EmployeeProfile extends Component {
             //let path='app/profile/candidate-profile';
             alert('Bank details successfully submitted ✅')
              $("#bank_contact_modal").modal("hide");
+             self.setState({ error: "" ,error1:''})
             // window.location.reload(false);
 
 
@@ -3376,7 +3348,7 @@ export default class EmployeeProfile extends Component {
 
           }
 
-          self.setState({ error: response.data.message })
+          // self.setState({ error: response.data.message })
         })
         .catch(function (error) {
           console.log(error);
@@ -3396,7 +3368,7 @@ export default class EmployeeProfile extends Component {
       self.setState({ error: "Please fill all required details" })
     } else {
 
-
+      self.setState({ error: "",error1:'' })
       var config = {
         method: 'post',
         url: baseurl + '/api/candidate/work-experience',
@@ -3414,9 +3386,10 @@ export default class EmployeeProfile extends Component {
             //let path='app/profile/candidate-profile';
             alert('Work experience details successfully submitted ✅')
             // $("#experience_info").modal("hide");
-            self.setState({ error: "",error1:'' })
+            
             self.apicall();
-             $("#experience_info").modal("hide");
+            self.closeWorkDetails();
+            //  $("#experience_info").modal("hide");
 
 
           }
@@ -3437,7 +3410,10 @@ export default class EmployeeProfile extends Component {
     {
       self.setState({ error: "Please fill all required details" })
     } else {
-
+      self.setState({ error: "",error1:'',family_adhar: '',
+      name: '',
+      relation: '',
+      dob: '', })
       var config = {
         method: 'post',
         url: 'https://aadhaan.ddns.net/api/candidate/family-details',
@@ -3455,8 +3431,8 @@ export default class EmployeeProfile extends Component {
             //let path='app/profile/candidate-profile';
             alert('Family details successfully submitted ✅')
             self.apicall();
-            self.setState({ error: "" ,error1:''})
-            $("#family_info_modal").modal("hide");
+            self.closeFamilyDetails();
+            // $("#family_info_modal").modal("hide");
 
 
           }
@@ -3468,12 +3444,11 @@ export default class EmployeeProfile extends Component {
     }
   }
   addOtherDetailsData = (self, data) => {
-
-    if( this.isBlank(data.dl_no)||this.isBlank(data.pan_card_no)||
-    this.isBlank(data.pf_no)||this.isBlank(data.uan) ){
+    console.log("ggg",data);
+    if( this.isBlank(data.dl_no)||this.isBlank(data.pan_card_no)||this.isBlank(data.uan) ){
       self.setState({error:"Please fill all required details"})
     }else{
-    console.log("called")
+      self.setState({ error: "",error1:'' })
     var config = {
       method: 'PUT',
       url: 'https://aadhaan.ddns.net/api/candidate/miscellaneous-other-details',
@@ -3490,8 +3465,8 @@ export default class EmployeeProfile extends Component {
         if (response.data.status == true) {
           //let path='app/profile/candidate-profile';
           alert('Other presonal details successfully submitted ✅')
-           $("#other_details").modal("hide");
-           self.setState({ error: "",error1:'' })
+          self.closeOther();
+           
           // window.location.reload(false);
 
 
@@ -3552,8 +3527,8 @@ export default class EmployeeProfile extends Component {
             //let path='app/profile/candidate-profile';
             alert('Personal details successfully submitted ✅')
             // window.location.reload(false);
-            $("#personal_info_modal").modal("hide");
-            self.setState({ error: "",error1:'' })
+            
+            self.closePersonalDetails();
 
           }
         })
@@ -3590,8 +3565,7 @@ export default class EmployeeProfile extends Component {
           //let path='app/profile/candidate-profile';
           alert(document_type + ' uploaded successfully  ✅')
           self.apicall();
-          $("#document_checklist").modal("hide");
-          self.setState({ error: "",error1:'' })
+          self.closeDocument();
 
         }
       })
@@ -3629,8 +3603,9 @@ export default class EmployeeProfile extends Component {
             //let path='app/profile/candidate-profile';
             alert('Education details successfully submitted ✅')
             self.apicall();
-             $("#education_info").modal("hide");
-             self.setState({ error: "" ,error1:''})
+            //  $("#education_info").modal("hide");
+            
+             self.closeEducationDetails()
 
           }
 
@@ -3645,8 +3620,8 @@ export default class EmployeeProfile extends Component {
   addReference = (self, data) => {
 
     console.log("refrences" + JSON.stringify(data))
-    if (this.isBlank(data.ref_name) ||
-    this.isBlank(data.ref_relation) || this.isBlank(data.ref_no)) {
+    if (this.isBlank(data.name) ||
+    this.isBlank(data.relationship) || this.isBlank(data.mobile_no)) {
     self.setState({ error: "Please fill all required details" })
   }
   else{
@@ -3665,14 +3640,70 @@ export default class EmployeeProfile extends Component {
         console.log(JSON.stringify(response.data));
         self.setState({ error: response.data.message })
         alert('References details successfully submitted ✅')
+        
         self.apicall();
-        $("#emergency_contact_modal").modal("hide");
-        self.setState({ error: "",error1:'' })
+        self.closeRef();
       })
       .catch(function (error) {
         console.log(error);
         self.setState({ error: "Nework issue" })
       });
   }
+}
+closeProfile=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'' })
+  $("#profile_info").modal("hide");
+}
+closeRef=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'',ref_loc:'',ref_name:'',ref_relation:"",ref_no:"" })
+  $("#emergency_contact_modal").modal("hide");
+}
+closeFamilyDetails=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'',family_name:'',family_relation:'',family_adhar:'' })
+  $("#family_info_modal").modal("hide");
+}
+closeBankDetails=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'' })
+  $("#bank_contact_modal").modal("hide");
+}
+closePersonalDetails=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'' })
+  $("#personal_info_modal").modal("hide");
+}
+closeEducationDetails=(e)=>{
+  // e.preventDefault();
+ 
+  
+  
+  this.setState({ error: "",error1:'',percentage:'',passing_year: '',location:'',school:'',board:'',degree:'' })
+  $("#education_info").modal("hide");
+}
+closeWorkDetails=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'',experienceOrgination:'',exprienceDesignation:'',reasonforSep:'' })
+  $("#experience_info").modal("hide");
+}
+closeDocument=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'' })
+  $("#document_checklist").modal("hide");
+}
+closeOther=(e)=>{
+  // e.preventDefault();
+  
+  this.setState({ error: "",error1:'' })
+  $("#other_details").modal("hide");
 }
 }

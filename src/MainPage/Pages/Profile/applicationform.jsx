@@ -5,7 +5,9 @@ import { Table } from 'antd';
 import 'antd/dist/antd.css';
 import { Upload_Photo, Sign, Applogo } from "../../../Entryfile/imagepath"
 import "../../antdstyle.css"
+import Pdf from "react-to-pdf";
 
+const ref = React.createRef();
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
@@ -78,6 +80,7 @@ class ApplicationForm extends Component {
                 "percentage": this.state.education_data[10].percentage,
                 "school": this.state.education_data[10].school, "passing_year": this.state.education_data[10].passing_year
             }
+            console.log("hjhj", _10thdata);
         } catch (err) {
             console.log("hjhj", err)
         }
@@ -95,6 +98,7 @@ class ApplicationForm extends Component {
                 "percentage": this.state.education_data[12].percentage,
                 "school": this.state.education_data[12].school, "passing_year": this.state.education_data[12].passing_year
             }
+            console.log("hjhj", _12thdata);
         } catch (err) {
             console.log("hjhj", err)
         }
@@ -126,6 +130,7 @@ class ApplicationForm extends Component {
                 "percentage": this.state.education_data['post_graduate'].percentage,
                 "school": this.state.education_data['post_graduate'].school, "passing_year": this.state.education_data['post_graduate'].passing_year
             }
+            console.log("hjhj", post_graduate);
         } catch (err) {
             console.log("hjhj", err)
         }
@@ -352,10 +357,16 @@ class ApplicationForm extends Component {
                             <div className="col-auto float-right ml-auto">
                                 <button className="btn add-btn" id="submit" onClick={this.backClick}>Back</button>
                             </div>
+                            {/* <div className="col-auto float-right ml-auto">
+                                
+                                <Pdf className="btn add-btn"targetRef={ref} filename="file.pdf">
+        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+      </Pdf>
+                            </div> */}
                         </div>
                     </div>
                     {/* /Page Header */}
-                    <div className="row">
+                    <div className="row" ref={ref}>
                         <div className="col-sm-12">
                             <div className="canvas_div_pdf">
                                 <form className="p-3 border bg-white border-dark">
@@ -662,7 +673,7 @@ class ApplicationForm extends Component {
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">X Std(10<sup>th</sup>)</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.degree} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.dboard_university} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.board_university} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.school} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.location} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.passing_year} /></td>
@@ -671,7 +682,7 @@ class ApplicationForm extends Component {
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">XII Std/Equiv.(12<sup>th</sup>)</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.degree} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.dboard_university} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.board_university} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.school} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.location} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.passing_year} /></td>
@@ -680,7 +691,7 @@ class ApplicationForm extends Component {
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">Graduate</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.degree} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.dboard_university} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.board_university} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.school} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.location} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.passing_year} /></td>
@@ -689,7 +700,7 @@ class ApplicationForm extends Component {
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">P.G.</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.degree} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.dboard_university} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.board_university} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.school} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.location} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.passing_year} /></td>
@@ -698,7 +709,7 @@ class ApplicationForm extends Component {
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">Others</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.degree} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.dboard_university} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.board_university} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.school} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.location} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.passing_year} /></td>
