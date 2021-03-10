@@ -131,7 +131,7 @@ export default class EmployeeProfile extends Component {
       docname: '',
       error1: "",
 
-      maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
+      // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
 
 
@@ -1408,8 +1408,8 @@ export default class EmployeeProfile extends Component {
                                 <div className="before-circle" />
                               </div>
                               <div className="experience-content">
-                                <div className="timeline-content">
-                                  <a href="" className="name">{education} from {edu_data['' + education].board_university}</a>
+                              <div className="timeline-content">
+                                  <a href="" className="name">{education.includes("_")?"Postgraduate":education.slice(0,1).toUpperCase() + education.slice(1, education.length)}  {edu_data['' + education].board_university?"from "+edu_data['' + education].board_university:"" }</a>
                                   <div>{edu_data['' + education].school}</div>
                                   <span className="time">{edu_data['' + education].passing_year}</span>
                                 </div>
@@ -1494,7 +1494,7 @@ export default class EmployeeProfile extends Component {
                         </li>
 
                         <li>
-                          <div className="title"></div>
+                          <div className="title">Old PF No.</div>
                           <div className="text">{this.state.candidate_other_data.pf_no}</div>
                         </li>
                         <li>
@@ -2029,7 +2029,7 @@ export default class EmployeeProfile extends Component {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="profile-img-wrap edit-img">
-                        <img className="inline-block" src={this.state.profilepic} alt="user" />
+                        <img className="inline-block" src={this.state.profilepic} alt=" " />
                         <div className="fileupload btn">
                           <span className="btn-text">Upload</span>
                           <input className="upload" type="file" accept="image/*" onChange={this.onFileChange} />
@@ -2060,7 +2060,13 @@ export default class EmployeeProfile extends Component {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Birth Date<DatePicker className="form-control floating datetimepicker" onChange={(e) => this.setDob(e)} value={
+                            <label>Birth Date<DatePicker className="form-control floating datetimepicker"
+                             disabledDate = {(current) =>{         
+            
+                              const start = Moment();
+                              return  current>start;
+                       }}
+                             onChange={(e) => this.setDob(e)} value={
 
                               this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment()}></DatePicker> </label>
                           </div>
@@ -2409,7 +2415,13 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Marriage Date<DatePicker value={
+                        <label>Marriage Date<DatePicker
+                         disabledDate = {(current) =>{         
+            
+                          const start = Moment();
+                          return  current>start;
+                   }}
+                         value={
 
                           this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
 
@@ -2575,9 +2587,9 @@ export default class EmployeeProfile extends Component {
                       <div className="form-group">
                         <label>Old PF No.<span className="text-danger">*</span></label>
 
-                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
+                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.uan) ?
+                      {this.isBlank(this.state.candidate_other_data.pf_no) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
@@ -2733,7 +2745,12 @@ export default class EmployeeProfile extends Component {
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
-                              <label>Date of birth <span className="text-danger">*</span><DatePicker className="form-control floating datetimepicker" onChange={(e) => this.setFamilyDob(e)}></DatePicker> </label>
+                              <label>Date of birth <span className="text-danger">*</span><DatePicker 
+                               disabledDate = {(current) =>{         
+            
+                                const start = Moment();
+                                return  current>start;
+                         }}className="form-control floating datetimepicker" onChange={(e) => this.setFamilyDob(e)}></DatePicker> </label>
                             </div>
 
                             {/* {this.isBlank(this.state.family_dob =='Invalid date'? Moment(this.state.family_dob, 'YYYY-MM-DD') : Moment())?
@@ -3149,13 +3166,18 @@ export default class EmployeeProfile extends Component {
                             <div className="form-group form-focus">
                               <div className="">
 
-                                <DatePicker className="form-control floating datetimepicker" onChange={(e) => this.setStartDate(e)}></DatePicker>
+                                <DatePicker 
+                                 disabledDate = {(current) =>{         
+            
+                                  const start = Moment();
+                                  return  current>start;
+                           }}className="form-control floating datetimepicker" onChange={(e) => this.setStartDate(e)}></DatePicker>
                               </div>
 
                             </div>
 
 
-                            {this.isBlank(this.state.startDate_emp ? Moment(this.state.family_dob, 'YYYY-MM-DD') : Moment()) ?
+                            {this.isBlank(this.state.startDate_emp ? Moment(this.state.startDate_emp, 'YYYY-MM-DD') : Moment()) ?
                               <span className="text-danger">{this.state.error1}</span>
                               :
                               ''
@@ -3167,7 +3189,12 @@ export default class EmployeeProfile extends Component {
                             <label className="focus-label">Period To<span className="text-danger">*</span></label>
                             <div className="form-group form-focus">
                               <div className="">
-                                <DatePicker className="form-control floating datetimepicker" onChange={(e) => this.setEndDate(e)} maxDate={this.maxDate}
+                                <DatePicker 
+                                 disabledDate = {(current) =>{         
+            
+                                  const start = Moment();
+                                  return  current>start;
+                           }}className="form-control floating datetimepicker" onChange={(e) => this.setEndDate(e)} maxDate={this.maxDate}
                                 >    </DatePicker>
                                 {/* <input type="text" className="form-control floating datetimepicker" onChange={this.} /> */}
                               </div>
@@ -3698,5 +3725,4 @@ export default class EmployeeProfile extends Component {
     $("#other_details").modal("hide");
   }
 }
-var today, datepicker;
-today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+

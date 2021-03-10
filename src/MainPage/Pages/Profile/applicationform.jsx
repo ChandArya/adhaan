@@ -12,12 +12,6 @@ class ApplicationForm extends Component {
     constructor(props) {
         super(props);
         this.state = this.props.location.state
-
-
-
-
-
-
     }
 
     backClick = (e) => {
@@ -902,7 +896,7 @@ class ApplicationForm extends Component {
                                                 <div className="col-sm-4 py-1 text-center"><input type="checkbox" defaultChecked={selectedDocumentList.includes("Pan Card")} /></div>
                                                 <div className="col-sm-8 py-1">3.Voter ID Card</div>
                                                 <div className="col-sm-4 py-1 text-center"><input type="checkbox" defaultChecked={selectedDocumentList.includes("Voter ID")} /></div>
-                                                <div className="col-sm-8 py-1">4.Driving License Front</div>
+                                                <div className="col-sm-8 py-1">4.Driving License </div>
                                                 <div className="col-sm-4 py-1 text-center"><input type="checkbox" defaultChecked={selectedDocumentList.includes("Driving License Front", "Driving License Back")} /></div>
                                                 <div className="col-sm-8 py-1">5.Resume/Bio Data </div>
                                                 <div className="col-sm-4 py-1 text-center"><input type="checkbox" defaultChecked={selectedDocumentList.includes("Resume/ Bio-DATA")} /></div>
@@ -969,7 +963,7 @@ class ApplicationForm extends Component {
                                                 <div className="image-upload sign-upload">
                                                     <label htmlFor="Uploadsign" className="mb-0">
                                                         {/* <img src="sign.png" id="sign" alt="Upload Sign" className="img-fluid" /> */}
-                                                        <img src={this.state.Sign} id="sign" alt="Upload Sign" className="img-fluid" />
+                                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid" />
                                                     </label>
                                                     {/* <input id="Uploadsign" type="file" onchange="readSign(this);" /> */}
                                                 </div>

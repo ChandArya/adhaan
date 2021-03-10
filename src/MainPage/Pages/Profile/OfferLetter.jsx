@@ -1,15 +1,85 @@
 import React, { Component } from 'react';
-//import { Applogo } from '../Entryfile/imagepath.jsx'
 
-
+import { Applogo,Sign } from '../../../Entryfile/imagepath.jsx'
+var axios = require('axios');
 class OfferLetter extends Component {
     constructor(...props) {
         super(...props)
         this.state = {
+            name:"Sandeep Kumar",
+            date:"2021/03/09",
+            empcode:'108970',
+            designation:"off Roll Team Leader",
+            mobileno:"9728300263",
+            add:"228 Subash Nagar Teshil",
+            addloc:"Camp Panipat",
+            stateofadd:"Haryana",
+            pin:"132103",
+            enddate:"2021/03/31",
+            jobloc:"Panipathub_PPT",
+            company:"Adhaan Solution Pvt. Ltd.",
+            companyadd:"Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3",
+            salary:"11500",
+            sign:Sign,
+            onbordingid:'2',
+            client:'2',
+            recruiter:'2',
+
 
         }
      }
+     componentDidMount=()=>
+     {
+
+     }
     onSubmit = (e) => {
+        // console.log("add salary"+JSON.stringify(data))
+    // var status="";
+     var add = {}
+
+    // for (var k = 0; k < this.state.clientList.length; k++) {
+    //   // console.log("called")
+    //   console.log("called", this.state.clientList[k].name, this.state.clietname)
+    //   if (this.state.clientList[k].name == this.state.clietname) {
+        Object.assign(add, { "status": "accepted_by_candidate",  "start_date": this.state.date, "client":this.state.client, "salary":this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
+        console.log("called", add)
+    //   }
+      // console.log("calledhhhh")
+    // }
+    // console.log("called", this.state.error)
+    // return
+    var self=this;
+    var config = {
+      method: 'put',
+      url: 'https://aadhaan.ddns.net/api/recruiter/onboard-candidate',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: add
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        self.setState({ error: response.data.message })
+        if (response.data.status == true) {
+          //let path='app/profile/candidate-profile';
+          alert('You have accepted terms and conditions ✅')
+        //   let path = '../payroll/confirmed_payroll';
+        //   self.props.history.push({
+        //     pathname: path,
+        //     state: self.state
+        //   })
+        //   localStorage.setItem("lastcount", 0);
+
+        }
+
+      })
+      .catch(function (error) {
+        console.log(error);
+        self.setState({ error: "Nework issue" })
+      });
+    // }
        
     }
     render() {
@@ -23,23 +93,23 @@ class OfferLetter extends Component {
             }}>
                 <div class="row">
                     <div class="col-md-12">
-                        {/* <div className="account-logo">
-                            {/* <a href="#"><img src={Applogo} alt="Adhaan" /></a> 
-                        </div> */}
+                    <div className="account-logo" style={{float:"right"}}>
+                             <a href=""><img src={Applogo} alt="Adhaan" /></a> 
+                        </div> 
 
-                        <div className="title ">
-                            09/03/2021
+                        <div className="title " style={{paddingLeft:'40px'}}>
+                            {this.state.date}
                     </div>
                         <div className="address">
-                            <ul>
-                                <li>Employee Name:<label> &nbsp; Sandeep Kumar</label></li>
-                                <li><label>Emp Code:</label> &nbsp; 108970</li>
-                                <li><label>Designation:</label> &nbsp; off Roll Team Leader</li>
-                                <li><label>Mobile no.:</label> &nbsp; 9728300263</li>
+                            <ul style={{listStyleType:'none'}}>
+                                <li>Employee Name:<label> &nbsp; {this.state.name}</label></li>
+                                <li><label>Emp Code:</label> &nbsp; {this.state.empcode}</li>
+                                <li><label>Designation:</label> &nbsp; {this.state.designation}</li>
+                                <li><label>Mobile no.:</label> &nbsp; {this.state.mobileno}</li>
                                 <li><label># 228 Subash Nagar Teshil</label></li>
-                                <li><label>Camp Panipat</label> </li>
-                                <li><label>Haryana</label></li>
-                                <li><label>132103</label></li>
+                                <li><label>{this.state.addloc}</label> </li>
+                                <li><label>{this.state.stateofadd}</label></li>
+                                <li><label>{this.state.pin}</label></li>
                             </ul>
                             <div className=" conatiner-fluid text-center">
                                 <h3 >OFFER CUM APPOINTMENT LETTER</h3>
@@ -48,12 +118,12 @@ class OfferLetter extends Component {
 
 
                         <div className="title float-left">
-                            Dear Sandeep Kumar
+                            Dear {this.state.name}
                    </div>
                         <br /><br />
                         <div className="title float-left">
                             Further to your application and subsequent discussion for employment with us, we are pleased
-                    to appoint you as<b> off Roll Team Leader</b> effective from <b>09/03/2021</b> &nbsp; to &nbsp; <b>31/03/2021</b> on the
+                    to appoint you as<b> {this.state.designation}</b> effective from <b>{this.state.date}</b> &nbsp; to &nbsp; <b>{this.state.enddate}</b> on the
                     following terms & conditions
                    </div>
 
@@ -61,7 +131,7 @@ class OfferLetter extends Component {
                             <h5 class="font-weight-bold">1. POSTING </h5>
                             <ul>
                                 <li>
-                                    We would like you to join the services on immediate basis and your initial posting willbe at <b>Panipathub_PPT.</b>
+                                    We would like you to join the services on immediate basis and your initial posting willbe at <b>{this.state.jobloc}.</b>
 
                                 </li>
 
@@ -123,9 +193,9 @@ class OfferLetter extends Component {
                         <br />
 
                         <div className="title text-center font-weight-bold">
-                            Adhaan Solution Pvt. Ltd.
+                            {this.state.company}
 </div>
-                        <p className='text-sm text-center'>Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3</p>
+                        <p className='text-sm text-center'>{this.state.companyadd}</p>
                     </div>
 
                 </div>
@@ -204,35 +274,37 @@ formally or informally, in regards to the subject matter.
 by the company.  
                             </div><br/><p>
                             For &nbsp; &nbsp;
-                            <b>Adhaan Solution Pvt. Ltd.</b></p>
+                            <b>{this.state.company}</b></p>
 
                             <br/>
                            <p> <b> Authorized Signatory</b></p><br/>
 
                            <p className="text-sm"> <b> DECLARATION</b></p>
                            <small className="">I have been explained/ read/understood/ the above terms & conditions and agree to abide by them <br></br><i>Signature</i></small>
+                           <br></br>
+                           <img style={{height:"30px",width:"100px"}}src={this.state.sign} id="sign" alt=" " className="img-fluid" />
 
 
 <br>
 </br><br/>
 
 <div className="title text-center font-weight-bold">
-                            Adhaan Solution Pvt. Ltd.
+                            {this.state.company}
 </div>
-<p className='text-sm text-center'>Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3</p>
+<p className='text-sm text-center'>{this.state.companyadd}</p>
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br></br><br/>
 <hr></hr>
 <br/><br/>
 <div className="address">
-                            <ul>
-                                <li>Employee Name:<label> &nbsp; Sandeep Kumar</label></li>
-                                <li><label>Emp Code:</label> &nbsp; 108970</li>
-                                <li><label>Designation:</label> &nbsp; off Roll Team Leader</li>
+                            <ul style={{listStyleType:'none'}}>
+                                <li>Employee Name:<label> &nbsp; {this.state.name}</label></li>
+                                <li><label>Emp Code:</label> &nbsp; {this.state.empcode}</li>
+                                <li><label>Designation:</label> &nbsp; {this.state.designation}</li>
                                 <li><label># 228 Subash Nagar Teshil</label></li>
-                                <li><label>Camp Panipat</label> </li>
-                                <li><label>Haryana</label></li>
-                                <li><label>132103</label></li>
+                                <li><label>{this.state.addloc}</label> </li>
+                                <li><label>{this.state.stateofadd}</label></li>
+                                <li><label>{this.state.pin}</label></li>
                             </ul>
 
 
@@ -256,7 +328,7 @@ by the company.
   <div class="col-md-6" style={{border:'1px solid'}}></div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div class="col-md-6" style={{border:'1px solid'}}>BASIC</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>11500</div>
+  <div class="col-md-6" style={{border:'1px solid'}}>{this.state.salary}</div>
   <div class="col-md-6" style={{border:'1px solid'}}>CONVEYANCE</div>
   <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>MEDICAL ALLOWANCE</div>
@@ -265,43 +337,43 @@ by the company.
   <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>GROSS EARNINGS(A)
 </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>13989</div>
+  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div class="col-md-6" style={{border:'1px solid'}}>BONUS (C)</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>500</div>
+  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>EMPLOYER PF CONTRIBUTION </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>1495</div>
+  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>EMPLOYER ESIC CONTRIBUTION </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>471</div>
+  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>LWF</div>
   <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>CTC (COST TO COMPANY)</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>16455</div>
+  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>DEDUCTION</div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp;</div>
   <div class="col-md-6" style={{border:'1px solid'}}>EMPLOYEE PF CONTRIBUTION</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>109</div>
+  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>LWF</div>
   <div class="col-md-6" style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>PROFESSIONAL TAX</div>
   <div class="col-md-6" style={{border:'1px solid'}}>0</div>
    <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>TOTAL DEDUCTIONS(B)</div>
-  <div class="col-md-6 " style={{border:'1px solid'}}>1489</div>
+  <div class="col-md-6 " style={{border:'1px solid'}}>0</div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div class="col-md-6" style={{border:'1px solid'}}>NET SALARY(A – B+C) </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>13000 </div>
+  <div class="col-md-6" style={{border:'1px solid'}}>11500 </div>
   
 </div>
 <br/><br/><br/><br/>
 
 <div className="title text-center font-weight-bold">
-                            Adhaan Solution Pvt. Ltd.
+                            {this.state.company}
 </div>
-<p className='text-sm text-center'>Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3</p>
+<p className='text-sm text-center'>{this.state.companyadd}</p>
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br></br><br/>
 
@@ -311,11 +383,11 @@ by the company.
 <div className="title  text-center font-weight-bold"><u>(To be filled by candidates/working personnel)</u></div>
 <div className="row"style={{border:'1px solid'}} >
 <div class="col-md-6 font-weight-bold bg-color-secondary" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Full Name of Candidate / Personnel: </div>
-<div class="col-md-6 " style={{border:'1px solid',}}>Sandeep Kumar </div>
+<div class="col-md-6 " style={{border:'1px solid',}}>{this.state.name} </div>
 <div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Phone Number: </div>
-<div class="col-md-6 " style={{border:'1px solid'}}>9728300263 </div>
+<div class="col-md-6 " style={{border:'1px solid'}}>{this.state.mobileno} </div>
 <div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Date of Self Declaration: </div>
-<div class="col-md-6 " style={{border:'1px solid'}}>09/03/2021 </div>
+<div class="col-md-6 " style={{border:'1px solid'}}>{this.state.date} </div>
 
 
 </div>
@@ -329,57 +401,57 @@ by the company.
         </div>
     </div> */}
     <div className="row">
-    <div class="col-md-4 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Question </div>
-    <div class="col-md-4 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Yes </div>
-    <div class="col-md-4 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>NO</div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>uestion Yes No
+    <div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Question </div>
+    <div class="col-md-3 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Yes </div>
+    <div class="col-md-3 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>NO</div>
+    <div class="col-md-6" style={{border:'1px solid'}}>
 1. Have you visited or returned from any overseas country in the last 45
 days? If yes, please specify the country here:
  </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>2. Have you visited or returned from any other District or State in the last 14
+    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-6" style={{border:'1px solid'}}>2. Have you visited or returned from any other District or State in the last 14
 days? If yes, please specify the state here: </div>
-<div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
+<div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-4 " style={{border:'1px solid'}}>3. Have you recently interacted or lived with someone who has tested positive
+    <div class="col-md-6" style={{border:'1px solid'}}>3. Have you recently interacted or lived with someone who has tested positive
 for COVID-19? </div>
 
 
-<div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
+<div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
 
     
-    <div class="col-md-4 " style={{border:'1px solid'}}> 4. Have you now, or in the past 72 hours, had any of the following flulike symptoms?
+    <div class="col-md-6 " style={{border:'1px solid'}}> 4. Have you now, or in the past 72 hours, had any of the following flulike symptoms?
  </div>
- <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>● Cough
+ <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-6 " style={{border:'1px solid'}}>● Cough
  </div>
- <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
+ <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-4 " style={{border:'1px solid'}}>● Fever </div>
+    <div class="col-md-6 " style={{border:'1px solid'}}>● Fever </div>
 
- <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
+ <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-4 " style={{border:'1px solid'}}>● Difficulty in Breathing</div>
+    <div class="col-md-6" style={{border:'1px solid'}}>● Difficulty in Breathing</div>
 
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-4 " style={{border:'1px solid'}}>● Loss of senses of smell & taste</div>
+    <div class="col-md-6 " style={{border:'1px solid'}}>● Loss of senses of smell & taste</div>
 
-<div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
+<div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
 
 
-    <div class="col-md-4 " style={{border:'1px solid'}}>● Throat pain</div>
+    <div class="col-md-6" style={{border:'1px solid'}}>● Throat pain</div>
 
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-4 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
 
 
     </div><br/>
@@ -404,9 +476,9 @@ the appropriate authorities.
 Government of India and the relevant state government.
 </ul>
 <div className="title text-center font-weight-bold">
-                            Adhaan Solution Pvt. Ltd.
+                            {this.state.company}
 </div>
-<p className='text-sm text-center'>Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3</p>
+<p className='text-sm text-center'>{this.state.companyadd}</p>
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br></br><br/>
 <hr>
@@ -511,17 +583,18 @@ effect.
       
    </div>
    <ul>------------------------------
-                                <li>Employee Name:<label> &nbsp; Sandeep Kumar</label></li>
-                                <li><label>Emp Code:</label> &nbsp; 108970</li>
-                                <li><label>Date</label> &nbsp;  09/03/2021</li>
+                                <li>Employee Name:<label> &nbsp; {this.state.name}</label></li>
+                                <li><label>Emp Code:</label> &nbsp; {this.state.empcode}</li>
+                                <li><label>Date</label> &nbsp;  {this.state.date}</li>
                                
                             </ul>
-                            <a href="#" onClick={this.onSubmit} class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Accept</a>
+                            <center> <button   onClick={this.onSubmit} className="btn btn-primary btn-lg active" role="button" aria-pressed="true">Accept</button></center>
+                            
 
                             <div className="title text-center font-weight-bold">
-                            Adhaan Solution Pvt. Ltd.
+                            {this.state.company}
 </div>
-<p className='text-sm text-center'>Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3</p>
+<p className='text-sm text-center'>{this.state.companyadd}</p>
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br/><br/>
 
