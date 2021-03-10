@@ -8,6 +8,7 @@ import EmployeeProfile from "./employeeprofile"
 import ClientProfile from "./clientprofile"
 import Candidate from './candidateprofile'
 import ApplicationForm from './applicationform'
+import OfferLetter from './OfferLetter';
 
 
 const subscriptionroute = ({ match }) => (
@@ -17,6 +18,8 @@ const subscriptionroute = ({ match }) => (
         <Route path={`${match.url}/client-profile`} component={ClientProfile} /> */}
         <Route path={`${match.url}/candidate-profile`} component={Candidate} />
         <Route path={`${match.url}/applcation-form`} component={ApplicationForm} />
+        <Route path={`${match.url}/offerLetter`} component={OfferLetter} />
+
     </Switch>
 );
 

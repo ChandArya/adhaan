@@ -3281,11 +3281,13 @@ table.dataTable thead > tr > td.sorting {
 	font-weight: 500;
 	margin-right: 30px;
 	width: 25%;
+	text-align:justify
 }
 .personal-info li .text {
 	color: #8e8e8e;
 	display: block;
 	overflow: hidden;
+	text-align: justify;
 }
 .personal-info li {
 	margin-bottom: 10px;
@@ -8255,6 +8257,7 @@ ul.comment-list li ul.children {
     right: 0;
     left: 0;
     margin: auto;
+	
 }
 @media screen and (max-width: 480px) {
 	.precent_box{
@@ -8266,6 +8269,8 @@ ul.comment-list li ul.children {
 		right: 250px;
 		left:0;
 		margin: auto;
+		margin-left: 90px;
+        margin-top: -22px;
 	}
 	.center_box{
 		margin: 10 10 10 10px;
@@ -8350,3 +8355,6 @@ ul.comment-list li ul.children {
 	border-radius: 50%;
   }
   
+  .row.myradio >.col {
+    padding: 0 10px;
+}
