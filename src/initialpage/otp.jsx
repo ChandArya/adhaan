@@ -105,7 +105,7 @@ class OTPscreen extends Component {
     }
 
     resend=(e)=>{
-      // e.preventDefault();
+      e.preventDefault();
       // console.log(this.props)
       // console.log(this.props.location.state)
       this.setState({f_otp:'' });
@@ -113,6 +113,7 @@ class OTPscreen extends Component {
       var mobile=this.props.location.state.empid
       console.log(this.props.location)
       var data = JSON.stringify({"isd":""+isd,"mobile_no":""+mobile});
+      
       var self=this
       var config1 = {
         method: 'post',
@@ -123,10 +124,12 @@ class OTPscreen extends Component {
         data : data
       };
       console.log("here",config1)
+      
       axios(config1)
       .then(function (ee) {
         self.setState({error:ee.data.message})
-        // console.log("resend otp",ee)
+        window.location.reload(false);
+         console.log("resend otp",ee)
         //  datareturn=ee
         
         

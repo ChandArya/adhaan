@@ -1176,7 +1176,7 @@ export default class EmployeeProfile extends Component {
                               </li>
                               <br></br>
                               <li>
-                                <div className="title">Dept: </div>
+                                <div className="title">Department: </div>
                                 <div className="text">{this.state.department}</div>
                               </li>
                               <br></br>
@@ -3357,7 +3357,7 @@ export default class EmployeeProfile extends Component {
           console.log(JSON.stringify(response.data));
           if (response.data.status == true) {
             //let path='app/profile/candidate-profile';
-            alert('Personl details successfully submitted ✅')
+            alert('Personal details successfully submitted ✅')
             // window.location.reload(false);
             $("#profile_info").modal("hide");
             self.setState({ error: "", error1: '' })

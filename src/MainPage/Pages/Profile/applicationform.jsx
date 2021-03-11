@@ -963,7 +963,7 @@ class ApplicationForm extends Component {
                                                 <div className="image-upload sign-upload">
                                                     <label htmlFor="Uploadsign" className="mb-0">
                                                         {/* <img src="sign.png" id="sign" alt="Upload Sign" className="img-fluid" /> */}
-                                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid" />
+                                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
                                                     </label>
                                                     {/* <input id="Uploadsign" type="file" onchange="readSign(this);" /> */}
                                                 </div>
