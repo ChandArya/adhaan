@@ -91,9 +91,10 @@ class OfferLetter extends Component {
                 left: 'inherit',
                 top: 'inherit'
             }}>
-                <div class="row">
+                <div class="border">
+                <div class="row " style={{marginTop:'10%', marginLeft:'none', marginRight:'none'}}>
                     <div class="col-md-12">
-                    <div className="account-logo" style={{float:"right"}}>
+                    <div className="account-logo" style={{float:"right" ,marginRight:'60px'}}>
                              <a href=""><img src={Applogo} alt="Adhaan" /></a> 
                         </div> 
 
@@ -116,11 +117,12 @@ class OfferLetter extends Component {
                             </div>
                         </div>
 
-
+<div style={{paddingLeft:'30px',paddingRight:'30px'}} >
                         <div className="title float-left">
                             Dear {this.state.name}
                    </div>
                         <br /><br />
+                                <div className="text-justify ">
                         <div className="title float-left">
                             Further to your application and subsequent discussion for employment with us, we are pleased
                     to appoint you as<b> {this.state.designation}</b> effective from <b>{this.state.date}</b> &nbsp; to &nbsp; <b>{this.state.enddate}</b> on the
@@ -189,6 +191,8 @@ class OfferLetter extends Component {
 
                             </ul>
                         </div>
+                        </div>
+                            </div>
 
                         <br />
 
@@ -202,8 +206,17 @@ class OfferLetter extends Component {
 
                 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div>
+                    </div>
                 <br />
-                <hr></hr>
+                
+                
+                <div class="border" >
+                    <div className="account-logo" style={{ float: "right", marginRight: '60px', marginTop: '10px'}}>
+                        <a href=""><img src={Applogo} alt="Adhaan" /></a>
+                    </div>
+
+                    <div className="text-justify" style={{ marginTop:'10%', paddingLeft: '30px', paddingRight: '30px' }} >
+
                 <br></br><br />
                 <ul>
                     <li>
@@ -287,16 +300,21 @@ by the company.
 
 <br>
 </br><br/>
-
+</div>
 <div className="title text-center font-weight-bold">
                             {this.state.company}
 </div>
 <p className='text-sm text-center'>{this.state.companyadd}</p>
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br></br><br/>
-<hr></hr>
+</div>
 <br/><br/>
-<div className="address">
+<div  className="border">
+                    <div className="account-logo" style={{ float: "right", marginRight: '60px', marginTop: '10px' }}>
+                        <a href=""><img src={Applogo} alt="Adhaan" /></a>
+                    </div>
+<div className="address" style={{marginTop:'10%'}} >
+
                             <ul style={{listStyleType:'none'}}>
                                 <li>Employee Name:<label> &nbsp; {this.state.name}</label></li>
                                 <li><label>Emp Code:</label> &nbsp; {this.state.empcode}</li>
@@ -321,8 +339,8 @@ by the company.
 
 
                         <div className="title text-center font-weight-bold">Annexure</div><br></br>
-                       
-<div class="row style={{border:'1px solid'}} ">
+                    <div class=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight:'80px', paddingLeft:'80px'}}>
+                    <div class="row " style={{border:'1px solid', marginRight:'none', marginLeft:'none'}} >
   <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>EARNING</div>
   <div class="col-md-6" style={{border:'1px solid'}}></div>
   <div class="col-md-6" style={{border:'1px solid'}}></div>
@@ -368,6 +386,7 @@ by the company.
   <div class="col-md-6" style={{border:'1px solid'}}>11500 </div>
   
 </div>
+                    </div>
 <br/><br/><br/><br/>
 
 <div className="title text-center font-weight-bold">
@@ -377,11 +396,20 @@ by the company.
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br></br><br/>
 
-<hr></hr><br/><br/><br/>
-<h4 className=" title text-center font-weight-bold"><u>COVID-19 Self-Declaration Form</u>
+</div>
+
+<br/><br/><br/>
+
+                <div className="border">
+                    <div className="account-logo" style={{ float: "right", marginRight: '60px', marginTop: '10px' }}>
+                        <a href=""><img src={Applogo} alt="Adhaan" /></a>
+                    </div>
+<h4 className=" title text-center font-weight-bold" style={{marginTop:'10%'}}><u>COVID-19 Self-Declaration Form</u>
 </h4>
 <div className="title  text-center font-weight-bold"><u>(To be filled by candidates/working personnel)</u></div>
-<div className="row"style={{border:'1px solid'}} >
+                    <div className=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight: '80px', paddingLeft: '80px' }}>
+
+<div className="row"style={{border:'1px solid', display:'inline-flex'}} >
 <div class="col-md-6 font-weight-bold bg-color-secondary" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Full Name of Candidate / Personnel: </div>
 <div class="col-md-6 " style={{border:'1px solid',}}>{this.state.name} </div>
 <div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Phone Number: </div>
@@ -390,6 +418,7 @@ by the company.
 <div class="col-md-6 " style={{border:'1px solid'}}>{this.state.date} </div>
 
 
+</div>
 </div>
 <br/>
 {/* <div class="row " style={{border:'1px solid'}}>
@@ -400,6 +429,8 @@ by the company.
            
         </div>
     </div> */}
+<div class=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight: '80px', paddingLeft: '80px' }}>
+
     <div className="row">
     <div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Question </div>
     <div class="col-md-3 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Yes </div>
@@ -454,8 +485,11 @@ for COVID-19? </div>
     <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
 
 
-    </div><br/>
+    </div>
+    </div>
+    <br/>
 
+                    <div class="  title" style={{  paddingRight: '70px', paddingLeft: '70px' }}>
 
     <div className="title text-justify ">
     I hereby declare that I am not suppressing any relevant/ material facts and all the above-stated
@@ -467,11 +501,11 @@ information may attract penal provisions.
 precautions to be taken as per the directives issued by the Ministry of Home Affairs, Govt. Of India. I
 am aware that not following these guidelines is a punishable offence and will be dealt with strictly by
 the appropriate authorities.
-  
+  </div>
     </div><br/>
     
-   <p>Therefore, I fully understand and undertake that I will always</p> 
-  <ul>
+   <p style={{paddingLeft:'40px'}}>Therefore, I fully understand and undertake that I will always</p> 
+                    <ul style={{ paddingLeft: '60px' }}>
   1. Comply with the critical health and safety guidelines and advisory published by the
 Government of India and the relevant state government.
 </ul>
@@ -481,95 +515,99 @@ Government of India and the relevant state government.
 <p className='text-sm text-center'>{this.state.companyadd}</p>
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br></br><br/>
-<hr>
-</hr>
+</div>
+
 <br/>
-<br/>
-<div classNam="title text-justify">
+<div  className="border">
+                    <div className="account-logo" style={{ float: "right", marginRight: '60px' , marginTop:'10px'}}>
+                        <a href=""><img src={Applogo} alt="Adhaan" /></a>
+                    </div>
+   <div className="title" style={{marginTop:'10%'}}>
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }} >
 2. Download the Aarogya Setu app on my smartphone, register myself on the app and keep
 assessing my health to check for COVID-19 infection risk periodically.
 </div>
     
-    <div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 3. Share my health status on the Aarogya Setu app at the entry point of my work location. I
 understand that my entry to the work location will be denied in the absence of the
 Aarogya Setu app on my smartphone and when I am assessed by the app as a risk to my
 colleague’s and customer’s health.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 4. Promote a safe, healthy workplace and ensure that I take adequate preventive measures
 for the safety of colleagues and customers during the COVID-19 pandemic.
 
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 5. Follow all health and safety instructions and advisory published by myemployer.
 
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 6. Attend mandatory awareness sessions including but not limited to the safety briefing,
 training and any other forms of communications organized at the workplace.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 7. When interacting with customers, colleagues and others outside the facility, I will always
 wear a clean and functional face mask and other personal protective equipment as
 advised by my employer or client.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 8. Maintain social distancing inside and outside the facility.
 
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 9. Never consume or spit tobacco, paan, gutka or similar products inside company premises
 or in public places as it is a punishable offence.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 10. Not smoke cigarettes, beedi or other such products inside the office facility or other public
 places as prohibited under law.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 11. Not report to work under the influence of illegal drugs or alcohol nor should consume or
 poses such intoxicating substances during work hours.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 12. Cooperate with safety and security guidelines and follow safety instructions.
 
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 13. Wash and sanitize hands frequently when inside the facility and before delivering to the
 customer.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 14. Be present at the deputed work location only during the duration of my designated shift.
 
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 15. Maintain personal hygiene and cleanliness.
 
 </div>
-<div classNam="title text-justify">
+                        <div className="title text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
 16. Consult the doctor and disclose any flu-like symptoms.
 
 </div><br></br>
-   &nbsp; &nbsp;<p className="float-left">
+   &nbsp; &nbsp;<p className="float-left text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
    I hereby authorize M/s. Instakart Services Pvt Ltd and any Flipkart group company, in accordance with
 government guidelines and company policies to collect, record, share and otherwise process my body
 temperature reading and other personal information provided by me. This is to help promote a safe
 and healthy workplace and safety of co-workers and customers during the COVID-19 pandemic.    
    </p><br/><br/>
 
-   <p className="float-left">
+                        <p className="float-left text-justify" style={{ paddingLeft: '30px', paddingRight: '30px' }}>
    I fully understand and will strictly follow the above health and safety guidelines and any update thereof
 as shared by my employer from time to time. I also agree that in case of negligence or failure to follow
 these guidelines during my deputation in the client location, my employer will take necessary
@@ -577,12 +615,12 @@ disciplinary action including withdrawal or termination of service for breach of
 effect.
    
    </p><br/><br/>
-
+                    </div>
 
    <div className="title">
       
    </div>
-   <ul>------------------------------
+   <ul  style={{listStyleType:'none'}}>------------------------------
                                 <li>Employee Name:<label> &nbsp; {this.state.name}</label></li>
                                 <li><label>Emp Code:</label> &nbsp; {this.state.empcode}</li>
                                 <li><label>Date</label> &nbsp;  {this.state.date}</li>
@@ -597,7 +635,7 @@ effect.
 <p className='text-sm text-center'>{this.state.companyadd}</p>
 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
 </div><br/><br/>
-
+                </div>
 </div>
 
         );
