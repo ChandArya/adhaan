@@ -28,10 +28,7 @@ class OfferLetter extends Component {
 
         }
      }
-     componentDidMount=()=>
-     {
-
-     }
+     
     onSubmit = (e) => {
         // console.log("add salary"+JSON.stringify(data))
     // var status="";
@@ -82,6 +79,105 @@ class OfferLetter extends Component {
     // }
        
     }
+    apicall = () => {
+        var url1 = 'https://aadhaan.ddns.net/api/recruiter/onboard-candidate/'
+     console.log("twinkle")
+        var config = {
+            method: 'get',
+            url: url1,
+            headers: {
+                'Content-Type': 'application/json',
+
+
+
+            },
+            data: ''
+        };
+
+        axios(config)
+            .then((response) => {
+                console.log("fgdfgfggf")
+                var data = response.data;
+                console.log("fgdfgfggf", data)
+               
+
+            })
+            .catch((error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+                console.log("error");
+            });
+
+    }
+
+    componentDidMount = () => {
+        this.apicall();
+        // console.log(this.props.location.state,"thissssssss")
+        // this.setState({user:this.props.location.state.id})
+
+    }
+
+
+    rejectBtn = (e) => {
+        // console.log("add salary"+JSON.stringify(data))
+        // var status="";
+        var add = {}
+
+        // for (var k = 0; k < this.state.clientList.length; k++) {
+        //   // console.log("called")
+        //   console.log("called", this.state.clientList[k].name, this.state.clietname)
+        //   if (this.state.clientList[k].name == this.state.clietname) {
+        Object.assign(add, { "status": "rejected_by_candidate", "start_date": this.state.date, "client": this.state.client, "salary": this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
+        console.log("called", add)
+        //   }
+        // console.log("calledhhhh")
+        // }
+        // console.log("called", this.state.error)
+        // return
+        var self = this;
+        var config = {
+            method: 'put',
+            url: 'https://aadhaan.ddns.net/api/recruiter/onboard-candidate',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: add
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                self.setState({ error: response.data.message })
+                if (response.data.status == true) {
+                    //let path='app/profile/candidate-profile';
+                    alert('You have accepted terms and conditions ✅')
+                    //   let path = '../payroll/confirmed_payroll';
+                    //   self.props.history.push({
+                    //     pathname: path,
+                    //     state: self.state
+                    //   })
+                    //   localStorage.setItem("lastcount", 0);
+
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+                self.setState({ error: "Nework issue" })
+            });
+        // }
+
+    }
+
+
+
+
+
+
+
+
     render() {
         return (
 
@@ -91,9 +187,9 @@ class OfferLetter extends Component {
                 left: 'inherit',
                 top: 'inherit'
             }}>
-                <div class="border">
-                <div class="row " style={{marginTop:'10%', marginLeft:'none', marginRight:'none'}}>
-                    <div class="col-md-12">
+                <div className="border">
+                <div className="row " style={{marginTop:'10%', marginLeft:'none', marginRight:'none'}}>
+                    <div className="col-md-12">
                     <div className="account-logo" style={{float:"right" ,marginRight:'60px'}}>
                              <a href=""><img src={Applogo} alt="Adhaan" /></a> 
                         </div> 
@@ -130,7 +226,7 @@ class OfferLetter extends Component {
                    </div>
 
                         <div className="terms and condition">
-                            <h5 class="font-weight-bold">1. POSTING </h5>
+                            <h5 className="font-weight-bold">1. POSTING </h5>
                             <ul>
                                 <li>
                                     We would like you to join the services on immediate basis and your initial posting willbe at <b>{this.state.jobloc}.</b>
@@ -139,7 +235,7 @@ class OfferLetter extends Component {
 
 
                             </ul>
-                            <h5 class="font-weight-bold">2. DUTIES </h5>
+                            <h5 className="font-weight-bold">2. DUTIES </h5>
                             <ul>
                                 <li>
                                     You shall devote your time, attention and ability towards company and shall perform
@@ -159,7 +255,7 @@ class OfferLetter extends Component {
                                     final and abiding.
                             </li>
                             </ul>
-                            <h5 class="font-weight-bold">3. CONFIDENTIAL INFORMATION </h5>
+                            <h5 className="font-weight-bold">3. CONFIDENTIAL INFORMATION </h5>
                             <ul>
                                 <li>
                                     Any information you obtain from time to time regarding processes, methods, client
@@ -171,7 +267,7 @@ class OfferLetter extends Component {
 
                             </ul>
 
-                            <h5 class="font-weight-bold">4. SERVICE RULES, DISCIPLINE and GRIVENCES
+                            <h5 className="font-weight-bold">4. SERVICE RULES, DISCIPLINE and GRIVENCES
  </h5>
                             <ul>
                                 <li>
@@ -194,7 +290,7 @@ class OfferLetter extends Component {
                         </div>
                             </div>
 
-                        <br />
+                        <br/>
 
                         <div className="title text-center font-weight-bold">
                             {this.state.company}
@@ -205,12 +301,12 @@ class OfferLetter extends Component {
                 </div>
 
                 <div className="text-center" style={{ backgroundColor: '#60a6f1', color: 'white' }}># RECRUITMENT # PAYROLL # EVENTS
-</div>
+                    </div><br /><br/>
                     </div>
                 <br />
                 
                 
-                <div class="border" >
+                <div className="border" >
                     <div className="account-logo" style={{ float: "right", marginRight: '60px', marginTop: '10px'}}>
                         <a href=""><img src={Applogo} alt="Adhaan" /></a>
                     </div>
@@ -250,7 +346,7 @@ class OfferLetter extends Component {
                         
                     </li>
                 </ul>
-                <h5 class="font-weight-bold">5. PERIOD OF SERVICES and NOTICE PERIOD PAY
+                <h5 className="font-weight-bold">5. PERIOD OF SERVICES and NOTICE PERIOD PAY
  </h5>
                             <ul>
                                 <li>
@@ -270,7 +366,7 @@ company before completion of the notice period.
 
                             <div className="title">
                             You are bound to abide by and adhere to the policies, rules, and regulations enforced by the
-Company from time to time including but not limited to Code of Conduct, Discipline, Business
+Company from time to time including but not limited to Code of Conduct, Discipline, 
 Ethics and Contract of employment. Such policies, rules and regulations may be subjected to
 alternation and amendment from time to time at the sole discretion of the Company and you
 shall be covered under them.   
@@ -339,51 +435,51 @@ by the company.
 
 
                         <div className="title text-center font-weight-bold">Annexure</div><br></br>
-                    <div class=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight:'80px', paddingLeft:'80px'}}>
-                    <div class="row " style={{border:'1px solid', marginRight:'none', marginLeft:'none'}} >
-  <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>EARNING</div>
-  <div class="col-md-6" style={{border:'1px solid'}}></div>
-  <div class="col-md-6" style={{border:'1px solid'}}></div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>BASIC</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>{this.state.salary}</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>CONVEYANCE</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>MEDICAL ALLOWANCE</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>SP ALLOWANCE</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>GROSS EARNINGS(A)
+                    <div className=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight:'80px', paddingLeft:'80px'}}>
+                    <div className="row " style={{border:'1px solid', marginRight:'none', marginLeft:'none'}} >
+  <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>EARNING</div>
+  <div className="col-md-6" style={{border:'1px solid'}}></div>
+  <div className="col-md-6" style={{border:'1px solid'}}></div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>BASIC</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.salary}</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>CONVEYANCE</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>MEDICAL ALLOWANCE</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>SP ALLOWANCE</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>GROSS EARNINGS(A)
 </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>BONUS (C)</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>EMPLOYER PF CONTRIBUTION </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>EMPLOYER ESIC CONTRIBUTION </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>LWF</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>CTC (COST TO COMPANY)</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
-  <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>DEDUCTION</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp;</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>EMPLOYEE PF CONTRIBUTION</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>LWF</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>PROFESSIONAL TAX</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>0</div>
-   <div class="col-md-6 font-weight-bold" style={{border:'1px solid'}}>TOTAL DEDUCTIONS(B)</div>
-  <div class="col-md-6 " style={{border:'1px solid'}}>0</div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>NET SALARY(A – B+C) </div>
-  <div class="col-md-6" style={{border:'1px solid'}}>11500 </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>BONUS (C)</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYER PF CONTRIBUTION </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYER ESIC CONTRIBUTION </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>LWF</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>CTC (COST TO COMPANY)</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
+  <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>DEDUCTION</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp;</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYEE PF CONTRIBUTION</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>LWF</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>PROFESSIONAL TAX</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+   <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>TOTAL DEDUCTIONS(B)</div>
+  <div className="col-md-6 " style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>NET SALARY(A – B+C) </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>11500 </div>
   
 </div>
                     </div>
@@ -410,12 +506,12 @@ by the company.
                     <div className=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight: '80px', paddingLeft: '80px' }}>
 
 <div className="row"style={{border:'1px solid', display:'inline-flex'}} >
-<div class="col-md-6 font-weight-bold bg-color-secondary" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Full Name of Candidate / Personnel: </div>
-<div class="col-md-6 " style={{border:'1px solid',}}>{this.state.name} </div>
-<div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Phone Number: </div>
-<div class="col-md-6 " style={{border:'1px solid'}}>{this.state.mobileno} </div>
-<div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Date of Self Declaration: </div>
-<div class="col-md-6 " style={{border:'1px solid'}}>{this.state.date} </div>
+<div className="col-md-6 font-weight-bold bg-color-secondary" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Full Name of Candidate / Personnel: </div>
+<div className="col-md-6 " style={{border:'1px solid',}}>{this.state.name} </div>
+<div className="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Phone Number: </div>
+<div className="col-md-6 " style={{border:'1px solid'}}>{this.state.mobileno} </div>
+<div className="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Date of Self Declaration: </div>
+<div className="col-md-6 " style={{border:'1px solid'}}>{this.state.date} </div>
 
 
 </div>
@@ -429,67 +525,67 @@ by the company.
            
         </div>
     </div> */}
-<div class=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight: '80px', paddingLeft: '80px' }}>
+<div className=" col-md-12" style={{ marginRight: 'none', marginLeft: 'none', paddingRight: '80px', paddingLeft: '80px' }}>
 
     <div className="row">
-    <div class="col-md-6 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Question </div>
-    <div class="col-md-3 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Yes </div>
-    <div class="col-md-3 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>NO</div>
-    <div class="col-md-6" style={{border:'1px solid'}}>
+    <div className="col-md-10 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Question </div>
+    <div className="col-md-1 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>Yes </div>
+    <div className="col-md-1 font-weight-bold" style={{border:'1px solid',backgroundColor:'#d6d0d0'}}>NO</div>
+    <div className="col-md-10" style={{border:'1px solid'}}>
 1. Have you visited or returned from any overseas country in the last 45
 days? If yes, please specify the country here:
  </div>
-    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-6" style={{border:'1px solid'}}>2. Have you visited or returned from any other District or State in the last 14
+    <div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-10" style={{border:'1px solid'}}>2. Have you visited or returned from any other District or State in the last 14
 days? If yes, please specify the state here: </div>
-<div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+<div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-6" style={{border:'1px solid'}}>3. Have you recently interacted or lived with someone who has tested positive
+    <div className="col-md-10" style={{border:'1px solid'}}>3. Have you recently interacted or lived with someone who has tested positive
 for COVID-19? </div>
 
 
-<div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+<div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
 
     
-    <div class="col-md-6 " style={{border:'1px solid'}}> 4. Have you now, or in the past 72 hours, had any of the following flulike symptoms?
+    <div className="col-md-10 " style={{border:'1px solid'}}> 4. Have you now, or in the past 72 hours, had any of the following flulike symptoms?
  </div>
- <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-6 " style={{border:'1px solid'}}>● Cough
+ <div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-10 " style={{border:'1px solid'}}>● Cough
  </div>
- <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+ <div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-6 " style={{border:'1px solid'}}>● Fever </div>
+    <div className="col-md-10 " style={{border:'1px solid'}}>● Fever </div>
 
- <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+ <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-6" style={{border:'1px solid'}}>● Difficulty in Breathing</div>
+    <div className="col-md-10" style={{border:'1px solid'}}>● Difficulty in Breathing</div>
 
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
 
-    <div class="col-md-6 " style={{border:'1px solid'}}>● Loss of senses of smell & taste</div>
+    <div className="col-md-10 " style={{border:'1px solid'}}>● Loss of senses of smell & taste</div>
 
-<div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+<div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
 
 
-    <div class="col-md-6" style={{border:'1px solid'}}>● Throat pain</div>
+    <div className="col-md-10" style={{border:'1px solid'}}>● Throat pain</div>
 
-    <div class="col-md-3" style={{border:'1px solid'}}>&nbsp; </div>
-    <div class="col-md-3 " style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1" style={{border:'1px solid'}}>&nbsp; </div>
+    <div className="col-md-1 " style={{border:'1px solid'}}>&nbsp; </div>
 
 
     </div>
     </div>
     <br/>
 
-                    <div class="  title" style={{  paddingRight: '70px', paddingLeft: '70px' }}>
+                    <div className="  title" style={{  paddingRight: '70px', paddingLeft: '70px' }}>
 
     <div className="title text-justify ">
     I hereby declare that I am not suppressing any relevant/ material facts and all the above-stated
@@ -624,10 +720,17 @@ effect.
                                 <li>Employee Name:<label> &nbsp; {this.state.name}</label></li>
                                 <li><label>Emp Code:</label> &nbsp; {this.state.empcode}</li>
                                 <li><label>Date</label> &nbsp;  {this.state.date}</li>
-                               
+                       
                             </ul>
-                            <center> <button   onClick={this.onSubmit} className="btn btn-primary btn-lg active" role="button" aria-pressed="true">Accept</button></center>
-                            
+                            {/* <div className="row">
+                                <div className="col-md-12 text-center">
+                            <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true">Accept</button>
+                            <button class="btn btn-lg btn-primary btn-danger " role="button" aria-pressed="true">Reject</button>
+
+                                </div>
+
+                            </div> */}
+                  
 
                             <div className="title text-center font-weight-bold">
                             {this.state.company}

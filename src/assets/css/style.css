@@ -141,14 +141,28 @@ Version      : 1.0
 html {
 	height: 100%;
 }
-body {
-	font-family: 'CircularStd', sans-serif;
+
+
+
+/* font-family: 'CircularStd', sans-serif,' Nospace'';
 	font-size: .9375rem;
 	color: #1f1f1f;
 	background-color: #f7f7f7;
 	min-height: 100%;
 	overflow-x: hidden;
-	word-spacing: -5px;
+	word-spacing: -5px; */
+
+
+body {
+
+	
+	font-size: .9375rem;
+	color: #1f1f1f;
+	background-color: #f7f7f7;
+	min-height: 100%;
+	overflow-x: hidden;
+	word-spacing: 0;
+	font-weight: 600;
 }
 h1,
 h2,
@@ -3280,7 +3294,7 @@ table.dataTable thead > tr > td.sorting {
 	float: left;
 	font-weight: 500;
 	margin-right: 30px;
-	width: 25%;
+	width: 30%;
 	text-align:justify
 }
 .personal-info li .text {
