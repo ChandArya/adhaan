@@ -5,46 +5,132 @@ var axios = require('axios');
 class OfferLetter extends Component {
     constructor(...props) {
         super(...props)
+        var url =window.location.href;
+        var id=url.split("/");
+        console.log("hhhhhh",id);
+        var finalid=id[id.length-1]
+        var ispay=finalid.includes("_")
+        if(finalid.includes("_"))
+        {
+            finalid=finalid.substring(0,finalid.length-1)
+        }
+        console.log("dddd",finalid);
         this.state = {
-            name:"Sandeep Kumar",
-            date:"2021/03/09",
-            empcode:'108970',
-            designation:"off Roll Team Leader",
-            mobileno:"9728300263",
-            add:"228 Subash Nagar Teshil",
-            addloc:"Camp Panipat",
-            stateofadd:"Haryana",
-            pin:"132103",
-            enddate:"2021/03/31",
-            jobloc:"Panipathub_PPT",
-            company:"Adhaan Solution Pvt. Ltd.",
+            name:"",
+            isrec:ispay,
+            date:"",
+            idlist:finalid,
+            empcode:'',
+            designation:"",
+            mobileno:"",
+            add:"",
+            addloc:"",
+            stateofadd:"",
+            pin:"",
+            enddate:"",
+            jobloc:"",
+            company:"",
             companyadd:"Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3",
-            salary:"11500",
+            salary:"",
             sign:Sign,
-            onbordingid:'2',
-            client:'2',
-            recruiter:'2',
+            onbordingid:'',
+            client:'',
+            recruiter:'',
 
 
         }
      }
-     
-    onSubmit = (e) => {
-        // console.log("add salary"+JSON.stringify(data))
-    // var status="";
+     componentDidMount=()=>
+     {
+        var url1 = 'https://aadhaan.ddns.net/api/recruiter/onboard-candidate/'+this.state.idlist
+       
+        var config = {
+          method: 'get',
+          url: url1,
+          headers: {
+            'Content-Type': 'application/json',
+    
+          },
+          data: ''
+        };
+    
+        axios(config)
+          .then((response) => {
+            console.log("fgdfgfggf")
+            var data = response.data;
+            console.log("fgdfgfggf", data.onboarded_candidate)
+            this.setState({
+                name: data.onboarded_candidate.name,
+                date: data.onboarded_candidate.date,
+                empcode: data.onboarded_candidate.empcode,
+                designation: data.onboarded_candidate.designation,
+                mobileno: data.onboarded_candidate.mobile_no,
+                empcode: data.onboarded_candidate.employee_id,
+                add:data.onboarded_candidate.current_address.full_address+","+data.onboarded_candidate.current_address.city,
+                addloc:data.onboarded_candidate.job_loc,stateofadd:data.onboarded_candidate.current_address.state,
+                pin:data.onboarded_candidate.current_address.pin_code,
+                enddate:data.onboarded_candidate.end_date,
+                jobloc:data.onboarded_candidate.job_loc,
+                company:data.onboarded_candidateclient_name,
+                salary:data.onboarded_candidate.salary,
+                onbordingid:data.onboarded_candidate.id,
+                client:data.onboarded_candidate.client[0],
+                recruiter:data.onboarded_candidate.recruiter_id
+                
+            })
+        
+          })
+          .catch((error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+            console.log("error");
+          });
+     }
+     onReject = (e) => {
+      
      var add = {}
 
-    // for (var k = 0; k < this.state.clientList.length; k++) {
-    //   // console.log("called")
-    //   console.log("called", this.state.clientList[k].name, this.state.clietname)
-    //   if (this.state.clientList[k].name == this.state.clietname) {
-        Object.assign(add, { "status": "accepted_by_candidate",  "start_date": this.state.date, "client":this.state.client, "salary":this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
+        Object.assign(add, { "status": "rejected_by_candidate",  "start_date": this.state.date, "client":[this.state.client], "salary":this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
         console.log("called", add)
-    //   }
-      // console.log("calledhhhh")
+    
+    var self=this;
+    var config = {
+      method: 'put',
+      url: 'https://aadhaan.ddns.net/api/recruiter/onboard-candidate',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: add
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        self.setState({ error: response.data.message })
+        if (response.data.status == true) {
+         
+          alert('You have Rejected terms and conditions ✅')
+       
+
+        }
+
+      })
+      .catch(function (error) {
+        console.log(error);
+        self.setState({ error: "Nework issue" })
+      });
     // }
-    // console.log("called", this.state.error)
-    // return
+       
+    }
+    onSubmit = (e) => {
+      
+     var add = {}
+
+        Object.assign(add, { "status": "accepted_by_candidate",  "start_date": this.state.date, "client":[this.state.client], "salary":this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
+        console.log("called", add)
+   
     var self=this;
     var config = {
       method: 'put',
@@ -203,7 +289,7 @@ class OfferLetter extends Component {
                                 <li><label>Emp Code:</label> &nbsp; {this.state.empcode}</li>
                                 <li><label>Designation:</label> &nbsp; {this.state.designation}</li>
                                 <li><label>Mobile no.:</label> &nbsp; {this.state.mobileno}</li>
-                                <li><label># 228 Subash Nagar Teshil</label></li>
+                                <li><label># {this.state.add}</label></li>
                                 <li><label>{this.state.addloc}</label> </li>
                                 <li><label>{this.state.stateofadd}</label></li>
                                 <li><label>{this.state.pin}</label></li>
