@@ -900,16 +900,6 @@ export default class EmployeeProfile extends Component {
         }
 
 
-
-
-
-
-
-
-
-
-
-
         try {
           var other_details_len = Object.keys(data.candidate_personal_data.other_details).length
           if (other_details_len > 0) {
@@ -1408,8 +1398,8 @@ export default class EmployeeProfile extends Component {
                                 <div className="before-circle" />
                               </div>
                               <div className="experience-content">
-                              <div className="timeline-content">
-                                  <a href="" className="name">{education.includes("_")?"Postgraduate":education.slice(0,1).toUpperCase() + education.slice(1, education.length)}  {edu_data['' + education].board_university?"from "+edu_data['' + education].board_university:"" }</a>
+                                <div className="timeline-content">
+                                  <a href="" className="name">{education.includes("_") ? "Postgraduate" : education.slice(0, 1).toUpperCase() + education.slice(1, education.length)}  {edu_data['' + education].board_university ? "from " + edu_data['' + education].board_university : ""}</a>
                                   <div>{edu_data['' + education].school}</div>
                                   <span className="time">{edu_data['' + education].passing_year}</span>
                                 </div>
@@ -2061,14 +2051,14 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Birth Date<DatePicker className="form-control floating datetimepicker"
-                             disabledDate = {(current) =>{         
-            
-                              const start = Moment();
-                              return  current>start;
-                       }}
-                             onChange={(e) => this.setDob(e)} value={
+                              disabledDate={(current) => {
 
-                              this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment()}></DatePicker> </label>
+                                const start = Moment();
+                                return current > start;
+                              }}
+                              onChange={(e) => this.setDob(e)} value={
+
+                                this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment()}></DatePicker> </label>
                           </div>
                           {/* <label>{this.state.dob} </label> */}
                         </div>
@@ -2416,14 +2406,14 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Marriage Date<DatePicker
-                         disabledDate = {(current) =>{         
-            
-                          const start = Moment();
-                          return  current>start;
-                   }}
-                         value={
+                          disabledDate={(current) => {
 
-                          this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
+                            const start = Moment();
+                            return current > start;
+                          }}
+                          value={
+
+                            this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
 
                       </div>
                     </div>
@@ -2745,12 +2735,12 @@ export default class EmployeeProfile extends Component {
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
-                              <label>Date of birth <span className="text-danger">*</span><DatePicker 
-                               disabledDate = {(current) =>{         
-            
-                                const start = Moment();
-                                return  current>start;
-                         }}className="form-control floating datetimepicker" onChange={(e) => this.setFamilyDob(e)}></DatePicker> </label>
+                              <label>Date of birth <span className="text-danger">*</span><DatePicker
+                                disabledDate={(current) => {
+
+                                  const start = Moment();
+                                  return current > start;
+                                }} className="form-control floating datetimepicker" onChange={(e) => this.setFamilyDob(e)}></DatePicker> </label>
                             </div>
 
                             {/* {this.isBlank(this.state.family_dob =='Invalid date'? Moment(this.state.family_dob, 'YYYY-MM-DD') : Moment())?
@@ -3166,12 +3156,12 @@ export default class EmployeeProfile extends Component {
                             <div className="form-group form-focus">
                               <div className="">
 
-                                <DatePicker 
-                                 disabledDate = {(current) =>{         
-            
-                                  const start = Moment();
-                                  return  current>start;
-                           }}className="form-control floating datetimepicker" onChange={(e) => this.setStartDate(e)}></DatePicker>
+                                <DatePicker
+                                  disabledDate={(current) => {
+
+                                    const start = Moment();
+                                    return current > start;
+                                  }} className="form-control floating datetimepicker" onChange={(e) => this.setStartDate(e)}></DatePicker>
                               </div>
 
                             </div>
@@ -3189,12 +3179,12 @@ export default class EmployeeProfile extends Component {
                             <label className="focus-label">Period To<span className="text-danger">*</span></label>
                             <div className="form-group form-focus">
                               <div className="">
-                                <DatePicker 
-                                 disabledDate = {(current) =>{         
-            
-                                  const start = Moment();
-                                  return  current>start;
-                           }}className="form-control floating datetimepicker" onChange={(e) => this.setEndDate(e)} maxDate={this.maxDate}
+                                <DatePicker
+                                  disabledDate={(current) => {
+
+                                    const start = Moment();
+                                    return current > start;
+                                  }} className="form-control floating datetimepicker" onChange={(e) => this.setEndDate(e)} maxDate={this.maxDate}
                                 >    </DatePicker>
                                 {/* <input type="text" className="form-control floating datetimepicker" onChange={this.} /> */}
                               </div>

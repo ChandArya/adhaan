@@ -9,6 +9,7 @@ import ClientProfile from "./clientprofile"
 import Candidate from './candidateprofile'
 import ApplicationForm from './applicationform'
 import OfferLetter from './OfferLetter';
+import DeclarationForm from './Declaration-Form';
 
 
 const subscriptionroute = ({ match }) => (
@@ -19,6 +20,7 @@ const subscriptionroute = ({ match }) => (
         <Route path={`${match.url}/candidate-profile`} component={Candidate} />
         <Route path={`${match.url}/applcation-form`} component={ApplicationForm} />
         <Route path={`${match.url}/offerLetter`} component={OfferLetter} />
+        <Route path={`${match.url}/declaration-form`} component={DeclarationForm} />
 
     </Switch>
 );
