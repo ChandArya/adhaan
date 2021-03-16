@@ -808,14 +808,14 @@ effect.
                                 <li><label>Date</label> &nbsp;  {this.state.date}</li>
                        
                             </ul>
-                            {/* <div className="row">
+                            <div className="row">
                                 <div className="col-md-12 text-center">
                             <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true">Accept</button>
                             <button class="btn btn-lg btn-primary btn-danger " role="button" aria-pressed="true">Reject</button>
 
                                 </div>
 
-                            </div> */}
+                            </div> 
                   
 
                             <div className="title text-center font-weight-bold">

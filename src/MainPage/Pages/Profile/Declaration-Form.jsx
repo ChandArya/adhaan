@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
-import { Applogo, Sign } from '../../../Entryfile/imagepath.jsx'
 
-class DeclarationForm extends Component {
+import { Applogo, Sign } from '../../../Entryfile/imagepath.jsx'
+// var axios = require('axios');
+class OfferLetter extends Component {
+
+
+
+
+
+
     render() {
+        const candidate_doc_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+        const candidate_dob_list = [1, 2, 3, 4, 5, 6,7,8]
+        const candidate_name_list = [1, 2, 3]
+        const candidate_fname_list = [1, 2]
+        const candidate_gender_list = [1, 2, 3]
+        const candidate_mobile_no = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        const candidate_email_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,]
+        const candidate_uan_no = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        const member_id_date = [1, 2, 3, 4, 5, 6, 7, 8]
+        const passport_valid_from = [1, 2, 3, 4, 5, 6, 7, 8]
+        const passport_valid_till = [1, 2, 3, 4, 5, 6, 7, 8]
         return (
+
+
             <div className="container" style={{
                 marginTop: '8em', transform: 'inherit',
                 position: 'inherit',
@@ -11,56 +31,949 @@ class DeclarationForm extends Component {
                 top: 'inherit'
             }}>
                 <div className="border">
-                    <div style={{ float: 'right' }}>
-                        <h3 className='font-weight-bold' style={{ marginTop: '50px' }}>DECLARATION FORM</h3>
-                        <p>(To be retained by the Employer for future reference</p>
-                    </div>
+                    <div className="row " style={{ marginTop: '5%', marginLeft: 'none', marginRight: 'none' }}>
+                        <div className="col-md-12">
+                            {/* <div className="account-logo" style={{ float: "left", marginRight: '60px' }}>
+                                <a href=""><img src={Applogo} alt="Adhaan" /></a>
+                            </div> */}
+                            <div style={{ float: 'right' }}>
+                                <h3 className='font-weight-bold'>DECLARATION FORM</h3>
+                                <p>(To be retained by the Employer for future reference</p>
+                            </div>
+                            <div className="account-logo float-left">
+                                <a href="#"><img src={Applogo} alt="Adhaan" /></a>
+                            </div>
 
-
-                    <div className="account-logo float-left">
-                        <a href="#"><img src={Applogo} alt="Adhaan" /></a>
-                    </div>
-                    <div className="text-center">
-                        <h3 className='font-weight-bold'>
-                            EMPLOYEES PROVIDENT FUND ORGANIZATION
+                            <div className="text-center">
+                                <h3 className='font-weight-bold'>
+                                    EMPLOYEES PROVIDENT FUND ORGANIZATION
     </h3>
-                        <div className="text-sm font-weight-bold">
-                            THE EMPLOYEES PROVIDENT FUNDS SCHEME, 1952 (PARAGRAPH-34 & 57)
+                                <div className="  title-text-sm font-weight-bold">
+                                    THE EMPLOYEES PROVIDENT FUNDS SCHEME, 1952 (PARAGRAPH-34 & 57)
                             <br />
                         &<br />
                         THE EMPLOYEES PENSION SCHEME, 1995 (PARAGRAPH-24)
                         <br /><br />
 
-                        </div>
-
-
-                        <div className="font-weight-bold">
-                            <p>
-                                <u>DECLARATION BY A PERSON TAKING UP EMPLOYMENT IN AN ESTABLISHMENT ON WHICH EMPLOYEES PROVIDENT FUND SCHEME,<br />
+                                </div>
+                                <div className="font-weight-bold">
+                                    <p>
+                                        <u>DECLARATION BY A PERSON TAKING UP EMPLOYMENT IN AN ESTABLISHMENT ON WHICH EMPLOYEES PROVIDENT FUND SCHEME,<br />
                             1952 AND/OR EMPLOYEES PENSION SCHEME, 1995 IS APPLICABLE.<br />
                                (PLEASE GO THROUGH THE INSTRUCTIONS)</u></p>
 
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div className="row" style={{ border: '1px solid', marginRight: '30px', marginLeft: '30px' }} >
+                                <div className=" float-left font-weight-bold" style={{ marginLeft: '30px' }}>
+                                    <h5></h5>
+                            1) &nbsp; NAME &nbsp; &nbsp; (TITLE)<br />
+                                    <div style={{ marginLeft: '60px' }} >
+                                        {candidate_name_list.map(document => (
+
+                                            <input key={document.key} type="text" style={{ width: '30px' }}></input>
+                                        ))}<br />
+                                        <p>(PLEASE TICK)</p>
+                                        <br /><br />
+
+                                    </div>
+
+                                </div>
+
+
+                                <div >
+
+
+
+                                    <div className="col-md-12" style={{ marginTop: '9px', marginLeft: '30px' }}>
+                                        <div style={{ display: 'inline-flex' }}>
+                                            {candidate_doc_list.map(document => (
+
+                                                <input key={document.key} type="text" style={{ width: '30px' }}></input>
+                                            ))}
+                                        </div><br></br>
+                                        <div style={{ display: 'inline-flex', marginTop: '-7px' }}>
+                                            {candidate_doc_list.map(document => (
+                                                <input key={document.key} type="text" style={{ width: '30px' }}></input>
+                                                // <li key={document.key} >
+
+                                                // </li>
+                                            ))}<br />
+
+
+                                        </div><br></br>
+
+                                        <div style={{ display: 'inline-flex', marginTop: '-7px' }}>
+                                            {candidate_doc_list.map(document => (
+                                                <input key={document.key} type="text" style={{ width: '30px' }}></input>
+                                                // <li key={document.key} >
+
+                                                // </li>
+                                            ))}
+
+
+                                        </div><br /><br />
+                                    </div>
+
+
+                                </div>
+
+
+                                <div className="col-md-12">
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                            2) &nbsp; Date &nbsp; OF &nbsp; Birth<br /><br />
+
+                                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            {candidate_dob_list.map(document => (
+                                                <input key={document.key} type="text" style={{ width: '27px' }}></input>
+                                                // <li key={document.key} >
+
+                                                // </li>
+                                            ))}
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+
+                                </div>
+
+                                <br />
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                           3) &nbsp; FATHERS /<br />
+HUSBANDS NAME<br /><br />
+
+                                    </div>
+
+
+                                    <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        {candidate_doc_list.map(document => (
+
+                                            <input key={document.key} type="text" style={{ width: '30px' }}></input>
+                                        ))}
+                                    </div><br></br>
+                                    <div style={{ display: 'inline-flex', marginTop: '-7px', marginLeft: '30px' }}>
+                                        {candidate_doc_list.map(document => (
+                                            <input key={document.key} type="text" style={{ width: '30px' }}></input>
+                                            // <li key={document.key} >
+
+                                            // </li>
+                                        ))}<br />
+
+
+                                    </div><br></br>
+
+                                    <div style={{ display: 'inline-flex', marginTop: '-7px', marginLeft: '30px' }}>
+                                        {candidate_doc_list.map(document => (
+                                            <input key={document.key} type="text" style={{ width: '30px' }}></input>
+                                            // <li key={document.key} >
+
+                                            // </li>
+                                        ))}
+
+
+                                    </div><br /><br />
+                                </div><br />
+
+
+
+
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                           4) &nbsp; RELATIONSHIP IN RESPECT<br />
+OF (3) ABOVE (PLEASE TICK)<br /><br />
+
+                                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '100px', height: '27px' }}>FATHER</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '27px' }}>HUSBAND</div>
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            {candidate_fname_list.map(document => (
+                                                <input key={document.key} type="text" style={{ width: '100px' }}></input>
+
+                                            ))}
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+
+                                </div><br />
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                          5) &nbsp; GENDER<br /> (PLEASE TICK))<br /><br />
+
+                                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '120px', height: '27px' }}>MALE</div>
+                                            <div className='border border-dark' style={{ width: '120px', height: '27px' }}>FEMALE</div>
+                                            <div className='border border-dark' style={{ width: '120px', height: '27px' }}>TRANSGENDER</div>
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            {candidate_gender_list.map(document => (
+                                                <input key={document.key} type="text" style={{ width: '120px' }}></input>
+
+                                            ))}
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+
+                                </div>
+
+
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                         6) &nbsp; MOBILE NUMBER<br /> (IF ANY)<br /><br />
+
+                                    </div>
+
+
+                                    <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        {candidate_mobile_no.map(document => (
+                                            <input key={document.key} type="text" style={{ width: '45px' }}></input>
+
+                                        ))}
+
+                                        <br />
+
+
+                                    </div><br />
+
+
+                                </div>
+
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                            7) &nbsp; E-MAIL ID<br /> (IF ANY)<br /><br />
+
+                                    </div>
+
+
+                                    <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        {candidate_email_list.map(document => (
+
+                                            <input key={document.key} type="text" style={{ width: '40px' }}></input>
+                                        ))}
+                                    </div><br></br>
+                                    <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        {candidate_email_list.map(document => (
+                                            <input key={document.key} type="text" style={{ width: '40px' }}></input>
+                                            // <li key={document.key} >
+
+                                            // </li>
+                                        ))}<br />
+
+
+                                    </div><br></br>
+
+                                    <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        {candidate_email_list.map(document => (
+                                            <input key={document.key} type="text" style={{ width: '40px' }}></input>
+                                            // <li key={document.key} >
+
+                                            // </li>
+                                        ))}
+
+
+                                    </div><br /><br />
+                                </div><br/>
+
+<div className="title font-weight-bold" style={{marginLeft:'15px'}}>
+                            8) &nbsp; WHETHER EARLIER A MEMBER OF THE EMPLOYEES PROVIDENT FUND SCHEME, 1952?
+                            
+                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '23px' }}>
+                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>YES</div>
+                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>NO</div>
+                            </div>
+
                         </div>
+
+                           <div className="title font-weight-bold" style={{marginTop:'30px',marginLeft:'15px'}}>
+                            9) &nbsp;  WHETHER EARLIER A MEMBER OF THE EMBPLOYEES PENSION SCHEME, 1995?
+                             
+                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '80px' }}>
+                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>YES</div>
+                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>NO</div>
+                            </div>
+  <div className=" title font-weight-bold text-center" style={{marginTop:'30px'}}>
+                                
+                                        <u>IF RESPONSE TO ANY OR BOTH OF (8) & (9) ABOVE IS YES, THEN MANDATORILY FILL UP
+                                    THE PREVIOUS EMPLOYMENT DETAILS AT (10,11 & 12) :</u>
+                      
+
+                            </div>
+                        </div><br/>
+                                
+
+
+
+                            </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            {/* col-md-12 close */} </div>
+
+
+                        {/* row closs */} </div><br /><br />
+
+
+                    {/* border close  */} </div><br/>
+
+
+
+{/* 2nd page */}
+<div className="border">
+                    < div  className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+        <div className="col-md-12">
+            <div className="border border-dark" style={{marginLeft:'30px', marginRight:'30px'}}>
+                                <div style={{ backgroundColor: 'black', color: 'white', paddingLeft: '15px' }}> &nbsp; &nbsp; A.  PREVIOUS EMPLOYMENT DETAILS
+</div>
+
+<div className="title font-weight-bold" style={{marginLeft:'15px', marginTop:'20px'}}>
+                                    10) &nbsp;THE DETAILS OF THE UNIVERSAL ACCOUNT NUMBER (UAN) OR PREVIOUS PF MEMBER ID:
+                                     
+                           
+
+                        </div>
+                                <br />  <div className="col-md-12"  >
+                                <div className=" float-left font-weight-bold" style={{ marginLeft: '30px' }} >
+                                        UAN
+                                   </div>
+
+
+                                <div className="text-center">
+                                <div  style={{ display: 'inline-flex' }}>
+                                    {candidate_uan_no.map(document => (
+
+                                        <input key={document.key} type="text" style={{ width: '40px' }}></input>
+                                    ))}
+                                    </div>   </div><br></br>
+
+                            <div className="title text-center">OR</div><br/><br/>
+
+                                <div className="title font-weight-bold" style={{ marginLeft: '15px', marginTop: '20px' }}>
+                                    PREVIOUS PF MEMBER ID
+
+                                           </div>
+
+                                <div className="text-center">
+                                    <div style={{ display: 'inline-flex' }}>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '23px' }}>
+                                            <div className='title font-weight-bold border border-dark' style={{ width: '150px', height: '27px' }}>REGION CODE	</div>
+                                            <div className='title font-weight-bold border border-dark' style={{ width: '150px', height: '27px' }}>	OFFICE CODE</div>
+                                            <div className='title font-weight-bold border border-dark' style={{ width: '150px', height: '27px' }}>	ESTABLISHMENT ID</div>
+                                            <div className='title font-weight-bold border border-dark' style={{ width: '150px', height: '27px' }}>	EXTENSION</div>
+                                            <div className=' title font-weight-bold  border border-dark' style={{ width: '150px', height: '27px' }}>	ACCOUNT NUMBER</div>
+                                        </div>
+                                       </div>
+                                    <div style={{ display: 'inline-flex', marginLeft: '23px' }}>
+                                       
+                                        <input  type="text" style={{ width: '150px' }}></input>
+                                        <input type="text" style={{ width: '150px' }}></input>
+                                        <input type="text" style={{ width: '150px' }}></input>
+                                        <input type="text" style={{ width: '150px' }}></input>
+                                        <input type="text" style={{ width: '150px' }}></input>
+                                    </div>
+                                    
+                                       </div>
+
+</div><br/><br/>
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                           11) DATE OF EXIT FOR PREVIOUS MEMBER ID (DD/MM/YYYY)
+                                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            {member_id_date.map(document => (
+                                                <input key={document.key} type="text" style={{ width: '27px' }}></input>
+
+                                            ))}
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+
+                                </div>
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left " >
+                                        
+                           12)  (A) IF SCHEME CERTIFICATE ISSUED FOR PREVIOUS EMPLOYMENT, THEN SCHEME CERTIFICATE NUMBER:______________________
+                           <br/>
+                           
+                                    </div>
+                                   <br />
+
+
+                                </div>
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left " style={{marginLeft:'22px'}}>
+
+                                        &nbsp; (B) IF PENSION PAYMENT ORDER (PPO) ISSUED FOR PREVIOUS EMPLOYMENT, THEN PPO NUMBER:______________________
+                           <br />
+
+                                    </div><br/>
+                                   
+
+
+                                </div><br/><br/>
+                                <div style={{ backgroundColor: 'black', color: 'white',paddingLeft:'15px' }}> &nbsp; &nbsp; B.  OTHER DETAILS
+                                                                               </div>
+
+
+
+                                <div className="col-md-12" style={{marginTop:'20px'}} >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                        
+                            13) &nbsp;NTERNATIONA WORKER<br />(PLEASE TICK)
+                                    </div>
+                                    <div className="text-center">
+                                   
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '150px', height: '27px' }}>YES</div>
+                                            <div className='border border-dark' style={{ width: '150px', height: '27px' }}>NO</div>
+                                            
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex',  }}>
+                                            <input type="text" style={{ width: '150px' }}></input>
+                                            <input type="text" style={{ width: '150px' }}></input>
+
+                                        <br />
+
+
+                                    </div><br />
+                                    </div><br/>
+
+                                </div>
+                                
+                                
+                                <div className="col-md-12"  >
+                                    <div className=" float-left font-weight-bold" style={{ marginLeft: '30px' }} >
+                                        IF THE REPLY TO (13) ABOVE IS YES, THEN ENTER THE DETAILS IN 13( A ), 13( B ) & 13( C ):
+                                   </div>
+                                   
+                                 <br></br>
+                                </div>
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left " style={{ marginLeft: '30px' }}  >
+                                        
+                                        13( A ) COUNTRY OF ORIGIN (Please Tick)<br /><br />
+                                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>INDIA</div>
+                                            <div className='border border-dark' style={{ width: '300px', height: '50px' }}>OTHER THAN INDIA (IF YES, PLEASE MENTION NAME OF THE COUNTRY)</div>
+                                           
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{marginLeft:'44px'}} >
+                                          
+                                            <input  type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '300px' }}></input>
+
+                                      
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+
+                                </div><br/>
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left " style={{ marginLeft: '30px' }}  >
+
+                                        13( B ) PASSPORT NUMBER
+                                    </div>
+                                   
+                                        <div className="text-center" style={{ marginLeft: '30px' }}>
+                                        <input type="text" style={{ width: '450px' }}></input>
+
+
+                                          </div><br />
+                                </div>
+
+
+
+
+                                <div className="col-md-12">
+                                    <div className=" float-left " style={{ marginLeft: '30px' }}  >
+                                       
+                                        13( C ) PASSPORT VALID FROM<br /><br />
+
+                                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            {candidate_dob_list.map(document => (
+                                                <input key={document.key} type="text" style={{ width: '27px' }}></input>
+                                                // <li key={document.key} >
+
+                                                // </li>
+                                            ))}
+                                            
+                                         <h4 className="font-weight-bold" style={{marginLeft:'50px'}}>TO</h4>
+
+                                       
+                                           
+                                            </div><br/><br/>
+                                      </div><br />
+                               </div>
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                           14) EDUCATION <br /> QUALIFICATION <br />(Please Tick)
                     </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>ILLITERATE</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>NON MATRIC</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>MATRIC</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>SENIOR SECONDARY </div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>GRADUATE</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>POST GRADUATE </div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>DOCTOR</div>
+                                            <div className='border border-dark' style={{ width: '125px', height: '50px' }}>TECHNICAL PROFFESSIONAL</div>
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        
+                                            <input  type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '125px' }}></input>
+
+                                            
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+
+                                </div><br/>
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                           15)MARITAL STATUS <br />(Please Tick)
+                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>MARRIED</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>UNMARRIED</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>MATRIC</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>WIDOW /WIDOWER </div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>DIVORCEE</div>
+                                           
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                           
+
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+
+                                </div>
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                           16)SPECIALLY ABLED <br />(Please Tick)
+                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+
+                                            <div className='border border-dark' style={{ width: '100px', height: '30px' }}>YES	</div>
+                                            <div className='border border-dark' style={{ width: '100px', height: '30px' }}>NO</div>
+                                           
+
+
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                            <input type="text" style={{ width: '100px' }}></input>
+                                           
+
+
+
+                                        </div><br />
+
+
+                                    </div><br />
+
+                                </div>
+
+                               
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                           IF YES, TICK THE CATEGORY <br />(Please Tick)
+                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                       
+                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            <div className='border border-dark' style={{ width: '125px', height: '50px' }}>LOCOMOTIVE</div>
+                                            <div className='border border-dark' style={{ width: '125px', height: '50px' }}>VISUAL</div>
+                                            <div className='border border-dark' style={{ width: '125px', height: '50px' }}>HEARING </div>
+                                        </div><br></br>
+                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+                                            <input type="text" style={{ width: '125px' }}></input>
+                                            <input type="text" style={{ width: '125px' }}></input>
+                                            <input type="text" style={{ width: '125px' }}></input>
 
 
 
 
+                                        </div><br />
+
+
+                                    </div><br />
+
+                                </div>
+
+                            </div><br />
+                        </div><br />
+                    </div><br />
+</div><br/>
+<br/>
+
+{/* 3rd page */}
+                <div className="border">
+                    < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                        <div className="col-md-12">
+                            <div className="border border-dark" style={{ marginLeft: '30px', marginRight: '30px' }}>
+
+
+                                <div className="col-md-12"  >
+
+                                    <div className=" float-left font-weight-bold" >
+                                        <h5></h5>
+                          17 ) KYC DETAIL
+                                    </div>
+                                    <div style={{ marginLeft: '30px' }}>
+                                       
+                                        <table class="table table-bordered"  >
+                                            <thead style={{border:'1px solid'}}>
+                                                <tr className="font-weight-bold">
+                                                    <th>KYC DOCUMENT TYPE</th>
+                                                    <th>NAME AS ON KYC DOCUMENT	</th>
+                                                    <th>NUMBER</th>
+                                                    <th>REMARKS, IF ANY</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>BANK ACCOUNT 1*</td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a'}}/></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a'}} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    {/* <td><input type="text" name="" className="px-0 py-0 border-0 form-control" style={{ backgroundColor: ' #ffffff0a' }} /></td> */}
+
+                                                </tr>
+                                                <tr>
+                                                    <td>NPR / AADHAAR</td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PERMANENT ACCOUNT NUMBER (PAN)</td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PASSPORT </td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DRIVING LICENCE</td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ELECTION CARD</td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>RATION CARD</td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ESIC CARD</td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan="4">
+                                                        <b>*  Mandatory Field  (NOTE:  BANK  ACCOUNT 	NUMBER 	(ALONG 	WITH  IFSC  CODE)  IS  MANDATORY.</b>	YOU
+                                                        ARE  HOWEVER 	ADVISED 	TO  PROVIDE 	ALL  KYC  DOCUMENTS 	AVAILABLE 	WITH  YOU  IN  ADDITION 	TO
+                                                        MANDATORY 	KYCS  TO  AVAIL  BETTER 	SERVICES. <b>	SELF-ATTESTED 	PHOTOCOPIES 	OF  THE  DOCUMENTS
+                                                        MUST  BE  ATTACHED 	WITH  THIS  FORM.</b>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+                                        </div>
+
+
+                                    </div><br />
+
+                                <div style={{ backgroundColor: 'black', color: 'white', paddingLeft: '15px' }}> &nbsp; &nbsp;C.  UNDERTAKING :
+                                                                               </div>
+                                                                               
+<div className="title mt-3"  >
+    <ul style={{listStyleType:'none'}}>
+        <li>
+              <b>A.</b> &nbsp;  &nbsp;     ICERTIFY THAT ALL THE INFORMATION GIVEN ABOVE IS TRUE  TO  THE BEST	 OF MY KNOWLEDGE AND  BELIEF
+                                             
+        </li>
+ <li>
+           <b>B.</b> &nbsp;  &nbsp;    IN CASE, EARLIER 	A  MEMBER OF EPF SCHEME, 1952 	AND/OR EPS, 1995,
+
+
+        </li>
+                                        <li>
+                                            <b>(I)</b> &nbsp;  &nbsp;    I HAVE ENSURED THE CORRECTNESS OF MY UAN/ PREVIOUS PF MEMBER ID
+
+
+        </li>
+
+
+
+                                        <li>
+                                            <b>(II)</b> &nbsp;  &nbsp;   THIS MA Y ALSO BE 	TREATED  AS MY  REQUEST FOR  TRANSFER OF FUNDS AND SERVICE DETAILS IF  APPLICABLE FROM THE PREVIOUS ACCOUNT AS DECLARED ABOVE  TO  THE PRESENT	 P .F .  ACCOUNT.
+(THE  TRANSFER WOULD BE POSSIBLE ONLY  IF  THE IDENTIFIED KYC DETAILS  APPROVED BY	 PREVIOUS  EMPLOYER HAS BEEN VERIFIED BY PRESENT EMPLOYER USING HIS DIGITAL  SIGNATURE CERTIFICATE).
+
+
+        </li>
+                                        <li>
+                                            <b>(III)</b> &nbsp;  &nbsp;   I  AM  AWARE  THAT  I CAN SUBMIT	 MY  NOMINATION FORM 	THROUGH UAN BASED MEMBER POR
+
+
+        </li>
+    </ul>
+
+    <div className="title font-weight-bold float-left ml-3">
+        DATE
+    </div>
+    <br/><br/>
+                                    <div className="title font-weight-bold float-left ml-3">
+                                       PLACE
+    </div>
+                                    <div className="title font-weight-bold float-right ml-3">
+                                        SIGNATURE OF MEMBER
+    </div>
+</div>
+                              
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               <br/><br/>
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+
+                              
+                      </div>
+                     </div>
+                   </div>
+                    </ div>
+                
 
 
 
 
+                {/* container close */}</div >
 
 
-
-
-
-
-                    {/*border close*/}
-                </div>
-
-            </div>
         );
     }
 }
-export default DeclarationForm;
+export default OfferLetter;
