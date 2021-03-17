@@ -7897,12 +7897,19 @@ ul.comment-list li ul.children {
 		display: none;
 	}
 }
+
+
+/* @media only screen and (max-width: 767.98px) {
+	.declration-form{
+		display:flex;
+	}
+} */
 @media only screen and (max-width: 767.98px) {
 	body {
 		font-size: 0.875rem;
 		
-		display: flex;
-		
+		display:flex;
+	
 		/* {changes by twinkle} */
 	}
 	h1, .h1 {
