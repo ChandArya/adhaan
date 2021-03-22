@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Table} from 'react-table';
-import { Applogo, Sign } from '../../../Entryfile/imagepath.jsx'
+import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
 // var axios = require('axios');
 class DeclrationForm extends Component {
 
@@ -50,7 +50,7 @@ class DeclrationForm extends Component {
                             </div>
                           
                             <div className="account-logo float-left">
-                                <a href="#"><img src={Applogo} alt="Adhaan" /></a>
+                                <a href="#"><img src={epfs} alt="Adhaan" /></a>
                             </div>
 
                             <div className="text-center mr-3" style={{marginTop:'7%'}}>
@@ -138,7 +138,7 @@ class DeclrationForm extends Component {
                                     <div className=" col-md-3  float-left font-weight-bold" >
                                         
                             2) &nbsp; Date &nbsp; OF &nbsp; Birth<br /><br />
-                                                <div className='border border-dark' style={{ width: '40px', height: '30px' }}>MR.</div>
+                                                {/* <div className='border border-dark' style={{ width: '40px', height: '30px' }}>MR.</div> */}
                                     </div>
                                     <div className="col-md-9" >
                                         <div className=" text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
@@ -1062,7 +1062,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                           
                                          <div className="account-logo  ">
                                             <a href="#"><
-                                            img src={Applogo} alt="Adhaan" /></a>
+                                            img src={epfs} alt="Adhaan" /></a>
                                         </div> 
                                      
                                         <h1 style={{marginLeft:'6%'}}>
@@ -1083,45 +1083,55 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <td colspan="4" scope="col">(A) INSURED PERSON'S PARTICULARS
+                                                        <td colspan="4" scope="col">(क)बीमाकृत व्यक्ति  का विवरण
                                                             <br />(A) INSURED PERSON'S PARTICULARS</td>
                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>1. Insurance No.</td>
+                                                            <td>1. Insurance No.
+                                                                <br/>
+                                                                बीमा संख्या
+
+                                                            </td>
                                                             <td colSpan="3"><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                         </tr>
                                                         <tr>
-                                                            <td> 2. Name (in block letters)</td>
+                                                        <td> 2. नाम स्पष्ट अक्षर में
+                                                                <br />
+                                                             Name (in block letters)</td>
                                                             <td colSpan="3"><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                         </tr>
                                                         <tr>
-                                                            <td> 3. Father / Husbands Name</td>
+                                                        <td>पिता/ पति का नाम <br/>
+                                                             3. Father / Husbands Name</td>
                                                             <td colSpan="3"><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                         </tr>
 
                                                         <tr>
-                                                            <td> 4.  / Date of Birth<br/>
+                                                        <td> 4. जन्म तिथि  / Date of Birth<br/>
                                                                 {candidate_dob_list.map(document => (
                                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                                                 ))}
                                                             </td>
                                                             <td colSpan="3">
-                                                                4.   Marital Status 
-                                                               <p className="text-right"> M/U/W</p>
+                                                            4.वैवाहिक स्तर <br/>
+                                                                  Marital Status 
+                                                               <p className="text-right">  वि/अ/वि<br/>
+                                                                M/U/W</p>
                                                              <div className=" row border "></div>
-                                                             /Sex
+                                                            लिंग /Sex
                                                                <p className="text-right"> /Male / Female</p>
                                                             </td>
                                                            
                                                         </tr>
                                                         <tr>
-                                                            <td colSpan="1">/Current Address
+                                                        <td colSpan="1">स्थायी पता
+                                                        /Current Address
                                                                 <hr/>
                                                                 <input type="text" style={{ width: '100%' ,  border: ' none', backgroundColor: ' #ffffff0a'}}></input>
 
@@ -1129,9 +1139,9 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                                 <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
                                                                 <br/>
                                                                 <hr/>
-                                                                <div className="d-flex">
-                                                                    Pin Code &nbsp; &nbsp; &nbsp; &nbsp;
-                                                                     
+                                                            <div className="d-flex">पिन कोड<br/>
+                                                            Pin Code &nbsp; &nbsp; &nbsp; &nbsp;
+                                                             
                                                                     {pin_code.map(document => (
                                                                         <input key={document.key} type="text" style={{ width: '10%' }}></input>
                                                                        
@@ -1139,21 +1149,23 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                                    
                                                                 </div>
                                                                 <div className="text-center">
-                                                                    / E-mail Address
+                                                                टेलीफोन नंबर /इ-मेल
+                                                                / E-mail Address
                                                                   </div>
                                                                 <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
                                                             </td>
 
 
-                                                            <td colSpan="3">/Present Address
+                                                        <td colSpan="3">वर्तमान पता
+                                                        /Present Address
                                                              <hr />
                                                                 <input type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
                                                                 <hr/>
                                                                 <input type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
                                                                 <br />
                                                                 <hr />
-                                                                <div className="d-flex">
+                                                            <div className="d-flex">पिन कोड<br />
                                                                     Pin Code &nbsp; &nbsp; &nbsp; &nbsp;
 
                                                                     {pin_code.map(document => (
@@ -1162,7 +1174,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                                 ))}
                                                                 </div>
                                                                 <div className="text-center">
-                                                                    / E-mail Address
+                                                                टेलीफोन नंबर /इ-मेल / E-mail Address
                                                                   </div>
                                                                 <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
@@ -1171,12 +1183,14 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                         </tr>
                                                         <tr>
                                                             <td colSpan="2">
-                                                                Branch Office
+                                                            शाखा कार्यालय<br/>
+                                                            Branch Office
                                                                 <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
                                                             </td>
                                                             <td colSpan="2">
-                                                                Dispensary
+                                                            औषधालय<br/>
+                                                            Dispensary
                                                            <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
                                                            </td>
                                                         </tr>
@@ -1193,14 +1207,16 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <td colspan="4" scope="col">(B) EMPLOYER'S PARTICULARS <br/>
+                                                        <td colspan="4" scope="col">(ब)  नियोजक का विवरण
+ <br/>
                                                             (B) EMPLOYER'S PARTICULARS</td>
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td> 9.Employer's Code No.</td>
+                                                        <td> नियोजक का कूट संख्या
+                                                                <br/>9.Employer's Code No.</td>
                                                             <td colSpan="3" >
                                                                 {emp_code_no.map(document => (
                                                                     <input key={document.key} type="text" style={{ width: '5%' }}></input>
@@ -1210,12 +1226,13 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                         </tr>
                                                         <tr>
                                                           
-                                                            <td colSpan="3"> 10.Date of Appointment</td>
+                                                        <td colSpan="3"> नियुक्ति कि तिथि  <br/>
+                                                            10.Date of Appointment</td>
                                                             <td className="text-center">
                                                                 <div className="text-center " style={{ display: 'inline-flex' }}>
-                                                                    <div className='border border-dark' style={{ width:'60px',hight:'20px'}}>Day <br/>Day</div>
-                                                                    <div className='border border-dark' style={{ width: '60px', hight: '20px'}}>Month</div>
-                                                                    <div className='border border-dark' style={{ width: '60px', hight: '20px'}}>Year</div>
+                                                                <div className='border border-dark' style={{ width: '60px', hight: '20px' }}>दिन <br/>Day</div>
+                                                                <div className='border border-dark' style={{ width: '60px', hight: '20px' }}> महीना<br/>Month</div>
+                                                                <div className='border border-dark' style={{ width: '60px', hight: '20px' }}> वर्ष <br/>Year</div>
                                                                 </div>
                                                                 <div className="" >
 
@@ -1226,7 +1243,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" scope="col">11. Name & Address of the Employer<br />
+                                                        <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
                                                                 <b>Adhaan Solution Pvt. Ltd</b><br /><br />
                                                                 <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width:'100%'}} /><br/>
                                                                 
@@ -1234,14 +1251,15 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                         </tr>
                                                         <tr>
                                                             <td colSpan="4">
-                                                         12. In case of any previous employment please fill up the detail as under.
+                                                            12.यदि पहले नियोजन में रहे हैं, तो निम्नलिखित विवरण दीजिये।
+                                                            /In case of any previous employment please fill up the detail as under.
                                                             </td>
 
                                                                </tr>
 
 
                                                         <tr>
-                                                            <td colSpan="4">
+                                                        <td colSpan="4"><br />(क)बीमा संख्या<br/>
                                                                 a) Previous Ins. No. 
                                                              <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                          </td>
@@ -1249,6 +1267,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                         </tr>
                                                         <tr>
                                                             <td colSpan="4">
+                                                            (ख)नियोजक का कृष्ट संख्या<br />
                                                                 b) Emplr's Code No.
 
                                                              <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
@@ -1256,12 +1275,12 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" scope="col">c) Name & Address of the Employer<br />
+                                                        <td colspan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
                                                                 <b>Name & Address of the Employer</b><br /><br />
                                                                 <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                          <br/>
                                                               <div className="text-center">
-                                                              / E-mail Address
+                                                             इ-मेल / E-mail Address
 
                                                              <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </div>
@@ -1286,25 +1305,27 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <table className="table table-bordered">
                                                 <tbody>
                                                     <tr>
-                                                        <td colSpan="6" >(C) Details of Nominee u/s 71 of ESI Act 1948/Rile 56(2) of ESI (Central) Rules, 1950 for payment of cash benefit in the event of death.</td>
+                                                    <td colSpan="6" >(ग)मृत्यु की स्थिति में हितलाभ के भुगतान के लिए क रा वी अधिनियम 1984 की धारा  /टेलीफोन नंबर इ-मेल/ क रा वी (केंद्रीय) नियम 1950 के अंतर्गत नियमों के ब्योरे
+  <br/>
+                                                        (C) Details of Nominee u/s 71 of ESI Act 1948/Rile 56(2) of ESI (Central) Rules, 1950 for payment of cash benefit in the event of death.</td>
 
                                                     </tr>
                                                
                                                
                                                     <tr>
                                                         <td colSpan="2">
-                                                            Name
+                                                        नाम /Name
                                                         <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                          
                                                         </td>
                                                         <td>
-                                                            Relationship
+                                                        सम्बन्ध/ Relationship
                                                          <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td colSpan="4">
-                                                            Address
+                                                        पता /Address
                                                          <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
@@ -1312,30 +1333,40 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                                     
                                                         <tr className="text-center">
-                                                            <td colSpan="6" >/ (D) FAMILY PARTICULARS OF INSURED PERSON</td>
+                                                    <td colSpan="6" >बीमाकृत व्यक्ति के परिजनों विवरण/टेलीफोन नंबर/इ-मेल / (D) FAMILY PARTICULARS OF INSURED PERSON</td>
 
                                                        
                                                     </tr>
                                                     <tr>
                                                         <td >
-                                                            Sl. No
+                                                        क्रम संख्या <br/>Sl. No
                                                             </td>
                                                         <td >
-                                                            / Name
+                                                        नाम / Name
                                                             </td>
-                                                        <td >
+                                                    <td >फॉर्म भरने तारिख आयु
+                                                            <br/>
                                                             Date of Birth / Age as on
                                                             date of filling form
                                                             </td>
-                                                        <td >
+                                                    <td >कर्मचारी के साथ  सम्बन्ध
+
+                                                            <br/>
                                                             Relationship with the
                                                             Employee
                                                             </td>
                                                         <td >
+                                                        क्या उनके साथ रह रहे हैं
+
+                                                            <br/>
                                                             Whether residing with
                                                             him / her ?
                                                             </td>
                                                         <td >
+                                                        यदि  नहीं तो स्थान आवास दर्शाये
+
+                                                            <br/>
+
                                                             If No, State place of residence
                                                             </td>
                                                     </tr>
@@ -1362,17 +1393,17 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                         <td>
                                                             <div className="text-center">
                                                             <td scope="col" >
-                                                               YES
+                                                                हाँ/YES
                                                             </td>
                                                             <td scope="col">
-                                                                No
+                                                                नहीं/ No
                                                             </td>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div className="d-flex">
-                                                                /TOWN &nbsp;&nbsp;
-                                                                /STATE
+                                                            उप नगर /TOWN &nbsp;&nbsp;
+                                                            राज्य/STATE
                                                                 </div>
                                                         </td>
                                                     </tr>
@@ -1474,11 +1505,14 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                                     <div className="table-responsive">
                                                     
                                                     <table class="table table-bordered">
-                                                        <caption style={{ captionSide: 'top', textAlign: 'center' }}>ESI Corporation Temporary Identity Card</caption>
+                                                        <caption style={{ captionSide: 'top', textAlign: 'center' }}>
+                                                        क रा वी निगम अस्थायी पहचान पत्र
+
+                                                            <br/>ESI Corporation Temporary Identity Card</caption>
                                                         <tbody>
                                                         <tr>
                                                             <td >
-                                                                    Name
+                                                                नाम / Name
                                                             </td>
                                                             <td >
                                                                 
@@ -1488,7 +1522,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                         </tr>
                                                             <tr>
                                                                 <td >
-                                                                    /Ins. No.
+                                                                क्रम संख्या/Ins. No.
                                                             </td>
                                                                 <td >
 
@@ -1498,7 +1532,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                             </tr>
                                                             <tr>
                                                                 <td >
-                                                                   /Date of Appointment.
+                                                                नियुक्ति कि तिथि /Date of Appointment.
                                                             </td>
                                                                 <td >
 
@@ -1508,18 +1542,20 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                             </tr>
                                                             <tr>
                                                                 <td >
-                                                                    Branch Office
+                                                                शाखा कार्यालय
+                                                                <br/>Branch Office
 
                                                             </td>
                                                                 <td >
-                                                                   Dispensary
+                                                                औषधालय
+                                                                <br/>Dispensary
                                                                     <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </td>
 
                                                             </tr>
                                                             <tr>
                                                                 <td >
-                                                                    Employer's Code No. & Address
+                                                                नियोजक का कूट संख्या व पता <br/>Employer's Code No. & Address
 
 
                                                             </td>
@@ -1532,7 +1568,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                         </tbody>
                                                     </table>
                                                    <p>
-                                                      Validity :
+                                                    वैधता <br/>Validity :
   
                                                     </p>
 
@@ -1546,7 +1582,9 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 <div className="row">
                                                     <div className="table-responsive">
                                                         <table class="table table-bordered">
-                                                            <caption style={{ captionSide: 'top', textAlign: 'center' }}>(Valid for 3 months from the date of appointment)</caption>
+                                                            <caption style={{ captionSide: 'top', textAlign: 'center' }}>
+                                                            (नियुक्ति कि तिथि 3 मास वैध)<br/>
+                                                            (Valid for 3 months from the date of appointment)</caption>
                                                             <caption style={{ textAlign: 'center' }}>Father Mother & Son Photo</caption>
 
                                                               
@@ -1572,13 +1610,16 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                         <div className="title d-flex">
                                              
                                                      <p>
-                                                        Dated :
-                                                         
+                                            दिनांक
+                                            /Dated :
+                                             
                                                     </p>
-                                            <p style={{marginLeft:'30%'}}>Signature / T.I. of I.P.</p>
+                                        <p style={{ marginLeft: '30%' }}>बीमाकृत व्यक्ति के हस्ताक्षर/अंगूठे का निशान
+/Signature / T.I. of I.P.</p>
 
                                             
-                                            <p style={{ marginLeft: '30%' }}> Signature of B.M. with Seal</p>
+                                        <p style={{ marginLeft: '30%' }}> मोहर सहिल
+ शाखा कार्यालय प्रबंधक के हस्ताक्षर /Signature of B.M. with Seal</p>
                                         </div>
 
 
@@ -1603,12 +1644,14 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
         <div className="col-md-12">
             <div className="border border-dark" style={{marginLeft:'30px', marginRight:'30px'}}>
                 <div className="title p-3">
-                I hereby declare that the particulars given by me are correct to the best of my knowledge and belief. I undertake to intimate the Corporation any changes
+मैं घोषणा करता करती हूँ कि मेरे द्वारा प्रस्तुत किया गया ब्यौरा मेरी जानकारी के अनुसार और विश्वास सही है परिवार सदस्यों में हुए परिवर्तन कि सूचना 15 दिन भीतर करने का वचन भी देता देती
+               <br/> I hereby declare that the particulars given by me are correct to the best of my knowledge and belief. I undertake to intimate the Corporation any changes
 in the membership of my family within 15 days of such change
                 </div>
                 <div className="title d-flex p-3">
                                              
-                                             <p>
+                                    <p>बीमाकृत व्यक्ति के हस्ताक्षर
+                                                 <br/>
                                              Counter Signature by the Employer
                                              <br/>
                                           Signature with seal
@@ -1619,7 +1662,8 @@ in the membership of my family within 15 days of such change
                                     <p style={{marginLeft:'10%'}}>For,<b> Adhaan Solution Pvt. Ltd.</b></p>
                                   
                                   <div style={{marginLeft:'15%',float:'right',paddingRight:'3%',width: '25%',height:'100px'}} className='border border-dark' >                                     
-                                  <p style={{marginLeft:'15%',paddingRight:'3%'}}>Signature/T.I. of IP</p>
+                                        <p style={{ marginLeft: '15%', paddingRight: '3%' }}>बीमाकृत व्यक्ति के हस्ताक्षर/अंगूठे का निशान<br/>
+                                  Signature/T.I. of IP</p>
 
                              </div>
                                  </div>
@@ -1637,26 +1681,50 @@ in the membership of my family within 15 days of such change
                                      <div className="row border border-dark" style={{marginLeft:'auto', marginRight:'auto'}}>
                                      <div className="col-md-12">
                                          <div className="text-center">
-                                         <div className=" font-weight-bold">INSTRUCTION</div>
+                                            <div className=" font-weight-bold">अनुदेश/INSTRUCTION</div>
                                          </div>
                                          <ul  style={{ listStyleType: 'decimal' }}>
-                                        <li>Submission of Form-1 is governed by regulations 11 & 12 of ESI (General) Regulations, 1950. </li>
-                                        <li>"Family" means all or any of the following relatives of an insured person namely:<br/>
+                                            <li>फॉर्म-1 का प्रेषण क रा वी (साधारण) विनियमावली -1950  के विनियम  11 12 अंतर्गत किया जाता है /
+                                            <br/>Submission of Form-1 is governed by regulations 11 & 12 of ESI (General) Regulations, 1950. </li>
+                                            <li>परिवार का अर्थ हैं (1) पति / पत्नी (2) बीमाकृत व्यक्ति की आय पर आश्रित वेद तो या गोद के लिए मस्क बच्चे / अविवाहित पुत्री (3) 2 वर्ष  की आयु तक बीमाकृत व्यक्ति की  पर आश्रित वैध अथवा गोद लिया हुआ वयस्क बच्चा
+                                                शिक्षा प्राप्त कर  रहा हो (4) बीमाकृत व्यक्ति की आय पर  निर्भर  अशक्त बच्चा (5) आश्रित  माता -पिता क. रा. वी. अधिनियम की धारा-2  के अंतर्गत परिभाषित परिभाषित परिवारजन  चिकित्सा देख रेख के हक़दार हैं
+
+
+
+
+ <br/>
+
+                                        "Family" means all or any of the following relatives of an insured person namely:<br/>
                                         (i) a spouse (ii) a minor legitimate or adopted child dependant upon the I.P. (iii) a child who is wholly dependent on the earnings of the I.P. and who is
 (a) receiving education, till he or she attains the age of 21 years (b) an unmarried daughter (iv) a child who is infirm by reason of any physical or mental
 abnormality or injury and is wholly dependant on the earning f the I.P. so long as the infirmity continues (v) dependant parents (Please see Section 2 clause
 11 of the ESI Act 1948 of details)
 
                                          </li>
-                                         <li>Identity Card is Non-transferable. </li>                                       
-                                         <li>Loss of identity card be reported to Employer/Branch Manager immediately.</li> 
-                                         <li>Submission of false information attracts penal action under Section 84 of ESI Act. 1948.</li>
-                                         <li>This form duly filled in must reach the concerned Branch Office within 10 days of appointment of an Employee. Delay attracts penal action under 85 of the
+
+                                            <li>पहचान-पत्र अहस्तांतरणीय  हैं
+                                            <br/> Identity Card is Non-transferable.
+                                              </li>                                       
+                                            <li>पहचान पत्र के ग़ुम की सूचना तुरंत नियोक्ता / शाखा प्रबंधक को दी जानी चाहिए।
+                                             <br/>
+                                             Loss of identity card be reported to Employer/Branch Manager immediately.</li> 
+                                            <li>गलत जानकारी प्रस्तुत करने से ईएसआई अधिनियम की धारा 84 के तहत दंडात्मक कार्रवाई होती है। 1948।
+                                             <br/>
+                                             Submission of false information attracts penal action under Section 84 of ESI Act. 1948.</li>
+                                            <li>विधिवत भरा हुआ यह फॉर्म किसी कर्मचारी की नियुक्ति के 10 दिनों के भीतर संबंधित शाखा कार्यालय तक पहुँच जाना चाहिए। देरी नियोक्ता के खिलाफ अधिनियम के 85 के तहत दंडात्मक कार्रवाई को आकर्षित करती है।
+                                             <br/>
+                                             This form duly filled in must reach the concerned Branch Office within 10 days of appointment of an Employee. Delay attracts penal action under 85 of the
 Act, against employer.</li>     
-                                         <li>As an insured Person you and your dependent family members are entitled to full medical care. The other benefits in cash include (1) Sickness Benefit
+                                            <li>
+
+                                                एक   बीमाकृत व्यक्ति के रूप में आप और आपके आश्रित परिवार के सदस्य पूर्ण चिकित्सा देखभाल के हकदार हैं। नकदी में अन्य लाभों में शामिल हैं (1) बीमारी लाभ (2) अस्थाई विकलांगता लाभ (3) स्थायी विकलांगता लाभ (4) आश्रित लाभ (5) मातृत्व लाभ (महिला कर्मचारियों के मामले में) अंशदायी शर्तों की पूर्ति के अधीन
+                                             <br/>
+                                             As an insured Person you and your dependent family members are entitled to full medical care. The other benefits in cash include (1) Sickness Benefit
 (2) Temporary Disablement benefit (3) Permanent Disablement Benefit (4) Dependents benefit (5) Maternity benefit (in case of women employees)
 subject to fulfillment of contributory conditions</li>
-                                         <li>For more details please visit website of ESIC at www.esic.org.in or contact Regional Office or Branch Office.</li>
+                                            <li>अधिक जानकारी के लिए www.esic.org.in पर ईएसआईसी की वेबसाइट देखें या क्षेत्रीय कार्यालय या शाखा कार्यालय से संपर्क करें।
+                                             <br/>
+                                             For more details please visit website of ESIC at www.esic.org.in or contact Regional Office or Branch Office.</li>
 
                                          </ul>
                                      </div>
@@ -1671,19 +1739,20 @@ subject to fulfillment of contributory conditions</li>
                                          <ul  style={{ listStyleType: 'decimal' }}>
 
                                              <li>
-                                             / Date of Allotment of Ins. No.:___________________________________________________________________
+                                                बीमा संख्या  आवंटन की तिथि / Date of Allotment of Ins. No.:___________________________________________________________________
                                              </li>
                                              <li>
-                                             / Date of Issue of TIC :___________________________________________________________________
+                                                अ.प.प. के जारी करने की तिथि / Date of Issue of TIC :___________________________________________________________________
                                              </li>
                                              <li>
-                                             / Name/No. of Disp.:___________________________________________________________________
+
+                                                औषधालय का नाम / Name/No. of Disp.:___________________________________________________________________
                                              </li>
                                              <li>
-                                             /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate :___________________________________________________________________
+                                                क्या पारस्परिक चिकित्सा व्यवस्था शामिल है? यदि हाँ, तो कृपया सूचित करें /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate :___________________________________________________________________
                                              </li>
                                              <li>
-                                             / Signature of Branch Manager:___________________________________________________________________
+                                                शाखा प्रबंधक का हस्ताक्षर/ Signature of Branch Manager:___________________________________________________________________
                                              </li>
                                              </ul>
 
@@ -1709,26 +1778,30 @@ subject to fulfillment of contributory conditions</li>
                                                  
                                                     
                                                     <tr>
-                                                        <td >
-                                                            Sl. No
+                                                <td >क्रम संख्या
+                                                           <br/> Sl. No
                                                             </td>
                                                         <td >
                                                     नाम/ Name
                                                             </td>
                                                         <td >
-                                                            Date of Birth / Age as on
-                                                            date of filling form
+                                                    फॉर्म भरने तारिख आयु/Date of Birth / Age as on
+                                                    date of filling form
                                                             </td>
                                                         <td >
-                                                            Relationship with the
-                                                            Employee
+
+                                                    कर्मचारी के साथ संबंध
+                                                    / Relationship with the
+                                                    Employee
                                                             </td>
                                                         <td >
-                                                            Whether residing with
-                                                            him / her ?
+                                                    क्या उनके साथ रह रहे हैं
+                                                    / Whether residing with
+                                                    him / her ?
                                                             </td>
                                                         <td >
-                                                            If No, State place of residence
+                                                    यदि  नहीं तो स्थान आवास दर्शाये
+                                                    / If No, State place of residence
                                                             </td>
                                                     </tr>
 
@@ -1754,17 +1827,17 @@ subject to fulfillment of contributory conditions</li>
                                                         <td>
                                                             <div className="text-center">
                                                             <td scope="col" >
-                                                               YES
+                                                            हाँ/YES
                                                             </td>
                                                             <td scope="col">
-                                                                No
+                                                            नहीं/No
                                                             </td>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div className="d-flex">
-                                                                /TOWN &nbsp;&nbsp;
-                                                                /STATE
+                                                        उप नगर/TOWN &nbsp;&nbsp;
+                                                        राज्य/STATE
                                                                 </div>
                                                         </td>
                                                     </tr>
@@ -1889,7 +1962,7 @@ subject to fulfillment of contributory conditions</li>
 hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
                                              <li>
-                                             . I hereby declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
+                                              I hereby declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
                                              </li>
                                              <li>
                                              (a)  My father/mother/parents is/are not dependent on me.
@@ -1898,10 +1971,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                              (b)  my husband's father/mother/parents is/are not dependent on my husband.
                                              </li>
                                              <li>
-                                             . I have excluded my husband from my family by a notice dated the to the Controlling Authority in terms of the proviso to clause (h) of section 2 of the said Act.
+                                              I have excluded my husband from my family by a notice dated the to the Controlling Authority in terms of the proviso to clause (h) of section 2 of the said Act.
                                              </li>
                                              <li>
-                                             . Nomination made herein invalidates my previous nomination.
+                                              Nomination made herein invalidates my previous nomination.
                                              </li>
                                              </ul>
                                              </div>
@@ -2058,13 +2131,13 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                  </div>
                                 </div>
                                 </div>
-                                </div>
+                                </div><br/>
 
                                 {/* gratituty form page 2 */}
                                 <div className="border">
                         < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
                             <div className="col-md-12">
-                            <div style={{marginLeft:'30px', marginRight:'30px'}}>
+                            <div style={{ marginLeft: '5%', marginRight: '5%' }}>
                                 <div className="d-flex" style={{marginTop:'5%'}}>
                                 
                                     <p  style={{marginLeft:'3%'}} >Village .................</p>
@@ -2080,7 +2153,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 <p style={{marginLeft:'3%'}}>State.................</p>
                                 </div>
 
-                                < div className="title d-flex p-3">
+                                < div className="title d-flex p-3" style={{ marginLeft: '1%', marginRight: '1%' }}>
                                              
                                              <p>
                                              Place<br/>Date
@@ -2094,12 +2167,12 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                  <div  className="text-center "> 
                                  <i>Declaration by witnesses</i>
                                                         </div>
-                                                        <div className="title">
+                                                        <div className="title" style={{marginLeft:'3%'}}>
                                                         Nomination signed/thumb impressed before me.
                                                         </div>
 
                                </div>
-                               < div className="title d-flex p-3">
+                               < div className="title d-flex p-3" style={{marginLeft:'6%', marginRight:'5%'}}>
                                              
                                              <p>
                                              Name in full and full <br/>address of witnesses
@@ -2108,13 +2181,66 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                             </p>
                                     <p style={{marginLeft:'auto'}}> Signature of witnesses.</p>
                                   
-                                 
-                                 </div>
-
-
                                 </div>
-                                </ div>
+                            <div className="title d-flex p-3" style={{ marginLeft: '11%', marginRight: '20%'}}>
+                            <p>
+                                1<br />2 </p>
+                                <p style={{ marginLeft: 'auto' }}>  1<br />2
+
+
+                                            </p>
                             </div>
+                            < div className="title d-flex p-3" style={{ marginLeft: '10%', marginRight: '10%' }}>
+                                
+                                <p>
+                                    Place<br />Date
+
+
+                                            </p>
+                               
+
+
+                            </div>
+                            <div className="text-center ">
+                                <i>Certificate by the employer</i>
+                            </div><br/>
+                            <div className="title" style={{ marginLeft: '7%' }}>
+                                Certified that the particulars of the above nomination have been verified and recorded in this establishment.
+                                
+                                <div className="mt-3">
+                                    Employer's Reference No., if any.
+
+                                                        </div>
+                                                        </div>
+                            <div className="title d-flex p-3 mt-3" style={{ marginLeft: '11%', marginRight: '10%' }}>
+                                <br/>
+                                <br/>
+                                <p> Date </p>
+                                <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br/>Designation
+                               <br/> <br />Name and address of establishment or rubber stamp thereof
+
+
+
+                                            </p>
+                            </div>
+                            <div className="text-center mt-3 ">
+                                <i>Acknowledgement by the employee</i>
+                            </div>
+                            < div className="title d-flex p-3 mt-3" style={{ marginLeft: '10%', marginRight: '10%' }}>
+                                             
+                                             <p>
+                                             Date:
+                                                                                          
+                                            </p> 
+                                <p  style={{ marginLeft: '60%' }}>Signature of the employee</p>
+                                  
+                                 
+                                 </div> 
+                           
+
+                                </div><br/>
+                    </ div><br />
+                </div><br />
                                 
 
 
