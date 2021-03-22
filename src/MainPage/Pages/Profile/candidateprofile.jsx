@@ -1116,9 +1116,11 @@ export default class EmployeeProfile extends Component {
 
           {/* /Page Header */}
           <div className="card mb-0">
+
             <div className="col-auto float-right ml-auto">
               <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview</button>
             </div>
+
             <div className="card-body">
               <div className="row">
                 <div className="col-md-12">
@@ -1236,8 +1238,9 @@ export default class EmployeeProfile extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 line-tabs">
                 <ul className="nav nav-tabs nav-tabs-bottom">
                   <li className="nav-item"><a href="#emp_profile" data-toggle="tab" className="nav-link active">Profile</a></li>
-                  {/* <li className="nav-item"><a href="#emp_projects" data-toggle="tab" className="nav-link">PF</a></li>
-                      <li className="nav-item"><a href="#bank_statutory" data-toggle="tab" className="nav-link">ESIC</a></li> */}
+                  <li className="nav-item"><a href="/app/profile/declaration-form" data-toggle="tab" className="nav-link">PF</a></li>
+                  <li className="nav-item"><a href="/app/profile/Esic-declrationForm" data-toggle="tab" className="nav-link">ESIC</a></li>
+                  <li className="nav-item"><a href="/app/profile/Gratituty-form" data-toggle="tab" className="nav-link">GRATITUTY</a></li>
                 </ul>
               </div>
             </div>

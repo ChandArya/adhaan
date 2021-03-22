@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import {Table} from 'react-table';
 import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
 // var axios = require('axios');
+
+
+
+
+const ref = React.createRef();
 class DeclrationForm extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +18,8 @@ class DeclrationForm extends Component {
 
 
     render() {
+        const candidate_name = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+
         const candidate_doc_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
         const candidate_dob_list = [1, 2, 3, 4, 5, 6,7,8]
         const candidate_name_list = [1, 2, 3]
@@ -26,6 +33,57 @@ class DeclrationForm extends Component {
         const passport_valid_till = [1, 2, 3, 4, 5, 6, 7, 8]
         const emp_code_no = [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16,17,18,19,20]
         const pin_code = [1, 2, 3, 4, 5, 6]
+
+        // var otherdetails = {
+        //     "name": '', "dl_no": "", "place_of_issue": "", "valid_up_to": "", "vehicle_no": "",
+        //     "pan_card_no": "", "eid_no": "", "aadhaar_no": "", "pf_no": '', "uan": "", "esic_no": "", "esic_name": "", "esic_address": ""
+        // }
+
+        // try {
+        //     console.log(this.state)
+        //     console.log("twinkle", otherdetails);
+        //     console.log("twinkle", otherdetails);
+        //     otherdetails = {
+        //         "name": this.state.otherdetails.name, "dl_no": this.state.otherdetails.dl_no,
+        //         "place_of_issue": this.state.otherdetails.place_of_issue, "valid_up_to": this.state.otherdetails.valid_up_to,
+        //         "vehicle_no": this.state.otherdetails.vehicle_no, "pan_card_no": this.state.otherdetails.pan_card_no,
+        //         "eid_no": this.state.otherdetails.eid_no, "aadhaar_no": this.state.otherdetails.aadhaar_no,
+        //         "pf_no": this.state.otherdetails.pf_no, "uan": this.state.otherdetails.uan,
+        //         "esic_no": this.state.otherdetails.esic_no, "esic_name": this.state.otherdetails.esic_name,
+        //         "esic_address": this.state.otherdetails.esic_address
+        //     }
+        // }
+
+        // catch (err) {
+        //     console.log("twinkle", err);
+        //     console.log(this.state)
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         return (
 
             <div className="container" style={{
@@ -105,14 +163,14 @@ class DeclrationForm extends Component {
 
                                 <div className="mt-3" style={{ marginLeft: '30px' }}>
                                     <div style={{ display: 'inline-flex' }}>
-                                        {candidate_doc_list.map(document => (
+                                                    {candidate_name.map(document => (
 
                                             <input  key={document.key} type="text" style={{ width: '4%' }}></input>
                                         ))}
                                     </div><br></br>
                                     <div style={{ display: 'inline-flex', marginTop: '-7px' }}>
                                         {candidate_doc_list.map(document => (
-                                            <input  key={document.key} type="text" style={{ width: '4%' }}></input>
+                                            <input key={document.key} type="text" style={{ width: '4%' }}></input>
                                             
                                         ))}<br />
 
@@ -965,7 +1023,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
      <div className="row">
                                <div className="tiitle">
                      
-                                    <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
+                                    <ul  className="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
                                         <li>THE MEMBER Mr./Ms./Mrs .............................. HAS JOINED ON ........................ AND HAS BEEN
                                         ALLOTTED PF MEMBER ID  ...................................................
 
@@ -1086,7 +1144,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                        <td colspan="4" scope="col">(क)बीमाकृत व्यक्ति  का विवरण
+                                                        <td colSpan="4" scope="col">(क)बीमाकृत व्यक्ति  का विवरण
                                                             <br />(A) INSURED PERSON'S PARTICULARS</td>
                                                            
                                                         </tr>
@@ -1210,7 +1268,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                        <td colspan="4" scope="col">(ब)  नियोजक का विवरण
+                                                        <td colSpan="4" scope="col">(ब)  नियोजक का विवरण
  <br/>
                                                             (B) EMPLOYER'S PARTICULARS</td>
 
@@ -1246,7 +1304,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                        <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
+                                                        <td colSpan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
                                                                 <b>Adhaan Solution Pvt. Ltd</b><br /><br />
                                                                 <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width:'100%'}} /><br/>
                                                                 
@@ -1278,7 +1336,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                        <td colspan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
+                                                        <td colSpan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
                                                                 <b>Name & Address of the Employer</b><br /><br />
                                                                 <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                          <br/>
@@ -1507,7 +1565,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 
                                                                     <div className="table-responsive">
                                                     
-                                                    <table class="table table-bordered">
+                                                    <table className="table table-bordered">
                                                         <caption style={{ captionSide: 'top', textAlign: 'center' }}>
                                                         क रा वी निगम अस्थायी पहचान पत्र
 
@@ -1584,7 +1642,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <div className="col-md-8">
                                                 <div className="row">
                                                     <div className="table-responsive">
-                                                        <table class="table table-bordered">
+                                                        <table className="table table-bordered">
                                                             <caption style={{ captionSide: 'top', textAlign: 'center' }}>
                                                             (नियुक्ति कि तिथि 3 मास वैध)<br/>
                                                             (Valid for 3 months from the date of appointment)</caption>
