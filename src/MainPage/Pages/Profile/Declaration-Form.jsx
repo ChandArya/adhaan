@@ -1578,10 +1578,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <p style={{marginLeft:'30%'}}>Signature / T.I. of I.P.</p>
 
                                             
-                                            <p style={{ marginLeft: '30%' }}> Signature of B.M. with Seal
-
-                                             
-                                                    </p>
+                                            <p style={{ marginLeft: '30%' }}> Signature of B.M. with Seal</p>
                                         </div>
 
 
@@ -1601,11 +1598,533 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
 
 
+                <div className="border">
+                    < div  className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+        <div className="col-md-12">
+            <div className="border border-dark" style={{marginLeft:'30px', marginRight:'30px'}}>
+                <div className="title p-3">
+                I hereby declare that the particulars given by me are correct to the best of my knowledge and belief. I undertake to intimate the Corporation any changes
+in the membership of my family within 15 days of such change
+                </div>
+                <div className="title d-flex p-3">
+                                             
+                                             <p>
+                                             Counter Signature by the Employer
+                                             <br/>
+                                          Signature with seal
+
+
+                                                 
+                                            </p>
+                                    <p style={{marginLeft:'10%'}}>For,<b> Adhaan Solution Pvt. Ltd.</b></p>
+                                  
+                                  <div style={{marginLeft:'15%',float:'right',paddingRight:'3%',width: '25%',height:'100px'}} className='border border-dark' >                                     
+                                  <p style={{marginLeft:'15%',paddingRight:'3%'}}>Signature/T.I. of IP</p>
+
+                             </div>
+                                 </div>
+                                < div className="title d-flex p-3">
+                                             
+                                             <p>
+                                             Dated:.......................
+                                                                                          
+                                            </p>
+                                    <p style={{marginLeft:'15%'}}><b> Authorised Signature</b></p>
+                                  
+                                 
+                                 </div>
+                                
+                                     <div className="row border border-dark" style={{marginLeft:'auto', marginRight:'auto'}}>
+                                     <div className="col-md-12">
+                                         <div className="text-center">
+                                         <div className=" font-weight-bold">INSTRUCTION</div>
+                                         </div>
+                                         <ul  style={{ listStyleType: 'decimal' }}>
+                                        <li>Submission of Form-1 is governed by regulations 11 & 12 of ESI (General) Regulations, 1950. </li>
+                                        <li>"Family" means all or any of the following relatives of an insured person namely:<br/>
+                                        (i) a spouse (ii) a minor legitimate or adopted child dependant upon the I.P. (iii) a child who is wholly dependent on the earnings of the I.P. and who is
+(a) receiving education, till he or she attains the age of 21 years (b) an unmarried daughter (iv) a child who is infirm by reason of any physical or mental
+abnormality or injury and is wholly dependant on the earning f the I.P. so long as the infirmity continues (v) dependant parents (Please see Section 2 clause
+11 of the ESI Act 1948 of details)
+
+                                         </li>
+                                         <li>Identity Card is Non-transferable. </li>                                       
+                                         <li>Loss of identity card be reported to Employer/Branch Manager immediately.</li> 
+                                         <li>Submission of false information attracts penal action under Section 84 of ESI Act. 1948.</li>
+                                         <li>This form duly filled in must reach the concerned Branch Office within 10 days of appointment of an Employee. Delay attracts penal action under 85 of the
+Act, against employer.</li>     
+                                         <li>As an insured Person you and your dependent family members are entitled to full medical care. The other benefits in cash include (1) Sickness Benefit
+(2) Temporary Disablement benefit (3) Permanent Disablement Benefit (4) Dependents benefit (5) Maternity benefit (in case of women employees)
+subject to fulfillment of contributory conditions</li>
+                                         <li>For more details please visit website of ESIC at www.esic.org.in or contact Regional Office or Branch Office.</li>
+
+                                         </ul>
+                                     </div>
+
+                                 </div>
+
+                                 <div className="row " style={{marginLeft:'auto', marginRight:'auto'}}>
+                                     <div className="col-md-12">
+                                         <div className="text-center">
+                                         <div className=" font-weight-bold">FOR BRANCH OFFICE USE ONLY</div>
+                                         </div><br/>
+                                         <ul  style={{ listStyleType: 'decimal' }}>
+
+                                             <li>
+                                             / Date of Allotment of Ins. No.:___________________________________________________________________
+                                             </li>
+                                             <li>
+                                             / Date of Issue of TIC :___________________________________________________________________
+                                             </li>
+                                             <li>
+                                             / Name/No. of Disp.:___________________________________________________________________
+                                             </li>
+                                             <li>
+                                             /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate :___________________________________________________________________
+                                             </li>
+                                             <li>
+                                             / Signature of Branch Manager:___________________________________________________________________
+                                             </li>
+                                             </ul>
+
+
+
+
+
+
+
+                                         </div>
+                                        </div>
+                                        <hr className="striped-border" style={ { border: '1px dashed #000', width: '100%'} }></hr>
+                                
+
+
+
+                                        <div className='table-responsive'>
+                                            <table className="table table-bordered">
+                                                <tbody>
+                                                  
+                                               
+                                               
+                                                 
+                                                    
+                                                    <tr>
+                                                        <td >
+                                                            Sl. No
+                                                            </td>
+                                                        <td >
+                                                    नाम/ Name
+                                                            </td>
+                                                        <td >
+                                                            Date of Birth / Age as on
+                                                            date of filling form
+                                                            </td>
+                                                        <td >
+                                                            Relationship with the
+                                                            Employee
+                                                            </td>
+                                                        <td >
+                                                            Whether residing with
+                                                            him / her ?
+                                                            </td>
+                                                        <td >
+                                                            If No, State place of residence
+                                                            </td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                     
+                                                            <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                            </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <div className="text-center">
+                                                            <td scope="col" >
+                                                               YES
+                                                            </td>
+                                                            <td scope="col">
+                                                                No
+                                                            </td>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div className="d-flex">
+                                                                /TOWN &nbsp;&nbsp;
+                                                                /STATE
+                                                                </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+
+                                                        </table>
+                                                        <br/>
+                                                       
+
+                                                      </div>
+
+</div><br/>
+</div><br/>
+
+</ div><br/>
+</div><br/>
+{/* {gratituty form} */}
+<div className="border">
+                        < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                            <div className="col-md-12">
+                            <div style={{marginLeft:'30px', marginRight:'30px'}}>
+                                <div className="title  text-center font-weight-bold">
+                                    <p>
+                                  FORM 'F'</p>
+                                
+
+                                   <p style={{fontWeight:'normal'}}> [See sub-rule(1) of rule 6]</p>
+                                    
+                                   <p> Nomination</p>
+                                </div>
+
+                               <div  className="text-center"> 
+                               To........................................................................................</div>
+                               
+                               <div  className="text-center"> 
+                               [Give here name or description of the establishment with full address]</div>
+                             <div > 
+                             <ul  style={{listStyleType:'decimal'}}>
+                             <li>
+                             I. Shri/Shrimati/Kumari whose particulars are given in the statement below,........................&nbsp; &nbsp;
+                             <sub>[Name in full here]</sub>
+hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
+</li>
+                                             <li>
+                                             . I hereby declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
+                                             </li>
+                                             <li>
+                                             (a)  My father/mother/parents is/are not dependent on me.
+                                             </li>
+                                             <li>
+                                             (b)  my husband's father/mother/parents is/are not dependent on my husband.
+                                             </li>
+                                             <li>
+                                             . I have excluded my husband from my family by a notice dated the to the Controlling Authority in terms of the proviso to clause (h) of section 2 of the said Act.
+                                             </li>
+                                             <li>
+                                             . Nomination made herein invalidates my previous nomination.
+                                             </li>
+                                             </ul>
+                                             </div>
+
+
+                                             <div  className="text-center">
+                                             <p className="font-weight-bold"> Nominee(s)</p>
+                                              <div className='table-responsive'>
+                                            <table className="table table-bordered">
+                                                <tbody>
+                                                  
+                                               
+                                               
+                                                 
+                                                    
+                                                    <tr>
+                                                        <td >
+                                                        Name in full with full address of nominee(s)
+                                                            </td>
+                                                        <td >
+                                                        Relationship with the employee
+                                                            </td>
+                                                        <td >
+                                                        Age of nominee
+                                                            </td>
+                                                        <td >
+                                                        the gratuity will be shared
+
+                                                            </td>
+                                                       
+                                                         </tr>
+
+
+                                                    <tr>
+                                                     
+                                                            <td >
+                                                                
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                            </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                      
+                                                      
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                       
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                       
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+
+                                                        </td>
+                                                     
+                                                    </tr>
+
+                                                </tbody>
+
+                                                        </table>
+                                                        <br/>
+                                                          </div>
+                                                     
+                            
+                                </div>
+                                <div  className="text-center font-weight-bold"> 
+                                                      Statement
+                                                        </div>
+                                                        
+                                                        <ul  style={{listStyleType:'decimal'}}>
+                             <li>
+                             1.	Name of employee in full.</li>
+                                             <li>Sex.
+                                             </li>
+                                             <li>
+                                             Religion.
+                                             </li>
+                                             <li>
+                                             Whether unmarried/married/widow/widower.
+                                             </li>
+                                             <li>
+                                             Department/Branch/Section where employed.
+                                             </li>
+                                             <li>
+                                             Post held with Ticket or Serial No., if any.
+                                             </li>
+                                             <li>
+                                        	Date of appointment.
+                                             </li>
+                                             <li>
+                                             Permanent address.</li>
+                                             </ul>
+                                             
+                                                 </div>
+                                </div>
+                                </div>
+                                </div>
+
+                                {/* gratituty form page 2 */}
+                                <div className="border">
+                        < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                            <div className="col-md-12">
+                            <div style={{marginLeft:'30px', marginRight:'30px'}}>
+                                <div className="d-flex" style={{marginTop:'5%'}}>
+                                
+                                    <p  style={{marginLeft:'3%'}} >Village .................</p>
+                                    <p style={{marginLeft:'3%'}}>Thana  .................</p>
+                                    <p style={{marginLeft:'3%'}}>Sub-division .................</p>
+                                    <p style={{marginLeft:'3%'}}>Post Office.................</p><br/>
+                                   
+                                    </div>
+                                    <div className="d-flex">
+                                
+                              
+                                <p style={{marginLeft:'3%'}}>District .................</p>
+                                <p style={{marginLeft:'3%'}}>State.................</p>
+                                </div>
+
+                                < div className="title d-flex p-3">
+                                             
+                                             <p>
+                                             Place<br/>Date
+
+                                                                                          
+                                            </p>
+                                    <p style={{marginLeft:'auto'}}> Signature/Thumb impression of the employee</p>
+                                  
+                                 
+                                 </div>
+                                 <div  className="text-center "> 
+                                 <i>Declaration by witnesses</i>
+                                                        </div>
+                                                        <div className="title">
+                                                        Nomination signed/thumb impressed before me.
+                                                        </div>
+
+                               </div>
+                               < div className="title d-flex p-3">
+                                             
+                                             <p>
+                                             Name in full and full <br/>address of witnesses
+
+                                                                                          
+                                            </p>
+                                    <p style={{marginLeft:'auto'}}> Signature of witnesses.</p>
+                                  
+                                 
+                                 </div>
+
+
+                                </div>
+                                </ div>
+                            </div>
+                                
+
 
 
 
 
                 {/* container close */}</div >
+
+
+
                 
 
 
