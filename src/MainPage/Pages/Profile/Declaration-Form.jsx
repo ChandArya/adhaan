@@ -3,7 +3,10 @@ import {Table} from 'react-table';
 import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
 // var axios = require('axios');
 class DeclrationForm extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = this.props.location.state
+    }
 
 
 
