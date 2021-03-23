@@ -144,25 +144,33 @@ html {
 
 
 
-/* font-family: 'CircularStd', sans-serif,' Nospace'';
-	font-size: .9375rem;
-	color: #1f1f1f;
-	background-color: #f7f7f7;
-	min-height: 100%;
-	overflow-x: hidden;
-	word-spacing: -5px; */
+
 
 
 body {
 
 	
-	font-size: .9375rem;
+	/* font-size: .9375rem;
 	color: #1f1f1f;
 	background-color: #f7f7f7;
 	min-height: 100%;
 	overflow-x: hidden;
 	word-spacing: 0;
-	font-weight: 600;
+	font-weight: 600; */
+
+
+
+
+
+ font-family: 'CircularStd', sans-serif,'Nospace';
+	font-size: .9375rem;
+	color: #1f1f1f;
+	background-color: #f7f7f7;
+	min-height: 100%;
+	overflow-x: hidden;
+	word-spacing: -5px; 
+
+
 }
 h1,
 h2,
@@ -302,11 +310,9 @@ select.form-control[multiple], select.form-control[size] {
 -----------------------*/
 
 
-/* @media only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px) 
-{
-	
-} */
+
+
+
 
 .table {
 	color: #333;
@@ -7891,9 +7897,21 @@ ul.comment-list li ul.children {
 		display: none;
 	}
 }
+.table-bordered td, .table-bordered th {
+    border: 1px solid black;
+}
+/* @media only screen and (max-width: 767.98px) {
+	.declration-form{
+		display:flex;
+	}
+} */
 @media only screen and (max-width: 767.98px) {
 	body {
 		font-size: 0.875rem;
+		
+		display:flex;
+	
+		/* {changes by twinkle} */
 	}
 	h1, .h1 {
 		font-size: 2rem;
