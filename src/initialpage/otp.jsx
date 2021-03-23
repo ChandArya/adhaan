@@ -132,7 +132,7 @@ class OTPscreen extends Component {
     axios(config1)
       .then(function (ee) {
         self.setState({ error: ee.data.message })
-        window.location.reload(false);
+        // window.location.reload(false);
         console.log("resend otp", ee)
         //  datareturn=ee
 

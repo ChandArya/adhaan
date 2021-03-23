@@ -1386,8 +1386,7 @@ const { crop, croppedImageUrl, src } = this.state;
               <div className="col-lg-12 col-md-12 col-sm-12 line-tabs">
                 <ul className="nav nav-tabs nav-tabs-bottom">
 
-                  <li className="nav-item"><a href="#emp_profile" data-toggle="tab" className="nav-link active">Profile</a></li>
-
+                
                   <li className="nav-item"><a className="nav-link active">Profile</a></li>
                   <li className="nav-item"><a data-toggle="tab" onClick={this.pfClick} className="nav-link">PF</a></li>
                   <li className="nav-item"><a data-toggle="tab" onClick={this.esiClick} className="nav-link">ESIC</a></li>

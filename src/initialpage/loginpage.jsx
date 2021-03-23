@@ -38,7 +38,7 @@ class Loginpage extends Component {
     // localStorage.clear();
   }
   resend = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     // console.log(this.props)
     // console.log(this.props.location.state)
     this.setState({ f_otp: '' });
@@ -177,7 +177,8 @@ class Loginpage extends Component {
                 {
                   label: 'Yes',
                   onClick: () => {
-                    let path = 'app/profile/candidate-profile';
+                    let path = '../../../app/profile/candidate-profile';
+                    localStorage.setItem("count",2);
                     self.props.history.push({
                       pathname: path,
                       state: self.state
@@ -189,6 +190,7 @@ class Loginpage extends Component {
                 {
                   label: 'No',
                   onClick: () => {
+                    
                     let path = 'login';
                     self.props.history.push({
                       pathname: path,
