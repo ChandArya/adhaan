@@ -14,7 +14,10 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import Circle from 'react-circle';
 import { countries } from 'country-data-list';
 import $ from "jquery";
+import ReactDOM from 'react-dom';
 
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import worldMapData from 'city-state-country'
 // You can also use
 import { lookup } from 'country-data-list';
@@ -63,7 +66,7 @@ export default class EmployeeProfile extends Component {
       zone: '',
       u_state: '',
       source: '',
-      user: this.props.location.state.user,
+      user: localStorage.getItem("can"),
       created_by: 1,
       isd: "91",
       mobile_no: '',
@@ -130,6 +133,12 @@ export default class EmployeeProfile extends Component {
       resume_file: '',
       docname: '',
       error1: "",
+      src: null,
+      crop: {
+        unit: '%',
+        width: 30,
+        aspect: 16 / 9,
+      },
 
       // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
@@ -142,6 +151,102 @@ export default class EmployeeProfile extends Component {
 
 
   }
+
+
+  onSelectFile = e => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener('load', () =>
+        this.setState({ src: reader.result })
+      );
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    try {
+      console.log("files", e.target.files)
+      var files = e.target.files;
+      console.log("files", JSON.stringify(files))
+      const value = files[0];
+      console.log("files", value.size)
+      if (value.size > 10048576) {
+        alert("File is too big!");
+        this.value = "";
+
+      } else {
+        this.setState({ resume_file: value });
+      }
+      // alert("got data"+value)
+
+
+    } catch (err) {
+      console.log("error", err)
+      // document.getElementById("demo").innerHTML = err.message;
+    }
+  };
+
+  // If you setState the crop in here you should return false.
+  onImageLoaded = image => {
+    this.imageRef = image;
+  };
+
+  onCropComplete = crop => {
+    this.makeClientCrop(crop);
+  };
+
+  onCropChange = (crop, percentCrop) => {
+    // You could also use percentCrop:
+    // this.setState({ crop: percentCrop });
+    this.setState({ crop });
+  };
+
+  async makeClientCrop(crop) {
+    if (this.imageRef && crop.width && crop.height) {
+      const croppedImageUrl = await this.getCroppedImg(
+        this.imageRef,
+        crop,
+        'newFile.jpeg'
+      );
+      this.setState({ croppedImageUrl });
+    }
+  }
+
+  getCroppedImg(image, crop, fileName) {
+    const canvas = document.createElement('canvas');
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(blob => {
+        if (!blob) {
+          //reject(new Error('Canvas is empty'));
+          console.error('Canvas is empty');
+          return;
+        }
+        blob.name = fileName;
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+      }, 'image/jpeg');
+    });
+  }
+
+
+
+
   isBlank = (data) => {
     if (data == '' || data == "" || data == null || data == 'null') {
       return true
@@ -155,10 +260,7 @@ export default class EmployeeProfile extends Component {
     this.addProfileData(this, this.state)
 
   }
-  // shouldComponentUpdate=(nextProps, nextState)=> {
-  //   if(this.props.location.path == nextProps.location.path) return false;
-  //   return true;pre
-  // }
+  
   addPersonalInfoData = (e) => {
     e.preventDefault();
     console.log("clickfound")
@@ -686,7 +788,7 @@ export default class EmployeeProfile extends Component {
     // let val = e.target.dataset.value;
     console.log(value);
 
-    this.setState({ docname: value })
+    this.setState({ docname: value,crop:'', croppedImageUrl:'', src:'' })
   }
   setFamilyAdhar = (e) => {
     const re = /^[0-9]+$/;
@@ -1145,7 +1247,7 @@ export default class EmployeeProfile extends Component {
 
 
 
-
+const { crop, croppedImageUrl, src } = this.state;
     return (
 
 
@@ -1174,7 +1276,7 @@ export default class EmployeeProfile extends Component {
 
                     <div className="profile-img-wrap">
                       <div className="profile-img">
-                        <a href="#"><img alt="" src={this.state.profilepic} ></img></a>
+                        <a href="#"><img alt="" src={this.state.profilepic?this.state.profilepic:Avatar_02} ></img></a>
                         <div className="precent_box">
                           <Circle height={100}
                             width='100px'
@@ -1204,18 +1306,18 @@ export default class EmployeeProfile extends Component {
                       <div className="row">
                         <div className="col-md-5">
                           <div className="profile-info-left">
-                            <h3 className="user-name m-t-0 mb-0">{this.state.name}</h3>
-                            <h6 className="text-muted">Father Name: {this.state.father_name}</h6>
-                            <small className="text-muted">{this.state.designation}</small>
+                            {/* <h3 className="user-name m-t-0 mb-0">{this.state.name}</h3> */}
+                            {/* <h6 className="text-muted">Father Name: {this.state.father_name}</h6>
+                            <small className="text-muted">{this.state.designation}</small> */}
                             <ul className="personal-info">
                               <li>
-                                <div className="title">Location: </div>
-                                <div className="text">{this.state.job_location}</div>
+                                <div className="title"> Name: </div>
+                                <div className="text">{this.state.name}</div>
                               </li>
                               <br></br>
                               <li>
-                                <div className="title">Department: </div>
-                                <div className="text">{this.state.department}</div>
+                                <div className="title">Father Name: </div>
+                                <div className="text">{this.state.father_name}</div>
                               </li>
                               <br></br>
                               <li>
@@ -1283,10 +1385,13 @@ export default class EmployeeProfile extends Component {
             <div className="row user-tabs">
               <div className="col-lg-12 col-md-12 col-sm-12 line-tabs">
                 <ul className="nav nav-tabs nav-tabs-bottom">
+
+                
                   <li className="nav-item"><a className="nav-link active">Profile</a></li>
                   <li className="nav-item"><a data-toggle="tab" onClick={this.pfClick} className="nav-link">PF</a></li>
                   <li className="nav-item"><a data-toggle="tab" onClick={this.esiClick} className="nav-link">ESIC</a></li>
                   <li className="nav-item"><a data-toggle="tab" onClick={this.gratitutyClick} className="nav-link">GRATITUTY</a></li>
+
                 </ul>
               </div>
             </div>
@@ -1336,7 +1441,7 @@ export default class EmployeeProfile extends Component {
                 <div className="col-md-6 d-flex">
                   <div className="card profile-box flex-fill">
                     <div className="card-body">
-                      <h3 className="card-title">References<a href="#" className="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i className="fa fa-pencil" /></a></h3>
+                      <h3 className="card-title">Alternate Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i className="fa fa-pencil" /></a></h3>
                       {can_reference.map(reference => (
                         <ul className="personal-info" key={reference.key}>
                           <li>
@@ -2099,15 +2204,17 @@ export default class EmployeeProfile extends Component {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Birth Date<DatePicker className="form-control floating datetimepicker"
+                            <label>Birth Date<span className="text-danger">*</span><DatePicker className="form-control floating datetimepicker"
                               disabledDate={(current) => {
 
-                                const start = Moment();
+                                const start = Moment().subtract(18, 'years');
                                 return current > start;
                               }}
-                              onChange={(e) => this.setDob(e)} value={
+                              onChange={(e) => this.setDob(e)}
+                              
+                               value={
 
-                                this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment()}></DatePicker> </label>
+                                this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment().subtract(18, 'years')}>{this.state.dob ? '' : "Select Date"}</DatePicker> </label>
                           </div>
                           {/* <label>{this.state.dob} </label> */}
                         </div>
@@ -2317,31 +2424,31 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Email</label>
+                        <label>Email <span className="text-danger">*</span></label>
                         <input type="text" defaultValue={this.state.c_email} className="form-control" onChange={this.setEmail} />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Department <span className="text-danger">*</span></label>
-                        <input type="text" defaultValue={this.state.department} className="form-control" onChange={this.setDepartment} />
+                        <input type="text" readOnly defaultValue={this.state.department} className="form-control" onChange={this.setDepartment} />
                       </div>
-                      {this.isBlank(this.state.department) ?
+                      {/* {this.isBlank(this.state.department) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
-                      }
+                      } */}
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Designation <span className="text-danger">*</span></label>
-                        <input type="text" defaultValue={this.state.designation} className="form-control" onChange={this.setDesigination} />
+                        <input type="text" defaultValue={this.state.designation} className="form-control" readOnly onChange={this.setDesigination} />
                       </div>
-                      {this.isBlank(this.state.designation) ?
+                      {/* {this.isBlank(this.state.designation) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
-                      }
+                      } */}
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
@@ -2718,12 +2825,26 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-12">
                       <div className="form-group row">
                         <label className="col my-auto">{this.state.docname}</label>
-                        <input type="file" className="form-control col" onChange={(event) => this.onFileChangeForDoc(event)} /><label className="col my-auto">Max{ } Size{ } 10{ } mb</label>
+                        <input type="file" className="form-control col" onChange={(event) => this.onSelectFile(event)} /><label className="col my-auto">Max{ } Size{ } 10{ } mb</label>
                       </div>
 
                     </div>
-
+                    {src && (
+          <ReactCrop
+            src={src}
+            crop={crop}
+            ruleOfThirds
+            style={{ maxWidth: '30%',maxHeight:'30%'}}
+            onImageLoaded={this.onImageLoaded}
+            onComplete={this.onCropComplete}
+            onChange={this.onCropChange}
+          />
+        )}
+        {croppedImageUrl && (
+          <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
+        )}
                   </div>
+                  
                   <div className="submit-section">
                     <button className="btn btn-primary submit-btn" onClick={this.uploadDoc}>Submit</button>
                   </div>
@@ -2770,7 +2891,16 @@ export default class EmployeeProfile extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <label>Relationship <span className="text-danger">*</span></label>
-                              <input className="form-control" type="text" value={this.state.family_relation} onChange={this.setFamilyRelation} />
+                              <select className="mb-3 form-control" value={this.state.family_relation} onChange={this.setFamilyRelation} >
+                              {/* <option value='0'>Select Education Level </option> */}
+                              <option value="0">Select Relationship</option>
+                              <option value="mother">Mother</option>
+                              <option value="father">Father</option>
+                              <option value="spouse">Spouse</option>
+                              <option value="son"> Son</option>
+                              <option value="daughter">Daughter</option>
+                            </select>
+                              {/* <input className="form-control" type="text" value={this.state.family_relation} onChange={this.setFamilyRelation} /> */}
                             </div>
 
 
@@ -2833,7 +2963,7 @@ export default class EmployeeProfile extends Component {
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">References</h5>
+                <h5 className="modal-title">Alternate Details</h5>
                 <button type="button" className="close" type="button" className="close" onClick={this.closeRef}>
                   <span aria-hidden="true">×</span>
                 </button>
@@ -3079,7 +3209,7 @@ export default class EmployeeProfile extends Component {
                           </div>
                           <div className="col-md-6">
                             <div className="form-group form-focus focused">
-                              <div className="cal-icon">
+                              <div className="">
                                 <input type="text" className="form-control floating datetimepicker" onChange={this.setPassingYear} value={this.state.passing_year} />
                               </div>
                               <label className="focus-label">Year of passing<span className="text-danger">*</span></label>
@@ -3328,12 +3458,11 @@ export default class EmployeeProfile extends Component {
 
     // this.isBlank(data.name)
     if (this.isBlank(data.name) || this.isBlank(data.father_name) ||
-      this.isBlank(data.designation) ||
-      this.isBlank(data.department) || this.isBlank(data.c_country) || this.isBlank(data.gender) ||
+       this.isBlank(data.c_country) || this.isBlank(data.gender) ||
       this.isBlank(data.c_state) || this.isBlank(data.c_city) ||
       this.isBlank(data.c_full_address) ||
       this.isBlank(data.c_pin_code) ||
-      this.isBlank(data.p_country) || this.isBlank(data.p_state) ||
+      this.isBlank(data.p_country) || this.isBlank(data.p_state) ||this.isBlank(data.c_email)||
       this.isBlank(data.p_city) ||
       this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)
 
@@ -3463,6 +3592,8 @@ export default class EmployeeProfile extends Component {
 
     console.log("called")
     if (this.isBlank(data.name) || this.isBlank(data.relation)) {
+      self.setState({ error: "Please fill all required details" })
+    }else if( data.relation=="0"){
       self.setState({ error: "Please fill all required details" })
     } else {
       self.setState({
@@ -3597,7 +3728,7 @@ export default class EmployeeProfile extends Component {
   }
   //upload doc
   documentUpload = (self, data, document_type, candidate) => {
-    // console.log("dadsggshfdhgdsghffsd"+JSON.stringify(self.state))
+    console.log("dadsggshfdhgdsghffsd"+JSON.stringify(data))
     self.setState({ error: "Please wait file is uploading" })
     let formData = new FormData();
     formData.append("document_type", "" + document_type)
@@ -3622,7 +3753,8 @@ export default class EmployeeProfile extends Component {
           //let path='app/profile/candidate-profile';
           alert(document_type + ' uploaded successfully  ✅')
           self.apicall();
-          self.closeDocument();
+           self.closeDocument();
+           window.location.reload(false);
 
         }
       })
@@ -3696,7 +3828,7 @@ export default class EmployeeProfile extends Component {
         .then(function (response) {
           console.log(JSON.stringify(response.data));
           self.setState({ error: response.data.message })
-          alert('References details successfully submitted ✅')
+          alert('Alternate  details successfully submitted ✅')
 
           self.apicall();
           self.closeRef();

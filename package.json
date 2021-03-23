@@ -61,6 +61,7 @@
     "react-dom": "^16.13.1",
     "react-fetch": "0.0.9",
     "react-helmet": "^6.1.0",
+    "react-image-crop": "^8.6.6",
     "react-input-mask": "^2.0.4",
     "react-loadingg": "^1.7.2",
     "react-otp-input": "^2.3.0",

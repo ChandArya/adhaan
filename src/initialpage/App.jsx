@@ -6,6 +6,8 @@ import LoginPage from './loginpage'
 import RegistrationPage from './RegistrationPage'
 import ForgotPassword from './forgotpassword'
 import OTP from './otp'
+import OTPSix from './otpsix'
+import Updateno from './updateno'
 import LockScreen from './lockscreen'
 import Adhar from './adhar'
 
@@ -60,13 +62,7 @@ export default class App extends Component {
             const { location, match, user } = this.props;
             
             
-            // if (location.pathname === '/') {
-            // if (user === null) {
-            //     return (<Redirect to={'/login'} />);
-            // } else {
-            //     return (<Redirect to={'/blue/app/main/dashboard'} />);
-            // }
-            // }
+            
             if (location.pathname === '/') {
                  
                    return (<Redirect to={'/login'} />);
@@ -85,15 +81,13 @@ export default class App extends Component {
                     {/* <Route path="/forgotpassword" component={ForgotPassword} />
                     <Route path="/register" component={RegistrationPage} /> */}
                     <Route path="/otp" component={OTP} />
+                    <Route path="/sixotp" component={OTPSix} />
+                    <Route path="/update" component={Updateno} />
                     {/* <Route path="/lockscreen" component={LockScreen} />
                     <Route path="/applyjob" component={ApplyJobs} /> */}
 
                     <Route path="/app" component={DefaultLayout} />
-                    {/* <Route path="/settings" component={Settinglayout} />
-                    <Route path="/tasks" component={Tasklayout} />
-                    <Route path="/email" component={Emaillayout} />
-                    <Route path="/conversation" component={chatlayout} />
-                     */}
+                    
                     <Route path="/ui-components" component={uicomponents} />
                     <Route path="/error-404" component={Error404} />
                     <Route path="/error-500" component={Error500} />

@@ -28,18 +28,18 @@ class OTPscreen extends Component {
 
     }
 
-    //
+    // 
   }
   // componentDidMount=()=>
   // {
-  // this.setState({f_otp:'' })
-  // //
+  //   this.setState({f_otp:'' })
+  //   // 
 
   // }
   onChange = (e) => {
     // e.preventDefault();
 
-    constvalue = e.target.value;
+    const value = e.target.value;
     // alert("got data"+value)
 
     this.setState({ f_otp: this.state.f_otp + value });
@@ -48,7 +48,7 @@ class OTPscreen extends Component {
   }
   onsubmit = (e) => {
     e.preventDefault();
-    var_otp = this.state.a + this.state.b + this.state.c + this.state.d;
+    var _otp = this.state.a + this.state.b + this.state.c + this.state.d;
     console.log(_otp)
     // this.state.f_otp = _otp;
     if (_otp.length != 4) {
@@ -57,19 +57,19 @@ class OTPscreen extends Component {
 
       this.setState({ error: "Please Enter valid otp" })
     } else {
-
-      varuser_id = this.props.location.state.userid
-      varempid = this.props.location.state.empid
-      varuser_type = this.props.location.state.usertype
+      localStorage.setItem("count", 2);
+      var user_id = this.props.location.state.userid
+      var empid = this.props.location.state.empid
+      var user_type = this.props.location.state.usertype
       // var otp = this.state.f_otp
       this.setState({ mobileno: empid, id: user_id })
-      vardata = JSON.stringify({
+      var data = JSON.stringify({
         "user_id": user_id,
         "OTP": _otp,
         "user_type": user_type
       });
-      varself = this
-      varconfig1 = {
+      var self = this
+      var config1 = {
         method: 'post',
         url: 'https://aadhaan.ddns.net/api/users/otp-verification',
         headers: {
@@ -83,19 +83,19 @@ class OTPscreen extends Component {
           // mobileno=self.state.
           self.setState({ error: ee.data.message })
           console.log("resend otp", ee)
-          if (ee.data.is_kyc_verified == true) {
-            letpath = '/app/profile/candidate-profile';
+          // if (ee.data.is_kyc_verified == true) {
+            let path = '/app/profile/candidate-profile';
             self.props.history.push({
               pathname: path,
               state: self.state
             })
-          } else {
-            letpath = '/adhar';
-            self.props.history.push({
-              pathname: path,
-              state: self.state
-            })
-          }
+          // } else {
+          //   let path = '/adhar';
+          //   self.props.history.push({
+          //     pathname: path,
+          //     state: self.state
+          //   })
+          // }
 
 
 
@@ -113,13 +113,13 @@ class OTPscreen extends Component {
     // console.log(this.props)
     // console.log(this.props.location.state)
     this.setState({ f_otp: '' });
-    varisd = this.props.location.state.isd
-    varmobile = this.props.location.state.empid
+    var isd = this.props.location.state.isd
+    var mobile = this.props.location.state.mobileno
     console.log(this.props.location)
-    vardata = JSON.stringify({ "isd": "" + isd, "mobile_no": "" + mobile });
+    var data = JSON.stringify({ "isd": "" + isd, "mobile_no": "" + mobile });
 
-    varself = this
-    varconfig1 = {
+    var self = this
+    var config1 = {
       method: 'post',
       url: 'https://aadhaan.ddns.net/api/users/otp-generation',
       headers: {
@@ -132,9 +132,9 @@ class OTPscreen extends Component {
     axios(config1)
       .then(function (ee) {
         self.setState({ error: ee.data.message })
-        window.location.reload(false);
+        // window.location.reload(false);
         console.log("resend otp", ee)
-        // datareturn=ee
+        //  datareturn=ee
 
 
       })
@@ -147,37 +147,37 @@ class OTPscreen extends Component {
   render() {
 
     return (
-      <div className="main-wrapper" >
+      <div className="main-wrapper">
         <Helmet>
           <title>OTP - Adhan HRMS </title>
-          < meta name="description" content="Login page" />
+          <meta name="description" content="Login page" />
         </Helmet>
-        <div className="account-content" >
+        <div className="account-content">
 
-          <div className="container" >
-            <div className="center_box" >
+          <div className="container">
+            <div className="center_box">
 
               {/* Account Logo */}
-              < div className="account-logo" >
-                <a href="#" > <img src={Applogo} alt="Adhaan Solution Pvt. Ltd. " /></a >
-              </div >
+              <div className="account-logo">
+                <a href="#"><img src={Applogo} alt="Adhaan Solution Pvt. Ltd. " /></a>
+              </div>
               {/* /Account Logo */}
-              < div className="account-box" >
-                <div className="account-wrapper" >
-                  <p className="account-subtitle" > Continue to verify mobile number</p >
-                  <h3 className="account-title" > OTP</h3 >
+              <div className="account-box">
+                <div className="account-wrapper">
+                  <p className="account-subtitle">Continue to verify mobile number</p>
+                  <h3 className="account-title">OTP</h3>
 
                   {/* Account Form */}
-                  < form action="#" >
-                    <div className="otp-wrap" >
+                  <form action="#">
+                    <div className="otp-wrap">
                       {/* <input autoFocus type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
-<input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
-<input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
-<input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} /> */}
-                      < input
+                      <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
+                      <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} />
+                      <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} /> */}
+                      <input
                         type="text"
                         name="ssn-1"
-                        Auto
+                        autoFocus
                         className="otp-input"
                         maxLength={1} value={this.state.a}
                         onChange={this.rr} />
@@ -200,22 +200,22 @@ class OTPscreen extends Component {
                         maxLength={1} value={this.state.d}
                         onChange={this.rr3} />
 
-                    </div >
-                    <div className="form-group text-center" >
-                      <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit} > Submit</button >
-                    </div >
-                    <div className="account-footer" >
-                      <p>OTP Not Recieved? <a href="" onClick={this.resend}>Resend OTP</a></p >
                     </div>
-                    <label className="text-danger" > {this.state.error}</label >
-                  </form >
+                    <div className="form-group text-center">
+                      <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Submit</button>
+                    </div>
+                    <div className="account-footer">
+                      <p>OTP Not Recieved? <a href="" onClick={this.resend}>Resend OTP</a></p>
+                    </div>
+                    <label className="text-danger">{this.state.error}</label>
+                  </form>
                   {/* /Account Form */}
-                </div >
-              </div >
-            </div >
-          </div >
-        </div >
-      </div >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     );
   }
@@ -231,8 +231,8 @@ class OTPscreen extends Component {
       // Check if they hit the max character length
       if (this.state.a.length > 0) {
         console.log('this tis')
-        constnextSibling = document.querySelector(
-          `input[name=ssn-${parseInt(1, 10) + 1}]`)
+        const nextSibling = document.querySelector(
+          `input[name=ssn-${2}]`)
 
         // If found, focus the next field
         if (nextSibling !== null) {
@@ -255,13 +255,13 @@ class OTPscreen extends Component {
       // Check if they hit the max character length
       if (this.state.b.length >= 0) {
         console.log('this tis')
-        constnextSibling = document.querySelector(
-          `input[name=ssn-${parseInt(2, 10) + 1}]`)
-        return
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
-        }
+        // const nextSibling = document.querySelector(
+        //   `input[name=ssn-${3}]`)
+        //   // return
+        // // If found, focus the next field
+        // if (nextSibling !== null) {
+        //   nextSibling.focus();
+        // }
       }
 
 
@@ -279,13 +279,13 @@ class OTPscreen extends Component {
       // Check if they hit the max character length
       if (this.state.c.length >= 0) {
         console.log('this tis')
-        constnextSibling = document.querySelector(
-          `input[name=ssn-${parseInt(3, 10) + 1}]`)
+        // const nextSibling = document.querySelector(
+        //   `input[name=ssn-${4}]`)
 
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
-        }
+        // // If found, focus the next field
+        // if (nextSibling !== null) {
+        //   nextSibling.focus();
+        // }
       }
 
 
@@ -303,13 +303,13 @@ class OTPscreen extends Component {
       // Check if they hit the max character length
       if (this.state.d.length >= 0) {
         console.log('this tis')
-        constnextSibling = document.querySelector(
-          `input[name=ssn-${parseInt(8, 10) + 1}]`)
+        // const nextSibling = document.querySelector(
+        //   `input[name=ssn-${parseInt(8, 10) + 1}]`)
 
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
-        }
+        // // If found, focus the next field
+        // if (nextSibling !== null) {
+        //   nextSibling.focus();
+        // }
       }
 
 
