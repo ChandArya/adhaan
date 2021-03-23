@@ -8,6 +8,7 @@
 export {default as headerlogo} from 'Assets/img/logo.png';
 export {default as Upload_Photo} from 'Assets/img/upload-photo.png';
 export {default as Sign} from 'Assets/img/sign.png';
+export {default as Sign1} from 'Assets/img/sign1.png';
 // export {default as Applogo} from 'Assets/img/logo2.png';
 
 export {default as Applogo} from 'Assets/img/logo2.png';
@@ -17,6 +18,7 @@ export {default as lnFrench} from 'Assets/img/flags/fr.png';
 export {default as lnSpanish} from 'Assets/img/flags/es.png';
 export {default as lnHindi} from 'Assets/img/flags/in.png';
 export {default as Avatar_01} from 'Assets/img/profiles/avatar-01.jpg';
+
 export {default as Avatar_02} from 'Assets/img/profiles/avatar-02.jpg';
 export {default as Avatar_03} from 'Assets/img/profiles/avatar-03.jpg';
 export {default as Avatar_04} from 'Assets/img/profiles/avatar-04.jpg';

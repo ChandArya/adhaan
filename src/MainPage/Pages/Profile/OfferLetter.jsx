@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Applogo,Sign } from '../../../Entryfile/imagepath.jsx'
+import { Applogo,Sign,Sign1 } from '../../../Entryfile/imagepath.jsx'
 var axios = require('axios');
 class OfferLetter extends Component {
     constructor(...props) {
@@ -33,9 +33,26 @@ class OfferLetter extends Component {
             companyadd:"Times Square Arcade,Office no-712/712-A,Opp-Rambaug, Nr, Ravija Plaza,Baghban Cross Road,Thaltej-Shilaj Road,Thaltej,Ahmedabad-3",
             salary:"",
             sign:Sign,
+            sign1:'',
             onbordingid:'',
             client:'',
             recruiter:'',
+            breakupid:'',
+            basic:0,
+            conv:0,
+            bonus:0,
+            mda:0,
+            gross_earning:0,
+            sp:0,
+            professional_tax:0,
+            totald:0,
+            lwa:0,
+            lwa1:0,
+            ctc:0,
+            empolye_pfcon:0,
+            esc:0
+
+
 
 
         }
@@ -56,7 +73,7 @@ class OfferLetter extends Component {
     
         axios(config)
           .then((response) => {
-            console.log("fgdfgfggf")
+            console.log("fgdfgfggf", response)
             var data = response.data;
             console.log("fgdfgfggf", data.onboarded_candidate)
             this.setState({
@@ -75,8 +92,59 @@ class OfferLetter extends Component {
                 salary:data.onboarded_candidate.salary,
                 onbordingid:data.onboarded_candidate.id,
                 client:data.onboarded_candidate.client[0],
-                recruiter:data.onboarded_candidate.recruiter_id
+                recruiter:data.onboarded_candidate.recruiter_id,
+                breakupid:data.onboarded_candidate.salary_structure_id,
+                sign1:"https://aadhaan.ddns.net"+data.onboarded_candidate.candidate_documents.signature
                 
+            })
+            this.breakup();
+          })
+          .catch((error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+            console.log("error");
+          });
+          //breakup
+         
+     }
+     breakup=()=>{
+        var url1 = 'https://aadhaan.ddns.net/api/payroll/salary-structure/'+this.state.breakupid
+       
+        var config = {
+          method: 'get',
+          url: url1,
+          headers: {
+            'Content-Type': 'application/json',
+    
+          },
+          data: ''
+        };
+    
+        axios(config)
+          .then((response) => {
+            console.log("salary st",response.data)
+            var data = response.data.salary_structure;
+            // console.log("salary st", data.)
+            this.setState({
+                basic:data.basic_pay,
+                conv:data.conveyance,
+                bonus:data.bonus,
+                mda:data.medical_allowance,
+                gross_earning:data.gross_earning,
+                sp:data.sp_allowance,
+                professional_tax:data.professional_tax,
+                totald:parseInt(data.employee_pf_contribution)+parseInt(data.employee_lwf)+parseInt(data.professional_tax),
+                empolye_pfcon:data.employee_pf_contribution,
+                empolyer_pfcon:data.employer_pf_contribution,
+                lwa:data.employee_lwf,
+                lwa1:data.employer_lwf,
+                esc:data.employer_esic_contribution,
+                
+                ctc:data.ctc,
+               
+
             })
         
           })
@@ -148,12 +216,7 @@ class OfferLetter extends Component {
         if (response.data.status == true) {
           //let path='app/profile/candidate-profile';
           alert('You have accepted terms and conditions ✅')
-        //   let path = '../payroll/confirmed_payroll';
-        //   self.props.history.push({
-        //     pathname: path,
-        //     state: self.state
-        //   })
-        //   localStorage.setItem("lastcount", 0);
+        
 
         }
 
@@ -167,7 +230,7 @@ class OfferLetter extends Component {
     }
     apicall = () => {
         var url1 = 'https://aadhaan.ddns.net/api/recruiter/onboard-candidate/'
-     console.log("twinkle")
+     
         var config = {
             method: 'get',
             url: url1,
@@ -198,30 +261,16 @@ class OfferLetter extends Component {
 
     }
 
-    componentDidMount = () => {
-        this.apicall();
-        // console.log(this.props.location.state,"thissssssss")
-        // this.setState({user:this.props.location.state.id})
-
-    }
-
+    
 
     rejectBtn = (e) => {
         // console.log("add salary"+JSON.stringify(data))
         // var status="";
         var add = {}
 
-        // for (var k = 0; k < this.state.clientList.length; k++) {
-        //   // console.log("called")
-        //   console.log("called", this.state.clientList[k].name, this.state.clietname)
-        //   if (this.state.clientList[k].name == this.state.clietname) {
         Object.assign(add, { "status": "rejected_by_candidate", "start_date": this.state.date, "client": this.state.client, "salary": this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
         console.log("called", add)
-        //   }
-        // console.log("calledhhhh")
-        // }
-        // console.log("called", this.state.error)
-        // return
+       
         var self = this;
         var config = {
             method: 'put',
@@ -377,7 +426,10 @@ class OfferLetter extends Component {
                             </div>
 
                         <br/>
-
+                        <p style={{textAlign:'right', paddingLeft:"20px"}}>
+                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+                            </p>
+                        
                         <div className="title text-center font-weight-bold">
                             {this.state.company}
 </div>
@@ -477,8 +529,13 @@ by the company.
                            <p className="text-sm"> <b> DECLARATION</b></p>
                            <small className="">I have been explained/ read/understood/ the above terms & conditions and agree to abide by them <br></br><i>Signature</i></small>
                            <br></br>
-                           <img style={{height:"30px",width:"100px"}}src={this.state.sign} id="sign" alt=" " className="img-fluid" />
-
+                           {/* <center> */}
+                                <img style={{height:"30px",width:"100px"}}src={this.state.sign} id="sign" alt=" " className="img-fluid" />
+                           {/* </center> */}
+                          
+                           <p style={{textAlign:'right', paddingLeft:"20px"}}>
+                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+                            </p>
 
 <br>
 </br><br/>
@@ -528,48 +585,51 @@ by the company.
   <div className="col-md-6" style={{border:'1px solid'}}></div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div className="col-md-6" style={{border:'1px solid'}}>BASIC</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.salary}</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.basic}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>CONVEYANCE</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.conv}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>MEDICAL ALLOWANCE</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.mda}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>SP ALLOWANCE</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.sp}</div>
   <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>GROSS EARNINGS(A)
 </div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+        <div className="col-md-6" style={{border:'1px solid'}}>{this.state.gross_earning}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div className="col-md-6" style={{border:'1px solid'}}>BONUS (C)</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.bonus}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYER PF CONTRIBUTION </div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.empolyer_pfcon}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYER ESIC CONTRIBUTION </div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.esc}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>LWF</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.lwa1}</div>
   <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>CTC (COST TO COMPANY)</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+        <div className="col-md-6" style={{border:'1px solid'}}>{this.state.ctc}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>DEDUCTION</div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp;</div>
   <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYEE PF CONTRIBUTION</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.empolye_pfcon}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>LWF</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.lwa}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>PROFESSIONAL TAX</div>
-  <div className="col-md-6" style={{border:'1px solid'}}>0</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.professional_tax}</div>
    <div className="col-md-6 font-weight-bold" style={{border:'1px solid'}}>TOTAL DEDUCTIONS(B)</div>
-  <div className="col-md-6 " style={{border:'1px solid'}}>0</div>
+        <div className="col-md-6 " style={{border:'1px solid'}}>{this.state.totald}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp; </div>
   <div className="col-md-6" style={{border:'1px solid'}}>NET SALARY(A – B+C) </div>
-  <div className="col-md-6" style={{border:'1px solid'}}>11500 </div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.salary} </div>
   
 </div>
                     </div>
 <br/><br/><br/><br/>
+<p style={{textAlign:'right', paddingLeft:"20px"}}>
+                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+                            </p>
 
 <div className="title text-center font-weight-bold">
                             {this.state.company}
@@ -691,6 +751,10 @@ the appropriate authorities.
   1. Comply with the critical health and safety guidelines and advisory published by the
 Government of India and the relevant state government.
 </ul>
+<p style={{textAlign:'right', paddingLeft:"20px"}}>
+                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+                            </p>
+
 <div className="title text-center font-weight-bold">
                             {this.state.company}
 </div>
@@ -808,15 +872,21 @@ effect.
                                 <li><label>Date</label> &nbsp;  {this.state.date}</li>
                        
                             </ul>
-                            {/* <div className="row">
+                            {
+                                this.state.isrec?'':<div className="row">
                                 <div className="col-md-12 text-center">
-                            <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true">Accept</button>
-                            <button class="btn btn-lg btn-primary btn-danger " role="button" aria-pressed="true">Reject</button>
+                            <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.onSubmit}>Accept</button>
+                            <button class="btn btn-lg btn-primary btn-danger " role="button" aria-pressed="true" onClick={this.onReject}>Reject</button>
 
                                 </div>
 
-                            </div> */}
-                  
+                            </div>
+                            }
+                            
+                            <p style={{textAlign:'right', paddingLeft:"20px"}}>
+                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+                            </p>
+                 
 
                             <div className="title text-center font-weight-bold">
                             {this.state.company}
