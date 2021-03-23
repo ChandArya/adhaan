@@ -1,10 +1,35 @@
 import React, { Component } from 'react';
 import {Table} from 'react-table';
-import { Applogo, Sign } from '../../../Entryfile/imagepath.jsx'
+import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
 // var axios = require('axios');
 class EsicdeclrationForm extends Component {
 
 
+    constructor(props) {
+        super(props);
+        this.state = this.props.location.state
+    }
+
+
+
+
+
+
+
+    submitbtn = (e) => {
+        let path = './Gratituty-form';
+        var id = this.props.location.state.user
+        // alert("iiiiid",id)
+        console.log("hhhhhhhhh", id)
+        // this.setState({ id: id, back: true });
+
+        this.props.history.push({
+            pathname: path,
+            state: this.state
+
+        })
+
+    }
 
 
 
@@ -22,6 +47,70 @@ class EsicdeclrationForm extends Component {
         const passport_valid_from = [1, 2, 3, 4, 5, 6, 7, 8]
         const passport_valid_till = [1, 2, 3, 4, 5, 6, 7, 8]
         const emp_code_no = [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+
+        try {
+            console.log('wwww', this.state.candidate_doc_list)
+            console.log('twinkle', this.state)
+
+            console.log('sssss', this.state.candidate_documents_data[1].document_type);
+            console.log('sssss', this.state.candidate_documents_data[0].document_type)
+
+            candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
+
+
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+        var otherdetails = {
+            "name": '', "dl_no": "", "place_of_issue": "", "valid_up_to": "", "vehicle_no": "",
+            "pan_card_no": "", "eid_no": "", "aadhaar_no": "", "pf_no": '', "uan": "", "esic_no": "", "esic_name": "", "esic_address": ""
+        }
+
+        try {
+            console.log(this.state)
+            otherdetails = {
+                "name": this.state.candidate_other_data.name, "dl_no": this.state.candidate_other_data.dl_no,
+                "place_of_issue": this.state.candidate_other_data.place_of_issue, "valid_up_to": this.state.candidate_other_data.valid_up_to,
+                "vehicle_no": this.state.candidate_other_data.vehicle_no, "pan_card_no": this.state.candidate_other_data.pan_card_no,
+                "eid_no": this.state.candidate_other_data.eid_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no,
+                "pf_no": this.state.candidate_other_data.pf_no, "uan": this.state.candidate_other_data.uan,
+                "esic_no": this.state.candidate_other_data.esic_no, "esic_name": this.state.candidate_other_data.esic_name,
+                "esic_address": this.state.candidate_other_data.esic_address
+            }
+        }
+
+        catch (err) {
+            console.log("hjhj", err);
+        }
+
+        //family data
+        var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family = {
+                'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,
+                'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation
+            }
+        }
+
+        catch (err) {
+            console.log("family111", err);
+        }
+
+
+
+
+
+
+
+
+
+
+
         const pin_code = [1, 2, 3, 4, 5, 6]
         return (
 
@@ -43,7 +132,7 @@ class EsicdeclrationForm extends Component {
                         {/*Esic-declrationForm page */}
 
 
-                    <div className="border">
+                    <div className="border" >
                         < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
                             <div className="col-md-12">
                               
@@ -66,7 +155,7 @@ class EsicdeclrationForm extends Component {
                                           
                                          <div className="account-logo  ">
                                             <a href="#"><
-                                            img src={Applogo} alt="Adhaan" /></a>
+                                            img src={epfs} alt="Adhaan" /></a>
                                         </div> 
                                      
                                         <h1 style={{marginLeft:'6%'}}>
@@ -99,37 +188,40 @@ class EsicdeclrationForm extends Component {
                                                                 बीमा संख्या
 
                                                             </td>
-                                                            <td colSpan="3"><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td colSpan="3"><input defaultValue={otherdetails.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                         </tr>
                                                         <tr>
                                                         <td> 2. नाम स्पष्ट अक्षर में
                                                                 <br />
                                                              Name (in block letters)</td>
-                                                            <td colSpan="3"><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-
+                                                        <td colSpan="3"><input defaultValue={this.state.name}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                         </tr>
                                                         <tr>
                                                         <td>पिता/ पति का नाम <br/>
                                                              3. Father / Husbands Name</td>
-                                                            <td colSpan="3"><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td colSpan="3"><input defaultValue={this.state.father_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                         </tr>
 
                                                         <tr>
                                                         <td> 4. जन्म तिथि  / Date of Birth<br/>
-                                                                {candidate_dob_list.map(document => (
+                                                                {/* {candidate_dob_list.map(document => (
                                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
-                                                                ))}
+                                                                ))} */}
+                                                            <input defaultValue={this.state.dob}  type="text" ></input>
                                                             </td>
                                                             <td colSpan="3">
                                                             4.वैवाहिक स्तर <br/>
                                                                   Marital Status 
-                                                               <p className="text-right">  वि/अ/वि<br/>
-                                                                M/U/W</p>
+                                                               {/* <p className="text-right">  वि/अ/वि<br/>
+                                                                M/U/W</p> */}
+                                                            <p className="text-right">{this.state.marital_status}</p>
                                                              <div className=" row border "></div>
                                                             लिंग /Sex
-                                                               <p className="text-right"> /Male / Female</p>
+                                                               {/* <p className="text-right"> /Male / Female</p> */}
+                                                            <p className="text-right">{this.state.gender} </p>
+                                                           
                                                             </td>
                                                            
                                                         </tr>
@@ -137,26 +229,26 @@ class EsicdeclrationForm extends Component {
                                                         <td colSpan="1">स्थायी पता
                                                         /Current Address
                                                                 <hr/>
-                                                                <input type="text" style={{ width: '100%' ,  border: ' none', backgroundColor: ' #ffffff0a'}}></input>
+                                                            <input defaultValue={this.state.c_full_address} type="text" style={{ width: '100%' ,  border: ' none', backgroundColor: ' #ffffff0a'}}></input>
 
                                                             <hr/>
-                                                                <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input defaultValue={this.state.c_country}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
                                                                 <br/>
                                                                 <hr/>
                                                             <div className="d-flex">पिन कोड<br/>
                                                             Pin Code &nbsp; &nbsp; &nbsp; &nbsp;
                                                              
-                                                                    {pin_code.map(document => (
+                                                                    {/* {pin_code.map(document => (
                                                                         <input key={document.key} type="text" style={{ width: '10%' }}></input>
                                                                        
-                                                                    ))}
-                                                                   
+                                                                    ))} */}
+                                                                <input defaultValue={this.state.c_pin_code} style={{width:'40%',height:'auto'}} type="text" ></input>
                                                                 </div>
                                                                 <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल
                                                                 / E-mail Address
                                                                   </div>
-                                                                <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input defaultValue={this.state.c_email}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
                                                             </td>
 
@@ -164,23 +256,24 @@ class EsicdeclrationForm extends Component {
                                                         <td colSpan="3">वर्तमान पता
                                                         /Present Address
                                                              <hr />
-                                                                <input type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
+                                                                <input defaultValue={this.state.p_full_address} type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
                                                                 <hr/>
-                                                                <input type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
+                                                            <input defaultValue={this.state.p_country}type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
                                                                 <br />
                                                                 <hr />
                                                             <div className="d-flex">पिन कोड<br />
                                                                     Pin Code &nbsp; &nbsp; &nbsp; &nbsp;
 
-                                                                    {pin_code.map(document => (
+                                                                    {/* {pin_code.map(document => (
                                                                     <input key={document.key} type="text" style={{ width: '10%' }}></input>
 
-                                                                ))}
+                                                                ))} */}
+                                                                <input defaultValue={this.state.p_pin_code} type="text" style={{ width: '40%', height:'auto' }}></input>
                                                                 </div>
                                                                 <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल / E-mail Address
                                                                   </div>
-                                                                <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input defaultValue={this.state.p_email} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
                                                              </td>
                                                           
@@ -189,7 +282,7 @@ class EsicdeclrationForm extends Component {
                                                             <td colSpan="2">
                                                             शाखा कार्यालय<br/>
                                                             Branch Office
-                                                                <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                                <input defaultValue={this.state.branch_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
                                                             </td>
                                                             <td colSpan="2">
@@ -222,10 +315,12 @@ class EsicdeclrationForm extends Component {
                                                         <td> नियोजक का कूट संख्या
                                                                 <br/>9.Employer's Code No.</td>
                                                             <td colSpan="3" >
-                                                                {emp_code_no.map(document => (
+                                                                {/* {emp_code_no.map(document => (
                                                                     <input key={document.key} type="text" style={{ width: '5%' }}></input>
 
-                                                                ))}</td>
+                                                                ))} */}
+                                                            <input  type="text"></input>
+                                                                </td>
                                                                 
                                                         </tr>
                                                         <tr>
@@ -233,7 +328,7 @@ class EsicdeclrationForm extends Component {
                                                         <td colSpan="3"> नियुक्ति कि तिथि  <br/>
                                                             10.Date of Appointment</td>
                                                             <td className="text-center">
-                                                                <div className="text-center " style={{ display: 'inline-flex' }}>
+                                                                {/* <div className="text-center " style={{ display: 'inline-flex' }}>
                                                                 <div className='border border-dark' style={{ width: '60px', hight: '20px' }}>दिन <br/>Day</div>
                                                                 <div className='border border-dark' style={{ width: '60px', hight: '20px' }}> महीना<br/>Month</div>
                                                                 <div className='border border-dark' style={{ width: '60px', hight: '20px' }}> वर्ष <br/>Year</div>
@@ -243,13 +338,14 @@ class EsicdeclrationForm extends Component {
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                     <input type="text" style={{width:'60px' }}></input>
-                                                                </div>
+                                                                </div> */}
+                                                            <input type="text" ></input>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                         <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
                                                                 <b>Adhaan Solution Pvt. Ltd</b><br /><br />
-                                                                <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width:'100%'}} /><br/>
+                                                            <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width:'100%'}} /><br/>
                                                                 
                                                                 </td>
                                                         </tr>
@@ -265,7 +361,7 @@ class EsicdeclrationForm extends Component {
                                                         <tr>
                                                         <td colSpan="4"><br />(क)बीमा संख्या<br/>
                                                                 a) Previous Ins. No. 
-                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                             <input defaultValue={otherdetails.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                          </td>
 
                                                         </tr>
@@ -281,20 +377,24 @@ class EsicdeclrationForm extends Component {
                                                         <tr>
                                                         <td colspan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
                                                                 <b>Name & Address of the Employer</b><br /><br />
-                                                                <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                            <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                          <br/>
                                                               <div className="text-center">
-                                                             इ-मेल / E-mail Address
+                                                                इ-मेल / E-mail Address
 
-                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                             <input defaultValue={this.state.c_email} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </div>
                                                             </td>
                                                            
                                                            
                                                         </tr>
+                                                        <br/>
+                                                        <br/>
                                                        
 
                                                          </tbody>
+                                                <br />
+                                                <br />
                                                 </table>
 
                                             </div>
@@ -319,18 +419,18 @@ class EsicdeclrationForm extends Component {
                                                     <tr>
                                                         <td colSpan="2">
                                                         नाम /Name
-                                                        <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input defaultValue={otherdetails.esic_name } type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                          
                                                         </td>
                                                         <td>
                                                         सम्बन्ध/ Relationship
-                                                         <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                         <input defaultValue={family.relation} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td colSpan="4">
                                                         पता /Address
-                                                         <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                         <input defaultValue= {otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                     </tr>
@@ -379,15 +479,15 @@ class EsicdeclrationForm extends Component {
                                                     <tr>
                                                      
                                                             <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                             </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input defaultValue={otherdetails.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input defaultValue= {otherdetails.family_relation} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td>
@@ -415,7 +515,7 @@ class EsicdeclrationForm extends Component {
                                                     <tr>
 
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td>
@@ -434,7 +534,7 @@ class EsicdeclrationForm extends Component {
                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input defaultValue={this.state.c_city}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -520,17 +620,17 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
                                                                 
-                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input defaultValue={otherdetails.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                             </td>
 
                                                         </tr>
                                                             <tr>
                                                                 <td >
-                                                                क्रम संख्या/Ins. No.
+                                                                बीमा संख्या/Ins. No.
                                                             </td>
                                                                 <td >
 
-                                                                    <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input defaultValue={otherdetails.esic_no}  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </td>
 
                                                             </tr>
@@ -548,7 +648,7 @@ class EsicdeclrationForm extends Component {
                                                                 <td >
                                                                 शाखा कार्यालय
                                                                 <br/>Branch Office
-
+                                                       <input defaultValue={this.state.branch_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                             </td>
                                                                 <td >
                                                                 औषधालय
@@ -565,7 +665,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                                 <td >
                                                                    
-                                                                    <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input defaultValue={ otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </td>
 
                                                             </tr>
@@ -817,11 +917,11 @@ subject to fulfillment of contributory conditions</li>
 
                                                             </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                    <input defaultValue={otherdetails.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                    <input defaultValue={otherdetails.family_relation }type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td>
@@ -957,7 +1057,9 @@ subject to fulfillment of contributory conditions</li>
                 </div><br />
                                 
 
-
+                <div className="col-auto float-right mt-3 ml-auto">
+                    <button className="btn add-btn" id="submit" onClick={this.submitbtn}>Save & Countinue</button>
+                </div>
 
 
 
