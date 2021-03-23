@@ -11,23 +11,110 @@ class DeclrationForm extends Component {
     constructor(props) {
         super(props);
         this.state = this.props.location.state
+        bankname:''
     }
 
-    submitbtn = (e) => {
-        let path = './Esic-declrationForm';
-        var id = this.props.location.state.user
-        // alert("iiiiid",id)
-        console.log("hhhhhhhhh", id)
-        this.setState({ id: id, back: true });
+    savebtn = (e) => {
+        // console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
+        // if (this.isBlank(bankname) || this.isBlank(acountno) ||
+        //     this.isBlank(ifsc)) {
+        //     self.setState({ error: "Please fill all required details" })
+        // } else {
+        //     var data = JSON.stringify({
+        //         "candidate": userid,
+        //         "bank_name": bankname,
+        //         "branch_name": branchname,
+        //         "account_number": acountno,
+        //         "ifsc_code": ifsc
+        //     });
+        //     console.log("called")
+        //     var config = {
+        //         method: 'post',
+        //         url: baseurl + '/api/candidate/bank-details',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         data: data
+        //     };
 
-        this.props.history.push({
-            pathname: path,
-            state: this.state
+        //     axios(config)
+        //         .then(function (response) {
+        //             console.log(JSON.stringify(response.data));
+        //             self.setState({ error: response.data.message })
+        //             if (response.data.status == true) {
+                        let path = './Esic-declrationForm';
+                        var id = this.props.location.state.user
+                        // alert("iiiiid",id)
+                        console.log("hhhhhhhhh", id)
+                        this.setState({ id: id, back: true });
 
-        })
+                        this.props.history.push({
+                            pathname: path,
+                            state: this.state
+
+                        })
+        //                 e.preventDefault();
+        //                 console.log("clickfound")
+        //                 this.setState({ error1: "This field can not be empty" })
+
+
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //             self.setState({ error: "network issue" })
+        //         });
+        // }
+       
+       // this.addBank(this, this.state.bank_name, this.state.branch_name, this.state.account_number, this.state.ifsc_code, this.state.user);
 
     }
     
+
+    addBank = (e) => {
+        console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
+        if (this.isBlank(bankname) || this.isBlank(acountno) ||
+            this.isBlank(ifsc)) {
+            self.setState({ error: "Please fill all required details" })
+        } else {
+            var data = JSON.stringify({
+                "candidate": userid,
+                "bank_name": bankname,
+                "branch_name": branchname,
+                "account_number": acountno,
+                "ifsc_code": ifsc
+            });
+            console.log("called")
+            var config = {
+                method: 'post',
+                url: baseurl + '/api/candidate/bank-details',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            };
+
+            axios(config)
+                .then(function (response) {
+                    console.log(JSON.stringify(response.data));
+                    self.setState({ error: response.data.message })
+                    if (response.data.status == true) {
+                        //let path='app/profile/candidate-profile';
+                        alert('Bank details successfully submitted ✅')
+                        $("#bank_contact_modal").modal("hide");
+                        self.setState({ error: "", error1: '' })
+                        // window.location.reload(false);
+
+
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    self.setState({ error: "network issue" })
+                });
+        }
+    }
+
 
 
     render() {
@@ -594,17 +681,17 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                        </div> */}
                                     <div className="table-responsive">
                                       
-                                        <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
+                                        <table width="50%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                             <tr>
-                                                <th width="20%" className="text-uppercase text-center">REGION CODE</th>
-                                                <th width="30%" className="text-uppercase text-center">	OFFICE CODE</th>
-                                                <th width="15%" className="text-uppercase text-center">Date of Birth</th>
-                                                <th width="20%" className="text-uppercase text-center">ESTABLISHMENT ID</th>
-                                                <th width="15%" className="text-uppercase text-center small font-weight-bold">EXTENSION</th>
-                                                <th width="15%" className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
+                                                <th  className="text-uppercase text-center">REGION CODE</th>
+                                                <th  className="text-uppercase text-center">	OFFICE CODE</th>
+                                                <th  className="text-uppercase text-center">Date of Birth</th>
+                                                <th  className="text-uppercase text-center">ESTABLISHMENT ID</th>
+                                                <th  className="text-uppercase text-center small font-weight-bold">EXTENSION</th>
+                                                <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"></td>
+                                                <td className="text-uppercase font-weight-bold"><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
                                                 <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
@@ -626,7 +713,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                     <div className="col-md-6">
                                         <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
-
+{/* 
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
@@ -636,12 +723,14 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
 
-                                        </div><br></br>
+                                        <br></br> */}</div>
+
                                         <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
-                                            {member_id_date.map(document => (
+                                            {/* {member_id_date.map(document => (
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
-                                            ))}
+                                            ))} */}
+                                                <input type="date" key={document.key} type="text"></input>
 
                                         </div><br />
 
@@ -776,7 +865,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                     </div>
 
                                     <div className="col-md-4">
-                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        {/* <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
@@ -785,14 +874,14 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                        </div>
+                                        </div> */}
                                         <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
-                                            {candidate_dob_list.map(document => (
+                                            {/* {candidate_dob_list.map(document => (
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
                                                
                                             ))}
-                                            
-                                       
+                                             */}
+                                                <input   key={document.key} type="text" ></input>
 
                                                 <h4 className="font-weight-bold" style={{ marginLeft: '50px' }}>TO</h4>
                                            
@@ -800,22 +889,22 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                          
                                       </div>
                                         <div className="col-md-4">
-                                            <div className="text-center" style={{ display: 'inline-flex', }}>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
+                                            {/* <div className="text-center" style={{ display: 'inline-flex', }}>
+                                                {/* <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                            </div><br></br>
+                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div> 
+                                            </div><br></br> */}
                                             <div className="text-center" style={{ display: 'inline-flex', }}>
-                                                {candidate_dob_list.map(document => (
+                                                {/* {candidate_dob_list.map(document => (
                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
-                                                ))}
-
+                                                ))} */}
+                                                <input key={document.key}  ></input>
                                                 
 
 
@@ -832,7 +921,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                         
                            14) EDUCATION <br /> QUALIFICATION <br />(Please Tick)
                     </div>
-                                    <div className="col-md-9" >
+                                    {/* <div className="col-md-9" >
                                         <div className="text-center font-weight-bold" style={{ display: 'inline-flex',  }}>
 
 
@@ -862,8 +951,38 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                         </div><br />
 
 
-                                    </div><br />
+                                    </div><br /> */}
+                                     <div className="col-md-10" >
+                                        <div className="table-responsive">
 
+                                            <table width="50%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
+                                                <tbody>
+                                                <tr>
+                                                    <th  className="text-uppercase text-center">ILLITERATE</th>
+                                                    <th className="text-uppercase text-center">	NON MATRIC</th>
+                                                    <th className="text-uppercase text-center">MATRIC</th>
+                                                    <th  className="text-uppercase text-center">SENIOR SECONDARY</th>
+                                                    <th  className="text-uppercase text-center small font-weight-bold">GRADUATE</th>
+                                                    <th  className="text-uppercase text-center small font-weight-bold">POST GRADUATE</th>
+                                                    <th  className="text-uppercase text-center small font-weight-bold">DOCTOR</th>
+                                                    <th className="text-uppercase text-center small font-weight-bold">TECHNICAL PROFFESSIONAL</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className="text-uppercase font-weight-bold"><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td className="text-center"><input name="" className="px-0 py-0 text-center border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    
+                                                </tr>
+
+                                                    </tbody>
+                                            </table>
+                                        </div>
+                                        </div>
 
                                     </div>  </div><br/>
 
@@ -980,8 +1099,8 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                         <br />
                    
 </div>
-                <div className="col-auto float-right mt-3 ml-auto">
-                    <button className="btn add-btn" id="submit" onClick={this.submitbtn}>Save & Countinue</button>
+                <div className="col-auto float-right  ml-auto">
+                    <button className="btn add-btn" id="submit" onClick={this.savebtn}>Save & Countinue</button>
                 </div>
 
                 

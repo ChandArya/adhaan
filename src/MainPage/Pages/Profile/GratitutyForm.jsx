@@ -4,12 +4,173 @@ import {Table} from 'react-table';
 // var axios = require('axios');
 class GratitutyForm extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = this.props.location.state
+    }
 
+
+
+    submitbtn = (e) => {
+        // console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
+        // if (this.isBlank(bankname) || this.isBlank(acountno) ||
+        //     this.isBlank(ifsc)) {
+        //     self.setState({ error: "Please fill all required details" })
+        // } else {
+        //     var data = JSON.stringify({
+        //         "candidate": userid,
+        //         "bank_name": bankname,
+        //         "branch_name": branchname,
+        //         "account_number": acountno,
+        //         "ifsc_code": ifsc
+        //     });
+        //     console.log("called")
+        //     var config = {
+        //         method: 'post',
+        //         url: baseurl + '/api/candidate/bank-details',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         data: data
+        //     };
+
+        //     axios(config)
+        //         .then(function (response) {
+        //             console.log(JSON.stringify(response.data));
+        //             self.setState({ error: response.data.message })
+        //             if (response.data.status == true) 
+        //let path = './Gratituty-form';
+        var id = this.props.location.state.user
+        // alert("iiiiid",id)
+        console.log("hhhhhhhhh", id)
+        this.setState({ id: id, back: true });
+
+        this.props.history.push({
+            pathname: path,
+            state: this.state
+
+        })
+        //                 e.preventDefault();
+        //                 console.log("clickfound")
+        //                 this.setState({ error1: "This field can not be empty" })
+
+
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //             self.setState({ error: "network issue" })
+        //         });
+        // }
+
+        // this.addBank(this, this.state.bank_name, this.state.branch_name, this.state.account_number, this.state.ifsc_code, this.state.user);
+
+    }
+
+
+    addBank = (e) => {
+        console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
+        if (this.isBlank(bankname) || this.isBlank(acountno) ||
+            this.isBlank(ifsc)) {
+            self.setState({ error: "Please fill all required details" })
+        } else {
+            var data = JSON.stringify({
+                "candidate": userid,
+                "bank_name": bankname,
+                "branch_name": branchname,
+                "account_number": acountno,
+                "ifsc_code": ifsc
+            });
+            console.log("called")
+            var config = {
+                method: 'post',
+                url: baseurl + '/api/candidate/bank-details',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            };
+
+            axios(config)
+                .then(function (response) {
+                    console.log(JSON.stringify(response.data));
+                    self.setState({ error: response.data.message })
+                    if (response.data.status == true) {
+                        //let path='app/profile/candidate-profile';
+                        alert('Bank details successfully submitted ✅')
+                        $("#bank_contact_modal").modal("hide");
+                        self.setState({ error: "", error1: '' })
+                        // window.location.reload(false);
+
+
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    self.setState({ error: "network issue" })
+                });
+        }
+    }
 
 
 
 
     render() {
+
+        try {
+            console.log('wwww', this.state.candidate_doc_list)
+            console.log('twinkle', this.state)
+
+            console.log('sssss', this.state.candidate_documents_data[1].document_type);
+            console.log('sssss', this.state.candidate_documents_data[0].document_type)
+
+            candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
+
+
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+
+        var otherdetails = {
+            "name": '', "dl_no": "", "place_of_issue": "", "valid_up_to": "", "vehicle_no": "",
+            "pan_card_no": "", "eid_no": "", "aadhaar_no": "", "pf_no": '', "uan": "", "esic_no": "", "esic_name": "", "esic_address": ""
+        }
+
+        try {
+            console.log(this.state)
+            otherdetails = {
+                "name": this.state.candidate_other_data.name, "dl_no": this.state.candidate_other_data.dl_no,
+                "place_of_issue": this.state.candidate_other_data.place_of_issue, "valid_up_to": this.state.candidate_other_data.valid_up_to,
+                "vehicle_no": this.state.candidate_other_data.vehicle_no, "pan_card_no": this.state.candidate_other_data.pan_card_no,
+                "eid_no": this.state.candidate_other_data.eid_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no,
+                "pf_no": this.state.candidate_other_data.pf_no, "uan": this.state.candidate_other_data.uan,
+                "esic_no": this.state.candidate_other_data.esic_no, "esic_name": this.state.candidate_other_data.esic_name,
+                "esic_address": this.state.candidate_other_data.esic_address
+            }
+        }
+
+        catch (err) {
+            console.log("hjhj", err);
+        }
+
+        //family data
+        var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family = {
+                'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,
+                'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation
+            }
+        }
+
+        catch (err) {
+            console.log("family111", err);
+        }
+
+
         
         return (
 
@@ -89,6 +250,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                     <tr>
                                                         <td >
                                                         Name in full with full address of nominee(s)
+
                                                             </td>
                                                         <td >
                                                         Relationship with the employee
@@ -202,17 +364,16 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                         
                                                         <ul  style={{listStyleType:'decimal'}}>
                              <li>
-                             1.	Name of employee in full.</li>
-                                             <li>Sex.
+                                        1.	Name of employee in full: &nbsp; &nbsp; <label>{this.state.name}</label></li>
+                                    <li>Sex. &nbsp; &nbsp; <label>{this.state.gender} </label>       </li>
+                                             <li>
+                                        Religion. &nbsp; &nbsp; <label>{family.relation} </label>
                                              </li>
                                              <li>
-                                             Religion.
+                                        Whether unmarried/married/widow/widower. &nbsp; &nbsp; <label>{this.state.marital_status}</label>
                                              </li>
                                              <li>
-                                             Whether unmarried/married/widow/widower.
-                                             </li>
-                                             <li>
-                                             Department/Branch/Section where employed.
+                                        Department/Branch/Section where employed.&nbsp; &nbsp; <label>{this.state.branch_name}</label>
                                              </li>
                                              <li>
                                              Post held with Ticket or Serial No., if any.
@@ -221,7 +382,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                         	Date of appointment.
                                              </li>
                                              <li>
-                                             Permanent address.</li>
+                                        Permanent address. &nbsp; &nbsp; <label>{this.state.p_full_address}</label></li>
                                              </ul>
                                              
                                                  </div>
@@ -245,8 +406,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                     <div className="d-flex">
                                 
                               
-                                <p style={{marginLeft:'3%'}}>District .................</p>
-                                <p style={{marginLeft:'3%'}}>State.................</p>
+                                    <p style={{ marginLeft: '3%' }}>District : &nbsp; &nbsp;{this.state.c_city}</p>
+                                <p style={{marginLeft:'3%'}}>State : &nbsp; &nbsp;{this.state.c_state}</p>
                                 </div>
 
                                 < div className="title d-flex p-3" style={{ marginLeft: '1%', marginRight: '1%' }}>
@@ -312,7 +473,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 <br/>
                                 <br/>
                                 <p> Date </p>
-                                <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br/>Designation
+                                <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br />Designation :&nbsp; &nbsp;<label>{this.state.designation}</label>
                                <br/> <br />Name and address of establishment or rubber stamp thereof
 
 
@@ -337,8 +498,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 </div><br/>
                     </ div><br />
                 </div><br />
-                                
-
+                <div className="col-auto float-right  ml-auto">
+                    <button className="btn add-btn" id="submit" onClick={this.submitbtn} >Submit</button>
+                </div>
+<br/>
 
 
 
