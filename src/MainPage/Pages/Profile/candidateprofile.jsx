@@ -1389,7 +1389,7 @@ const { crop, croppedImageUrl, src } = this.state;
                 
                   <li className="nav-item"><a className="nav-link active">Profile</a></li>
                   <li className="nav-item"><a data-toggle="tab" onClick={this.pfClick} className="nav-link">PF</a></li>
-                  <li className="nav-item"><a data-toggle="tab" onClick={this.esiClick} className="nav-link">ESIC</a></li>
+                  {/* <li className="nav-item"><a data-toggle="tab" onClick={this.esiClick} className="nav-link">ESIC</a></li> */}
                   <li className="nav-item"><a data-toggle="tab" onClick={this.gratitutyClick} className="nav-link">GRATITUTY</a></li>
 
                 </ul>

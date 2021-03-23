@@ -168,39 +168,39 @@ class Loginpage extends Component {
           })
           .catch(function (error) {
   
-            // self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number"  })
+            self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" + mobileno })
   
-            confirmAlert({
-              title: 'Aadhar Verification',
-              message: 'The enter aadhar number does not match your Linked mobile number Continue to onboarding?',
-              buttons: [
-                {
-                  label: 'Yes',
-                  onClick: () => {
-                    let path = '../../../app/profile/candidate-profile';
-                    localStorage.setItem("count",2);
-                    self.props.history.push({
-                      pathname: path,
-                      state: self.state
+              confirmAlert({
+                title: 'Aadhar Verification',
+                message: 'The enter aadhar number does not match your Linked mobile number Continue to onboarding?',
+                buttons: [
+                  {
+                    label: 'Continue',
+                    onClick: () => {
+                      self.resend();
+                      let path = '../../../otp';
+                      self.props.history.push({
+                        pathname: path,
+                        state: self.state
   
-                    })
+                      })
+                    }
+  
+                  },
+                  {
+                    label: 'Update no',
+                    onClick: () => {
+                      //$("#bank_contact_modal").modal("show");
+                      let path = '../../../update';
+                      self.props.history.push({
+                        pathname: path,
+                        state: self.state
+  
+                      })
+                    }
                   }
-  
-                },
-                {
-                  label: 'No',
-                  onClick: () => {
-                    
-                    let path = 'login';
-                    self.props.history.push({
-                      pathname: path,
-                      state: self.state
-  
-                    })
-                  }
-                }
-              ]
-            })
+                ]
+              })
           
             console.log(error);
            
