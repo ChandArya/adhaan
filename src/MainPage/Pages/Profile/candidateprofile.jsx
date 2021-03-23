@@ -833,6 +833,51 @@ export default class EmployeeProfile extends Component {
   }
   previewClick = (e) => {
     let path = './applcation-form';
+    var id = this.props.location.state.id
+    // alert("iiiiid",id)
+    // console.log("hhhhhhhhh",id)
+    // this.setState({id:id });
+
+    this.props.history.push({
+      pathname: path,
+      state: this.state
+
+    })
+
+
+
+  }
+  pfClick = (e) => {
+    let path = './declaration-form';
+    // var id=this.props.location.state.id
+    // alert("iiiiid",id)
+    // console.log("hhhhhhhhh",id)
+    // this.setState({id:id });
+
+    this.props.history.push({
+      pathname: path,
+      state: this.state
+
+    })
+
+  }
+  esiClick = (e) => {
+    let path = './Esic-declrationForm';
+    // var id=this.props.location.state.id
+    // alert("iiiiid",id)
+    // console.log("hhhhhhhhh",id)
+    // this.setState({id:id });
+
+    this.props.history.push({
+      pathname: path,
+      state: this.state
+
+    })
+
+  }
+
+  gratitutyClick = (e) => {
+    let path = './Gratituty-form';
     // var id=this.props.location.state.id
     // alert("iiiiid",id)
     // console.log("hhhhhhhhh",id)
@@ -1221,6 +1266,7 @@ const { crop, croppedImageUrl, src } = this.state;
 
             <div className="col-auto float-right ml-auto">
               <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview</button>
+
             </div>
 
             <div className="card-body">
@@ -1339,29 +1385,14 @@ const { crop, croppedImageUrl, src } = this.state;
             <div className="row user-tabs">
               <div className="col-lg-12 col-md-12 col-sm-12 line-tabs">
                 <ul className="nav nav-tabs nav-tabs-bottom">
+
                   <li className="nav-item"><a href="#emp_profile" data-toggle="tab" className="nav-link active">Profile</a></li>
-<<<<<<< HEAD
-                  <li className="nav-item">
-                    {/* <a href="#emp_projects" data-toggle="tab" className="nav-link"> */}
-                    <a href="#" data-toggle="tab" className="nav-link">
-                    PF
-                    </a>
-                    
-                  {/* </a> */}
-                  </li>
-                      <li className="nav-item">
-                        {/* <a href="#bank_statutory" data-toggle="tab" className="nav-link"> */}
-                        
-                        {/* </a> */}
-                        <a href="#" data-toggle="tab" className="nav-link">
-                        ESIC
-                    </a>
-                        </li>
-=======
-                  <li className="nav-item"><a href="/app/profile/declaration-form" data-toggle="tab" className="nav-link">PF</a></li>
-                  <li className="nav-item"><a href="/app/profile/Esic-declrationForm" data-toggle="tab" className="nav-link">ESIC</a></li>
-                  <li className="nav-item"><a href="/app/profile/Gratituty-form" data-toggle="tab" className="nav-link">GRATITUTY</a></li>
->>>>>>> 11067b175d541688334b6e443ef07b19887dfa6d
+
+                  <li className="nav-item"><a className="nav-link active">Profile</a></li>
+                  <li className="nav-item"><a data-toggle="tab" onClick={this.pfClick} className="nav-link">PF</a></li>
+                  <li className="nav-item"><a data-toggle="tab" onClick={this.esiClick} className="nav-link">ESIC</a></li>
+                  <li className="nav-item"><a data-toggle="tab" onClick={this.gratitutyClick} className="nav-link">GRATITUTY</a></li>
+
                 </ul>
               </div>
             </div>
