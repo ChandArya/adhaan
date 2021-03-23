@@ -28,16 +28,23 @@ class ApplicationForm extends Component {
         })
         // this.props.history.go(-1)
 
-
-
-
-
-
-
-
-
     }
 
+
+    savebtn = (e) => {
+        let path = './declaration-form';
+        var id = this.props.location.state.user
+        // alert("iiiiid",id)
+        console.log("hhhhhhhhh", id)
+        this.setState({ id: id, back: true });
+
+        this.props.history.push({
+            pathname: path,
+            state: this.state
+
+        })
+
+    }
 
 
 
@@ -976,6 +983,10 @@ class ApplicationForm extends Component {
                     </div>
                 </div>
                 {/* /Page Content */}
+                <div className="col-auto float-right ml-auto">
+                    <button className="btn add-btn" id="submit" onClick={this.savebtn}>Save & Countinue</button>
+                </div>
+
             </div>
         );
     }
