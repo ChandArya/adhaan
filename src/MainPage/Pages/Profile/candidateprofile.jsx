@@ -260,7 +260,7 @@ export default class EmployeeProfile extends Component {
     this.addProfileData(this, this.state)
 
   }
-  
+
   addPersonalInfoData = (e) => {
     e.preventDefault();
     console.log("clickfound")
@@ -788,7 +788,7 @@ export default class EmployeeProfile extends Component {
     // let val = e.target.dataset.value;
     console.log(value);
 
-    this.setState({ docname: value,crop:'', croppedImageUrl:'', src:'' })
+    this.setState({ docname: value, crop: '', croppedImageUrl: '', src: '' })
   }
   setFamilyAdhar = (e) => {
     const re = /^[0-9]+$/;
@@ -1247,7 +1247,7 @@ export default class EmployeeProfile extends Component {
 
 
 
-const { crop, croppedImageUrl, src } = this.state;
+    const { crop, croppedImageUrl, src } = this.state;
     return (
 
 
@@ -1276,7 +1276,7 @@ const { crop, croppedImageUrl, src } = this.state;
 
                     <div className="profile-img-wrap">
                       <div className="profile-img">
-                        <a href="#"><img alt="" src={this.state.profilepic?this.state.profilepic:Avatar_02} ></img></a>
+                        <a href="#"><img alt="" src={this.state.profilepic ? this.state.profilepic : Avatar_02} ></img></a>
                         <div className="precent_box">
                           <Circle height={100}
                             width='100px'
@@ -1386,7 +1386,7 @@ const { crop, croppedImageUrl, src } = this.state;
               <div className="col-lg-12 col-md-12 col-sm-12 line-tabs">
                 <ul className="nav nav-tabs nav-tabs-bottom">
 
-                
+
                   <li className="nav-item"><a className="nav-link active">Profile</a></li>
                   <li className="nav-item"><a data-toggle="tab" onClick={this.pfClick} className="nav-link">PF</a></li>
                   {/* <li className="nav-item"><a data-toggle="tab" onClick={this.esiClick} className="nav-link">ESIC</a></li> */}
@@ -2211,8 +2211,8 @@ const { crop, croppedImageUrl, src } = this.state;
                                 return current > start;
                               }}
                               onChange={(e) => this.setDob(e)}
-                              
-                               value={
+
+                              value={
 
                                 this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment().subtract(18, 'years')}>{this.state.dob ? '' : "Select Date"}</DatePicker> </label>
                           </div>
@@ -2830,21 +2830,21 @@ const { crop, croppedImageUrl, src } = this.state;
 
                     </div>
                     {src && (
-          <ReactCrop
-            src={src}
-            crop={crop}
-            ruleOfThirds
-            style={{ maxWidth: '30%',maxHeight:'30%'}}
-            onImageLoaded={this.onImageLoaded}
-            onComplete={this.onCropComplete}
-            onChange={this.onCropChange}
-          />
-        )}
-        {croppedImageUrl && (
-          <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
-        )}
+                      <ReactCrop
+                        src={src}
+                        crop={crop}
+                        ruleOfThirds
+                        style={{ maxWidth: '30%', maxHeight: '30%' }}
+                        onImageLoaded={this.onImageLoaded}
+                        onComplete={this.onCropComplete}
+                        onChange={this.onCropChange}
+                      />
+                    )}
+                    {croppedImageUrl && (
+                      <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
+                    )}
                   </div>
-                  
+
                   <div className="submit-section">
                     <button className="btn btn-primary submit-btn" onClick={this.uploadDoc}>Submit</button>
                   </div>
@@ -2892,14 +2892,14 @@ const { crop, croppedImageUrl, src } = this.state;
                             <div className="form-group">
                               <label>Relationship <span className="text-danger">*</span></label>
                               <select className="mb-3 form-control" value={this.state.family_relation} onChange={this.setFamilyRelation} >
-                              {/* <option value='0'>Select Education Level </option> */}
-                              <option value="0">Select Relationship</option>
-                              <option value="mother">Mother</option>
-                              <option value="father">Father</option>
-                              <option value="spouse">Spouse</option>
-                              <option value="son"> Son</option>
-                              <option value="daughter">Daughter</option>
-                            </select>
+                                {/* <option value='0'>Select Education Level </option> */}
+                                <option value="0">Select Relationship</option>
+                                <option value="mother">Mother</option>
+                                <option value="father">Father</option>
+                                <option value="spouse">Spouse</option>
+                                <option value="son"> Son</option>
+                                <option value="daughter">Daughter</option>
+                              </select>
                               {/* <input className="form-control" type="text" value={this.state.family_relation} onChange={this.setFamilyRelation} /> */}
                             </div>
 
@@ -3458,11 +3458,11 @@ const { crop, croppedImageUrl, src } = this.state;
 
     // this.isBlank(data.name)
     if (this.isBlank(data.name) || this.isBlank(data.father_name) ||
-       this.isBlank(data.c_country) || this.isBlank(data.gender) ||
+      this.isBlank(data.c_country) || this.isBlank(data.gender) ||
       this.isBlank(data.c_state) || this.isBlank(data.c_city) ||
       this.isBlank(data.c_full_address) ||
       this.isBlank(data.c_pin_code) ||
-      this.isBlank(data.p_country) || this.isBlank(data.p_state) ||this.isBlank(data.c_email)||
+      this.isBlank(data.p_country) || this.isBlank(data.p_state) || this.isBlank(data.c_email) ||
       this.isBlank(data.p_city) ||
       this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)
 
@@ -3593,7 +3593,7 @@ const { crop, croppedImageUrl, src } = this.state;
     console.log("called")
     if (this.isBlank(data.name) || this.isBlank(data.relation)) {
       self.setState({ error: "Please fill all required details" })
-    }else if( data.relation=="0"){
+    } else if (data.relation == "0") {
       self.setState({ error: "Please fill all required details" })
     } else {
       self.setState({
@@ -3728,7 +3728,7 @@ const { crop, croppedImageUrl, src } = this.state;
   }
   //upload doc
   documentUpload = (self, data, document_type, candidate) => {
-    console.log("dadsggshfdhgdsghffsd"+JSON.stringify(data))
+    console.log("dadsggshfdhgdsghffsd" + JSON.stringify(data))
     self.setState({ error: "Please wait file is uploading" })
     let formData = new FormData();
     formData.append("document_type", "" + document_type)
@@ -3753,8 +3753,8 @@ const { crop, croppedImageUrl, src } = this.state;
           //let path='app/profile/candidate-profile';
           alert(document_type + ' uploaded successfully  ✅')
           self.apicall();
-           self.closeDocument();
-           window.location.reload(false);
+          self.closeDocument();
+          window.location.reload(false);
 
         }
       })

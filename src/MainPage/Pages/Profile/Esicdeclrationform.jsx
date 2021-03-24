@@ -198,7 +198,7 @@ class EsicdeclrationForm extends Component {
                                            </h1>
                                         
                                         </div>
-                                    <p className="text-center" style={{marginTop:'-7%', marginLeft:'12%'}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
+                                    <p className="text-center" style={{ marginLeft:'12%'}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
                                         size photographs are to be attached with this form.This form if free of cost.</p><br/>
 
 
