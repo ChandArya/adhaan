@@ -7905,6 +7905,63 @@ ul.comment-list li ul.children {
 		display:flex;
 	}
 } */
+
+/* changes by nitin */
+.input-line input {
+border: 1px solid #e3e3e3;
+border-top: none;
+border-left: 0;
+border-right: 0;
+
+}
+.intro-fst{
+text-transform: inherit;
+margin-bottom: 1rem;
+}
+.intro-fst input{
+border: 2px dotted #e3e3e3;
+border-top: none;
+border-left: 0;
+border-right: 0;
+}
+.center-input input{
+text-align: center;
+}
+
+.certified {
+margin-bottom: 3rem;
+}
+.certified input{
+margin-left: 5px;
+width: 90%;
+border: 2px dotted #e3e3e3;
+border-top: none;
+border-left: 0;
+border-right: 0;
+margin-bottom: .5rem;
+}
+.certifi-list li{
+padding: 10px 0;
+}
+.date-filed input{
+margin-left: 5px;
+width: 90%;
+border: 2px dotted #e3e3e3;
+border-top: none;
+border-left: 0;
+border-right: 0;
+margin-bottom: .5rem;
+max-width: 250px;
+}
+.dividedbox{
+border-top: 20px solid #666;
+margin-top: 3rem;
+padding-top: 2rem;
+}
+
+
+
+
 @media only screen and (max-width: 767.98px) {
 	body {
 		font-size: 0.875rem;
