@@ -13,7 +13,6 @@ var axios = require('axios');
 class Loginpage extends Component {
   constructor(...props) {
     super(...props)
-<<<<<<< HEAD
     var url =window.location.href;
     var id=url.split("/");
     var mobileno=id[id.length-3]
@@ -23,16 +22,6 @@ class Loginpage extends Component {
     localStorage.setItem("url",url);
     localStorage.setItem("adhar",adharNo);
     localStorage.setItem("mobile",mobileno);
-=======
-    var url = window.location.href;
-    var id = url.split("/");
-    var mobileno = id[id.length - 3]
-    var adharNo = id[id.length - 2]
-    var candidateid = id[id.length - 1]
-    localStorage.setItem("can", candidateid);
-    localStorage.setItem("adhar", adharNo);
-    localStorage.setItem("mobile", mobileno);
->>>>>>> 8234df18c21273472dfc5e995db565200e86c3e7
     this.state = {
       currentpage: '/',
       isd: '91',
