@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Table} from 'react-table';
 import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
 var axios = require('axios');
-
+var baseurl = 'https://aadhaan.ddns.net';
 
 
 
@@ -15,105 +15,51 @@ class DeclrationForm extends Component {
     }
 
     savebtn = (e) => {
-        // console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
-        // if (this.isBlank(bankname) || this.isBlank(acountno) ||
-        //     this.isBlank(ifsc)) {
-        //     self.setState({ error: "Please fill all required details" })
-        // } else {
-        //     var data = JSON.stringify({
-        //         "candidate": userid,
-        //         "bank_name": bankname,
-        //         "branch_name": branchname,
-        //         "account_number": acountno,
-        //         "ifsc_code": ifsc
-        //     });
-        //     console.log("called")
-        //     var config = {
-        //         method: 'post',
-        //         url: baseurl + '/api/candidate/bank-details',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         data: data
-        //     };
+        var self =this;
+        var data = JSON.stringify({
+                    "candidate": localStorage.getItem("can"),
+                    
+                });
+                console.log("called")
+                var config = {
+                    method: 'post',
+                    url: baseurl + '/api/v1/candidate-percentage',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+    
+                axios(config)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        // self.setState({ error: response.data.message })
+                        // if (response.data.status == true) {
+                            let path = './Esic-declrationForm';
+                            var id = self.props.location.state.user
+                            // alert("iiiiid",id)
+                            console.log("hhhhhhhhh", id)
+                            self.setState({ id: id, back: true });
 
-        //     axios(config)
-        //         .then(function (response) {
-        //             console.log(JSON.stringify(response.data));
-        //             self.setState({ error: response.data.message })
-        //             if (response.data.status == true) {
-                        let path = './Esic-declrationForm';
-                        var id = this.props.location.state.user
-                        // alert("iiiiid",id)
-                        console.log("hhhhhhhhh", id)
-                        this.setState({ id: id, back: true });
+                            self.props.history.push({
+                                pathname: path,
+                                state: self.state
 
-                        this.props.history.push({
-                            pathname: path,
-                            state: this.state
+                            })
+                       
 
-                        })
-        //                 e.preventDefault();
-        //                 console.log("clickfound")
-        //                 this.setState({ error1: "This field can not be empty" })
-
-
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //             self.setState({ error: "network issue" })
-        //         });
-        // }
+                    // }
+                })
+                .catch(function (error) {
+                    // console.log(error);
+                    // self.setState({ error: "network issue" })
+                });
+                      
        
-       // this.addBank(this, this.state.bank_name, this.state.branch_name, this.state.account_number, this.state.ifsc_code, this.state.user);
 
     }
     
 
-    addBank = (e) => {
-        console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
-        if (this.isBlank(bankname) || this.isBlank(acountno) ||
-            this.isBlank(ifsc)) {
-            self.setState({ error: "Please fill all required details" })
-        } else {
-            var data = JSON.stringify({
-                "candidate": userid,
-                "bank_name": bankname,
-                "branch_name": branchname,
-                "account_number": acountno,
-                "ifsc_code": ifsc
-            });
-            console.log("called")
-            var config = {
-                method: 'post',
-                url: baseurl + '/api/candidate/bank-details',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: data
-            };
-
-            axios(config)
-                .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
-                    if (response.data.status == true) {
-                        //let path='app/profile/candidate-profile';
-                        alert('Bank details successfully submitted ✅')
-                        $("#bank_contact_modal").modal("hide");
-                        self.setState({ error: "", error1: '' })
-                        // window.location.reload(false);
-
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    self.setState({ error: "network issue" })
-                });
-        }
-    }
 
 
 

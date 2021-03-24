@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Table} from 'react-table';
+var axios = require('axios');
+var baseurl = 'https://aadhaan.ddns.net';
 
 // var axios = require('axios');
 class GratitutyForm extends Component {
@@ -12,58 +14,29 @@ class GratitutyForm extends Component {
 
 
     submitbtn = (e) => {
-        // console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
-        // if (this.isBlank(bankname) || this.isBlank(acountno) ||
-        //     this.isBlank(ifsc)) {
-        //     self.setState({ error: "Please fill all required details" })
-        // } else {
-        //     var data = JSON.stringify({
-        //         "candidate": userid,
-        //         "bank_name": bankname,
-        //         "branch_name": branchname,
-        //         "account_number": acountno,
-        //         "ifsc_code": ifsc
-        //     });
-        //     console.log("called")
-        //     var config = {
-        //         method: 'post',
-        //         url: baseurl + '/api/candidate/bank-details',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         data: data
-        //     };
-
-        //     axios(config)
-        //         .then(function (response) {
-        //             console.log(JSON.stringify(response.data));
-        //             self.setState({ error: response.data.message })
-        //             if (response.data.status == true) 
-        //let path = './Gratituty-form';
-        var id = this.props.location.state.user
-        // alert("iiiiid",id)
-        console.log("hhhhhhhhh", id)
-        this.setState({ id: id, back: true });
-
-        this.props.history.push({
-            pathname: path,
-            state: this.state
-
-        })
-        //                 e.preventDefault();
-        //                 console.log("clickfound")
-        //                 this.setState({ error1: "This field can not be empty" })
-
-
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //             self.setState({ error: "network issue" })
-        //         });
-        // }
-
-        // this.addBank(this, this.state.bank_name, this.state.branch_name, this.state.account_number, this.state.ifsc_code, this.state.user);
+        var self =this;
+        var data = JSON.stringify({
+                    "candidate": localStorage.getItem("can"),
+                    
+                });
+                console.log("called")
+                var config = {
+                    method: 'post',
+                    url: baseurl + '/api/v1/candidate-percentage',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+    
+                axios(config)
+                    .then(function (response) {
+                       alert("you save successfully submitted all data.")
+                })
+                .catch(function (error) {
+                    // console.log(error);
+                    // self.setState({ error: "network issue" })
+                });
 
     }
 

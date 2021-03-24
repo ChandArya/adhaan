@@ -7,6 +7,7 @@ import { Upload_Photo, Sign, Applogo } from "../../../Entryfile/imagepath"
 import "../../antdstyle.css"
 import Pdf from "react-to-pdf";
 
+var baseurl = 'https://aadhaan.ddns.net';
 const ref = React.createRef();
 class ApplicationForm extends Component {
     constructor(props) {
@@ -32,17 +33,46 @@ class ApplicationForm extends Component {
 
 
     savebtn = (e) => {
-        let path = './declaration-form';
-        var id = this.props.location.state.user
-        // alert("iiiiid",id)
-        console.log("hhhhhhhhh", id)
-        this.setState({ id: id, back: true });
+        var self =this;
+        var data = JSON.stringify({
+                    "candidate": localStorage.getItem("can"),
+                    
+                });
+                console.log("called")
+                var config = {
+                    method: 'post',
+                    url: baseurl + '/api/v1/candidate-percentage',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+    
+                axios(config)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        // self.setState({ error: response.data.message })
+                        // if (response.data.status == true) {
+                            let path = './declaration-form';
+                            var id = self.props.location.state.user
+                            // alert("iiiiid",id)
+                            console.log("hhhhhhhhh", id)
+                            self.setState({ id: id, back: true });
 
-        this.props.history.push({
-            pathname: path,
-            state: this.state
+                            self.props.history.push({
+                                pathname: path,
+                                state: self.state
 
-        })
+                            })
+                       
+
+                    // }
+                })
+                .catch(function (error) {
+                    // console.log(error);
+                    // self.setState({ error: "network issue" })
+                });
+        
 
     }
 

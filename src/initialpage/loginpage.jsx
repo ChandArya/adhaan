@@ -168,7 +168,7 @@ class Loginpage extends Component {
           })
           .catch(function (error) {
   
-            self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" + mobileno })
+            self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" })
   
               confirmAlert({
                 title: 'Aadhar Verification',
