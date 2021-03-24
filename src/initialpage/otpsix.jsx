@@ -267,13 +267,13 @@ class OTPSix extends Component {
       // Check if they hit the max character length
       if (this.state.a.length > 0) {
         console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-2]`)
+        const nextSibling = document.querySelector(
+          `input[name=ssn-2]`)
 
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+        // If found, focus the next field
+        if (nextSibling !== null) {
+          nextSibling.focus();
+        }
       }
 
 
@@ -291,13 +291,13 @@ class OTPSix extends Component {
       // Check if they hit the max character length
       if (this.state.b.length >= 0) {
         console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-3]`)
-        //   // return
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+        const nextSibling = document.querySelector(
+          `input[name=ssn-3]`)
+          return
+        // If found, focus the next field
+        if (nextSibling !== null) {
+          nextSibling.focus();
+        }
       }
 
 
@@ -315,13 +315,13 @@ class OTPSix extends Component {
       // Check if they hit the max character length
       if (this.state.c.length >= 0) {
         // console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-4]`)
-
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+        const nextSibling = document.querySelector(
+          `input[name=ssn-4]`)
+          return
+        // If found, focus the next field
+        if (nextSibling !== null) {
+          nextSibling.focus();
+        }
       }
 
 
@@ -339,13 +339,13 @@ class OTPSix extends Component {
       // Check if they hit the max character length
       if (this.state.d.length >= 0) {
         console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-5]`)
-
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+        const nextSibling = document.querySelector(
+          `input[name=ssn-5]`)
+          return
+        // If found, focus the next field
+        if (nextSibling !== null) {
+          nextSibling.focus();
+        }
       }
 
 
@@ -363,13 +363,13 @@ class OTPSix extends Component {
       // Check if they hit the max character length
       if (this.state.e1.length >= 0) {
         console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-6]`)
+        const nextSibling = document.querySelector(
+          `input[name=ssn-6]`)
 
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+        // If found, focus the next field
+        if (nextSibling !== null) {
+          nextSibling.focus();
+        }
       }
 
 

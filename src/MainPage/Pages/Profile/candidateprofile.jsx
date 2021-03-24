@@ -833,7 +833,7 @@ export default class EmployeeProfile extends Component {
   }
   previewClick = (e) => {
     let path = './applcation-form';
-    var id = this.props.location.state.id
+    // var id = this.props.location.state.id
     // alert("iiiiid",id)
     // console.log("hhhhhhhhh",id)
     // this.setState({id:id });
@@ -863,11 +863,7 @@ export default class EmployeeProfile extends Component {
   }
   esiClick = (e) => {
     let path = './Esic-declrationForm';
-    // var id=this.props.location.state.id
-    // alert("iiiiid",id)
-    // console.log("hhhhhhhhh",id)
-    // this.setState({id:id });
-
+   
     this.props.history.push({
       pathname: path,
       state: this.state
@@ -878,10 +874,7 @@ export default class EmployeeProfile extends Component {
 
   gratitutyClick = (e) => {
     let path = './Gratituty-form';
-    // var id=this.props.location.state.id
-    // alert("iiiiid",id)
-    // console.log("hhhhhhhhh",id)
-    // this.setState({id:id });
+  
 
     this.props.history.push({
       pathname: path,
@@ -1388,9 +1381,9 @@ const { crop, croppedImageUrl, src } = this.state;
 
                 
                   <li className="nav-item"><a className="nav-link active">Profile</a></li>
-                  <li className="nav-item"><a data-toggle="tab" onClick={this.pfClick} className="nav-link">PF</a></li>
+                  {/* <li className="nav-item"><a data-toggle="tab" onClick={this.pfClick} className="nav-link">PF</a></li> */}
                   {/* <li className="nav-item"><a data-toggle="tab" onClick={this.esiClick} className="nav-link">ESIC</a></li> */}
-                  <li className="nav-item"><a data-toggle="tab" onClick={this.gratitutyClick} className="nav-link">GRATITUTY</a></li>
+                  {/* <li className="nav-item"><a data-toggle="tab" onClick={this.gratitutyClick} className="nav-link">GRATITUTY</a></li> */}
 
                 </ul>
               </div>
@@ -1605,8 +1598,8 @@ const { crop, croppedImageUrl, src } = this.state;
                       <h3 className="card-title">Other Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#other_details"><i className="fa fa-pencil" /></a></h3>
                       <ul className="personal-info">
                         <li>
-                          <div className="title">Aadhar Card</div>
-                          <div className="text">{this.state.candidate_other_data.aadhaar_no}</div>
+                          <div className="title">Aadhar Card </div>
+                          <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc")==0?localStorage.getItem("url"):"#"}>{localStorage.getItem("kyc")==0?"Verify":"Verified ✅"} </a></div>
                         </li>
                         <li>
                           <div className="title">Name (As per Driving License)</div>

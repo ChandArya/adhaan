@@ -8,7 +8,7 @@ import { Applogo } from '../Entryfile/imagepath.jsx'
 
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
-import $ from 'jquery';
+
 var axios = require('axios');
 class Loginpage extends Component {
   constructor(...props) {
@@ -19,6 +19,7 @@ class Loginpage extends Component {
     var adharNo=id[id.length-2]
     var candidateid=id[id.length-1]
     localStorage.setItem("can",candidateid);
+    localStorage.setItem("url",url);
     localStorage.setItem("adhar",adharNo);
     localStorage.setItem("mobile",mobileno);
     this.state = {
@@ -31,16 +32,11 @@ class Loginpage extends Component {
       usertype: '',
       adharNo:adharNo,
       mobileno:mobileno
-
-
-
     }
-    // localStorage.clear();
+   
   }
   resend = (e) => {
-    // e.preventDefault();
-    // console.log(this.props)
-    // console.log(this.props.location.state)
+   
     this.setState({ f_otp: '' });
     var isd = "91"
     var mobile = this.state.mobileno
@@ -63,23 +59,17 @@ class Loginpage extends Component {
         self.setState({ error: ee.data.message })
         window.location.reload(false);
         console.log("resend otp", ee)
-        //  datareturn=ee
-
-
-      })
+        })
       .catch(function (error) {
         console.log(error);
-        // datareturn=error
+        
       });
 
   }
   loginClick = (e) => {
     e.preventDefault();
-    // 
-    // return
-    var id = this.state.mobileno
-    // console.log("hhhhhhhhh", id)
-    // this.setState({ user: id });
+  
+   
       if(this.state.adharNo.length==12)
       {
         var data = JSON.stringify({
@@ -101,7 +91,7 @@ class Loginpage extends Component {
           .then(function (response) {
             console.log(JSON.stringify(response.data));
             var mobileno = self.state.mobileno
-            // self.isVerfied({"id":self.user,"data":response.data,"adharno":''+self.state.adharno});
+            
             var getno = mobileno.substring(mobileno.length - 3)
   
             if (response.data.data.last_digits == getno) {
@@ -109,6 +99,7 @@ class Loginpage extends Component {
   
               console.log(response.data.data.last_digits)
               self.setState({ error: "Kyc verified" })
+              localStorage.setItem("kyc",1);
               let path = '../../../sixotp';
               confirmAlert({
                 title: 'Aadhar Verification \n Congratulation Your kyc  verified \u2713',
@@ -129,7 +120,7 @@ class Loginpage extends Component {
   
   
             } else {
-  
+              localStorage.setItem("kyc",0);
               self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" + mobileno })
   
               confirmAlert({
@@ -152,7 +143,7 @@ class Loginpage extends Component {
                   {
                     label: 'Update no',
                     onClick: () => {
-                      //$("#bank_contact_modal").modal("show");
+                     
                       let path = '../../../update';
                       self.props.history.push({
                         pathname: path,
@@ -167,7 +158,7 @@ class Loginpage extends Component {
   
           })
           .catch(function (error) {
-  
+            localStorage.setItem("kyc",0);
             self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" })
   
               confirmAlert({
@@ -190,7 +181,7 @@ class Loginpage extends Component {
                   {
                     label: 'Update no',
                     onClick: () => {
-                      //$("#bank_contact_modal").modal("show");
+                     
                       let path = '../../../update';
                       self.props.history.push({
                         pathname: path,
@@ -210,10 +201,6 @@ class Loginpage extends Component {
         console.log("fffff",this.state.error)
         this.setState({ error: "This is not valid link genreated." })
       }
-      
-     
-   
-
 
   }
 
@@ -222,13 +209,8 @@ class Loginpage extends Component {
     const value = e.target.value;
 
     this.setState({ empid: value });
-   
 
   }
-  
-
-
-
 
   render() {
 

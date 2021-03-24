@@ -104,7 +104,7 @@ class OfferLetter extends Component {
               isLoaded: true,
               error
             });
-            console.log("error");
+            console.log("error",error);
           });
           //breakup
          
@@ -153,7 +153,7 @@ class OfferLetter extends Component {
               isLoaded: true,
               error
             });
-            console.log("error");
+            console.log("error",error);
           });
      }
      onReject = (e) => {
@@ -228,38 +228,7 @@ class OfferLetter extends Component {
     // }
        
     }
-    apicall = () => {
-        var url1 = 'https://aadhaan.ddns.net/api/recruiter/onboard-candidate/'
-     
-        var config = {
-            method: 'get',
-            url: url1,
-            headers: {
-                'Content-Type': 'application/json',
-
-
-
-            },
-            data: ''
-        };
-
-        axios(config)
-            .then((response) => {
-                console.log("fgdfgfggf")
-                var data = response.data;
-                console.log("fgdfgfggf", data)
-               
-
-            })
-            .catch((error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-                console.log("error");
-            });
-
-    }
+    
 
     
 
