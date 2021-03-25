@@ -1092,11 +1092,10 @@ subject to fulfillment of contributory conditions</li>
                 </div><br />
                                 
 
-                <div className="col-auto float-right  ml-auto">
-                    <button className="btn add-btn" id="submit" onClick={this.savebtn}>Save & Countinue</button>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Countinue</button>
                 </div>
-
-
+<br/>
 
                 {/* container close */}</div >
 

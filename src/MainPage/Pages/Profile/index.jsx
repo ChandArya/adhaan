@@ -12,6 +12,7 @@ import OfferLetter from './OfferLetter';
 import DeclarationForm from './Declaration-Form';
 import EsicdeclrationForm from './Esicdeclrationform';
 import GratitutyForm from './GratitutyForm';
+import PrintPage from './PrintPage';
 
 
 
@@ -27,6 +28,8 @@ const subscriptionroute = ({ match }) => (
         <Route path={`${match.url}/declaration-form`} component={DeclarationForm} />
         <Route path={`${match.url}/Esic-declrationForm`} component={EsicdeclrationForm} />
         <Route path={`${match.url}/Gratituty-form`} component={GratitutyForm} />
+        <Route path={`${match.url}/PrintPage`} component={PrintPage} />
+
 
 
     </Switch>

@@ -33,46 +33,46 @@ class ApplicationForm extends Component {
 
 
     savebtn = (e) => {
-        var self =this;
+        var self = this;
         var data = JSON.stringify({
-                    "candidate": localStorage.getItem("can"),
-                    
-                });
-                console.log("called")
-                var config = {
-                    method: 'post',
-                    url: baseurl + '/api/v1/candidate-percentage',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: data
-                };
-    
-                axios(config)
-                    .then(function (response) {
-                        console.log(JSON.stringify(response.data));
-                        // self.setState({ error: response.data.message })
-                        // if (response.data.status == true) {
-                            let path = './declaration-form';
-                            var id = self.props.location.state.user
-                            // alert("iiiiid",id)
-                            console.log("hhhhhhhhh", id)
-                            self.setState({ id: id, back: true });
+            "candidate": localStorage.getItem("can"),
 
-                            self.props.history.push({
-                                pathname: path,
-                                state: self.state
+        });
+        console.log("called")
+        var config = {
+            method: 'post',
+            url: baseurl + '/api/v1/candidate-percentage',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
 
-                            })
-                       
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                // self.setState({ error: response.data.message })
+                // if (response.data.status == true) {
+                let path = './declaration-form';
+                var id = self.props.location.state.user
+                // alert("iiiiid",id)
+                console.log("hhhhhhhhh", id)
+                self.setState({ id: id, back: true });
 
-                    // }
+                self.props.history.push({
+                    pathname: path,
+                    state: self.state
+
                 })
-                .catch(function (error) {
-                    // console.log(error);
-                    // self.setState({ error: "network issue" })
-                });
-        
+
+
+                // }
+            })
+            .catch(function (error) {
+                // console.log(error);
+                // self.setState({ error: "network issue" })
+            });
+
 
     }
 
@@ -1013,9 +1013,11 @@ class ApplicationForm extends Component {
                     </div>
                 </div>
                 {/* /Page Content */}
-                <div className="col-auto float-right ml-auto">
-                    <button className="btn add-btn" id="submit" onClick={this.savebtn}>Save & Countinue</button>
+
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Countinue</button>
                 </div>
+                <br />
 
             </div>
         );
