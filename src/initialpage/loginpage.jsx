@@ -98,7 +98,7 @@ class Loginpage extends Component {
 
           if (response.data.data.last_digits == getno) {
 
-
+            localStorage.setItem("kyc",1);
             console.log(response.data.data.last_digits)
             self.setState({ error: "Kyc verified" })
             let path = '../../../sixotp';
@@ -123,7 +123,7 @@ class Loginpage extends Component {
 
 
           } else {
-
+            localStorage.setItem("kyc",0);
             self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" + mobileno })
 
             confirmAlert({
@@ -161,7 +161,7 @@ class Loginpage extends Component {
 
         })
         .catch(function (error) {
-
+          localStorage.setItem("kyc",0);
           self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" })
 
           confirmAlert({

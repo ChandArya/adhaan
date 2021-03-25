@@ -139,6 +139,7 @@ export default class EmployeeProfile extends Component {
         width: 30,
         aspect: 16 / 9,
       },
+      jobtype:'',
 
       // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
@@ -832,17 +833,66 @@ export default class EmployeeProfile extends Component {
     this.addFamily(this, data);
   }
   previewClick = (e) => {
-    let path = './applcation-form';
-    // var id = this.props.location.state.id
-    // alert("iiiiid",id)
-    // console.log("hhhhhhhhh",id)
-    // this.setState({id:id });
+    console.log(this.state.candidate_documents_data);
+    var final=[]
+    for (var i=0;i<this.state.candidate_documents_data.length;i++)
+    {
+      if(this.state.candidate_documents_data[i].document_type=='Resume/ Bio-DATA')
+      {
+        final.push(1)
+      }else
+      if(this.state.candidate_documents_data[i].document_type=='Signature')
+      {
+        final.push(2)
+      }else
+      if(this.state.candidate_documents_data[i].document_type=='Thumb Impression')
+      {
+        final.push(2)
+      }else
+      if(this.state.candidate_documents_data[i].document_type=='Driving License Front')
+      {
+        final.push(3)
+      }else
+      {
+        final.push(5)
+      }
+     
 
-    this.props.history.push({
-      pathname: path,
-      state: this.state
-
-    })
+    }
+    console.log(this.state.jobtype,"",final)
+    if(this.state.jobtype!="Backoffice")
+    {
+    
+        if(final.includes(1) && final.includes(2) && final.includes(3))
+        {
+          
+        let path = './applcation-form';
+       
+    
+        this.props.history.push({
+          pathname: path,
+          state: this.state
+    
+        })
+      }else
+      {
+        alert("Please upload all required document.")
+      }
+    }else if(final.includes(1) && final.includes(2)&& final.includes(5)  )
+    {
+      console.log("finalfinal",final)
+      
+     let path = './applcation-form';
+    
+ 
+     this.props.history.push({
+       pathname: path,
+       state: this.state
+ 
+     })
+    }else{
+     alert("Please upload all required document.")
+   }
 
 
 
@@ -968,6 +1018,7 @@ export default class EmployeeProfile extends Component {
               recruiter_name: basic_details.recruiter_name,
               created_by: basic_details.recruiter_id,
               recruiter_employee_id: basic_details.recruiter_employee_id,
+              jobtype: basic_details.job_type,
               // profile_picture
 
               profilepic: "https://aadhaan.ddns.net" + basic_details.profile_picture
@@ -1178,6 +1229,7 @@ export default class EmployeeProfile extends Component {
           console.log("recuriter", err)
 
         }
+       
 
       })
       .catch((error) => {
@@ -1661,7 +1713,7 @@ export default class EmployeeProfile extends Component {
                       <ul className="personal-info">
                         {candidate_documents_data.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document.document_type}</div>
+                            <div className="title">{document.document_type} {document.document_type=="Resume/ Bio-DATA"||document.document_type=="Signature"||document.document_type=="Thumb Impression"||((document.document_type=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
                             <input type="checkbox" className="" defaultChecked="true" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
 
@@ -1670,7 +1722,7 @@ export default class EmployeeProfile extends Component {
 
                         {candidate_doc_list.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document}</div>
+                            <div className="title">{document}{document=="Resume/ Bio-DATA"||document=="Signature"||document=="Thumb Impression"||((document=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
                             <input type="checkbox" className="" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
 
