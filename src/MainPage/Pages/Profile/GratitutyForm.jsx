@@ -127,8 +127,8 @@ class GratitutyForm extends Component {
                 {/*GratitutyForm page */}
 
                 
-                      <div className="border">
-                        < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                      <div className="border" style={{overflowX:'auto'}}>
+                        < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
                             <div style={{marginLeft:'30px', marginRight:'30px'}}>
                                 <div className="title  text-center font-weight-bold">
@@ -142,14 +142,14 @@ class GratitutyForm extends Component {
                                 </div>
 
                                <div  className="text-center"> 
-                               To........................................................................................</div>
+                                    To<span style={{ border: '1px solid black', display: "inline-block", width: '10%' }}></span> </div>
                                
                                <div  className="text-center"> 
                                [Give here name or description of the establishment with full address]</div>
                              <div > 
                              <ul  style={{listStyleType:'decimal'}}>
                              <li>
-                             I. Shri/Shrimati/Kumari whose particulars are given in the statement below,........................&nbsp; &nbsp;
+                                            I. Shri/Shrimati/Kumari whose particulars are given in the statement below,<span style={{ border: '1px solid black', display: "inline-block", width: '5%' }}></span> &nbsp; &nbsp;
                              <sub>[Name in full here]</sub>
 hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
@@ -326,8 +326,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 </div><br/>
 
                                 {/* gratituty form page 2 */}
-                                <div className="border">
-                        < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                                <div className="border" style={{overflowX:'auto'}}>
+                        < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
                             <div style={{ marginLeft: '5%', marginRight: '5%' }}>
                                 <div className="d-flex" style={{marginTop:'5%'}}>

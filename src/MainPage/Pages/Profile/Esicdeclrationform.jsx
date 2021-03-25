@@ -183,7 +183,7 @@ class EsicdeclrationForm extends Component {
 
                             <div className="col-md-12">
                              
-                         <div className="border border-dark" style={{ marginLeft: '30px', marginRight: '30px' }}>
+                         <div className="border border-dark" style={{overflowX:'auto'}}>
                                        
                                     <div className=" font-weight-bold text-right mt-2 mr-2 "> (FORM - 1)</div>
                                     <div className="  mt-2 text-center font-weight-bold d-flex">
@@ -781,7 +781,7 @@ class EsicdeclrationForm extends Component {
                 <div className="border">
                     < div  className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
         <div className="col-md-12">
-            <div className="border border-dark" style={{marginLeft:'30px', marginRight:'30px'}}>
+            <div className="border border-dark" style={{overflowX:'auto'}}>
                 <div className="title p-3">
 मैं घोषणा करता करती हूँ कि मेरे द्वारा प्रस्तुत किया गया ब्यौरा मेरी जानकारी के अनुसार और विश्वास सही है परिवार सदस्यों में हुए परिवर्तन कि सूचना 15 दिन भीतर करने का वचन भी देता देती
                <br/> I hereby declare that the particulars given by me are correct to the best of my knowledge and belief. I undertake to intimate the Corporation any changes
@@ -878,20 +878,22 @@ subject to fulfillment of contributory conditions</li>
                                          <ul  style={{ listStyleType: 'decimal' }}>
 
                                              <li>
-                                                बीमा संख्या  आवंटन की तिथि / Date of Allotment of Ins. No.:___________________________________________________________________
-                                             </li>
+                                                बीमा संख्या  आवंटन की तिथि / Date of Allotment of Ins. No.:
+                                                <span style={{border:'1px solid black', display:"inline-block",width:'50%'}}></span>  
+                                                                       </li>
+
                                              <li>
-                                                अ.प.प. के जारी करने की तिथि / Date of Issue of TIC :___________________________________________________________________
+                                                अ.प.प. के जारी करने की तिथि / Date of Issue of TIC : <span style={{border:'1px solid black', display:"inline-block",width:'50%'}}></span> 
                                              </li>
                                              <li>
 
-                                                औषधालय का नाम / Name/No. of Disp.:___________________________________________________________________
+                                                औषधालय का नाम / Name/No. of Disp.: <span style={{border:'1px solid black', display:"inline-block",width:'50%'}}></span> 
                                              </li>
                                              <li>
-                                                क्या पारस्परिक चिकित्सा व्यवस्था शामिल है? यदि हाँ, तो कृपया सूचित करें /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate :___________________________________________________________________
+                                                क्या पारस्परिक चिकित्सा व्यवस्था शामिल है? यदि हाँ, तो कृपया सूचित करें /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate : <span style={{border:'1px solid black', display:"inline-block",width:'50%'}}></span> 
                                              </li>
                                              <li>
-                                                शाखा प्रबंधक का हस्ताक्षर/ Signature of Branch Manager:___________________________________________________________________
+                                                शाखा प्रबंधक का हस्ताक्षर/ Signature of Branch Manager: <span style={{border:'1px solid black', display:"inline-block",width:'50%'}}></span> 
                                              </li>
                                              </ul>
 

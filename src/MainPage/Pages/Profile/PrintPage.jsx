@@ -32,8 +32,8 @@ class PrintPage extends Component {
 
                         <div class="jumbotron text-center" style={{ transform: 'translate(0%,30%)' }}>
                             <h1 class="display-3">Thank You!</h1>
-                            <p class="lead"><strong>For submitting all details.
-                                        </strong>Please click on the below button to print all the  Forms</p>
+                            <p class="lead"><strong>For submitting all details.<br />
+                            </strong>Please click on the below button to print all the  Forms</p>
                             <hr />
 
                             <p class="lead">

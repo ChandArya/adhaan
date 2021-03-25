@@ -764,7 +764,7 @@ class DeclrationForm extends Component {
                                
 
 
-                                <div className="col-md-12">
+                                <div className="col-md-12 mt-3">
                                     <div className="row">
                                     <div className=" col-md-4  float-left font-weight-bold" >
                                         
@@ -815,7 +815,7 @@ class DeclrationForm extends Component {
 
 
 
-                                <div className="col-md-12" style={{marginTop:'3%'}} >
+                                <div className="col-md-12 mt-3" style={{marginTop:'3%'}} >
                                     <div className="row">
 
                                     <div className=" col-md-4  float-left font-weight-bold" >
@@ -864,7 +864,7 @@ class DeclrationForm extends Component {
 
 
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
                                     <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
@@ -898,7 +898,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                </div> </div><br />
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
 <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
@@ -933,7 +933,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
 
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
 <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
@@ -962,7 +962,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                 </div>
 
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
                                     <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
@@ -1010,13 +1010,13 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                </div>
                                </div>
                                 </div><br/>
-<div className="col-md-12" style={{marginTop:'3%'}}>
+<div className="col-md-12 mt-3" >
     <div className="row">
-<div className="title font-weight-bold col-md-4">
+<div className="title font-weight-bold col-md-8">
                             8) &nbsp; WHETHER EARLIER A MEMBER OF THE EMPLOYEES PROVIDENT FUND SCHEME, 1952?
                             
                              </div>
-                                        <div className="col-md-8" >
+                                        <div className="col-md-4" >
                                            <div className="table-responsive">
                                                 <table  className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                                     <tr>
@@ -1029,24 +1029,30 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                         </div>
 
 
-                           <div className="title font-weight-bold" style={{marginTop:'30px',marginLeft:'15px'}}>
-                            9) &nbsp;  WHETHER EARLIER A MEMBER OF THE EMBPLOYEES PENSION SCHEME, 1995?
-                             
-                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '80px' }}>
-                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>YES
-                               </div>
-                                
-                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>NO
-                              </div>
-                            </div>
-  <div className=" title font-weight-bold text-center" style={{marginTop:'30px'}}>
+                           <div className="title font-weight-bold col-md-8 mt-3" >
+                                            9) &nbsp;  WHETHER EARLIER A MEMBER OF THE EMBPLOYEES PENSION SCHEME, 1995?
+                             </div>
+
+                           
+                                            <div className="col-md-4 mt-3" >
+                                                <div className="table-responsive">
+                                                    <table className="table mb-0 border-dark table-bordered" cellSpacing="0">
+                                                        <tr>
+                                                            <th className="text-uppercase text-center">YES</th>
+                                                            <th className="text-uppercase text-center">	No</th>
+
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+  <div className=" title col-md-12 font-weight-bold text-center" style={{marginTop:'30px'}}>
                                 
                                         <u>IF RESPONSE TO ANY OR BOTH OF (8) & (9) ABOVE IS YES, THEN MANDATORILY FILL UP
                                     THE PREVIOUS EMPLOYMENT DETAILS AT (10,11 & 12) :</u>
                       
 
                             </div>
-                        </div>
+                        
                                 
 
 
@@ -1331,18 +1337,18 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                           </div><br />
                                 </div>
 
-
+<br/>
 
 
                                 <div className="col-md-12">
                                     <div className="row">
-                                    <div className=" col-md-4 float-left "   >
+                                    <div className=" col-md-3 float-left "   >
                                        
                                         13( C ) PASSPORT VALID FROM<br /><br />
 
                                     </div>
 
-                                    <div className="col-md-4">
+                                    <div className="col-md-3">
                                         {/* <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
@@ -1353,7 +1359,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                         </div> */}
-                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                       
                                             {/* {candidate_dob_list.map(document => (
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
                                                
@@ -1361,12 +1367,16 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                              */}
                                                 <input   key={document.key} type="text" ></input>
 
-                                                <h4 className="font-weight-bold" style={{ marginLeft: '50px' }}>TO</h4>
+                                             
                                            
-                                            </div>
+                                            
                                          
                                       </div>
-                                        <div className="col-md-4">
+
+                                      <div className="col-md-3 font-weight-bold">
+                                               TO
+                                      </div>
+                                        <div className="col-md- 3">
                                             {/* <div className="text-center" style={{ display: 'inline-flex', }}>
                                                 {/* <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
@@ -1377,17 +1387,17 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div> 
                                             </div><br></br> */}
-                                            <div className="text-center" style={{ display: 'inline-flex', }}>
+                                           
                                                 {/* {candidate_dob_list.map(document => (
                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                                 ))} */}
-                                                <input key={document.key}  ></input>
+                                            <input key={document.key} type="text" ></input>
                                                 
 
 
 
-                                            </div>
+                                         
                                         </div>
 
                                     </div></div><br/>
@@ -1702,11 +1712,11 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                 <div style={{ backgroundColor: 'black', color: 'white', paddingLeft: '15px' }}> &nbsp; &nbsp;C.  UNDERTAKING :
                                                                                </div>
      <div className="col-md-12">   
-     <div className="row">                                                                     
-<div className="title mt-3"  >
+     <div className="row" style={{marginLeft:'none', marginRight:'none'}}>                                                                     
+<div className="title mt-3"  style={{overflowX:'hidden'}} >
     <ul style={{listStyleType:'none', width:'100%'}}>
         <li>
-              <b>A.</b> &nbsp;  &nbsp;     ICERTIFY THAT ALL THE INFORMATION GIVEN ABOVE IS TRUE  TO  THE BEST	 OF MY KNOWLEDGE AND  BELIEF
+              <b>A.</b> &nbsp;  &nbsp;     I CERTIFY THAT ALL THE INFORMATION GIVEN ABOVE IS TRUE  TO  THE BEST	 OF MY KNOWLEDGE AND  BELIEF
                                              
         </li>
  <li>
@@ -1745,8 +1755,8 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
  </div><br/>
  <div className="col-md-12">
-     <div className="row">
-                               <div className="tiitle">
+                                    <div className="row" style={{ marginLeft: 'none', marginRight: 'none' }}>
+                                        <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
                                         <li>THE MEMBER Mr./Ms./Mrs .............................. HAS JOINED ON ........................ AND HAS BEEN
