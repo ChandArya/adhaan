@@ -31,7 +31,13 @@ class GratitutyForm extends Component {
     
                 axios(config)
                     .then(function (response) {
-                       alert("you save successfully submitted all data.")
+                      // alert("you save successfully submitted all data.")
+                        //  path = './PrintPage';
+                        let path = './PrintPage';
+                        self.props.history.push({
+                            pathname: path,
+                            state: self.state
+                        })
                 })
                 .catch(function (error) {
                     // console.log(error);
@@ -39,51 +45,7 @@ class GratitutyForm extends Component {
                 });
 
     }
-
-
-    addBank = (e) => {
-        console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
-        if (this.isBlank(bankname) || this.isBlank(acountno) ||
-            this.isBlank(ifsc)) {
-            self.setState({ error: "Please fill all required details" })
-        } else {
-            var data = JSON.stringify({
-                "candidate": userid,
-                "bank_name": bankname,
-                "branch_name": branchname,
-                "account_number": acountno,
-                "ifsc_code": ifsc
-            });
-            console.log("called")
-            var config = {
-                method: 'post',
-                url: baseurl + '/api/candidate/bank-details',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: data
-            };
-
-            axios(config)
-                .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
-                    if (response.data.status == true) {
-                        //let path='app/profile/candidate-profile';
-                        alert('Bank details successfully submitted ✅')
-                        $("#bank_contact_modal").modal("hide");
-                        self.setState({ error: "", error1: '' })
-                        // window.location.reload(false);
-
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    self.setState({ error: "network issue" })
-                });
-        }
-    }
+    
 
 
 
@@ -471,9 +433,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 </div><br/>
                     </ div><br />
                 </div><br />
-                <div className="col-auto float-right  ml-auto">
-                    <button className="btn add-btn" id="submit" onClick={this.submitbtn} >Submit</button>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.submitbtn} >Submit</button>
                 </div>
+               
 <br/>
 
 
