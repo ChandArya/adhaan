@@ -37,7 +37,10 @@ export default class EmployeeProfile extends Component {
     this.setStartDate = this.setStartDate.bind(this);
     this.onFileChangeForDoc = this.onFileChangeForDoc.bind(this);
     this.setDocName = this.setDocName.bind(this);
+    var listdd=worldMapData.getAllCountries()
     console.log("constructor",)
+    var india ={"id": 101, "sortname": "IN", "name": "India", "phoneCode": 91}
+    listdd.unshift(india)
 
     // if(typeof this.props.location.state.back===undefined)
     // {
@@ -45,8 +48,8 @@ export default class EmployeeProfile extends Component {
       isopenProfileModel: false,
       isLoaded: false,
       name: '',
-      pallcountry: worldMapData.getAllCountries(),
-      callcountry: worldMapData.getAllCountries(),
+      pallcountry: listdd,
+      callcountry: listdd,
       edulevel: '10',
       error: '',
       stateListOfCountry: [],
@@ -852,10 +855,17 @@ export default class EmployeeProfile extends Component {
       if(this.state.candidate_documents_data[i].document_type=='Driving License Front')
       {
         final.push(3)
-      }else
+      }else  if(this.state.candidate_documents_data[i].document_type=='Adhaar Card Front')
       {
         final.push(5)
+      }else  if(this.state.candidate_documents_data[i].document_type=='Adhaar Card Back')
+      {
+        final.push(6)
+      }else  if(this.state.candidate_documents_data[i].document_type=='Passport Size Photo')
+      {
+        final.push(7)
       }
+     
      
 
     }
@@ -863,7 +873,7 @@ export default class EmployeeProfile extends Component {
     if(this.state.jobtype!="Backoffice")
     {
     
-        if(final.includes(1) && final.includes(2) && final.includes(3))
+        if(final.includes(1) && final.includes(2) && final.includes(3)&& final.includes(7)&& final.includes(5)&& final.includes(6))
         {
           
         let path = './applcation-form';
@@ -878,7 +888,7 @@ export default class EmployeeProfile extends Component {
       {
         alert("Please upload all required document.")
       }
-    }else if(final.includes(1) && final.includes(2)&& final.includes(5)  )
+    }else if(final.includes(1) && final.includes(2)&& final.includes(7)&& final.includes(5)&& final.includes(6)  )
     {
       console.log("finalfinal",final)
       
@@ -1309,10 +1319,7 @@ export default class EmployeeProfile extends Component {
           {/* /Page Header */}
           <div className="card mb-0">
 
-            <div className="col-auto float-right ml-auto mt-3">
-              <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview</button>
-
-            </div>
+           
 
             <div className="card-body">
               <div className="row">
@@ -1715,7 +1722,7 @@ export default class EmployeeProfile extends Component {
                       <ul className="personal-info">
                         {candidate_documents_data.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document.document_type} {document.document_type=="Resume/ Bio-DATA"||document.document_type=="Signature"||document.document_type=="Thumb Impression"||((document.document_type=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
+                            <div className="title">{document.document_type} {document.document_type=="Resume/ Bio-DATA"||document.document_type=="Signature"||document.document_type=="Thumb Impression"||document.document_type=="Driving License Back"||document.document_type=="Adhaar Card Front"||document.document_type=="Adhaar Card Back"||document.document_type=="Passport Size Photo"||((document.document_type=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
                             <input type="checkbox" className="" defaultChecked="true" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
 
@@ -1724,7 +1731,7 @@ export default class EmployeeProfile extends Component {
 
                         {candidate_doc_list.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document}{document=="Resume/ Bio-DATA"||document=="Signature"||document=="Thumb Impression"||((document=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
+                            <div className="title">{document}{document=="Resume/ Bio-DATA"||document=="Signature"||document=="Thumb Impression"||document=="Passport Size Photo"||document=="Driving License Back"||document=="Adhaar Card Front"||document=="Adhaar Card Back"||((document=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
                             <input type="checkbox" className="" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
 
@@ -1736,7 +1743,12 @@ export default class EmployeeProfile extends Component {
                     </div>
                   </div>
                 </div>
+                <div className="col-auto float-right ml-auto mt-3">
+              <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview & Continue</button>
+
+            </div>
               </div>
+             
             </div>
             {/* /Profile Info Tab */}
             {/* Projects Tab */}

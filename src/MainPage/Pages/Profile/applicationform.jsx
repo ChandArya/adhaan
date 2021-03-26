@@ -12,7 +12,7 @@ const ref = React.createRef();
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
-        this.state = this.props.location.state
+        this.state = {...this.props.location.state,pic:''}
     }
 
     backClick = (e) => {
@@ -81,7 +81,26 @@ class ApplicationForm extends Component {
 
     render() {
 
-
+        var selectedDocumentList = [];
+        var pic=''
+        
+        try {
+            for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
+                selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
+                if (this.state.candidate_documents_data[i].document_type == "Passport Size Photo" )
+                {
+                    // console.log("++++++++++++++++++++++++++++++++++",pic)
+                    this.setState({ pic: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+                }
+                if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
+                    this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+                }
+                
+            }
+        }
+        catch (error) {
+            console.log(error)
+        }
 
 
 
@@ -356,19 +375,8 @@ class ApplicationForm extends Component {
 
 
         console.log("this previe=", otherdetails)
-        var selectedDocumentList = [];
-        console.log("Khalid")
-        try {
-            for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
-                selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
-                if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
-                    this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
-                }
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
+        
+        // console.log("++++++++++++++++++++++++++++++++++",pic)
         // console.log(this.state.candidate_documents_data)
         return (
             <div className="page-wrapper">
@@ -442,7 +450,7 @@ class ApplicationForm extends Component {
                                                 <div className="image-upload">
                                                     <label htmlFor="Uploadphoto" className="mb-0">
                                                         {/* <img src="upload-photo.png" id="photo" alt="Upload Photo" className="img-fluid" /> */}
-                                                        <img alt="" src={this.state.profilepic} id="photo" alt="Upload Photo" className="img-fluid" />
+                                                        <img alt="" src={this.state.pic} id="photo" alt="Upload Photo" className="img-fluid" />
                                                     </label>
                                                     {/* <input id="Uploadphoto" type="file" onchange="readURL(this);" /> */}
                                                 </div>
@@ -1015,7 +1023,7 @@ class ApplicationForm extends Component {
                 {/* /Page Content */}
 
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Countinue</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
                 </div>
                 <br />
 
