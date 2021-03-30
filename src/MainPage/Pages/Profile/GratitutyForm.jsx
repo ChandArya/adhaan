@@ -31,7 +31,13 @@ class GratitutyForm extends Component {
     
                 axios(config)
                     .then(function (response) {
-                       alert("you save successfully submitted all data.")
+                      // alert("you save successfully submitted all data.")
+                        //  path = './PrintPage';
+                        let path = './PrintPage';
+                        self.props.history.push({
+                            pathname: path,
+                            state: self.state
+                        })
                 })
                 .catch(function (error) {
                     // console.log(error);
@@ -39,51 +45,7 @@ class GratitutyForm extends Component {
                 });
 
     }
-
-
-    addBank = (e) => {
-        console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
-        if (this.isBlank(bankname) || this.isBlank(acountno) ||
-            this.isBlank(ifsc)) {
-            self.setState({ error: "Please fill all required details" })
-        } else {
-            var data = JSON.stringify({
-                "candidate": userid,
-                "bank_name": bankname,
-                "branch_name": branchname,
-                "account_number": acountno,
-                "ifsc_code": ifsc
-            });
-            console.log("called")
-            var config = {
-                method: 'post',
-                url: baseurl + '/api/candidate/bank-details',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: data
-            };
-
-            axios(config)
-                .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
-                    if (response.data.status == true) {
-                        //let path='app/profile/candidate-profile';
-                        alert('Bank details successfully submitted ✅')
-                        $("#bank_contact_modal").modal("hide");
-                        self.setState({ error: "", error1: '' })
-                        // window.location.reload(false);
-
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    self.setState({ error: "network issue" })
-                });
-        }
-    }
+    
 
 
 
@@ -165,8 +127,8 @@ class GratitutyForm extends Component {
                 {/*GratitutyForm page */}
 
                 
-                      <div className="border">
-                        < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                      <div className="border" style={{overflowX:'auto'}}>
+                        < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
                             <div style={{marginLeft:'30px', marginRight:'30px'}}>
                                 <div className="title  text-center font-weight-bold">
@@ -180,14 +142,14 @@ class GratitutyForm extends Component {
                                 </div>
 
                                <div  className="text-center"> 
-                               To........................................................................................</div>
+                                    To<span style={{ border: '1px solid black', display: "inline-block", width: '10%' }}></span> </div>
                                
                                <div  className="text-center"> 
                                [Give here name or description of the establishment with full address]</div>
                              <div > 
                              <ul  style={{listStyleType:'decimal'}}>
                              <li>
-                             I. Shri/Shrimati/Kumari whose particulars are given in the statement below,........................&nbsp; &nbsp;
+                                            I. Shri/Shrimati/Kumari whose particulars are given in the statement below,<span style={{ border: '1px solid black', display: "inline-block", width: '5%' }}></span> &nbsp; &nbsp;
                              <sub>[Name in full here]</sub>
 hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
@@ -364,8 +326,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 </div><br/>
 
                                 {/* gratituty form page 2 */}
-                                <div className="border">
-                        < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                                <div className="border" style={{overflowX:'auto'}}>
+                        < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
                             <div style={{ marginLeft: '5%', marginRight: '5%' }}>
                                 <div className="d-flex" style={{marginTop:'5%'}}>
@@ -471,9 +433,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 </div><br/>
                     </ div><br />
                 </div><br />
-                <div className="col-auto float-right  ml-auto">
-                    <button className="btn add-btn" id="submit" onClick={this.submitbtn} >Submit</button>
+                <div class="col-md-12 text-center">
+                    {/* <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.submitbtn} >Submit</button> */}
                 </div>
+               
 <br/>
 
 

@@ -112,7 +112,7 @@ export default class EmployeeProfile extends Component {
       education_data: {},
       candidate_work_history_data: [],
       candidate_documents_data: [],
-      candidate_doc_list: ['Resume/ Bio-DATA', 'Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression'],
+      candidate_doc_list: ['Resume/ Bio-DATA', ' Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression'],
       isNomniee: false,
       family_adhar: '',
       family_name: '',
@@ -139,6 +139,7 @@ export default class EmployeeProfile extends Component {
         width: 30,
         aspect: 16 / 9,
       },
+      jobtype: '',
 
       // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
@@ -832,17 +833,56 @@ export default class EmployeeProfile extends Component {
     this.addFamily(this, data);
   }
   previewClick = (e) => {
-    let path = './applcation-form';
-    // var id = this.props.location.state.id
-    // alert("iiiiid",id)
-    // console.log("hhhhhhhhh",id)
-    // this.setState({id:id });
+    console.log(this.state.candidate_documents_data);
+    var final = []
+    for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
+      if (this.state.candidate_documents_data[i].document_type == 'Resume/ Bio-DATA') {
+        final.push(1)
+      } else
+        if (this.state.candidate_documents_data[i].document_type == 'Signature') {
+          final.push(2)
+        } else
+          if (this.state.candidate_documents_data[i].document_type == 'Thumb Impression') {
+            final.push(2)
+          } else
+            if (this.state.candidate_documents_data[i].document_type == 'Driving License Front') {
+              final.push(3)
+            } else {
+              final.push(5)
+            }
 
-    this.props.history.push({
-      pathname: path,
-      state: this.state
 
-    })
+    }
+    console.log(this.state.jobtype, "", final)
+    if (this.state.jobtype != "Backoffice") {
+
+      if (final.includes(1) && final.includes(2) && final.includes(3)) {
+
+        let path = './applcation-form';
+
+
+        this.props.history.push({
+          pathname: path,
+          state: this.state
+
+        })
+      } else {
+        alert("Please upload all required document.")
+      }
+    } else if (final.includes(1) && final.includes(2) && final.includes(5)) {
+      console.log("finalfinal", final)
+
+      let path = './applcation-form';
+
+
+      this.props.history.push({
+        pathname: path,
+        state: this.state
+
+      })
+    } else {
+      alert("Please upload all required document.")
+    }
 
 
 
@@ -863,7 +903,7 @@ export default class EmployeeProfile extends Component {
   }
   esiClick = (e) => {
     let path = './Esic-declrationForm';
-   
+
     this.props.history.push({
       pathname: path,
       state: this.state
@@ -874,7 +914,7 @@ export default class EmployeeProfile extends Component {
 
   gratitutyClick = (e) => {
     let path = './Gratituty-form';
-  
+
 
     this.props.history.push({
       pathname: path,
@@ -968,6 +1008,7 @@ export default class EmployeeProfile extends Component {
               recruiter_name: basic_details.recruiter_name,
               created_by: basic_details.recruiter_id,
               recruiter_employee_id: basic_details.recruiter_employee_id,
+              jobtype: basic_details.job_type,
               // profile_picture
 
               profilepic: "https://aadhaan.ddns.net" + basic_details.profile_picture
@@ -1179,6 +1220,7 @@ export default class EmployeeProfile extends Component {
 
         }
 
+
       })
       .catch((error) => {
         this.setState({
@@ -1257,7 +1299,7 @@ export default class EmployeeProfile extends Component {
           {/* /Page Header */}
           <div className="card mb-0">
 
-            <div className="col-auto float-right ml-auto">
+            <div className="col-auto float-right ml-auto mt-3">
               <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview</button>
 
             </div>
@@ -1434,7 +1476,7 @@ export default class EmployeeProfile extends Component {
                 <div className="col-md-6 d-flex">
                   <div className="card profile-box flex-fill">
                     <div className="card-body">
-                      <h3 className="card-title">Alternate Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i className="fa fa-pencil" /></a></h3>
+                      <h3 className="card-title">Emergency Contact Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i className="fa fa-pencil" /></a></h3>
                       {can_reference.map(reference => (
                         <ul className="personal-info" key={reference.key}>
                           <li>
@@ -1450,7 +1492,7 @@ export default class EmployeeProfile extends Component {
                             <div className="title">Location </div>
                             <div className="text">{reference.location}</div>
                           </li>
-
+                          <br />
                           <hr />
                         </ul>
 
@@ -1599,7 +1641,9 @@ export default class EmployeeProfile extends Component {
                       <ul className="personal-info">
                         <li>
                           <div className="title">Aadhar Card </div>
-                          <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc")==0?localStorage.getItem("url"):"#"}>{localStorage.getItem("kyc")==0?"Verify":"Verified ✅"} </a></div>
+                          {/* <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc") == 0 ? localStorage.getItem("url") : "#"}>{localStorage.getItem("kyc") == 0 ? "Verify" : "Verified ✅"} </a></div> */}
+                          <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc") == 0 ? localStorage.getItem("url") : "#"}>{localStorage.getItem("kyc") == 0 ? "Verify" : ""} </a></div>
+
                         </li>
                         <li>
                           <div className="title">Name (As per Driving License)</div>
@@ -1661,7 +1705,7 @@ export default class EmployeeProfile extends Component {
                       <ul className="personal-info">
                         {candidate_documents_data.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document.document_type}</div>
+                            <div className="title">{document.document_type} {document.document_type == "Resume/ Bio-DATA" || document.document_type == "Signature" || document.document_type == "Thumb Impression" || ((document.document_type == "Driving License Front") && (this.state.jobtype != "backoffice")) ? <span className="text-danger">*</span> : ''}</div>
                             <input type="checkbox" className="" defaultChecked="true" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
 
@@ -1670,7 +1714,7 @@ export default class EmployeeProfile extends Component {
 
                         {candidate_doc_list.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document}</div>
+                            <div className="title">{document}{document == "Resume/ Bio-DATA" || document == "Signature" || document == "Thumb Impression" || ((document == "Driving License Front") && (this.state.jobtype != "backoffice")) ? <span className="text-danger">*</span> : ''}</div>
                             <input type="checkbox" className="" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
 
@@ -2552,20 +2596,7 @@ export default class EmployeeProfile extends Component {
                         ''
                       }
                     </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label>Marriage Date<DatePicker
-                          disabledDate={(current) => {
 
-                            const start = Moment();
-                            return current > start;
-                          }}
-                          value={
-
-                            this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
-
-                      </div>
-                    </div>
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Marital status <span className="text-danger">*</span></label>
@@ -2580,6 +2611,23 @@ export default class EmployeeProfile extends Component {
                         :
                         ''
                       }
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Marriage Date<DatePicker
+                          disabledDate={(current) => {
+
+                            const start = Moment();
+                            return current > start;
+                          }}
+                          // value={
+
+                          //   this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}
+
+
+                          className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> </label>
+
+                      </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
@@ -2956,7 +3004,7 @@ export default class EmployeeProfile extends Component {
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Alternate Details</h5>
+                <h5 className="modal-title">Emergency Contact Details</h5>
                 <button type="button" className="close" type="button" className="close" onClick={this.closeRef}>
                   <span aria-hidden="true">×</span>
                 </button>

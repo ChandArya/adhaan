@@ -1257,17 +1257,17 @@ export default class Student extends Component {
                     {/* /Page Header */}
                     <div className="card mb-0">
 
-                        <div className="col-auto float-right ml-auto">
+                        {/* <div className="col-auto float-right ml-auto">
                             <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview</button>
 
-                        </div>
+                        </div> */}
 
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="profile-view">
 
-                                        <div className="profile-img-wrap">
+                                        {/* <div className="profile-img-wrap">
                                             <div className="profile-img">
                                                 <a href="#"><img alt="" src={this.state.profilepic ? this.state.profilepic : Avatar_02} ></img></a>
                                                 <div className="precent_box">
@@ -1292,161 +1292,306 @@ export default class Student extends Component {
                                                     />
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
 
 
                                         <div className="profile-basic">
-                                            <div className="row">
-                                                <div className="col-md-5">
-                                                    <div className="profile-info-left">
-                                                        {/* <h3 className="user-name m-t-0 mb-0">{this.state.name}</h3> */}
-                                                        {/* <h6 className="text-muted">Father Name: {this.state.father_name}</h6>
-                             <small className="text-muted">{this.state.designation}</small> */}
-                                                        <ul className="personal-info">
-
-
-                                                            <li>
-                                                                <div className="form-group row">
-                                                                    <label for="staticEmail" className="col-sm-3 col-form-label">Name</label>
-                                                                    <div className="col-sm-8 mr-1">
+                                            <div className="modal-body">
+                                                <form>
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <div className="profile-img-wrap edit-img">
+                                                                <img className="inline-block" src={this.state.profilepic} alt=" " />
+                                                                <div className="fileupload btn">
+                                                                    <span className="btn-text">Upload</span>
+                                                                    <input className="upload" type="file" accept="image/*" onChange={this.onFileChange} />
+                                                                </div>
+                                                            </div>
+                                                            <div className="row">
+                                                                <div className="col-md-6">
+                                                                    <div className="form-group">
+                                                                        <label>Full Name<span className="text-danger">*</span></label>
                                                                         <input type="text" required className="form-control" onChange={this.setName} defaultValue={this.state.name} />
+                                                                        {this.isBlank(this.state.name) ?
+                                                                            <span className="text-danger">{this.state.error1}</span>
+                                                                            :
+                                                                            ''
+                                                                        }
                                                                     </div>
-                                                                    {this.isBlank(this.state.name) ?
-                                                                        <span className="text-danger">{this.state.error1}</span>
-                                                                        :
-                                                                        ''
-                                                                    }
                                                                 </div>
-                                                            </li>
-                                                            <br></br>
-                                                            <li>
+                                                                <div className="col-md-6">
+                                                                    <div className="form-group">
+                                                                        <label>Father Name<span className="text-danger">*</span></label>
+                                                                        <input type="text" className="form-control" onChange={this.setFat_Name} defaultValue={this.state.father_name} />
+                                                                        {this.isBlank(this.state.father_name) ?
+                                                                            <span className="text-danger">{this.state.error1}</span>
+                                                                            :
+                                                                            ''
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-md-6">
+                                                                    <div className="form-group">
+                                                                        <label className="w-100">Birth Date<span className="text-danger">*</span><DatePicker className="form-control floating datetimepicker"
+                                                                            disabledDate={(current) => {
 
-                                                                <div className="form-group row">
-                                                                    <label for="staticEmail" className="col-sm-3 col-form-label">Father Name</label>
-                                                                    <div className="col-sm-8 mr-1">
-                                                                        <input type="text" required className="form-control" onChange={this.setFat_Name} defaultValue={this.state.father_name} />
-                                                                    </div>
-                                                                    {this.isBlank(this.state.father_name) ?
-                                                                        <span className="text-danger">{this.state.error1}</span>
-                                                                        :
-                                                                        ''
-                                                                    }
-                                                                </div>
-                                                            </li>
-                                                            <br></br>
-                                                            <li>
+                                                                                const start = Moment().subtract(18, 'years');
+                                                                                return current > start;
+                                                                            }}
+                                                                            onChange={(e) => this.setDob(e)}
 
-                                                                <div className="form-group row">
-                                                                    <label for="staticEmail" className="col-sm-3 col-form-label">Current Address</label>
-                                                                    <div className="col-sm-8 mr-1">
-                                                                        <input type="text" required className="form-control" onChange={this.setcurrentFullAdd} defaultValue={this.state.c_full_address} />
+                                                                            value={
+
+                                                                                this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment().subtract(18, 'years')}>{this.state.dob ? '' : "Select Date"}</DatePicker> </label>
                                                                     </div>
-                                                                    {this.isBlank(this.state.c_full_address) ?
-                                                                        <span className="text-danger">{this.state.error1}</span>
-                                                                        :
-                                                                        ''
-                                                                    }
+                                                                    {/* <label>{this.state.dob} </label> */}
                                                                 </div>
-                                                            </li>
-                                                            <br></br>
-                                                            <li>
-                                                                <div className="form-group row">
-                                                                    <label for="staticEmail" className="col-sm-3 col-form-label">Email</label>
-                                                                    <div className="col-sm-8 mr-1">
-                                                                        <input type="text" required className="form-control" onChange={this.setEmail} defaultValue={this.state.c_email} />
+                                                                <div className="col-md-6">
+                                                                    <div className="form-group">
+                                                                        <label>Gender<span className="text-danger">*</span></label>
+                                                                        <select value={this.state.gender} className=" form-control" onChange={this.setgender}>
+                                                                            <option value="">Select gender</option>
+                                                                            <option value="male">Male</option>
+                                                                            <option value="female">Female</option>
+                                                                            <option value="other">Other</option>
+                                                                        </select>
+                                                                        {this.isBlank(this.state.gender) ?
+                                                                            <span className="text-danger">{this.state.error1}</span>
+                                                                            :
+                                                                            ''
+                                                                        }
                                                                     </div>
-                                                                    {this.isBlank(this.state.c_email) ?
-                                                                        <span className="text-danger">{this.state.error1}</span>
-                                                                        :
-                                                                        ''
-                                                                    }
                                                                 </div>
-                                                            </li>
-                                                            <br></br>
-                                                        </ul>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-md-7">
-                                                    <ul className="personal-info">
-
-                                                        <li>
-                                                            <div className="form-group row">
-                                                                <label for="staticEmail" className="col-sm-3 col-form-label">Phone</label>
-                                                                <div className="col-sm-8 mr-1">
-                                                                    <input type="text" required className="form-control" onChange={this.setcurrentPhone} defaultValue={this.state.c_mobile_no} />
-                                                                </div>
-                                                                {this.isBlank(this.state.c_mobile_no) ?
+                                                    <div className="row">
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Current Address<span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.c_full_address} className="form-control" onChange={this.setcurrentFullAdd} />
+                                                                {this.isBlank(this.state.c_full_address) ?
                                                                     <span className="text-danger">{this.state.error1}</span>
                                                                     :
                                                                     ''
                                                                 }
                                                             </div>
-                                                        </li>
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label> Country <span className="text-danger">*</span></label>
 
-
-                                                        <li>
-                                                            <div className="form-group row">
-                                                                <label for="staticEmail" className="col-sm-3 col-form-label">Birthday</label>
-                                                                <div className="col-sm-8 mr-1">
-                                                                    <input type="date" required className="form-control" onChange={this.setDob} defaultValue={this.state.dob} />
-                                                                </div>
-                                                                {this.isBlank(this.state.dob) ?
+                                                                <select value={this.state.c_country} className=" form-control" onChange={this.setcurrentCountry}>
+                                                                    {
+                                                                        this.state.callcountry.map((country) =>
+                                                                            <option>{country.name}</option>
+                                                                        )
+                                                                    }
+                                                                </select>
+                                                                {this.isBlank(this.state.c_country) ?
                                                                     <span className="text-danger">{this.state.error1}</span>
                                                                     :
                                                                     ''
                                                                 }
                                                             </div>
-                                                        </li>
 
+                                                        </div>
 
-                                                        <li>
-                                                            <div className="form-group row">
-                                                                <label for="staticEmail" className="col-sm-3 col-form-label">Permanent Address</label>
-                                                                <div className="col-sm-8 mr-1">
-                                                                    <input type="input" required className="form-control" onChange={this.setPermanentFullAdd} defaultValue={this.state.p_full_address} />
-                                                                </div>
-                                                                {this.isBlank(this.state.p_full_address) ?
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>State<span className="text-danger">*</span></label>
+                                                                <select value={this.state.c_state} className=" form-control" onChange={this.setcurrentState}>
+                                                                    {
+                                                                        this.state.stateListOfCountry.map((country) =>
+                                                                            <option>{country.name}</option>
+                                                                        )
+                                                                    }
+                                                                </select>
+                                                                {this.isBlank(this.state.c_state) ?
                                                                     <span className="text-danger">{this.state.error1}</span>
                                                                     :
                                                                     ''
                                                                 }
                                                             </div>
-                                                        </li>
+                                                        </div>
 
-                                                        <li>
-                                                            <div className="form-group row">
-                                                                <label for="staticEmail" className="col-sm-3 col-form-label">Gender</label>
-                                                                <div className="col-sm-8 mr-1">
-                                                                    <select value={this.state.gender} className=" form-control" onChange={this.setgender}>
-                                                                        <option value="">Select gender</option>
-                                                                        <option value="male">Male</option>
-                                                                        <option value="female">Female</option>
-                                                                        <option value="other">Other</option>
-                                                                    </select>
-                                                                </div>
-                                                                {this.isBlank(this.state.Gender) ?
-                                                                    <span className="text-danger">{this.state.error1}</span>
-                                                                    :
-                                                                    ''
-                                                                }
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>City<span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.c_city} className="form-control" onChange={this.setcurrentCity} />
                                                             </div>
-                                                        </li>
+                                                            {this.isBlank(this.state.c_city) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
 
 
-                                                        <li>
-                                                            <div className="form-group row">
-                                                                <label for="staticEmail" className="col-sm-3 col-form-label">Refer By</label>
-                                                                <div className="col-sm-8 mr-1">
-                                                                    <a href="">
-                                                                        {this.state.recruiter_employee_id}
-                                                                    </a>
-                                                                </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Pin Code<span className="text-danger">*</span></label>
+                                                                <input maxLength="6" type="text" value={this.state.c_pin_code} className="form-control" onChange={this.setcurrentPin} />
+                                                            </div>
+                                                            {this.isBlank(this.state.c_pin_code) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Phone Number<span className="text-danger">*</span></label>
+                                                                <input type="text" maxLength="10" value={this.state.c_mobile_no} className="form-control" onChange={this.setcurrentPhone} />
+                                                            </div>
+                                                            {this.isBlank(this.state.c_mobile_no) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Permanent Address<span className="text-danger">*</span></label>
+                                                                <input type="text" value={this.state.p_full_address} className="form-control" onChange={this.setPermanentFullAdd} />
+
 
                                                             </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+
+                                                            {this.isBlank(this.state.p_full_address) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+                                                        <div className="col-md-6 mt-3">
+                                                            <div className="add " style={{ float: 'left', }}>
+                                                                <input type="checkbox" onChange={this.sameAddDAta} defaultChecked={false} />
+                                                                <label style={{ paddingLeft: '10px', marginTop: '25px', fontWeight: 'bold' }}>Same As Current Address</label>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label> Country <span className="text-danger">*</span></label>
+
+                                                                <select value={this.state.p_country} className=" form-control" onChange={this.setPermanentCountry}>
+                                                                    {
+                                                                        this.state.pallcountry.map((country) =>
+                                                                            <option>{country.name}</option>
+                                                                        )
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                            {this.isBlank(this.state.p_country) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+                                                        <div className="col-md-6">
+
+                                                            <div className="form-group">
+                                                                <label> State <span className="text-danger">*</span></label>
+
+                                                                <select value={this.state.p_state} className=" form-control" onChange={this.setPermanentState}>
+                                                                    {
+                                                                        this.state.pstateListOfCountry.map((state) =>
+                                                                            <option>{state.name}</option>
+                                                                        )
+                                                                    }
+                                                                </select>
+
+                                                            </div>
+                                                            {this.isBlank(this.state.p_state) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>City<span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.p_city} className="form-control" onChange={this.setPermnanetCity} />
+                                                            </div>
+                                                            {this.isBlank(this.state.p_city) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+
+
+
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Pin Code<span className="text-danger">*</span></label>
+                                                                <input maxLength="6" type="text" value={this.state.p_pin_code} className="form-control" onChange={this.setPermanentPin} />
+                                                            </div>
+                                                            {this.isBlank(this.state.p_pin_code) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+
+
+
+
+
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Phone Number<span className="text-danger">*</span></label>
+                                                                <input maxLength="10" type="text" value={this.state.p_mobile_no} className="form-control" onChange={this.setPermanentMobile} />
+                                                            </div>
+                                                            {this.isBlank(this.state.p_mobile_no) ?
+                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                :
+                                                                ''
+                                                            }
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Email <span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.c_email} className="form-control" onChange={this.setEmail} />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Department <span className="text-danger">*</span></label>
+                                                                <input type="text" readOnly defaultValue={this.state.department} className="form-control" onChange={this.setDepartment} />
+                                                            </div>
+                                                            {/* {this.isBlank(this.state.department) ?
+                        <span className="text-danger">{this.state.error1}</span>
+                        :
+                        ''
+                      } */}
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Designation <span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.designation} className="form-control" readOnly onChange={this.setDesigination} />
+                                                            </div>
+                                                            {/* {this.isBlank(this.state.designation) ?
+                        <span className="text-danger">{this.state.error1}</span>
+                        :
+                        ''
+                      } */}
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Refer By  <span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.recruiter_employee_id} readOnly className="form-control" onChange={this.setReferBy} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {/* <div className="submit-section">
+                                                        <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Submit</button>
+                                                    </div> */}
+                                                    <label className="text-danger">{this.state.error}</label>
+                                                </form>
                                             </div>
+                                            {/* <div className="pro-edit"><a data-target="#profile_info" data-toggle="modal" className="edit-icon" href="#"><i className="fa fa-pencil" /></a></div> */}
                                         </div>
 
                                     </div>
@@ -1476,7 +1621,7 @@ export default class Student extends Component {
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
-                                            <h3 className="card-title">Personal  Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i className="fa fa-pencil" /></a></h3>
+                                            <h3 className="card-title">Personal  Details </h3>
                                             <ul className="personal-info">
                                                 <li>
                                                     <div className="col-md-12">
@@ -1622,28 +1767,59 @@ export default class Student extends Component {
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
-                                            <h3 className="card-title">Alternate Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i className="fa fa-pencil" /></a></h3>
-                                            {can_reference.map(reference => (
-                                                <ul className="personal-info" key={reference.key}>
-                                                    <li>
-                                                        <div className="title">Name</div>
-                                                        <div className="text">{reference.name}</div>
-                                                    </li>
+                                            <h3 className="card-title">Reference Details</h3>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Name <span className="text-danger">*</span></label>
+                                                        <input type="text" className="form-control" value={this.state.ref_name} onChange={this.setReferencename} />
+                                                    </div>
 
-                                                    <li>
-                                                        <div className="title">Phone </div>
-                                                        <div className="text">{reference.mobile_no}</div>
-                                                    </li>
-                                                    <li>
-                                                        <div className="title">Location </div>
-                                                        <div className="text">{reference.location}</div>
-                                                    </li>
-
-                                                    <hr />
-                                                </ul>
+                                                    {this.isBlank(this.state.ref_name) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
 
 
-                                            ))}
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Relationship <span className="text-danger">*</span></label>
+                                                        <input className="form-control" value={this.state.ref_relation} type="text" onChange={this.setReferencerleation} />
+                                                    </div>
+
+
+                                                    {this.isBlank(this.state.ref_relation) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Phone <span className="text-danger">*</span></label>
+                                                        <input className="form-control" value={this.state.ref_no} type="text" maxLength="10" value={this.state.ref_no} onChange={this.setReferenceNumber} />
+                                                    </div>
+
+
+                                                    {this.isBlank(this.state.ref_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Location</label>
+                                                        <input className="form-control" value={this.state.ref_loc} type="text" onChange={this.setReferenceLocation} />
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
 
                                         </div>
@@ -1734,39 +1910,82 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Family Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i className="fa fa-pencil" /></a></h3>
-                                            <div className="table-responsive">
-                                                <table className="table table-nowrap">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Date of Birth</th>
-                                                            <th>Aadhar No</th>
-                                                            <th />
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {family_data.map(family => (
-                                                            <tr key={family.key}>
-                                                                <td>{family.name}</td>
-                                                                <td>{family.relation}</td>
-                                                                <td>{family.dob}</td>
-                                                                <td>{family.aadhaar_no}</td>
-                                                                <td className="text-right">
-                                                                    <div className="dropdown dropdown-action">
-                                                                        <a aria-expanded="false" data-toggle="dropdown" className="action-icon dropdown-toggle" href="#"><i className="material-icons">more_vert</i></a>
-                                                                        <div className="dropdown-menu dropdown-menu-right">
-                                                                            {/* <a href="#" className="dropdown-item"><i className="fa fa-pencil m-r-5" /> Edit</a>
-                                       <a href="#" className="dropdown-item"><i className="fa fa-trash-o m-r-5" /> Delete</a> */}
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        ))}
 
-                                                    </tbody>
-                                                </table>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Name <span className="text-danger">*</span></label>
+                                                        <input value={this.state.family_name} className="form-control" type="text" onChange={this.setFamilyName} />
+                                                    </div>
+
+                                                    {this.isBlank(this.state.family_name) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Relationship <span className="text-danger">*</span></label>
+                                                        <select className="mb-3 form-control" value={this.state.family_relation} onChange={this.setFamilyRelation} >
+                                                            {/* <option value='0'>Select Education Level </option> */}
+                                                            <option value="0">Select Relationship</option>
+                                                            <option value="mother">Mother</option>
+                                                            <option value="father">Father</option>
+                                                            <option value="spouse">Spouse</option>
+                                                            <option value="son"> Son</option>
+                                                            <option value="daughter">Daughter</option>
+                                                        </select>
+                                                        {/* <input className="form-control" type="text" value={this.state.family_relation} onChange={this.setFamilyRelation} /> */}
+                                                    </div>
+
+
+                                                    {this.isBlank(this.state.family_relation) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Date of birth <span className="text-danger">*</span><DatePicker
+                                                            disabledDate={(current) => {
+
+                                                                const start = Moment();
+                                                                return current > start;
+                                                            }} className="form-control floating datetimepicker" onChange={(e) => this.setFamilyDob(e)}></DatePicker> </label>
+                                                    </div>
+
+                                                    {/* {this.isBlank(this.state.family_dob =='Invalid date'? Moment(this.state.family_dob, 'YYYY-MM-DD') : Moment())?
+                               <span className="text-danger">{this.state.error1}</span>
+                               :
+                               ''
+                             } */}
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Aadhar Number </label>
+                                                        <input className="form-control" type="text" maxLength="12" value={this.state.family_adhar} onChange={this.setFamilyAdhar} />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <input type="checkbox" id="vehicle10" name="vehicle1" value="1" onChange={this.setIsNominee} />
+                                                        <label className="ml-2">Is Nominee</label>
+                                                    </div>
+                                                </div>
                                             </div>
+
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -1775,56 +1994,186 @@ export default class Student extends Component {
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
-                                            <h3 className="card-title">Education Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#education_info"><i className="fa fa-pencil" /></a></h3>
-                                            <div className="experience-box">
-                                                <ul className="experience-list">
-                                                    {education_list.map(education => (
-                                                        <li key={education.key}>
-                                                            <div className="experience-user">
-                                                                <div className="before-circle" />
-                                                            </div>
-                                                            <div className="experience-content">
-                                                                <div className="timeline-content">
-                                                                    <a href="" className="name">{education.includes("_") ? "Postgraduate" : education.slice(0, 1).toUpperCase() + education.slice(1, education.length)}  {edu_data['' + education].board_university ? "from " + edu_data['' + education].board_university : ""}</a>
-                                                                    <div>{edu_data['' + education].school}</div>
-                                                                    <span className="time">{edu_data['' + education].passing_year}</span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    ))}
+                                            <h3 className="card-title">Education Details</h3>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    {/* <label>Education-Level</label> */}
 
-                                                </ul>
+                                                    <select className="mb-3 form-control" onChange={this.educationChane} >
+                                                        {/* <option value='0'>Select Education Level </option> */}
+
+                                                        <option value="10">10</option>
+                                                        <option value="12">12</option>
+                                                        <option value="graduate">Graduate</option>
+                                                        <option value="post_graduate">Post Graduate</option>
+                                                        <option value="other">Other</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group form-focus focused div1">
+                                                        <input type="text" className="form-control floating" onChange={this.setSchool} value={this.state.school} />
+                                                        <label className="focus-label">School/University<span className="text-danger">*</span></label>
+                                                    </div>
+
+
+
+                                                    {this.isBlank(this.state.school) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+
+                                                        ''
+                                                    }
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group form-focus focused">
+                                                        <input type="text" className="form-control floating" onChange={this.setLocationEducation} value={this.state.location} />
+                                                        <label className="focus-label">Location</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group form-focus focused">
+                                                        <div className="">
+                                                            <input type="text" className="form-control floating datetimepicker" onChange={this.setPassingYear} value={this.state.passing_year} />
+                                                        </div>
+                                                        <label className="focus-label">Year of passing<span className="text-danger">*</span></label>
+                                                    </div>
+
+
+
+                                                    {this.isBlank(this.state.passing_year) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
+
+                                                <div className="col-md-6">
+                                                    <div className="form-group form-focus focused">
+                                                        <input type="text" className="form-control floating" onChange={this.setBoard} value={this.state.board} />
+                                                        <label className="focus-label">Board/University<span className="text-danger">*</span></label>
+                                                    </div>
+
+
+                                                    {this.isBlank(this.state.board) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group form-focus focused">
+                                                        <input type="text" className="form-control floating" onChange={this.setDegree} value={this.state.degree} />
+                                                        <label className="focus-label">Degree</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group form-focus focused">
+                                                        <input type="text" className="form-control floating" value={this.state.percentage} onChange={this.setPercentage} />
+                                                        <label className="focus-label">% Marks/Cgpa<span className="text-danger">*</span></label>
+                                                    </div>
+
+
+
+                                                    {this.isBlank(this.state.percentage) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
                                             </div>
+
+
+
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
-                                            <h3 className="card-title">Work Experience <a href="#" className="edit-icon" data-toggle="modal" data-target="#experience_info"><i className="fa fa-pencil" /></a></h3>
+                                            <h3 className="card-title">Work Experience</h3>
 
 
-                                            <div className="experience-box">
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <label className="focus-label">Organisation<span className="text-danger">*</span></label>
+                                                    <div className="form-group form-focus">
+                                                        <input type="text" placeholder="Organisation" className="form-control floating" onChange={this.setExperienceOrgination} value={this.state.experienceOrgination} />
 
-                                                <ul className="experience-list">
-                                                    {work_history_data.map(work => (
-                                                        <li key={work.key}>
-                                                            <div className="experience-user">
-                                                                <div className="before-circle" />
-                                                            </div>
-                                                            <div className="experience-content">
-                                                                <div className="timeline-content">
-                                                                    <a href="" className="name">{work.designation}  at {work.organization}</a>
-                                                                    <span className="time">{work.start_date}-{work.end_date}</span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    ))}
+                                                    </div>
+                                                    {this.isBlank(this.state.experienceOrgination) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label className="focus-label">Reason for sepration</label>
+                                                    <div className="form-group form-focus">
+                                                        <input placeholder="Reason for sepration" type="text" className="form-control floating" onChange={this.setReason} value={this.state.reasonforSep} />
+
+                                                    </div>
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label className="focus-label">Designation<span className="text-danger">*</span></label>
+                                                    <div className="form-group form-focus">
+                                                        <input type="text" placeholder="Designation" className="form-control floating" onChange={this.setExprienceDesignation} value={this.state.exprienceDesignation} />
+
+                                                    </div>
+
+                                                    {this.isBlank(this.state.exprienceDesignation) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label className="focus-label">Period From<span className="text-danger">*</span></label>
+                                                    <div className="form-group form-focus">
+                                                        <div className="">
+
+                                                            <DatePicker
+                                                                disabledDate={(current) => {
+
+                                                                    const start = Moment();
+                                                                    return current > start;
+                                                                }} className="form-control floating datetimepicker" onChange={(e) => this.setStartDate(e)}></DatePicker>
+                                                        </div>
+
+                                                    </div>
 
 
+                                                    {this.isBlank(this.state.startDate_emp ? Moment(this.state.startDate_emp, 'YYYY-MM-DD') : Moment()) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
 
-                                                </ul>
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label className="focus-label">Period To<span className="text-danger">*</span></label>
+                                                    <div className="form-group form-focus">
+                                                        <div className="">
+                                                            <DatePicker
+                                                                disabledDate={(current) => {
+
+                                                                    const start = Moment();
+                                                                    return current > start;
+                                                                }} className="form-control floating datetimepicker" onChange={(e) => this.setEndDate(e)} maxDate={this.maxDate}
+                                                            >    </DatePicker>
+                                                            {/* <input type="text" className="form-control floating datetimepicker" onChange={this.} /> */}
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
                                             </div>
+
 
                                         </div>
                                     </div>
@@ -1835,61 +2184,190 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Other Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#other_details"><i className="fa fa-pencil" /></a></h3>
-                                            <ul className="personal-info">
-                                                <li>
-                                                    <div className="title">Aadhar Card </div>
-                                                    <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc") == 0 ? localStorage.getItem("url") : "#"}>{localStorage.getItem("kyc") == 0 ? "Verify" : "Verified ✅"} </a></div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Name (As per Driving License)</div>
-                                                    <div className="text">{this.state.candidate_other_data.name}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Driving License No.</div>
-                                                    <div className="text">{this.state.candidate_other_data.dl_no}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Place of Issue</div>
-                                                    <div className="text">{this.state.candidate_other_data.place_of_issue}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Valid Upto (YYYY-MM-DD)</div>
-                                                    <div className="text">{this.state.candidate_other_data.valid_up_to}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Vehicle No.</div>
-                                                    <div className="text">{this.state.candidate_other_data.vehicle_no}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">PAN Card Number</div>
-                                                    <div className="text">{this.state.candidate_other_data.pan_card_no}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Election ID Number </div>
-                                                    <div className="text">{this.state.candidate_other_data.eid_no}</div>
-                                                </li>
+                                            <div className="row">
+                                                <div className="col-md-6">
 
-                                                <li>
-                                                    <div className="title">Old PF No.</div>
-                                                    <div className="text">{this.state.candidate_other_data.pf_no}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Old UAN No. </div>
-                                                    <div className="text">{this.state.candidate_other_data.uan}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Old ESIC No.</div>
-                                                    <div className="text">{this.state.candidate_other_data.esic_no}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Old ESIC Dispensory Name</div>
-                                                    <div className="text">{this.state.candidate_other_data.esic_name}</div>
-                                                </li>
-                                                <li>
-                                                    <div className="title">Old ESIC Dispensory Address</div>
-                                                    <div className="text">{this.state.candidate_other_data.esic_address}</div>
-                                                </li>
-                                            </ul>
+                                                    <div className="form-group">
+                                                        <label>Name <span className="text-danger">*</span></label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
+
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.name) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Driving License No.<span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
+
+                                                    </div>
+
+                                                    {this.isBlank(this.state.candidate_other_data.dl_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Place of Issue<span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
+
+
+
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.place_of_issue) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Valid Upto (YYYY-MM-DD)<span className="text-danger">*</span></label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
+
+
+
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.valid_up_to) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Vehicle Number</label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.vehicle_no} className="form-control" type="text" onChange={this.setVehicleNo} />
+                                                    </div>
+                                                </div>
+
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>PAN Card Number<span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.pan_card_no} className="form-control" type="text" onChange={this.setPanNo} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.pan_card_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Election ID Number </label>
+                                                        <input defaultValue={this.state.candidate_other_data.eid_no} className="form-control" type="text" onChange={this.setEidNo} />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Aadhar card<span className="text-danger">*</span></label>
+
+                                                        <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.aadhaar_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old PF No.<span className="text-danger">*</span></label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.pf_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old UAN No. <span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
+                                                    </div>
+
+                                                    {this.isBlank(this.state.candidate_other_data.uan) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
+
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old ESIC No.<span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.esic_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old ESIC Dispensory Name.<span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.esic_name) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old ESIC Dispensory Address<span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.esic_address} className="form-control" type="text" onChange={this.setEsicAdd} />
+                                                    </div>
+
+
+
+                                                    {this.isBlank(this.state.candidate_other_data.esic_address) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            {/* nitin */}
+
                                         </div>
                                     </div>
                                 </div>

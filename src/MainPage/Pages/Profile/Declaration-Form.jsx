@@ -10,8 +10,13 @@ const ref = React.createRef();
 class DeclrationForm extends Component {
     constructor(props) {
         super(props);
-        this.state = this.props.location.state
-        bankname:''
+        if (localStorage.getItem("count") == 2) {
+            window.location.reload(false);
+            localStorage.setItem("count", 3);
+        }
+       this.state = this.props.location.state
+      
+    
     }
 
     savebtn = (e) => {
@@ -58,12 +63,429 @@ class DeclrationForm extends Component {
        
 
     }
-    
+    addEducationData = (e) => {
+        e.preventDefault();
+        this.setState({ error1: "This field can not be empty" })
+        var data = { "degree": this.state.degree, "board_university": this.state.board, "school": this.state.school, "location": this.state.edu_location, "passing_year": this.state.passing_year, "percentage": this.state.percentage, "candidate": this.state.user, "education_level": this.state.edulevel }
+        var data1 = { 'candidate': this.state.user }
+        let final = {
+            ...data,
+            ...data1
+        };
+        if (this.state.edulevel == '0') {
 
+            this.setState({ error: "Please select education level" })
+            // console.log("valuee")
+        } else {
+            this.addEducation(this, final);
+        }
+
+    }
+    
+    setName = (e) => {
+        console.log("25", this.state.name)
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ name: value });
+        console.log("25",this.state.name)
+
+    }
+   
+
+
+    setFat_Name = (e) => {
+        console.log("25", this.state.father_name)
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ father_name: value });
+        console.log("25", this.state.father_name)
+
+    }
+    setDob = (e) => {
+        console.log("25", this.state.dob)
+        const value = e.format();
+
+        this.setState({ dob: Moment(value).format('YYYY-MM-DD') });
+
+    }
+    setgender = (e) => {
+        console.log("25", this.state.gender)
+
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ gender: value });
+        console.log("25", this.state.gender)
+
+    }
+    setcurrentFullAdd = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ c_full_address: value });
+        console.log("25", this.state.c_full_address)
+    }
+    setcurrentState = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ c_state: value });
+        console.log("25", this.state.c_state)
+    }
+    setcurrentCity = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ c_city: value, job_location: value });
+        console.log("25", this.state.c_city)
+
+    }
+    setPermnanetCity = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ p_city: value, job_location: value });
+
+    }
+    setcurrentCountry = (e) => {
+        const value = e.target.value;
+        // var france = lookup.countries({name: value});
+        // alert("got data"+value)
+        // console.log(value,)
+        this.setState({ stateListOfCountry: worldMapData.getAllStatesFromCountry(value), c_country: value });
+
+    }
+    setcurrentPin = (e) => {
+
+        // alert("got data"+value)
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+        if (value === '' || value.match(re)) {
+            this.setState({ c_pin_code: value });
+        }
+        console.log("25", this.state.c_pin_code)
+    }
+    setcurrentPhone = (e) => {
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+        if (value === '' || value.match(re)) {
+            this.setState({ c_mobile_no: value });
+        }
+        console.log("25", this.state.c_mobile_no)
+
+    }
+    setPermanentFullAdd = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ p_full_address: value });
+
+    }
+    setPermanentState = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ p_state: value });
+
+    }
+    setPermanentPin = (e) => {
+
+        // alert("got data"+value)
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+        if (value === '' || value.match(re)) {
+            this.setState({ p_pin_code: value });
+        }
+
+    }
+    setPermanentMobile = (e) => {
+        // const value = e.target.value;
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+        if (value === '' || value.match(re)) {
+            // alert("got data"+value)
+
+            this.setState({ p_mobile_no: value });
+        }
+        console.log("25", this.state.p_mobile_no)
+    }
+    setDepartment = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ department: value });
+        console.log("25", this.state.department)
+
+    }
+    setDesigination = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ designation: value });
+        console.log("25", this.state.designation)
+    }
+    setReferBy = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ created_by: value });
+
+    }
+    setPermanentCountry = (e) => {
+        const value = e.target.value;
+
+        this.setState({ pstateListOfCountry: worldMapData.getAllStatesFromCountry(value), p_country: value });
+
+    }
+    setEmail = (e) => {
+        const value = e.target.value;
+        this.setState({ c_email: value })
+        console.log("c_email", this.state.c_email)
+    }
+
+    addEducationForm = () => {
+
+    }
+    setCategory = (e) => {
+        const value = e.target.value;
+
+        this.setState({ category: value })
+
+
+
+    }
+    setBloodGroup = (e) => {
+        const value = e.target.value;
+        if (value != 0) {
+            this.setState({ blood_group: value.toUpperCase() })
+        }
+
+
+    }
+    setMothertounge = (e) => {
+        const value = e.target.value;
+        this.setState({ mother_tongue: value })
+
+    }
+    setMarriageDate = (e) => {
+        const value = e.format();
+
+        this.setState({ marrage_date: Moment(value).format('YYYY-MM-DD') });
+        console.log("c_email", this.state.c_email)
+
+    }
+    setMarriageStatus = (e) => {
+        const value = e.target.value;
+
+        if (value != 0) {
+            // alert("dfgdgfdf"+ value)
+            this.setState({ marital_status: value })
+        }
+        console.log("marrige", this.state.marital_status)
+
+    }
+    setReligion = (e) => {
+        const value = e.target.value;
+        this.setState({ religion: value })
+        console.log("religion", this.state.religion)
+
+    }
+    setNationility = (e) => {
+        const value = e.target.value;
+        this.setState({ nationality: value })
+
+    }
+    //refrerence data
+    setReferencename = (e) => {
+        const value = e.target.value;
+        this.setState({ ref_name: value })
+    }
+    setReferencerleation = (e) => {
+        const value = e.target.value;
+        this.setState({ ref_relation: value })
+    }
+    setReferenceNumber = (e) => {
+        // const value = e.target.value;
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+
+
+        if (value === '' || value.match(re)) {
+            this.setState({ ref_no: value })
+        }
+
+    }
+    setReferenceLocation = (e) => {
+        const value = e.target.value;
+        this.setState({ ref_loc: value })
+    }
+    addRef = (e) => {
+        e.preventDefault();
+        this.setState({ error1: "This field can not be empty" })
+        var data = { "name": this.state.ref_name, "location": this.state.ref_loc, "mobile_no": this.state.ref_no, "candidate": this.state.user, "relationship": this.state.ref_relation }
+        this.addReference(this, data);
+    }
+    //end reference
+    //family data
+    setIsNominee = (e) => {
+        const value = e.target.value;
+        this.setState({ isNomniee: value })
+        console.log("nnnnnn", this.state.value)
+        console.log('wqqw',isNomniee)
+        
+    }
+
+
+    setFamilyName = (e) => {
+        const value = e.target.value;
+        this.setState({ family_name: value })
+    }
+    setFamilyRelation = (e) => {
+        const value = e.target.value;
+        this.setState({ family_relation: value })
+        console.log("00", this.state.family_relation)
+    }
+    setFamilyDob = (e) => {
+        const value = e.format();
+        this.setState({ family_dob: Moment(value).format('YYYY-MM-DD') });
+        console.log("00", this.state.family_dob)
+    }
+    setDocName(value) {
+        // let val = e.target.dataset.value;
+        console.log(value);
+
+        this.setState({ docname: value, crop: '', croppedImageUrl: '', src: '' })
+    }
+    setFamilyAdhar = (e) => {
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+
+
+        if (value === '' || value.match(re)) {
+            this.setState({ family_adhar: value })
+        }
+        // const value = e.target.value;
+
+    }
+    setPanNo = (e) => {
+        e.preventDefault();
+        const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": this.state.candidate_other_data.uan, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": value, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ candidate_other_data: data });
+        console.log("00", this.state.family_dob)
+    }
+    setEidNo = (e) => {
+        e.preventDefault();
+        const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": this.state.candidate_other_data.uan, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": value, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ candidate_other_data: data });
+    }
+    setAdharNo = (e) => {
+        e.preventDefault();
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        // const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": this.state.candidate_other_data.uan, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": value, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        if (value === '' || value.match(re)) {
+            this.setState({ candidate_other_data: data });
+        }
+
+    }
+    setEsicAdd = (e) => {
+
+
+        const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": value, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": this.state.candidate_other_data.uan, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ candidate_other_data: data });
+    }
+    setEsicName = (e) => {
+
+
+        const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": value, "esic_no": this.state.candidate_other_data.esic_no, "uan": this.state.candidate_other_data.uan, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ candidate_other_data: data });
+    }
+    setEsicNo = (e) => {
+
+
+        const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": value, "uan": this.state.candidate_other_data.uan, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ candidate_other_data: data });
+    }
+    setUan = (e) => {
+
+
+        const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": value, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ candidate_other_data: data });
+        console.log("00", this.state.uan)
+    }
+    setPf = (e) => {
+
+
+        const value = e.target.value;
+        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": this.state.candidate_other_data.uan, "pf_no": value, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ candidate_other_data: data });
+    }
+    setBankName = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ bank_name: value });
+    }
+    setBranchName = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ branch_name: value });
+    }
+    setIfsc_Code = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ ifsc_code: value });
+    }
+    setAccountNo = (e) => {
+        const value = e.target.value;
+        // alert("got data"+value)
+
+        this.setState({ account_number: value });
+    }
 
 
 
     render() {
+
+
+        var selectedDocumentList = [];
+        var pic = ''
+
+        try {
+            for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
+                selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
+                if (this.state.candidate_documents_data[i].document_type == "Passport Size Photo") {
+                    // console.log("++++++++++++++++++++++++++++++++++",pic)
+                    this.setState({ pic: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+                }
+                if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
+                    this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+                }
+
+            }
+        }
+        catch (error) {
+            console.log(error)
+        }
         // const candidate_name = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
         // const candidate_doc_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
@@ -79,8 +501,9 @@ class DeclrationForm extends Component {
         // const passport_valid_till = [1, 2, 3, 4, 5, 6, 7, 8]
         // const emp_code_no = [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16,17,18,19,20]
         // const pin_code = [1, 2, 3, 4, 5, 6]
-
-
+       
+        var candidate_documents_data = this.state.candidate_documents_data
+        const edu_data = this.state.education_data
         try {
             console.log('wwww', this.state.candidate_doc_list)
             console.log('twinkle', this.state)
@@ -90,7 +513,8 @@ class DeclrationForm extends Component {
             console.log("show", this.state.education_data['post_graduate'].degree)
             console.log("show", this.state._12thdata)
             console.log('sssss', this.state.candidate_documents_data[1].document_type);
-            console.log('sssss', this.state.candidate_documents_data[0].document_type)
+            console.log('sssss', this.state.candidate_documents_data[0].document_type);
+            console.log("twinnkle",)
            
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
 
@@ -168,12 +592,21 @@ class DeclrationForm extends Component {
             console.log("ttt", err);
         }
 
+        // for (i=0; i<=family.length; i++){
 
+        // }
 
+        var isNomnieeList = this.state.family.filter(function(data)
+        {
+            return data.is_nominee
+        })
         //family data
         var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
             console.log('family1111', this.state.family)
+            console.log('saroy', this.state.family.length)
+            console.log('saroy', this.state.is_nominee)
+
             family = {
                 'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,
                 'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation
@@ -182,6 +615,30 @@ class DeclrationForm extends Component {
 
         catch (err) {
             console.log("family111", err);
+        }
+        var family1 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family111', this.state.family)
+            family1 = {
+                'name': this.state.family[1].name, 'aadhaar_no': this.state.family[1].aadhaar_no,
+                'dob': this.state.family[1].dob, 'is_nominee': this.state.family[1].is_nominee, 'relation': this.state.family[1].relation
+            }
+        }
+
+        catch (err) {
+            //console.log("family222",err);
+        }
+        var family2 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            //console.log('family11',this.state.family)
+            family2 = {
+                'name': this.state.family[2].name, 'aadhaar_no': this.state.family[2].aadhaar_no,
+                'dob': this.state.family[2].dob, 'is_nominee': this.state.family[2].is_nominee, 'relation': this.state.family[2].relation
+            }
+        }
+
+        catch (err) {
+            // console.log("family111",err);
         }
 
 
@@ -275,12 +732,12 @@ class DeclrationForm extends Component {
                             {/* <div className="account-logo" style={{ float: "left", marginRight: '60px' }}>
                                 <a href=""><img src={Applogo} alt="Adhaan" /></a>
                             </div> */}
-                            <div style={{ float: 'right', }}>
+                            <div className="ml-3" style={{ float: 'right', }}>
                                 <h3 className='font-weight-bold'>DECLARATION FORM</h3>
-                                <p>(To be retained by the Employer for future reference</p>
+                                <p className="mr-3">(To be retained by the Employer for future reference)</p>
                             </div>
                           
-                            <div className="account-logo float-left">
+                            <div className="account-logo float-left ml-3">
                                 <a href="#"><img src={epfs} alt="Adhaan" /></a>
                             </div>
 
@@ -323,7 +780,7 @@ class DeclrationForm extends Component {
                                             <div className='border border-dark' style={{ width: '40px', height: '30px' }}>MRs.</div>
                                        <br />
                                         </div>
-                                        <p  style={{ marginLeft: '30%'}}>(PLEASE TICK)</p>
+                                        
                                        
 
                                    
@@ -355,7 +812,7 @@ class DeclrationForm extends Component {
 
 
                                     </div> */}
-                                                <input className="text-center" defaultValue={this.state.name} key={document.key} type="text" style={{ width: '30%' }}></input>
+                                                <input className="text-center" onChange={this.setName} defaultValue={this.state.name} key={document.key} type="text" style={{ width: '30%' }}></input>
                                  </div>  
                                  
                              </div>
@@ -368,7 +825,7 @@ class DeclrationForm extends Component {
                                
 
 
-                                <div className="col-md-12">
+                                <div className="col-md-12 mt-3">
                                     <div className="row">
                                     <div className=" col-md-4  float-left font-weight-bold" >
                                         
@@ -394,7 +851,7 @@ class DeclrationForm extends Component {
                                                 // </li>
                                             ))} */}
                                                
-                                                    <input defaultValue={this.state.dob} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                                <input onChange={(e) => this.setDob(e)} defaultValue={this.state.dob} key={document.key} type="text" style={{ width: '100%' }}></input>
                                                   
                                              
 
@@ -419,7 +876,7 @@ class DeclrationForm extends Component {
 
 
 
-                                <div className="col-md-12" style={{marginTop:'3%'}} >
+                                <div className="col-md-12 mt-3" style={{marginTop:'3%'}} >
                                     <div className="row">
 
                                     <div className=" col-md-4  float-left font-weight-bold" >
@@ -459,7 +916,7 @@ class DeclrationForm extends Component {
                                     <br /><br /> */}
                                             </div>
                                             
-                                                <input defaultValue={this.state.father_name} key={document.key} type="text" style={{ width: '30%' }}></input>
+                                            <input onChange={this.setFat_Name} defaultValue={this.state.father_name} key={document.key} type="text" style={{ width: '30%' }}></input>
                                               
                                         </div>    </div>   </div><br />
 
@@ -468,12 +925,12 @@ class DeclrationForm extends Component {
 
 
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
                                     <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
                            4) &nbsp; RELATIONSHIP IN RESPECT<br />
-OF (3) ABOVE (PLEASE TICK)<br /><br />
+OF (3) ABOVE <br /><br />
 
                                     </div>
                                     <div className="col-md-8">
@@ -493,7 +950,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                     <br /> */}
 
-                                                <input defaultValue={family.relation} type="text" ></input>
+                                                <input onChange={this.setReligion} defaultValue={family.relation} type="text" ></input>
                                         </div>
 
 
@@ -502,11 +959,11 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                </div> </div><br />
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
 <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
-                          5) &nbsp; GENDER<br /> (PLEASE TICK))<br /><br />
+                          5) &nbsp; GENDER<br /> <br /><br />
 
                                     </div>
                                     <div  className="col-md-8">
@@ -517,13 +974,13 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <div className='border border-dark' style={{ width: '120px', height: '27px' }}>FEMALE</div>
                                             <div className='border border-dark' style={{ width: '120px', height: '27px' }}>TRANSGENDER</div>
 
-                                        </div>*/}<br></br>
+                                        </div>*/}
                                         <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                             {/* {candidate_gender_list.map(document => (
                                                 <input defaultValue={this.state.gender} key={document.key} type="text" style={{ width: '120px' }}></input>
 
                                             ))} */}
-                                                <input defaultValue={this.state.gender} key={document.key} type="text" style={{ width: '120px' }}></input>
+                                                <input onChange={this.setgender} defaultValue={this.state.gender} key={document.key} type="text" style={{ width: '120px' }}></input>
 
 
                                         </div><br />
@@ -537,11 +994,11 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
 
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
 <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
-                         6) &nbsp; MOBILE NUMBER<br /> (IF ANY)<br /><br />
+                         6) &nbsp; MOBILE NUMBER<br /> <br /><br />
 
                                     </div>
 
@@ -552,7 +1009,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                         ))} */}
                                                
-                                                    <input defaultValue={this.state.mobile_no} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                                <input onChange={this.setPermanentMobile} defaultValue={this.state.mobile_no} key={document.key} type="text" style={{ width: '100%' }}></input>
 
                                               
 
@@ -566,11 +1023,11 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                 </div>
 
 
-                                <div className="col-md-12"  >
+                                <div className="col-md-12 mt-3"  >
                                     <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
-                            7) &nbsp; E-MAIL ID<br /> (IF ANY)<br /><br />
+                            7) &nbsp; E-MAIL ID<br /> <br /><br />
 
                                     </div>
 
@@ -604,7 +1061,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                     </div> */}
                                             <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
-                                                     <input defaultValue={this.state.c_email} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                                     <input onChange={this.setEmail} defaultValue={this.state.c_email} key={document.key} type="text" style={{ width: '100%' }}></input>
                                                    
                                          
 
@@ -614,36 +1071,57 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                </div>
                                </div>
                                 </div><br/>
-<div className="col-md-12" style={{marginTop:'3%'}}>
+<div className="col-md-12 mt-3" >
     <div className="row">
-<div className="title font-weight-bold" style={{marginLeft:'15px'}}>
+<div className="title font-weight-bold col-md-8">
                             8) &nbsp; WHETHER EARLIER A MEMBER OF THE EMPLOYEES PROVIDENT FUND SCHEME, 1952?
                             
-                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '23px' }}>
-                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>YES</div>
-                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>NO</div>
-                            </div>
+                             </div>
+                                        <div className="col-md-4" >
+                                           <div className="table-responsive">
+                                                <table  className="table mb-0 border-dark table-bordered" cellSpacing="0">
+                                                    <tr>
+                                                        <th className="text-uppercase text-center">YES</th>
+                                                        <th className="text-uppercase text-center">	No</th>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    </tr>
+                                                    </table>
+                                           </div>
+                                        </div>
+                                      
 
-                        </div>
+                           <div className="title font-weight-bold col-md-8 mt-3" >
+                                            9) &nbsp;  WHETHER EARLIER A MEMBER OF THE EMBPLOYEES PENSION SCHEME, 1995?
+                             </div>
 
-                           <div className="title font-weight-bold" style={{marginTop:'30px',marginLeft:'15px'}}>
-                            9) &nbsp;  WHETHER EARLIER A MEMBER OF THE EMBPLOYEES PENSION SCHEME, 1995?
-                             
-                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '80px' }}>
-                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>YES
-                               </div>
-                                
-                                <div className='border border-dark' style={{ width: '80px', height: '27px' }}>NO
-                              </div>
-                            </div>
-  <div className=" title font-weight-bold text-center" style={{marginTop:'30px'}}>
+                           
+                                            <div className="col-md-4 mt-3" >
+                                                <div className="table-responsive">
+                                                    <table className="table mb-0 border-dark table-bordered" cellSpacing="0">
+                                                        <tr>
+                                                            <th className="text-uppercase text-center">YES</th>
+                                                            <th className="text-uppercase text-center">	No</th>
+
+                                                        </tr>
+                                                        <tr>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+  <div className=" title col-md-12 font-weight-bold text-center" style={{marginTop:'30px'}}>
                                 
                                         <u>IF RESPONSE TO ANY OR BOTH OF (8) & (9) ABOVE IS YES, THEN MANDATORILY FILL UP
                                     THE PREVIOUS EMPLOYMENT DETAILS AT (10,11 & 12) :</u>
                       
 
                             </div>
-                        </div>
+                        
                                 
 
 
@@ -687,7 +1165,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                         <input key={document.key} type="text" style={{ width: '40px' }}></input>
                                     ))} */}
-                                            <input defaultValue={otherdetails.uan} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                            <input  onChange={this.setuan} defaultValue={otherdetails.uan} key={document.key} type="text" style={{ width: '100%' }}></input>
 
                                     </div>   </div><br></br>
 
@@ -783,7 +1261,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                     <div className=" float-left " >
                                         
-                           12)  (A) IF SCHEME CERTIFICATE ISSUED FOR PREVIOUS EMPLOYMENT, THEN SCHEME CERTIFICATE NUMBER:______________________
+                           12)  (A) IF SCHEME CERTIFICATE ISSUED FOR PREVIOUS EMPLOYMENT, THEN SCHEME CERTIFICATE NUMBER: <input type="text"></input>
                            <br/>
                            
                                     </div>
@@ -795,16 +1273,18 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                     <div className=" float-left " style={{marginLeft:'22px'}}>
 
-                                        &nbsp; (B) IF PENSION PAYMENT ORDER (PPO) ISSUED FOR PREVIOUS EMPLOYMENT, THEN PPO NUMBER:______________________
+                                        &nbsp; (B) IF PENSION PAYMENT ORDER (PPO) ISSUED FOR PREVIOUS EMPLOYMENT, THEN PPO NUMBER: <input type="text" style={{marginTop:'1%'}}></input>
                            <br />
 
                                     </div><br/>
                                    
 
 
-                                </div><br/><br/>
-                                <div style={{ backgroundColor: 'black', color: 'white',paddingLeft:'15px' }}> &nbsp; &nbsp; B.  OTHER DETAILS
-                                                                               </div>
+                                </div>
+                                
+                                <div className="col-md-12"
+                                 style={{ backgroundColor: 'black', color: 'white',paddingLeft:'15px' ,marginTop:'5%', display:'inline-flex' }}>
+                                      &nbsp; &nbsp; B.  OTHER DETAILS </div>
 
 
 
@@ -844,8 +1324,8 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                     </tr>
                                                     <tr>
                                                        
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                     </tr>
 
 
@@ -922,24 +1402,24 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                  
                                     
                                         <div className="text-center" style={{ marginLeft: '30px' }}>
-                                        <input type="text" ></input>
+                                        <input type="text" style={{width:'40%'}} ></input>
 
 
                                           </div><br />
                                 </div>
 
+<br/>
 
 
-
-                                <div className="col-md-12">
+                                <div className="col-md-12 ml-3">
                                     <div className="row">
-                                    <div className=" col-md-4 float-left "   >
+                                    <div className=" col-md-3 float-left "   >
                                        
                                         13( C ) PASSPORT VALID FROM<br /><br />
 
                                     </div>
 
-                                    <div className="col-md-4">
+                                    <div className="col-md-3">
                                         {/* <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
@@ -950,7 +1430,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                         </div> */}
-                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                       
                                             {/* {candidate_dob_list.map(document => (
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
                                                
@@ -958,12 +1438,16 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                              */}
                                                 <input   key={document.key} type="text" ></input>
 
-                                                <h4 className="font-weight-bold" style={{ marginLeft: '50px' }}>TO</h4>
+                                             
                                            
-                                            </div>
+                                            
                                          
                                       </div>
-                                        <div className="col-md-4">
+
+                                      <div className="col-md-2 font-weight-bold">
+                                               TO
+                                      </div>
+                                        <div className="col-md- 3">
                                             {/* <div className="text-center" style={{ display: 'inline-flex', }}>
                                                 {/* <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
@@ -974,17 +1458,17 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                                 <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div> 
                                             </div><br></br> */}
-                                            <div className="text-center" style={{ display: 'inline-flex', }}>
+                                           
                                                 {/* {candidate_dob_list.map(document => (
                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                                 ))} */}
-                                                <input key={document.key}  ></input>
+                                            <input key={document.key} type="text" className="ml-3" ></input>
                                                 
 
 
 
-                                            </div>
+                                         
                                         </div>
 
                                     </div></div><br/>
@@ -1043,17 +1527,17 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                     <th className="text-uppercase text-center small font-weight-bold">TECHNICAL PROFFESSIONAL</th>
                                                 </tr>
                                                 <tr>
-                                                            <td className="text-uppercase font-weight-bold"> 
-                                                                <input type="checkbox" name="" className="px-0 py-0 border-0 form-control"  /></td>
-                                                            <td>
-                                                                <input type="checkbox" name="" className="px-0 py-0 border-0 form-control"/></td>
+                                                            <td style={{ textAlign: 'center' }} className="text-uppercase font-weight-bold">
+                                                                <input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}   /></td>
+                                                            <td style={{ textAlign: 'center' }}>
+                                                                <input type="checkbox" name=""  style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                             <td className="text-center">
-                                                                <input type="checkbox" name="" className="px-0 py-0 text-center border-0 form-control" defaultChecked={this.state.education_data['10'].level == 10} /></td>
-                                                            <td><input type="checkbox" name="" className="px-0 py-0 border-0 form-control" defaultChecked={this.state.education_data['12'].level==12}/></td>
-                                                            <td><input type="checkbox" name="" className="px-0 py-0 border-0 form-control" defaultChecked={this.state.education_data['graduate'].level === graduate } /></td>
-                                                            <td><input type="checkbox" name="" className="px-0 py-0 border-0 form-control" defaultChecked={this.state.education_data['post_graduate'].edulevel === post_graduate}/></td>
-                                                            <td><input type="checkbox" name="" className="px-0 py-0 border-0 form-control" defaultChecked={this.state.education_data['other'].level === 'other'}/></td>
-                                                            <td><input type="checkbox" name="" className="px-0 py-0 border-0 form-control" defaultChecked={this.state.education_data['other'].level === 'other'}/></td> 
+                                                                <input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['10'].level == 10} /></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['12'].level==12}/></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} defaultChecked={this.state.education_data['graduate'].level === graduate } /></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['post_graduate'].edulevel === post_graduate}/></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['other'].level === 'other'}/></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} efaultChecked={this.state.education_data['other'].level === 'other'}/></td>
                                                     
                                                 </tr>
 
@@ -1069,7 +1553,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                 <div className="row">
                                     <div className=" col-md-4 float-left font-weight-bold" >
                                         
-                           15)MARITAL STATUS <br />(Please Tick)
+                           15)MARITAL STATUS <br />
                     </div>
                                    
                                         {/* <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
@@ -1113,7 +1597,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                     <div  className="col-md-6">
                                             <div className="table-responsive">
 
-                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0"  style={{width:'auto'}}>
+                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0"  style={{width:'62%'}}>
                                                     <tr>
                                                         <th className="text-uppercase text-center">YES</th>
                                                         <th className="text-uppercase text-center">No</th>
@@ -1121,8 +1605,8 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                                     </tr>
                                                     <tr>
 
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}   /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  /></td>
                                                     </tr>
 
 
@@ -1164,7 +1648,7 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                         </div> */}
                                             <div className="table-responsive">
 
-                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0" style={{ width: 'auto' }}>
+                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0" style={{ width: '46%' }}>
                                                     <tr>
                                                         <th className="text-uppercase text-center">LOCOMOTIVE</th>
                                                         <th className="text-uppercase text-center">VISUAL</th>
@@ -1172,9 +1656,9 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
 
                                                     </tr>
                                                     <tr>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                        <td style={{textAlign:'center'}}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                     </tr>
 
 
@@ -1197,6 +1681,232 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                    
 </div>
 <br/>
+<div className="border">
+                    < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
+                        <div className="col-md-12">
+                            <div className="border border-dark" style={{ marginLeft: '30px', marginRight: '30px' }}>
+
+
+                                <div className="col-md-12"  >
+                                     <div className="row">
+                                        <div className=" col-md-2 mt-3 font-weight-bold" >
+                                        
+                          17 ) KYC DETAIL
+                                    </div>
+                                    <div className="col-md-10 mt-3">
+                                       <div className="table-responsive">
+                                        <table  className="table table-bordered"  >
+                                            <thead style={{border:'1px solid'}}>
+                                                <tr className="font-weight-bold">
+                                                    <th>KYC DOCUMENT TYPE</th>
+                                                    <th>NAME AS ON KYC DOCUMENT	</th>
+                                                    <th>NUMBER</th>
+                                                    <th>REMARKS, IF ANY</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>BANK ACCOUNT 1*</td>
+                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a'}}/></td>
+                                                            <td><input defaultValue={this.state.account_number} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a'}} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                    {/* <td><input type="text" name="" className="px-0 py-0 border-0 form-control" style={{ backgroundColor: ' #ffffff0a' }} /></td> */}
+
+                                                </tr>
+                                                <tr>
+                                                    <td>NPR / AADHAAR</td>
+                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.aadhaar_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PERMANENT ACCOUNT NUMBER (PAN)</td>
+                                                            <td ><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.pan_card_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+ 
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PASSPORT </td>
+                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>DRIVING LICENCE</td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ELECTION CARD</td>
+                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.eid_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>RATION CARD</td>
+                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ESIC CARD</td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.esic_name}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+
+                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan="4">
+                                                        <b>*  Mandatory Field  (NOTE:  BANK  ACCOUNT 	NUMBER 	(ALONG 	WITH  IFSC  CODE)  IS  MANDATORY.</b>	YOU
+                                                        ARE  HOWEVER 	ADVISED 	TO  PROVIDE 	ALL  KYC  DOCUMENTS 	AVAILABLE 	WITH  YOU  IN  ADDITION 	TO
+                                                        MANDATORY 	KYCS  TO  AVAIL  BETTER 	SERVICES. <b>	SELF-ATTESTED 	PHOTOCOPIES 	OF  THE  DOCUMENTS
+                                                        MUST  BE  ATTACHED 	WITH  THIS  FORM.</b>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+</div>
+
+                                        </div>
+
+
+                                    </div>   </div><br />
+
+                                <div style={{ backgroundColor: 'black', color: 'white', paddingLeft: '15px' }}> &nbsp; &nbsp;C.  UNDERTAKING :
+                                                                               </div>
+     <div className="col-md-12">   
+     <div className="row" style={{marginLeft:'none', marginRight:'none'}}>                                                                     
+<div className="title mt-3"  style={{overflowX:'hidden'}} >
+    <ul style={{listStyleType:'none', width:'100%'}}>
+        <li>
+              <b>A.</b> &nbsp;  &nbsp;     I CERTIFY THAT ALL THE INFORMATION GIVEN ABOVE IS TRUE  TO  THE BEST	 OF MY KNOWLEDGE AND  BELIEF
+                                             
+        </li>
+ <li>
+           <b>B.</b> &nbsp;  &nbsp;    IN CASE, EARLIER 	A  MEMBER OF EPF SCHEME, 1952 	AND/OR EPS, 1995,
+
+
+        </li>
+             <li>
+            <b>(I)</b> &nbsp;  &nbsp;    I HAVE ENSURED THE CORRECTNESS OF MY UAN/ PREVIOUS PF MEMBER ID
+       </li>
+
+
+
+        <li>
+    <b>(II)</b> &nbsp;  &nbsp;   THIS MA Y ALSO BE 	TREATED  AS MY  REQUEST FOR  TRANSFER OF FUNDS AND SERVICE DETAILS IF  APPLICABLE FROM THE PREVIOUS ACCOUNT AS DECLARED ABOVE  TO  THE PRESENT	 P .F .  ACCOUNT.
+(THE  TRANSFER WOULD BE POSSIBLE ONLY  IF  THE IDENTIFIED KYC DETAILS  APPROVED BY	 PREVIOUS  EMPLOYER HAS BEEN VERIFIED BY PRESENT EMPLOYER USING HIS DIGITAL  SIGNATURE CERTIFICATE).        </li>
+ <li>
+ <b>(III)</b> &nbsp;  &nbsp;   I  AM  AWARE  THAT  I CAN SUBMIT	 MY  NOMINATION FORM 	THROUGH UAN BASED MEMBER POR
+  </li>
+    </ul>
+
+    <div className="title font-weight-bold float-left ml-3">
+        DATE
+    </div>
+    <br/><br/>
+    <div className="title font-weight-bold float-left ml-3">
+   PLACE
+    </div>
+                                            <div className="title font-weight-bold float-right ml-3"> <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                            <br/>
+                                                SIGNATURE OF MEMBER
+      <div className="image-upload sign-upload">
+                                                   
+                                                 
+                                                </div>
+    </div>
+                                        </div>  </div></div> <br/>
+
+
+ <div  className="text-center" style={{ backgroundColor: 'black', color: 'white' ,fontSize:'large'}}>DECLARATION BY PRESENT EMPLOYER
+
+ </div><br/>
+ <div className="col-md-12">
+                                    <div className="row" style={{ marginLeft: 'none', marginRight: 'none' }}>
+                                        <div className="title" style={{ overflowX: 'auto' }}>
+                     
+                                    <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input style={{ width: '25%' }} type="text"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input type="text" style={{ width: '25%' }} ></input>
+                                                &nbsp; &nbsp;   AND HAS BEEN
+                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input type="text" style={{ width: '25%' , marginTop:'1%'}} ></input>
+
+                                        </li>
+                                        <li>
+                                            IN CASE  THE  PERSON 	WAS  EARLIER 	NOT A MEMBER 	OF  EPF  SCHEME, 	1952  AND  EPS,  1995:
+                                        </li>
+                                        <ul >
+                                            <li>
+                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input style={{ width: '25%' }} type="text" ></input>
+                                            </li>
+                                            <li>
+                                                PLEASE TICK THE APPROPRIATE OPTION:<br/>
+                                                THE KYC DETAILS OF THE ABOVE MEMBER IN THE UANDATABASE
+                                            </li>
+                                            <ul style={{ listStyleType:'square'}}>
+                                                <li>
+                                                    HAVE NOT BEEN UPLOADED: <input type="checkbox"></input>
+                                                </li>
+                                                <li>
+                                                 HAVE  BEEN UPLOADED BUT NOT APPROVED : <input type="checkbox"></input>
+                                                </li>
+                                                <li>
+                                                 HAVE NOT BEEN UPLOADED AND APPROVED WITH DSC : <input type="checkbox"></input>
+                                                </li>
+                                               
+
+                                            </ul>
+                                        </ul>
+                                        <li>
+                                            IN CASE  THE  PERSON WAS  EARLIER  MEMBER OF EPF SCHEME, 	1952  AND  EPS,  1995:
+                                        </li>
+                                        <ul>
+                                            <li>
+                                                THE ABOVE MEMBER ID OF THE MEMBER AS MENTIONED IN (A) ABOVE HAS BEEN TAGGED WITH
+                                                HIS/HER UANPREVIOUS MEMBER ID AS DECLRAED BY MEMBER
+                                            </li>
+                                            <li className="font-weight-bold">
+                                                PLEASE TICK THE APPROPRIATE OPTION:
+                                               
+                                            </li>
+                                            <ul  style={{ listStyleType: 'square' }}>
+                                                <li>
+                                                            THE KYC DETAILS OF THE ABOVE MEMBER IN THE UANDATABASE HAVE BEEN APPROVED WITH  DIGITAL SIGNATURE CERTIFICATE AND TRANSFER
+                                                    REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox"></input>
+                                                </li>
+                                                <li>
+                                                            AS THE DSC OF ESTABLISHMENT ARE NOT REGISTERED WITH EPFO, THE MEMBER HAS BEEN INFORMED TO THE PHYSICAL CLAIM (FORM-13) FOR
+                                                  TRANSFER OF FUNDS FROM HIS ESTABLISHMENET: <input type="checkbox"></input>
+                                                </li>
+                                                
+
+
+                                            </ul>
+                                              </ul><br/>
+
+                                        <div className="col-md-12">
+                                            <div className="title font-weight-bold float-left "> DATE</div>
+
+                                            <div className="title font-weight-bold float-right"> SIGNATURE BY THE EMPLOYER</div>
+                                        </div>
+                                              </ul>
+
+
+                                   
+                                        </div>   </div>  </div><br/>
+                          
+                      </div>
+                     </div>
+                   </div><br/><br/>
+                    </ div><br/>
 
                 {/* /Page Header */}
               
@@ -1216,9 +1926,9 @@ OF (3) ABOVE (PLEASE TICK)<br /><br />
                                     <div className="col-sm-4">
                                         <div className="form-group input-group">
                                             <div className="input-group-prepend my-auto">
-                                                <label className="m-0">Mobile No.:</label>
+                                                <label className="m-0">Mobile No.: </label>
                                             </div>
-                                            <input type="text" name="doj" className="px-0 py-1 mx-2 form-control" />
+                                            <input defaultValue={this.state.p_mobile_no} type="text" name="doj" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     {/* <div className="col-sm-4">
@@ -1278,7 +1988,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Permanent Address:</label>
                                             </div>
-                                            <input defaultValue={this.state.job_location} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
+                                            <input defaultValue={this.state.p_full_address} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
                                         </div>
                                     </div>
 
@@ -1287,7 +1997,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Date of Birth</label>
                                             </div>
-                                            <input defaultValue={this.state.dob} type="date" name="designation" className="px-0 mx-2 py-1 form-control" onChange={this.setDob} />
+                                            <input defaultValue={this.state.dob} type="text" name="designation" className="px-0 mx-2 py-1 form-control" onChange={this.setDob} />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -1343,41 +2053,38 @@ Employee's Pension Scheme,</h4>
                                             who may receive the amount during
 the minority of nominee</th>
                                         </tr>
-                                        <tr>
-                                            <td><input type="text" name="" placeholder="1" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization} /></td>
-                                            <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                        {isNomnieeList.map(document => (
 
-                                                placeholder="2" onFocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
-                                            <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-
-                                                placeholder="3" onFocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
-                                            <td><input placeholder="4" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.designation}></input></td>
-                                            <td><input placeholder="5" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.reason_for_leaving}></input></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.organization} /></td>
-                                            <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                placeholder="" onFocus="(this.type='date')" defaultValue={work_experience1.start_date} /></td>
-                                            <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                placeholder="" onFocus="(this.type='date')" defaultValue={work_experience1.end_date} /></td>
-                                            <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.designation}></input></td>
-                                            <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.reason_for_leaving}></input></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.organization} /></td>
-                                            <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                placeholder="" onFocus="(this.type='date')" defaultValue={work_experience2.start_date} /></td>
-                                            <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                placeholder="" onFocus="(this.type='date')" defaultValue={work_experience2.end_date} /></td>
-                                            <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.designation}></input></td>
-                                            <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.reason_for_leaving}></input></td>
-                                        </tr>
+                                            <tr>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name}/></td>
+                                                <td className="text-center"><input type="text" name="" defaultValue={document.relation}  className="px-0 py-0 text-center border-0 form-control"
+                                                    placeholder="" onFocus="(this.type='date')" /></td>
+                                                <td className="text-center"><input type="text" name="" defaultValue={document.dob}  className="px-0 py-0 text-center border-0 form-control"
+                                                    placeholder="" onFocus="(this.type='date')" /></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                            </tr>
+                                               
+                                            ))}
+                                       
+                                           
+                                            
                                     </table>
 
                                     <ol className="p-0 my-4">
                                         <li>*Certified that i have no family as defined in para 2(g) of the Employee's Fund Scheme, 1952 and should I acquire a family hereafther the above nomination should be deemed as cancelled.</li>
                                         <li>*Certified that my father/mother is /are dependent upon me.</li>
-                                        <li className="mt-3"><label>Strikeout whichever is not applicable.</label> <lable className="d-block text-right">Signature or Thumb impression of the subscriber</lable></li>
+                                        <li className="mt-3"><label>Strikeout whichever is not applicable.</label>
+                                          
+                                             <lable className="d-block text-right">
+                                                <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1 mr-3" />
+                                                <br/>Signature or Thumb impression of the subscriber <br/>
+                                              </lable>
+                                           </li>
+                                      
+                                            {/* <img src="sign.png" id="sign" alt="Upload Sign" className="img-fluid" /> */}
+                                           
+                                     
                                     </ol>
 
                                 </div>
@@ -1452,33 +2159,33 @@ Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" name="" placeholder="1" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
 
-                                                    placeholder="2" onFocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
+                                                    /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
 
-                                                    placeholder="3" onFocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
-                                                <td><input placeholder="4" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.designation}></input></td>
-                                                <td><input placeholder="5" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.reason_for_leaving}></input></td>
+                                                 onFocus="(this.type='date')" /></td>
+                                                <td><input  className="px-0 py-0 border-0 form-control" ></input></td>
+                                                <td><input  className="px-0 py-0 border-0 form-control" ></input></td>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.organization} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience1.start_date} /></td>
+                                                    placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience1.end_date} /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.designation}></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.reason_for_leaving}></input></td>
+                                                    placeholder="" onFocus="(this.type='date')"  /></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.organization} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience2.start_date} /></td>
+                                                    placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience2.end_date} /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.designation}></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.reason_for_leaving}></input></td>
+                                                    placeholder="" onFocus="(this.type='date')"/></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                                <td><input className="px-0 py-0 border-0 form-control"></input></td>
                                             </tr>
                                         </table>
 
@@ -1501,26 +2208,38 @@ Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
 
                                             </tr>
-                                            <tr>
-                                                <td><input type="text" name="" placeholder="1" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                          
+                                                {isNomnieeList.map(document => (
 
-                                                    placeholder="2" onFocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                                    <tr>
+                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
+                                                        
+                                                        <td className="text-center"><input type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
+                                                            placeholder="" onFocus="(this.type='date')" /></td>
+                                                        <td className="text-center"><input type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"
+                                                            placeholder="" onFocus="(this.type='date')" /></td>
+                                                       
+                                                    </tr>
 
-                                                    placeholder="3" onFocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
-
-                                            </tr>
+                                                ))}
+                                       
 
 
                                         </table>
                                         <table width="100%" className="table mb-0 " cellSpacing="0">
                                             <tr>
-                                                <td>Date</td>
+                                                <td>Date  <input type="text" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                </td>
+                                               
                                             </tr>
                                             <tr>
                                                 <td>* Strike out whichever is not allicable</td>
-                                                <td align="right">Signature or Thumb impression of the subscriber</td>
+                                                <td align="right"> <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" /><br />
+                                                    Signature or Thumb impression of the subscriber
+                                                 
+                                                        {/* <img src="sign.png" id="sign" alt="Upload Sign" className="img-fluid" /> */}
+                                                       
+                                                   </td>
                                             </tr>
                                         </table>
 
@@ -1531,8 +2250,10 @@ Birth</th>
                                             <h2 className="text-center">CERTIFIED BY EMPLOYER
 </h2>
                                             <h4 className="text-center">Certified that the above declaration and nomination has been signed / thumb impressed before me by </h4>
-                                            <h4 className="font-weight-normal">Shri./Smt./Kum
-                                            <input type="text"></input><br></br>
+                                            <h4 className="font-weight-normal">Shri./Smt./Kum :  &nbsp; &nbsp; <label>{this.state.name}</label>
+                                            <hr/>
+                                            <br/>
+                                           
 employed in my establishment after he/she has read the entries/entries have been read over to him/her by me and got confirmed
 by him/her.</h4>
                                         </div>
@@ -1560,135 +2281,7 @@ by him/her.</h4>
                                 </div>
 
 
-                                <div className="content container-fluid dividedbox">
-
-                                    <div className="table-responsive mt-5 center-input">
-                                        <h2 className="text-center">घोषणा पत्र / ESIC DECLARATION FORM</h2>
-                                        <h4 className="font-weight-normal">To be filled in by the employee after reading instructions overleaf. Two Postcard size photographs are to be attached with this form.
-                                        This form if free of cost.
-
-</h4>
-                                        <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
-                                            {/* <tr>
-        <td colSpan="5"><h5 className="text-uppercase font-weight-bold">Work Experience</h5></td>
-    </tr> */}
-                                            <tr>
-                                                <th width="5%" className="text-uppercase font-weight-bold text-center">Sl.
-No</th>
-                                                <th width="20%" className="text-uppercase font-weight-bold text-center">Name of the Family Member member
-        </th>
-                                                <th width="20%" className="text-uppercase font-weight-bold text-center">Address</th>
-                                                <th width="10%" className="text-uppercase font-weight-bold text-center">Date of
-Birth</th>
-                                                <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" placeholder="1" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-
-                                                    placeholder="2" onFocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-
-                                                    placeholder="3" onFocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
-                                                <td><input placeholder="4" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.designation}></input></td>
-                                                <td><input placeholder="5" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.reason_for_leaving}></input></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.organization} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience1.start_date} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience1.end_date} /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.designation}></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience1.reason_for_leaving}></input></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.organization} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience2.start_date} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" defaultValue={work_experience2.end_date} /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.designation}></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" defaultValue={work_experience2.reason_for_leaving}></input></td>
-                                            </tr>
-                                        </table>
-
-                                        <ol className="p-0 my-4">
-                                            <li>Certified that I have no family, as defined in para 2 (vii) of Employee's Pension Scheme, 1995 and should i acquire a family hereafter i shall furnish particulars thereon in the above form.
-        </li><br></br>
-                                            <li>I hereby nominate the following person for receiving the monthly pension (admissible under para 16(2) (g)(i) and (ii) in the event of my death without leaving any eligible family member for receiving pension.</li>
-                                        </ol>
-
-                                        <table width="100%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
-                                            {/* <tr>
-        <td colSpan="5"><h5 className="text-uppercase font-weight-bold">Work Experience</h5></td>
-    </tr> */}
-                                            <tr>
-
-                                                <th width="60%" className="text-uppercase font-weight-bold text-center">Name &amp; Address of the Nominee
-                                                Relationship with member
-        </th>
-                                                <th width="20%" className="text-uppercase font-weight-bold text-center">Date of Birth</th>
-                                                <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
-
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" placeholder="1" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-
-                                                    placeholder="2" onFocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-
-                                                    placeholder="3" onFocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
-
-                                            </tr>
-
-
-                                        </table>
-                                        <table width="100%" className="table mb-0 " cellSpacing="0">
-                                            <tr>
-                                                <td>Date</td>
-                                            </tr>
-                                            <tr>
-                                                <td>* Strike out whichever is not allicable</td>
-                                                <td align="right">Signature or Thumb impression of the subscriber</td>
-                                            </tr>
-                                        </table>
-
-                                    </div>
-
-                                    <div className="row no-gutters d-flex mb-4">
-                                        <div className="col-md-12 certified">
-                                            <h2 className="text-center">CERTIFIED BY EMPLOYER
-</h2>
-                                            <h4 className="text-center">Certified that the above declaration and nomination has been signed / thumb impressed before me by </h4>
-                                            <h4 className="font-weight-normal">Shri./Smt./Kum
-    <input type="text"></input><br></br>
-employed in my establishment after he/she has read the entries/entries have been read over to him/her by me and got confirmed
-by him/her.</h4>
-                                        </div>
-
-
-
-                                        <div className="col-md-4 date-filed">
-                                            Adhaan Solution Pvt. Ltd.<br></br>
-    807, 8th Floor, Dev Aurum,<br></br>
-    Nr. Anand Nagar Cross Road,<br></br>
-    100ft Road,Prahladnagar,<br></br>
-    Ahmedabad-380015 <br></br>
-    Date <input type="text"></input>
-                                        </div>
-
-                                        <div className="col-md-8">
-                                            <ul className="list-unstyled certifi-list">
-                                                <li>Signature of the employer or other authorised Officers of the Establishments &nbsp;
-<b>For, Adhaan Solution Pvt. Ltd.</b></li>
-                                                <li>Designation <label className="pl-5">Authorised Signatory</label></li>
-                                                <li>Name and Address of Factory/Establishment or Rubber Stamp Thereof</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
 
 
@@ -1718,9 +2311,11 @@ by him/her.</h4>
                         </div>
                     </div>
                 </div>
-                <div className="col-auto float-right  ml-auto">
-                    <button className="btn add-btn" id="submit" onClick={this.savebtn}>Save & Countinue</button>
+                <br/>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
                 </div>
+                <br/>
 
                 
 

@@ -12,7 +12,7 @@ const ref = React.createRef();
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
-        this.state = this.props.location.state
+        this.state = { ...this.props.location.state, pic: '' }
     }
 
     backClick = (e) => {
@@ -33,46 +33,46 @@ class ApplicationForm extends Component {
 
 
     savebtn = (e) => {
-        var self =this;
+        var self = this;
         var data = JSON.stringify({
-                    "candidate": localStorage.getItem("can"),
-                    
-                });
-                console.log("called")
-                var config = {
-                    method: 'post',
-                    url: baseurl + '/api/v1/candidate-percentage',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: data
-                };
-    
-                axios(config)
-                    .then(function (response) {
-                        console.log(JSON.stringify(response.data));
-                        // self.setState({ error: response.data.message })
-                        // if (response.data.status == true) {
-                            let path = './declaration-form';
-                            var id = self.props.location.state.user
-                            // alert("iiiiid",id)
-                            console.log("hhhhhhhhh", id)
-                            self.setState({ id: id, back: true });
+            "candidate": localStorage.getItem("can"),
 
-                            self.props.history.push({
-                                pathname: path,
-                                state: self.state
+        });
+        console.log("called")
+        var config = {
+            method: 'post',
+            url: baseurl + '/api/v1/candidate-percentage',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
 
-                            })
-                       
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                // self.setState({ error: response.data.message })
+                // if (response.data.status == true) {
+                let path = './declaration-form';
+                var id = self.props.location.state.user
+                // alert("iiiiid",id)
+                console.log("hhhhhhhhh", id)
+                self.setState({ id: id, back: true });
 
-                    // }
+                self.props.history.push({
+                    pathname: path,
+                    state: self.state
+
                 })
-                .catch(function (error) {
-                    // console.log(error);
-                    // self.setState({ error: "network issue" })
-                });
-        
+
+
+                // }
+            })
+            .catch(function (error) {
+                // console.log(error);
+                // self.setState({ error: "network issue" })
+            });
+
 
     }
 
@@ -81,7 +81,25 @@ class ApplicationForm extends Component {
 
     render() {
 
+        var selectedDocumentList = [];
+        var pic = ''
 
+        try {
+            for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
+                selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
+                if (this.state.candidate_documents_data[i].document_type == "Passport Size Photo") {
+                    // console.log("++++++++++++++++++++++++++++++++++",pic)
+                    this.setState({ pic: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+                }
+                if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
+                    this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+                }
+
+            }
+        }
+        catch (error) {
+            console.log(error)
+        }
 
 
 
@@ -356,19 +374,8 @@ class ApplicationForm extends Component {
 
 
         console.log("this previe=", otherdetails)
-        var selectedDocumentList = [];
-        console.log("Khalid")
-        try {
-            for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
-                selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
-                if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
-                    this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
-                }
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
+
+        // console.log("++++++++++++++++++++++++++++++++++",pic)
         // console.log(this.state.candidate_documents_data)
         return (
             <div className="page-wrapper">
@@ -442,7 +449,7 @@ class ApplicationForm extends Component {
                                                 <div className="image-upload">
                                                     <label htmlFor="Uploadphoto" className="mb-0">
                                                         {/* <img src="upload-photo.png" id="photo" alt="Upload Photo" className="img-fluid" /> */}
-                                                        <img alt="" src={this.state.profilepic} id="photo" alt="Upload Photo" className="img-fluid" />
+                                                        <img alt="" src={this.state.pic} id="photo" alt="Upload Photo" className="img-fluid" />
                                                     </label>
                                                     {/* <input id="Uploadphoto" type="file" onchange="readURL(this);" /> */}
                                                 </div>
@@ -1013,9 +1020,11 @@ class ApplicationForm extends Component {
                     </div>
                 </div>
                 {/* /Page Content */}
-                <div className="col-auto float-right ml-auto">
-                    <button className="btn add-btn" id="submit" onClick={this.savebtn}>Save & Countinue</button>
+
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
                 </div>
+                <br />
 
             </div>
         );
