@@ -267,10 +267,16 @@ class ApplicationForm extends Component {
 
 
 
-
+        var emgencyNo='';
+        var emgencyrelation='';
         var reference = { "name": '', "mobile_no": '', "location": '' }
         try {
             console.log('references', this.state)
+            if(this.state.reference[0].relationship!="other")
+            {
+                emgencyNo=this.state.reference[0].mobile_no
+                emgencyrelation=this.state.reference[0].relationship;
+            }
             reference = {
                 'name': this.state.reference[0].name, 'mobile_no': this.state.reference[0].mobile_no,
                 'location': this.state.reference[0].location
@@ -285,6 +291,11 @@ class ApplicationForm extends Component {
 
         var reference1 = { "name": '', "mobile_no": '', "location": '' }
         try {
+            if(this.state.reference[1].relationship!="other")
+            {
+                emgencyNo=this.state.reference[1].mobile_no
+                emgencyrelation=this.state.reference[1].relationship;
+            }
             reference1 = {
                 'name': this.state.reference[1].name, 'mobile_no': this.state.reference[1].mobile_no,
                 'location': this.state.reference[1].location
@@ -597,7 +608,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label className="m-0 text-uppercase">Mobile Number:</label>
                                                 </div>
-                                                <input defaultValue={this.state.mobile_no} type="text" name="mobile-number2" className="px-0 py-1 ml-2 form-control" />
+                                                <input defaultValue={this.state.p_mobile_no} type="text" name="mobile-number2" className="px-0 py-1 ml-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -605,15 +616,17 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Emergency Mobile No.:</label>
                                                 </div>
-                                                <input defaultValue={this.state.p_mobile_no} type="text" name="emergency-mobile" className="px-0 py-1 mx-2 form-control" />
+                                                
+                                                <input defaultValue={emgencyNo} type="text" name="emergency-mobile" className="px-0 py-1 mx-2 form-control" />
                                             </div>
                                         </div>
+                                        
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
                                                 <div className="input-group-prepend my-auto">
-                                                    <label htmlFor="" className="m-0 text-uppercase">Person Name:</label>
+                                                    <label htmlFor="" className="m-0 text-uppercase">Person Relation:</label>
                                                 </div>
-                                                <input defaultValue={this.state.name} type="text" name="person-name" className="px-0 py-1 ml-2 form-control" />
+                                                <input defaultValue={emgencyrelation} type="text" name="person-name" className="px-0 py-1 ml-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-12">
