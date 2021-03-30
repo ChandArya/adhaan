@@ -13,15 +13,15 @@ var axios = require('axios');
 class Loginpage extends Component {
   constructor(...props) {
     super(...props)
-    var url =window.location.href;
-    var id=url.split("/");
-    var mobileno=id[id.length-3]
-    var adharNo=id[id.length-2]
-    var candidateid=id[id.length-1]
-    localStorage.setItem("can",candidateid);
-    localStorage.setItem("url",url);
-    localStorage.setItem("adhar",adharNo);
-    localStorage.setItem("mobile",mobileno);
+    var url = window.location.href;
+    var id = url.split("/");
+    var mobileno = id[id.length - 3]
+    var adharNo = id[id.length - 2]
+    var candidateid = id[id.length - 1]
+    localStorage.setItem("can", candidateid);
+    localStorage.setItem("url", url);
+    localStorage.setItem("adhar", adharNo);
+    localStorage.setItem("mobile", mobileno);
     this.state = {
       currentpage: '/',
       isd: '91',
@@ -30,13 +30,13 @@ class Loginpage extends Component {
       error: '',
       userid: candidateid,
       usertype: '',
-      adharNo:adharNo,
-      mobileno:mobileno
+      adharNo: adharNo,
+      mobileno: mobileno
     }
-   
+
   }
   resend = (e) => {
-   
+
     this.setState({ f_otp: '' });
     var isd = "91"
     var mobile = this.state.mobileno
@@ -59,10 +59,10 @@ class Loginpage extends Component {
         self.setState({ error: ee.data.message })
         window.location.reload(false);
         console.log("resend otp", ee)
-        })
+      })
       .catch(function (error) {
         console.log(error);
-        
+
       });
 
   }
@@ -98,7 +98,7 @@ class Loginpage extends Component {
 
           if (response.data.data.last_digits == getno) {
 
-            localStorage.setItem("kyc",1);
+            localStorage.setItem("kyc", 1);
             console.log(response.data.data.last_digits)
             self.setState({ error: "Kyc verified" })
             let path = '../../../sixotp';
@@ -109,7 +109,7 @@ class Loginpage extends Component {
 
               buttons: [
                 {
-                  label: 'Countinue',
+                  label: 'Continue',
                   onClick: () => {
                     self.props.history.push({
                       pathname: path,
@@ -123,7 +123,7 @@ class Loginpage extends Component {
 
 
           } else {
-            localStorage.setItem("kyc",0);
+            localStorage.setItem("kyc", 0);
             self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" + mobileno })
 
             confirmAlert({
@@ -161,7 +161,7 @@ class Loginpage extends Component {
 
         })
         .catch(function (error) {
-          localStorage.setItem("kyc",0);
+          localStorage.setItem("kyc", 0);
           self.setState({ kyc: "notverfied", error: "This aadhar no is not matched with this mobile number" })
 
           confirmAlert({
