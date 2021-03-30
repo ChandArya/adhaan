@@ -26,7 +26,179 @@ import { buildTimeColsModel } from '@fullcalendar/timegrid';
 
 // var FormData = require('form-data');
 // var fs = require('fs');
-
+var bankdata={
+	"AXIS BANK": "AXIS",
+	"BANK OF AMERICA": "BOA",
+	"BANK OF INDIA": "BOI",
+	"YES BANK": "YESBANK",
+	"THE ANDHRA PRADESH STATE COOPERATIVE BANK LIMITED": "APCOB",
+	"THE NASIK MERCHANTS COOPERATIVE BANK LIMITED": "NAMCOBANK",
+	"APNA SAHAKARI BANK LIMITED": "APNABANK",
+	"AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED": "ANZ",
+	"CAPITAL SMALL FINANCE BANK LIMITED": "CAPITALBANK",
+	"BANK OF MAHARASHTRA": "BOM",
+	"JALGAON JANATA SAHAKARI BANK LIMITED": "JJSBL",
+	"JANATA SAHAKARI BANK LIMITED": "JANATABANK",
+	"KALLAPPANNA AWADE ICHALKARANJI JANATA SAHAKARI BANK LIMITED": "IJSBANK",
+	"THE MUMBAI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "MDCCBANK",
+	"PRIME COOPERATIVE BANK LIMITED": "PRIMEBANK",
+	"THE THANE BHARAT SAHAKARI BANK LIMITED": "THANEBHARATBANK",
+	"THE A.P. MAHESH COOPERATIVE URBAN BANK LIMITED": "APMAHESHBANK",
+	"BANK OF TOKYO MITSUBISHI LIMITED": "MUFG",
+	"THE GUJARAT STATE COOPERATIVE BANK LIMITED": "GSCBANK",
+	"KARNATAKA VIKAS GRAMEENA BANK": "KVGBANK",
+	"THE MUNICIPAL COOPERATIVE BANK LIMITED": "MUNICIPALBANK",
+	"NAGPUR NAGARIK SAHAKARI BANK LIMITED": "NNSBANK",
+	"THE KANGRA CENTRAL COOPERATIVE BANK LIMITED": "KCCB",
+	"THE RAJASTHAN STATE COOPERATIVE BANK LIMITED": "RSCB",
+	"THE SURAT DISTRICT COOPERATIVE BANK LIMITED": "SUDICOBANK",
+	"THE VISHWESHWAR SAHAKARI BANK LIMITED": "VISHWESHWARBANK",
+	"WOORI BANK": "WOORIBANK",
+	"SUTEX COOPERATIVE BANK LIMITED": "SUTEXBANK",
+	"BARCLAYS BANK": "BARCLAYS",
+	"GURGAON GRAMIN BANK": "SHGB",
+	"COMMONWEALTH BANK OF AUSTRALIA": "COMMBANK",
+	"PRATHAMA BANK": "PRATHAMABANK",
+	"NORTH MALABAR GRAMIN BANK": "KERALAGBANK",
+	"THE VARACHHA COOPERATIVE BANK LIMITED": "VARACHHABANK",
+	"SBER BANK": "SBERBANK",
+	"TUMKUR GRAIN MERCHANTS COOPERATIVE BANK LIMITED": "TGMCBANK",
+	"VASAI VIKAS SAHAKARI BANK LIMITED": "VASAIVIKASBANK",
+	"VASAI VIKAS SAHAKARI BANK LTD": "VASAIVIKASBANK",
+	"BASSEIN CATHOLIC COOPERATIVE BANK LIMITED": "BCCB",
+	"WESTPAC BANKING CORPORATION": "WESTPAC",
+	"ANDHRA PRAGATHI GRAMEENA BANK": "APGB",
+	"SUMITOMO MITSUI BANKING CORPORATION": "SMBC",
+	"THE SEVA VIKAS COOPERATIVE BANK LIMITED": "SEVAVIKASBANK",
+	"THE THANE DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "THANEDISTRICTBANK",
+	"JP MORGAN BANK": "JPMORGAN",
+	"THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "GDCCBANK",
+	"THE AKOLA DISTRICT CENTRAL COOPERATIVE BANK": "AKOLADCC",
+	"THE KURMANCHAL NAGAR SAHAKARI BANK LIMITED": "KURMANCHALBANK",
+	"THE JALGAON PEOPELS COOPERATIVE BANK LIMITED": "JPCBANK",
+	"PARIBAS": "BNPPARIBAS",
+	"NATIONAL AUSTRALIA BANK LIMITED": "NAB",
+	"SAHEBRAO DESHMUKH COOPERATIVE BANK LIMITED": "SDCBANK",
+	"BANK INTERNASIONAL INDONESIA": "MAYBANK",
+	"SOLAPUR JANATA SAHAKARI BANK LIMITED": "SJSBBANK",
+	"INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED": "ICBC",
+	"UNITED OVERSEAS BANK LIMITED": "UOB",
+	"ZILA SAHAKRI BANK LIMITED GHAZIABAD": "ZSBL",
+	"JANASEVA SAHAKARI BANK BORIVLI LIMITED": "JANASEVABANK",
+	"RAJGURUNAGAR SAHAKARI BANK LIMITED": "RAJGURUNAGARBANK",
+	"CANARA BANK": "CANARABANK",
+	"NAGAR URBAN CO OPERATIVE BANK": "NUCB",
+	"AKOLA JANATA COMMERCIAL COOPERATIVE BANK": "AKOLAJANATABANK",
+	"BHARATIYA MAHILA BANK LIMITED": "BMB",
+	"HSBC BANK OMAN SAOG": "HSBC",
+	"THE KANGRA COOPERATIVE BANK LIMITED": "KANGRABANK",
+	"THE ZOROASTRIAN COOPERATIVE BANK LIMITED": "ZOROASTRIANBANK",
+	"SHIKSHAK SAHAKARI BANK LIMITED": "SHIKSHAKBANK",
+	"THE HASTI COOP BANK LTD": "HASTIBANK",
+	"CATHOLIC SYRIAN BANK LIMITED": "CSB",
+	"KERALA GRAMIN BANK": "KERALAGBANK",
+	"PRAGATHI KRISHNA GRAMIN BANK": "PRAGATHIKRISHNABANK",
+	"DEPOSIT INSURANCE AND CREDIT GUARANTEE CORPORATION": "DICGC",
+	"DEVELOPMENT BANK OF SINGAPORE": "DBS",
+	"DOHA BANK": "DOHABANK",
+	"DOHA BANK QSC": "DOHABANK",
+	"EXPORT IMPORT BANK OF INDIA": "EXIMBANK",
+	"JANAKALYAN SAHAKARI BANK LIMITED": "JKSBL",
+	"TJSB SAHAKARI BANK LIMITED": "TJSBBANK",
+	"TJSB SAHAKARI BANK LTD": "TJSBBANK",
+	"THE COSMOS CO OPERATIVE BANK LIMITED": "COSMOSBANK",
+	"SURAT NATIONAL COOPERATIVE BANK LIMITED": "SURATNATIONALBANK",
+	"CENTRAL BANK OF INDIA": "CENTRALBANK",
+	"IDFC BANK LIMITED": "IDFC",
+	"INDUSTRIAL BANK OF KOREA": "IBK",
+	"SBM BANK MAURITIUS LIMITED": "SBM",
+	"NATIONAL BANK OF ABU DHABI PJSC": "NBAD",
+	"KEB HANA BANK": "KEBHANA",
+	"THE PANDHARPUR URBAN CO OP. BANK LTD. PANDHARPUR": "PANDHARPURBANK",
+	"SAMARTH SAHAKARI BANK LTD": "SAMARTHBANK",
+	"SHIVALIK MERCANTILE CO OPERATIVE BANK LTD": "SHIVALIKBANK",
+	"HIMACHAL PRADESH STATE COOPERATIVE BANK LTD": "HPSCB",
+	"DEOGIRI NAGARI SAHAKARI BANK LTD. AURANGABAD": "DEOGIRIBANK",
+	"CHINATRUST COMMERCIAL BANK LIMITED": "CHINATRUST",
+	"PT BANK MAYBANK INDONESIA TBK": "MAYBANK",
+	"MAHARASHTRA GRAMIN BANK": "MAHAGRAMIN",
+	"EQUITAS SMALL FINANCE BANK LIMITED": "EQUITAS",
+	"AIRTEL PAYMENTS BANK LIMITED": "AIRTEL",
+	"CITI BANK": "CITIBANK",
+	"CITIZEN CREDIT COOPERATIVE BANK LIMITED": "CITIZENCREDITBANK",
+	"CITY UNION BANK LIMITED": "CUB",
+	"CORPORATION BANK": "CORPBANK",
+	"CREDIT AGRICOLE CORPORATE AND INVESTMENT BANK CALYON BANK": "CACIB",
+	"DENA BANK": "DENABANK",
+	"DEUSTCHE BANK": "DB",
+	"DCB BANK LIMITED": "DCB",
+	"DHANALAKSHMI BANK": "DHANBANK",
+	"DOMBIVLI NAGARI SAHAKARI BANK LIMITED": "DNSBANK",
+	"FIRSTRAND BANK LIMITED": "FIRSTRAND",
+	"HDFC BANK": "HDFC",
+	"HSBC BANK": "HSBC",
+	"ICICI BANK LIMITED": "ICICI",
+	"IDBI BANK": "IDBI",
+	"INDIAN BANK": "INDIANBANK",
+	"INDIAN OVERSEAS BANK": "IOB",
+	"INDUSIND BANK": "INDUSIND",
+	"JANASEVA SAHAKARI BANK LIMITED": "JANASEVABANK",
+	"KAPOL COOPERATIVE BANK LIMITED": "KAPOLBANK",
+	"KARNATAKA BANK LIMITED": "KARNATAKABANK",
+	"KARUR VYSYA BANK": "KVB",
+	"KOTAK MAHINDRA BANK LIMITED": "KOTAK",
+	"MAHANAGAR COOPERATIVE BANK": "MAHANAGARBANK",
+	"MAHARASHTRA STATE COOPERATIVE BANK": "MSCBANK",
+	"MASHREQBANK PSC": "MASHREQBANK",
+	"MIZUHO BANK LTD": "MIZUHOBANK",
+	"NEW INDIA COOPERATIVE BANK LIMITED": "NEWINDIABANK",
+	"NKGSB COOPERATIVE BANK LIMITED": "NKGSB",
+	"NUTAN NAGARIK SAHAKARI BANK LIMITED": "NUTANBANK",
+	"ORIENTAL BANK OF COMMERCE": "OBC",
+	"PARSIK BANK": "GPPARSIKBANK",
+	"PUNJAB AND MAHARSHTRA COOPERATIVE BANK": "PMC",
+	"PUNJAB AND SIND BANK": "PSB",
+	"PUNJAB NATIONAL BANK": "PNB",
+	"RAJKOT NAGRIK SAHAKARI BANK LIMITED": "RNSB",
+	"RESERVE BANK OF INDIA": "RBI",
+	"SHINHAN BANK": "SHINHAN",
+	"SOCIETE GENERALE": "SOCIETEGENERALE",
+	"SOUTH INDIAN BANK": "SOUTHINDIANBANK",
+	"STANDARD CHARTERED BANK": "SC",
+	"STATE BANK OF BIKANER AND JAIPUR": "SBBJ",
+	"STATE BANK OF HYDERABAD": "SBHYD",
+	"STATE BANK OF INDIA": "SBI",
+	"STATE BANK OF MAURITIUS LIMITED": "SBMGROUP",
+	"STATE BANK OF MYSORE": "SBM",
+	"STATE BANK OF PATIALA": "SBP",
+	"STATE BANK OF TRAVANCORE": "SBT",
+	"SYNDICATE BANK": "SYNDICATEBANK",
+	"TAMILNAD MERCANTILE BANK LIMITED": "TMBL",
+	"THE BANK OF NOVA SCOTIA": "SCOTIABANK",
+	"AHMEDABAD MERCANTILE COOPERATIVE BANK": "AMCOBANK",
+	"BHARAT COOPERATIVE BANK MUMBAI LIMITED": "BHARATBANK",
+	"FEDERAL BANK": "FEDERALBANK",
+	"THE GREATER BOMBAY COOPERATIVE BANK LIMITED": "GREATERBANK",
+	"JAMMU AND KASHMIR BANK LIMITED": "JKBANK",
+	"KALUPUR COMMERCIAL COOPERATIVE BANK": "KALUPURBANK",
+	"THE KARANATAKA STATE COOPERATIVE APEX BANK LIMITED": "KARNATAKAAPEX",
+	"KALYAN JANATA SAHAKARI BANK": "KALYANJANATA",
+	"LAXMI VILAS BANK": "LVB",
+	"THE MEHSANA URBAN COOPERATIVE BANK": "MUCBANK",
+	"THE NAINITAL BANK LIMITED": "NAINITALBANK",
+	"RBL BANK LIMITED": "RBL",
+	"THE ROYAL BANK OF SCOTLAND": "RBS",
+	"SARASWAT COOPERATIVE BANK LIMITED": "SARASWATBANK",
+	"THE SHAMRAO VITHAL COOPERATIVE BANK": "SVCBANK",
+	"THE SURATH PEOPLES COOPERATIVE BANK LIMITED": "SPCBL",
+	"THE TAMIL NADU STATE APEX COOPERATIVE BANK": "TNSCBANK",
+	"THE WEST BENGAL STATE COOPERATIVE BANK": "WBSCB",
+	"UCO BANK": "UCOBANK",
+	"UNION BANK OF INDIA": "UNIONBANK",
+	"UNITED BANK OF INDIA": "UNITEDBANK",
+	"VIJAYA BANK": "VIJAYABANK"
+}
+var banklist = Object.keys(bankdata);
 export default class EmployeeProfile extends Component {
   constructor(...props) {
     super(...props)
@@ -37,7 +209,10 @@ export default class EmployeeProfile extends Component {
     this.setStartDate = this.setStartDate.bind(this);
     this.onFileChangeForDoc = this.onFileChangeForDoc.bind(this);
     this.setDocName = this.setDocName.bind(this);
+    var listdd=worldMapData.getAllCountries()
     console.log("constructor",)
+    var india ={"id": 101, "sortname": "IN", "name": "India", "phoneCode": 91}
+    listdd.unshift(india)
 
     // if(typeof this.props.location.state.back===undefined)
     // {
@@ -45,8 +220,8 @@ export default class EmployeeProfile extends Component {
       isopenProfileModel: false,
       isLoaded: false,
       name: '',
-      pallcountry: worldMapData.getAllCountries(),
-      callcountry: worldMapData.getAllCountries(),
+      pallcountry: listdd,
+      callcountry: listdd,
       edulevel: '10',
       error: '',
       stateListOfCountry: [],
@@ -112,7 +287,7 @@ export default class EmployeeProfile extends Component {
       education_data: {},
       candidate_work_history_data: [],
       candidate_documents_data: [],
-      candidate_doc_list: ['Resume/ Bio-DATA', ' Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression'],
+      candidate_doc_list: ['Resume/ Bio-DATA', 'Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression'],
       isNomniee: false,
       family_adhar: '',
       family_name: '',
@@ -139,7 +314,7 @@ export default class EmployeeProfile extends Component {
         width: 30,
         aspect: 16 / 9,
       },
-      jobtype: '',
+      jobtype:'',
 
       // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
@@ -834,55 +1009,72 @@ export default class EmployeeProfile extends Component {
   }
   previewClick = (e) => {
     console.log(this.state.candidate_documents_data);
-    var final = []
-    for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
-      if (this.state.candidate_documents_data[i].document_type == 'Resume/ Bio-DATA') {
+    var final=[]
+    for (var i=0;i<this.state.candidate_documents_data.length;i++)
+    {
+      if(this.state.candidate_documents_data[i].document_type=='Resume/ Bio-DATA')
+      {
         final.push(1)
-      } else
-        if (this.state.candidate_documents_data[i].document_type == 'Signature') {
-          final.push(2)
-        } else
-          if (this.state.candidate_documents_data[i].document_type == 'Thumb Impression') {
-            final.push(2)
-          } else
-            if (this.state.candidate_documents_data[i].document_type == 'Driving License Front') {
-              final.push(3)
-            } else {
-              final.push(5)
-            }
-
+      }else
+      if(this.state.candidate_documents_data[i].document_type=='Signature')
+      {
+        final.push(2)
+      }else
+      if(this.state.candidate_documents_data[i].document_type=='Thumb Impression')
+      {
+        final.push(2)
+      }else
+      if(this.state.candidate_documents_data[i].document_type=='Driving License Front')
+      {
+        final.push(3)
+      }else  if(this.state.candidate_documents_data[i].document_type=='Adhaar Card Front')
+      {
+        final.push(5)
+      }else  if(this.state.candidate_documents_data[i].document_type=='Adhaar Card Back')
+      {
+        final.push(6)
+      }else  if(this.state.candidate_documents_data[i].document_type=='Passport Size Photo')
+      {
+        final.push(7)
+      }
+     
+     
 
     }
-    console.log(this.state.jobtype, "", final)
-    if (this.state.jobtype != "Backoffice") {
-
-      if (final.includes(1) && final.includes(2) && final.includes(3)) {
-
+    console.log(this.state.jobtype,"",final)
+    if(this.state.jobtype!="backoffice")
+    {
+    
+        if(final.includes(1) && final.includes(2) && final.includes(3)&& final.includes(7)&& final.includes(5)&& final.includes(6))
+        {
+          
         let path = './applcation-form';
-
-
+       
+    
         this.props.history.push({
           pathname: path,
           state: this.state
-
+    
         })
-      } else {
+      }else
+      {
         alert("Please upload all required document.")
       }
-    } else if (final.includes(1) && final.includes(2) && final.includes(5)) {
-      console.log("finalfinal", final)
-
-      let path = './applcation-form';
-
-
-      this.props.history.push({
-        pathname: path,
-        state: this.state
-
-      })
-    } else {
-      alert("Please upload all required document.")
-    }
+    }else if(final.includes(1) && final.includes(2)&& final.includes(7)&& final.includes(5)&& final.includes(6)  )
+    {
+      console.log("finalfinal",final)
+      
+     let path = './applcation-form';
+    
+ 
+     this.props.history.push({
+       pathname: path,
+       state: this.state
+ 
+     })
+    }else{
+     alert("Please upload all required document.")
+   }
 
 
 
@@ -1219,7 +1411,7 @@ export default class EmployeeProfile extends Component {
           console.log("recuriter", err)
 
         }
-
+       
 
       })
       .catch((error) => {
@@ -1252,8 +1444,14 @@ export default class EmployeeProfile extends Component {
     console.log("click")
     var datat = this.state.resume_file
     console.log("datat", datat)
+   
     // var d='Resume/ Bio-DATA'
     var d = this.state.docname
+    if(d=='')
+    {
+      this.setState({error1:"please select file"})
+      return
+    }
     this.documentUpload(this, datat, d, this.state.user);
 
   }
@@ -1299,10 +1497,7 @@ export default class EmployeeProfile extends Component {
           {/* /Page Header */}
           <div className="card mb-0">
 
-            <div className="col-auto float-right ml-auto mt-3">
-              <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview</button>
-
-            </div>
+           
 
             <div className="card-body">
               <div className="row">
@@ -1513,6 +1708,7 @@ export default class EmployeeProfile extends Component {
                       {this.state.bank_name ? <a></a> : <a href="#" className="edit-icon" data-toggle="modal" data-target="#bank_contact_modal">
                           <i className="fa fa-pencil" /></a>}</h3>
                       <ul className="personal-info">
+                       
                         <li>
                           <div className="title">Bank name</div>
                           <div className="text">{this.state.bank_name}</div>
@@ -1641,8 +1837,8 @@ export default class EmployeeProfile extends Component {
                       <ul className="personal-info">
                         <li>
                           <div className="title">Aadhar Card </div>
-                          {/* <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc") == 0 ? localStorage.getItem("url") : "#"}>{localStorage.getItem("kyc") == 0 ? "Verify" : "Verified ✅"} </a></div> */}
-                          <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc") == 0 ? localStorage.getItem("url") : "#"}>{localStorage.getItem("kyc") == 0 ? "Verify" : ""} </a></div>
+                          <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc") == 0 ? localStorage.getItem("url") : "#"}>{localStorage.getItem("kyc") == 0 ? "Verify" : "Verified ✅"} </a></div>
+                          {/* <div className="text">{this.state.candidate_other_data.aadhaar_no} <a href={localStorage.getItem("kyc") == 0 ? localStorage.getItem("url") : "#"}>{localStorage.getItem("kyc") == 0 ? "Verify" : ""} </a></div> */}
 
                         </li>
                         <li>
@@ -1705,7 +1901,7 @@ export default class EmployeeProfile extends Component {
                       <ul className="personal-info">
                         {candidate_documents_data.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document.document_type} {document.document_type == "Resume/ Bio-DATA" || document.document_type == "Signature" || document.document_type == "Thumb Impression" || ((document.document_type == "Driving License Front") && (this.state.jobtype != "backoffice")) ? <span className="text-danger">*</span> : ''}</div>
+                            <div className="title">{document.document_type} {document.document_type=="Resume/ Bio-DATA"||document.document_type=="Signature"||document.document_type=="Thumb Impression"||((document.document_type=="Driving License Back")&& (this.state.jobtype!="backoffice"))||document.document_type=="Adhaar Card Front"||document.document_type=="Adhaar Card Back"||document.document_type=="Passport Size Photo"||((document.document_type=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
                             <input type="checkbox" className="" defaultChecked="true" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
 
@@ -1714,7 +1910,7 @@ export default class EmployeeProfile extends Component {
 
                         {candidate_doc_list.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document}{document == "Resume/ Bio-DATA" || document == "Signature" || document == "Thumb Impression" || ((document == "Driving License Front") && (this.state.jobtype != "backoffice")) ? <span className="text-danger">*</span> : ''}</div>
+                            <div className="title">{document}{document=="Resume/ Bio-DATA"||document=="Signature"||document=="Thumb Impression"||document=="Passport Size Photo"||((document=="Driving License Back")&& (this.state.jobtype!="backoffice"))||document=="Adhaar Card Front"||document=="Adhaar Card Back"||((document=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
                             <input type="checkbox" className="" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
 
@@ -1726,7 +1922,12 @@ export default class EmployeeProfile extends Component {
                     </div>
                   </div>
                 </div>
+                <div className="col-auto float-right ml-auto mt-3">
+              <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview & Continue</button>
+
+            </div>
               </div>
+             
             </div>
             {/* /Profile Info Tab */}
             {/* Projects Tab */}
@@ -2678,12 +2879,15 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Driving License No.<span className="text-danger">*</span></label>
+                        <label>Driving License No. {this.state.jobtype!="backoffice"?
+    
+    <span className="text-danger">*</span>:''
+}</label>
                         <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                       </div>
 
-                      {this.isBlank(this.state.candidate_other_data.dl_no) ?
+                      {(this.isBlank(this.state.candidate_other_data.dl_no)&& (this.state.jobtype!="backoffice"))?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
@@ -2694,13 +2898,16 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Place of Issue<span className="text-danger">*</span></label>
+                        <label>Place of Issue {this.state.jobtype!="backoffice"?
+    
+    <span className="text-danger">*</span>:''
+}</label>
                         <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
 
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.place_of_issue) ?
+                      {(this.isBlank(this.state.candidate_other_data.place_of_issue)&& (this.state.jobtype!="backoffice")) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
@@ -2710,14 +2917,18 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Valid Upto (YYYY-MM-DD)<span className="text-danger">*</span></label>
+                        <label>Valid Upto (YYYY-MM-DD)
+                       {this.state.jobtype!="backoffice"?
+    
+                          <span className="text-danger">*</span>:''
+                    }</label>
 
                         <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
 
 
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.valid_up_to) ?
+                      {(this.isBlank(this.state.candidate_other_data.valid_up_to)&& (this.state.jobtype!="backoffice")) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
@@ -2736,14 +2947,10 @@ export default class EmployeeProfile extends Component {
 
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>PAN Card Number<span className="text-danger">*</span></label>
+                        <label>PAN Card Number</label>
                         <input defaultValue={this.state.candidate_other_data.pan_card_no} className="form-control" type="text" onChange={this.setPanNo} />
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.pan_card_no) ?
-                        <span className="text-danger">{this.state.error1}</span>
-                        :
-                        ''
-                      }
+                     
 
 
 
@@ -2760,11 +2967,7 @@ export default class EmployeeProfile extends Component {
 
                         <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.aadhaar_no) ?
-                        <span className="text-danger">{this.state.error1}</span>
-                        :
-                        ''
-                      }
+                      
 
 
 
@@ -2772,72 +2975,51 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Old PF No.<span className="text-danger">*</span></label>
+                        <label>Old PF No.</label>
 
                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.pf_no) ?
-                        <span className="text-danger">{this.state.error1}</span>
-                        :
-                        ''
-                      }
+                     
 
 
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Old UAN No. <span className="text-danger">*</span></label>
+                        <label>Old UAN No. </label>
                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
                       </div>
 
-                      {this.isBlank(this.state.candidate_other_data.uan) ?
-                        <span className="text-danger">{this.state.error1}</span>
-                        :
-                        ''
-                      }
                     </div>
 
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Old ESIC No.<span className="text-danger">*</span></label>
+                        <label>Old ESIC No.</label>
                         <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.esic_no) ?
-                        <span className="text-danger">{this.state.error1}</span>
-                        :
-                        ''
-                      }
+                     
 
 
 
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Old ESIC Dispensory Name.<span className="text-danger">*</span></label>
+                        <label>Old ESIC Dispensory Name.</label>
                         <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
                       </div>
-                      {this.isBlank(this.state.candidate_other_data.esic_name) ?
-                        <span className="text-danger">{this.state.error1}</span>
-                        :
-                        ''
-                      }
+                    
 
 
 
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Old ESIC Dispensory Address<span className="text-danger">*</span></label>
+                        <label>Old ESIC Dispensory Address</label>
                         <input defaultValue={this.state.candidate_other_data.esic_address} className="form-control" type="text" onChange={this.setEsicAdd} />
                       </div>
 
 
 
-                      {this.isBlank(this.state.candidate_other_data.esic_address) ?
-                        <span className="text-danger">{this.state.error1}</span>
-                        :
-                        ''
-                      }
+                  
                     </div>
                   </div>
                   <div className="submit-section">
@@ -3033,11 +3215,22 @@ export default class EmployeeProfile extends Component {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Relationship <span className="text-danger">*</span></label>
-                            <input className="form-control" value={this.state.ref_relation} type="text" onChange={this.setReferencerleation} />
+                            <select className="mb-3 form-control" onChange={this.setReferencerleation} >
+                              {/* <option value='0'>Select Education Level </option> */}
+                              <option value='0'>Select Relationship</option>
+                              <option >Mother</option>
+                              <option >Father</option>
+                              <option >Spouse</option>
+                              <option >Other</option>
+
+                             </select>
+                        
+                        
+                            {/* <input className="form-control" value={this.state.ref_relation} type="text" onChange={this.setReferencerleation} /> */}
                           </div>
 
 
-                          {this.isBlank(this.state.ref_relation) ?
+                          {this.state.ref_relation==0 ?
                             <span className="text-danger">{this.state.error1}</span>
                             :
                             ''
@@ -3096,12 +3289,26 @@ export default class EmployeeProfile extends Component {
                       {/* <h3 className="card-title">1</h3> */}
                       <div className="row">
                         <div className="col-md-6">
+                       
                           <div className="form-group">
+                         
                             <label>Bank Name <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" onChange={this.setBankName} />
+                            <select className="mb-3 form-control" onChange={this.setBankName} >
+                              {/* <option value='0'>Select Education Level </option> */}
+                              <option value='0'>Select Bank</option>
+                              {
+                                
+                          banklist.map(family => ( <option >{family}</option>))
+                        }
+                             
+                              {/* <option value="12">12</option>
+                              <option value="graduate">Graduate</option>
+                              <option value="post_graduate">Post Graduate</option>
+                              <option value="other">Other</option> */}
+                            </select>
                           </div>
 
-                          {this.isBlank(this.state.bank_name) ?
+                          {this.state.bank_name==0 ?
                             <span className="text-danger">{this.state.error1}</span>
                             :
                             ''
@@ -3674,7 +3881,7 @@ export default class EmployeeProfile extends Component {
   }
   addOtherDetailsData = (self, data) => {
     console.log("ggg", data);
-    if (this.isBlank(data.dl_no) || this.isBlank(data.pan_card_no) || this.isBlank(data.uan)) {
+    if (this.isBlank(data.dl_no) && (this.state.jobtype!="backoffice")) {
       self.setState({ error: "Please fill all required details" })
     } else {
       self.setState({ error: "", error1: '' })
