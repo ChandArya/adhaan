@@ -50,7 +50,8 @@ class OfferLetter extends Component {
             lwa1:0,
             ctc:0,
             empolye_pfcon:0,
-            esc:0
+            esc:0,
+            empolye_esic:''
 
 
 
@@ -141,7 +142,7 @@ class OfferLetter extends Component {
                 lwa:data.employee_lwf,
                 lwa1:data.employer_lwf,
                 esc:data.employer_esic_contribution,
-                
+                empolye_esic:data.employee_esic_contribution,
                 ctc:data.ctc,
                
 
@@ -582,6 +583,8 @@ by the company.
   <div className="col-md-6" style={{border:'1px solid'}}>&nbsp;</div>
   <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYEE PF CONTRIBUTION</div>
   <div className="col-md-6" style={{border:'1px solid'}}>{this.state.empolye_pfcon}</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>EMPLOYEE ESIC CONTRIBUTION</div>
+  <div className="col-md-6" style={{border:'1px solid'}}>{this.state.empolye_esic}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>LWF</div>
   <div className="col-md-6" style={{border:'1px solid'}}>{this.state.lwa}</div>
   <div className="col-md-6" style={{border:'1px solid'}}>PROFESSIONAL TAX</div>
