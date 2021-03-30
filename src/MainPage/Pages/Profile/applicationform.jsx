@@ -12,7 +12,7 @@ const ref = React.createRef();
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {...this.props.location.state,pic:''}
+        this.state = { ...this.props.location.state, pic: '' }
     }
 
     backClick = (e) => {
@@ -82,20 +82,19 @@ class ApplicationForm extends Component {
     render() {
 
         var selectedDocumentList = [];
-        var pic=''
-        
+        var pic = ''
+
         try {
             for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
                 selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
-                if (this.state.candidate_documents_data[i].document_type == "Passport Size Photo" )
-                {
+                if (this.state.candidate_documents_data[i].document_type == "Passport Size Photo") {
                     // console.log("++++++++++++++++++++++++++++++++++",pic)
                     this.setState({ pic: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
                 }
                 if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
                     this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
                 }
-                
+
             }
         }
         catch (error) {
@@ -375,7 +374,7 @@ class ApplicationForm extends Component {
 
 
         console.log("this previe=", otherdetails)
-        
+
         // console.log("++++++++++++++++++++++++++++++++++",pic)
         // console.log(this.state.candidate_documents_data)
         return (
