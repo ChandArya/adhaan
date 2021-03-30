@@ -11,6 +11,44 @@ class GratitutyForm extends Component {
         this.state = this.props.location.state
     }
 
+    generatePdf=(e)=>
+    {
+
+        var pdf = new jsPDF('portrait');
+        var pdfName = this.state.name_+'form.pdf';
+
+        var options = {};
+
+        var $divs = $('#uu')    
+        console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
+        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var currentRecursion=0;
+        var self=this;
+        //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
+        function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
+            //Once we have done all the divs save the pdf
+            if(currentRecursion==totalRecursions){
+                // pdf.save(pdfName);
+                self.setState({ispdf:false});
+                self.submitbtn();
+            }else{
+                currentRecursion++;
+                pdf.addPage();
+                //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
+                //addHtml requires an html element. Not a string like fromHtml.
+                pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+                    console.log(currentRecursion);
+                    recursiveAddHtmlAndSave(currentRecursion, totalRecursions)
+
+                });
+            }
+        }
+
+        pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+            recursiveAddHtmlAndSave(currentRecursion, numRecursionsNeeded);
+        });
+        
+    }
 
 
     submitbtn = (e) => {
@@ -53,12 +91,7 @@ class GratitutyForm extends Component {
     render() {
 
         try {
-            console.log('wwww', this.state.candidate_doc_list)
-            console.log('twinkle', this.state)
-
-            console.log('sssss', this.state.candidate_documents_data[1].document_type);
-            console.log('sssss', this.state.candidate_documents_data[0].document_type)
-
+           
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
 
 
@@ -127,7 +160,7 @@ class GratitutyForm extends Component {
                 {/*GratitutyForm page */}
 
                 
-                      <div className="border" style={{overflowX:'auto'}}>
+                      <div className="border" id='uu'style={{overflowX:'auto'}}>
                         < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
                             <div style={{marginLeft:'30px', marginRight:'30px'}}>
@@ -434,7 +467,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                     </ div><br />
                 </div><br />
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.submitbtn} >Submit</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf} >Submit</button>
                 </div>
                
 <br/>

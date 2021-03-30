@@ -9,6 +9,8 @@ export { default as headerlogo } from 'Assets/img/logo.png';
 export { default as Upload_Photo } from 'Assets/img/upload-photo.png';
 export { default as Sign } from 'Assets/img/sign.png';
 export { default as Sign1 } from 'Assets/img/sign1.png';
+export { default as CompnyThum } from 'Assets/img/stamp.png';
+export { default as CompnySign } from 'Assets/img/csig.png';
 // export {default as Applogo} from 'Assets/img/logo2.png';
 export { default as epfs } from 'Assets/img/epfs.png';
 

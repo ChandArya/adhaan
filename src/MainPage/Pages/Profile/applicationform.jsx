@@ -7,15 +7,18 @@ import { Upload_Photo, Sign, Applogo } from "../../../Entryfile/imagepath"
 import "../../antdstyle.css"
 import Pdf from "react-to-pdf";
 
+
 var baseurl = 'https://aadhaan.ddns.net';
 const ref = React.createRef();
 class ApplicationForm extends Component {
     constructor(props) {
         super(props);
-        this.state = { ...this.props.location.state, pic: '' }
+        
+        this.state = { ...this.props.location.state, pic: '',ispdf:true, }
     }
-
+   
     backClick = (e) => {
+        
         let path = './candidate-profile';
         var id = this.props.location.state.user
         // alert("iiiiid",id)
@@ -30,48 +33,102 @@ class ApplicationForm extends Component {
         // this.props.history.go(-1)
 
     }
+    generatePdf=(e)=>
+    {
 
+        var pdf = new jsPDF('portrait');
+        var pdfName = this.state.name_+'form.pdf';
+
+        var options = {};
+
+        var $divs = $('#uu')    
+        console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
+        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var currentRecursion=0;
+        var self=this;
+        //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
+        function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
+            //Once we have done all the divs save the pdf
+            if(currentRecursion==totalRecursions){
+                // pdf.save(pdfName);
+                self.setState({ispdf:false});
+                self.savebtn();
+            }else{
+                currentRecursion++;
+                pdf.addPage();
+                //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
+                //addHtml requires an html element. Not a string like fromHtml.
+                pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+                    console.log(currentRecursion);
+                    recursiveAddHtmlAndSave(currentRecursion, totalRecursions)
+
+                });
+            }
+        }
+
+        pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+            recursiveAddHtmlAndSave(currentRecursion, numRecursionsNeeded);
+        });
+        
+    }
 
     savebtn = (e) => {
-        var self = this;
-        var data = JSON.stringify({
-            "candidate": localStorage.getItem("can"),
-
-        });
-        console.log("called")
-        var config = {
-            method: 'post',
-            url: baseurl + '/api/v1/candidate-percentage',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: data
-        };
-
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                // self.setState({ error: response.data.message })
-                // if (response.data.status == true) {
-                let path = './declaration-form';
-                var id = self.props.location.state.user
-                // alert("iiiiid",id)
-                console.log("hhhhhhhhh", id)
-                self.setState({ id: id, back: true });
-
-                self.props.history.push({
-                    pathname: path,
-                    state: self.state
-
-                })
-
-
-                // }
-            })
-            .catch(function (error) {
-                // console.log(error);
-                // self.setState({ error: "network issue" })
+        
+            // if(this.state.ispdf){
+            //     alert("Please genrate pdf first");
+            //     return
+            // }
+            var self =this;
+            
+            var data = JSON.stringify({
+                "candidate": localStorage.getItem("can"),
+    
             });
+            console.log("called")
+            var config = {
+                method: 'post',
+                url: baseurl + '/api/v1/candidate-percentage',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            };
+    
+            axios(config)
+                .then(function (response) {
+                    console.log(JSON.stringify(response.data));
+                   
+                    let path = './declaration-form';
+                    var id = self.props.location.state.user
+                    // alert("iiiiid",id)
+                    console.log("hhhhhhhhh", id)
+                    self.setState({ id: id, back: true });
+    
+                    self.props.history.push({
+                        pathname: path,
+                        state: self.state
+    
+                    })
+    
+    
+                    // }
+                })
+                .catch(function (error) {
+                    // console.log(error);
+                    // self.setState({ error: "network issue" })
+                });
+       
+        
+        // return
+        // var pdf = new jsPDF('p', 'pt', 'a4');
+     
+       
+        // pdf.addHTML($("#uu"), -1, 220, options, function() {
+        //   pdf.save('new.pdf');
+        // });
+        // return
+       
+       
 
 
     }
@@ -389,7 +446,8 @@ class ApplicationForm extends Component {
         // console.log("++++++++++++++++++++++++++++++++++",pic)
         // console.log(this.state.candidate_documents_data)
         return (
-            <div className="page-wrapper">
+           
+            <div id="uu"className="page-wrapper">
                 <Helmet>
                     <title>Application Form - HRMS Admin Template</title>
                     <meta name="description" content="Application Form page" />
@@ -1035,11 +1093,14 @@ class ApplicationForm extends Component {
                 {/* /Page Content */}
 
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
+                    {/* <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Generate Pdf</button> */}
                 </div>
+                
                 <br />
 
             </div>
+          
         );
     }
 }

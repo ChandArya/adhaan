@@ -36,9 +36,9 @@ class PrintPage extends Component {
                             </strong>Please click on the below button to print all the  Forms</p>
                             <hr />
 
-                            <p class="lead">
+                            {/* <p class="lead">
                                 <a class="btn btn-primary btn-lg" href="" role="button">Print</a>
-                            </p>
+                            </p> */}
                         </div>
 
 

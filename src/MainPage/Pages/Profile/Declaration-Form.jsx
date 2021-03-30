@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
 import {Table} from 'react-table';
-import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
+import { epfs, Sign,CompnySign,CompnyThum } from '../../../Entryfile/imagepath.jsx'
 var axios = require('axios');
 var baseurl = 'https://aadhaan.ddns.net';
 
+var today = new Date();
+var dd = today.getDate();
 
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = mm+'-'+dd+'-'+yyyy;
+console.log(today);
 
 const ref = React.createRef();
 class DeclrationForm extends Component {
+    
     constructor(props) {
         super(props);
+        
         if (localStorage.getItem("count") == 2) {
             window.location.reload(false);
             localStorage.setItem("count", 3);
@@ -505,17 +522,9 @@ class DeclrationForm extends Component {
         var candidate_documents_data = this.state.candidate_documents_data
         const edu_data = this.state.education_data
         try {
-            console.log('wwww', this.state.candidate_doc_list)
+         
             console.log('twinkle', this.state)
-            console.log("show", this.state.education_data['10'].degree)
-            console.log("show", this.state.education_data['12'].degree)
-            console.log("show", this.state.education_data['graduate'].degree)
-            console.log("show", this.state.education_data['post_graduate'].degree)
-            console.log("show", this.state._12thdata)
-            console.log('sssss', this.state.candidate_documents_data[1].document_type);
-            console.log('sssss', this.state.candidate_documents_data[0].document_type);
-            console.log("twinnkle",)
-           
+            
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
 
             
@@ -533,7 +542,7 @@ class DeclrationForm extends Component {
         }
 
         try {
-            console.log(this.state)
+           
             otherdetails = {
                 "name": this.state.candidate_other_data.name, "dl_no": this.state.candidate_other_data.dl_no,
                 "place_of_issue": this.state.candidate_other_data.place_of_issue, "valid_up_to": this.state.candidate_other_data.valid_up_to,
@@ -592,9 +601,7 @@ class DeclrationForm extends Component {
             console.log("ttt", err);
         }
 
-        // for (i=0; i<=family.length; i++){
-
-        // }
+        
 
         var isNomnieeList = this.state.family.filter(function(data)
         {
@@ -719,7 +726,7 @@ class DeclrationForm extends Component {
                 left: 'inherit',
                 top: 'inherit'
             }}>
-                <div className="border" ref={ref}>
+                <div className="border" id='uu'ref={ref}>
 
                    
 
@@ -1707,7 +1714,7 @@ OF (3) ABOVE <br /><br />
                                             <tbody>
                                                 <tr>
                                                     <td>BANK ACCOUNT 1*</td>
-                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a'}}/></td>
+                                                            <td><input defaultValue={this.state.account_number?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"}}/></td>
                                                             <td><input defaultValue={this.state.account_number} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a'}} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
@@ -1716,49 +1723,49 @@ OF (3) ABOVE <br /><br />
                                                 </tr>
                                                 <tr>
                                                     <td>NPR / AADHAAR</td>
-                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"}} /></td>
                                                             <td><input defaultValue={this.state.candidate_other_data.aadhaar_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>PERMANENT ACCOUNT NUMBER (PAN)</td>
-                                                            <td ><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.pan_card_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td ><input defaultValue={this.state.candidate_other_data.pan_card_no?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%" }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.pan_card_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%" }} /></td>
  
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>PASSPORT </td>
                                                             <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>DRIVING LICENCE</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no?this.state.candidate_other_data.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>ELECTION CARD</td>
-                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.eid_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.eid_no?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.eid_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>RATION CARD</td>
-                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                            <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>ESIC CARD</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.esic_name}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no?this.state.candidate_other_data.esic_name:''}type="text" name="" style={{ border: ' none',width: "100%" , backgroundColor: ' #ffffff0a' }} /></td>
                                                             <td><input defaultValue={this.state.candidate_other_data.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
@@ -1810,7 +1817,7 @@ OF (3) ABOVE <br /><br />
     </ul>
 
     <div className="title font-weight-bold float-left ml-3">
-        DATE
+        DATE {today}
     </div>
     <br/><br/>
     <div className="title font-weight-bold float-left ml-3">
@@ -1893,9 +1900,14 @@ OF (3) ABOVE <br /><br />
                                               </ul><br/>
 
                                         <div className="col-md-12">
-                                            <div className="title font-weight-bold float-left "> DATE</div>
-
-                                            <div className="title font-weight-bold float-right"> SIGNATURE BY THE EMPLOYER</div>
+                                    <div className="title font-weight-bold float-left "> DATE {today}</div>
+                                   
+                                            <div className="title font-weight-bold float-right"> 
+                                            <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
+                                            <br></br>
+                                            SIGNATURE BY THE EMPLOYER
+                                            </div>
+                                           
                                         </div>
                                               </ul>
 
@@ -2228,7 +2240,7 @@ Birth</th>
                                         </table>
                                         <table width="100%" className="table mb-0 " cellSpacing="0">
                                             <tr>
-                                                <td>Date  <input type="text" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                <td>Date  <input type="text" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} value={today}></input>
                                                 </td>
                                                
                                             </tr>
@@ -2266,15 +2278,17 @@ by him/her.</h4>
                                             Nr. Anand Nagar Cross Road,<br></br>
                                             100ft Road,Prahladnagar,<br></br>
                                             Ahmedabad-380015 <br></br>
-                                            Date <input type="text"></input>
+                                            Date <input type="text" value={today}></input>
                                         </div>
 
                                         <div className="col-md-8">
                                             <ul className="list-unstyled certifi-list">
                                                 <li>Signature of the employer or other authorised Officers of the Establishments &nbsp;
  <b>For, Adhaan Solution Pvt. Ltd.</b></li>
+ <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
                                                 <li>Designation <label className="pl-5">Authorised Signatory</label></li>
                                                 <li>Name and Address of Factory/Establishment or Rubber Stamp Thereof</li>
+                                                <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
                                             </ul>
                                         </div>
                                     </div>

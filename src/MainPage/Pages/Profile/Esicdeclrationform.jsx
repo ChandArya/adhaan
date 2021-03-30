@@ -4,6 +4,7 @@ import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
 // var axios = require('axios');
 var axios = require('axios');
 var baseurl = 'https://aadhaan.ddns.net';
+import { CompnySign,CompnyThum } from '../../../Entryfile/imagepath.jsx'
 class EsicdeclrationForm extends Component {
 
 
@@ -13,11 +14,49 @@ class EsicdeclrationForm extends Component {
     }
 
 
+    generatePdf=(e)=>
+    {
 
+        var pdf = new jsPDF('portrait');
+        var pdfName = this.state.name_+'form.pdf';
+
+        var options = {};
+
+        var $divs = $('#uu')    
+        console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
+        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var currentRecursion=0;
+        var self=this;
+        //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
+        function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
+            //Once we have done all the divs save the pdf
+            if(currentRecursion==totalRecursions){
+                // pdf.save(pdfName);
+                self.setState({ispdf:false});
+                self.savebtn();
+            }else{
+                currentRecursion++;
+                pdf.addPage();
+                //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
+                //addHtml requires an html element. Not a string like fromHtml.
+                pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+                    console.log(currentRecursion);
+                    recursiveAddHtmlAndSave(currentRecursion, totalRecursions)
+
+                });
+            }
+        }
+
+        pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+            recursiveAddHtmlAndSave(currentRecursion, numRecursionsNeeded);
+        });
+        
+    }
 
 
 
     savebtn = (e) => {
+      
         var self =this;
         var data = JSON.stringify({
                     "candidate": localStorage.getItem("can"),
@@ -167,13 +206,13 @@ class EsicdeclrationForm extends Component {
                         {/*Esic-declrationForm page */}
 
 
-                    <div className="border" >
+                    <div id='#uu'className="border" >
                         < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
                             <div className="col-md-12">
                               
                             <div className="float-right">
                                 <p>Employee Code :_______________________</p>
-                                <p>Mobile No. :__________________________</p>
+        <p>Mobile No. :{this.state.mobile_no}</p>
                                
                              </div></div>
                           
@@ -283,7 +322,7 @@ class EsicdeclrationForm extends Component {
                                                                 टेलीफोन नंबर /इ-मेल
                                                                 / E-mail Address
                                                                   </div>
-                                                            <input defaultValue={this.state.c_email}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input defaultValue={this.state.p_email}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
                                                             </td>
 
@@ -317,7 +356,7 @@ class EsicdeclrationForm extends Component {
                                                             <td colSpan="2">
                                                             शाखा कार्यालय<br/>
                                                             Branch Office
-                                                                <input defaultValue={this.state.branch_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                                {/* <input defaultValue={this.state.branch_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input> */}
 
                                                             </td>
                                                             <td colSpan="2">
@@ -379,9 +418,11 @@ class EsicdeclrationForm extends Component {
                                                         </tr>
                                                         <tr>
                                                         <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
-                                                                <b>Adhaan Solution Pvt. Ltd</b><br /><br />
-                                                            <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width:'100%'}} /><br/>
-                                                                
+                                                                <b>Adhaan Solution Pvt. Ltd</b><br></br>
+                                            807, 8th Floor, Dev Aurum,<br></br>
+                                            Nr. Anand Nagar Cross Road,<br></br>
+                                            100ft Road,Prahladnagar,<br></br>
+                                            Ahmedabad-380015 <br></br>
                                                                 </td>
                                                         </tr>
                                                         <tr>
@@ -412,7 +453,13 @@ class EsicdeclrationForm extends Component {
                                                         <tr>
                                                         <td colspan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
                                                                 <b>Name & Address of the Employer</b><br /><br />
-                                                            <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <b>Adhaan Solution Pvt. Ltd</b><br></br>
+                                            807, 8th Floor, Dev Aurum,<br></br>
+                                            Nr. Anand Nagar Cross Road,<br></br>
+                                            100ft Road,Prahladnagar,<br></br>
+                                            Ahmedabad-380015 <br></br>
+                                                            {/* <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br /> */}
+                                                            
                                                          <br/>
                                                               <div className="text-center">
                                                                 इ-मेल / E-mail Address
@@ -454,7 +501,7 @@ class EsicdeclrationForm extends Component {
                                                     <tr>
                                                         <td colSpan="2">
                                                         नाम /Name
-                                                        <input defaultValue={otherdetails.esic_name } type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input defaultValue={family.name } type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                          
                                                         </td>
@@ -465,7 +512,7 @@ class EsicdeclrationForm extends Component {
                                                         </td>
                                                         <td colSpan="4">
                                                         पता /Address
-                                                         <input defaultValue= {otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                         <input defaultValue= {this.state.p_full_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                     </tr>
@@ -569,7 +616,7 @@ class EsicdeclrationForm extends Component {
                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
                                                         </td>
                                                         <td>
-                                                        <input defaultValue={this.state.c_city}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        {/* <input defaultValue={this.state.c_city}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /> */}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -1095,7 +1142,7 @@ subject to fulfillment of contributory conditions</li>
                                 
 
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
                 </div>
 <br/>
 
