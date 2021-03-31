@@ -5966,6 +5966,22 @@ table.table-inbox tbody tr.checked {
 .otp-input:last-child {
 	margin-right: 0;
 }
+.custom-otp-input {
+	background-color: #fff;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	display: inline-block;
+	font-size: 24px;
+	font-weight: 500;
+	height: 70px;
+	line-height: 29px;
+	margin-right: 15px;
+	text-align: center;
+	width: 70px;
+	}
+	.custom-otp-input:last-child {
+	margin-right: 0;
+	}
 
 /*-----------------
 	54. Salary Settings
@@ -8270,6 +8286,12 @@ padding-top: 2rem;
 		margin-right: 5px;
 		width: 50px;
 	}
+	.custom-otp-input {
+		font-size: 18px;
+		height: 50px;
+		margin-right: 5px;
+		width: 50px;
+		}
 	.account-wrapper {
 		padding: 15px;
 	}
@@ -8455,4 +8477,9 @@ padding-top: 2rem;
 .modal-backdrop{
 	width: 100%;
 	height: 100%;
+}
+
+.forcheckbox  {
+	zoom:1.5;
+	vertical-align: middle;
 }

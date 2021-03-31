@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import { Applogo } from '../Entryfile/imagepath.jsx'
 import $ from "jquery";
+import OtpInput from 'react-otp-input';
 
 var axios = require('axios');
 
@@ -24,7 +25,7 @@ class OTPscreen extends Component {
       b: '',
       c: '',
       d: '',
-
+      temp: '',
 
     }
 
@@ -46,21 +47,19 @@ class OTPscreen extends Component {
 
 
   }
+
   onsubmit = (e) => {
     e.preventDefault();
     var _otp = this.state.a + this.state.b + this.state.c + this.state.d;
     console.log(_otp)
-    // this.state.f_otp = _otp;
     if (_otp.length != 4) {
-      // alert(""+this.state.f_otp)
-      // error
-
       this.setState({ error: "Please Enter valid otp" })
     } else {
       localStorage.setItem("count", 2);
       var user_id = this.props.location.state.userid
       var empid = this.props.location.state.empid
       var user_type = this.props.location.state.usertype
+      console.log(data)
       // var otp = this.state.f_otp
       this.setState({ mobileno: empid, id: user_id })
       var data = JSON.stringify({
@@ -84,11 +83,11 @@ class OTPscreen extends Component {
           self.setState({ error: ee.data.message })
           console.log("resend otp", ee)
           // if (ee.data.is_kyc_verified == true) {
-            let path = '/app/profile/candidate-profile';
-            self.props.history.push({
-              pathname: path,
-              state: self.state
-            })
+          let path = '/app/profile/candidate-profile';
+          self.props.history.push({
+            pathname: path,
+            state: self.state
+          })
           // } else {
           //   let path = '/adhar';
           //   self.props.history.push({
@@ -176,36 +175,36 @@ class OTPscreen extends Component {
                       <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} /> */}
                       <input
                         type="text"
-                        name="ssn-1"
+                        name="ssna"
                         autoFocus
-                        className="otp-input"
+                        className="custom-otp-input"
                         maxLength={1} value={this.state.a}
-                        onChange={this.rr} />
+                        onChange={this.onChangeFirst} />
                       <input
                         type="text"
-                        name="ssn-2"
-                        className="otp-input"
+                        name="ssnb"
+                        className="custom-otp-input"
                         maxLength={1} value={this.state.b}
-                        onChange={this.rr1} />
+                        onChange={this.onChangeSecond} />
                       <input
                         type="text"
-                        name="ssn-3"
-                        className="otp-input"
+                        name="ssnc"
+                        className="custom-otp-input"
                         maxLength={1} value={this.state.c}
-                        onChange={this.rr2} />
+                        onChange={this.onChangeThird} />
                       <input
                         type="text"
-                        name="ssn-4"
-                        className="otp-input"
+                        name="ssnd"
+                        className="custom-otp-input"
                         maxLength={1} value={this.state.d}
-                        onChange={this.rr3} />
+                        onChange={this.onChangeFourth} />
 
                     </div>
                     <div className="form-group text-center">
                       <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Submit</button>
                     </div>
                     <div className="account-footer">
-                      <p>OTP Not Recieved? <a href="" onClick={this.resend}>Resend OTP</a></p>
+                      <p>OTP Not Received? <a href="" onClick={this.resend}>Resend OTP</a></p>
                     </div>
                     <label className="text-danger">{this.state.error}</label>
                   </form>
@@ -221,101 +220,63 @@ class OTPscreen extends Component {
   }
 
 
-  rr = (e) => {
+  onChangeFirst = (e) => {
     e.preventDefault();
     this.setState({ a: e.target.value })
-    if (this.state.a.length <= 0) {
-      // const { maxLength, value, name } = e.target;
-      // this.setState({ a: e.target.value })
-
-      // Check if they hit the max character length
-      if (this.state.a.length > 0) {
-        console.log('this tis')
-        const nextSibling = document.querySelector(
-          `input[name=ssn-${2}]`)
-
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssnb"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
         }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
-
   }
-  rr1 = (e) => {
+  onChangeSecond = (e) => {
     e.preventDefault();
     this.setState({ b: e.target.value })
-    if (this.state.b.length == 0) {
-      // const { maxLength, value, name } = e.target;
-
-
-      // Check if they hit the max character length
-      if (this.state.b.length >= 0) {
-        console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-${3}]`)
-        //   // return
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssnc"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
+        }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
-
   }
-  rr2 = (e) => {
+  onChangeThird = (e) => {
     e.preventDefault();
     this.setState({ c: e.target.value })
-    if (this.state.c.length <= 0) {
-      // const { maxLength, value, name } = e.target;
-
-
-      // Check if they hit the max character length
-      if (this.state.c.length >= 0) {
-        console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-${4}]`)
-
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssnd"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
+        }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
-
   }
-  rr3 = (e) => {
+  onChangeFourth = (e) => {
     e.preventDefault();
     this.setState({ d: e.target.value })
-    if (this.state.d.length <= 0) {
-      // const { maxLength, value, name } = e.target;
-
-
-      // Check if they hit the max character length
-      if (this.state.d.length >= 0) {
-        console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-${parseInt(8, 10) + 1}]`)
-
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+    $(".custom-otp-input").keyup(function (event) {
+      if (event.which == 8) {
+        $(event.target).prev('.custom-otp-input').focus();
+        $(event.target).prev('.custom-otp-input').select();
       }
-
-
-    }
-
-
+    });
   }
 }
 

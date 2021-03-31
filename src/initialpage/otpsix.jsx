@@ -20,25 +20,22 @@ class OTPSix extends Component {
       mobileno: '',
       id: '',
       ll: '',
-      a: '',
-      b: '',
-      c: '',
-      d: '',
-      e1:'',
-      f:''
-
-
+      firstValue: '',
+      secondValue: '',
+      thirdValue: '',
+      fourthValue: '',
+      fifthValue: '',
+      sixthValue: ''
     }
 
     // 
   }
-  componentDidMount=()=>
-  {
+  componentDidMount = () => {
     var self = this
     var data = JSON.stringify({
-        "candidate_id": localStorage.getItem("can"),
-       "given_aadhaar_number": localStorage.getItem("adhar")
-      });
+      "candidate_id": localStorage.getItem("can"),
+      "given_aadhaar_number": localStorage.getItem("adhar")
+    });
     var config1 = {
       method: 'post',
       url: 'https://aadhaan.ddns.net/api/v1/aadhaar-validation-otp-generation',
@@ -50,14 +47,14 @@ class OTPSix extends Component {
     console.log("here", config1)
     axios(config1)
       .then(function (ee) {
-      
-     
+
+
 
 
       })
       .catch(function (error) {
         console.log(error);
-       
+
       });
 
   }
@@ -73,11 +70,11 @@ class OTPSix extends Component {
   }
   onsubmit = (e) => {
     e.preventDefault();
-    var _otp = this.state.a + this.state.b + this.state.c + this.state.d+this.state.e1+this .state.f;
+    var _otp = this.state.firstValue + this.state.secondValue + this.state.thirdValue + this.state.fourthValue + this.state.fifthValue + this.state.sixthValue;
     console.log(_otp)
-    
-        localStorage.setItem("count", 2);
-      
+
+    localStorage.setItem("count", 2);
+
     // this.state.f_otp = _otp;
     if (_otp.length != 6) {
       // alert(""+this.state.f_otp)
@@ -92,7 +89,7 @@ class OTPSix extends Component {
       // var otp = this.state.f_otp
       this.setState({ mobileno: empid, id: user_id })
       var data = JSON.stringify({
-       
+
         "otp": _otp,
         "candidate_id": localStorage.getItem("can"),
         "mobile_no": localStorage.getItem("mobile")
@@ -112,17 +109,16 @@ class OTPSix extends Component {
           // mobileno=self.state.
           self.setState({ error: ee.data.message })
           console.log("resend otp", ee)
-        if (ee.data.status == true) {
+          if (ee.data.status == true) {
             let path = '/app/profile/candidate-profile';
             self.props.history.push({
               pathname: path,
               state: self.state
             })
-        }else
-        {
-            self.setState({ error:response.data.message })
-        }
-      
+          } else {
+            self.setState({ error: response.data.message })
+          }
+
         })
         .catch(function (error) {
           console.log(error);
@@ -200,40 +196,40 @@ class OTPSix extends Component {
                       <input type="text" placeholder={0} maxLength={1} className="otp-input" onChange={this.onChange} /> */}
                       <input
                         type="text"
-                        name="ssn-1"
+                        name="ssna"
                         autoFocus
-                        className="otp-input"
-                        maxLength={1} value={this.state.a}
+                        className="custom-otp-input"
+                        maxLength={1} value={this.state.firstValue}
                         onChange={this.rr} />
                       <input
                         type="text"
-                        name="ssn-2"
-                        className="otp-input"
-                        maxLength={1} value={this.state.b}
+                        name="ssnb"
+                        className="custom-otp-input"
+                        maxLength={1} value={this.state.secondValue}
                         onChange={this.rr1} />
                       <input
                         type="text"
-                        name="ssn-3"
-                        className="otp-input"
-                        maxLength={1} value={this.state.c}
+                        name="ssnc"
+                        className="custom-otp-input"
+                        maxLength={1} value={this.state.thirdValue}
                         onChange={this.rr2} />
                       <input
                         type="text"
-                        name="ssn-4"
-                        className="otp-input"
-                        maxLength={1} value={this.state.d}
+                        name="ssnd"
+                        className="custom-otp-input"
+                        maxLength={1} value={this.state.fourthValue}
                         onChange={this.rr3} />
-                         <input
+                      <input
                         type="text"
-                        name="ssn-5"
-                        className="otp-input"
-                        maxLength={1} value={this.state.e1}
+                        name="ssne"
+                        className="custom-otp-input"
+                        maxLength={1} value={this.state.fifthValue}
                         onChange={this.rr4} />
                       <input
                         type="text"
-                        name="ssn-6"
-                        className="otp-input"
-                        maxLength={1} value={this.state.f}
+                        name="ssnf"
+                        className="custom-otp-input"
+                        maxLength={1} value={this.state.sixthValue}
                         onChange={this.rr5} />
 
                     </div>
@@ -241,7 +237,7 @@ class OTPSix extends Component {
                       <button className="btn btn-primary account-btn" type="submit" onClick={this.onsubmit}>Submit</button>
                     </div>
                     <div className="account-footer">
-                      <p>OTP Not Recieved? <a href="" onClick={this.resend}>Resend OTP</a></p>
+                      <p>OTP Not Received? <a href="" onClick={this.resend}>Resend OTP</a></p>
                     </div>
                     <label className="text-danger">{this.state.error}</label>
                   </form>
@@ -259,147 +255,95 @@ class OTPSix extends Component {
 
   rr = (e) => {
     e.preventDefault();
-    this.setState({ a: e.target.value })
-    if (this.state.a.length <= 0) {
-      // const { maxLength, value, name } = e.target;
-      // this.setState({ a: e.target.value })
-
-      // Check if they hit the max character length
-      if (this.state.a.length > 0) {
-        console.log('this tis')
-        const nextSibling = document.querySelector(
-          `input[name=ssn-2]`)
-
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
+    this.setState({ firstValue: e.target.value })
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssnb"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
         }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
-
   }
   rr1 = (e) => {
     e.preventDefault();
-    this.setState({ b: e.target.value })
-    if (this.state.b.length == 0) {
-      // const { maxLength, value, name } = e.target;
-
-
-      // Check if they hit the max character length
-      if (this.state.b.length >= 0) {
-        console.log('this tis')
-        const nextSibling = document.querySelector(
-          `input[name=ssn-3]`)
-          return
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
+    this.setState({ secondValue: e.target.value })
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssnc"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
         }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
-
   }
   rr2 = (e) => {
     e.preventDefault();
-    this.setState({ c: e.target.value })
-    if (this.state.c.length <= 0) {
-      // const { maxLength, value, name } = e.target;
-
-
-      // Check if they hit the max character length
-      if (this.state.c.length >= 0) {
-        // console.log('this tis')
-        const nextSibling = document.querySelector(
-          `input[name=ssn-4]`)
-          return
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
+    this.setState({ thirdValue: e.target.value })
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssnd"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
         }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
 
   }
   rr3 = (e) => {
     e.preventDefault();
-    this.setState({ d: e.target.value })
-    if (this.state.d.length <= 0) {
-      // const { maxLength, value, name } = e.target;
+    this.setState({ fourthValue: e.target.value })
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssne"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
 
-
-      // Check if they hit the max character length
-      if (this.state.d.length >= 0) {
-        console.log('this tis')
-        const nextSibling = document.querySelector(
-          `input[name=ssn-5]`)
-          return
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
         }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
-
   }
   rr4 = (e) => {
     e.preventDefault();
-    this.setState({ e1: e.target.value })
-    if (this.state.e1.length <= 0) {
-      // const { maxLength, value, name } = e.target;
-
-
-      // Check if they hit the max character length
-      if (this.state.e1.length >= 0) {
-        console.log('this tis')
-        const nextSibling = document.querySelector(
-          `input[name=ssn-6]`)
-
-        // If found, focus the next field
-        if (nextSibling !== null) {
-          nextSibling.focus();
+    this.setState({ fifthValue: e.target.value })
+    if (e.target.value.length > 0) {
+      const nextSibling = document.querySelector('input[name="ssnf"]')
+      $(".custom-otp-input").keyup(function (event) {
+        if (event.which == 8) {
+          $(event.target).prev('.custom-otp-input').focus();
+          $(event.target).prev('.custom-otp-input').select();
         }
+      });
+      if (nextSibling != null) {
+        nextSibling.focus();
       }
-
-
     }
-
-
   }
   rr5 = (e) => {
     e.preventDefault();
-    this.setState({ f: e.target.value })
-    if (this.state.f.length <= 0) {
-      // const { maxLength, value, name } = e.target;
-
-
-      // Check if they hit the max character length
-      if (this.state.f.length >= 0) {
-        // console.log('this tis')
-        // const nextSibling = document.querySelector(
-        //   `input[name=ssn-8]`)
-
-        // // If found, focus the next field
-        // if (nextSibling !== null) {
-        //   nextSibling.focus();
-        // }
+    this.setState({ sixthValue: e.target.value })
+    $(".custom-otp-input").keyup(function (event) {
+      if (event.which == 8) {
+        $(event.target).prev('.custom-otp-input').focus();
+        $(event.target).prev('.custom-otp-input').select();
       }
-
-
-    }
-
-
+    });
   }
 }
 
