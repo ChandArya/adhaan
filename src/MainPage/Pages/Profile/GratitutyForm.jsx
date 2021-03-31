@@ -26,6 +26,7 @@ class GratitutyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {...this.props.location.state,error1:''}
+        document.documentElement.scrollTop = 0;
     }
 
     generatePdf=(e)=>
@@ -46,9 +47,9 @@ class GratitutyForm extends Component {
         function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
             //Once we have done all the divs save the pdf
             if(currentRecursion==totalRecursions){
-                pdf.save(pdfName);
+                // pdf.save(pdfName);
                 self.setState({ispdf:false});
-                // self.submitbtn( pdf.output('blob'));
+                self.submitbtn( pdf.output('blob'));
             }else{
                 currentRecursion++;
                 pdf.addPage();

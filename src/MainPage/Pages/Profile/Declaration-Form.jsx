@@ -32,6 +32,7 @@ class DeclrationForm extends Component {
             localStorage.setItem("count", 3);
         }
        this.state = {...this.props.location.state,error1:''}
+       document.documentElement.scrollTop = 0;
       
     
     }
@@ -927,7 +928,7 @@ class DeclrationForm extends Component {
 
 
 
-                                <div className="col-md-12 mt-3" style={{marginTop:'3%'}} >
+                                <div className="col-md-12 mt-3" style={{marginTop:'3%',width:'100%' }} >
                                     <div className="row">
 
                                     <div className=" col-md-4  float-left font-weight-bold" >
@@ -938,7 +939,7 @@ class DeclrationForm extends Component {
                                     </div>
 
                              <div className="col-md-8">
-                                    <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                    <div style={{ display: 'inline-flex', marginLeft: '30px' ,width:'100%' }}>
                                                 {/*  {candidate_doc_list.map(document => (
 
                                             <input key={document.key} type="text" style={{ width: '30px' }}></input>
@@ -1375,8 +1376,8 @@ OF (3) ABOVE <br /><br />
                                                     </tr>
                                                     <tr>
                                                        
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" disabled name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" checked name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                     </tr>
 
 
@@ -1886,7 +1887,7 @@ OF (3) ABOVE <br /><br />
                                         <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
-                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input style={{ width: '25%' }} type="text"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input type="text" style={{ width: '25%' }} ></input>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input style={{ width: '25%' }} value={this.state.name}type="text"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input type="text" style={{ width: '25%' }} ></input>
                                                 &nbsp; &nbsp;   AND HAS BEEN
                                         ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input type="text" style={{ width: '25%' , marginTop:'1%'}} ></input>
 

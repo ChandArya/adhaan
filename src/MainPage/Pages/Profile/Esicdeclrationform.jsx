@@ -27,6 +27,7 @@ class EsicdeclrationForm extends Component {
     constructor(props) {
         super(props);
         this.state = {...this.props.location.state,error1:''}
+        document.documentElement.scrollTop = 0;
     }
 
 
@@ -286,12 +287,12 @@ class EsicdeclrationForm extends Component {
                                                         <td> 2. नाम स्पष्ट अक्षर में
                                                                 <br />
                                                              Name (in block letters)</td>
-                                                        <td colSpan="3"><input defaultValue={this.state.name}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td colSpan="3"><input defaultValue={this.state.name}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' ,width:'100%'}} /></td>
                                                         </tr>
                                                         <tr>
                                                         <td>पिता/ पति का नाम <br/>
                                                              3. Father / Husbands Name</td>
-                                                        <td colSpan="3"><input defaultValue={this.state.father_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td colSpan="3"><input defaultValue={this.state.father_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' ,width:'100%'}} /></td>
                                                         </tr>
 
                                                         <tr>

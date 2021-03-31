@@ -194,7 +194,49 @@ class OfferLetter extends Component {
     // }
        
     }
-    onSubmit = (e) => {
+    generatePdf=(e)=>
+    {
+        localStorage.setItem("isAccept",true);
+        document.documentElement.scrollTop = 0;
+        this.setState({error1:"please wait file is uploading"})
+        var pdf = new jsPDF('portrait');
+        var pdfName = this.state.name+'gra.pdf';
+
+        var options = {background:'#fff',};
+
+        var $divs = $('#uu')    
+        console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
+        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var currentRecursion=0;
+        var self=this;
+        //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
+        function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
+            //Once we have done all the divs save the pdf
+            if(currentRecursion==totalRecursions){
+                pdf.save(pdfName);
+                // self.setState({ispdf:false});
+                self.onSubmit( pdf.output('blob'));
+            }else{
+                currentRecursion++;
+                pdf.addPage();
+                window.scrollBy(0,1800);
+                //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
+                //addHtml requires an html element. Not a string like fromHtml.
+                pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+                    console.log(currentRecursion);
+                    recursiveAddHtmlAndSave(currentRecursion, totalRecursions)
+
+                });
+            }
+        }
+
+        pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+            recursiveAddHtmlAndSave(currentRecursion, numRecursionsNeeded);
+        });
+        
+    }
+
+    onSubmit = (data) => {
         localStorage.setItem("isAccept",true);
      var add = {}
 
@@ -287,7 +329,7 @@ class OfferLetter extends Component {
     render() {
         return (
 
-            <div className="container" style={{
+            <div id='uu'className="container" style={{
                 marginTop: '8em', transform: 'inherit',
                 position: 'inherit',
                 left: 'inherit',
@@ -398,7 +440,10 @@ class OfferLetter extends Component {
 
                         <br/>
                         <p style={{textAlign:'right', paddingLeft:"20px"}}>
-                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+                            {
+                                 localStorage.getItem("isAccept")? <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />:''
+                            }
+                           
                             </p>
                         
                         <div className="title text-center font-weight-bold">
@@ -501,7 +546,10 @@ by the company.
                            <small className="">I have been explained/ read/understood/ the above terms & conditions and agree to abide by them <br></br><i>Signature</i></small>
                            <br></br>
                            {/* <center> */}
-                                <img style={{height:"30px",width:"100px"}}src={this.state.sign} id="sign" alt=" " className="img-fluid" />
+                           {
+                                 localStorage.getItem("isAccept")? <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />:''
+                            }
+                              
                            {/* </center> */}
                           
                            <p style={{textAlign:'right', paddingLeft:"20px"}}>
@@ -725,7 +773,9 @@ the appropriate authorities.
 Government of India and the relevant state government.
 </ul>
 <p style={{textAlign:'right', paddingLeft:"20px"}}>
-                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+{
+                                 localStorage.getItem("isAccept")? <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />:''
+                            }
                             </p>
 
 <div className="title text-center font-weight-bold">
@@ -848,8 +898,8 @@ effect.
                             {
                                 (this.state.isrec) && (this.state.isAccept!=undefined)?'':<div className="row">
                                 <div className="col-md-12 text-center">
-                            <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.onSubmit}>Accept</button>
-                            <button class="btn btn-lg btn-primary btn-danger " role="button" aria-pressed="true" onClick={this.onReject}>Reject</button>
+                            <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Accept</button>
+                            {/* <button class="btn btn-lg btn-primary btn-danger " role="button" aria-pressed="true" onClick={this.onReject}>Reject</button> */}
 
                                 </div>
 
@@ -857,7 +907,9 @@ effect.
                             }
                             
                             <p style={{textAlign:'right', paddingLeft:"20px"}}>
-                            <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />
+                            {
+                                 localStorage.getItem("isAccept")? <img style={{height:"30px",width:"100px"}}src={this.state.sign1} id="sign" alt=" " className="img-fluid" />:''
+                            }
                             </p>
                  
 

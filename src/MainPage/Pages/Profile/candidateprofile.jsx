@@ -219,6 +219,7 @@ export default class EmployeeProfile extends Component {
 
     // if(typeof this.props.location.state.back===undefined)
     // {
+    document.documentElement.scrollTop = 0;
     this.state = {
       isopenProfileModel: false,
       isLoaded: false,
@@ -725,21 +726,13 @@ export default class EmployeeProfile extends Component {
   }
   onFileChange = (e) => {
 
-    // const value = e.target.file[0];
-    //  var files = e.target.files;
-    // console.log("files",value)
     console.log("files", e.target.files)
     var files = e.target.files;
     console.log("files", JSON.stringify(files))
     const value = files[0];
-    // alert("got data"+value)
-
-    // this.setState({resume_file:value });
-    // const value = files[0];
-    // alert("got data"+value)
-
-    this.setState({ profilepic: URL.createObjectURL(value) });
-    this.setState({ profilepic1: value });
+    
+   
+    this.setState({ profilepic1: value,profilepic: URL.createObjectURL(value) });
   }
   onFileChangeForDoc(e) {
     try {
@@ -1447,7 +1440,7 @@ export default class EmployeeProfile extends Component {
     console.log("click")
     var datat = this.state.resume_file
     console.log("datat", datat)
-   
+    
     // var d='Resume/ Bio-DATA'
     var d = this.state.docname
     if(datat=='')
