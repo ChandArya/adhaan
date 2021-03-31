@@ -211,8 +211,11 @@ export default class EmployeeProfile extends Component {
     this.setDocName = this.setDocName.bind(this);
     var listdd=worldMapData.getAllCountries()
     console.log("constructor",)
+    var india1 ={"id": 1000, "sortname": "uu", "name": "Select Country", "phoneCode": 91}
     var india ={"id": 101, "sortname": "IN", "name": "India", "phoneCode": 91}
+    
     listdd.unshift(india)
+    listdd.unshift(india1)
 
     // if(typeof this.props.location.state.back===undefined)
     // {
@@ -1447,7 +1450,7 @@ export default class EmployeeProfile extends Component {
    
     // var d='Resume/ Bio-DATA'
     var d = this.state.docname
-    if(d=='')
+    if(datat=='')
     {
       this.setState({error1:"please select file"})
       return

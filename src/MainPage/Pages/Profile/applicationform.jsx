@@ -14,7 +14,7 @@ class ApplicationForm extends Component {
     constructor(props) {
         super(props);
         
-        this.state = { ...this.props.location.state, pic: '',ispdf:true, }
+        this.state = { ...this.props.location.state, pic: '',ispdf:true,error1:'' }
     }
    
     backClick = (e) => {
@@ -35,15 +35,17 @@ class ApplicationForm extends Component {
     }
     generatePdf=(e)=>
     {
-
+        document.documentElement.scrollTop = 0;  
+        this.setState({error1:"please wait file is uploading"})
         var pdf = new jsPDF('portrait');
-        var pdfName = this.state.name_+'form.pdf';
+        var pdfName = this.state.name+'form.pdf';
+        pdf.context2d.pageWrapY = pdf.internal.pageSize.height-20;
 
         var options = {};
 
         var $divs = $('#uu')    
         console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
-        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var numRecursionsNeeded =2-1;     //the number of times we need to call addHtml (once per div)
         var currentRecursion=0;
         var self=this;
         //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
@@ -52,9 +54,10 @@ class ApplicationForm extends Component {
             if(currentRecursion==totalRecursions){
                 // pdf.save(pdfName);
                 self.setState({ispdf:false});
-                self.savebtn();
+                self.savebtn( pdf.output('blob'));
             }else{
                 currentRecursion++;
+                window.scrollBy(0,1800);
                 pdf.addPage();
                 //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
                 //addHtml requires an html element. Not a string like fromHtml.
@@ -72,14 +75,17 @@ class ApplicationForm extends Component {
         
     }
 
-    savebtn = (e) => {
+    savebtn = (data) => {
         
             // if(this.state.ispdf){
             //     alert("Please genrate pdf first");
             //     return
             // }
             var self =this;
-            
+            var formData=new FormData();
+            formData.append("candidate", "" + localStorage.getItem("can"))
+            formData.append("pdf_document_1",new File([data], this.state.name+'_form.pdf') )
+          
             var data = JSON.stringify({
                 "candidate": localStorage.getItem("can"),
     
@@ -91,7 +97,7 @@ class ApplicationForm extends Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: data
+                data: formData
             };
     
             axios(config)
@@ -1094,6 +1100,7 @@ class ApplicationForm extends Component {
 
                 <div class="col-md-12 text-center">
                     <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
+                                            <label className='text-danger'>{this.state.error1}</label>
                     {/* <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Generate Pdf</button> */}
                 </div>
                 

@@ -48,6 +48,7 @@ class OfferLetter extends Component {
             totald:0,
             lwa:0,
             lwa1:0,
+            isAccept:localStorage.getItem("isAccept"),
             ctc:0,
             empolye_pfcon:0,
             esc:0,
@@ -158,7 +159,7 @@ class OfferLetter extends Component {
           });
      }
      onReject = (e) => {
-      
+        localStorage.setItem("isAccept",true);
      var add = {}
 
         Object.assign(add, { "status": "rejected_by_candidate",  "start_date": this.state.date, "client":[this.state.client], "salary":this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
@@ -194,7 +195,7 @@ class OfferLetter extends Component {
        
     }
     onSubmit = (e) => {
-      
+        localStorage.setItem("isAccept",true);
      var add = {}
 
         Object.assign(add, { "status": "accepted_by_candidate",  "start_date": this.state.date, "client":[this.state.client], "salary":this.state.salary, "end_date": this.state.enddate, "recruiter": this.state.recruiter, "on_boarding_id": this.state.onbordingid });
@@ -845,7 +846,7 @@ effect.
                        
                             </ul>
                             {
-                                this.state.isrec?'':<div className="row">
+                                (this.state.isrec) && (this.state.isAccept!=undefined)?'':<div className="row">
                                 <div className="col-md-12 text-center">
                             <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.onSubmit}>Accept</button>
                             <button class="btn btn-lg btn-primary btn-danger " role="button" aria-pressed="true" onClick={this.onReject}>Reject</button>

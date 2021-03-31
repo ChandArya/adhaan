@@ -31,17 +31,61 @@ class DeclrationForm extends Component {
             window.location.reload(false);
             localStorage.setItem("count", 3);
         }
-       this.state = this.props.location.state
+       this.state = {...this.props.location.state,error1:''}
       
     
     }
+    generatePdf=(e)=>
+    {
+        document.documentElement.scrollTop = 0;
+        this.setState({error1:"please wait file is uploading"})
+        var pdf = new jsPDF('portrait');
+        var pdfName = this.state.name+'pf.pdf';
+        // context.fillStyle="#FFFFFF";
+        var options = {background:'#fff',};
 
-    savebtn = (e) => {
-        var self =this;
-        var data = JSON.stringify({
-                    "candidate": localStorage.getItem("can"),
-                    
+        var $divs = $('#uu')    
+        console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
+        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var currentRecursion=0;
+        var self=this;
+        //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
+        function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
+            //Once we have done all the divs save the pdf
+            if(currentRecursion==totalRecursions){
+                // pdf.save(pdfName);
+                self.setState({ispdf:false});
+                self.savebtn( pdf.output('blob'));
+            }else{
+                currentRecursion++;
+                window.scrollBy(0,1800);
+                pdf.addPage();
+                //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
+                //addHtml requires an html element. Not a string like fromHtml.
+                pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+                    console.log(currentRecursion);
+                    recursiveAddHtmlAndSave(currentRecursion, totalRecursions)
+
                 });
+            }
+        }
+
+        pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
+            recursiveAddHtmlAndSave(currentRecursion, numRecursionsNeeded);
+        });
+        
+    }
+
+
+    savebtn = (data) => {
+        var self =this;
+        // var data = JSON.stringify({
+        //             "candidate": localStorage.getItem("can"),
+                    
+        //         });
+                var formData=new FormData();
+                formData.append("candidate", "" + localStorage.getItem("can"))
+                formData.append("pdf_document_2", new File([data], this.state.name+'_pf.pdf'))
                 console.log("called")
                 var config = {
                     method: 'post',
@@ -49,7 +93,7 @@ class DeclrationForm extends Component {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: data
+                    data: formData
                 };
     
                 axios(config)
@@ -2327,7 +2371,8 @@ by him/her.</h4>
                 </div>
                 <br/>
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
+                    <label className='text-danger'>{this.state.error1}</label>
                 </div>
                 <br/>
 

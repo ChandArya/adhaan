@@ -2,38 +2,57 @@ import React, { Component } from 'react';
 import {Table} from 'react-table';
 var axios = require('axios');
 var baseurl = 'https://aadhaan.ddns.net';
+import { CompnySign,CompnyThum } from '../../../Entryfile/imagepath.jsx'
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = mm+'-'+dd+'-'+yyyy;
+console.log(today);
 
 // var axios = require('axios');
 class GratitutyForm extends Component {
 
     constructor(props) {
         super(props);
-        this.state = this.props.location.state
+        this.state = {...this.props.location.state,error1:''}
     }
 
     generatePdf=(e)=>
     {
-
+        document.documentElement.scrollTop = 0;
+        this.setState({error1:"please wait file is uploading"})
         var pdf = new jsPDF('portrait');
-        var pdfName = this.state.name_+'form.pdf';
+        var pdfName = this.state.name+'gra.pdf';
 
-        var options = {};
+        var options = {background:'#fff',};
 
         var $divs = $('#uu')    
         console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
-        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var numRecursionsNeeded =2-1;     //the number of times we need to call addHtml (once per div)
         var currentRecursion=0;
         var self=this;
         //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
         function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
             //Once we have done all the divs save the pdf
             if(currentRecursion==totalRecursions){
-                // pdf.save(pdfName);
+                pdf.save(pdfName);
                 self.setState({ispdf:false});
-                self.submitbtn();
+                // self.submitbtn( pdf.output('blob'));
             }else{
                 currentRecursion++;
                 pdf.addPage();
+                window.scrollBy(0,1800);
                 //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
                 //addHtml requires an html element. Not a string like fromHtml.
                 pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
@@ -51,12 +70,15 @@ class GratitutyForm extends Component {
     }
 
 
-    submitbtn = (e) => {
+    submitbtn = (data) => {
         var self =this;
-        var data = JSON.stringify({
-                    "candidate": localStorage.getItem("can"),
+        var formData=new FormData();
+        formData.append("candidate", "" + localStorage.getItem("can"))
+        formData.append("pdf_document_4",new File([data], this.state.name+'_gra.pdf'))
+        // var data = JSON.stringify({
+        //             "candidate": localStorage.getItem("can"),
                     
-                });
+        //         });
                 console.log("called")
                 var config = {
                     method: 'post',
@@ -64,7 +86,7 @@ class GratitutyForm extends Component {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: data
+                    data: formData
                 };
     
                 axios(config)
@@ -89,7 +111,10 @@ class GratitutyForm extends Component {
 
 
     render() {
-
+        var isNomnieeList = this.state.family.filter(function(data)
+        {
+            return data.is_nominee
+        })
         try {
            
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
@@ -175,14 +200,14 @@ class GratitutyForm extends Component {
                                 </div>
 
                                <div  className="text-center"> 
-                                    To<span style={{ border: '1px solid black', display: "inline-block", width: '10%' }}></span> </div>
+                                    To  <span>Adhaan Solution Pvt. Ltd.</span> </div>
                                
                                <div  className="text-center"> 
                                [Give here name or description of the establishment with full address]</div>
                              <div > 
                              <ul  style={{listStyleType:'decimal'}}>
                              <li>
-                                            I. Shri/Shrimati/Kumari whose particulars are given in the statement below,<span style={{ border: '1px solid black', display: "inline-block", width: '5%' }}></span> &nbsp; &nbsp;
+                                            I. Shri/Shrimati/Kumari whose particulars are given in the statement below,{this.state.name}
                              <sub>[Name in full here]</sub>
 hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
@@ -233,90 +258,31 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                        
                                                          </tr>
 
-
-                                                    <tr>
+                                                         {isNomnieeList.map(document => ( <tr>
                                                      
-                                                            <td >
-                                                                
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                     <td >
+                                                         
+                                                     <input type="text" name="" value={document.name}style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
-                                                            </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                     </td>
+                                                 <td>
+                                                     <input type="text" name=""value={document.relation} style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                 </td>
+                                                 <td>
+                                                     <input type="text" name="" value={document.dob}style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                 </td>
+                                                 <td>
+                                                     <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
-                                                        </td>
-                                                      
-                                                      
-                                                    </tr>
+                                                 </td>
+                                               
+                                               
+                                             </tr>
+                                                         ))}
+                                                   
 
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                       
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
-
-                                                        </td>
-                                                     
-                                                    </tr>
 
                                                 </tbody>
 
@@ -335,7 +301,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                         1.	Name of employee in full: &nbsp; &nbsp; <label>{this.state.name}</label></li>
                                     <li>Sex. &nbsp; &nbsp; <label>{this.state.gender} </label>       </li>
                                              <li>
-                                        Religion. &nbsp; &nbsp; <label>{family.relation} </label>
+                                        Religion. &nbsp; &nbsp; <label>{this.state.religion} </label>
                                              </li>
                                              <li>
                                         Whether unmarried/married/widow/widower. &nbsp; &nbsp; <label>{this.state.marital_status}</label>
@@ -347,7 +313,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                              Post held with Ticket or Serial No., if any.
                                              </li>
                                              <li>
-                                        	Date of appointment.
+                                        	Date of appointment.{today}
                                              </li>
                                              <li>
                                         Permanent address. &nbsp; &nbsp; <label>{this.state.p_full_address}</label></li>
@@ -381,11 +347,13 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 < div className="title d-flex p-3" style={{ marginLeft: '1%', marginRight: '1%' }}>
                                              
                                              <p>
-                                             Place<br/>Date
+                                             Place<br/>Date {today}
 
                                                                                           
                                             </p>
                                     <p style={{marginLeft:'auto'}}> Signature/Thumb impression of the employee</p>
+                                    <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                        
                                   
                                  
                                  </div>
@@ -418,7 +386,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                             < div className="title d-flex p-3" style={{ marginLeft: '10%', marginRight: '10%' }}>
                                 
                                 <p>
-                                    Place<br />Date
+                                    Place<br />Date{ today}
 
 
                                             </p>
@@ -440,10 +408,12 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                             <div className="title d-flex p-3 mt-3" style={{ marginLeft: '11%', marginRight: '10%' }}>
                                 <br/>
                                 <br/>
-                                <p> Date </p>
+                                <p> Date </p>{ today}
                                 <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br />Designation :&nbsp; &nbsp;<label>{this.state.designation}</label>
                                <br/> <br />Name and address of establishment or rubber stamp thereof
-
+                               <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
+                               <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                                    
 
 
                                             </p>
@@ -454,11 +424,12 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                             < div className="title d-flex p-3 mt-3" style={{ marginLeft: '10%', marginRight: '10%' }}>
                                              
                                              <p>
-                                             Date:
+                                             Date:{today}
                                                                                           
                                             </p> 
                                 <p  style={{ marginLeft: '60%' }}>Signature of the employee</p>
-                                  
+                                <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                        
                                  
                                  </div> 
                            
@@ -468,6 +439,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                 </div><br />
                 <div class="col-md-12 text-center">
                     <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf} >Submit</button>
+                    <label className='text-danger'>{this.state.error1}</label>
                 </div>
                
 <br/>

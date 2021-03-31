@@ -5,26 +5,43 @@ import { epfs, Sign } from '../../../Entryfile/imagepath.jsx'
 var axios = require('axios');
 var baseurl = 'https://aadhaan.ddns.net';
 import { CompnySign,CompnyThum } from '../../../Entryfile/imagepath.jsx'
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = mm+'-'+dd+'-'+yyyy;
+console.log(today);
 class EsicdeclrationForm extends Component {
 
 
     constructor(props) {
         super(props);
-        this.state = this.props.location.state
+        this.state = {...this.props.location.state,error1:''}
     }
 
 
     generatePdf=(e)=>
     {
-
+        this.setState({error1:"please wait file is uploading"})
+        document.documentElement.scrollTop = 0;
         var pdf = new jsPDF('portrait');
-        var pdfName = this.state.name_+'form.pdf';
+        var pdfName = this.state.name+'esic.pdf';
 
-        var options = {};
+        var options = {background:'#fff',};
 
         var $divs = $('#uu')    
         console.log("length",$divs.length)            //jQuery object of all the myDivClass divs
-        var numRecursionsNeeded =5-1;     //the number of times we need to call addHtml (once per div)
+        var numRecursionsNeeded =3-1;     //the number of times we need to call addHtml (once per div)
         var currentRecursion=0;
         var self=this;
         //Found a trick for using addHtml more than once per pdf. Call addHtml in the callback function of addHtml recursively.
@@ -33,10 +50,11 @@ class EsicdeclrationForm extends Component {
             if(currentRecursion==totalRecursions){
                 // pdf.save(pdfName);
                 self.setState({ispdf:false});
-                self.savebtn();
+                self.savebtn( pdf.output('blob'));
             }else{
                 currentRecursion++;
                 pdf.addPage();
+                window.scrollBy(0,1800);
                 //$('.myDivClass')[currentRecursion] selects one of the divs out of the jquery collection as a html element
                 //addHtml requires an html element. Not a string like fromHtml.
                 pdf.addHTML($('#uu')[currentRecursion], 15, 20, options, function(){
@@ -55,13 +73,12 @@ class EsicdeclrationForm extends Component {
 
 
 
-    savebtn = (e) => {
+    savebtn = (data) => {
       
         var self =this;
-        var data = JSON.stringify({
-                    "candidate": localStorage.getItem("can"),
-                    
-                });
+        var formData=new FormData();
+        formData.append("candidate", "" + localStorage.getItem("can"))
+        formData.append("pdf_document_3", new File([data], this.state.name+'_eic.pdf'))
                 console.log("called")
                 var config = {
                     method: 'post',
@@ -69,7 +86,7 @@ class EsicdeclrationForm extends Component {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: data
+                    data: formData
                 };
     
                 axios(config)
@@ -796,16 +813,17 @@ class EsicdeclrationForm extends Component {
                                         <div className="title d-flex">
                                              
                                                      <p>
-                                            दिनांक
-                                            /Dated :
+                                            दिनांक/Dated :{today}
                                              
                                                     </p>
                                         <p style={{ marginLeft: '30%' }}>बीमाकृत व्यक्ति के हस्ताक्षर/अंगूठे का निशान
-/Signature / T.I. of I.P.</p>
+                                      
+/Signature / T.I. of I.P.</p> <img src={this.state.Sign} id="sign" alt=" "  className="img-fluid1" />
 
                                             
                                         <p style={{ marginLeft: '30%' }}> मोहर सहिल
  शाखा कार्यालय प्रबंधक के हस्ताक्षर /Signature of B.M. with Seal</p>
+ <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
                                         </div>
 
 
@@ -841,7 +859,8 @@ in the membership of my family within 15 days of such change
                                              Counter Signature by the Employer
                                              <br/>
                                           Signature with seal
-
+                                          <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                                          <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />             
 
                                                  
                                             </p>
@@ -850,18 +869,19 @@ in the membership of my family within 15 days of such change
                                   <div style={{marginLeft:'15%',float:'right',paddingRight:'3%',width: '25%',height:'100px'}} className='border border-dark' >                                     
                                         <p style={{ marginLeft: '15%', paddingRight: '3%' }}>बीमाकृत व्यक्ति के हस्ताक्षर/अंगूठे का निशान<br/>
                                   Signature/T.I. of IP</p>
+                                  <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
 
                              </div>
                                  </div>
                                 < div className="title d-flex p-3">
                                              
                                              <p>
-                                             Dated:.......................
+                                             Dated:{today}
                                                                                           
                                             </p>
                                     <p style={{marginLeft:'15%'}}><b> Authorised Signature</b></p>
                                   
-                                 
+                                    <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
                                  </div>
                                 
                                      <div className="row border border-dark" style={{marginLeft:'auto', marginRight:'auto'}}>
@@ -1143,6 +1163,7 @@ subject to fulfillment of contributory conditions</li>
 
                 <div class="col-md-12 text-center">
                     <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
+                    <label className='text-danger'>{this.state.error1}</label>
                 </div>
 <br/>
 
