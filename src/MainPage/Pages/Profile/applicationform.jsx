@@ -15,6 +15,7 @@ class ApplicationForm extends Component {
         super(props);
         
         this.state = { ...this.props.location.state, pic: '',ispdf:true,error1:'' }
+        document.documentElement.scrollTop = 0;
     }
    
     backClick = (e) => {
@@ -581,7 +582,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Communication Address</label>
                                                 </div>
-                                                <input defaultValue={this.state.c_country} type="text" name="communication-address" className="px-0 ml-2 py-1 form-control" />
+                                                <input defaultValue={this.state.c_house_no} type="text" name="communication-address" className="px-0 ml-2 py-1 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -632,7 +633,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Permament Address</label>
                                                 </div>
-                                                <input defaultValue={this.state.p_country} type="text" name="parmement-address" className="px-0 py-1 ml-2 form-control" />
+                                                <input defaultValue={this.state.p_house_no} type="text" name="parmement-address" className="px-0 py-1 ml-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -932,7 +933,7 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.pf_no} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.uan} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.esic_no} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.esic_name ?otherdetails.esic_name :""+ "" + otherdetails.esic_address?otherdetails.esic_address:''} /></td>
                                             </tr>
                                         </table></div>
                                     <div className="table-responsive">
@@ -967,42 +968,42 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.name} /></td>
                                                 <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family.dob} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.aadhaar_no} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.is_nominee} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.is_nominee?"Yes":"No"} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family1.relation}</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.name} /></td>
                                                 <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family1.dob} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.aadhaar_no} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.is_nominee} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.is_nominee?"Yes":"No"} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family2.relation}</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.name} /></td>
                                                 <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family2.dob} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.aadhaar_no} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.is_nominee} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.is_nominee?"Yes":"No"} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family3.relation}</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.name} /></td>
                                                 <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family3.dob} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.aadhaar_no} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.is_nominee} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.is_nominee?"Yes":"No"} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family4.relation}</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.name} /></td>
                                                 <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family4.dob} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.aadhaar_no} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.is_nominee} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.is_nominee?"Yes":"No"} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family5.relation}</td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.name} /></td>
                                                 <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family5.dob} /></td>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.aadhaar_no} /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.is_nominee} /></td>
+                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.is_nominee?"Yes":"No"} /></td>
                                             </tr>
                                         </table></div>
                                     <div className="row no-gutters border border-dark p-2">
