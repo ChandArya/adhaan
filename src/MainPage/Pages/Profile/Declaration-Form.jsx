@@ -863,7 +863,7 @@ class DeclrationForm extends Component {
 
 
                                     </div> */}
-                                                <input className="text-center" onChange={this.setName} defaultValue={this.state.name} key={document.key} type="text" style={{ width: '30%' }}></input>
+                                                <input className="form-control" onChange={this.setName} defaultValue={this.state.name} key={document.key} type="text" ></input>
                                  </div>  
                                  
                              </div>
@@ -894,7 +894,7 @@ class DeclrationForm extends Component {
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                             <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
                                         </div><br></br> */}
-                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        <div className="text-center" style={{  marginLeft: '30px' }}>
                                             {/* {candidate_dob_list.map(document => (
                                                 <input defaultValue={this.state.dob} key={document.key} type="text" style={{ width: '27px' }}></input>
                                                 // <li key={document.key} >
@@ -902,7 +902,7 @@ class DeclrationForm extends Component {
                                                 // </li>
                                             ))} */}
                                                
-                                                <input onChange={(e) => this.setDob(e)} defaultValue={this.state.dob} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                                <input className="form-control" onChange={(e) => this.setDob(e)} defaultValue={this.state.dob} key={document.key} type="text" ></input>
                                                   
                                              
 
@@ -917,16 +917,6 @@ class DeclrationForm extends Component {
                                 <br />
 
 
-
-
-
-
-
-
-
-
-
-
                                 <div className="col-md-12 mt-3" style={{marginTop:'3%'}} >
                                     <div className="row">
 
@@ -938,7 +928,7 @@ class DeclrationForm extends Component {
                                     </div>
 
                              <div className="col-md-8">
-                                    <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                    <div style={{  marginLeft: '30px' }}>
                                                 {/*  {candidate_doc_list.map(document => (
 
                                             <input key={document.key} type="text" style={{ width: '30px' }}></input>
@@ -965,9 +955,10 @@ class DeclrationForm extends Component {
 
 
                                     <br /><br /> */}
+                                     <input onChange={this.setFat_Name} defaultValue={this.state.father_name} key={document.key} type="text" className="form-control"></input>
                                             </div>
                                             
-                                            <input onChange={this.setFat_Name} defaultValue={this.state.father_name} key={document.key} type="text" style={{ width: '30%' }}></input>
+                                           
                                               
                                         </div>    </div>   </div><br />
 
@@ -986,7 +977,7 @@ OF (3) ABOVE <br /><br />
                                     </div>
                                     <div className="col-md-8">
                                   
-                                        <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        <div className="text-center font-weight-bold" style={{ marginLeft: '30px' }}>
 
 
                                             {/* <div className='border border-dark' style={{ width: '100px', height: '27px' }}>FATHER</div>
@@ -1001,7 +992,7 @@ OF (3) ABOVE <br /><br />
 
                                     <br /> */}
 
-                                                <input onChange={this.setReligion} defaultValue={family.relation} type="text" ></input>
+                                                <input onChange={this.setReligion} defaultValue={family.relation} type="text" className="form-control"></input>
                                         </div>
 
 
@@ -1026,12 +1017,12 @@ OF (3) ABOVE <br /><br />
                                             <div className='border border-dark' style={{ width: '120px', height: '27px' }}>TRANSGENDER</div>
 
                                         </div>*/}
-                                        <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                        <div className="text-center" style={{  marginLeft: '30px' }}>
                                             {/* {candidate_gender_list.map(document => (
                                                 <input defaultValue={this.state.gender} key={document.key} type="text" style={{ width: '120px' }}></input>
 
                                             ))} */}
-                                                <input onChange={this.setgender} defaultValue={this.state.gender} key={document.key} type="text" style={{ width: '120px' }}></input>
+                                                <input onChange={this.setgender} defaultValue={this.state.gender} key={document.key} type="text" className="form-control"></input>
 
 
                                         </div><br />
@@ -1054,13 +1045,13 @@ OF (3) ABOVE <br /><br />
                                     </div>
 
 <div className="col-md-8">
-                                    <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                    <div className="text-center" style={{ marginLeft: '30px' }}>
                                         {/* {candidate_mobile_no.map(document => (
                                             <input defaultValue={this.state.mobile_no} key={document.key} type="text" style={{ width: '45px' }}></input>
 
                                         ))} */}
                                                
-                                                <input onChange={this.setPermanentMobile} defaultValue={this.state.mobile_no} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                                <input onChange={this.setPermanentMobile} defaultValue={this.state.mobile_no} key={document.key} type="text" className="form-control"></input>
 
                                               
 
@@ -1111,8 +1102,8 @@ OF (3) ABOVE <br /><br />
 
 
                                     </div> */}
-                                            <div style={{ display: 'inline-flex', marginLeft: '30px' }}>
-                                                     <input onChange={this.setEmail} defaultValue={this.state.c_email} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                            <div style={{  marginLeft: '30px' }}>
+                                                     <input onChange={this.setEmail} defaultValue={this.state.c_email} key={document.key} type="text" className="form-control"></input>
                                                    
                                          
 
@@ -1216,7 +1207,7 @@ OF (3) ABOVE <br /><br />
 
                                         <input key={document.key} type="text" style={{ width: '40px' }}></input>
                                     ))} */}
-                                            <input  onChange={this.setuan} defaultValue={otherdetails.uan} key={document.key} type="text" style={{ width: '100%' }}></input>
+                                            <input  onChange={this.setuan} defaultValue={otherdetails.uan} key={document.key} type="text" style={{ width: '100%'  }} className="form-control"></input>
 
                                     </div>   </div><br></br>
 
@@ -1298,7 +1289,7 @@ OF (3) ABOVE <br /><br />
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                             ))} */}
-                                                <input type="date" key={document.key} type="text"></input>
+                                                <input type="date" key={document.key} type="text" className="form-control"></input>
 
                                         </div><br />
 
@@ -2329,8 +2320,11 @@ by him/her.</h4>
                                             <ul className="list-unstyled certifi-list">
                                                 <li>Signature of the employer or other authorised Officers of the Establishments &nbsp;
  <b>For, Adhaan Solution Pvt. Ltd.</b></li>
- <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
-                                                <li>Designation <label className="pl-5">Authorised Signatory</label></li>
+ 
+                                                <li>Designation <label className="pl-5">
+                                                    <img src={CompnySign} id="sign" alt=" " className="img-fluid1 d-block" />
+                                                     Authorised Signatory</label>
+                                                </li>
                                                 <li>Name and Address of Factory/Establishment or Rubber Stamp Thereof</li>
                                                 <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
                                             </ul>

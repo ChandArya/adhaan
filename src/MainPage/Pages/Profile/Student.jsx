@@ -1451,6 +1451,13 @@ export default class Student extends Component {
                                                             }
                                                         </div>
 
+                                                        <div className="col-md-12">
+                                                            <div className="add " style={{ float: 'left', }}>
+                                                                <label style={{ fontWeight: 'bold' }}>Please tick if Permanent Address is same as Current Address</label>
+                                                                &nbsp; &nbsp; <input type="checkbox" onChange={this.sameAddDAta} defaultChecked={false} className="forcheckbox" />
+                                                            </div>
+                                                        </div>
+
                                                         <div className="col-md-6">
                                                             <div className="form-group">
                                                                 <label>Permanent Address<span className="text-danger">*</span></label>
@@ -1465,12 +1472,7 @@ export default class Student extends Component {
                                                                 ''
                                                             }
                                                         </div>
-                                                        <div className="col-md-6 mt-3">
-                                                            <div className="add " style={{ float: 'left', }}>
-                                                                <input type="checkbox" onChange={this.sameAddDAta} defaultChecked={false} />
-                                                                <label style={{ paddingLeft: '10px', marginTop: '25px', fontWeight: 'bold' }}>Same As Current Address</label>
-                                                            </div>
-                                                        </div>
+
                                                         <div className="col-md-6">
                                                             <div className="form-group">
                                                                 <label> Country <span className="text-danger">*</span></label>
@@ -1556,6 +1558,20 @@ export default class Student extends Component {
                                                                 <input type="text" defaultValue={this.state.c_email} className="form-control" onChange={this.setEmail} />
                                                             </div>
                                                         </div>
+
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Emergency Contact Person Name <span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.contperson} className="form-control" onChange={this.setEmail} />
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <label>Emergency Contact Number <span className="text-danger">*</span></label>
+                                                                <input type="text" defaultValue={this.state.c_emnumber} className="form-control" onChange={this.setEmail} />
+                                                            </div>
+                                                        </div>
                                                         <div className="col-md-6">
                                                             <div className="form-group">
                                                                 <label>Department <span className="text-danger">*</span></label>
@@ -1631,19 +1647,19 @@ export default class Student extends Component {
                                                             <div className="col-sm-8 myradio">
 
                                                                 <input type="radio" id="vehicle13" name="vehicle1" checked={this.state.category == "SC"} value="SC" onChange={this.setCategory} />
-                                                                <label htmlFor="vehicle" className="ml-1" >SC</label> &nbsp;
+                                                                <label htmlFor="vehicle" className="ml-1 mr-4" >SC</label>
 
 
                                                                 <input type="radio" id="vehicle14" name="vehicle1" checked={this.state.category == "ST"} value="ST" onChange={this.setCategory} />
-                                                                <label htmlFor="vehicle1" className="ml-1">ST</label> &nbsp;
+                                                                <label htmlFor="vehicle1" className="ml-1 mr-4">ST</label>
 
 
                                                                 <input type="radio" id="vehicle2" checked={this.state.category == "OBC"} name="vehicle1" value="OBC" onChange={this.setCategory} />
-                                                                <label htmlFor="radio" className="ml-1">OBC</label> &nbsp;
+                                                                <label htmlFor="radio" className="ml-1 mr-4">OBC</label>
 
 
                                                                 <input type="radio" id="vehicle3" name="vehicle1" checked={this.state.category == "OPEN"} value="OPEN" onChange={this.setCategory} />
-                                                                <label htmlFor="vehicle3" className="ml-1">OPEN</label> &nbsp;
+                                                                <label htmlFor="vehicle3" className="ml-1 mr-4">OPEN</label>
 
                                                             </div>
                                                             {this.isBlank(this.state.category) ?
@@ -1830,6 +1846,7 @@ export default class Student extends Component {
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
+                                            <h3 className="card-title">Bank Details</h3>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
@@ -1909,7 +1926,9 @@ export default class Student extends Component {
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
-                                            <h3 className="card-title">Family Details <a href="#" className="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i className="fa fa-pencil" /></a></h3>
+                                            <h3 className="card-title">Family Details</h3>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><a href="#" className="edit-icon ml-2" data-toggle="modal" data-target="#"><i className="fa fa-plus" /></a>Add more</span>
+
 
                                             <div className="row">
                                                 <div className="col-md-6">

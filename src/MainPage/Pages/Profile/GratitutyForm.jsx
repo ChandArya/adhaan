@@ -46,9 +46,9 @@ class GratitutyForm extends Component {
         function recursiveAddHtmlAndSave(currentRecursion, totalRecursions){
             //Once we have done all the divs save the pdf
             if(currentRecursion==totalRecursions){
-                pdf.save(pdfName);
+             //   pdf.save(pdfName);
                 self.setState({ispdf:false});
-                // self.submitbtn( pdf.output('blob'));
+                 self.submitbtn( pdf.output('blob'));
             }else{
                 currentRecursion++;
                 pdf.addPage();
@@ -91,13 +91,13 @@ class GratitutyForm extends Component {
     
                 axios(config)
                     .then(function (response) {
-                      // alert("you save successfully submitted all data.")
+                      alert("you save successfully submitted all data.")
                         //  path = './PrintPage';
-                        let path = './PrintPage';
-                        self.props.history.push({
-                            pathname: path,
-                            state: self.state
-                        })
+                        // let path = './PrintPage';
+                        // self.props.history.push({
+                        //     pathname: path,
+                        //     state: self.state
+                        // })
                 })
                 .catch(function (error) {
                     // console.log(error);
