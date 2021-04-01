@@ -112,7 +112,7 @@ export default class Student extends Component {
             education_data: {},
             candidate_work_history_data: [],
             candidate_documents_data: [],
-            candidate_doc_list: ['Resume/ Bio-DATA', 'Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression'],
+            candidate_doc_list: ['Adhaar Card Front', 'Adhaar Card Back', 'Resume/ Bio-DATA', 'Passport Size Photo', 'Passbook', 'Signature', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Rent Agreement', 'Marriage Certificate', 'Thumb Impression'],
             isNomniee: false,
             family_adhar: '',
             family_name: '',
@@ -1601,7 +1601,7 @@ export default class Student extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="submit-section">
+                                                    <div className="submit-section float-right">
                                                         <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Save</button>
                                                     </div>
                                                     <label className="text-danger">{this.state.error}</label>
@@ -1776,7 +1776,7 @@ export default class Student extends Component {
                                                     </div>
                                                 </li>
 
-                                                <div className="submit-section">
+                                                <div className="submit-section float-right">
                                                     <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Save</button>
                                                 </div>
 
@@ -1791,7 +1791,7 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Reference Details</h3>
-                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><a href="#" className="edit-icon ml-2" data-toggle="modal" data-target="#"><i className="fa fa-plus" /></a>Add more</span>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
 
                                             <div className="row">
                                                 <div className="col-md-6">
@@ -1845,7 +1845,7 @@ export default class Student extends Component {
                                                 </div>
                                             </div>
 
-                                            <div className="submit-section">
+                                            <div className="submit-section float-right">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addRef}>Save</button>
                                             </div>
 
@@ -1862,7 +1862,17 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Bank Name <span className="text-danger">*</span></label>
-                                                        <input type="text" className="form-control" onChange={this.setBankName} />
+
+                                                        <select className="mb-3 form-control" value={this.state.setBankName} onChange={this.setBankName} >
+                                                            {/* <option value='0'>Select Education Level </option> */}
+                                                            <option value="0">Select Bank</option>
+                                                            <option value="mother">HDFC</option>
+                                                            <option value="father">ICICI</option>
+                                                            <option value="spouse">AIXS</option>
+                                                            <option value="son"> SBI</option>
+                                                            <option value="daughter">YES Bank</option>
+                                                        </select>
+
                                                     </div>
 
                                                     {this.isBlank(this.state.bank_name) ?
@@ -1931,7 +1941,7 @@ export default class Student extends Component {
                                                     <div className="text">{this.state.branch_name}</div>
                                                 </li>
                                             </ul> */}
-                                            <div className="submit-section">
+                                            <div className="submit-section float-right">
                                                 <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
                                             </div>
                                             {/* <label className="text-danger">{this.state.error}</label> */}
@@ -1945,7 +1955,7 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Family Details</h3>
-                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><a href="#" className="edit-icon ml-2" data-toggle="modal" data-target="#"><i className="fa fa-plus" /></a>Add more</span>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
 
 
                                             <div className="row">
@@ -2020,7 +2030,7 @@ export default class Student extends Component {
                                                 </div>
                                             </div>
 
-                                            <div className="submit-section">
+                                            <div className="submit-section float-right">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addFamilyData}>Save</button>
                                             </div>
                                             <label className="text-danger">{this.state.error}</label>
@@ -2035,7 +2045,7 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Education Details</h3>
-                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><a href="#" className="edit-icon ml-2" data-toggle="modal" data-target="#"><i className="fa fa-plus" /></a>Add more</span>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
 
                                             <div className="row">
                                                 <div className="col-md-6">
@@ -2054,7 +2064,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group form-focus focused div1">
                                                         <input type="text" className="form-control floating" onChange={this.setSchool} value={this.state.school} />
-                                                        <label className="focus-label">School/University<span className="text-danger">*</span></label>
+                                                        <label className="focus-label">School/University</label>
                                                     </div>
 
 
@@ -2092,7 +2102,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group form-focus focused">
                                                         <input type="text" className="form-control floating" onChange={this.setBoard} value={this.state.board} />
-                                                        <label className="focus-label">Board/University<span className="text-danger">*</span></label>
+                                                        <label className="focus-label">Board/University</label>
                                                     </div>
 
 
@@ -2113,7 +2123,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group form-focus focused">
                                                         <input type="text" className="form-control floating" value={this.state.percentage} onChange={this.setPercentage} />
-                                                        <label className="focus-label">% Marks/Cgpa<span className="text-danger">*</span></label>
+                                                        <label className="focus-label">% Marks/Cgpa</label>
                                                     </div>
 
 
@@ -2125,7 +2135,7 @@ export default class Student extends Component {
                                                     }
                                                 </div>
                                             </div>
-                                            <div className="submit-section">
+                                            <div className="submit-section float-right">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addEducationData}>Save</button>
                                             </div>
                                             <label className="text-danger">{this.state.error}</label>
@@ -2138,7 +2148,7 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Work Experience</h3>
-
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
 
                                             <div className="row">
                                                 <div className="col-md-6">
@@ -2155,15 +2165,15 @@ export default class Student extends Component {
 
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <label className="focus-label">Reason for sepration</label>
+                                                    <label className="focus-label">Reason for Separation</label>
                                                     <div className="form-group form-focus">
-                                                        <input placeholder="Reason for sepration" type="text" className="form-control floating" onChange={this.setReason} value={this.state.reasonforSep} />
+                                                        <input placeholder="Reason for Separation" type="text" className="form-control floating" onChange={this.setReason} value={this.state.reasonforSep} />
 
                                                     </div>
 
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <label className="focus-label">Designation<span className="text-danger">*</span></label>
+                                                    <label className="focus-label">Designation</label>
                                                     <div className="form-group form-focus">
                                                         <input type="text" placeholder="Designation" className="form-control floating" onChange={this.setExprienceDesignation} value={this.state.exprienceDesignation} />
 
@@ -2217,8 +2227,13 @@ export default class Student extends Component {
                                                     </div>
 
                                                 </div>
-                                            </div>
 
+
+                                            </div>
+                                            <div className="submit-section float-right">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addExperienceData}>Save</button>
+                                            </div>
+                                            <label className="text-danger">{this.state.error}</label>
 
                                         </div>
                                     </div>
@@ -2228,12 +2243,12 @@ export default class Student extends Component {
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
-                                            <h3 className="card-title">Other Details<a href="#" className="edit-icon" data-toggle="modal" data-target="#other_details"><i className="fa fa-pencil" /></a></h3>
+                                            <h3 className="card-title">Other Details</h3>
                                             <div className="row">
                                                 <div className="col-md-6">
 
                                                     <div className="form-group">
-                                                        <label>Name <span className="text-danger">*</span></label>
+                                                        <label>Name </label>
 
                                                         <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
 
@@ -2248,7 +2263,7 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Driving License No.<span className="text-danger">*</span></label>
+                                                        <label>Driving License No.</label>
                                                         <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                                                     </div>
@@ -2264,7 +2279,7 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Place of Issue<span className="text-danger">*</span></label>
+                                                        <label>Place of Issue</label>
                                                         <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
@@ -2280,7 +2295,7 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Valid Upto (YYYY-MM-DD)<span className="text-danger">*</span></label>
+                                                        <label>Valid Upto (YYYY-MM-DD)</label>
 
                                                         <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
@@ -2306,7 +2321,7 @@ export default class Student extends Component {
 
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>PAN Card Number<span className="text-danger">*</span></label>
+                                                        <label>PAN Card Number</label>
                                                         <input defaultValue={this.state.candidate_other_data.pan_card_no} className="form-control" type="text" onChange={this.setPanNo} />
                                                     </div>
                                                     {this.isBlank(this.state.candidate_other_data.pan_card_no) ?
@@ -2342,7 +2357,7 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Old PF No.<span className="text-danger">*</span></label>
+                                                        <label>Old PF No.</label>
 
                                                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
                                                     </div>
@@ -2356,7 +2371,7 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Old UAN No. <span className="text-danger">*</span></label>
+                                                        <label>Old UAN No.</label>
                                                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
                                                     </div>
 
@@ -2369,7 +2384,7 @@ export default class Student extends Component {
 
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Old ESIC No.<span className="text-danger">*</span></label>
+                                                        <label>Old ESIC No.</label>
                                                         <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
                                                     </div>
                                                     {this.isBlank(this.state.candidate_other_data.esic_no) ?
@@ -2383,7 +2398,7 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Old ESIC Dispensory Name.<span className="text-danger">*</span></label>
+                                                        <label>Old ESIC Dispensary Name.</label>
                                                         <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
                                                     </div>
                                                     {this.isBlank(this.state.candidate_other_data.esic_name) ?
@@ -2397,7 +2412,7 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Old ESIC Dispensory Address<span className="text-danger">*</span></label>
+                                                        <label>Old ESIC Dispensary Address</label>
                                                         <input defaultValue={this.state.candidate_other_data.esic_address} className="form-control" type="text" onChange={this.setEsicAdd} />
                                                     </div>
 
@@ -2409,9 +2424,17 @@ export default class Student extends Component {
                                                         ''
                                                     }
                                                 </div>
+
+
+
                                             </div>
 
-                                            {/* nitin */}
+                                            <div className="submit-section float-right">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Save</button>
+                                            </div>
+                                            <label className="text-danger">{this.state.error}</label>
+
+
 
                                         </div>
                                     </div>
@@ -2420,7 +2443,7 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Document Checklist</h3>
-                                            <ul className="personal-info">
+                                            {/* <ul className="personal-info">
                                                 {candidate_documents_data.map(document => (
                                                     <li key={document.key} >
                                                         <div className="title">{document.document_type}</div>
@@ -2440,10 +2463,358 @@ export default class Student extends Component {
                                                     </li>
                                                 ))}
 
+                                            </ul> */}
+                                            <ul className="personal-info">
+                                                <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li> <br></br>
+                                                <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
+                                                <li><div className="title">Driving License Front</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Driving License Back</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Voter Id Card Front</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+
+                                                <li><div className="title">Voter Id Card Back</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li><div className="title">Pan Card</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li><div className="title">Ration Card</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li><div className="title">Rent Agreement</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li><div className="title">Marriage Certificate</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                {/* <li><div className="title">Thumb Impression</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
                                             </ul>
+
+
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-md-6 d-flex">
+                                    <div className="card profile-box flex-fill">
+                                        <div className="card-body">
+                                            <h3 className="card-title">Other Details</h3>
+                                            <div className="row">
+                                                <div className="col-md-6">
+
+                                                    <div className="form-group">
+                                                        <label>Name </label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
+
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.name) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Driving License No.<span className="text-danger">*</span></label>
+                                                        <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
+
+                                                    </div>
+
+                                                    {this.isBlank(this.state.candidate_other_data.dl_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Place of Issue</label>
+                                                        <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
+
+
+
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.place_of_issue) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Valid Upto (YYYY-MM-DD)</label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
+
+
+
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.valid_up_to) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Vehicle Number</label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.vehicle_no} className="form-control" type="text" onChange={this.setVehicleNo} />
+                                                    </div>
+                                                </div>
+
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>PAN Card Number</label>
+                                                        <input defaultValue={this.state.candidate_other_data.pan_card_no} className="form-control" type="text" onChange={this.setPanNo} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.pan_card_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Election ID Number </label>
+                                                        <input defaultValue={this.state.candidate_other_data.eid_no} className="form-control" type="text" onChange={this.setEidNo} />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Aadhar card<span className="text-danger">*</span></label>
+
+                                                        <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.aadhaar_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old PF No.</label>
+
+                                                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.pf_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old UAN No.</label>
+                                                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
+                                                    </div>
+
+                                                    {this.isBlank(this.state.candidate_other_data.uan) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
+
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old ESIC No.</label>
+                                                        <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.esic_no) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old ESIC Dispensary Name.</label>
+                                                        <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
+                                                    </div>
+                                                    {this.isBlank(this.state.candidate_other_data.esic_name) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+
+
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Old ESIC Dispensary Address</label>
+                                                        <input defaultValue={this.state.candidate_other_data.esic_address} className="form-control" type="text" onChange={this.setEsicAdd} />
+                                                    </div>
+
+
+
+                                                    {this.isBlank(this.state.candidate_other_data.esic_address) ?
+                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        :
+                                                        ''
+                                                    }
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div className="submit-section float-right">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Save</button>
+                                            </div>
+                                            <label className="text-danger">{this.state.error}</label>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-6 d-flex">
+                                    <div className="card profile-box flex-fill">
+                                        <div className="card-body">
+                                            <h3 className="card-title">Document Checklist</h3>
+                                            {/* <ul className="personal-info">
+                                                {candidate_documents_data.map(document => (
+                                                    <li key={document.key} >
+                                                        <div className="title">{document.document_type}</div>
+                                                        <input type="checkbox" className="" defaultChecked="true" />
+                                                        <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
+
+                                                    </li>
+                                                ))}
+
+                                                {candidate_doc_list.map(document => (
+                                                    <li key={document.key} >
+                                                        <div className="title">{document}</div>
+                                                        <input type="checkbox" className="" />
+                                                        <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
+
+
+                                                    </li>
+                                                ))}
+
+                                            </ul> */}
+                                            <ul className="personal-info">
+                                                <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li> <br></br>
+                                                <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
+                                                <li><div className="title">Driving License Front <span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Driving License Back <span class="text-danger">*</span></div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                </li>
+                                                <li><div className="title">Voter Id Card Front</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+
+                                                <li><div className="title">Voter Id Card Back</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li>
+                                                    <div className="title">Pan Card</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li><div className="title">Ration Card</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li><div className="title">Rent Agreement</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                <li><div className="title">Marriage Certificate</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                {/* <li><div className="title">Thumb Impression</div>
+                                                    <input type="checkbox"></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
+                                            </ul>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         {/* /Profile Info Tab */}
@@ -2902,7 +3273,7 @@ export default class Student extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="submit-section">
+                                        <div className="submit-section float-right">
                                             <button className="btn btn-primary submit-btn" type="submit">Save</button>
                                         </div>
                                     </form>
@@ -2911,6 +3282,12 @@ export default class Student extends Component {
                         </div>
                         {/* /Bank Statutory Tab */}
                     </div>
+
+
+                    <div className="submit-section">
+                        <button className="btn btn-primary submit-btn">Preview & Submit</button>
+                    </div>
+
                 </div>
                 {/* /Page Content */}
                 {/* Profile Modal */}
@@ -2971,7 +3348,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Blood group <span className="text-danger">*</span></label>
+                                                <label>Blood group </label>
 
                                                 <select className=" form-control" value={this.state.blood_group} onChange={this.setBloodGroup}>
                                                     <option value="0">Select blood group</option>
@@ -3069,7 +3446,7 @@ export default class Student extends Component {
                                         <div className="col-md-6">
 
                                             <div className="form-group">
-                                                <label>Name <span className="text-danger">*</span></label>
+                                                <label>Name</label>
 
                                                 <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
 
@@ -3084,7 +3461,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Driving License No.<span className="text-danger">*</span></label>
+                                                <label>Driving License No.</label>
                                                 <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                                             </div>
@@ -3100,7 +3477,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Place of Issue<span className="text-danger">*</span></label>
+                                                <label>Place of Issue</label>
                                                 <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
@@ -3116,7 +3493,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Valid Upto (YYYY-MM-DD)<span className="text-danger">*</span></label>
+                                                <label>Valid Upto (YYYY-MM-DD)</label>
 
                                                 <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
@@ -3162,7 +3539,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Aadhar card<span className="text-danger">*</span></label>
+                                                <label>Aadhar card <span className="text-danger">*</span></label>
 
                                                 <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
                                             </div>
@@ -3178,7 +3555,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Old PF No.<span className="text-danger">*</span></label>
+                                                <label>Old PF No.</label>
 
                                                 <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
                                             </div>
@@ -3192,7 +3569,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Old UAN No. <span className="text-danger">*</span></label>
+                                                <label>Old UAN No. </label>
                                                 <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
                                             </div>
 
@@ -3205,7 +3582,7 @@ export default class Student extends Component {
 
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Old ESIC No.<span className="text-danger">*</span></label>
+                                                <label>Old ESIC No.</label>
                                                 <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
                                             </div>
                                             {this.isBlank(this.state.candidate_other_data.esic_no) ?
@@ -3219,7 +3596,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Old ESIC Dispensory Name.<span className="text-danger">*</span></label>
+                                                <label>Old ESIC Dispensary Name.</label>
                                                 <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
                                             </div>
                                             {this.isBlank(this.state.candidate_other_data.esic_name) ?
@@ -3233,7 +3610,7 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Old ESIC Dispensory Address<span className="text-danger">*</span></label>
+                                                <label>Old ESIC Dispensary Address</label>
                                                 <input defaultValue={this.state.candidate_other_data.esic_address} className="form-control" type="text" onChange={this.setEsicAdd} />
                                             </div>
 
@@ -3246,8 +3623,8 @@ export default class Student extends Component {
                                             }
                                         </div>
                                     </div>
-                                    <div className="submit-section">
-                                        <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Submit</button>
+                                    <div className="submit-section float-right">
+                                        <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Save</button>
                                     </div>
                                     <label className="text-danger">{this.state.error}</label>
                                 </form>
@@ -3756,9 +4133,9 @@ export default class Student extends Component {
 
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <label className="focus-label">Reason for sepration</label>
+                                                        <label className="focus-label">Reason for Separation</label>
                                                         <div className="form-group form-focus">
-                                                            <input placeholder="Reason for sepration" type="text" className="form-control floating" onChange={this.setReason} value={this.state.reasonforSep} />
+                                                            <input placeholder="Reason for Separation" type="text" className="form-control floating" onChange={this.setReason} value={this.state.reasonforSep} />
 
                                                         </div>
 
@@ -3833,7 +4210,7 @@ export default class Student extends Component {
                     </div>
                 </div>
                 {/* /Experience Modal */}
-            </div>
+            </div >
 
 
 
