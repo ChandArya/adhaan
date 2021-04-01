@@ -993,7 +993,7 @@ OF (3) ABOVE <br /><br />
 
                                     <br /> */}
 
-                                                <input onChange={this.setReligion} defaultValue={family.relation} type="text" className="form-control"></input>
+                                                <input onChange={this.setFamilyRelation} placeholder="father" type="text" className="form-control"></input>
                                         </div>
 
 
@@ -1121,7 +1121,7 @@ OF (3) ABOVE <br /><br />
                             
                              </div>
                                         <div className="col-md-4" >
-                                           <div className="table-responsive">
+                                           <div className="table-responsive" style={{width:'100%'}}>
                                                 <table  className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                                     <tr>
                                                         <th className="text-uppercase text-center">YES</th>
@@ -1143,7 +1143,7 @@ OF (3) ABOVE <br /><br />
 
                            
                                             <div className="col-md-4 mt-3" >
-                                                <div className="table-responsive">
+                                            <div className="table-responsive" style={{ width: '100%' }}>
                                                     <table className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                                         <tr>
                                                             <th className="text-uppercase text-center">YES</th>
@@ -1302,7 +1302,7 @@ OF (3) ABOVE <br /><br />
                                 </div><br/>
                                 <div className="col-md-12"  >
 
-                                    <div className=" float-left " >
+                                    <div className=" float-left " style={{ marginLeft: '22px' }}>
                                         
                            12)  (A) IF SCHEME CERTIFICATE ISSUED FOR PREVIOUS EMPLOYMENT, THEN SCHEME CERTIFICATE NUMBER: <input type="text"></input>
                            <br/>
@@ -1359,7 +1359,7 @@ OF (3) ABOVE <br /><br />
                                         <div className="col-md-8">
                                             <div className="table-responsive">
 
-                                                <table  className="table mb-0 border-dark table-bordered" cellSpacing="0" style={{width:'30%'}}>
+                                                <table  className="table mb-0 border-dark table-bordered" cellSpacing="0" style={{width:'100%'}}>
                                                     <tr>
                                                         <th className="text-uppercase text-center">YES</th>
                                                         <th className="text-uppercase text-center">	NO</th>
@@ -1577,8 +1577,8 @@ OF (3) ABOVE <br /><br />
                                                             <td className="text-center">
                                                                 <input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['10'].level == 10} /></td>
                                                             <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['12'].level==12}/></td>
-                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} defaultChecked={this.state.education_data['graduate'].level === graduate } /></td>
-                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['post_graduate'].edulevel === post_graduate}/></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} defaultChecked={this.state.education_data['graduate'].level === 'graduate' } /></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['post_graduate'].level === 'post_graduate'}/></td>
                                                             <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['other'].level === 'other'}/></td>
                                                             <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} efaultChecked={this.state.education_data['other'].level === 'other'}/></td>
                                                     
@@ -1640,7 +1640,7 @@ OF (3) ABOVE <br /><br />
                                     <div  className="col-md-6">
                                             <div className="table-responsive">
 
-                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0"  style={{width:'62%'}}>
+                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0"  style={{width:'100%'}}>
                                                     <tr>
                                                         <th className="text-uppercase text-center">YES</th>
                                                         <th className="text-uppercase text-center">No</th>
@@ -1691,7 +1691,7 @@ OF (3) ABOVE <br /><br />
                                         </div> */}
                                             <div className="table-responsive">
 
-                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0" style={{ width: '46%' }}>
+                                                <table className="table mb-0 border-dark table-bordered" cellSpacing="0" style={{ width: '100%' }}>
                                                     <tr>
                                                         <th className="text-uppercase text-center">LOCOMOTIVE</th>
                                                         <th className="text-uppercase text-center">VISUAL</th>
@@ -1878,23 +1878,23 @@ OF (3) ABOVE <br /><br />
                                         <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
-                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input style={{ width: '25%' }} value={this.state.name}type="text"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input type="text" style={{ width: '25%' }} ></input>
-                                                &nbsp; &nbsp;   AND HAS BEEN
-                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input type="text" style={{ width: '25%' , marginTop:'1%'}} ></input>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input  value={this.state.name}type="text"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input type="text"  ></input>
+                                                &nbsp; &nbsp;   AND HAS BEEN <br/>
+                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input type="text" style={{  marginTop:'1%'}} ></input>
 
                                         </li>
                                         <li>
                                             IN CASE  THE  PERSON 	WAS  EARLIER 	NOT A MEMBER 	OF  EPF  SCHEME, 	1952  AND  EPS,  1995:
                                         </li>
-                                        <ul >
+                                                <ul style={{ display: 'contents' }}>
                                             <li>
-                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input style={{ width: '25%' }} type="text" ></input>
+                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input  type="text" ></input>
                                             </li>
                                             <li>
                                                 PLEASE TICK THE APPROPRIATE OPTION:<br/>
                                                 THE KYC DETAILS OF THE ABOVE MEMBER IN THE UANDATABASE
                                             </li>
-                                            <ul style={{ listStyleType:'square'}}>
+                                            <ul style={{ listStyleType:'square' , display:'contents'}}>
                                                 <li>
                                                     HAVE NOT BEEN UPLOADED: <input type="checkbox"></input>
                                                 </li>
@@ -1911,7 +1911,7 @@ OF (3) ABOVE <br /><br />
                                         <li>
                                             IN CASE  THE  PERSON WAS  EARLIER  MEMBER OF EPF SCHEME, 	1952  AND  EPS,  1995:
                                         </li>
-                                        <ul>
+                                                <ul style={{ display: 'contents' }}>
                                             <li>
                                                 THE ABOVE MEMBER ID OF THE MEMBER AS MENTIONED IN (A) ABOVE HAS BEEN TAGGED WITH
                                                 HIS/HER UANPREVIOUS MEMBER ID AS DECLRAED BY MEMBER
@@ -1920,12 +1920,12 @@ OF (3) ABOVE <br /><br />
                                                 PLEASE TICK THE APPROPRIATE OPTION:
                                                
                                             </li>
-                                            <ul  style={{ listStyleType: 'square' }}>
-                                                <li>
+                                                    <ul style={{ listStyleType: 'square', display: 'contents' , paddingRight:'5%'}}>
+                                                <li style={{paddingRight:'3%'}}>
                                                             THE KYC DETAILS OF THE ABOVE MEMBER IN THE UANDATABASE HAVE BEEN APPROVED WITH  DIGITAL SIGNATURE CERTIFICATE AND TRANSFER
                                                     REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox"></input>
                                                 </li>
-                                                <li>
+                                                        <li style={{ paddingRight: '3%' }}>
                                                             AS THE DSC OF ESTABLISHMENT ARE NOT REGISTERED WITH EPFO, THE MEMBER HAS BEEN INFORMED TO THE PHYSICAL CLAIM (FORM-13) FOR
                                                   TRANSFER OF FUNDS FROM HIS ESTABLISHMENET: <input type="checkbox"></input>
                                                 </li>
