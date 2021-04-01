@@ -243,14 +243,14 @@ class EsicdeclrationForm extends Component {
                          <div className="border border-dark" style={{overflowX:'hidden'}} >
                                        
                                     <div className=" font-weight-bold text-right mt-2 mr-2 "> (FORM - 1)</div>
-                                    <div className="  mt-2 text-center font-weight-bold d-flex">
+                                    <div className="  mt-2 text-center font-weight-bold d-flex esic_box">
                                           
-                                         <div className="account-logo  ">
+                                         <div className="account-logo pl-2">
                                             <a href="#"><
                                             img src={epfs} alt="Adhaan" /></a>
                                         </div> 
                                      
-                                        <h1 style={{margin:'auto'}}>
+                                        <h1 className="heading-sm" style={{margin:'auto'}}>
                                             घोषणा पत्र / ESIC DECLARATION FORM
                                            </h1>
                                         
@@ -263,7 +263,7 @@ class EsicdeclrationForm extends Component {
                                       
                                           <div className="row row-no-gutter" style={{boder:'1px solid'}}>
                                    
-                                              <div className="col-md-6 pr-0">
+                                              <div className="col-md-6 pr-0 paading-auto">
                                                 <div className='table-responsive' style={{overflowX:'hidden'}}>
                                                 <table className="table table-bordered">
                                                     <thead>
@@ -301,10 +301,10 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                                                 ))} */}
-                                                            <input defaultValue={this.state.dob}  type="text" ></input>
+                                                            <input defaultValue={this.state.dob}  type="text" className="form-control"></input>
                                                             </td>
                                                             <td colSpan="3">
-                                                            4.वैवाहिक स्तर <br/>
+                                                            5.वैवाहिक स्तर <br/>
                                                                   Marital Status 
                                                                {/* <p className="text-right">  वि/अ/वि<br/>
                                                                 M/U/W</p> */}
@@ -334,13 +334,13 @@ class EsicdeclrationForm extends Component {
                                                                         <input key={document.key} type="text" style={{ width: '10%' }}></input>
                                                                        
                                                                     ))} */}
-                                                                <input defaultValue={this.state.c_pin_code} style={{width:'40%',height:'auto'}} type="text" ></input>
+                                                                <input defaultValue={this.state.c_pin_code} style={{width:'40%',height:'auto'}} type="text" className="form-control"></input>
                                                                 </div>
                                                                 <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल
                                                                 / E-mail Address
                                                                   </div>
-                                                            <input defaultValue={this.state.p_email}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input className="form-control" defaultValue={this.state.p_email}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
 
                                                             </td>
 
@@ -360,7 +360,7 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '10%' }}></input>
 
                                                                 ))} */}
-                                                                <input defaultValue={this.state.p_pin_code} type="text" style={{ width: '40%', height:'auto' }}></input>
+                                                                <input className="form-control" defaultValue={this.state.p_pin_code} type="text" style={{ width: '40%', height:'auto' }}></input>
                                                                 </div>
                                                                 <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल / E-mail Address
@@ -375,14 +375,14 @@ class EsicdeclrationForm extends Component {
                                                             शाखा कार्यालय<br/>
                                                             Branch Office
                                                                 {/* <input defaultValue={this.state.branch_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input> */}
-                                                            <input defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a',height:'90px' }}></input>
+                                                            <input className="form-control" defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a',height:'90px' }}></input>
                                                            
                                                             </td>
                                                             <td colSpan="2">
                                                             औषधालय<br/>
                                                             Dispensary
                                                          
-                                                            <input defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a', height: '90px' }}></input><br/>
+                                                            <input className="form-control" defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a', height: '90px' }}></input><br/>
 
                                                            </td>
                                                         </tr>
@@ -394,7 +394,7 @@ class EsicdeclrationForm extends Component {
                                                
                                               </div>
 
-                                              <div className="col-md-6 pl-0">
+                                              <div className="col-md-6 pl-0 paading-auto">
                                         <div className='table-responsive' style={{ overflow: 'hidden' }}>
                                                 <table className="table table-bordered">
                                                     <thead>
@@ -414,7 +414,7 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '5%' }}></input>
 
                                                                 ))} */}
-                                                            <input  type="text"></input>
+                                                            <input  type="text" className="form-control"></input>
                                                                 </td>
                                                                 
                                                         </tr>
@@ -434,7 +434,7 @@ class EsicdeclrationForm extends Component {
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                 </div> */}
-                                                            <input type="text" ></input>
+                                                            <input type="text" className="form-control"></input>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -509,7 +509,7 @@ Ahmedabad-380059 <br></br>
 
                                         <div className="col-md-12 pl-0 pr-0">
                          
-                                    <div className='table-responsive' style={{ overflow: 'hidden' }}>
+                                    <div className='table-responsive'>
                                             <table className="table table-bordered">
                                                 <tbody>
                                                     <tr>
@@ -848,7 +848,7 @@ Ahmedabad-380059 <br></br>
 
 
 
-                <div className="border">
+                <div className="">
                     < div  className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
         <div className="col-md-12">
             <div className="border border-dark" style={{overflow:'hidden'}}>
@@ -983,7 +983,7 @@ subject to fulfillment of contributory conditions</li>
 
 
 
-                                        <div className='table-responsive' style={{overflow:'hidden'}}>
+                                        <div className='table-responsive'>
                                             <table className="table table-bordered">
                                                 <tbody>
                                                   

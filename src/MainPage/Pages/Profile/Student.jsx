@@ -198,9 +198,9 @@ var bankdata = {
     "UNION BANK OF INDIA": "UNIONBANK",
     "UNITED BANK OF INDIA": "UNITEDBANK",
     "VIJAYA BANK": "VIJAYABANK"
-  }
-  var banklist = Object.keys(bankdata);
-  banklist=banklist.sort();
+}
+var banklist = Object.keys(bankdata);
+banklist = banklist.sort();
 export default class Student extends Component {
     constructor(...props) {
         super(...props)
@@ -216,20 +216,20 @@ export default class Student extends Component {
         console.log("constructor",)
         var india1 = { "id": 1000, "sortname": "uu", "name": "Select Country", "phoneCode": 91 }
         var india = { "id": 101, "sortname": "IN", "name": "India", "phoneCode": 91 }
-    
+
         listdd.unshift(india)
         listdd.unshift(india1)
         // if(typeof this.props.location.state.back===undefined)
         // {
         this.state = {
-            isProfile:false,
-            otherdetolsFlag:false,
-            refflag:false,
+            isProfile: false,
+            otherdetolsFlag: false,
+            refflag: false,
             isopenProfileModel: false,
             isLoaded: false,
             name: '',
-            errorp:'',
-            bankerror:'',
+            errorp: '',
+            bankerror: '',
             pallcountry: listdd,
             callcountry: listdd,
             edulevel: '10',
@@ -249,7 +249,7 @@ export default class Student extends Component {
             department: '',
             job_location: '',
             zone: '',
-            isSigle:false,
+            isSigle: false,
             u_state: '',
             source: '',
             user: localStorage.getItem("can"),
@@ -283,7 +283,7 @@ export default class Student extends Component {
             mother_tongue: "",
             religion: "",
             profile_percent: 0,
-            contperson:'',
+            contperson: '',
             branch_name: '',
             account_number: '',
             ifsc_code: '',
@@ -312,7 +312,7 @@ export default class Student extends Component {
             enddate_emp: '',
             degree: '',
             board: '',
-            othererror:'',
+            othererror: '',
             percentage: '',
             edu_location: '',
             passing_year: '',
@@ -327,9 +327,9 @@ export default class Student extends Component {
                 width: 30,
                 aspect: 16 / 9,
             },
-            errormain:"",
-            emergencyNo:'',
-            referror:''
+            errormain: "",
+            emergencyNo: '',
+            referror: ''
 
             // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
@@ -874,7 +874,7 @@ export default class Student extends Component {
         this.setState({ c_email: value })
     }
     setEname = (e) => {
-        
+
         const value = e.target.value;
         this.setState({ contperson: value })
     }
@@ -887,10 +887,10 @@ export default class Student extends Component {
 
             this.setState({ emergencyNo: value })
         }
-       
-         
-        
-        
+
+
+
+
     }
 
     addEducationForm = () => {
@@ -930,12 +930,11 @@ export default class Student extends Component {
 
         if (value != 0) {
             // alert("dfgdgfdf"+ value)
-            var isSigle=false;
-            if(value!="Single")
-            {
-                isSigle=true
+            var isSigle = false;
+            if (value != "Single") {
+                isSigle = true
             }
-            this.setState({isSigle:isSigle ,marital_status: value })
+            this.setState({ isSigle: isSigle, marital_status: value })
         }
 
 
@@ -1005,7 +1004,7 @@ export default class Student extends Component {
         // let val = e.target.dataset.value;
         // console.log("ggggg");
         // alert('hhhhhh')
-        this.setState({ docname: value})
+        this.setState({ docname: value })
     }
     setFamilyAdhar = (e) => {
         const re = /^[0-9]+$/;
@@ -1166,7 +1165,7 @@ export default class Student extends Component {
                     if (basic_details_len > 0) {
                         this.setState({
                             isLoaded: true,
-                            isProfile:true,
+                            isProfile: true,
                             name: basic_details.name.toUpperCase(),
                             alternate_mobile_no: basic_details.alternate_mobile_no,
                             designation: basic_details.designation,
@@ -1187,8 +1186,8 @@ export default class Student extends Component {
                             created_by: basic_details.recruiter_id,
                             recruiter_employee_id: basic_details.recruiter_employee_id,
                             jobtype: basic_details.job_type,
-                            contperson:basic_details.emergency_contact_name,
-                            emergencyNo:basic_details.emergency_contact_number,
+                            contperson: basic_details.emergency_contact_name,
+                            emergencyNo: basic_details.emergency_contact_number,
                             // profile_picture
 
                             profilepic: "https://aadhaan.ddns.net" + basic_details.profile_picture
@@ -1272,7 +1271,7 @@ export default class Student extends Component {
                         this.setState({
 
                             dob: Moment(other_details.dob).format("YYYY/MM/DD"),
-                            otherdetolsFlag:true,
+                            otherdetolsFlag: true,
                             marital_status: single,
                             marrage_date: other_details.marrage_date,
                             gender: other_details.gender,
@@ -1297,7 +1296,7 @@ export default class Student extends Component {
                         var candidate_reference_data = data.candidate_reference_data.reference
 
                         this.setState({
-                            refflag=true,
+                            refflag: true,
                             reference: candidate_reference_data
 
                         });
@@ -1413,7 +1412,7 @@ export default class Student extends Component {
     //endfamily data
     componentDidMount = () => {
         this.apicall();
-       
+
 
     }
     educationChane = (e) => {
@@ -1992,27 +1991,27 @@ export default class Student extends Component {
                                                     </div>
                                                 </li>
                                                 {
-                                                    this.state.isSigle?<li>
-                                                    <div className="col-md-12">
-                                                        <div className="form-group row">
-                                                            <label className="col-sm-4 col-form-label">Marriage Date</label>
-                                                            <div className="col-sm-8">
-                                                                <DatePicker
-                                                                    disabledDate={(current) => {
+                                                    this.state.isSigle ? <li>
+                                                        <div className="col-md-12">
+                                                            <div className="form-group row">
+                                                                <label className="col-sm-4 col-form-label">Marriage Date</label>
+                                                                <div className="col-sm-8">
+                                                                    <DatePicker
+                                                                        disabledDate={(current) => {
 
-                                                                        const start = Moment();
-                                                                        return current > start;
-                                                                    }}
-                                                                    value={
+                                                                            const start = Moment();
+                                                                            return current > start;
+                                                                        }}
+                                                                        value={
 
-                                                                        this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker>
+                                                                            this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker>
+                                                                </div>
+
                                                             </div>
-
                                                         </div>
-                                                    </div>
-                                                </li>:''
+                                                    </li> : ''
                                                 }
-                                                
+
 
                                                 <div className="submit-section float-right">
                                                     <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Save</button>
@@ -2104,10 +2103,10 @@ export default class Student extends Component {
                                                         <select className="mb-3 form-control" value={this.state.bank_name} onChange={this.setBankName} >
                                                             {/* <option value='0'>Select Education Level </option> */}
                                                             <option value='0'>Select Bank</option>
-                                                                {
+                                                            {
 
-                                                                    banklist.map(family => (<option >{family}</option>))
-                                                                }
+                                                                banklist.map(family => (<option >{family}</option>))
+                                                            }
 
                                                         </select>
 
@@ -2124,7 +2123,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Account number <span className="text-danger">*</span></label>
-                                                        <input value={this.state.account_number}className="form-control" type="text" onChange={this.setAccountNo} />
+                                                        <input value={this.state.account_number} className="form-control" type="text" onChange={this.setAccountNo} />
                                                     </div>
 
 
@@ -2139,7 +2138,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Ifsc code <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text"value={this.state.ifsc_code} onChange={this.setIfsc_Code} />
+                                                        <input className="form-control" type="text" value={this.state.ifsc_code} onChange={this.setIfsc_Code} />
                                                     </div>
 
 
@@ -2153,7 +2152,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Branch Name</label>
-                                                        <input className="form-control" type="text"value={this.state.branch_name} onChange={this.setBranchName} />
+                                                        <input className="form-control" type="text" value={this.state.branch_name} onChange={this.setBranchName} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -2180,11 +2179,11 @@ export default class Student extends Component {
                                                 </li>
                                             </ul> */}
                                             {
-                                                this.state.account_number?'': <div className="submit-section float-right">
-                                                <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
-                                            </div>
+                                                this.state.account_number ? '' : <div className="submit-section float-right">
+                                                    <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
+                                                </div>
                                             }
-                                           
+
                                             {/* <label className="text-danger">{this.state.error}</label> */}
                                         </div>
 
@@ -2491,13 +2490,13 @@ export default class Student extends Component {
                                                     <div className="form-group">
                                                         <label>Name {this.state.jobtype != "backoffice" ?
 
-<span className="text-danger">*</span> : ''
-}</label>
+                                                            <span className="text-danger">*</span> : ''
+                                                        }</label>
 
                                                         <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
 
                                                     </div>
-                                                    {(this.isBlank(this.state.candidate_other_data.name) &&(this.state.jobtype != "backoffice"))?
+                                                    {(this.isBlank(this.state.candidate_other_data.name) && (this.state.jobtype != "backoffice")) ?
                                                         <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
@@ -2509,13 +2508,13 @@ export default class Student extends Component {
                                                     <div className="form-group">
                                                         <label>Driving License No.{this.state.jobtype != "backoffice" ?
 
-<span className="text-danger">*</span> : ''
-}</label>
+                                                            <span className="text-danger">*</span> : ''
+                                                        }</label>
                                                         <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                                                     </div>
 
-                                                    {(this.isBlank(this.state.candidate_other_data.dl_no)&&(this.state.jobtype != "backoffice")) ?
+                                                    {(this.isBlank(this.state.candidate_other_data.dl_no) && (this.state.jobtype != "backoffice")) ?
                                                         <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
@@ -2528,14 +2527,14 @@ export default class Student extends Component {
                                                     <div className="form-group">
                                                         <label>Place of Issue {this.state.jobtype != "backoffice" ?
 
-                                                        <span className="text-danger">*</span> : ''
+                                                            <span className="text-danger">*</span> : ''
                                                         }</label>
                                                         <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
 
                                                     </div>
-                                                    {(this.isBlank(this.state.candidate_other_data.place_of_issue)&&(this.state.jobtype != "backoffice")) ?
+                                                    {(this.isBlank(this.state.candidate_other_data.place_of_issue) && (this.state.jobtype != "backoffice")) ?
                                                         <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
@@ -2547,15 +2546,15 @@ export default class Student extends Component {
                                                     <div className="form-group">
                                                         <label>Valid Upto (YYYY-MM-DD){this.state.jobtype != "backoffice" ?
 
-<span className="text-danger">*</span> : ''
-}</label>
+                                                            <span className="text-danger">*</span> : ''
+                                                        }</label>
 
                                                         <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
 
 
                                                     </div>
-                                                    {(this.isBlank(this.state.candidate_other_data.valid_up_to) &&(this.state.jobtype != "backoffice"))?
+                                                    {(this.isBlank(this.state.candidate_other_data.valid_up_to) && (this.state.jobtype != "backoffice")) ?
                                                         <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
@@ -2694,79 +2693,79 @@ export default class Student extends Component {
                                 </div>
                                 {
                                     this.state.jobtype == "backoffice" ?
-                               
-                                <div className="col-md-6 d-flex">
-                                    <div className="card profile-box flex-fill">
-                                        <div className="card-body">
-                                            <h3 className="card-title">Document Checklist</h3>
-                                           
-                                            <ul className="personal-info">
-                                            <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
-                                                </li>
-                                                <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
-                                                </li>
-                                                <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
-                                                </li>
-                                                <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
-                                                </li>
-                                                <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
-                                                </li>
-                                                <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
-                                                </li> <br></br>
-                                                <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
-                                                <li><div className="title">Driving License Front</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
-                                                </li>
-                                                <li><div className="title">Driving License Back</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
-                                                </li>
-                                                <li><div className="title">Voter Id Card Front</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
 
-                                                <li><div className="title">Voter Id Card Back</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
-                                                <li>
-                                                    <div className="title">Pan Card</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
-                                                <li><div className="title">Ration Card</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
-                                                <li><div className="title">Rent Agreement</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
-                                                <li><div className="title">Marriage Certificate</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
-                                                {/* <li><div className="title">Thumb Impression</div>
+                                        <div className="col-md-6 d-flex">
+                                            <div className="card profile-box flex-fill">
+                                                <div className="card-body">
+                                                    <h3 className="card-title">Document Checklist</h3>
+
+                                                    <ul className="personal-info">
+                                                        <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
+                                                        </li>
+                                                        <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
+                                                        </li> <br></br>
+                                                        <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
+                                                        <li><div className="title">Driving License Front</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                        </li>
+                                                        <li><div className="title">Driving License Back</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                        </li>
+                                                        <li><div className="title">Voter Id Card Front</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
+
+                                                        <li><div className="title">Voter Id Card Back</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
+                                                        <li>
+                                                            <div className="title">Pan Card</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                                        <li><div className="title">Ration Card</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Ration Card")}></i></a></li>
+                                                        <li><div className="title">Rent Agreement</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
+                                                        <li><div className="title">Marriage Certificate</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                                        {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
-                                            </ul>
+                                                    </ul>
 
 
-                                        </div>
-                                    </div>
-                                </div>:<div className="col-md-6 d-flex">
-                                    <div className="card profile-box flex-fill">
-                                        <div className="card-body">
-                                            <h3 className="card-title">Document Checklist</h3>
-                                            {/* <ul className="personal-info">
+                                                </div>
+                                            </div>
+                                        </div> : <div className="col-md-6 d-flex">
+                                            <div className="card profile-box flex-fill">
+                                                <div className="card-body">
+                                                    <h3 className="card-title">Document Checklist</h3>
+                                                    {/* <ul className="personal-info">
                                                 {candidate_documents_data.map(document => (
                                                     <li key={document.key} >
                                                         <div className="title">{document.document_type}</div>
@@ -2787,75 +2786,75 @@ export default class Student extends Component {
                                                 ))}
 
                                             </ul> */}
-                                            <ul className="personal-info">
-                                                <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
-                                                </li>
-                                                <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
-                                                </li>
-                                                <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
-                                                </li>
-                                                <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
-                                                </li>
-                                                <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
-                                                </li>
-                                                <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
-                                                </li> <br></br>
-                                                <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
-                                                <li><div className="title">Driving License Front <span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Front")}></i></a>
-                                                </li>
-                                                <li><div className="title">Driving License Back <span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Driving License Back")}></i></a>
-                                                </li>
-                                                <li><div className="title">Voter Id Card Front</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
+                                                    <ul className="personal-info">
+                                                        <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
+                                                        </li>
+                                                        <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
+                                                        </li> <br></br>
+                                                        <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
+                                                        <li><div className="title">Driving License Front <span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Front")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Driving License Back <span class="text-danger">*</span></div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Back")}></i></a>
+                                                        </li>
+                                                        <li><div className="title">Voter Id Card Front</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
 
-                                                <li><div className="title">Voter Id Card Back</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
-                                                <li>
-                                                    <div className="title">Pan Card</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
-                                                <li><div className="title">Ration Card</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
-                                                <li><div className="title">Rent Agreement</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
-                                                <li><div className="title">Marriage Certificate</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
-                                                {/* <li><div className="title">Thumb Impression</div>
+                                                        <li><div className="title">Voter Id Card Back</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
+                                                        <li>
+                                                            <div className="title">Pan Card</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                                        <li><div className="title">Ration Card</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Ration Card")}></i></a></li>
+                                                        <li><div className="title">Rent Agreement</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
+                                                        <li><div className="title">Marriage Certificate</div>
+                                                            <input type="checkbox"></input>
+                                                            <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                                        {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
-                                            </ul>
+                                                    </ul>
 
 
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-}
-                                
-                                
-                               
-                               </div>
-                             {/* } */}
+                                }
+
+
+
+                            </div>
+                            {/* } */}
                         </div>
                         {/* /Profile Info Tab */}
                         {/* Projects Tab */}
@@ -3488,8 +3487,8 @@ export default class Student extends Component {
                                             <div className="form-group">
                                                 <label>Name{this.state.jobtype != "backoffice" ?
 
-<span className="text-danger">*</span> : ''
-}</label>
+                                                    <span className="text-danger">*</span> : ''
+                                                }</label>
 
                                                 <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
 
@@ -3506,8 +3505,8 @@ export default class Student extends Component {
                                             <div className="form-group">
                                                 <label>Driving License No.{this.state.jobtype != "backoffice" ?
 
-<span className="text-danger">*</span> : ''
-}</label>
+                                                    <span className="text-danger">*</span> : ''
+                                                }</label>
                                                 <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                                             </div>
@@ -3525,8 +3524,8 @@ export default class Student extends Component {
                                             <div className="form-group">
                                                 <label>Place of Issue{this.state.jobtype != "backoffice" ?
 
-<span className="text-danger">*</span> : ''
-}</label>
+                                                    <span className="text-danger">*</span> : ''
+                                                }</label>
                                                 <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
@@ -3544,8 +3543,8 @@ export default class Student extends Component {
                                             <div className="form-group">
                                                 <label>Valid Upto (YYYY-MM-DD){this.state.jobtype != "backoffice" ?
 
-<span className="text-danger">*</span> : ''
-}</label>
+                                                    <span className="text-danger">*</span> : ''
+                                                }</label>
 
                                                 <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
@@ -3933,7 +3932,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Bank Name <span className="text-danger">*</span></label>
-                                                        <input type="text" value={this.state.bank_name}className="form-control" onChange={this.setBankName} />
+                                                        <input type="text" value={this.state.bank_name} className="form-control" onChange={this.setBankName} />
                                                     </div>
 
                                                     {this.isBlank(this.state.bank_name) ?
@@ -3947,7 +3946,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Account number <span className="text-danger">*</span></label>
-                                                        <input className="form-control" value={this.state.account_number}type="text" onChange={this.setAccountNo} />
+                                                        <input className="form-control" value={this.state.account_number} type="text" onChange={this.setAccountNo} />
                                                     </div>
 
 
@@ -3976,7 +3975,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Branch Name</label>
-                                                        <input className="form-control" value={this.state.branch_name}type="text" onChange={this.setBranchName} />
+                                                        <input className="form-control" value={this.state.branch_name} type="text" onChange={this.setBranchName} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -4274,12 +4273,12 @@ export default class Student extends Component {
         console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
         if (this.isBlank(bankname) || this.isBlank(acountno) ||
             this.isBlank(ifsc)) {
-                Swal.fire(
-                    '',
-                    'Please fill all reuired field',
-                    'error'
-                  )
-                
+            Swal.fire(
+                '',
+                'Please fill all reuired field',
+                'error'
+            )
+
             // self.setState({ error: "Please fill all required details" })
         } else {
             var data = JSON.stringify({
@@ -4308,7 +4307,7 @@ export default class Student extends Component {
                             'Bank details successfully submitted ',
                             '',
                             'success'
-                          )
+                        )
                         //let path='app/profile/candidate-profile';
                         // alert(' ✅')
                         // $("#bank_contact_modal").modal("hide");
@@ -4324,7 +4323,7 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
         }
     }
@@ -4355,25 +4354,25 @@ export default class Student extends Component {
             this.isBlank(data.c_pin_code) ||
             this.isBlank(data.p_country) || this.isBlank(data.p_state) || this.isBlank(data.c_email) ||
             this.isBlank(data.p_city) ||
-            this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)|| this.isBlank(data.emergencyNo)|| this.isBlank(data.contperson)
+            this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code) || this.isBlank(data.emergencyNo) || this.isBlank(data.contperson)
 
         ) {
             Swal.fire(
-                        '',
-                        'Please fill all reuired field',
-                        'error'
-                      )
-        }else if(data.name==data.contperson||data.p_mobile_no==data.emergencyNo||data.p_mobile_no==data.c_mobile_no){
+                '',
+                'Please fill all reuired field',
+                'error'
+            )
+        } else if (data.name == data.contperson || data.p_mobile_no == data.emergencyNo || data.p_mobile_no == data.c_mobile_no) {
             Swal.fire(
                 '',
                 'Person name and emergency contact details can not be same',
                 'error'
-              )
+            )
         } else {
-            
+
 
             // this.aler
-            this.setState({ isProfile:true,error1: "" });
+            this.setState({ isProfile: true, error1: "" });
             // self.setState({ error: "Please wait profile is updating" })
             let formData = new FormData();
             formData.append("name", "" + data.name)
@@ -4431,11 +4430,11 @@ export default class Student extends Component {
                         // window.location.reload(false);
                         // $("#profile_info").modal("hide");
                         // self.setState({ error: "", error1: '' })
-                          Swal.fire(
-                                'Personal details successfully submitted ',
-                                '',
-                                'success'
-                              )
+                        Swal.fire(
+                            'Personal details successfully submitted ',
+                            '',
+                            'success'
+                        )
                         // Swal.fire({
                         //     title: 'Are you sure?',
                         //     text: 'You will not be able to recover this imaginary file!',
@@ -4462,13 +4461,12 @@ export default class Student extends Component {
                         //     // }
                         //   })
 
-                    }else
-                    {
+                    } else {
                         Swal.fire(
                             'Network issue',
                             '',
                             'error'
-                          )
+                        )
 
                     }
 
@@ -4480,7 +4478,7 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
         }
     }
@@ -4528,7 +4526,7 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
         }
     }
@@ -4578,24 +4576,23 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
         }
     }
     addOtherDetailsData = (self, data) => {
         // console.log("ggg", data);
-        if(this.state.jobtype!="backoffice")
-        {
+        if (this.state.jobtype != "backoffice") {
             if (this.isBlank(data.dl_no) || this.isBlank(data.pan_card_no) || this.isBlank(data.uan)) {
                 //    / self.setState({ error: "" })
-                    Swal.fire(
-                        '',
-                        'Please fill all required details',
-                        'error'
-                      )
-                } 
+                Swal.fire(
+                    '',
+                    'Please fill all required details',
+                    'error'
+                )
+            }
         }
-       else {
+        else {
             self.setState({ error: "", error1: '' })
             var config = {
                 method: 'PUT',
@@ -4620,16 +4617,15 @@ export default class Student extends Component {
                             'Personal details successfully submitted ',
                             '',
                             'success'
-                          )
+                        )
 
 
-                    }else
-                    {
+                    } else {
                         Swal.fire(
                             '',
                             'Network Issues please check your internet connection',
                             'error'
-                          )
+                        )
                     }
                 })
                 .catch(function (error) {
@@ -4637,7 +4633,7 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
 
         }
@@ -4647,16 +4643,16 @@ export default class Student extends Component {
         data.candidate = data.id
         if (this.isBlank(data.nationality) || this.isBlank(data.blood_group) ||
             this.isBlank(data.mother_tongue) || this.isBlank(data.category)) {
-                Swal.fire(
-                    '',
-                    'Please fill all reuired field',
-                    'error'
-                  )
+            Swal.fire(
+                '',
+                'Please fill all reuired field',
+                'error'
+            )
             // self.setState({ error: "Please fill all required details", error1: "This field can not be empty" })
         } else {
             // isProfile:false,
-           
-            self.setState({ error1: "" ,otherdetolsFlag:true})
+
+            self.setState({ error1: "", otherdetolsFlag: true })
             let statusm = '';
             if (data.marital_status == "Single") {
                 statusm = "un_married"
@@ -4699,18 +4695,18 @@ export default class Student extends Component {
                             'Personal details successfully submitted ',
                             '',
                             'success'
-                          )
+                        )
                         // alert('Personal details successfully submitted ✅')
                         // window.location.reload(false);
 
                         // self.closePersonalDetails();
 
-                    }else{
+                    } else {
                         Swal.fire(
                             'Network issue ',
                             '',
                             'error'
-                          )
+                        )
                     }
                 })
                 .catch(function (error) {
@@ -4718,14 +4714,14 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
         }
     }
     //upload doc
     documentUpload = (self, data, document_type, candidate) => {
         console.log("dadsggshfdhgdsghffsd" + JSON.stringify(data))
-        
+
         // self.setState({ error: "Please wait file is uploading" })
         let formData = new FormData();
         formData.append("document_type", "" + document_type)
@@ -4753,17 +4749,17 @@ export default class Student extends Component {
                     // self.closeDocument();
                     // window.location.reload(false);
                     Swal.fire(
-                        document_type+'',
+                        document_type + '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
 
-                }else{
+                } else {
                     Swal.fire(
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 }
             })
             .catch(function (error) {
@@ -4771,7 +4767,7 @@ export default class Student extends Component {
                     '',
                     'Network Issues please check your internet connection',
                     'error'
-                  )
+                )
             });
 
 
@@ -4815,7 +4811,7 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
         }
     }
@@ -4825,11 +4821,11 @@ export default class Student extends Component {
         console.log("refrences" + JSON.stringify(data))
         if (this.isBlank(data.name) ||
             this.isBlank(data.relationship) || this.isBlank(data.mobile_no)) {
-                Swal.fire(
-                    '',
-                    'Please fill all reuired field',
-                    'error'
-                  )
+            Swal.fire(
+                '',
+                'Please fill all reuired field',
+                'error'
+            )
         }
         else {
             console.log("called")
@@ -4851,7 +4847,7 @@ export default class Student extends Component {
                         'Alternate  details successfully submitted ',
                         '',
                         'success'
-                      )
+                    )
                     // self.apicall();
                     // self.closeRef();
                 })
@@ -4860,7 +4856,7 @@ export default class Student extends Component {
                         '',
                         'Network Issues please check your internet connection',
                         'error'
-                      )
+                    )
                 });
         }
     }
