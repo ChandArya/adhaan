@@ -1601,9 +1601,9 @@ export default class Student extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    {/* <div className="submit-section">
-                                                        <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Submit</button>
-                                                    </div> */}
+                                                    <div className="submit-section">
+                                                        <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Save</button>
+                                                    </div>
                                                     <label className="text-danger">{this.state.error}</label>
                                                 </form>
                                             </div>
@@ -1637,7 +1637,7 @@ export default class Student extends Component {
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
-                                            <h3 className="card-title">Personal  Details </h3>
+                                            <h3 className="card-title">Personal Details </h3>
                                             <ul className="personal-info">
                                                 <li>
                                                     <div className="col-md-12">
@@ -1776,6 +1776,13 @@ export default class Student extends Component {
                                                     </div>
                                                 </li>
 
+                                                <div className="submit-section">
+                                                    <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Save</button>
+                                                </div>
+
+
+
+
                                             </ul>
                                         </div>
                                     </div>
@@ -1784,6 +1791,8 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Reference Details</h3>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><a href="#" className="edit-icon ml-2" data-toggle="modal" data-target="#"><i className="fa fa-plus" /></a>Add more</span>
+
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
@@ -1803,9 +1812,9 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Relationship <span className="text-danger">*</span></label>
-                                                        <input className="form-control" value={this.state.ref_relation} type="text" onChange={this.setReferencerleation} />
-                                                    </div>
+                                                        <input type="text" className="form-control" value={this.state.ref_relation} onChange={this.setReferencerleation} />
 
+                                                    </div>
 
                                                     {this.isBlank(this.state.ref_relation) ?
                                                         <span className="text-danger">{this.state.error1}</span>
@@ -1836,7 +1845,9 @@ export default class Student extends Component {
                                                 </div>
                                             </div>
 
-
+                                            <div className="submit-section">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addRef}>Save</button>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -1920,8 +1931,15 @@ export default class Student extends Component {
                                                     <div className="text">{this.state.branch_name}</div>
                                                 </li>
                                             </ul> */}
+                                            <div className="submit-section">
+                                                <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
+                                            </div>
+                                            {/* <label className="text-danger">{this.state.error}</label> */}
                                         </div>
+
+
                                     </div>
+
                                 </div>
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
@@ -2002,7 +2020,10 @@ export default class Student extends Component {
                                                 </div>
                                             </div>
 
-
+                                            <div className="submit-section">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addFamilyData}>Save</button>
+                                            </div>
+                                            <label className="text-danger">{this.state.error}</label>
 
 
                                         </div>
@@ -2014,6 +2035,8 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Education Details</h3>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><a href="#" className="edit-icon ml-2" data-toggle="modal" data-target="#"><i className="fa fa-plus" /></a>Add more</span>
+
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     {/* <label>Education-Level</label> */}
@@ -2102,7 +2125,10 @@ export default class Student extends Component {
                                                     }
                                                 </div>
                                             </div>
-
+                                            <div className="submit-section">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addEducationData}>Save</button>
+                                            </div>
+                                            <label className="text-danger">{this.state.error}</label>
 
 
                                         </div>
@@ -2893,7 +2919,7 @@ export default class Student extends Component {
                     <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Personal Details</h5>
+                                <h5 className="modal-title">Personal Details dsfsdfsd</h5>
                                 <button type="button" className="close" onClick={this.closePersonalDetails}>
                                     <span aria-hidden="true">×</span>
                                 </button>
