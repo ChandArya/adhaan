@@ -240,7 +240,7 @@ class EsicdeclrationForm extends Component {
 
                             <div className="col-md-12">
                              
-                         <div className="border border-dark" style={{overflowX:'auto'}}>
+                         <div className="border border-dark" style={{overflowX:'hidden'}} >
                                        
                                     <div className=" font-weight-bold text-right mt-2 mr-2 "> (FORM - 1)</div>
                                     <div className="  mt-2 text-center font-weight-bold d-flex">
@@ -250,12 +250,12 @@ class EsicdeclrationForm extends Component {
                                             img src={epfs} alt="Adhaan" /></a>
                                         </div> 
                                      
-                                        <h1 style={{marginLeft:'6%'}}>
+                                        <h1 style={{margin:'auto'}}>
                                             घोषणा पत्र / ESIC DECLARATION FORM
                                            </h1>
                                         
                                         </div>
-                                    <p className="text-center" style={{ marginLeft:'12%'}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
+                                    <p className="text-center" style={{}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
                                         size photographs are to be attached with this form.This form if free of cost.</p><br/>
 
 
@@ -264,7 +264,7 @@ class EsicdeclrationForm extends Component {
                                           <div className="row row-no-gutter" style={{boder:'1px solid'}}>
                                    
                                               <div className="col-md-6 pr-0">
-                                                <div className='table-responsive'>
+                                                <div className='table-responsive' style={{overflowX:'hidden'}}>
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
@@ -280,7 +280,7 @@ class EsicdeclrationForm extends Component {
                                                                 बीमा संख्या
 
                                                             </td>
-                                                        <td colSpan="3"><input defaultValue={otherdetails.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td colSpan="3"><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                         </tr>
                                                         <tr>
@@ -371,16 +371,19 @@ class EsicdeclrationForm extends Component {
                                                           
                                                         </tr>
                                                         <tr>
-                                                            <td colSpan="2">
+                                                            <td colSpan="2" style={{height:'10%'}}>
                                                             शाखा कार्यालय<br/>
                                                             Branch Office
                                                                 {/* <input defaultValue={this.state.branch_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input> */}
-
+                                                            <input defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a',height:'90px' }}></input>
+                                                           
                                                             </td>
                                                             <td colSpan="2">
                                                             औषधालय<br/>
                                                             Dispensary
-                                                           <input type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                         
+                                                            <input defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a', height: '90px' }}></input><br/>
+
                                                            </td>
                                                         </tr>
 
@@ -392,7 +395,7 @@ class EsicdeclrationForm extends Component {
                                               </div>
 
                                               <div className="col-md-6 pl-0">
-                                            <div className='table-responsive'>
+                                        <div className='table-responsive' style={{ overflow: 'hidden' }}>
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
@@ -455,7 +458,7 @@ class EsicdeclrationForm extends Component {
                                                         <tr>
                                                         <td colSpan="4"><br />(क)बीमा संख्या<br/>
                                                                 a) Previous Ins. No. 
-                                                             <input defaultValue={otherdetails.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                          </td>
 
                                                         </tr>
@@ -478,23 +481,21 @@ class EsicdeclrationForm extends Component {
                                             Ahmedabad-380015 <br></br>
                                                             {/* <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br /> */}
                                                             
-                                                         <br/>
+                                                        
                                                               <div className="text-center">
                                                                 इ-मेल / E-mail Address
 
                                                              <input defaultValue={this.state.c_email} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </div>
                                                             </td>
-                                                           
+                                                           <br/>
                                                            
                                                         </tr>
-                                                        <br/>
-                                                        <br/>
+                                                       
                                                        
 
                                                          </tbody>
-                                                <br />
-                                                <br />
+                                                
                                                 </table>
 
                                             </div>
@@ -505,7 +506,7 @@ class EsicdeclrationForm extends Component {
 
                                         <div className="col-md-12 pl-0 pr-0">
                          
-                                        <div className='table-responsive'>
+                                    <div className='table-responsive' style={{ overflow: 'hidden' }}>
                                             <table className="table table-bordered">
                                                 <tbody>
                                                     <tr>
@@ -565,6 +566,14 @@ class EsicdeclrationForm extends Component {
                                                             <br/>
                                                             Whether residing with
                                                             him / her ?
+                                                            <div className="text-center">
+                                                            <td scope="col" >
+                                                                हाँ/YES
+                                                            </td>
+                                                            <td scope="col">
+                                                                नहीं/ No
+                                                            </td>
+                                                        </div>
                                                             </td>
                                                         <td >
                                                         यदि  नहीं तो स्थान आवास दर्शाये
@@ -572,6 +581,10 @@ class EsicdeclrationForm extends Component {
                                                             <br/>
 
                                                             If No, State place of residence
+                                                             <div className="d-flex">
+                                                            उप नगर /TOWN &nbsp;&nbsp;
+                                                            राज्य/STATE
+                                                                </div>
                                                             </td>
                                                     </tr>
 
@@ -583,7 +596,7 @@ class EsicdeclrationForm extends Component {
 
                                                             </td>
                                                         <td>
-                                                        <input defaultValue={otherdetails.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td>
@@ -595,20 +608,10 @@ class EsicdeclrationForm extends Component {
 
                                                         </td>
                                                         <td>
-                                                            <div className="text-center">
-                                                            <td scope="col" >
-                                                                हाँ/YES
-                                                            </td>
-                                                            <td scope="col">
-                                                                नहीं/ No
-                                                            </td>
-                                                            </div>
+                                                            
                                                         </td>
                                                         <td>
-                                                            <div className="d-flex">
-                                                            उप नगर /TOWN &nbsp;&nbsp;
-                                                            राज्य/STATE
-                                                                </div>
+                                                           
                                                         </td>
                                                     </tr>
 
@@ -694,9 +697,7 @@ class EsicdeclrationForm extends Component {
                                                 </tbody>
 
                                                         </table>
-                                                        <p>-----------------------------------------------------------------------------------------------------------------
-                                                            -------------------------------------------------------------------------------
-                                                        </p>
+                                                       <hr style={{width:'100%', border:'1px solid black', marginTop:'1%', marginBottom:'1%'}}></hr>
 
                                                         </div>
                                                         </div>
@@ -706,7 +707,7 @@ class EsicdeclrationForm extends Component {
                                                             <div className="row">
                                                                 <div className="col-md-4">
                                                 
-                                                                    <div className="table-responsive">
+                                            <div className="table-responsive" style={{ overflow: 'hidden' }}>
                                                     
                                                     <table class="table table-bordered">
                                                         <caption style={{ captionSide: 'top', textAlign: 'center' }}>
@@ -720,7 +721,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
                                                                 
-                                                                <input defaultValue={otherdetails.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                             </td>
 
                                                         </tr>
@@ -730,7 +731,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                                 <td >
 
-                                                                <input defaultValue={otherdetails.esic_no}  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input   type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </td>
 
                                                             </tr>
@@ -753,7 +754,7 @@ class EsicdeclrationForm extends Component {
                                                                 <td >
                                                                 औषधालय
                                                                 <br/>Dispensary
-                                                                    <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                    <input defaultValue={this.state.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </td>
 
                                                             </tr>
@@ -784,7 +785,7 @@ class EsicdeclrationForm extends Component {
 
                                             <div className="col-md-8">
                                                 <div className="row">
-                                                    <div className="table-responsive">
+                                                <div className="table-responsive" style={{ overflow: 'hidden' }}>
                                                         <table class="table table-bordered">
                                                             <caption style={{ captionSide: 'top', textAlign: 'center' }}>
                                                             (नियुक्ति कि तिथि 3 मास वैध)<br/>
@@ -847,7 +848,7 @@ class EsicdeclrationForm extends Component {
                 <div className="border">
                     < div  className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
         <div className="col-md-12">
-            <div className="border border-dark" style={{overflowX:'auto'}}>
+            <div className="border border-dark" style={{overflow:'hidden'}}>
                 <div className="title p-3">
 मैं घोषणा करता करती हूँ कि मेरे द्वारा प्रस्तुत किया गया ब्यौरा मेरी जानकारी के अनुसार और विश्वास सही है परिवार सदस्यों में हुए परिवर्तन कि सूचना 15 दिन भीतर करने का वचन भी देता देती
                <br/> I hereby declare that the particulars given by me are correct to the best of my knowledge and belief. I undertake to intimate the Corporation any changes
@@ -867,10 +868,11 @@ in the membership of my family within 15 days of such change
                                             </p>
                                     <p style={{marginLeft:'10%'}}>For,<b> Adhaan Solution Pvt. Ltd.</b></p>
                                   
-                                  <div style={{marginLeft:'15%',float:'right',paddingRight:'3%',width: '25%',height:'100px'}} className='border border-dark' >                                     
-                                        <p style={{ marginLeft: '15%', paddingRight: '3%' }}>बीमाकृत व्यक्ति के हस्ताक्षर/अंगूठे का निशान<br/>
+                                  <div style={{marginLeft:'15%',float:'right',paddingRight:'3%',width: '25%',height:'100px', overflow:'hidden'}} className='border border-dark' >  
+                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                        <p style={{ marginLeft: '15%', paddingRight: '3%' }}>बीमाकृत व्यक्ति के हस्ताक्षर/अंगूठे का निशान
                                   Signature/T.I. of IP</p>
-                                  <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                 
 
                              </div>
                                  </div>
@@ -978,7 +980,7 @@ subject to fulfillment of contributory conditions</li>
 
 
 
-                                        <div className='table-responsive'>
+                                        <div className='table-responsive' style={{overflow:'hidden'}}>
                                             <table className="table table-bordered">
                                                 <tbody>
                                                   
@@ -1007,10 +1009,24 @@ subject to fulfillment of contributory conditions</li>
                                                     क्या उनके साथ रह रहे हैं
                                                     / Whether residing with
                                                     him / her ?
+                                                      <div className="text-center">
+                                                        <td scope="col" >
+                                                            हाँ/YES
+                                                            </td>
+                                                        <td scope="col">
+                                                            नहीं/No
+                                                            </td>
+                                                    </div>
                                                             </td>
                                                         <td >
                                                     यदि  नहीं तो स्थान आवास दर्शाये
                                                     / If No, State place of residence
+                                                       <br/>
+                                                 
+                                                     <div className="d-flex">
+                                                        उप नगर/TOWN ,&nbsp;&nbsp;
+                                                        राज्य/STATE
+                                                                </div>
                                                             </td>
                                                     </tr>
 
@@ -1022,7 +1038,7 @@ subject to fulfillment of contributory conditions</li>
 
                                                             </td>
                                                         <td>
-                                                    <input defaultValue={otherdetails.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                    <input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
 
                                                         </td>
                                                         <td>
@@ -1034,20 +1050,10 @@ subject to fulfillment of contributory conditions</li>
 
                                                         </td>
                                                         <td>
-                                                            <div className="text-center">
-                                                            <td scope="col" >
-                                                            हाँ/YES
-                                                            </td>
-                                                            <td scope="col">
-                                                            नहीं/No
-                                                            </td>
-                                                            </div>
+                                                          
                                                         </td>
                                                         <td>
-                                                            <div className="d-flex">
-                                                        उप नगर/TOWN &nbsp;&nbsp;
-                                                        राज्य/STATE
-                                                                </div>
+                                                           
                                                         </td>
                                                     </tr>
 

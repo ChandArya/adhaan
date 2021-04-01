@@ -291,7 +291,7 @@ export default class EmployeeProfile extends Component {
       education_data: {},
       candidate_work_history_data: [],
       candidate_documents_data: [],
-      candidate_doc_list: ['Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Resume/ Bio-DATA', 'Passport Size Photo', 'Bank Passbook/Cancelled Cheque', 'Signature/Thumb Impression', 'Pan Card', 'Ration Card', 'Rent Agreement', 'Marriage Certificate'],
+      candidate_doc_list: ['Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Resume/ Bio-DATA', 'Passport Size Photo', 'Bank Passbook/Cancelled Cheque', 'Signature', 'Pan Card', 'Ration Card', 'Rent Agreement', 'Marriage Certificate'],
       isNomniee: false,
       family_adhar: '',
       family_name: '',
