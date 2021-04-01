@@ -26,177 +26,177 @@ import { buildTimeColsModel } from '@fullcalendar/timegrid';
 
 // var FormData = require('form-data');
 // var fs = require('fs');
-var bankdata={
-	"AXIS BANK": "AXIS",
-	"BANK OF AMERICA": "BOA",
-	"BANK OF INDIA": "BOI",
-	"YES BANK": "YESBANK",
-	"THE ANDHRA PRADESH STATE COOPERATIVE BANK LIMITED": "APCOB",
-	"THE NASIK MERCHANTS COOPERATIVE BANK LIMITED": "NAMCOBANK",
-	"APNA SAHAKARI BANK LIMITED": "APNABANK",
-	"AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED": "ANZ",
-	"CAPITAL SMALL FINANCE BANK LIMITED": "CAPITALBANK",
-	"BANK OF MAHARASHTRA": "BOM",
-	"JALGAON JANATA SAHAKARI BANK LIMITED": "JJSBL",
-	"JANATA SAHAKARI BANK LIMITED": "JANATABANK",
-	"KALLAPPANNA AWADE ICHALKARANJI JANATA SAHAKARI BANK LIMITED": "IJSBANK",
-	"THE MUMBAI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "MDCCBANK",
-	"PRIME COOPERATIVE BANK LIMITED": "PRIMEBANK",
-	"THE THANE BHARAT SAHAKARI BANK LIMITED": "THANEBHARATBANK",
-	"THE A.P. MAHESH COOPERATIVE URBAN BANK LIMITED": "APMAHESHBANK",
-	"BANK OF TOKYO MITSUBISHI LIMITED": "MUFG",
-	"THE GUJARAT STATE COOPERATIVE BANK LIMITED": "GSCBANK",
-	"KARNATAKA VIKAS GRAMEENA BANK": "KVGBANK",
-	"THE MUNICIPAL COOPERATIVE BANK LIMITED": "MUNICIPALBANK",
-	"NAGPUR NAGARIK SAHAKARI BANK LIMITED": "NNSBANK",
-	"THE KANGRA CENTRAL COOPERATIVE BANK LIMITED": "KCCB",
-	"THE RAJASTHAN STATE COOPERATIVE BANK LIMITED": "RSCB",
-	"THE SURAT DISTRICT COOPERATIVE BANK LIMITED": "SUDICOBANK",
-	"THE VISHWESHWAR SAHAKARI BANK LIMITED": "VISHWESHWARBANK",
-	"WOORI BANK": "WOORIBANK",
-	"SUTEX COOPERATIVE BANK LIMITED": "SUTEXBANK",
-	"BARCLAYS BANK": "BARCLAYS",
-	"GURGAON GRAMIN BANK": "SHGB",
-	"COMMONWEALTH BANK OF AUSTRALIA": "COMMBANK",
-	"PRATHAMA BANK": "PRATHAMABANK",
-	"NORTH MALABAR GRAMIN BANK": "KERALAGBANK",
-	"THE VARACHHA COOPERATIVE BANK LIMITED": "VARACHHABANK",
-	"SBER BANK": "SBERBANK",
-	"TUMKUR GRAIN MERCHANTS COOPERATIVE BANK LIMITED": "TGMCBANK",
-	"VASAI VIKAS SAHAKARI BANK LIMITED": "VASAIVIKASBANK",
-	"VASAI VIKAS SAHAKARI BANK LTD": "VASAIVIKASBANK",
-	"BASSEIN CATHOLIC COOPERATIVE BANK LIMITED": "BCCB",
-	"WESTPAC BANKING CORPORATION": "WESTPAC",
-	"ANDHRA PRAGATHI GRAMEENA BANK": "APGB",
-	"SUMITOMO MITSUI BANKING CORPORATION": "SMBC",
-	"THE SEVA VIKAS COOPERATIVE BANK LIMITED": "SEVAVIKASBANK",
-	"THE THANE DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "THANEDISTRICTBANK",
-	"JP MORGAN BANK": "JPMORGAN",
-	"THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "GDCCBANK",
-	"THE AKOLA DISTRICT CENTRAL COOPERATIVE BANK": "AKOLADCC",
-	"THE KURMANCHAL NAGAR SAHAKARI BANK LIMITED": "KURMANCHALBANK",
-	"THE JALGAON PEOPELS COOPERATIVE BANK LIMITED": "JPCBANK",
-	"PARIBAS": "BNPPARIBAS",
-	"NATIONAL AUSTRALIA BANK LIMITED": "NAB",
-	"SAHEBRAO DESHMUKH COOPERATIVE BANK LIMITED": "SDCBANK",
-	"BANK INTERNASIONAL INDONESIA": "MAYBANK",
-	"SOLAPUR JANATA SAHAKARI BANK LIMITED": "SJSBBANK",
-	"INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED": "ICBC",
-	"UNITED OVERSEAS BANK LIMITED": "UOB",
-	"ZILA SAHAKRI BANK LIMITED GHAZIABAD": "ZSBL",
-	"JANASEVA SAHAKARI BANK BORIVLI LIMITED": "JANASEVABANK",
-	"RAJGURUNAGAR SAHAKARI BANK LIMITED": "RAJGURUNAGARBANK",
-	"CANARA BANK": "CANARABANK",
-	"NAGAR URBAN CO OPERATIVE BANK": "NUCB",
-	"AKOLA JANATA COMMERCIAL COOPERATIVE BANK": "AKOLAJANATABANK",
-	"BHARATIYA MAHILA BANK LIMITED": "BMB",
-	"HSBC BANK OMAN SAOG": "HSBC",
-	"THE KANGRA COOPERATIVE BANK LIMITED": "KANGRABANK",
-	"THE ZOROASTRIAN COOPERATIVE BANK LIMITED": "ZOROASTRIANBANK",
-	"SHIKSHAK SAHAKARI BANK LIMITED": "SHIKSHAKBANK",
-	"THE HASTI COOP BANK LTD": "HASTIBANK",
-	"CATHOLIC SYRIAN BANK LIMITED": "CSB",
-	"KERALA GRAMIN BANK": "KERALAGBANK",
-	"PRAGATHI KRISHNA GRAMIN BANK": "PRAGATHIKRISHNABANK",
-	"DEPOSIT INSURANCE AND CREDIT GUARANTEE CORPORATION": "DICGC",
-	"DEVELOPMENT BANK OF SINGAPORE": "DBS",
-	"DOHA BANK": "DOHABANK",
-	"DOHA BANK QSC": "DOHABANK",
-	"EXPORT IMPORT BANK OF INDIA": "EXIMBANK",
-	"JANAKALYAN SAHAKARI BANK LIMITED": "JKSBL",
-	"TJSB SAHAKARI BANK LIMITED": "TJSBBANK",
-	"TJSB SAHAKARI BANK LTD": "TJSBBANK",
-	"THE COSMOS CO OPERATIVE BANK LIMITED": "COSMOSBANK",
-	"SURAT NATIONAL COOPERATIVE BANK LIMITED": "SURATNATIONALBANK",
-	"CENTRAL BANK OF INDIA": "CENTRALBANK",
-	"IDFC BANK LIMITED": "IDFC",
-	"INDUSTRIAL BANK OF KOREA": "IBK",
-	"SBM BANK MAURITIUS LIMITED": "SBM",
-	"NATIONAL BANK OF ABU DHABI PJSC": "NBAD",
-	"KEB HANA BANK": "KEBHANA",
-	"THE PANDHARPUR URBAN CO OP. BANK LTD. PANDHARPUR": "PANDHARPURBANK",
-	"SAMARTH SAHAKARI BANK LTD": "SAMARTHBANK",
-	"SHIVALIK MERCANTILE CO OPERATIVE BANK LTD": "SHIVALIKBANK",
-	"HIMACHAL PRADESH STATE COOPERATIVE BANK LTD": "HPSCB",
-	"DEOGIRI NAGARI SAHAKARI BANK LTD. AURANGABAD": "DEOGIRIBANK",
-	"CHINATRUST COMMERCIAL BANK LIMITED": "CHINATRUST",
-	"PT BANK MAYBANK INDONESIA TBK": "MAYBANK",
-	"MAHARASHTRA GRAMIN BANK": "MAHAGRAMIN",
-	"EQUITAS SMALL FINANCE BANK LIMITED": "EQUITAS",
-	"AIRTEL PAYMENTS BANK LIMITED": "AIRTEL",
-	"CITI BANK": "CITIBANK",
-	"CITIZEN CREDIT COOPERATIVE BANK LIMITED": "CITIZENCREDITBANK",
-	"CITY UNION BANK LIMITED": "CUB",
-	"CORPORATION BANK": "CORPBANK",
-	"CREDIT AGRICOLE CORPORATE AND INVESTMENT BANK CALYON BANK": "CACIB",
-	"DENA BANK": "DENABANK",
-	"DEUSTCHE BANK": "DB",
-	"DCB BANK LIMITED": "DCB",
-	"DHANALAKSHMI BANK": "DHANBANK",
-	"DOMBIVLI NAGARI SAHAKARI BANK LIMITED": "DNSBANK",
-	"FIRSTRAND BANK LIMITED": "FIRSTRAND",
-	"HDFC BANK": "HDFC",
-	"HSBC BANK": "HSBC",
-	"ICICI BANK LIMITED": "ICICI",
-	"IDBI BANK": "IDBI",
-	"INDIAN BANK": "INDIANBANK",
-	"INDIAN OVERSEAS BANK": "IOB",
-	"INDUSIND BANK": "INDUSIND",
-	"JANASEVA SAHAKARI BANK LIMITED": "JANASEVABANK",
-	"KAPOL COOPERATIVE BANK LIMITED": "KAPOLBANK",
-	"KARNATAKA BANK LIMITED": "KARNATAKABANK",
-	"KARUR VYSYA BANK": "KVB",
-	"KOTAK MAHINDRA BANK LIMITED": "KOTAK",
-	"MAHANAGAR COOPERATIVE BANK": "MAHANAGARBANK",
-	"MAHARASHTRA STATE COOPERATIVE BANK": "MSCBANK",
-	"MASHREQBANK PSC": "MASHREQBANK",
-	"MIZUHO BANK LTD": "MIZUHOBANK",
-	"NEW INDIA COOPERATIVE BANK LIMITED": "NEWINDIABANK",
-	"NKGSB COOPERATIVE BANK LIMITED": "NKGSB",
-	"NUTAN NAGARIK SAHAKARI BANK LIMITED": "NUTANBANK",
-	"ORIENTAL BANK OF COMMERCE": "OBC",
-	"PARSIK BANK": "GPPARSIKBANK",
-	"PUNJAB AND MAHARSHTRA COOPERATIVE BANK": "PMC",
-	"PUNJAB AND SIND BANK": "PSB",
-	"PUNJAB NATIONAL BANK": "PNB",
-	"RAJKOT NAGRIK SAHAKARI BANK LIMITED": "RNSB",
-	"RESERVE BANK OF INDIA": "RBI",
-	"SHINHAN BANK": "SHINHAN",
-	"SOCIETE GENERALE": "SOCIETEGENERALE",
-	"SOUTH INDIAN BANK": "SOUTHINDIANBANK",
-	"STANDARD CHARTERED BANK": "SC",
-	"STATE BANK OF BIKANER AND JAIPUR": "SBBJ",
-	"STATE BANK OF HYDERABAD": "SBHYD",
-	"STATE BANK OF INDIA": "SBI",
-	"STATE BANK OF MAURITIUS LIMITED": "SBMGROUP",
-	"STATE BANK OF MYSORE": "SBM",
-	"STATE BANK OF PATIALA": "SBP",
-	"STATE BANK OF TRAVANCORE": "SBT",
-	"SYNDICATE BANK": "SYNDICATEBANK",
-	"TAMILNAD MERCANTILE BANK LIMITED": "TMBL",
-	"THE BANK OF NOVA SCOTIA": "SCOTIABANK",
-	"AHMEDABAD MERCANTILE COOPERATIVE BANK": "AMCOBANK",
-	"BHARAT COOPERATIVE BANK MUMBAI LIMITED": "BHARATBANK",
-	"FEDERAL BANK": "FEDERALBANK",
-	"THE GREATER BOMBAY COOPERATIVE BANK LIMITED": "GREATERBANK",
-	"JAMMU AND KASHMIR BANK LIMITED": "JKBANK",
-	"KALUPUR COMMERCIAL COOPERATIVE BANK": "KALUPURBANK",
-	"THE KARANATAKA STATE COOPERATIVE APEX BANK LIMITED": "KARNATAKAAPEX",
-	"KALYAN JANATA SAHAKARI BANK": "KALYANJANATA",
-	"LAXMI VILAS BANK": "LVB",
-	"THE MEHSANA URBAN COOPERATIVE BANK": "MUCBANK",
-	"THE NAINITAL BANK LIMITED": "NAINITALBANK",
-	"RBL BANK LIMITED": "RBL",
-	"THE ROYAL BANK OF SCOTLAND": "RBS",
-	"SARASWAT COOPERATIVE BANK LIMITED": "SARASWATBANK",
-	"THE SHAMRAO VITHAL COOPERATIVE BANK": "SVCBANK",
-	"THE SURATH PEOPLES COOPERATIVE BANK LIMITED": "SPCBL",
-	"THE TAMIL NADU STATE APEX COOPERATIVE BANK": "TNSCBANK",
-	"THE WEST BENGAL STATE COOPERATIVE BANK": "WBSCB",
-	"UCO BANK": "UCOBANK",
-	"UNION BANK OF INDIA": "UNIONBANK",
-	"UNITED BANK OF INDIA": "UNITEDBANK",
-	"VIJAYA BANK": "VIJAYABANK"
+var bankdata = {
+  "AXIS BANK": "AXIS",
+  "BANK OF AMERICA": "BOA",
+  "BANK OF INDIA": "BOI",
+  "YES BANK": "YESBANK",
+  "THE ANDHRA PRADESH STATE COOPERATIVE BANK LIMITED": "APCOB",
+  "THE NASIK MERCHANTS COOPERATIVE BANK LIMITED": "NAMCOBANK",
+  "APNA SAHAKARI BANK LIMITED": "APNABANK",
+  "AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED": "ANZ",
+  "CAPITAL SMALL FINANCE BANK LIMITED": "CAPITALBANK",
+  "BANK OF MAHARASHTRA": "BOM",
+  "JALGAON JANATA SAHAKARI BANK LIMITED": "JJSBL",
+  "JANATA SAHAKARI BANK LIMITED": "JANATABANK",
+  "KALLAPPANNA AWADE ICHALKARANJI JANATA SAHAKARI BANK LIMITED": "IJSBANK",
+  "THE MUMBAI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "MDCCBANK",
+  "PRIME COOPERATIVE BANK LIMITED": "PRIMEBANK",
+  "THE THANE BHARAT SAHAKARI BANK LIMITED": "THANEBHARATBANK",
+  "THE A.P. MAHESH COOPERATIVE URBAN BANK LIMITED": "APMAHESHBANK",
+  "BANK OF TOKYO MITSUBISHI LIMITED": "MUFG",
+  "THE GUJARAT STATE COOPERATIVE BANK LIMITED": "GSCBANK",
+  "KARNATAKA VIKAS GRAMEENA BANK": "KVGBANK",
+  "THE MUNICIPAL COOPERATIVE BANK LIMITED": "MUNICIPALBANK",
+  "NAGPUR NAGARIK SAHAKARI BANK LIMITED": "NNSBANK",
+  "THE KANGRA CENTRAL COOPERATIVE BANK LIMITED": "KCCB",
+  "THE RAJASTHAN STATE COOPERATIVE BANK LIMITED": "RSCB",
+  "THE SURAT DISTRICT COOPERATIVE BANK LIMITED": "SUDICOBANK",
+  "THE VISHWESHWAR SAHAKARI BANK LIMITED": "VISHWESHWARBANK",
+  "WOORI BANK": "WOORIBANK",
+  "SUTEX COOPERATIVE BANK LIMITED": "SUTEXBANK",
+  "BARCLAYS BANK": "BARCLAYS",
+  "GURGAON GRAMIN BANK": "SHGB",
+  "COMMONWEALTH BANK OF AUSTRALIA": "COMMBANK",
+  "PRATHAMA BANK": "PRATHAMABANK",
+  "NORTH MALABAR GRAMIN BANK": "KERALAGBANK",
+  "THE VARACHHA COOPERATIVE BANK LIMITED": "VARACHHABANK",
+  "SBER BANK": "SBERBANK",
+  "TUMKUR GRAIN MERCHANTS COOPERATIVE BANK LIMITED": "TGMCBANK",
+  "VASAI VIKAS SAHAKARI BANK LIMITED": "VASAIVIKASBANK",
+  "VASAI VIKAS SAHAKARI BANK LTD": "VASAIVIKASBANK",
+  "BASSEIN CATHOLIC COOPERATIVE BANK LIMITED": "BCCB",
+  "WESTPAC BANKING CORPORATION": "WESTPAC",
+  "ANDHRA PRAGATHI GRAMEENA BANK": "APGB",
+  "SUMITOMO MITSUI BANKING CORPORATION": "SMBC",
+  "THE SEVA VIKAS COOPERATIVE BANK LIMITED": "SEVAVIKASBANK",
+  "THE THANE DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "THANEDISTRICTBANK",
+  "JP MORGAN BANK": "JPMORGAN",
+  "THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "GDCCBANK",
+  "THE AKOLA DISTRICT CENTRAL COOPERATIVE BANK": "AKOLADCC",
+  "THE KURMANCHAL NAGAR SAHAKARI BANK LIMITED": "KURMANCHALBANK",
+  "THE JALGAON PEOPELS COOPERATIVE BANK LIMITED": "JPCBANK",
+  "PARIBAS": "BNPPARIBAS",
+  "NATIONAL AUSTRALIA BANK LIMITED": "NAB",
+  "SAHEBRAO DESHMUKH COOPERATIVE BANK LIMITED": "SDCBANK",
+  "BANK INTERNASIONAL INDONESIA": "MAYBANK",
+  "SOLAPUR JANATA SAHAKARI BANK LIMITED": "SJSBBANK",
+  "INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED": "ICBC",
+  "UNITED OVERSEAS BANK LIMITED": "UOB",
+  "ZILA SAHAKRI BANK LIMITED GHAZIABAD": "ZSBL",
+  "JANASEVA SAHAKARI BANK BORIVLI LIMITED": "JANASEVABANK",
+  "RAJGURUNAGAR SAHAKARI BANK LIMITED": "RAJGURUNAGARBANK",
+  "CANARA BANK": "CANARABANK",
+  "NAGAR URBAN CO OPERATIVE BANK": "NUCB",
+  "AKOLA JANATA COMMERCIAL COOPERATIVE BANK": "AKOLAJANATABANK",
+  "BHARATIYA MAHILA BANK LIMITED": "BMB",
+  "HSBC BANK OMAN SAOG": "HSBC",
+  "THE KANGRA COOPERATIVE BANK LIMITED": "KANGRABANK",
+  "THE ZOROASTRIAN COOPERATIVE BANK LIMITED": "ZOROASTRIANBANK",
+  "SHIKSHAK SAHAKARI BANK LIMITED": "SHIKSHAKBANK",
+  "THE HASTI COOP BANK LTD": "HASTIBANK",
+  "CATHOLIC SYRIAN BANK LIMITED": "CSB",
+  "KERALA GRAMIN BANK": "KERALAGBANK",
+  "PRAGATHI KRISHNA GRAMIN BANK": "PRAGATHIKRISHNABANK",
+  "DEPOSIT INSURANCE AND CREDIT GUARANTEE CORPORATION": "DICGC",
+  "DEVELOPMENT BANK OF SINGAPORE": "DBS",
+  "DOHA BANK": "DOHABANK",
+  "DOHA BANK QSC": "DOHABANK",
+  "EXPORT IMPORT BANK OF INDIA": "EXIMBANK",
+  "JANAKALYAN SAHAKARI BANK LIMITED": "JKSBL",
+  "TJSB SAHAKARI BANK LIMITED": "TJSBBANK",
+  "TJSB SAHAKARI BANK LTD": "TJSBBANK",
+  "THE COSMOS CO OPERATIVE BANK LIMITED": "COSMOSBANK",
+  "SURAT NATIONAL COOPERATIVE BANK LIMITED": "SURATNATIONALBANK",
+  "CENTRAL BANK OF INDIA": "CENTRALBANK",
+  "IDFC BANK LIMITED": "IDFC",
+  "INDUSTRIAL BANK OF KOREA": "IBK",
+  "SBM BANK MAURITIUS LIMITED": "SBM",
+  "NATIONAL BANK OF ABU DHABI PJSC": "NBAD",
+  "KEB HANA BANK": "KEBHANA",
+  "THE PANDHARPUR URBAN CO OP. BANK LTD. PANDHARPUR": "PANDHARPURBANK",
+  "SAMARTH SAHAKARI BANK LTD": "SAMARTHBANK",
+  "SHIVALIK MERCANTILE CO OPERATIVE BANK LTD": "SHIVALIKBANK",
+  "HIMACHAL PRADESH STATE COOPERATIVE BANK LTD": "HPSCB",
+  "DEOGIRI NAGARI SAHAKARI BANK LTD. AURANGABAD": "DEOGIRIBANK",
+  "CHINATRUST COMMERCIAL BANK LIMITED": "CHINATRUST",
+  "PT BANK MAYBANK INDONESIA TBK": "MAYBANK",
+  "MAHARASHTRA GRAMIN BANK": "MAHAGRAMIN",
+  "EQUITAS SMALL FINANCE BANK LIMITED": "EQUITAS",
+  "AIRTEL PAYMENTS BANK LIMITED": "AIRTEL",
+  "CITI BANK": "CITIBANK",
+  "CITIZEN CREDIT COOPERATIVE BANK LIMITED": "CITIZENCREDITBANK",
+  "CITY UNION BANK LIMITED": "CUB",
+  "CORPORATION BANK": "CORPBANK",
+  "CREDIT AGRICOLE CORPORATE AND INVESTMENT BANK CALYON BANK": "CACIB",
+  "DENA BANK": "DENABANK",
+  "DEUSTCHE BANK": "DB",
+  "DCB BANK LIMITED": "DCB",
+  "DHANALAKSHMI BANK": "DHANBANK",
+  "DOMBIVLI NAGARI SAHAKARI BANK LIMITED": "DNSBANK",
+  "FIRSTRAND BANK LIMITED": "FIRSTRAND",
+  "HDFC BANK": "HDFC",
+  "HSBC BANK": "HSBC",
+  "ICICI BANK LIMITED": "ICICI",
+  "IDBI BANK": "IDBI",
+  "INDIAN BANK": "INDIANBANK",
+  "INDIAN OVERSEAS BANK": "IOB",
+  "INDUSIND BANK": "INDUSIND",
+  "JANASEVA SAHAKARI BANK LIMITED": "JANASEVABANK",
+  "KAPOL COOPERATIVE BANK LIMITED": "KAPOLBANK",
+  "KARNATAKA BANK LIMITED": "KARNATAKABANK",
+  "KARUR VYSYA BANK": "KVB",
+  "KOTAK MAHINDRA BANK LIMITED": "KOTAK",
+  "MAHANAGAR COOPERATIVE BANK": "MAHANAGARBANK",
+  "MAHARASHTRA STATE COOPERATIVE BANK": "MSCBANK",
+  "MASHREQBANK PSC": "MASHREQBANK",
+  "MIZUHO BANK LTD": "MIZUHOBANK",
+  "NEW INDIA COOPERATIVE BANK LIMITED": "NEWINDIABANK",
+  "NKGSB COOPERATIVE BANK LIMITED": "NKGSB",
+  "NUTAN NAGARIK SAHAKARI BANK LIMITED": "NUTANBANK",
+  "ORIENTAL BANK OF COMMERCE": "OBC",
+  "PARSIK BANK": "GPPARSIKBANK",
+  "PUNJAB AND MAHARSHTRA COOPERATIVE BANK": "PMC",
+  "PUNJAB AND SIND BANK": "PSB",
+  "PUNJAB NATIONAL BANK": "PNB",
+  "RAJKOT NAGRIK SAHAKARI BANK LIMITED": "RNSB",
+  "RESERVE BANK OF INDIA": "RBI",
+  "SHINHAN BANK": "SHINHAN",
+  "SOCIETE GENERALE": "SOCIETEGENERALE",
+  "SOUTH INDIAN BANK": "SOUTHINDIANBANK",
+  "STANDARD CHARTERED BANK": "SC",
+  "STATE BANK OF BIKANER AND JAIPUR": "SBBJ",
+  "STATE BANK OF HYDERABAD": "SBHYD",
+  "STATE BANK OF INDIA": "SBI",
+  "STATE BANK OF MAURITIUS LIMITED": "SBMGROUP",
+  "STATE BANK OF MYSORE": "SBM",
+  "STATE BANK OF PATIALA": "SBP",
+  "STATE BANK OF TRAVANCORE": "SBT",
+  "SYNDICATE BANK": "SYNDICATEBANK",
+  "TAMILNAD MERCANTILE BANK LIMITED": "TMBL",
+  "THE BANK OF NOVA SCOTIA": "SCOTIABANK",
+  "AHMEDABAD MERCANTILE COOPERATIVE BANK": "AMCOBANK",
+  "BHARAT COOPERATIVE BANK MUMBAI LIMITED": "BHARATBANK",
+  "FEDERAL BANK": "FEDERALBANK",
+  "THE GREATER BOMBAY COOPERATIVE BANK LIMITED": "GREATERBANK",
+  "JAMMU AND KASHMIR BANK LIMITED": "JKBANK",
+  "KALUPUR COMMERCIAL COOPERATIVE BANK": "KALUPURBANK",
+  "THE KARANATAKA STATE COOPERATIVE APEX BANK LIMITED": "KARNATAKAAPEX",
+  "KALYAN JANATA SAHAKARI BANK": "KALYANJANATA",
+  "LAXMI VILAS BANK": "LVB",
+  "THE MEHSANA URBAN COOPERATIVE BANK": "MUCBANK",
+  "THE NAINITAL BANK LIMITED": "NAINITALBANK",
+  "RBL BANK LIMITED": "RBL",
+  "THE ROYAL BANK OF SCOTLAND": "RBS",
+  "SARASWAT COOPERATIVE BANK LIMITED": "SARASWATBANK",
+  "THE SHAMRAO VITHAL COOPERATIVE BANK": "SVCBANK",
+  "THE SURATH PEOPLES COOPERATIVE BANK LIMITED": "SPCBL",
+  "THE TAMIL NADU STATE APEX COOPERATIVE BANK": "TNSCBANK",
+  "THE WEST BENGAL STATE COOPERATIVE BANK": "WBSCB",
+  "UCO BANK": "UCOBANK",
+  "UNION BANK OF INDIA": "UNIONBANK",
+  "UNITED BANK OF INDIA": "UNITEDBANK",
+  "VIJAYA BANK": "VIJAYABANK"
 }
 var banklist = Object.keys(bankdata);
 banklist=banklist.sort();
@@ -211,11 +211,11 @@ export default class EmployeeProfile extends Component {
     this.setStartDate = this.setStartDate.bind(this);
     this.onFileChangeForDoc = this.onFileChangeForDoc.bind(this);
     this.setDocName = this.setDocName.bind(this);
-    var listdd=worldMapData.getAllCountries()
+    var listdd = worldMapData.getAllCountries()
     console.log("constructor",)
-    var india1 ={"id": 1000, "sortname": "uu", "name": "Select Country", "phoneCode": 91}
-    var india ={"id": 101, "sortname": "IN", "name": "India", "phoneCode": 91}
-    
+    var india1 = { "id": 1000, "sortname": "uu", "name": "Select Country", "phoneCode": 91 }
+    var india = { "id": 101, "sortname": "IN", "name": "India", "phoneCode": 91 }
+
     listdd.unshift(india)
     listdd.unshift(india1)
 
@@ -293,7 +293,7 @@ export default class EmployeeProfile extends Component {
       education_data: {},
       candidate_work_history_data: [],
       candidate_documents_data: [],
-      candidate_doc_list: ['Resume/ Bio-DATA', 'Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Pan Card', 'Ration Card', 'Passport Size Photo', 'Rent Agreement', 'Passbook', 'Marriage Certificate', 'Signature', 'Thumb Impression'],
+      candidate_doc_list: ['Adhaar Card Front', 'Adhaar Card Back', 'Driving License Front', 'Driving License Back', 'Resume/ Bio-DATA', 'Passport Size Photo', 'Bank Passbook/Cancelled Cheque', 'Signature/Thumb Impression', 'Pan Card', 'Ration Card', 'Rent Agreement', 'Marriage Certificate'],
       isNomniee: false,
       family_adhar: '',
       family_name: '',
@@ -320,7 +320,7 @@ export default class EmployeeProfile extends Component {
         width: 30,
         aspect: 16 / 9,
       },
-      jobtype:'',
+      jobtype: '',
 
       
 
@@ -729,9 +729,9 @@ export default class EmployeeProfile extends Component {
     var files = e.target.files;
     console.log("files", JSON.stringify(files))
     const value = files[0];
-    
-   
-    this.setState({ profilepic1: value,profilepic: URL.createObjectURL(value) });
+
+
+    this.setState({ profilepic1: value, profilepic: URL.createObjectURL(value) });
   }
   onFileChangeForDoc(e) {
     try {
@@ -1003,73 +1003,63 @@ export default class EmployeeProfile extends Component {
     this.addFamily(this, data);
   }
   previewClick = (e) => {
+    console.log("nitin")
     console.log(this.state.candidate_documents_data);
-    var final=[]
-    for (var i=0;i<this.state.candidate_documents_data.length;i++)
-    {
-      if(this.state.candidate_documents_data[i].document_type=='Resume/ Bio-DATA')
-      {
+    var final = []
+    for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
+      if (this.state.candidate_documents_data[i].document_type == 'Resume/ Bio-DATA') {
         final.push(1)
-      }else
-      if(this.state.candidate_documents_data[i].document_type=='Signature')
-      {
+      }
+      else if ((this.state.candidate_documents_data[i].document_type == 'Signature') || (this.state.candidate_documents_data[i].document_type == 'Thumb Impression')) {
         final.push(2)
-      }else
-      if(this.state.candidate_documents_data[i].document_type=='Thumb Impression')
-      {
-        final.push(2)
-      }else
-      if(this.state.candidate_documents_data[i].document_type=='Driving License Front')
-      {
+      }
+      //  else
+      //   if (this.state.candidate_documents_data[i].document_type == 'Thumb Impression') {
+      //     final.push(2)
+      //   }
+      else if (this.state.candidate_documents_data[i].document_type == 'Driving License Front') {
         final.push(3)
-      }else  if(this.state.candidate_documents_data[i].document_type=='Adhaar Card Front')
-      {
+      } else if (this.state.candidate_documents_data[i].document_type == 'Adhaar Card Front') {
         final.push(5)
-      }else  if(this.state.candidate_documents_data[i].document_type=='Adhaar Card Back')
-      {
+      } else if (this.state.candidate_documents_data[i].document_type == 'Adhaar Card Back') {
         final.push(6)
-      }else  if(this.state.candidate_documents_data[i].document_type=='Passport Size Photo')
-      {
+      } else if (this.state.candidate_documents_data[i].document_type == 'Passport Size Photo') {
         final.push(7)
       }
-     
-     
+
+
 
     }
-    console.log(this.state.jobtype,"",final)
-    if(this.state.jobtype!="backoffice")
-    {
-    
-        if(final.includes(1) && final.includes(2) && final.includes(3)&& final.includes(7)&& final.includes(5)&& final.includes(6))
-        {
-          
+    console.log(this.state.jobtype, "", final)
+    if (this.state.jobtype != "backoffice") {
+
+      if (final.includes(1) && final.includes(2) && final.includes(3) && final.includes(7) && final.includes(5) && final.includes(6)) {
+
         let path = './applcation-form';
-       
-    
+
+
         this.props.history.push({
           pathname: path,
           state: this.state
-    
+
         })
-      }else
-      {
+      } else {
         alert("Please upload all required document.")
       }
-    }else if(final.includes(1) && final.includes(2)&& final.includes(7)&& final.includes(5)&& final.includes(6)  )
-    {
-      console.log("finalfinal",final)
-      
-     let path = './applcation-form';
-    
- 
-     this.props.history.push({
-       pathname: path,
-       state: this.state
- 
-     })
-    }else{
-     alert("Please upload all required document.")
-   }
+    } else if (final.includes(1) && final.includes(2) && final.includes(7) && final.includes(5) && final.includes(6)) {
+      console.log("finalfinal", final)
+
+      let path = './applcation-form';
+
+
+      this.props.history.push({
+        pathname: path,
+        state: this.state
+
+      })
+    } else {
+      alert("Please upload all required document.")
+    }
 
 
 
@@ -1406,7 +1396,7 @@ export default class EmployeeProfile extends Component {
           console.log("recuriter", err)
 
         }
-       
+
 
       })
       .catch((error) => {
@@ -1440,12 +1430,11 @@ export default class EmployeeProfile extends Component {
     console.log("click")
     var datat = this.state.resume_file
     console.log("datat", datat)
-    
+
     // var d='Resume/ Bio-DATA'
     var d = this.state.docname
-    if(datat=='')
-    {
-      this.setState({error1:"please select file"})
+    if (datat == '') {
+      this.setState({ error1: "please select file" })
       return
     }
     this.documentUpload(this, datat, d, this.state.user);
@@ -1463,15 +1452,15 @@ export default class EmployeeProfile extends Component {
     // alert("ddd",candidate_documents_data,"ggg",candidate_doc_list)
     var candidate_doc_list = this.state.candidate_doc_list
     // console.log(candidate_doc_list,"chandan kumar",candidate_documents_data)
-    for (var i = 0; i < candidate_documents_data.length; i++) {
-      var ff = candidate_documents_data[i].document_type
+    // for (var i = 0; i < candidate_documents_data.length; i++) {
+    //   var ff = candidate_documents_data[i].document_type
 
-      var index = candidate_doc_list.indexOf(ff)
-      console.log(ff, "fffff", index)
-      if (index > -1) {
-        candidate_doc_list.splice(index, 1);
-      }
-    }
+    //   var index = candidate_doc_list.indexOf(ff)
+    //   console.log(ff, "fffff", index)
+    //   if (index > -1) {
+    //     candidate_doc_list.splice(index, 1);
+    //   }
+    // }
 
 
 
@@ -1493,7 +1482,7 @@ export default class EmployeeProfile extends Component {
           {/* /Page Header */}
           <div className="card mb-0">
 
-           
+
 
             <div className="card-body">
               <div className="row">
@@ -1704,7 +1693,7 @@ export default class EmployeeProfile extends Component {
                       {this.state.bank_name ? <a></a> : <a href="#" className="edit-icon" data-toggle="modal" data-target="#bank_contact_modal">
                           <i className="fa fa-pencil" /></a>}</h3>
                       <ul className="personal-info">
-                       
+
                         <li>
                           <div className="title">Bank name</div>
                           <div className="text">{this.state.bank_name}</div>
@@ -1895,18 +1884,18 @@ export default class EmployeeProfile extends Component {
                     <div className="card-body">
                       <h3 className="card-title">Document Checklist</h3>
                       <ul className="personal-info">
-                        {candidate_documents_data.map(document => (
+                        {/* {candidate_documents_data.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document.document_type} {document.document_type=="Resume/ Bio-DATA"||document.document_type=="Signature"||document.document_type=="Thumb Impression"||((document.document_type=="Driving License Back")&& (this.state.jobtype!="backoffice"))||document.document_type=="Adhaar Card Front"||document.document_type=="Adhaar Card Back"||document.document_type=="Passport Size Photo"||((document.document_type=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
+                            <div className="title">{document.document_type} {document.document_type == "Resume/ Bio-DATA" || document.document_type == "Signature" || ((document.document_type == "Driving License Back") && (this.state.jobtype != "backoffice")) || document.document_type == "Adhaar Card Front" || document.document_type == "Adhaar Card Back" || document.document_type == "Passport Size Photo" || ((document.document_type == "Driving License Front") && (this.state.jobtype != "backoffice")) ? <span className="text-danger">*</span> : ''}</div>
                             <input type="checkbox" className="" defaultChecked="true" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
 
                           </li>
-                        ))}
+                        ))} */}
 
                         {candidate_doc_list.map(document => (
                           <li key={document.key} >
-                            <div className="title">{document}{document=="Resume/ Bio-DATA"||document=="Signature"||document=="Thumb Impression"||document=="Passport Size Photo"||((document=="Driving License Back")&& (this.state.jobtype!="backoffice"))||document=="Adhaar Card Front"||document=="Adhaar Card Back"||((document=="Driving License Front") && (this.state.jobtype!="backoffice"))?<span className="text-danger">*</span>:''}</div>
+                            <div className="title">{document}{document == "Resume/ Bio-DATA" || document == "Signature" || document == "Passport Size Photo" || ((document == "Driving License Back") && (this.state.jobtype != "backoffice")) || document == "Adhaar Card Front" || document == "Adhaar Card Back" || ((document == "Driving License Front") && (this.state.jobtype != "backoffice")) ? <span className="text-danger">*</span> : ''}</div>
                             <input type="checkbox" className="" />
                             <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
 
@@ -1919,11 +1908,11 @@ export default class EmployeeProfile extends Component {
                   </div>
                 </div>
                 <div className="col-auto float-right ml-auto mt-3">
-              <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview & Continue</button>
+                  <button className="btn add-btn" onClick={this.previewClick} id="submit">Preview & Continue</button>
 
-            </div>
+                </div>
               </div>
-             
+
             </div>
             {/* /Profile Info Tab */}
             {/* Projects Tab */}
@@ -2557,7 +2546,15 @@ export default class EmployeeProfile extends Component {
                       }
                     </div>
 
-                    <div className="col-md-7">
+
+                    <div className="col-md-12">
+                      <div className="add " style={{ float: 'left', }}>
+                        <label style={{ fontWeight: 'bold' }}>Please tick if Permanent Address is same as Current Address</label>
+                        &nbsp; &nbsp; <input type="checkbox" onChange={this.sameAddDAta} defaultChecked={false} className="forcheckbox" />
+                      </div>
+                    </div>
+
+                    <div className="col-md-12">
                       <div className="form-group">
                         <label>Permanent Address<span className="text-danger">*</span></label>
                         <input type="text" value={this.state.p_full_address} className="form-control" onChange={this.setPermanentFullAdd} />
@@ -2571,12 +2568,7 @@ export default class EmployeeProfile extends Component {
                         ''
                       }
                     </div>
-                    <div className="col-md-5 mt-3">
-                      <div className="add " style={{ float: 'left', }}>
-                        <input type="checkbox" onChange={this.sameAddDAta} defaultChecked={false} />
-                        <label style={{ paddingLeft: '10px', marginTop: '25px', fontWeight: 'bold' }}>Same As Current Address</label>
-                      </div>
-                    </div>
+
                     <div className="col-md-6">
                       <div className="form-group">
                         <label> Country <span className="text-danger">*</span></label>
@@ -2875,15 +2867,15 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Driving License No. {this.state.jobtype!="backoffice"?
-    
-    <span className="text-danger">*</span>:''
-}</label>
+                        <label>Driving License No. {this.state.jobtype != "backoffice" ?
+
+                          <span className="text-danger">*</span> : ''
+                        }</label>
                         <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                       </div>
 
-                      {(this.isBlank(this.state.candidate_other_data.dl_no)&& (this.state.jobtype!="backoffice"))?
+                      {(this.isBlank(this.state.candidate_other_data.dl_no) && (this.state.jobtype != "backoffice")) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
@@ -2894,16 +2886,16 @@ export default class EmployeeProfile extends Component {
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label>Place of Issue {this.state.jobtype!="backoffice"?
-    
-    <span className="text-danger">*</span>:''
-}</label>
+                        <label>Place of Issue {this.state.jobtype != "backoffice" ?
+
+                          <span className="text-danger">*</span> : ''
+                        }</label>
                         <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
 
                       </div>
-                      {(this.isBlank(this.state.candidate_other_data.place_of_issue)&& (this.state.jobtype!="backoffice")) ?
+                      {(this.isBlank(this.state.candidate_other_data.place_of_issue) && (this.state.jobtype != "backoffice")) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
@@ -2914,17 +2906,17 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Valid Upto (YYYY-MM-DD)
-                       {this.state.jobtype!="backoffice"?
-    
-                          <span className="text-danger">*</span>:''
-                    }</label>
+                       {this.state.jobtype != "backoffice" ?
+
+                            <span className="text-danger">*</span> : ''
+                          }</label>
 
                         <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
 
 
                       </div>
-                      {(this.isBlank(this.state.candidate_other_data.valid_up_to)&& (this.state.jobtype!="backoffice")) ?
+                      {(this.isBlank(this.state.candidate_other_data.valid_up_to) && (this.state.jobtype != "backoffice")) ?
                         <span className="text-danger">{this.state.error1}</span>
                         :
                         ''
@@ -2946,7 +2938,7 @@ export default class EmployeeProfile extends Component {
                         <label>PAN Card Number</label>
                         <input defaultValue={this.state.candidate_other_data.pan_card_no} className="form-control" type="text" onChange={this.setPanNo} />
                       </div>
-                     
+
 
 
 
@@ -2963,7 +2955,7 @@ export default class EmployeeProfile extends Component {
 
                         <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
                       </div>
-                      
+
 
 
 
@@ -2975,7 +2967,7 @@ export default class EmployeeProfile extends Component {
 
                         <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
                       </div>
-                     
+
 
 
                     </div>
@@ -2992,7 +2984,7 @@ export default class EmployeeProfile extends Component {
                         <label>Old ESIC No.</label>
                         <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
                       </div>
-                     
+
 
 
 
@@ -3002,7 +2994,7 @@ export default class EmployeeProfile extends Component {
                         <label>Old ESIC Dispensory Name.</label>
                         <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
                       </div>
-                    
+
 
 
 
@@ -3015,7 +3007,7 @@ export default class EmployeeProfile extends Component {
 
 
 
-                  
+
                     </div>
                   </div>
                   <div className="submit-section">
@@ -3219,14 +3211,14 @@ export default class EmployeeProfile extends Component {
                               <option >Spouse</option>
                               <option >Other</option>
 
-                             </select>
-                        
-                        
+                            </select>
+
+
                             {/* <input className="form-control" value={this.state.ref_relation} type="text" onChange={this.setReferencerleation} /> */}
                           </div>
 
 
-                          {this.state.ref_relation==0 ?
+                          {this.state.ref_relation == 0 ?
                             <span className="text-danger">{this.state.error1}</span>
                             :
                             ''
@@ -3285,18 +3277,18 @@ export default class EmployeeProfile extends Component {
                       {/* <h3 className="card-title">1</h3> */}
                       <div className="row">
                         <div className="col-md-6">
-                       
+
                           <div className="form-group">
-                         
+
                             <label>Bank Name <span className="text-danger">*</span></label>
                             <select className="mb-3 form-control" onChange={this.setBankName} >
                               {/* <option value='0'>Select Education Level </option> */}
                               <option value='0'>Select Bank</option>
                               {
-                                
-                          banklist.map(family => ( <option >{family}</option>))
-                        }
-                             
+
+                                banklist.map(family => (<option >{family}</option>))
+                              }
+
                               {/* <option value="12">12</option>
                               <option value="graduate">Graduate</option>
                               <option value="post_graduate">Post Graduate</option>
@@ -3304,7 +3296,7 @@ export default class EmployeeProfile extends Component {
                             </select>
                           </div>
 
-                          {this.state.bank_name==0 ?
+                          {this.state.bank_name == 0 ?
                             <span className="text-danger">{this.state.error1}</span>
                             :
                             ''
@@ -3877,7 +3869,7 @@ export default class EmployeeProfile extends Component {
   }
   addOtherDetailsData = (self, data) => {
     console.log("ggg", data);
-    if (this.isBlank(data.dl_no) && (this.state.jobtype!="backoffice")) {
+    if (this.isBlank(data.dl_no) && (this.state.jobtype != "backoffice")) {
       self.setState({ error: "Please fill all required details" })
     } else {
       self.setState({ error: "", error1: '' })

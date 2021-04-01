@@ -92,13 +92,13 @@ class GratitutyForm extends Component {
     
                 axios(config)
                     .then(function (response) {
-                      // alert("you save successfully submitted all data.")
+                      alert("you save successfully submitted all data.")
                         //  path = './PrintPage';
-                        let path = './PrintPage';
-                        self.props.history.push({
-                            pathname: path,
-                            state: self.state
-                        })
+                        // let path = './PrintPage';
+                        // self.props.history.push({
+                        //     pathname: path,
+                        //     state: self.state
+                        // })
                 })
                 .catch(function (error) {
                     // console.log(error);
