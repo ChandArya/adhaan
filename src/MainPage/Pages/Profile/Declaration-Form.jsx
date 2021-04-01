@@ -771,7 +771,7 @@ class DeclrationForm extends Component {
                 left: 'inherit',
                 top: 'inherit'
             }}>
-                <div className="border" id='uu'ref={ref}>
+                <div className="border  bg-white" id='uu'ref={ref}>
 
                    
 
@@ -825,11 +825,11 @@ class DeclrationForm extends Component {
                                 <div className="row">
                                     <div className=" mt-3 col-md-4 font-weight-bold">
                                    
-                            1) &nbsp; NAME &nbsp; &nbsp; (TITLE)<br />
-                                        <div className=" "  style={{ display: 'inline-flex' , marginLeft:'30%'}} >
-                                            <div className='border border-dark' style={{ width: '40px', height: '30px' }}>MR.</div>
-                                            <div className='border border-dark' style={{ width: '40px', height: '30px' }}>Ms.</div>
-                                            <div className='border border-dark' style={{ width: '40px', height: '30px' }}>MRs.</div>
+                            1) &nbsp; NAME &nbsp; &nbsp; (TITLE)
+                                        <div className=" "  style={{ display: 'inline-flex' , marginLeft:'5%'}} >
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MR.</div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>Ms.</div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MRs.</div>
                                        <br />
                                         </div>
                                         
@@ -923,8 +923,13 @@ class DeclrationForm extends Component {
 
                                     <div className=" col-md-4  float-left font-weight-bold" >
                                        
-                           3) &nbsp; FATHERS /<br />
-                              HUSBANDS NAME<br /><br />
+                                            3) &nbsp; FATHERS /
+                              HUSBANDS NAME
+                              <div className=" " style={{ display: 'inline-flex', marginLeft: '5%' }} >
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MR.</div>
+                                                
+                                                <br />
+                                            </div> <br /><br />
 
                                     </div>
 
@@ -993,7 +998,7 @@ OF (3) ABOVE <br /><br />
 
                                     <br /> */}
 
-                                                <input onChange={this.setFamilyRelation} placeholder="father" type="text" className="form-control"></input>
+                                                <input onChange={this.setFamilyRelation} placeholder="Father" type="text" className="form-control"></input>
                                         </div>
 
 
@@ -1187,7 +1192,7 @@ OF (3) ABOVE <br /><br />
              <div className="border">
                     < div  className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
         <div className="col-md-12">
-            <div className="border border-dark" style={{marginLeft:'30px', marginRight:'30px'}}>
+                            <div className="border border-dark  bg-white" style={{marginLeft:'30px', marginRight:'30px'}}>
                                 <div style={{ backgroundColor: 'black', color: 'white', paddingLeft: '15px' }}> &nbsp; &nbsp; A.  PREVIOUS EMPLOYMENT DETAILS
 </div>
 
@@ -1300,30 +1305,73 @@ OF (3) ABOVE <br /><br />
 
                                 </div>
                                 </div><br/>
-                                <div className="col-md-12"  >
+                                {/* <div className="col-md-12"  >
 
                                     <div className=" float-left " style={{ marginLeft: '22px' }}>
                                         
-                           12)  (A) IF SCHEME CERTIFICATE ISSUED FOR PREVIOUS EMPLOYMENT, THEN SCHEME CERTIFICATE NUMBER: <input type="text"></input>
+                           12)  (A) IF SCHEME CERTIFICATE ISSUED FOR PREVIOUS EMPLOYMENT, THEN SCHEME CERTIFICATE NUMBER: <input ></input>
                            <br/>
                            
                                     </div>
                                    <br />
 
 
-                                </div>
-                                <div className="col-md-12"  >
+                                </div> */}
+                                {/* <div className="col-md-12"  >
 
                                     <div className=" float-left " style={{marginLeft:'22px'}}>
 
-                                        &nbsp; (B) IF PENSION PAYMENT ORDER (PPO) ISSUED FOR PREVIOUS EMPLOYMENT, THEN PPO NUMBER: <input type="text" style={{marginTop:'1%'}}></input>
+                                        &nbsp; (B) IF PENSION PAYMENT ORDER (PPO) ISSUED FOR PREVIOUS EMPLOYMENT, THEN PPO NUMBER: <input  style={{marginTop:'1%'}}></input>
                            <br />
 
                                     </div><br/>
                                    
 
 
-                                </div>
+                                </div> */}
+
+                                <div className="col-md-12" >
+                                    < div className="row">
+                                        <div className=" col-md-9 float-left " >
+
+                                            12)  (A) IF SCHEME CERTIFICATE ISSUED FOR PREVIOUS EMPLOYMENT, THEN SCHEME CERTIFICATE NUMBER:
+                                    </div>
+                                        <div className="col-md-3">
+                                          
+                                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                               
+                                                <input type="text" key={document.key} type="text" className="form-control"></input>
+
+                                            </div><br />
+
+
+                                        </div><br />
+
+
+                                    </div>
+                                </div><br />
+
+                                <div className="col-md-12" >
+                                    < div className="row">
+                                        <div className=" col-md-9 float-left " >
+
+                                            &nbsp; (B) IF PENSION PAYMENT ORDER (PPO) ISSUED FOR PREVIOUS EMPLOYMENT, THEN PPO NUMBER:
+                                    </div>
+                                        <div className="col-md-3">
+
+                                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+                                                <input type="text" key={document.key} type="text" className="form-control"></input>
+
+                                            </div><br />
+
+
+                                        </div><br />
+
+
+                                    </div>
+                                </div><br />
+
                                 
                                 <div className="col-md-12"
                                  style={{ backgroundColor: 'black', color: 'white',paddingLeft:'15px' ,marginTop:'5%', display:'inline-flex' }}>
@@ -1436,20 +1484,27 @@ OF (3) ABOVE <br /><br />
                                 </div><br/>
 
 
-                                <div className="col-md-12"  >
-                                 
-                                    <div className=" float-left " style={{ marginLeft: '30px' }}  >
 
-                                        13( B ) PASSPORT NUMBER
+                                <div className="col-md-12" >
+                                    < div className="row">
+                                        <div className=" col-md-6 float-left " >
+
+                                            PASSPORT NUMBER
                                     </div>
-                                 
-                                    
-                                        <div className="text-center" style={{ marginLeft: '30px' }}>
-                                        <input type="text" style={{width:'40%'}} ></input>
+                                        <div className="col-md-6">
+
+                                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+
+                                                <input type="text" type="text" className="form-control"></input>
+
+                                            </div><br />
 
 
-                                          </div><br />
-                                </div>
+                                        </div><br />
+
+
+                                    </div>
+                                </div><br />
 
 <br/>
 
@@ -1463,23 +1518,8 @@ OF (3) ABOVE <br /><br />
                                     </div>
 
                                     <div className="col-md-3">
-                                        {/* <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                            <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                        </div> */}
-                                       
-                                            {/* {candidate_dob_list.map(document => (
-                                                <input key={document.key} type="text" style={{ width: '27px' }}></input>
-                                               
-                                            ))}
-                                             */}
-                                                <input   key={document.key} type="text" ></input>
+                                      
+                                                <input className="form-control m-3"  key={document.key} type="text" ></input>
 
                                              
                                            
@@ -1490,23 +1530,9 @@ OF (3) ABOVE <br /><br />
                                       <div className="col-md-2 font-weight-bold">
                                                TO
                                       </div>
-                                        <div className="col-md- 3">
-                                            {/* <div className="text-center" style={{ display: 'inline-flex', }}>
-                                                {/* <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>D</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>M</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div>
-                                                <div className='border border-dark' style={{ width: '27px', height: '27px' }}>Y</div> 
-                                            </div><br></br> */}
-                                           
-                                                {/* {candidate_dob_list.map(document => (
-                                                    <input key={document.key} type="text" style={{ width: '27px' }}></input>
-
-                                                ))} */}
-                                            <input key={document.key} type="text" className="ml-3" ></input>
+                                        <div className="col-md-3">
+                                          
+                                            <input type="text" className="m-3 form-control" ></input>
                                                 
 
 
@@ -1599,17 +1625,7 @@ OF (3) ABOVE <br /><br />
                            15)MARITAL STATUS <br />
                     </div>
                                    
-                                        {/* <div className="text-center font-weight-bold" style={{ display: 'inline-flex', marginLeft: '30px' }}>
-
-
-                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>MARRIED</div>
-                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>UNMARRIED</div>
-                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>MATRIC</div>
-                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>WIDOW /WIDOWER </div>
-                                            <div className='border border-dark' style={{ width: '100px', height: '50px' }}>DIVORCEE</div>
-                                           
-
-                                        </div><br></br> */}
+                                       
                                             <div className="col-md-6">
                                         <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 {/* 
@@ -1619,7 +1635,7 @@ OF (3) ABOVE <br /><br />
                                             <input type="text" style={{ width: '100px' }}></input>
                                             <input type="text" style={{ width: '100px' }}></input> */}
                                            
-                                                <input defaultValue={this.state.marital_status} type="text" ></input>
+                                                <input defaultValue={this.state.marital_status} className="form-control" type="text" ></input>
 
 
                                         </div>
@@ -1727,7 +1743,7 @@ OF (3) ABOVE <br /><br />
 <div className="border">
                     < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
                         <div className="col-md-12">
-                            <div className="border border-dark" style={{ marginLeft: '30px', marginRight: '30px' }}>
+                            <div className="border border-dark bg-white" style={{ marginLeft: '30px', marginRight: '30px' }}>
 
 
                                 <div className="col-md-12"  >
@@ -1859,7 +1875,7 @@ OF (3) ABOVE <br /><br />
     <div className="title font-weight-bold float-left ml-3">
    PLACE
     </div>
-                                            <div className="title font-weight-bold float-right ml-3"> <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                            <div className="title font-weight-bold float-right ml-3 mr-3"> <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
                                             <br/>
                                                 SIGNATURE OF MEMBER
       <div className="image-upload sign-upload">
@@ -1878,9 +1894,9 @@ OF (3) ABOVE <br /><br />
                                         <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
-                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input  value={this.state.name}type="text"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input type="text"  ></input>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input    value={this.state.name}></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input  ></input>
                                                 &nbsp; &nbsp;   AND HAS BEEN <br/>
-                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input type="text" style={{  marginTop:'1%'}} ></input>
+                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input   style={{  marginTop:'1%'}} ></input>
 
                                         </li>
                                         <li>
@@ -1888,7 +1904,7 @@ OF (3) ABOVE <br /><br />
                                         </li>
                                                 <ul style={{ display: 'contents' }}>
                                             <li>
-                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input  type="text" ></input>
+                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input ></input>
                                             </li>
                                             <li>
                                                 PLEASE TICK THE APPROPRIATE OPTION:<br/>
@@ -1939,7 +1955,7 @@ OF (3) ABOVE <br /><br />
                                     <div className="title font-weight-bold float-left "> DATE {today}</div>
                                    
                                             <div className="title font-weight-bold float-right"> 
-                                            <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
+                                            {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1" /> */}
                                             <br></br>
                                             SIGNATURE BY THE EMPLOYER
                                             </div>
@@ -1976,7 +1992,7 @@ OF (3) ABOVE <br /><br />
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0">Mobile No.: </label>
                                             </div>
-                                            <input defaultValue={this.state.p_mobile_no} type="text" name="doj" className="px-0 py-1 mx-2 form-control" />
+                                            <input defaultValue={this.state.mobile_no} type="text" name="doj" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     {/* <div className="col-sm-4">
@@ -2010,16 +2026,16 @@ Employee's Pension Scheme,</h4>
                                     </div>
                                 </div>
 
-                                <div className="row  p-2 intro-fst">
+                                <div className="row  p-2 ">
                                     <div className="col-sm-6">
-                                        <div className="form-group input-group">
-                                            <label htmlFor="" className="mb-0 text-uppercase">* Name in Full (In block letters)</label>
-                                            <input type="text" name="name" defaultValue={this.state.name} className="px-0 py-1 form-control" />
+                                        <div className="form-group ">
+                                            <label htmlFor="" className="mb-0 text-uppercase">* Name in Full (In block letters): </label>
+                                            <input   name="name" defaultValue={this.state.name}  />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
-                                            <label htmlFor="" className="mb-0 text-uppercase">* Account No.: GJ/AHD/56271</label>
+                                            <label htmlFor="" className="mb-0 text-uppercase">* Account No.: GJ/AHD/56271 :</label>
                                             <input defaultValue={this.state.account_number} type="text" name="father-name" className="px-0 py-1 form-control" />
                                         </div>
                                     </div>
@@ -2053,7 +2069,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Temporary Address:</label>
                                             </div>
-                                            <input defaultValue={this.state.job_location} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
+                                            <input defaultValue={this.state.c_full_address} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
                                         </div>
                                     </div>
 
@@ -2063,6 +2079,7 @@ Employee's Pension Scheme,</h4>
                                                 <label className="m-0 text-uppercase w-20">Sex</label>
                                             </div>
                                             <input defaultValue={this.state.gender} type="text" name="designation" className="px-0 mx-2 py-1 form-control" />
+                                            <br/>
                                                      Male &nbsp; <input type="checkbox" value="gender"  checked={this.state.gender === "male"} ></input> &nbsp;
                                                      Female &nbsp;<input type="checkbox" value="gender" checked={this.state.gender === "female"}></input>
                                         </div>
@@ -2206,35 +2223,22 @@ No</th>
 Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
                                             </tr>
-                                            <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                            
+                                                {isNomnieeList.map(document => (
 
-                                                    /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                                    <tr>
+                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" placeholder="1" /></td>
+                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
+                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                        <td className="text-center"><input type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
+                                                            placeholder="" onFocus="(this.type='date')" /></td>
+                                                        <td className="text-center"><input type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"
+                                                            placeholder="" onFocus="(this.type='date')" /></td>
 
-                                                 onFocus="(this.type='date')" /></td>
-                                                <td><input  className="px-0 py-0 border-0 form-control" ></input></td>
-                                                <td><input  className="px-0 py-0 border-0 form-control" ></input></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')"  /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')"/></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control"></input></td>
-                                            </tr>
+                                                    </tr>
+
+                                                ))}
+<tr/>
                                         </table>
 
                                         <ol className="p-0 my-4">
@@ -2257,20 +2261,7 @@ Birth</th>
 
                                             </tr>
                                           
-                                                {isNomnieeList.map(document => (
-
-                                                    <tr>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
-                                                        
-                                                        <td className="text-center"><input type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
-                                                            placeholder="" onFocus="(this.type='date')" /></td>
-                                                        <td className="text-center"><input type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"
-                                                            placeholder="" onFocus="(this.type='date')" /></td>
-                                                       
-                                                    </tr>
-
-                                                ))}
-                                       
+                                              
 
 
                                         </table>
@@ -2323,11 +2314,11 @@ by him/her.</h4>
  <b>For, Adhaan Solution Pvt. Ltd.</b></li>
  
                                                 <li>Designation <label className="pl-5">
-                                                    <img src={CompnySign} id="sign" alt=" " className="img-fluid1 d-block" />
+                                                    {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1 d-block" /> */}
                                                      Authorised Signatory</label>
                                                 </li>
                                                 <li>Name and Address of Factory/Establishment or Rubber Stamp Thereof</li>
-                                                <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                                                {/* <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" /> */}
                                             </ul>
                                         </div>
                                     </div>

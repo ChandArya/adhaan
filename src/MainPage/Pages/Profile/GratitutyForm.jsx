@@ -201,15 +201,15 @@ class GratitutyForm extends Component {
                                 </div>
 
                                <div  className="text-center"> 
-                                    To  <span>Adhaan Solution Pvt. Ltd.</span> </div>
+                                    To &nbsp; &nbsp;  <span>Adhaan Solution Pvt. Ltd.</span> </div>
                                
                                <div  className="text-center"> 
                                [Give here name or description of the establishment with full address]</div>
                              <div > 
                              <ul  style={{listStyleType:'decimal'}}>
                              <li>
-                                            I. Shri/Shrimati/Kumari whose particulars are given in the statement below,{this.state.name}
-                             <sub>[Name in full here]</sub>
+                                            I. Shri/Shrimati/Kumari whose particulars are given in the statement below,<input  defaultValue={this.state.name}></input>
+                           
 hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
                                              <li>
@@ -352,8 +352,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                                                           
                                             </p>
-                                    <p style={{marginLeft:'auto'}}> Signature/Thumb impression of the employee</p>
-                                    <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                    <p style={{marginLeft:'auto'}}>
+                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" /><br/>
+                                         Signature/Thumb impression of the employee</p>
+                                   
                                         
                                   
                                  
@@ -378,8 +380,9 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 </div>
                             <div className="title d-flex p-3" style={{ marginLeft: '11%', marginRight: '20%'}}>
                             <p>
-                                1<br />2 </p>
-                                <p style={{ marginLeft: 'auto' }}>  1<br />2
+                                1. <inpu ></inpu>
+                                    <br />2. <inpu ></inpu> </p>
+                                <p style={{ marginLeft: 'auto' }}>  1. <inpu ></inpu><br />2.<inpu ></inpu>
 
 
                                             </p>
@@ -387,7 +390,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                             < div className="title d-flex p-3" style={{ marginLeft: '10%', marginRight: '10%' }}>
                                 
                                 <p>
-                                    Place<br />Date{ today}
+                                    Place<br />Date &nbsp; { today}
 
 
                                             </p>
@@ -412,8 +415,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 <p> Date </p>{ today}
                                 <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br />Designation :&nbsp; &nbsp;<label>{this.state.designation}</label>
                                <br/> <br />Name and address of establishment or rubber stamp thereof
-                               <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
-                               <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                               {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
+                               <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" /> */}
                                     
 
 
@@ -428,8 +431,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                              Date:{today}
                                                                                           
                                             </p> 
-                                <p  style={{ marginLeft: '60%' }}>Signature of the employee</p>
-                                <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                <p  style={{ marginLeft: '60%' }}>
+                                    <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                    <br/>Signature of the employee</p>
+                                
                                         
                                  
                                  </div> 
