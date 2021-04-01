@@ -27,7 +27,180 @@ import { buildTimeColsModel } from '@fullcalendar/timegrid';
 
 // var FormData = require('form-data');
 // var fs = require('fs');
-
+var bankdata = {
+    "AXIS BANK": "AXIS",
+    "BANK OF AMERICA": "BOA",
+    "BANK OF INDIA": "BOI",
+    "YES BANK": "YESBANK",
+    "THE ANDHRA PRADESH STATE COOPERATIVE BANK LIMITED": "APCOB",
+    "THE NASIK MERCHANTS COOPERATIVE BANK LIMITED": "NAMCOBANK",
+    "APNA SAHAKARI BANK LIMITED": "APNABANK",
+    "AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED": "ANZ",
+    "CAPITAL SMALL FINANCE BANK LIMITED": "CAPITALBANK",
+    "BANK OF MAHARASHTRA": "BOM",
+    "JALGAON JANATA SAHAKARI BANK LIMITED": "JJSBL",
+    "JANATA SAHAKARI BANK LIMITED": "JANATABANK",
+    "KALLAPPANNA AWADE ICHALKARANJI JANATA SAHAKARI BANK LIMITED": "IJSBANK",
+    "THE MUMBAI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "MDCCBANK",
+    "PRIME COOPERATIVE BANK LIMITED": "PRIMEBANK",
+    "THE THANE BHARAT SAHAKARI BANK LIMITED": "THANEBHARATBANK",
+    "THE A.P. MAHESH COOPERATIVE URBAN BANK LIMITED": "APMAHESHBANK",
+    "BANK OF TOKYO MITSUBISHI LIMITED": "MUFG",
+    "THE GUJARAT STATE COOPERATIVE BANK LIMITED": "GSCBANK",
+    "KARNATAKA VIKAS GRAMEENA BANK": "KVGBANK",
+    "THE MUNICIPAL COOPERATIVE BANK LIMITED": "MUNICIPALBANK",
+    "NAGPUR NAGARIK SAHAKARI BANK LIMITED": "NNSBANK",
+    "THE KANGRA CENTRAL COOPERATIVE BANK LIMITED": "KCCB",
+    "THE RAJASTHAN STATE COOPERATIVE BANK LIMITED": "RSCB",
+    "THE SURAT DISTRICT COOPERATIVE BANK LIMITED": "SUDICOBANK",
+    "THE VISHWESHWAR SAHAKARI BANK LIMITED": "VISHWESHWARBANK",
+    "WOORI BANK": "WOORIBANK",
+    "SUTEX COOPERATIVE BANK LIMITED": "SUTEXBANK",
+    "BARCLAYS BANK": "BARCLAYS",
+    "GURGAON GRAMIN BANK": "SHGB",
+    "COMMONWEALTH BANK OF AUSTRALIA": "COMMBANK",
+    "PRATHAMA BANK": "PRATHAMABANK",
+    "NORTH MALABAR GRAMIN BANK": "KERALAGBANK",
+    "THE VARACHHA COOPERATIVE BANK LIMITED": "VARACHHABANK",
+    "SBER BANK": "SBERBANK",
+    "TUMKUR GRAIN MERCHANTS COOPERATIVE BANK LIMITED": "TGMCBANK",
+    "VASAI VIKAS SAHAKARI BANK LIMITED": "VASAIVIKASBANK",
+    "VASAI VIKAS SAHAKARI BANK LTD": "VASAIVIKASBANK",
+    "BASSEIN CATHOLIC COOPERATIVE BANK LIMITED": "BCCB",
+    "WESTPAC BANKING CORPORATION": "WESTPAC",
+    "ANDHRA PRAGATHI GRAMEENA BANK": "APGB",
+    "SUMITOMO MITSUI BANKING CORPORATION": "SMBC",
+    "THE SEVA VIKAS COOPERATIVE BANK LIMITED": "SEVAVIKASBANK",
+    "THE THANE DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "THANEDISTRICTBANK",
+    "JP MORGAN BANK": "JPMORGAN",
+    "THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "GDCCBANK",
+    "THE AKOLA DISTRICT CENTRAL COOPERATIVE BANK": "AKOLADCC",
+    "THE KURMANCHAL NAGAR SAHAKARI BANK LIMITED": "KURMANCHALBANK",
+    "THE JALGAON PEOPELS COOPERATIVE BANK LIMITED": "JPCBANK",
+    "PARIBAS": "BNPPARIBAS",
+    "NATIONAL AUSTRALIA BANK LIMITED": "NAB",
+    "SAHEBRAO DESHMUKH COOPERATIVE BANK LIMITED": "SDCBANK",
+    "BANK INTERNASIONAL INDONESIA": "MAYBANK",
+    "SOLAPUR JANATA SAHAKARI BANK LIMITED": "SJSBBANK",
+    "INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED": "ICBC",
+    "UNITED OVERSEAS BANK LIMITED": "UOB",
+    "ZILA SAHAKRI BANK LIMITED GHAZIABAD": "ZSBL",
+    "JANASEVA SAHAKARI BANK BORIVLI LIMITED": "JANASEVABANK",
+    "RAJGURUNAGAR SAHAKARI BANK LIMITED": "RAJGURUNAGARBANK",
+    "CANARA BANK": "CANARABANK",
+    "NAGAR URBAN CO OPERATIVE BANK": "NUCB",
+    "AKOLA JANATA COMMERCIAL COOPERATIVE BANK": "AKOLAJANATABANK",
+    "BHARATIYA MAHILA BANK LIMITED": "BMB",
+    "HSBC BANK OMAN SAOG": "HSBC",
+    "THE KANGRA COOPERATIVE BANK LIMITED": "KANGRABANK",
+    "THE ZOROASTRIAN COOPERATIVE BANK LIMITED": "ZOROASTRIANBANK",
+    "SHIKSHAK SAHAKARI BANK LIMITED": "SHIKSHAKBANK",
+    "THE HASTI COOP BANK LTD": "HASTIBANK",
+    "CATHOLIC SYRIAN BANK LIMITED": "CSB",
+    "KERALA GRAMIN BANK": "KERALAGBANK",
+    "PRAGATHI KRISHNA GRAMIN BANK": "PRAGATHIKRISHNABANK",
+    "DEPOSIT INSURANCE AND CREDIT GUARANTEE CORPORATION": "DICGC",
+    "DEVELOPMENT BANK OF SINGAPORE": "DBS",
+    "DOHA BANK": "DOHABANK",
+    "DOHA BANK QSC": "DOHABANK",
+    "EXPORT IMPORT BANK OF INDIA": "EXIMBANK",
+    "JANAKALYAN SAHAKARI BANK LIMITED": "JKSBL",
+    "TJSB SAHAKARI BANK LIMITED": "TJSBBANK",
+    "TJSB SAHAKARI BANK LTD": "TJSBBANK",
+    "THE COSMOS CO OPERATIVE BANK LIMITED": "COSMOSBANK",
+    "SURAT NATIONAL COOPERATIVE BANK LIMITED": "SURATNATIONALBANK",
+    "CENTRAL BANK OF INDIA": "CENTRALBANK",
+    "IDFC BANK LIMITED": "IDFC",
+    "INDUSTRIAL BANK OF KOREA": "IBK",
+    "SBM BANK MAURITIUS LIMITED": "SBM",
+    "NATIONAL BANK OF ABU DHABI PJSC": "NBAD",
+    "KEB HANA BANK": "KEBHANA",
+    "THE PANDHARPUR URBAN CO OP. BANK LTD. PANDHARPUR": "PANDHARPURBANK",
+    "SAMARTH SAHAKARI BANK LTD": "SAMARTHBANK",
+    "SHIVALIK MERCANTILE CO OPERATIVE BANK LTD": "SHIVALIKBANK",
+    "HIMACHAL PRADESH STATE COOPERATIVE BANK LTD": "HPSCB",
+    "DEOGIRI NAGARI SAHAKARI BANK LTD. AURANGABAD": "DEOGIRIBANK",
+    "CHINATRUST COMMERCIAL BANK LIMITED": "CHINATRUST",
+    "PT BANK MAYBANK INDONESIA TBK": "MAYBANK",
+    "MAHARASHTRA GRAMIN BANK": "MAHAGRAMIN",
+    "EQUITAS SMALL FINANCE BANK LIMITED": "EQUITAS",
+    "AIRTEL PAYMENTS BANK LIMITED": "AIRTEL",
+    "CITI BANK": "CITIBANK",
+    "CITIZEN CREDIT COOPERATIVE BANK LIMITED": "CITIZENCREDITBANK",
+    "CITY UNION BANK LIMITED": "CUB",
+    "CORPORATION BANK": "CORPBANK",
+    "CREDIT AGRICOLE CORPORATE AND INVESTMENT BANK CALYON BANK": "CACIB",
+    "DENA BANK": "DENABANK",
+    "DEUSTCHE BANK": "DB",
+    "DCB BANK LIMITED": "DCB",
+    "DHANALAKSHMI BANK": "DHANBANK",
+    "DOMBIVLI NAGARI SAHAKARI BANK LIMITED": "DNSBANK",
+    "FIRSTRAND BANK LIMITED": "FIRSTRAND",
+    "HDFC BANK": "HDFC",
+    "HSBC BANK": "HSBC",
+    "ICICI BANK LIMITED": "ICICI",
+    "IDBI BANK": "IDBI",
+    "INDIAN BANK": "INDIANBANK",
+    "INDIAN OVERSEAS BANK": "IOB",
+    "INDUSIND BANK": "INDUSIND",
+    "JANASEVA SAHAKARI BANK LIMITED": "JANASEVABANK",
+    "KAPOL COOPERATIVE BANK LIMITED": "KAPOLBANK",
+    "KARNATAKA BANK LIMITED": "KARNATAKABANK",
+    "KARUR VYSYA BANK": "KVB",
+    "KOTAK MAHINDRA BANK LIMITED": "KOTAK",
+    "MAHANAGAR COOPERATIVE BANK": "MAHANAGARBANK",
+    "MAHARASHTRA STATE COOPERATIVE BANK": "MSCBANK",
+    "MASHREQBANK PSC": "MASHREQBANK",
+    "MIZUHO BANK LTD": "MIZUHOBANK",
+    "NEW INDIA COOPERATIVE BANK LIMITED": "NEWINDIABANK",
+    "NKGSB COOPERATIVE BANK LIMITED": "NKGSB",
+    "NUTAN NAGARIK SAHAKARI BANK LIMITED": "NUTANBANK",
+    "ORIENTAL BANK OF COMMERCE": "OBC",
+    "PARSIK BANK": "GPPARSIKBANK",
+    "PUNJAB AND MAHARSHTRA COOPERATIVE BANK": "PMC",
+    "PUNJAB AND SIND BANK": "PSB",
+    "PUNJAB NATIONAL BANK": "PNB",
+    "RAJKOT NAGRIK SAHAKARI BANK LIMITED": "RNSB",
+    "RESERVE BANK OF INDIA": "RBI",
+    "SHINHAN BANK": "SHINHAN",
+    "SOCIETE GENERALE": "SOCIETEGENERALE",
+    "SOUTH INDIAN BANK": "SOUTHINDIANBANK",
+    "STANDARD CHARTERED BANK": "SC",
+    "STATE BANK OF BIKANER AND JAIPUR": "SBBJ",
+    "STATE BANK OF HYDERABAD": "SBHYD",
+    "STATE BANK OF INDIA": "SBI",
+    "STATE BANK OF MAURITIUS LIMITED": "SBMGROUP",
+    "STATE BANK OF MYSORE": "SBM",
+    "STATE BANK OF PATIALA": "SBP",
+    "STATE BANK OF TRAVANCORE": "SBT",
+    "SYNDICATE BANK": "SYNDICATEBANK",
+    "TAMILNAD MERCANTILE BANK LIMITED": "TMBL",
+    "THE BANK OF NOVA SCOTIA": "SCOTIABANK",
+    "AHMEDABAD MERCANTILE COOPERATIVE BANK": "AMCOBANK",
+    "BHARAT COOPERATIVE BANK MUMBAI LIMITED": "BHARATBANK",
+    "FEDERAL BANK": "FEDERALBANK",
+    "THE GREATER BOMBAY COOPERATIVE BANK LIMITED": "GREATERBANK",
+    "JAMMU AND KASHMIR BANK LIMITED": "JKBANK",
+    "KALUPUR COMMERCIAL COOPERATIVE BANK": "KALUPURBANK",
+    "THE KARANATAKA STATE COOPERATIVE APEX BANK LIMITED": "KARNATAKAAPEX",
+    "KALYAN JANATA SAHAKARI BANK": "KALYANJANATA",
+    "LAXMI VILAS BANK": "LVB",
+    "THE MEHSANA URBAN COOPERATIVE BANK": "MUCBANK",
+    "THE NAINITAL BANK LIMITED": "NAINITALBANK",
+    "RBL BANK LIMITED": "RBL",
+    "THE ROYAL BANK OF SCOTLAND": "RBS",
+    "SARASWAT COOPERATIVE BANK LIMITED": "SARASWATBANK",
+    "THE SHAMRAO VITHAL COOPERATIVE BANK": "SVCBANK",
+    "THE SURATH PEOPLES COOPERATIVE BANK LIMITED": "SPCBL",
+    "THE TAMIL NADU STATE APEX COOPERATIVE BANK": "TNSCBANK",
+    "THE WEST BENGAL STATE COOPERATIVE BANK": "WBSCB",
+    "UCO BANK": "UCOBANK",
+    "UNION BANK OF INDIA": "UNIONBANK",
+    "UNITED BANK OF INDIA": "UNITEDBANK",
+    "VIJAYA BANK": "VIJAYABANK"
+  }
+  var banklist = Object.keys(bankdata);
+  banklist=banklist.sort();
 export default class Student extends Component {
     constructor(...props) {
         super(...props)
@@ -53,6 +226,7 @@ export default class Student extends Component {
             isLoaded: false,
             name: '',
             errorp:'',
+            bankerror:'',
             pallcountry: listdd,
             callcountry: listdd,
             edulevel: '10',
@@ -72,6 +246,7 @@ export default class Student extends Component {
             department: '',
             job_location: '',
             zone: '',
+            isSigle:false,
             u_state: '',
             source: '',
             user: localStorage.getItem("can"),
@@ -116,6 +291,7 @@ export default class Student extends Component {
             ref_relation: '',
             ref_no: '',
             ref_loc: '',
+            jobtype: '',
             candidate_other_data: { name: '', esic_address: '', esic_name: '', esic_no: '', uan: '', pf_no: '', aadhaar_no: '', eid_no: '', pan_card_no: '', vehicle_no: '', valid_up_to: '', place_of_issue: '', dl_no: '' },
             education_data: {},
             candidate_work_history_data: [],
@@ -148,7 +324,8 @@ export default class Student extends Component {
                 aspect: 16 / 9,
             },
             errormain:"",
-            emergencyNo:''
+            emergencyNo:'',
+            referror:''
 
             // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
@@ -282,7 +459,7 @@ export default class Student extends Component {
 
         e.preventDefault();
         console.log("clickfound")
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ bankerror: "This field can not be empty" })
         this.addBank(this, this.state.bank_name, this.state.branch_name, this.state.account_number, this.state.ifsc_code, this.state.user);
     }
 
@@ -746,9 +923,15 @@ export default class Student extends Component {
     setMarriageStatus = (e) => {
         const value = e.target.value;
 
+
         if (value != 0) {
             // alert("dfgdgfdf"+ value)
-            this.setState({ marital_status: value })
+            var isSigle=false;
+            if(value!="Single")
+            {
+                isSigle=true
+            }
+            this.setState({isSigle:isSigle ,marital_status: value })
         }
 
 
@@ -789,8 +972,9 @@ export default class Student extends Component {
         this.setState({ ref_loc: value })
     }
     addRef = (e) => {
+        // referror
         e.preventDefault();
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ referror: "This field can not be empty" })
         var data = { "name": this.state.ref_name, "location": this.state.ref_loc, "mobile_no": this.state.ref_no, "candidate": this.state.user, "relationship": this.state.ref_relation }
         this.addReference(this, data);
     }
@@ -997,6 +1181,9 @@ export default class Student extends Component {
                             recruiter_name: basic_details.recruiter_name,
                             created_by: basic_details.recruiter_id,
                             recruiter_employee_id: basic_details.recruiter_employee_id,
+                            jobtype: basic_details.job_type,
+                            contperson:basic_details.emergency_contact_name,
+                            emergencyNo:basic_details.emergency_contact_number,
                             // profile_picture
 
                             profilepic: "https://aadhaan.ddns.net" + basic_details.profile_picture
@@ -1799,7 +1986,8 @@ export default class Student extends Component {
                                                         }
                                                     </div>
                                                 </li>
-                                                <li>
+                                                {
+                                                    this.state.isSigle?<li>
                                                     <div className="col-md-12">
                                                         <div className="form-group row">
                                                             <label className="col-sm-4 col-form-label">Marriage Date</label>
@@ -1817,7 +2005,9 @@ export default class Student extends Component {
 
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li>:''
+                                                }
+                                                
 
                                                 <div className="submit-section float-right">
                                                     <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Save</button>
@@ -1844,7 +2034,7 @@ export default class Student extends Component {
                                                     </div>
 
                                                     {this.isBlank(this.state.ref_name) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.referror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1860,7 +2050,7 @@ export default class Student extends Component {
                                                     </div>
 
                                                     {this.isBlank(this.state.ref_relation) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.referror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1874,7 +2064,7 @@ export default class Student extends Component {
 
 
                                                     {this.isBlank(this.state.ref_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.referror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1906,20 +2096,20 @@ export default class Student extends Component {
                                                     <div className="form-group">
                                                         <label>Bank Name <span className="text-danger">*</span></label>
 
-                                                        <select className="mb-3 form-control" value={this.state.setBankName} onChange={this.setBankName} >
+                                                        <select className="mb-3 form-control" value={this.state.bank_name} onChange={this.setBankName} >
                                                             {/* <option value='0'>Select Education Level </option> */}
-                                                            <option value="0">Select Bank</option>
-                                                            <option value="mother">HDFC</option>
-                                                            <option value="father">ICICI</option>
-                                                            <option value="spouse">AIXS</option>
-                                                            <option value="son"> SBI</option>
-                                                            <option value="daughter">YES Bank</option>
+                                                            <option value='0'>Select Bank</option>
+                                                                {
+
+                                                                    banklist.map(family => (<option >{family}</option>))
+                                                                }
+
                                                         </select>
 
                                                     </div>
 
                                                     {this.isBlank(this.state.bank_name) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.bankerror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1929,14 +2119,14 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Account number <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setAccountNo} />
+                                                        <input value={this.state.account_number}className="form-control" type="text" onChange={this.setAccountNo} />
                                                     </div>
 
 
 
 
                                                     {this.isBlank(this.state.account_number) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.bankerror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1944,13 +2134,13 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Ifsc code <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setIfsc_Code} />
+                                                        <input className="form-control" type="text"value={this.state.ifsc_code} onChange={this.setIfsc_Code} />
                                                     </div>
 
 
 
                                                     {this.isBlank(this.state.ifsc_code) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.bankerror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1958,7 +2148,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Branch Name</label>
-                                                        <input className="form-control" type="text" onChange={this.setBranchName} />
+                                                        <input className="form-control" type="text"value={this.state.branch_name} onChange={this.setBranchName} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1984,9 +2174,12 @@ export default class Student extends Component {
                                                     <div className="text">{this.state.branch_name}</div>
                                                 </li>
                                             </ul> */}
-                                            <div className="submit-section float-right">
+                                            {
+                                                this.state.account_number?'': <div className="submit-section float-right">
                                                 <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
                                             </div>
+                                            }
+                                           
                                             {/* <label className="text-danger">{this.state.error}</label> */}
                                         </div>
 
@@ -2482,6 +2675,9 @@ export default class Student extends Component {
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                    this.state.jobtype != "backoffice" ?
+                               
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
@@ -2568,7 +2764,7 @@ export default class Student extends Component {
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>:
 
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
@@ -2658,8 +2854,9 @@ export default class Student extends Component {
                                         </div>
                                     </div>
                                 </div>
-
+ }
                             </div>
+                             {/* } */}
                         </div>
                         {/* /Profile Info Tab */}
                         {/* Projects Tab */}
@@ -3725,7 +3922,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Bank Name <span className="text-danger">*</span></label>
-                                                        <input type="text" className="form-control" onChange={this.setBankName} />
+                                                        <input type="text" value={this.state.bank_name}className="form-control" onChange={this.setBankName} />
                                                     </div>
 
                                                     {this.isBlank(this.state.bank_name) ?
@@ -3739,7 +3936,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Account number <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setAccountNo} />
+                                                        <input className="form-control" value={this.state.account_number}type="text" onChange={this.setAccountNo} />
                                                     </div>
 
 
@@ -3754,7 +3951,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Ifsc code <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setIfsc_Code} />
+                                                        <input className="form-control" value={this.state.ifsc_code} type="text" onChange={this.setIfsc_Code} />
                                                     </div>
 
 
@@ -3768,7 +3965,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Branch Name</label>
-                                                        <input className="form-control" type="text" onChange={this.setBranchName} />
+                                                        <input className="form-control" value={this.state.branch_name}type="text" onChange={this.setBranchName} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -4066,7 +4263,13 @@ export default class Student extends Component {
         console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
         if (this.isBlank(bankname) || this.isBlank(acountno) ||
             this.isBlank(ifsc)) {
-            self.setState({ error: "Please fill all required details" })
+                Swal.fire(
+                    '',
+                    'Please fill all reuired field',
+                    'error'
+                  )
+                
+            // self.setState({ error: "Please fill all required details" })
         } else {
             var data = JSON.stringify({
                 "candidate": userid,
@@ -4087,13 +4290,18 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
+                    // console.log(JSON.stringify(response.data));
+                    // self.setState({ error: response.data.message })
                     if (response.data.status == true) {
+                        Swal.fire(
+                            'Bank details successfully submitted ',
+                            '',
+                            'success'
+                          )
                         //let path='app/profile/candidate-profile';
-                        alert('Bank details successfully submitted ✅')
-                        $("#bank_contact_modal").modal("hide");
-                        self.setState({ error: "", error1: '' })
+                        // alert(' ✅')
+                        // $("#bank_contact_modal").modal("hide");
+                        // self.setState({ error: "", error1: '' })
                         // window.location.reload(false);
 
 
@@ -4101,7 +4309,11 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4135,10 +4347,17 @@ export default class Student extends Component {
             this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)|| this.isBlank(data.emergencyNo)|| this.isBlank(data.contperson)
 
         ) {
-            this.setState({ errormain: "This field can not be empty" })
-            // this.alert("Please fill all required fields.");
-            self.setState({ error: "Please fill all required fields." })
-            // return
+            Swal.fire(
+                        '',
+                        'Please fill all reuired field',
+                        'error'
+                      )
+        }else if(data.name==data.contperson||data.p_mobile_no==data.emergencyNo||data.p_mobile_no==data.c_mobile_no){
+            Swal.fire(
+                '',
+                'Person name and emergency contact details can not be same',
+                'error'
+              )
         } else {
             
 
@@ -4246,7 +4465,11 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "Network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4290,7 +4513,11 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "Network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4336,7 +4563,11 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "Network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4370,8 +4601,11 @@ export default class Student extends Component {
                     }
                 })
                 .catch(function (error) {
-                    self.setState({ error: "Network isuue" })
-                    console.log(error);
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
 
         }
@@ -4381,7 +4615,12 @@ export default class Student extends Component {
         data.candidate = data.id
         if (this.isBlank(data.nationality) || this.isBlank(data.blood_group) ||
             this.isBlank(data.mother_tongue) || this.isBlank(data.category)) {
-            self.setState({ error: "Please fill all required details", error1: "This field can not be empty" })
+                Swal.fire(
+                    '',
+                    'Please fill all reuired field',
+                    'error'
+                  )
+            // self.setState({ error: "Please fill all required details", error1: "This field can not be empty" })
         } else {
             self.setState({ error1: "" })
             let statusm = '';
@@ -4441,8 +4680,11 @@ export default class Student extends Component {
                     }
                 })
                 .catch(function (error) {
-                    self.setState({ error: "Network isuue" })
-                    console.log(error);
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4468,7 +4710,7 @@ export default class Student extends Component {
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                self.setState({ error: response.data.message })
+                // self.setState({ error: response.data.message })
                 if (response.data.status == true) {
                     //let path='app/profile/candidate-profile';
                     alert(document_type + ' uploaded successfully  ✅')
@@ -4479,8 +4721,11 @@ export default class Student extends Component {
                 }
             })
             .catch(function (error) {
-                console.log(error);
-                self.setState({ error: "File not found" })
+                Swal.fire(
+                    '',
+                    'Network Issues please check your internet connection',
+                    'error'
+                  )
             });
 
 
@@ -4520,8 +4765,11 @@ export default class Student extends Component {
 
                 })
                 .catch(function (error) {
-                    console.log(error);
-                    self.setState({ error: "Nework issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4531,7 +4779,11 @@ export default class Student extends Component {
         console.log("refrences" + JSON.stringify(data))
         if (this.isBlank(data.name) ||
             this.isBlank(data.relationship) || this.isBlank(data.mobile_no)) {
-            self.setState({ error: "Please fill all required details" })
+                Swal.fire(
+                    '',
+                    'Please fill all reuired field',
+                    'error'
+                  )
         }
         else {
             console.log("called")
@@ -4546,16 +4798,23 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
-                    alert('Alternate  details successfully submitted ✅')
-
-                    self.apicall();
-                    self.closeRef();
+                    // console.log(JSON.stringify(response.data));
+                    // self.setState({ error: response.data.message })
+                    // alert('Alternate  details successfully submitted ✅')
+                    Swal.fire(
+                        'Alternate  details successfully submitted ',
+                        '',
+                        'success'
+                      )
+                    // self.apicall();
+                    // self.closeRef();
                 })
                 .catch(function (error) {
-                    console.log(error);
-                    self.setState({ error: "Nework issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
