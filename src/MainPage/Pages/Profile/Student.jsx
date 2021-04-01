@@ -225,9 +225,14 @@ export default class Student extends Component {
             isProfile:false,
             otherdetolsFlag:false,
             refflag:false,
+            expflag:false,
+            bankflag:false,
+            eductionFlag:false,
+            eductionerro:'',
             isopenProfileModel: false,
             isLoaded: false,
             name: '',
+            experror:'',
             errorp:'',
             bankerror:'',
             pallcountry: listdd,
@@ -537,7 +542,7 @@ export default class Student extends Component {
     }
     addExperienceData = (e) => {
         e.preventDefault();
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ experror: "This field can not be empty" })
         var data = { "organization": this.state.experienceOrgination, "designation": this.state.exprienceDesignation, "reason_for_leaving": this.state.reasonforSep, "candidate": this.state.user, "start_date": this.state.startDate_emp, "end_date": this.state.enddate_emp }
 
         var data1 = { 'candidate': this.state.user }
@@ -1054,12 +1059,15 @@ export default class Student extends Component {
         // alert("iiiiid",id)
         // console.log("hhhhhhhhh",id)
         // this.setState({id:id });
-
-        this.props.history.push({
-            pathname: path,
-            state: this.state
-
-        })
+        if((this.state.candidate_documents_data.length>7 )&&(this.state.isProfile)&&(this.state.otherdetolsFlag)&&(this.state.refflag))
+        {
+            this.props.history.push({
+                pathname: path,
+                state: this.state
+    
+            })
+        }
+       
 
 
 
@@ -1077,6 +1085,21 @@ export default class Student extends Component {
 
         })
 
+    }
+    addrow=(e)=>
+    {
+       
+        this.setState({eductionerro:'',degree:'',school:'',experror:'',edu_location:'',passing_year:'',percentage:'',board:'',ref_name:'',ref_loc:'',ref_relation:'',ref_no:'',error:'',
+              
+             family_adhar: '',
+            family_name: '',
+            family_relation: '',
+            family_adhar: '',
+            isNomniee:false,
+            family_dob:undefined,
+            experienceOrgination:'',exprienceDesignation:'',reasonforSep:'',enddate_emp:'',startDate_emp:'',
+       }) ;
+        this.apicall()
     }
     esiClick = (e) => {
         let path = './Esic-declrationForm';
@@ -1145,7 +1168,7 @@ export default class Student extends Component {
                         var candidate_bank_data = data.candidate_bank_data
                         this.setState({
 
-
+                            bankflag:true,
                             bank_name: candidate_bank_data.bank_name,
                             branch_name: candidate_bank_data.branch_name,
                             account_number: candidate_bank_data.account_number,
@@ -1297,7 +1320,7 @@ export default class Student extends Component {
                         var candidate_reference_data = data.candidate_reference_data.reference
 
                         this.setState({
-                            refflag=true,
+                            refflag:true,
                             reference: candidate_reference_data
 
                         });
@@ -1350,7 +1373,7 @@ export default class Student extends Component {
                     var candidate_documents_data_len = data.candidate_documents_data.document.length
                     if (candidate_documents_data_len > 0) {
                         var candidate_documents_data = data.candidate_documents_data.document
-                        console.log("hgjdhjgfgjhjfhj", candidate_documents_data)
+                        // console.log("hgjdhjgfgjhjfhj", candidate_documents_data)
 
                         this.setState({
 
@@ -1362,27 +1385,27 @@ export default class Student extends Component {
                     console.log("error", err)
                     // document.getElementById("demo").innerHTML = err.message;
                 }
-                try {
-                    var candidate_documents_data_len = data.candidate_documents_data.document.length
-                    if (candidate_documents_data_len > 0) {
-                        var candidate_documents_data = data.candidate_documents_data.document
-                        console.log("hgjdhjgfgjhjfhj", candidate_documents_data)
-                        var sign = null;
-                        // if(candidate_documents_data.document_type=="Signature"){
-                        //   sign=""+candidate_documents_data.document
-                        // }
+                // try {
+                //     var candidate_documents_data_len = data.candidate_documents_data.document.length
+                //     if (candidate_documents_data_len > 0) {
+                //         var candidate_documents_data = data.candidate_documents_data.document
+                //         console.log("hgjdhjgfgjhjfhj", candidate_documents_data)
+                //         var sign = null;
+                //         // if(candidate_documents_data.document_type=="Signature"){
+                //         //   sign=""+candidate_documents_data.document
+                //         // }
 
-                        this.setState({
+                //         this.setState({
 
-                            candidate_documents_data: candidate_documents_data
+                //             candidate_documents_data: candidate_documents_data
 
-                        });
-                        // signn
-                    }
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
-                }
+                //         });
+                //         // signn
+                //     }
+                // } catch (err) {
+                //     console.log("error", err)
+                //     // document.getElementById("demo").innerHTML = err.message;
+                // }
                 try {
                     // var recruiter_information = data.recruiter_information.length
                     // if (recruiter_information > 0) {
@@ -1432,6 +1455,14 @@ export default class Student extends Component {
         console.log("datat", datat)
         // var d='Resume/ Bio-DATA'
         var d = this.state.docname
+        if (datat == '') {
+            Swal.fire(
+                '',
+                'Please select file',
+                'error'
+              )
+            return
+          }
         this.documentUpload(this, datat, d, this.state.user);
 
     }
@@ -1444,17 +1475,18 @@ export default class Student extends Component {
 
         const edu_data = this.state.education_data
         var candidate_documents_data = this.state.candidate_documents_data
-        // alert("ddd",candidate_documents_data,"ggg",candidate_doc_list)
-        var candidate_doc_list = this.state.candidate_doc_list
-        // console.log(candidate_doc_list,"chandan kumar",candidate_documents_data)
+        // alert(candidate_documents_data)
+        var candidate_doc_list = []
+        console.log(candidate_documents_data,"+++++++++++++++++++++++++")
         for (var i = 0; i < candidate_documents_data.length; i++) {
-            var ff = candidate_documents_data[i].document_type
-
-            var index = candidate_doc_list.indexOf(ff)
-            console.log(ff, "fffff", index)
-            if (index > -1) {
-                candidate_doc_list.splice(index, 1);
-            }
+            console.log(candidate_documents_data[i].document_type,"+++++++++++++++++++++++++")
+            // var ff = candidate_documents_data[i].document_type
+            candidate_doc_list.push(candidate_documents_data[i].document_type)
+            // var index = candidate_doc_list.indexOf(ff)
+            // console.log("+++++++++++++++++++++++++++++++")
+            // if (index > -1) {
+            //     candidate_doc_list.splice(index, 1);
+            // }
         }
 
 
@@ -2029,9 +2061,29 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Reference Details</h3>
-                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" onClick={this.addrow}>Add more <i className="fa fa-plus" /></button></span>
+                                  {can_reference.map(reference => (
+                        <ul className="personal-info" key={reference.key}>
+                          <li>
+                            <div className="title">Name</div>
+                            <div className="text">{reference.name}</div>
+                          </li>
 
-                                            <div className="row">
+                          <li>
+                            <div className="title">Phone </div>
+                            <div className="text">{reference.mobile_no}</div>
+                          </li>
+                          <li>
+                            <div className="title">Location </div>
+                            <div className="text">{reference.location}</div>
+                          </li>
+                          <br />
+                          <hr />
+                        </ul>
+
+
+                      ))}
+                         <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Name <span className="text-danger">*</span></label>
@@ -2082,6 +2134,8 @@ export default class Student extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+                      
+                                            
 
                                             <div className="submit-section float-right">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addRef}>Save</button>
@@ -2196,11 +2250,83 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Family Details</h3>
-                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" onClick={this.addrow}>Add more <i className="fa fa-plus" /></button></span>
+                                            {family_data.map(family => (
+                            //   <tr key={family.key}>
+                            //     <td>{family.name}</td>
+                            //     <td>{family.relation}</td>
+                            //     <td>{family.dob}</td>
+                            //     <td>{family.aadhaar_no}</td>
+                            //     <td className="text-right">
+                            //       <div className="dropdown dropdown-action">
+                            //         <a aria-expanded="false" data-toggle="dropdown" className="action-icon dropdown-toggle" href="#"><i className="material-icons">more_vert</i></a>
+                            //         <div className="dropdown-menu dropdown-menu-right">
+                            //           {/* <a href="#" className="dropdown-item"><i className="fa fa-pencil m-r-5" /> Edit</a>
+                            //           <a href="#" className="dropdown-item"><i className="fa fa-trash-o m-r-5" /> Delete</a> */}
+                            //         </div>
+                            //       </div>
+                            //     </td>
+                            //   </tr>
+                            <div className="row">
+                                           
 
+                            <div className="col-md-6">
+
+                                <div className="form-group">
+                                    <label>Name </label>
+                                    <input value={family.name} className="form-control" type="text"  />
+                                </div>
+
+                               
+
+
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Relationship </label>
+                                    <select className="mb-3 form-control" value={family.relation}  >
+                                        
+                                        <option value="0">{family.relation}</option>
+                                      
+                                    </select>
+                                   
+                                </div>
+
+
+                               
+
+
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Date of birth :<DatePicker
+                                                             className="form-control floating datetimepicker"></DatePicker> </label>
+                                </div>
+
+
+
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Aadhar Number </label>
+                                    <input className="form-control" type="text" maxLength="12" value={family.aadhaar_no}  />
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <input type="checkbox" id="vehicle10" name="vehicle1" checked={family.is_nominee} />
+                                    <label className="ml-2">Is Nominee</label>
+                                </div>
+                            </div>
+                        </div>
+
+                            ))}
 
                                             <div className="row">
+                                           
+
                                                 <div className="col-md-6">
+
                                                     <div className="form-group">
                                                         <label>Name <span className="text-danger">*</span></label>
                                                         <input value={this.state.family_name} className="form-control" type="text" onChange={this.setFamilyName} />
@@ -2286,8 +2412,28 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Education Details</h3>
-                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" onClick={this.addrow}>Add more <i className="fa fa-plus" /></button></span>
+                                            <div className="experience-box">
+                        <ul className="experience-list">
+                          {education_list.map(education => (
+                            <li key={education.key}>
+                              <div className="experience-user">
+                                <div className="before-circle" />
+                              </div>
+                              <div className="experience-content">
+                                <div className="timeline-content">
+                                  <a href="" className="name">{education.includes("_") ? "Postgraduate" : education.slice(0, 1).toUpperCase() + education.slice(1, education.length)}  {edu_data['' + education].board_university ? "from " + edu_data['' + education].board_university : ""}</a>
+                                  <div>{edu_data['' + education].school}</div>
+                                  <span className="time">{edu_data['' + education].passing_year}</span>
+                                </div>
+                              </div>
+                            </li>
+                          ))}
 
+                        </ul>
+                      </div>
+                      <br></br>
+                      <br></br>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     {/* <label>Education-Level</label> */}
@@ -2311,7 +2457,7 @@ export default class Student extends Component {
 
 
                                                     {this.isBlank(this.state.school) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.eductionerro}</span>
                                                         :
 
                                                         ''
@@ -2334,7 +2480,7 @@ export default class Student extends Component {
 
 
                                                     {this.isBlank(this.state.passing_year) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.eductionerro}</span>
                                                         :
                                                         ''
                                                     }
@@ -2348,7 +2494,7 @@ export default class Student extends Component {
 
 
                                                     {this.isBlank(this.state.board) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.eductionerro}</span>
                                                         :
                                                         ''
                                                     }
@@ -2370,7 +2516,7 @@ export default class Student extends Component {
 
 
                                                     {this.isBlank(this.state.percentage) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.eductionerro}</span>
                                                         :
                                                         ''
                                                     }
@@ -2389,8 +2535,28 @@ export default class Student extends Component {
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Work Experience</h3>
-                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" data-target="#">Add more <i className="fa fa-plus" /></button></span>
+                                            <span style={{ position: 'absolute', top: '10px', right: '30px' }}><button className="edit-icon ml-2 w-auto p-1" data-toggle="modal" onClick={this.addrow}>Add more <i className="fa fa-plus" /></button></span>
+                                            <div className="experience-box">
 
+<ul className="experience-list">
+  {work_history_data.map(work => (
+    <li key={work.key}>
+      <div className="experience-user">
+        <div className="before-circle" />
+      </div>
+      <div className="experience-content">
+        <div className="timeline-content">
+          <a href="" className="name">{work.designation}  at {work.organization}</a>
+          <span className="time">{work.start_date}-{work.end_date}</span>
+        </div>
+      </div>
+    </li>
+  ))}
+
+
+
+</ul>
+</div>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <label className="focus-label">Organisation<span className="text-danger">*</span></label>
@@ -2399,7 +2565,7 @@ export default class Student extends Component {
 
                                                     </div>
                                                     {this.isBlank(this.state.experienceOrgination) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.experror}</span>
                                                         :
                                                         ''
                                                     }
@@ -2421,7 +2587,7 @@ export default class Student extends Component {
                                                     </div>
 
                                                     {this.isBlank(this.state.exprienceDesignation) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.experror}</span>
                                                         :
                                                         ''
                                                     }
@@ -2444,7 +2610,7 @@ export default class Student extends Component {
 
 
                                                     {this.isBlank(this.state.startDate_emp ? Moment(this.state.startDate_emp, 'YYYY-MM-DD') : Moment()) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.experror}</span>
                                                         :
                                                         ''
                                                     }
@@ -2693,7 +2859,7 @@ export default class Student extends Component {
                                     </div>
                                 </div>
                                 {
-                                    this.state.jobtype == "backoffice" ?
+                                    this.state.jobtype != "backoffice" ?
                                
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
@@ -2702,57 +2868,57 @@ export default class Student extends Component {
                                            
                                             <ul className="personal-info">
                                             <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Front")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Back")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Resume/ Bio-DATA")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
                                                 </li>
                                                 <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Passport Size Photo")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
                                                 </li>
                                                 <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Bank Passbook/Canceled Check")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Cancelled Cheque")}></i></a>
                                                 </li>
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Signature/Thumb Impression")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
                                                 </li> <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front</div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Driving License Front")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
                                                 </li>
                                                 <li><div className="title">Driving License Back</div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Driving License Back")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
                                                 </li>
                                                 <li><div className="title">Voter Id Card Front</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Voter Id Front")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Front")}></i></a></li>
 
                                                 <li><div className="title">Voter Id Card Back</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Back")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
                                                 <li>
                                                     <div className="title">Pan Card</div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Pan Card")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
                                                 <li><div className="title">Ration Card</div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Ration Card")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
                                                 <li><div className="title">Rent Agreement</div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Rent Agreement")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
                                                 <li><div className="title">Marriage Certificate</div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Marriage Certificate")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
                                                 {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
@@ -2789,45 +2955,45 @@ export default class Student extends Component {
                                             </ul> */}
                                             <ul className="personal-info">
                                                 <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Front")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Back")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Resume/ Bio-DATA")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
                                                 </li>
                                                 <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Passport Size Photo")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
                                                 </li>
                                                 <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Bank Passbook/Canceled Check")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Cancelled Cheque")}></i></a>
                                                 </li>
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Signature/Thumb Impression")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
                                                 </li> <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front <span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Driving License Front")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Driving License Back <span class="text-danger">*</span></div>
-                                                    <input type="checkbox"></input>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Driving License Back")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Driving License Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Voter Id Card Front</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Front")} ></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Front")}></i></a></li>
 
                                                 <li><div className="title">Voter Id Card Back</div>
-                                                    <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Back")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
                                                 <li>
                                                     <div className="title">Pan Card</div>
                                                     <input type="checkbox"></input>
@@ -4304,6 +4470,8 @@ export default class Student extends Component {
                     // console.log(JSON.stringify(response.data));
                     // self.setState({ error: response.data.message })
                     if (response.data.status == true) {
+                        self.setState({ bankflag:true })
+                        // bankflag
                         Swal.fire(
                             'Bank details successfully submitted ',
                             '',
@@ -4493,10 +4661,16 @@ export default class Student extends Component {
 
         if (this.isBlank(data.organization) || this.isBlank(data.designation) ||
             this.isBlank(data.start_date) || this.isBlank(data.end_date)) {
-            self.setState({ error: "Please fill all required details" })
+                Swal.fire(
+                    '',
+                    'Please fill all required details',
+                    'error'
+                  )
+            // self.setState({ error: "Please fill all required details" })
         } else {
+           
 
-            self.setState({ error: "", error1: '' })
+            self.setState({ experienceOrgination:'',exprienceDesignation:'',reasonforSep:'',enddate_emp:'',startDate_emp:'',experror: "", error1: '' })
             var config = {
                 method: 'post',
                 url: baseurl + '/api/candidate/work-experience',
@@ -4508,15 +4682,19 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
-                    self.setState({ error: response.data.message })
+                    // self.setState({ error: response.data.message })
                     console.log(JSON.stringify(response.data));
                     if (response.data.status == true) {
                         //let path='app/profile/candidate-profile';
-                        alert('Work experience details successfully submitted ✅')
+                        // alert(' ✅')
                         // $("#experience_info").modal("hide");
-
+                        Swal.fire(
+                            'Work experience details successfully submitted ',
+                            '',
+                            'success'
+                          )
                         self.apicall();
-                        self.closeWorkDetails();
+                        // self.closeWorkDetails();
                         //  $("#experience_info").modal("hide");
 
 
@@ -4539,15 +4717,27 @@ export default class Student extends Component {
 
         console.log("called")
         if (this.isBlank(data.name) || this.isBlank(data.relation)) {
-            self.setState({ error: "Please fill all required details" })
+            Swal.fire(
+                '',
+                'Please fill all required details',
+                'error'
+              )
+            // self.setState({ error: "" })
         } else if (data.relation == "0") {
-            self.setState({ error: "Please fill all required details" })
+            Swal.fire(
+                '',
+                'Please fill all required details',
+                'error'
+              )
         } else {
             self.setState({
+              
                 error: "", error1: '', family_adhar: '',
-                name: '',
-                relation: '',
-                dob: '',
+                family_name: '',
+                family_relation: '',
+                family_adhar: '',
+                isNomniee:false,
+                family_dob:undefined
             })
             var config = {
                 method: 'post',
@@ -4560,13 +4750,18 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
-                    self.setState({ error: response.data.message })
+                    // self.setState({ error: response.data.message })
                     console.log(JSON.stringify(response.data));
                     if (response.data.status == true) {
                         //let path='app/profile/candidate-profile';
-                        alert('Family details successfully submitted ✅')
+                        // alert(' ✅')
+                        Swal.fire(
+                            'Family details successfully submitted ',
+                            '',
+                            'success'
+                          )
                         self.apicall();
-                        self.closeFamilyDetails();
+                        // self.closeFamilyDetails();
                         // $("#family_info_modal").modal("hide");
 
 
@@ -4745,17 +4940,18 @@ export default class Student extends Component {
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                // self.setState({ error: response.data.message })
+                self.setState({ resume_file: '' })
                 if (response.data.status == true) {
                     //let path='app/profile/candidate-profile';
                     // alert(document_type + ' uploaded successfully  ✅')
-                    // self.apicall();
-                    // self.closeDocument();
+                    self.apicall();
+                    
+                    self.closeDocument();
                     // window.location.reload(false);
                     Swal.fire(
                         document_type+'',
-                        'Network Issues please check your internet connection',
-                        'error'
+                        ' uploaded successfully.',
+                        'success'
                       )
 
                 }else{
@@ -4783,7 +4979,11 @@ export default class Student extends Component {
 
         if (this.isBlank(data.percentage) ||
             this.isBlank(data.school) || this.isBlank(data.passing_year) || this.isBlank(data.board_university)) {
-            self.setState({ error: "Please fill all required details" })
+                Swal.fire(
+                    '',
+                    'Please fill all reuired field',
+                    'error'
+                  )
         } else {
             console.log("called")
             var config = {
@@ -4797,16 +4997,28 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
+                    
                     console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
+                    self.setState({ error:'',eductionerro:'',degree:'',school:'',experror:'',edu_location:'',passing_year:'',percentage:'',board:'', })
                     if (response.data.status == true) {
+                        Swal.fire(
+                            'Education details successfully submitted ',
+                            '',
+                            'success'
+                          )
                         //let path='app/profile/candidate-profile';
-                        alert('Education details successfully submitted ✅')
+                        // alert(' ✅')
                         self.apicall();
                         //  $("#education_info").modal("hide");
 
-                        self.closeEducationDetails()
+                        // self.closeEducationDetails()
 
+                    }else{
+                        Swal.fire(
+                            '',
+                            'Network Issues please check your internet connection',
+                            'error'
+                          ) 
                     }
 
                 })
@@ -4847,6 +5059,8 @@ export default class Student extends Component {
                     // console.log(JSON.stringify(response.data));
                     // self.setState({ error: response.data.message })
                     // alert('Alternate  details successfully submitted ✅')
+                    self.apicall();
+                    self.setState({referror:'',ref_name:'',ref_loc:'',ref_relation:'',ref_no:''}) ;
                     Swal.fire(
                         'Alternate  details successfully submitted ',
                         '',
