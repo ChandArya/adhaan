@@ -439,11 +439,12 @@ class EsicdeclrationForm extends Component {
                                                         </tr>
                                                         <tr>
                                                         <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
-                                                                <b>Adhaan Solution Pvt. Ltd</b><br></br>
-                                            807, 8th Floor, Dev Aurum,<br></br>
-                                            Nr. Anand Nagar Cross Road,<br></br>
-                                            100ft Road,Prahladnagar,<br></br>
-                                            Ahmedabad-380015 <br></br>
+                                                        Adhaan Solution Pvt. Ltd.<br></br>
+                                            Times Square Arcade,<br></br>
+                                            Office No – 712 / 712-A,  Opp-Rambaug<br></br>                                   
+Nr Ravija Plaza ,Thaltej-shilaj Road,<br></br>
+Thaltej,
+Ahmedabad-380059 <br></br>
                                                                 </td>
                                                         </tr>
                                                         <tr>
@@ -474,11 +475,13 @@ class EsicdeclrationForm extends Component {
                                                         <tr>
                                                         <td colspan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
                                                                 <b>Name & Address of the Employer</b><br /><br />
-                                                                <b>Adhaan Solution Pvt. Ltd</b><br></br>
-                                            807, 8th Floor, Dev Aurum,<br></br>
-                                            Nr. Anand Nagar Cross Road,<br></br>
-                                            100ft Road,Prahladnagar,<br></br>
-                                            Ahmedabad-380015 <br></br>
+                                                               
+                                                                Adhaan Solution Pvt. Ltd.<br></br>
+                                            Times Square Arcade,<br></br>
+                                            Office No – 712 / 712-A,  Opp-Rambaug<br></br>                                   
+Nr Ravija Plaza ,Thaltej-shilaj Road,<br></br>
+Thaltej,
+Ahmedabad-380059 <br></br>
                                                             {/* <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br /> */}
                                                             
                                                         
@@ -825,8 +828,8 @@ class EsicdeclrationForm extends Component {
                                             
                                         <p style={{ marginLeft: '30%' }}> मोहर सहिल
  शाखा कार्यालय प्रबंधक के हस्ताक्षर /Signature of B.M. with Seal</p>
- <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
-                                        </div>
+ {/* <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />*/}
+                                        </div> 
 
 
 
@@ -861,8 +864,8 @@ in the membership of my family within 15 days of such change
                                              Counter Signature by the Employer
                                              <br/>
                                           Signature with seal
-                                          <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
-                                          <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />             
+                                          {/* <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                                          <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />              */}
 
                                                  
                                             </p>

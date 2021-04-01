@@ -15,7 +15,8 @@ import Circle from 'react-circle';
 import { countries } from 'country-data-list';
 import $ from "jquery";
 import ReactDOM from 'react-dom';
-
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import worldMapData from 'city-state-country'
@@ -26,7 +27,180 @@ import { buildTimeColsModel } from '@fullcalendar/timegrid';
 
 // var FormData = require('form-data');
 // var fs = require('fs');
-
+var bankdata = {
+    "AXIS BANK": "AXIS",
+    "BANK OF AMERICA": "BOA",
+    "BANK OF INDIA": "BOI",
+    "YES BANK": "YESBANK",
+    "THE ANDHRA PRADESH STATE COOPERATIVE BANK LIMITED": "APCOB",
+    "THE NASIK MERCHANTS COOPERATIVE BANK LIMITED": "NAMCOBANK",
+    "APNA SAHAKARI BANK LIMITED": "APNABANK",
+    "AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED": "ANZ",
+    "CAPITAL SMALL FINANCE BANK LIMITED": "CAPITALBANK",
+    "BANK OF MAHARASHTRA": "BOM",
+    "JALGAON JANATA SAHAKARI BANK LIMITED": "JJSBL",
+    "JANATA SAHAKARI BANK LIMITED": "JANATABANK",
+    "KALLAPPANNA AWADE ICHALKARANJI JANATA SAHAKARI BANK LIMITED": "IJSBANK",
+    "THE MUMBAI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "MDCCBANK",
+    "PRIME COOPERATIVE BANK LIMITED": "PRIMEBANK",
+    "THE THANE BHARAT SAHAKARI BANK LIMITED": "THANEBHARATBANK",
+    "THE A.P. MAHESH COOPERATIVE URBAN BANK LIMITED": "APMAHESHBANK",
+    "BANK OF TOKYO MITSUBISHI LIMITED": "MUFG",
+    "THE GUJARAT STATE COOPERATIVE BANK LIMITED": "GSCBANK",
+    "KARNATAKA VIKAS GRAMEENA BANK": "KVGBANK",
+    "THE MUNICIPAL COOPERATIVE BANK LIMITED": "MUNICIPALBANK",
+    "NAGPUR NAGARIK SAHAKARI BANK LIMITED": "NNSBANK",
+    "THE KANGRA CENTRAL COOPERATIVE BANK LIMITED": "KCCB",
+    "THE RAJASTHAN STATE COOPERATIVE BANK LIMITED": "RSCB",
+    "THE SURAT DISTRICT COOPERATIVE BANK LIMITED": "SUDICOBANK",
+    "THE VISHWESHWAR SAHAKARI BANK LIMITED": "VISHWESHWARBANK",
+    "WOORI BANK": "WOORIBANK",
+    "SUTEX COOPERATIVE BANK LIMITED": "SUTEXBANK",
+    "BARCLAYS BANK": "BARCLAYS",
+    "GURGAON GRAMIN BANK": "SHGB",
+    "COMMONWEALTH BANK OF AUSTRALIA": "COMMBANK",
+    "PRATHAMA BANK": "PRATHAMABANK",
+    "NORTH MALABAR GRAMIN BANK": "KERALAGBANK",
+    "THE VARACHHA COOPERATIVE BANK LIMITED": "VARACHHABANK",
+    "SBER BANK": "SBERBANK",
+    "TUMKUR GRAIN MERCHANTS COOPERATIVE BANK LIMITED": "TGMCBANK",
+    "VASAI VIKAS SAHAKARI BANK LIMITED": "VASAIVIKASBANK",
+    "VASAI VIKAS SAHAKARI BANK LTD": "VASAIVIKASBANK",
+    "BASSEIN CATHOLIC COOPERATIVE BANK LIMITED": "BCCB",
+    "WESTPAC BANKING CORPORATION": "WESTPAC",
+    "ANDHRA PRAGATHI GRAMEENA BANK": "APGB",
+    "SUMITOMO MITSUI BANKING CORPORATION": "SMBC",
+    "THE SEVA VIKAS COOPERATIVE BANK LIMITED": "SEVAVIKASBANK",
+    "THE THANE DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "THANEDISTRICTBANK",
+    "JP MORGAN BANK": "JPMORGAN",
+    "THE GADCHIROLI DISTRICT CENTRAL COOPERATIVE BANK LIMITED": "GDCCBANK",
+    "THE AKOLA DISTRICT CENTRAL COOPERATIVE BANK": "AKOLADCC",
+    "THE KURMANCHAL NAGAR SAHAKARI BANK LIMITED": "KURMANCHALBANK",
+    "THE JALGAON PEOPELS COOPERATIVE BANK LIMITED": "JPCBANK",
+    "PARIBAS": "BNPPARIBAS",
+    "NATIONAL AUSTRALIA BANK LIMITED": "NAB",
+    "SAHEBRAO DESHMUKH COOPERATIVE BANK LIMITED": "SDCBANK",
+    "BANK INTERNASIONAL INDONESIA": "MAYBANK",
+    "SOLAPUR JANATA SAHAKARI BANK LIMITED": "SJSBBANK",
+    "INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED": "ICBC",
+    "UNITED OVERSEAS BANK LIMITED": "UOB",
+    "ZILA SAHAKRI BANK LIMITED GHAZIABAD": "ZSBL",
+    "JANASEVA SAHAKARI BANK BORIVLI LIMITED": "JANASEVABANK",
+    "RAJGURUNAGAR SAHAKARI BANK LIMITED": "RAJGURUNAGARBANK",
+    "CANARA BANK": "CANARABANK",
+    "NAGAR URBAN CO OPERATIVE BANK": "NUCB",
+    "AKOLA JANATA COMMERCIAL COOPERATIVE BANK": "AKOLAJANATABANK",
+    "BHARATIYA MAHILA BANK LIMITED": "BMB",
+    "HSBC BANK OMAN SAOG": "HSBC",
+    "THE KANGRA COOPERATIVE BANK LIMITED": "KANGRABANK",
+    "THE ZOROASTRIAN COOPERATIVE BANK LIMITED": "ZOROASTRIANBANK",
+    "SHIKSHAK SAHAKARI BANK LIMITED": "SHIKSHAKBANK",
+    "THE HASTI COOP BANK LTD": "HASTIBANK",
+    "CATHOLIC SYRIAN BANK LIMITED": "CSB",
+    "KERALA GRAMIN BANK": "KERALAGBANK",
+    "PRAGATHI KRISHNA GRAMIN BANK": "PRAGATHIKRISHNABANK",
+    "DEPOSIT INSURANCE AND CREDIT GUARANTEE CORPORATION": "DICGC",
+    "DEVELOPMENT BANK OF SINGAPORE": "DBS",
+    "DOHA BANK": "DOHABANK",
+    "DOHA BANK QSC": "DOHABANK",
+    "EXPORT IMPORT BANK OF INDIA": "EXIMBANK",
+    "JANAKALYAN SAHAKARI BANK LIMITED": "JKSBL",
+    "TJSB SAHAKARI BANK LIMITED": "TJSBBANK",
+    "TJSB SAHAKARI BANK LTD": "TJSBBANK",
+    "THE COSMOS CO OPERATIVE BANK LIMITED": "COSMOSBANK",
+    "SURAT NATIONAL COOPERATIVE BANK LIMITED": "SURATNATIONALBANK",
+    "CENTRAL BANK OF INDIA": "CENTRALBANK",
+    "IDFC BANK LIMITED": "IDFC",
+    "INDUSTRIAL BANK OF KOREA": "IBK",
+    "SBM BANK MAURITIUS LIMITED": "SBM",
+    "NATIONAL BANK OF ABU DHABI PJSC": "NBAD",
+    "KEB HANA BANK": "KEBHANA",
+    "THE PANDHARPUR URBAN CO OP. BANK LTD. PANDHARPUR": "PANDHARPURBANK",
+    "SAMARTH SAHAKARI BANK LTD": "SAMARTHBANK",
+    "SHIVALIK MERCANTILE CO OPERATIVE BANK LTD": "SHIVALIKBANK",
+    "HIMACHAL PRADESH STATE COOPERATIVE BANK LTD": "HPSCB",
+    "DEOGIRI NAGARI SAHAKARI BANK LTD. AURANGABAD": "DEOGIRIBANK",
+    "CHINATRUST COMMERCIAL BANK LIMITED": "CHINATRUST",
+    "PT BANK MAYBANK INDONESIA TBK": "MAYBANK",
+    "MAHARASHTRA GRAMIN BANK": "MAHAGRAMIN",
+    "EQUITAS SMALL FINANCE BANK LIMITED": "EQUITAS",
+    "AIRTEL PAYMENTS BANK LIMITED": "AIRTEL",
+    "CITI BANK": "CITIBANK",
+    "CITIZEN CREDIT COOPERATIVE BANK LIMITED": "CITIZENCREDITBANK",
+    "CITY UNION BANK LIMITED": "CUB",
+    "CORPORATION BANK": "CORPBANK",
+    "CREDIT AGRICOLE CORPORATE AND INVESTMENT BANK CALYON BANK": "CACIB",
+    "DENA BANK": "DENABANK",
+    "DEUSTCHE BANK": "DB",
+    "DCB BANK LIMITED": "DCB",
+    "DHANALAKSHMI BANK": "DHANBANK",
+    "DOMBIVLI NAGARI SAHAKARI BANK LIMITED": "DNSBANK",
+    "FIRSTRAND BANK LIMITED": "FIRSTRAND",
+    "HDFC BANK": "HDFC",
+    "HSBC BANK": "HSBC",
+    "ICICI BANK LIMITED": "ICICI",
+    "IDBI BANK": "IDBI",
+    "INDIAN BANK": "INDIANBANK",
+    "INDIAN OVERSEAS BANK": "IOB",
+    "INDUSIND BANK": "INDUSIND",
+    "JANASEVA SAHAKARI BANK LIMITED": "JANASEVABANK",
+    "KAPOL COOPERATIVE BANK LIMITED": "KAPOLBANK",
+    "KARNATAKA BANK LIMITED": "KARNATAKABANK",
+    "KARUR VYSYA BANK": "KVB",
+    "KOTAK MAHINDRA BANK LIMITED": "KOTAK",
+    "MAHANAGAR COOPERATIVE BANK": "MAHANAGARBANK",
+    "MAHARASHTRA STATE COOPERATIVE BANK": "MSCBANK",
+    "MASHREQBANK PSC": "MASHREQBANK",
+    "MIZUHO BANK LTD": "MIZUHOBANK",
+    "NEW INDIA COOPERATIVE BANK LIMITED": "NEWINDIABANK",
+    "NKGSB COOPERATIVE BANK LIMITED": "NKGSB",
+    "NUTAN NAGARIK SAHAKARI BANK LIMITED": "NUTANBANK",
+    "ORIENTAL BANK OF COMMERCE": "OBC",
+    "PARSIK BANK": "GPPARSIKBANK",
+    "PUNJAB AND MAHARSHTRA COOPERATIVE BANK": "PMC",
+    "PUNJAB AND SIND BANK": "PSB",
+    "PUNJAB NATIONAL BANK": "PNB",
+    "RAJKOT NAGRIK SAHAKARI BANK LIMITED": "RNSB",
+    "RESERVE BANK OF INDIA": "RBI",
+    "SHINHAN BANK": "SHINHAN",
+    "SOCIETE GENERALE": "SOCIETEGENERALE",
+    "SOUTH INDIAN BANK": "SOUTHINDIANBANK",
+    "STANDARD CHARTERED BANK": "SC",
+    "STATE BANK OF BIKANER AND JAIPUR": "SBBJ",
+    "STATE BANK OF HYDERABAD": "SBHYD",
+    "STATE BANK OF INDIA": "SBI",
+    "STATE BANK OF MAURITIUS LIMITED": "SBMGROUP",
+    "STATE BANK OF MYSORE": "SBM",
+    "STATE BANK OF PATIALA": "SBP",
+    "STATE BANK OF TRAVANCORE": "SBT",
+    "SYNDICATE BANK": "SYNDICATEBANK",
+    "TAMILNAD MERCANTILE BANK LIMITED": "TMBL",
+    "THE BANK OF NOVA SCOTIA": "SCOTIABANK",
+    "AHMEDABAD MERCANTILE COOPERATIVE BANK": "AMCOBANK",
+    "BHARAT COOPERATIVE BANK MUMBAI LIMITED": "BHARATBANK",
+    "FEDERAL BANK": "FEDERALBANK",
+    "THE GREATER BOMBAY COOPERATIVE BANK LIMITED": "GREATERBANK",
+    "JAMMU AND KASHMIR BANK LIMITED": "JKBANK",
+    "KALUPUR COMMERCIAL COOPERATIVE BANK": "KALUPURBANK",
+    "THE KARANATAKA STATE COOPERATIVE APEX BANK LIMITED": "KARNATAKAAPEX",
+    "KALYAN JANATA SAHAKARI BANK": "KALYANJANATA",
+    "LAXMI VILAS BANK": "LVB",
+    "THE MEHSANA URBAN COOPERATIVE BANK": "MUCBANK",
+    "THE NAINITAL BANK LIMITED": "NAINITALBANK",
+    "RBL BANK LIMITED": "RBL",
+    "THE ROYAL BANK OF SCOTLAND": "RBS",
+    "SARASWAT COOPERATIVE BANK LIMITED": "SARASWATBANK",
+    "THE SHAMRAO VITHAL COOPERATIVE BANK": "SVCBANK",
+    "THE SURATH PEOPLES COOPERATIVE BANK LIMITED": "SPCBL",
+    "THE TAMIL NADU STATE APEX COOPERATIVE BANK": "TNSCBANK",
+    "THE WEST BENGAL STATE COOPERATIVE BANK": "WBSCB",
+    "UCO BANK": "UCOBANK",
+    "UNION BANK OF INDIA": "UNIONBANK",
+    "UNITED BANK OF INDIA": "UNITEDBANK",
+    "VIJAYA BANK": "VIJAYABANK"
+  }
+  var banklist = Object.keys(bankdata);
+  banklist=banklist.sort();
 export default class Student extends Component {
     constructor(...props) {
         super(...props)
@@ -38,15 +212,26 @@ export default class Student extends Component {
         this.onFileChangeForDoc = this.onFileChangeForDoc.bind(this);
         this.setDocName = this.setDocName.bind(this);
         console.log("constructor",)
-
+        var listdd = worldMapData.getAllCountries()
+        console.log("constructor",)
+        var india1 = { "id": 1000, "sortname": "uu", "name": "Select Country", "phoneCode": 91 }
+        var india = { "id": 101, "sortname": "IN", "name": "India", "phoneCode": 91 }
+    
+        listdd.unshift(india)
+        listdd.unshift(india1)
         // if(typeof this.props.location.state.back===undefined)
         // {
         this.state = {
+            isProfile:false,
+            otherdetolsFlag:false,
+            refflag:false,
             isopenProfileModel: false,
             isLoaded: false,
             name: '',
-            pallcountry: worldMapData.getAllCountries(),
-            callcountry: worldMapData.getAllCountries(),
+            errorp:'',
+            bankerror:'',
+            pallcountry: listdd,
+            callcountry: listdd,
             edulevel: '10',
             error: '',
             stateListOfCountry: [],
@@ -64,6 +249,7 @@ export default class Student extends Component {
             department: '',
             job_location: '',
             zone: '',
+            isSigle:false,
             u_state: '',
             source: '',
             user: localStorage.getItem("can"),
@@ -97,7 +283,7 @@ export default class Student extends Component {
             mother_tongue: "",
             religion: "",
             profile_percent: 0,
-
+            contperson:'',
             branch_name: '',
             account_number: '',
             ifsc_code: '',
@@ -108,6 +294,7 @@ export default class Student extends Component {
             ref_relation: '',
             ref_no: '',
             ref_loc: '',
+            jobtype: '',
             candidate_other_data: { name: '', esic_address: '', esic_name: '', esic_no: '', uan: '', pf_no: '', aadhaar_no: '', eid_no: '', pan_card_no: '', vehicle_no: '', valid_up_to: '', place_of_issue: '', dl_no: '' },
             education_data: {},
             candidate_work_history_data: [],
@@ -125,6 +312,7 @@ export default class Student extends Component {
             enddate_emp: '',
             degree: '',
             board: '',
+            othererror:'',
             percentage: '',
             edu_location: '',
             passing_year: '',
@@ -139,6 +327,9 @@ export default class Student extends Component {
                 width: 30,
                 aspect: 16 / 9,
             },
+            errormain:"",
+            emergencyNo:'',
+            referror:''
 
             // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
 
@@ -256,7 +447,7 @@ export default class Student extends Component {
     }
     addBasicDetails = (e) => {
         e.preventDefault();
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ errormain: "This field can not be empty" })
         this.addProfileData(this, this.state)
 
     }
@@ -264,7 +455,7 @@ export default class Student extends Component {
     addPersonalInfoData = (e) => {
         e.preventDefault();
         console.log("clickfound")
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ errorp: "This field can not be empty" })
         this.addpersonalInfo(this, this.state);
     }
 
@@ -272,7 +463,7 @@ export default class Student extends Component {
 
         e.preventDefault();
         console.log("clickfound")
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ bankerror: "This field can not be empty" })
         this.addBank(this, this.state.bank_name, this.state.branch_name, this.state.account_number, this.state.ifsc_code, this.state.user);
     }
 
@@ -359,7 +550,7 @@ export default class Student extends Component {
     //end experience data
     addOtherDetails = (e) => {
         e.preventDefault();
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ othererror: "This field can not be empty" })
         var data = this.state.candidate_other_data
         var data1 = { 'candidate': this.state.user, 'other_detail_id': this.state.other_details_id }
         let final = {
@@ -682,6 +873,25 @@ export default class Student extends Component {
         const value = e.target.value;
         this.setState({ c_email: value })
     }
+    setEname = (e) => {
+        
+        const value = e.target.value;
+        this.setState({ contperson: value })
+    }
+    setENum = (e) => {
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+        if (value === '' || value.match(re)) {
+            // alert("got data"+value)
+
+            this.setState({ emergencyNo: value })
+        }
+       
+         
+        
+        
+    }
 
     addEducationForm = () => {
 
@@ -717,9 +927,15 @@ export default class Student extends Component {
     setMarriageStatus = (e) => {
         const value = e.target.value;
 
+
         if (value != 0) {
             // alert("dfgdgfdf"+ value)
-            this.setState({ marital_status: value })
+            var isSigle=false;
+            if(value!="Single")
+            {
+                isSigle=true
+            }
+            this.setState({isSigle:isSigle ,marital_status: value })
         }
 
 
@@ -760,8 +976,9 @@ export default class Student extends Component {
         this.setState({ ref_loc: value })
     }
     addRef = (e) => {
+        // referror
         e.preventDefault();
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ referror: "This field can not be empty" })
         var data = { "name": this.state.ref_name, "location": this.state.ref_loc, "mobile_no": this.state.ref_no, "candidate": this.state.user, "relationship": this.state.ref_relation }
         this.addReference(this, data);
     }
@@ -786,9 +1003,9 @@ export default class Student extends Component {
     }
     setDocName(value) {
         // let val = e.target.dataset.value;
-        console.log(value);
-
-        this.setState({ docname: value, crop: '', croppedImageUrl: '', src: '' })
+        // console.log("ggggg");
+        // alert('hhhhhh')
+        this.setState({ docname: value})
     }
     setFamilyAdhar = (e) => {
         const re = /^[0-9]+$/;
@@ -949,6 +1166,7 @@ export default class Student extends Component {
                     if (basic_details_len > 0) {
                         this.setState({
                             isLoaded: true,
+                            isProfile:true,
                             name: basic_details.name.toUpperCase(),
                             alternate_mobile_no: basic_details.alternate_mobile_no,
                             designation: basic_details.designation,
@@ -968,6 +1186,9 @@ export default class Student extends Component {
                             recruiter_name: basic_details.recruiter_name,
                             created_by: basic_details.recruiter_id,
                             recruiter_employee_id: basic_details.recruiter_employee_id,
+                            jobtype: basic_details.job_type,
+                            contperson:basic_details.emergency_contact_name,
+                            emergencyNo:basic_details.emergency_contact_number,
                             // profile_picture
 
                             profilepic: "https://aadhaan.ddns.net" + basic_details.profile_picture
@@ -1051,7 +1272,7 @@ export default class Student extends Component {
                         this.setState({
 
                             dob: Moment(other_details.dob).format("YYYY/MM/DD"),
-
+                            otherdetolsFlag:true,
                             marital_status: single,
                             marrage_date: other_details.marrage_date,
                             gender: other_details.gender,
@@ -1076,7 +1297,7 @@ export default class Student extends Component {
                         var candidate_reference_data = data.candidate_reference_data.reference
 
                         this.setState({
-
+                            refflag=true,
                             reference: candidate_reference_data
 
                         });
@@ -1192,8 +1413,7 @@ export default class Student extends Component {
     //endfamily data
     componentDidMount = () => {
         this.apicall();
-        // console.log(this.props.location.state,"thissssssss")
-        // this.setState({user:this.props.location.state.id})
+       
 
     }
     educationChane = (e) => {
@@ -1313,7 +1533,7 @@ export default class Student extends Component {
                                                                         <label>Full Name<span className="text-danger">*</span></label>
                                                                         <input type="text" required className="form-control" onChange={this.setName} defaultValue={this.state.name} />
                                                                         {this.isBlank(this.state.name) ?
-                                                                            <span className="text-danger">{this.state.error1}</span>
+                                                                            <span className="text-danger">{this.state.errormain}</span>
                                                                             :
                                                                             ''
                                                                         }
@@ -1324,7 +1544,7 @@ export default class Student extends Component {
                                                                         <label>Father Name<span className="text-danger">*</span></label>
                                                                         <input type="text" className="form-control" onChange={this.setFat_Name} defaultValue={this.state.father_name} />
                                                                         {this.isBlank(this.state.father_name) ?
-                                                                            <span className="text-danger">{this.state.error1}</span>
+                                                                            <span className="text-danger">{this.state.errormain}</span>
                                                                             :
                                                                             ''
                                                                         }
@@ -1356,7 +1576,7 @@ export default class Student extends Component {
                                                                             <option value="other">Other</option>
                                                                         </select>
                                                                         {this.isBlank(this.state.gender) ?
-                                                                            <span className="text-danger">{this.state.error1}</span>
+                                                                            <span className="text-danger">{this.state.errormain}</span>
                                                                             :
                                                                             ''
                                                                         }
@@ -1371,7 +1591,7 @@ export default class Student extends Component {
                                                                 <label>Current Address<span className="text-danger">*</span></label>
                                                                 <input type="text" defaultValue={this.state.c_full_address} className="form-control" onChange={this.setcurrentFullAdd} />
                                                                 {this.isBlank(this.state.c_full_address) ?
-                                                                    <span className="text-danger">{this.state.error1}</span>
+                                                                    <span className="text-danger">{this.state.errormain}</span>
                                                                     :
                                                                     ''
                                                                 }
@@ -1389,7 +1609,7 @@ export default class Student extends Component {
                                                                     }
                                                                 </select>
                                                                 {this.isBlank(this.state.c_country) ?
-                                                                    <span className="text-danger">{this.state.error1}</span>
+                                                                    <span className="text-danger">{this.state.errormain}</span>
                                                                     :
                                                                     ''
                                                                 }
@@ -1408,7 +1628,7 @@ export default class Student extends Component {
                                                                     }
                                                                 </select>
                                                                 {this.isBlank(this.state.c_state) ?
-                                                                    <span className="text-danger">{this.state.error1}</span>
+                                                                    <span className="text-danger">{this.state.errormain}</span>
                                                                     :
                                                                     ''
                                                                 }
@@ -1421,7 +1641,7 @@ export default class Student extends Component {
                                                                 <input type="text" defaultValue={this.state.c_city} className="form-control" onChange={this.setcurrentCity} />
                                                             </div>
                                                             {this.isBlank(this.state.c_city) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1434,7 +1654,7 @@ export default class Student extends Component {
                                                                 <input maxLength="6" type="text" value={this.state.c_pin_code} className="form-control" onChange={this.setcurrentPin} />
                                                             </div>
                                                             {this.isBlank(this.state.c_pin_code) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1445,7 +1665,7 @@ export default class Student extends Component {
                                                                 <input type="text" maxLength="10" value={this.state.c_mobile_no} className="form-control" onChange={this.setcurrentPhone} />
                                                             </div>
                                                             {this.isBlank(this.state.c_mobile_no) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1467,7 +1687,7 @@ export default class Student extends Component {
                                                             </div>
 
                                                             {this.isBlank(this.state.p_full_address) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1486,7 +1706,7 @@ export default class Student extends Component {
                                                                 </select>
                                                             </div>
                                                             {this.isBlank(this.state.p_country) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1506,7 +1726,7 @@ export default class Student extends Component {
 
                                                             </div>
                                                             {this.isBlank(this.state.p_state) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1517,7 +1737,7 @@ export default class Student extends Component {
                                                                 <input type="text" defaultValue={this.state.p_city} className="form-control" onChange={this.setPermnanetCity} />
                                                             </div>
                                                             {this.isBlank(this.state.p_city) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1531,7 +1751,7 @@ export default class Student extends Component {
                                                                 <input maxLength="6" type="text" value={this.state.p_pin_code} className="form-control" onChange={this.setPermanentPin} />
                                                             </div>
                                                             {this.isBlank(this.state.p_pin_code) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1547,7 +1767,7 @@ export default class Student extends Component {
                                                                 <input maxLength="10" type="text" value={this.state.p_mobile_no} className="form-control" onChange={this.setPermanentMobile} />
                                                             </div>
                                                             {this.isBlank(this.state.p_mobile_no) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errormain}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1557,24 +1777,39 @@ export default class Student extends Component {
                                                                 <label>Email <span className="text-danger">*</span></label>
                                                                 <input type="text" defaultValue={this.state.c_email} className="form-control" onChange={this.setEmail} />
                                                             </div>
+                                                            {this.isBlank(this.state.c_email) ?
+                                                                <span className="text-danger">{this.state.errormain}</span>
+                                                                :
+                                                                ''
+                                                            }
                                                         </div>
 
                                                         <div className="col-md-6">
                                                             <div className="form-group">
                                                                 <label>Emergency Contact Person Name <span className="text-danger">*</span></label>
-                                                                <input type="text" defaultValue={this.state.contperson} className="form-control" onChange={this.setEmail} />
+                                                                <input type="text" defaultValue={this.state.contperson} className="form-control" onChange={this.setEname} />
                                                             </div>
+                                                            {this.isBlank(this.state.contperson) ?
+                                                                <span className="text-danger">{this.state.errormain}</span>
+                                                                :
+                                                                ''
+                                                            }
                                                         </div>
 
                                                         <div className="col-md-6">
                                                             <div className="form-group">
                                                                 <label>Emergency Contact Number <span className="text-danger">*</span></label>
-                                                                <input type="text" defaultValue={this.state.c_emnumber} className="form-control" onChange={this.setEmail} />
+                                                                <input type="text" maxLength="10" value={this.state.emergencyNo} className="form-control" onChange={this.setENum} />
                                                             </div>
+                                                            {this.isBlank(this.state.emergencyNo) ?
+                                                                <span className="text-danger">{this.state.errormain}</span>
+                                                                :
+                                                                ''
+                                                            }
                                                         </div>
                                                         <div className="col-md-6">
                                                             <div className="form-group">
-                                                                <label>Department <span className="text-danger">*</span></label>
+                                                                <label>Department </label>
                                                                 <input type="text" readOnly defaultValue={this.state.department} className="form-control" onChange={this.setDepartment} />
                                                             </div>
                                                             {/* {this.isBlank(this.state.department) ?
@@ -1585,7 +1820,7 @@ export default class Student extends Component {
                                                         </div>
                                                         <div className="col-md-6">
                                                             <div className="form-group">
-                                                                <label>Designation <span className="text-danger">*</span></label>
+                                                                <label>Designation </label>
                                                                 <input type="text" defaultValue={this.state.designation} className="form-control" readOnly onChange={this.setDesigination} />
                                                             </div>
                                                             {/* {this.isBlank(this.state.designation) ?
@@ -1596,7 +1831,7 @@ export default class Student extends Component {
                                                         </div>
                                                         <div className="col-md-6">
                                                             <div className="form-group">
-                                                                <label>Refer By  <span className="text-danger">*</span></label>
+                                                                <label>Refer By  </label>
                                                                 <input type="text" defaultValue={this.state.recruiter_employee_id} readOnly className="form-control" onChange={this.setReferBy} />
                                                             </div>
                                                         </div>
@@ -1663,7 +1898,7 @@ export default class Student extends Component {
 
                                                             </div>
                                                             {this.isBlank(this.state.category) ?
-                                                                <span className="text-danger">{this.state.error1}</span>
+                                                                <span className="text-danger">{this.state.errorp}</span>
                                                                 :
                                                                 ''
                                                             }
@@ -1691,7 +1926,7 @@ export default class Student extends Component {
                                                             {/* <input className="form-control" Style="text-transform:uppercase" defaultValue={this.state.blood_group}type="text" onChange={this.} /> */}
                                                         </div>
                                                         {this.isBlank(this.state.blood_group) ?
-                                                            <span className="text-danger">{this.state.error1}</span>
+                                                            <span className="text-danger">{this.state.errorp}</span>
                                                             :
                                                             ''
                                                         }
@@ -1706,7 +1941,7 @@ export default class Student extends Component {
                                                             </div>
                                                         </div>
                                                         {this.isBlank(this.state.mother_tongue) ?
-                                                            <span className="text-danger">{this.state.error1}</span>
+                                                            <span className="text-danger">{this.state.errorp}</span>
                                                             :
                                                             ''
                                                         }
@@ -1721,7 +1956,7 @@ export default class Student extends Component {
                                                             </div>
                                                         </div>
                                                         {this.isBlank(this.state.nationality) ?
-                                                            <span className="text-danger">{this.state.error1}</span>
+                                                            <span className="text-danger">{this.state.errorp}</span>
                                                             :
                                                             ''
                                                         }
@@ -1750,13 +1985,14 @@ export default class Student extends Component {
                                                             </div>
                                                         </div>
                                                         {this.isBlank(this.state.marital_status) ?
-                                                            <span className="text-danger">{this.state.error1}</span>
+                                                            <span className="text-danger">{this.state.errorp}</span>
                                                             :
                                                             ''
                                                         }
                                                     </div>
                                                 </li>
-                                                <li>
+                                                {
+                                                    this.state.isSigle?<li>
                                                     <div className="col-md-12">
                                                         <div className="form-group row">
                                                             <label className="col-sm-4 col-form-label">Marriage Date</label>
@@ -1774,7 +2010,9 @@ export default class Student extends Component {
 
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li>:''
+                                                }
+                                                
 
                                                 <div className="submit-section float-right">
                                                     <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Save</button>
@@ -1801,7 +2039,7 @@ export default class Student extends Component {
                                                     </div>
 
                                                     {this.isBlank(this.state.ref_name) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.referror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1817,7 +2055,7 @@ export default class Student extends Component {
                                                     </div>
 
                                                     {this.isBlank(this.state.ref_relation) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.referror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1831,7 +2069,7 @@ export default class Student extends Component {
 
 
                                                     {this.isBlank(this.state.ref_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.referror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1863,20 +2101,20 @@ export default class Student extends Component {
                                                     <div className="form-group">
                                                         <label>Bank Name <span className="text-danger">*</span></label>
 
-                                                        <select className="mb-3 form-control" value={this.state.setBankName} onChange={this.setBankName} >
+                                                        <select className="mb-3 form-control" value={this.state.bank_name} onChange={this.setBankName} >
                                                             {/* <option value='0'>Select Education Level </option> */}
-                                                            <option value="0">Select Bank</option>
-                                                            <option value="mother">HDFC</option>
-                                                            <option value="father">ICICI</option>
-                                                            <option value="spouse">AIXS</option>
-                                                            <option value="son"> SBI</option>
-                                                            <option value="daughter">YES Bank</option>
+                                                            <option value='0'>Select Bank</option>
+                                                                {
+
+                                                                    banklist.map(family => (<option >{family}</option>))
+                                                                }
+
                                                         </select>
 
                                                     </div>
 
                                                     {this.isBlank(this.state.bank_name) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.bankerror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1886,14 +2124,14 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Account number <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setAccountNo} />
+                                                        <input value={this.state.account_number}className="form-control" type="text" onChange={this.setAccountNo} />
                                                     </div>
 
 
 
 
                                                     {this.isBlank(this.state.account_number) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.bankerror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1901,13 +2139,13 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Ifsc code <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setIfsc_Code} />
+                                                        <input className="form-control" type="text"value={this.state.ifsc_code} onChange={this.setIfsc_Code} />
                                                     </div>
 
 
 
                                                     {this.isBlank(this.state.ifsc_code) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                        <span className="text-danger">{this.state.bankerror}</span>
                                                         :
                                                         ''
                                                     }
@@ -1915,7 +2153,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Branch Name</label>
-                                                        <input className="form-control" type="text" onChange={this.setBranchName} />
+                                                        <input className="form-control" type="text"value={this.state.branch_name} onChange={this.setBranchName} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1941,9 +2179,12 @@ export default class Student extends Component {
                                                     <div className="text">{this.state.branch_name}</div>
                                                 </li>
                                             </ul> */}
-                                            <div className="submit-section float-right">
+                                            {
+                                                this.state.account_number?'': <div className="submit-section float-right">
                                                 <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
                                             </div>
+                                            }
+                                           
                                             {/* <label className="text-danger">{this.state.error}</label> */}
                                         </div>
 
@@ -2248,13 +2489,16 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
 
                                                     <div className="form-group">
-                                                        <label>Name </label>
+                                                        <label>Name {this.state.jobtype != "backoffice" ?
+
+<span className="text-danger">*</span> : ''
+}</label>
 
                                                         <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
 
                                                     </div>
-                                                    {this.isBlank(this.state.candidate_other_data.name) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                    {(this.isBlank(this.state.candidate_other_data.name) &&(this.state.jobtype != "backoffice"))?
+                                                        <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
                                                     }
@@ -2263,13 +2507,16 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Driving License No.</label>
+                                                        <label>Driving License No.{this.state.jobtype != "backoffice" ?
+
+<span className="text-danger">*</span> : ''
+}</label>
                                                         <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                                                     </div>
 
-                                                    {this.isBlank(this.state.candidate_other_data.dl_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                    {(this.isBlank(this.state.candidate_other_data.dl_no)&&(this.state.jobtype != "backoffice")) ?
+                                                        <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
                                                     }
@@ -2279,14 +2526,17 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Place of Issue</label>
+                                                        <label>Place of Issue {this.state.jobtype != "backoffice" ?
+
+                                                        <span className="text-danger">*</span> : ''
+                                                        }</label>
                                                         <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
 
                                                     </div>
-                                                    {this.isBlank(this.state.candidate_other_data.place_of_issue) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                    {(this.isBlank(this.state.candidate_other_data.place_of_issue)&&(this.state.jobtype != "backoffice")) ?
+                                                        <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
                                                     }
@@ -2295,15 +2545,18 @@ export default class Student extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label>Valid Upto (YYYY-MM-DD)</label>
+                                                        <label>Valid Upto (YYYY-MM-DD){this.state.jobtype != "backoffice" ?
+
+<span className="text-danger">*</span> : ''
+}</label>
 
                                                         <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
 
 
                                                     </div>
-                                                    {this.isBlank(this.state.candidate_other_data.valid_up_to) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
+                                                    {(this.isBlank(this.state.candidate_other_data.valid_up_to) &&(this.state.jobtype != "backoffice"))?
+                                                        <span className="text-danger">{this.state.othererror}</span>
                                                         :
                                                         ''
                                                     }
@@ -2439,55 +2692,38 @@ export default class Student extends Component {
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                    this.state.jobtype == "backoffice" ?
+                               
                                 <div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Document Checklist</h3>
-                                            {/* <ul className="personal-info">
-                                                {candidate_documents_data.map(document => (
-                                                    <li key={document.key} >
-                                                        <div className="title">{document.document_type}</div>
-                                                        <input type="checkbox" className="" defaultChecked="true" />
-                                                        <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
-
-                                                    </li>
-                                                ))}
-
-                                                {candidate_doc_list.map(document => (
-                                                    <li key={document.key} >
-                                                        <div className="title">{document}</div>
-                                                        <input type="checkbox" className="" />
-                                                        <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
-
-
-                                                    </li>
-                                                ))}
-
-                                            </ul> */}
+                                           
                                             <ul className="personal-info">
-                                                <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
+                                            <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
                                                 </li>
                                                 <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
                                                 </li>
                                                 <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
                                                 </li>
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
                                                 </li> <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front</div>
@@ -2500,23 +2736,24 @@ export default class Student extends Component {
                                                 </li>
                                                 <li><div className="title">Voter Id Card Front</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
 
                                                 <li><div className="title">Voter Id Card Back</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
-                                                <li><div className="title">Pan Card</div>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
+                                                <li>
+                                                    <div className="title">Pan Card</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
                                                 <li><div className="title">Ration Card</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
                                                 <li><div className="title">Rent Agreement</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
                                                 <li><div className="title">Marriage Certificate</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
                                                 {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
@@ -2525,208 +2762,7 @@ export default class Student extends Component {
 
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-md-6 d-flex">
-                                    <div className="card profile-box flex-fill">
-                                        <div className="card-body">
-                                            <h3 className="card-title">Other Details</h3>
-                                            <div className="row">
-                                                <div className="col-md-6">
-
-                                                    <div className="form-group">
-                                                        <label>Name </label>
-
-                                                        <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
-
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.name) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Driving License No.<span className="text-danger">*</span></label>
-                                                        <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
-
-                                                    </div>
-
-                                                    {this.isBlank(this.state.candidate_other_data.dl_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Place of Issue</label>
-                                                        <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
-
-
-
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.place_of_issue) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Valid Upto (YYYY-MM-DD)</label>
-
-                                                        <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
-
-
-
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.valid_up_to) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Vehicle Number</label>
-
-                                                        <input defaultValue={this.state.candidate_other_data.vehicle_no} className="form-control" type="text" onChange={this.setVehicleNo} />
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>PAN Card Number</label>
-                                                        <input defaultValue={this.state.candidate_other_data.pan_card_no} className="form-control" type="text" onChange={this.setPanNo} />
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.pan_card_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Election ID Number </label>
-                                                        <input defaultValue={this.state.candidate_other_data.eid_no} className="form-control" type="text" onChange={this.setEidNo} />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Aadhar card<span className="text-danger">*</span></label>
-
-                                                        <input className="form-control" type="text" readOnly defaultValue={this.state.candidate_other_data.aadhaar_no} />
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.aadhaar_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Old PF No.</label>
-
-                                                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setPf} />
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.pf_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Old UAN No.</label>
-                                                        <input defaultValue={this.state.candidate_other_data.uan} className="form-control" type="text" onChange={this.setUan} />
-                                                    </div>
-
-                                                    {this.isBlank(this.state.candidate_other_data.uan) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-                                                </div>
-
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Old ESIC No.</label>
-                                                        <input defaultValue={this.state.candidate_other_data.esic_no} className="form-control" type="text" onChange={this.setEsicNo} />
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.esic_no) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Old ESIC Dispensary Name.</label>
-                                                        <input defaultValue={this.state.candidate_other_data.esic_name} className="form-control" type="text" onChange={this.setEsicName} />
-                                                    </div>
-                                                    {this.isBlank(this.state.candidate_other_data.esic_name) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-
-
-
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label>Old ESIC Dispensary Address</label>
-                                                        <input defaultValue={this.state.candidate_other_data.esic_address} className="form-control" type="text" onChange={this.setEsicAdd} />
-                                                    </div>
-
-
-
-                                                    {this.isBlank(this.state.candidate_other_data.esic_address) ?
-                                                        <span className="text-danger">{this.state.error1}</span>
-                                                        :
-                                                        ''
-                                                    }
-                                                </div>
-
-
-
-                                            </div>
-
-                                            <div className="submit-section float-right">
-                                                <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Save</button>
-                                            </div>
-                                            <label className="text-danger">{this.state.error}</label>
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-6 d-flex">
+                                </div>:<div className="col-md-6 d-flex">
                                     <div className="card profile-box flex-fill">
                                         <div className="card-body">
                                             <h3 className="card-title">Document Checklist</h3>
@@ -2754,57 +2790,57 @@ export default class Student extends Component {
                                             <ul className="personal-info">
                                                 <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
                                                 </li>
                                                 <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
                                                 </li>
                                                 <li><div className="title">Bank Passbook/Canceled Check<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Canceled Check")}></i></a>
                                                 </li>
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
                                                 </li> <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front <span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Driving License Back <span class="text-danger">*</span></div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Driving License Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Voter Id Card Front</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Front")}></i></a></li>
 
                                                 <li><div className="title">Voter Id Card Back</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Card Back")}></i></a></li>
                                                 <li>
                                                     <div className="title">Pan Card</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
                                                 <li><div className="title">Ration Card</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
                                                 <li><div className="title">Rent Agreement</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
                                                 <li><div className="title">Marriage Certificate</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
                                                 {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
@@ -2814,8 +2850,12 @@ export default class Student extends Component {
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
+}
+                                
+                                
+                               
+                               </div>
+                             {/* } */}
                         </div>
                         {/* /Profile Info Tab */}
                         {/* Projects Tab */}
@@ -3446,7 +3486,10 @@ export default class Student extends Component {
                                         <div className="col-md-6">
 
                                             <div className="form-group">
-                                                <label>Name</label>
+                                                <label>Name{this.state.jobtype != "backoffice" ?
+
+<span className="text-danger">*</span> : ''
+}</label>
 
                                                 <input defaultValue={this.state.candidate_other_data.name} className="form-control" type="text" onChange={this.setNameAsDl} />
 
@@ -3461,7 +3504,10 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Driving License No.</label>
+                                                <label>Driving License No.{this.state.jobtype != "backoffice" ?
+
+<span className="text-danger">*</span> : ''
+}</label>
                                                 <input defaultValue={this.state.candidate_other_data.dl_no} className="form-control" type="text" onChange={this.setNameAsDlNo} />
 
                                             </div>
@@ -3477,7 +3523,10 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Place of Issue</label>
+                                                <label>Place of Issue{this.state.jobtype != "backoffice" ?
+
+<span className="text-danger">*</span> : ''
+}</label>
                                                 <input defaultValue={this.state.candidate_other_data.place_of_issue} className="form-control" type="text" onChange={this.setplaceOfIssue} />
 
 
@@ -3493,7 +3542,10 @@ export default class Student extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Valid Upto (YYYY-MM-DD)</label>
+                                                <label>Valid Upto (YYYY-MM-DD){this.state.jobtype != "backoffice" ?
+
+<span className="text-danger">*</span> : ''
+}</label>
 
                                                 <input defaultValue={this.state.candidate_other_data.valid_up_to} className="form-control" type="date" onChange={this.setValidUpto} />
 
@@ -3653,7 +3705,7 @@ export default class Student extends Component {
                                             </div>
 
                                         </div>
-                                        {src && (
+                                        {/* {src && (
                                             <ReactCrop
                                                 src={src}
                                                 crop={crop}
@@ -3666,7 +3718,7 @@ export default class Student extends Component {
                                         )}
                                         {croppedImageUrl && (
                                             <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
-                                        )}
+                                        )} */}
                                     </div>
 
                                     <div className="submit-section">
@@ -3881,7 +3933,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Bank Name <span className="text-danger">*</span></label>
-                                                        <input type="text" className="form-control" onChange={this.setBankName} />
+                                                        <input type="text" value={this.state.bank_name}className="form-control" onChange={this.setBankName} />
                                                     </div>
 
                                                     {this.isBlank(this.state.bank_name) ?
@@ -3895,7 +3947,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Account number <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setAccountNo} />
+                                                        <input className="form-control" value={this.state.account_number}type="text" onChange={this.setAccountNo} />
                                                     </div>
 
 
@@ -3910,7 +3962,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Ifsc code <span className="text-danger">*</span></label>
-                                                        <input className="form-control" type="text" onChange={this.setIfsc_Code} />
+                                                        <input className="form-control" value={this.state.ifsc_code} type="text" onChange={this.setIfsc_Code} />
                                                     </div>
 
 
@@ -3924,7 +3976,7 @@ export default class Student extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label>Branch Name</label>
-                                                        <input className="form-control" type="text" onChange={this.setBranchName} />
+                                                        <input className="form-control" value={this.state.branch_name}type="text" onChange={this.setBranchName} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -4222,7 +4274,13 @@ export default class Student extends Component {
         console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
         if (this.isBlank(bankname) || this.isBlank(acountno) ||
             this.isBlank(ifsc)) {
-            self.setState({ error: "Please fill all required details" })
+                Swal.fire(
+                    '',
+                    'Please fill all reuired field',
+                    'error'
+                  )
+                
+            // self.setState({ error: "Please fill all required details" })
         } else {
             var data = JSON.stringify({
                 "candidate": userid,
@@ -4243,13 +4301,18 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
+                    // console.log(JSON.stringify(response.data));
+                    // self.setState({ error: response.data.message })
                     if (response.data.status == true) {
+                        Swal.fire(
+                            'Bank details successfully submitted ',
+                            '',
+                            'success'
+                          )
                         //let path='app/profile/candidate-profile';
-                        alert('Bank details successfully submitted ✅')
-                        $("#bank_contact_modal").modal("hide");
-                        self.setState({ error: "", error1: '' })
+                        // alert(' ✅')
+                        // $("#bank_contact_modal").modal("hide");
+                        // self.setState({ error: "", error1: '' })
                         // window.location.reload(false);
 
 
@@ -4257,7 +4320,11 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4277,10 +4344,10 @@ export default class Student extends Component {
     }
     //upload profile
     addProfileData = (self, data) => {
-        // console.log(data.designation,"addProfileData",data.name,data.father_name,data.department,",",data.c_country)
-        // console.log(data.c_state,"addProfileData",data.c_full_address,data.c_pin_code,data.p_country,",",data.p_state,data.p_city,data.p_full_address,data.p_pin_code)
+        console.log(data)
 
         // this.isBlank(data.name)
+        // return
         if (this.isBlank(data.name) || this.isBlank(data.father_name) ||
             this.isBlank(data.c_country) || this.isBlank(data.gender) ||
             this.isBlank(data.c_state) || this.isBlank(data.c_city) ||
@@ -4288,22 +4355,33 @@ export default class Student extends Component {
             this.isBlank(data.c_pin_code) ||
             this.isBlank(data.p_country) || this.isBlank(data.p_state) || this.isBlank(data.c_email) ||
             this.isBlank(data.p_city) ||
-            this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)
+            this.isBlank(data.p_full_address) || this.isBlank(data.p_pin_code)|| this.isBlank(data.emergencyNo)|| this.isBlank(data.contperson)
 
         ) {
-            this.setState({ error1: "This field can not be empty" })
-            // this.alert("Please fill all required fields.");
-            self.setState({ error: "Please fill all required fields." })
-            // return
+            Swal.fire(
+                        '',
+                        'Please fill all reuired field',
+                        'error'
+                      )
+        }else if(data.name==data.contperson||data.p_mobile_no==data.emergencyNo||data.p_mobile_no==data.c_mobile_no){
+            Swal.fire(
+                '',
+                'Person name and emergency contact details can not be same',
+                'error'
+              )
         } else {
+            
+
             // this.aler
-            this.setState({ error1: "" });
-            self.setState({ error: "Please wait profile is updating" })
+            this.setState({ isProfile:true,error1: "" });
+            // self.setState({ error: "Please wait profile is updating" })
             let formData = new FormData();
             formData.append("name", "" + data.name)
             formData.append("father_name", "" + data.father_name)
             formData.append("designation", "" + data.designation)
             formData.append("job_location", "" + data.job_location)
+            formData.append("emergency_contact_name", "" + data.contperson)
+            formData.append("emergency_contact_number", "" + data.emergencyNo)
             formData.append("department", "" + data.department)
             formData.append("communication_country", "" + data.c_country)
             formData.append("communication_state", "" + data.c_state)
@@ -4349,11 +4427,48 @@ export default class Student extends Component {
                     console.log(JSON.stringify(response.data));
                     if (response.data.status == true) {
                         //let path='app/profile/candidate-profile';
-                        alert('Personal details successfully submitted ✅')
+                        // alert('Personal details successfully submitted ✅')
                         // window.location.reload(false);
-                        $("#profile_info").modal("hide");
-                        self.setState({ error: "", error1: '' })
+                        // $("#profile_info").modal("hide");
+                        // self.setState({ error: "", error1: '' })
+                          Swal.fire(
+                                'Personal details successfully submitted ',
+                                '',
+                                'success'
+                              )
+                        // Swal.fire({
+                        //     title: 'Are you sure?',
+                        //     text: 'You will not be able to recover this imaginary file!',
+                        //     icon: 'warning',
+                        //     showCancelButton: true,
+                        //     confirmButtonText: 'Ok',
+                        //     // cancelButtonText: 'No, keep it'
+                        //   }).then((result) => {
+                        //     if (result.value) {
+                        //     //   Swal.fire(
+                        //     //     'Deleted!',
+                        //     //     'Your imaginary file has been deleted.',
+                        //     //     'success'
+                        //     //   )
+                        //     // For more information about handling dismissals please visit
+                        //     // https://sweetalert2.github.io/#handling-dismissals
+                        //     } 
+                        //     // else if (result.dismiss === Swal.DismissReason.cancel) {
+                        //     //   Swal.fire(
+                        //     //     'Cancelled',
+                        //     //     'Your imaginary file is safe :)',
+                        //     //     'error'
+                        //     //   )
+                        //     // }
+                        //   })
 
+                    }else
+                    {
+                        Swal.fire(
+                            'Network issue',
+                            '',
+                            'error'
+                          )
 
                     }
 
@@ -4361,7 +4476,11 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "Network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4405,7 +4524,11 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "Network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4451,15 +4574,28 @@ export default class Student extends Component {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    self.setState({ error: "Network issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
     addOtherDetailsData = (self, data) => {
-        console.log("ggg", data);
-        if (this.isBlank(data.dl_no) || this.isBlank(data.pan_card_no) || this.isBlank(data.uan)) {
-            self.setState({ error: "Please fill all required details" })
-        } else {
+        // console.log("ggg", data);
+        if(this.state.jobtype!="backoffice")
+        {
+            if (this.isBlank(data.dl_no) || this.isBlank(data.pan_card_no) || this.isBlank(data.uan)) {
+                //    / self.setState({ error: "" })
+                    Swal.fire(
+                        '',
+                        'Please fill all required details',
+                        'error'
+                      )
+                } 
+        }
+       else {
             self.setState({ error: "", error1: '' })
             var config = {
                 method: 'PUT',
@@ -4472,21 +4608,36 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
-                    self.setState({ error: response.data.message })
-                    console.log(JSON.stringify(response.data));
+                    // self.setState({ error: response.data.message })
+                    // console.log(JSON.stringify(response.data));
                     if (response.data.status == true) {
                         //let path='app/profile/candidate-profile';
-                        alert('Other presonal details successfully submitted ✅')
-                        self.closeOther();
+                        // alert('Other presonal details successfully submitted ✅')
+                        // self.closeOther();
 
                         // window.location.reload(false);
+                        Swal.fire(
+                            'Personal details successfully submitted ',
+                            '',
+                            'success'
+                          )
 
 
+                    }else
+                    {
+                        Swal.fire(
+                            '',
+                            'Network Issues please check your internet connection',
+                            'error'
+                          )
                     }
                 })
                 .catch(function (error) {
-                    self.setState({ error: "Network isuue" })
-                    console.log(error);
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
 
         }
@@ -4496,9 +4647,16 @@ export default class Student extends Component {
         data.candidate = data.id
         if (this.isBlank(data.nationality) || this.isBlank(data.blood_group) ||
             this.isBlank(data.mother_tongue) || this.isBlank(data.category)) {
-            self.setState({ error: "Please fill all required details", error1: "This field can not be empty" })
+                Swal.fire(
+                    '',
+                    'Please fill all reuired field',
+                    'error'
+                  )
+            // self.setState({ error: "Please fill all required details", error1: "This field can not be empty" })
         } else {
-            self.setState({ error1: "" })
+            // isProfile:false,
+           
+            self.setState({ error1: "" ,otherdetolsFlag:true})
             let statusm = '';
             if (data.marital_status == "Single") {
                 statusm = "un_married"
@@ -4537,23 +4695,38 @@ export default class Student extends Component {
                     console.log(JSON.stringify(response.data));
                     if (response.data.status == true) {
                         //let path='app/profile/candidate-profile';
-                        alert('Personal details successfully submitted ✅')
+                        Swal.fire(
+                            'Personal details successfully submitted ',
+                            '',
+                            'success'
+                          )
+                        // alert('Personal details successfully submitted ✅')
                         // window.location.reload(false);
 
-                        self.closePersonalDetails();
+                        // self.closePersonalDetails();
 
+                    }else{
+                        Swal.fire(
+                            'Network issue ',
+                            '',
+                            'error'
+                          )
                     }
                 })
                 .catch(function (error) {
-                    self.setState({ error: "Network isuue" })
-                    console.log(error);
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
     //upload doc
     documentUpload = (self, data, document_type, candidate) => {
         console.log("dadsggshfdhgdsghffsd" + JSON.stringify(data))
-        self.setState({ error: "Please wait file is uploading" })
+        
+        // self.setState({ error: "Please wait file is uploading" })
         let formData = new FormData();
         formData.append("document_type", "" + document_type)
         formData.append("document", data)
@@ -4572,19 +4745,33 @@ export default class Student extends Component {
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                self.setState({ error: response.data.message })
+                // self.setState({ error: response.data.message })
                 if (response.data.status == true) {
                     //let path='app/profile/candidate-profile';
-                    alert(document_type + ' uploaded successfully  ✅')
-                    self.apicall();
-                    self.closeDocument();
-                    window.location.reload(false);
+                    // alert(document_type + ' uploaded successfully  ✅')
+                    // self.apicall();
+                    // self.closeDocument();
+                    // window.location.reload(false);
+                    Swal.fire(
+                        document_type+'',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
 
+                }else{
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 }
             })
             .catch(function (error) {
-                console.log(error);
-                self.setState({ error: "File not found" })
+                Swal.fire(
+                    '',
+                    'Network Issues please check your internet connection',
+                    'error'
+                  )
             });
 
 
@@ -4624,8 +4811,11 @@ export default class Student extends Component {
 
                 })
                 .catch(function (error) {
-                    console.log(error);
-                    self.setState({ error: "Nework issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }
@@ -4635,7 +4825,11 @@ export default class Student extends Component {
         console.log("refrences" + JSON.stringify(data))
         if (this.isBlank(data.name) ||
             this.isBlank(data.relationship) || this.isBlank(data.mobile_no)) {
-            self.setState({ error: "Please fill all required details" })
+                Swal.fire(
+                    '',
+                    'Please fill all reuired field',
+                    'error'
+                  )
         }
         else {
             console.log("called")
@@ -4650,16 +4844,23 @@ export default class Student extends Component {
 
             axios(config)
                 .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                    self.setState({ error: response.data.message })
-                    alert('Alternate  details successfully submitted ✅')
-
-                    self.apicall();
-                    self.closeRef();
+                    // console.log(JSON.stringify(response.data));
+                    // self.setState({ error: response.data.message })
+                    // alert('Alternate  details successfully submitted ✅')
+                    Swal.fire(
+                        'Alternate  details successfully submitted ',
+                        '',
+                        'success'
+                      )
+                    // self.apicall();
+                    // self.closeRef();
                 })
                 .catch(function (error) {
-                    console.log(error);
-                    self.setState({ error: "Nework issue" })
+                    Swal.fire(
+                        '',
+                        'Network Issues please check your internet connection',
+                        'error'
+                      )
                 });
         }
     }

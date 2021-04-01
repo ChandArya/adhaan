@@ -209,11 +209,11 @@ class GratitutyForm extends Component {
                              <ul  style={{listStyleType:'decimal'}}>
                              <li>
                                             I. Shri/Shrimati/Kumari whose particulars are given in the statement below,{this.state.name}
-                             <sub>[Name in full here]</sub>
-hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
+                             {this.state.name?' ':<sub>[Name in full here]</sub>}
+here by nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
                                              <li>
-                                              I hereby declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
+                                              I here by declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
                                              </li>
                                              <li>
                                              (a)  My father/mother/parents is/are not dependent on me.
@@ -412,8 +412,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 <p> Date </p>{ today}
                                 <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br />Designation :&nbsp; &nbsp;<label>{this.state.designation}</label>
                                <br/> <br />Name and address of establishment or rubber stamp thereof
-                               <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
-                               <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                               {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
+                               <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" /> */}
                                     
 
 

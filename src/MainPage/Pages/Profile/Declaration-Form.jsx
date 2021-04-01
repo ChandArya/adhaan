@@ -1939,8 +1939,8 @@ OF (3) ABOVE <br /><br />
                                     <div className="title font-weight-bold float-left "> DATE {today}</div>
                                    
                                             <div className="title font-weight-bold float-right"> 
-                                            <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
-                                            <br></br>
+                                            {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />
+                                            <br></br> */}
                                             SIGNATURE BY THE EMPLOYER
                                             </div>
                                            
@@ -2101,7 +2101,7 @@ Employee's Pension Scheme,</h4>
                                             who may receive the amount during
 the minority of nominee</th>
                                         </tr>
-                                        {isNomnieeList.map(document => (
+                                        {/* {isNomnieeList.map(document => (
 
                                             <tr>
                                                 <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name}/></td>
@@ -2113,7 +2113,7 @@ the minority of nominee</th>
                                                 <td><input className="px-0 py-0 border-0 form-control" ></input></td>
                                             </tr>
                                                
-                                            ))}
+                                            ))} */}
                                        
                                            
                                             
@@ -2206,35 +2206,21 @@ No</th>
 Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
                                             </tr>
+                                            {isNomnieeList.map(document => (
                                             <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-
-                                                    /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-
-                                                 onFocus="(this.type='date')" /></td>
-                                                <td><input  className="px-0 py-0 border-0 form-control" ></input></td>
-                                                <td><input  className="px-0 py-0 border-0 form-control" ></input></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')"  /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td className="text-center"><input type="text" name="" className="px-0 py-0 text-center border-0 form-control"
-                                                    placeholder="" onFocus="(this.type='date')"/></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control"></input></td>
-                                            </tr>
+                                                 <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                            <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name}/></td>
+                                            <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                            <td className="text-center">
+                                                <input type="text" name=""   className="px-0 py-0 text-center border-0 form-control"
+                                                placeholder="" onFocus="(this.type='date')"defaultValue={document.dob} /></td>
+                                           
+                                           
+                                            <td className="text-center"><input type="text" name="" defaultValue={document.relation}  className="px-0 py-0 text-center border-0 form-control"
+                                                placeholder="" onFocus="(this.type='date')" /></td>
+                                        </tr>
+                                            ))}
+                                           
                                         </table>
 
                                         <ol className="p-0 my-4">
@@ -2257,7 +2243,7 @@ Birth</th>
 
                                             </tr>
                                           
-                                                {isNomnieeList.map(document => (
+                                                {/* {isNomnieeList.map(document => (
 
                                                     <tr>
                                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
@@ -2269,7 +2255,7 @@ Birth</th>
                                                        
                                                     </tr>
 
-                                                ))}
+                                                ))} */}
                                        
 
 
@@ -2310,10 +2296,11 @@ by him/her.</h4>
 
                                         <div className="col-md-4 date-filed">
                                             Adhaan Solution Pvt. Ltd.<br></br>
-                                            807, 8th Floor, Dev Aurum,<br></br>
-                                            Nr. Anand Nagar Cross Road,<br></br>
-                                            100ft Road,Prahladnagar,<br></br>
-                                            Ahmedabad-380015 <br></br>
+                                            Times Square Arcade,<br></br>
+                                            Office No – 712 / 712-A,  Opp-Rambaug<br></br>                                   
+Nr Ravija Plaza ,Thaltej-shilaj Road,<br></br>
+Thaltej,
+Ahmedabad-380059 <br></br>
                                             Date <input type="text" value={today}></input>
                                         </div>
 
@@ -2321,13 +2308,10 @@ by him/her.</h4>
                                             <ul className="list-unstyled certifi-list">
                                                 <li>Signature of the employer or other authorised Officers of the Establishments &nbsp;
  <b>For, Adhaan Solution Pvt. Ltd.</b></li>
- 
-                                                <li>Designation <label className="pl-5">
-                                                    <img src={CompnySign} id="sign" alt=" " className="img-fluid1 d-block" />
-                                                     Authorised Signatory</label>
-                                                </li>
+ {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1" /> */}
+                                                <li>Designation <label className="pl-5">Authorised Signatory</label></li>
                                                 <li>Name and Address of Factory/Establishment or Rubber Stamp Thereof</li>
-                                                <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                                                {/* <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" /> */}
                                             </ul>
                                         </div>
                                     </div>

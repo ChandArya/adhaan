@@ -12,7 +12,7 @@ import OfferLetter from './OfferLetter';
 import DeclarationForm from './Declaration-Form';
 import EsicdeclrationForm from './Esicdeclrationform';
 import GratitutyForm from './GratitutyForm';
-import Student from './student';
+import Student from './Student';
 import PrintPage from './PrintPage';
 
 
