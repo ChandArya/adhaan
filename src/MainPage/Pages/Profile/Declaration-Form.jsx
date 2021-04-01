@@ -2227,9 +2227,9 @@ Birth</th>
                                                 {isNomnieeList.map(document => (
 
                                                     <tr>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" placeholder="1" /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
                                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
+                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
                                                         <td className="text-center"><input type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
                                                         <td className="text-center"><input type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"

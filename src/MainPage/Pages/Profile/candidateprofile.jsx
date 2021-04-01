@@ -199,11 +199,13 @@ var bankdata = {
   "VIJAYA BANK": "VIJAYABANK"
 }
 var banklist = Object.keys(bankdata);
+banklist=banklist.sort();
 export default class EmployeeProfile extends Component {
   constructor(...props) {
     super(...props)
     if (localStorage.getItem("count") == 2) {
       window.location.reload(false);
+      document.documentElement.scrollTop = -100;
       localStorage.setItem("count", 3);
     }
     this.setStartDate = this.setStartDate.bind(this);
@@ -219,7 +221,7 @@ export default class EmployeeProfile extends Component {
 
     // if(typeof this.props.location.state.back===undefined)
     // {
-    document.documentElement.scrollTop = 0;
+   
     this.state = {
       isopenProfileModel: false,
       isLoaded: false,
@@ -320,14 +322,11 @@ export default class EmployeeProfile extends Component {
       },
       jobtype: '',
 
-      // maxDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), 27)
-
+      
 
 
     }
-    // }else{
-    //   this.state = this.props.location.state
-    // }
+   
 
 
   }
@@ -1411,6 +1410,7 @@ export default class EmployeeProfile extends Component {
   }
   //endfamily data
   componentDidMount = () => {
+    window.scrollTo(0, 0)
     this.apicall();
     // console.log(this.props.location.state,"thissssssss")
     // this.setState({user:this.props.location.state.id})
