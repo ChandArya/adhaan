@@ -1601,7 +1601,7 @@ export default class Student extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="submit-section float-right">
+                                                    <div className="submit-section float-right float-sm-none">
                                                         <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Save</button>
                                                     </div>
                                                     <label className="text-danger">{this.state.error}</label>
