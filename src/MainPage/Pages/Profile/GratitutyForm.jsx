@@ -209,11 +209,11 @@ class GratitutyForm extends Component {
                              <ul  style={{listStyleType:'decimal'}}>
                              <li>
                                             I. Shri/Shrimati/Kumari whose particulars are given in the statement below,{this.state.name}
-                             {this.state.name?' ':<sub>[Name in full here]</sub>}
-here by nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
+                             <sub>[Name in full here]</sub>
+hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
                                              <li>
-                                              I here by declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
+                                              I hereby declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
                                              </li>
                                              <li>
                                              (a)  My father/mother/parents is/are not dependent on me.
@@ -326,17 +326,17 @@ here by nominate the person(s) mentioned below to receive the gratuity payable a
                                 </div><br/>
 
                                 {/* gratituty form page 2 */}
-                                <div className="border" style={{overflowX:'auto'}}>
+                                <div className="border">
                         < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
                             <div style={{ marginLeft: '5%', marginRight: '5%' }}>
                                 <div className="d-flex" style={{marginTop:'5%'}}>
-                                
-                                    <p  style={{marginLeft:'3%'}} >Village .................</p>
-                                    <p style={{marginLeft:'3%'}}>Thana  .................</p>
-                                    <p style={{marginLeft:'3%'}}>Sub-division .................</p>
-                                    <p style={{marginLeft:'3%'}}>Post Office.................</p><br/>
-                                   
+                                <ul className="list-unstyled">
+                                    <li className="float-left mr-2">Village .................</li>
+                                    <li className="float-left mr-2">Thana  .................</li>
+                                    <li className="float-left mr-2">Sub-division .................</li>
+                                    <li className="float-left">Post Office.................</li>
+                                </ul>  
                                     </div>
                                     <div className="d-flex">
                                 
@@ -428,8 +428,10 @@ here by nominate the person(s) mentioned below to receive the gratuity payable a
                                              Date:{today}
                                                                                           
                                             </p> 
-                                <p  style={{ marginLeft: '60%' }}>Signature of the employee</p>
-                                <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                <span className="ml-auto"><img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                <p >Signature of the employee</p>
+                                </span>
+                                
                                         
                                  
                                  </div> 

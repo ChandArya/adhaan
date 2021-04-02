@@ -7676,6 +7676,7 @@ ul.comment-list li ul.children {
 	}
 }
 @media only screen and (min-width: 768px) {
+
 	.modal-md {
 		width: 600px;
 	}
@@ -7982,8 +7983,6 @@ padding-top: 2rem;
 	body {
 		font-size: 0.875rem;
 		
-	
-		
 	}
 	h1, .h1 {
 		font-size: 2rem;
@@ -8181,6 +8180,25 @@ padding-top: 2rem;
 	}
 }
 @media only screen and (max-width: 575.98px) {
+
+/* ESI CSS	 */
+
+.heading-sm{
+ font-size: 25px;
+}
+.esic_box{
+	display: block !important;
+}
+.paading-auto{
+	padding: 13px !important;
+}
+
+/* ESI CSS end */
+
+.application_logo{
+	text-align: center;
+}
+
 	.contact-cat {
 		padding-right: 70px;
 	}
@@ -8483,3 +8501,4 @@ padding-top: 2rem;
 	zoom:1.5;
 	vertical-align: middle;
 }
+
