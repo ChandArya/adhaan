@@ -2912,7 +2912,15 @@ export default class Student extends Component {
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Signature/Thumb Impression")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
-                                                </li> <br></br>
+                                                </li>
+                                                <li>
+                                                    <div className="title">Pan Card</div>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Pan Card")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                                <li><div className="title">Marriage Certificate</div>
+                                                    <input type="checkbox" checked={candidate_doc_list.includes("Marriage Certificate")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                                 <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Driving License Front")}></input>
@@ -2929,19 +2937,14 @@ export default class Student extends Component {
                                                 <li><div className="title">Voter Id Card Back</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Back")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
-                                                <li>
-                                                    <div className="title">Pan Card</div>
-                                                    <input type="checkbox"checked={candidate_doc_list.includes("Pan Card")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                               
                                                 <li><div className="title">Ration Card</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Ration Card")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
-                                                <li><div className="title">Rent Agreement</div>
+                                                <li><div className="title">Rent Agreement/ Electricity Bill</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Rent Agreement")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
-                                                <li><div className="title">Marriage Certificate</div>
-                                                    <input type="checkbox" checked={candidate_doc_list.includes("Marriage Certificate")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                               
                                                 {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
@@ -2999,7 +3002,15 @@ export default class Student extends Component {
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Signature/Thumb Impression")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
-                                                </li> <br></br>
+                                                </li> 
+                                                <li>
+                                                    <div className="title">Pan Card</div>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Pan Card")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                                    <li><div className="title">Marriage Certificate</div>
+                                                    <input type="checkbox"checked={candidate_doc_list.includes("Marriage Certificate")}></input>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                                <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front <span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Driving License Front")}></input>
@@ -3016,19 +3027,14 @@ export default class Student extends Component {
                                                 <li><div className="title">Voter Id Card Back</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Back")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
-                                                <li>
-                                                    <div className="title">Pan Card</div>
-                                                    <input type="checkbox"checked={candidate_doc_list.includes("Pan Card")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                               
                                                 <li><div className="title">Ration Card</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Ration Card")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
-                                                <li><div className="title">Rent Agreement</div>
+                                                <li><div className="title">Rent Agreement/Electricity Bill</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Rent Agreement")}></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
-                                                <li><div className="title">Marriage Certificate</div>
-                                                    <input type="checkbox"checked={candidate_doc_list.includes("Marriage Certificate")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                               
                                                 {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
                                                     <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
