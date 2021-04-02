@@ -31,7 +31,10 @@ class DeclrationForm extends Component {
             window.location.reload(false);
             localStorage.setItem("count", 3);
         }
-       this.state = {...this.props.location.state,error1:''}
+       this.state = {...this.props.location.state,error1:'',
+           Is1952: false,
+           Is1995: false
+    }
        document.documentElement.scrollTop = 0;
       
     
@@ -125,6 +128,29 @@ class DeclrationForm extends Component {
        
 
     }
+    // function for disable UAN  by twinkle
+    yes1Click =(e,id) =>{
+       
+      //  console.log(e.target.id)
+        console.log(id)
+        if(id==1){
+            this.setState({ Is1952:false})
+        }
+       else if(id==3){
+            this.setState({ Is1995: false })
+        }
+        else{
+            this.setState({Is1952:true,Is1995:true})
+        }
+      
+       
+    }
+   
+    
+
+
+
+
     addEducationData = (e) => {
         e.preventDefault();
         this.setState({ error1: "This field can not be empty" })
@@ -656,9 +682,6 @@ class DeclrationForm extends Component {
         var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
             console.log('family1111', this.state.family)
-            console.log('saroy', this.state.family.length)
-            console.log('saroy', this.state.is_nominee)
-
             family = {
                 'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,
                 'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation
@@ -668,6 +691,7 @@ class DeclrationForm extends Component {
         catch (err) {
             console.log("family111", err);
         }
+
         var family1 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
             console.log('family111', this.state.family)
@@ -691,6 +715,42 @@ class DeclrationForm extends Component {
 
         catch (err) {
             // console.log("family111",err);
+        }
+        var family3 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            //console.log('family1111',this.state.family)
+            family3 = {
+                'name': this.state.family[3].name, 'aadhaar_no': this.state.family[3].aadhaar_no,
+                'dob': this.state.family[3].dob, 'is_nominee': this.state.family[3].is_nominee, 'relation': this.state.family[3].relation
+            }
+        }
+
+        catch (err) {
+            // console.log("family111",err);
+        }
+        var family4 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family4 = {
+                'name': this.state.family[4].name, 'aadhaar_no': this.state.family[4].aadhaar_no,
+                'dob': this.state.family[4].dob, 'is_nominee': this.state.family[4].is_nominee, 'relation': this.state.family[4].relation
+            }
+        }
+
+        catch (err) {
+            //console.log("family111",err);
+        }
+        var family5 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family5 = {
+                'name': this.state.family[5].name, 'aadhaar_no': this.state.family[5].aadhaar_no,
+                'dob': this.state.family[5].dob, 'is_nominee': this.state.family[5].is_nominee, 'relation': this.state.family[5].relation
+            }
+        }
+
+        catch (err) {
+            //console.log("family111",err);
         }
 
 
@@ -761,7 +821,7 @@ class DeclrationForm extends Component {
         } catch (err) {
             console.log("hjhj", err)
         }
-
+console.log("state print", this.state)
 
         return (
 
@@ -827,9 +887,11 @@ class DeclrationForm extends Component {
                                    
                             1) &nbsp; NAME &nbsp; &nbsp; (TITLE)
                                         <div className=" "  style={{ display: 'inline-flex' , marginLeft:'5%'}} >
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MR.</div>
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>Ms.</div>
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MRs.</div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>MR.
+                                                <input type="checkbox" defaultChecked={this.state.gender == "male"} ></input></div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>Ms.
+                                                  <input type="checkbox" defaultChecked={this.state.gender == "female"} ></input></div>
+                                                
                                        <br />
                                         </div>
                                         
@@ -1134,8 +1196,8 @@ OF (3) ABOVE <br /><br />
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes"   name="optradio" onClick={(e)=>this.yes1Click(e,1)}></input></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e)=>this.yes1Click(e,2)}/> </td>
                                                     </tr>
                                                     </table>
                                            </div>
@@ -1156,8 +1218,8 @@ OF (3) ABOVE <br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" name="optradio" onClick={(e) => this.yes1Click(e, 3)}/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e) => this.yes1Click(e, 4)} /></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -1213,7 +1275,7 @@ OF (3) ABOVE <br /><br />
 
                                         <input key={document.key} type="text" style={{ width: '40px' }}></input>
                                     ))} */}
-                                            <input  onChange={this.setuan} defaultValue={otherdetails.uan} key={document.key} type="text" style={{ width: '100%'  }} className="form-control"></input>
+                                            <input onChange={this.setuan} defaultValue={otherdetails.uan} readOnly={this.state.Is1952} key={document.key} type="text" style={{ width: '100%'  }} className="form-control"></input>
 
                                     </div>   </div><br></br>
 
@@ -1256,12 +1318,12 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control"/></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td className="text-center"><input readOnly={this.state.Is1952} type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"/></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
                                             </tr>
                                            
 
@@ -1295,7 +1357,7 @@ OF (3) ABOVE <br /><br />
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                             ))} */}
-                                                <input type="date" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="date" key={document.key} type="text" className="form-control"></input>
 
                                         </div><br />
 
@@ -1340,7 +1402,7 @@ OF (3) ABOVE <br /><br />
                                           
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                                
-                                                <input type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1361,7 +1423,7 @@ OF (3) ABOVE <br /><br />
 
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
-                                                <input type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1471,8 +1533,8 @@ OF (3) ABOVE <br /><br />
                                                 </tr>
                                                 <tr>
 
-                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" disabled="disabled"/></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" disabled="disabled"/></td>
                                                 </tr>
 
 
@@ -1489,13 +1551,13 @@ OF (3) ABOVE <br /><br />
                                     < div className="row">
                                         <div className=" col-md-6 float-left " >
 
-                                            PASSPORT NUMBER
+                                            13(B)   PASSPORT NUMBER
                                     </div>
                                         <div className="col-md-6">
 
-                                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px'  }}>
 
-                                                <input type="text" type="text" className="form-control"></input>
+                                                <input type="text" type="text" className="form-control" disabled="disabled"></input>
 
                                             </div><br />
 
@@ -1519,7 +1581,7 @@ OF (3) ABOVE <br /><br />
 
                                     <div className="col-md-3">
                                       
-                                                <input className="form-control m-3"  key={document.key} type="text" ></input>
+                                            <input className="form-control m-3" key={document.key} type="text" disabled="disabled" ></input>
 
                                              
                                            
@@ -1532,7 +1594,7 @@ OF (3) ABOVE <br /><br />
                                       </div>
                                         <div className="col-md-3">
                                           
-                                            <input type="text" className="m-3 form-control" ></input>
+                                            <input type="text" className="m-3 form-control" disabled="disabled" ></input>
                                                 
 
 
@@ -1792,11 +1854,11 @@ OF (3) ABOVE <br /><br />
                                                             <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                             <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>DRIVING LICENCE</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no?this.state.candidate_other_data.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
                                                             <td><input defaultValue={this.state.candidate_other_data.dl_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
@@ -1817,7 +1879,7 @@ OF (3) ABOVE <br /><br />
                                                 </tr>
                                                 <tr>
                                                     <td>ESIC CARD</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no?this.state.candidate_other_data.esic_name:''}type="text" name="" style={{ border: ' none',width: "100%" , backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no?this.state.name:''}type="text" name="" style={{ border: ' none',width: "100%" , backgroundColor: ' #ffffff0a' }} /></td>
                                                             <td><input defaultValue={this.state.candidate_other_data.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
@@ -1894,9 +1956,9 @@ OF (3) ABOVE <br /><br />
                                         <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
-                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input    value={this.state.name}></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input  ></input>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input value={this.state.name}></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input disabled="disabled" ></input>
                                                 &nbsp; &nbsp;   AND HAS BEEN <br/>
-                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input   style={{  marginTop:'1%'}} ></input>
+                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input style={{ marginTop: '1%' }} disabled="disabled" ></input>
 
                                         </li>
                                         <li>
@@ -1904,7 +1966,7 @@ OF (3) ABOVE <br /><br />
                                         </li>
                                                 <ul style={{ display: 'contents' }}>
                                             <li>
-                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input ></input>
+                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input disabled="disabled" ></input>
                                             </li>
                                             <li>
                                                 PLEASE TICK THE APPROPRIATE OPTION:<br/>
@@ -1939,7 +2001,7 @@ OF (3) ABOVE <br /><br />
                                                     <ul style={{ listStyleType: 'square', display: 'contents' , paddingRight:'5%'}}>
                                                 <li style={{paddingRight:'3%'}}>
                                                             THE KYC DETAILS OF THE ABOVE MEMBER IN THE UANDATABASE HAVE BEEN APPROVED WITH  DIGITAL SIGNATURE CERTIFICATE AND TRANSFER
-                                                    REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox"></input>
+                                                    REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox" defaultChecked="true"></input>
                                                 </li>
                                                         <li style={{ paddingRight: '3%' }}>
                                                             AS THE DSC OF ESTABLISHMENT ARE NOT REGISTERED WITH EPFO, THE MEMBER HAS BEEN INFORMED TO THE PHYSICAL CLAIM (FORM-13) FOR
@@ -2030,13 +2092,13 @@ Employee's Pension Scheme,</h4>
                                     <div className="col-sm-6">
                                         <div className="form-group ">
                                             <label htmlFor="" className="mb-0 text-uppercase">* Name in Full (In block letters): </label>
-                                            <input   name="name" defaultValue={this.state.name}  />
+                                            <input    name="name" defaultValue={this.state.name}  />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <label htmlFor="" className="mb-0 text-uppercase">* Account No.: GJ/AHD/56271 :</label>
-                                            <input defaultValue={this.state.account_number} type="text" name="father-name" className="px-0 py-1 form-control" />
+                                            <input disabled="disabled" type="text" name="father-name" className="px-0 py-1 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -2126,7 +2188,7 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input type="text" name="" defaultValue={document.dob}  className="px-0 py-0 text-center border-0 form-control"
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" placeholder="%" ></input></td>
                                                 <td><input className="px-0 py-0 border-0 form-control" ></input></td>
                                             </tr>
                                                
@@ -2260,6 +2322,17 @@ Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
 
                                             </tr>
+                                            <tr>
+                                                <td>
+                                                    <input disabled="disabled" className="form-control"></input>
+                                                </td>
+                                                <td>
+                                                    <input disabled="disabled" className="form-control"></input>
+                                                </td>
+                                                <td>
+                                                    <input disabled="disabled" className="form-control"></input>
+                                                </td>
+                                            </tr>
                                           
                                               
 
@@ -2300,11 +2373,10 @@ by him/her.</h4>
 
 
                                         <div className="col-md-4 date-filed">
-                                            Adhaan Solution Pvt. Ltd.<br></br>
-                                            807, 8th Floor, Dev Aurum,<br></br>
-                                            Nr. Anand Nagar Cross Road,<br></br>
-                                            100ft Road,Prahladnagar,<br></br>
-                                            Ahmedabad-380015 <br></br>
+                                          Times Square Arcade, Office No-712/712<br></br>
+                                           A,Opp-Rambaug,NR Ravija Plaza,<br></br>
+                                           Thaltej-shila Road<br></br>
+                                            Ahmedabad-380059 <br/>
                                             Date <input type="text" value={today}></input>
                                         </div>
 

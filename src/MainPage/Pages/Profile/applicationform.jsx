@@ -587,7 +587,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Landmark:</label>
                                                 </div>
-                                                <input disabled="disabled"  type="text" name="landmark" className="mx-2 form-control" />
+                                                <input disabled="disabled" type="text" name="landmark" className="mx-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -638,7 +638,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Landmark:</label>
                                                 </div>
-                                                <input disabled="disabled"  type="text" name="landmark" className="mx-2 form-control" />
+                                                <input disabled="disabled" type="text" name="landmark" className="mx-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
