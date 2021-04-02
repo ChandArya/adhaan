@@ -2300,11 +2300,10 @@ by him/her.</h4>
 
 
                                         <div className="col-md-4 date-filed">
-                                            Adhaan Solution Pvt. Ltd.<br></br>
-                                            807, 8th Floor, Dev Aurum,<br></br>
-                                            Nr. Anand Nagar Cross Road,<br></br>
-                                            100ft Road,Prahladnagar,<br></br>
-                                            Ahmedabad-380015 <br></br>
+                                          Times Square Arcade, Office No-712/712<br></br>
+                                           A,Opp-Rambaug,NR Ravija Plaza,<br></br>
+                                           Thaltej-shila Road<br></br>
+                                            Ahmedabad-380059 <br/>
                                             Date <input type="text" value={today}></input>
                                         </div>
 

@@ -436,11 +436,10 @@ class EsicdeclrationForm extends Component {
                                                     </tr>
                                                     <tr>
                                                         <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
-                                                            <b>Adhaan Solution Pvt. Ltd</b><br></br>
-                                            807, 8th Floor, Dev Aurum,<br></br>
-                                            Nr. Anand Nagar Cross Road,<br></br>
-                                            100ft Road,Prahladnagar,<br></br>
-                                            Ahmedabad-380015 <br></br>
+                                                            Times Square Arcade, Office No-712/712<br></br>
+                                           A,Opp-Rambaug,NR Ravija Plaza,<br></br>
+                                           Thaltej-shila Road<br></br>
+                                            Ahmedabad-380059 <br />
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -471,11 +470,10 @@ class EsicdeclrationForm extends Component {
                                                     <tr>
                                                         <td colspan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
                                                             <b>Name & Address of the Employer</b><br /><br />
-                                                            <b>Adhaan Solution Pvt. Ltd</b><br></br>
-                                            807, 8th Floor, Dev Aurum,<br></br>
-                                            Nr. Anand Nagar Cross Road,<br></br>
-                                            100ft Road,Prahladnagar,<br></br>
-                                            Ahmedabad-380015 <br></br>
+                                                            Times Square Arcade, Office No-712/712<br></br>
+                                           A,Opp-Rambaug,NR Ravija Plaza,<br></br>
+                                           Thaltej-shila Road<br></br>
+                                            Ahmedabad-380059 <br />
                                                             {/* <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br /> */}
 
 
