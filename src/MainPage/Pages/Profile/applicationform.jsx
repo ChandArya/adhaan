@@ -587,7 +587,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Landmark:</label>
                                                 </div>
-                                                <input disabled="disabled" defaultValue={this.state.c_house_no} type="text" name="landmark" className="mx-2 form-control" />
+                                                <input disabled="disabled"  type="text" name="landmark" className="mx-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -638,7 +638,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Landmark:</label>
                                                 </div>
-                                                <input disabled="disabled" defaultValue={this.state.p_house_no} type="text" name="landmark" className="mx-2 form-control" />
+                                                <input disabled="disabled"  type="text" name="landmark" className="mx-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -679,16 +679,16 @@ class ApplicationForm extends Component {
                                                     <label htmlFor="" className="m-0 text-uppercase">Emergency Mobile No.:</label>
                                                 </div>
 
-                                                <input disabled="disabled" defaultValue={emgencyNo} type="text" name="emergency-mobile" className="mx-2 form-control" />
+                                                <input disabled="disabled" defaultValue={this.state.emergencyNo} type="text" name="emergency-mobile" className="mx-2 form-control" />
                                             </div>
                                         </div>
 
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
                                                 <div className="input-group-prepend my-auto">
-                                                    <label htmlFor="" className="m-0 text-uppercase">Person Relation:</label>
+                                                    <label htmlFor="" className="m-0 text-uppercase">Emergency Person Name:</label>
                                                 </div>
-                                                <input disabled="disabled" defaultValue={emgencyrelation} type="text" name="person-name" className="ml-2 form-control" />
+                                                <input disabled="disabled" defaultValue={this.state.contperson} type="text" name="person-name" className="ml-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-12">
