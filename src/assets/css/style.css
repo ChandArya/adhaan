@@ -8195,6 +8195,31 @@ padding-top: 2rem;
 
 /* ESI CSS end */
 
+/* Gratiutyform */
+
+.nominat{
+	margin:0 !important;
+}
+.sigem{
+	display: block !important;
+    margin: 0 !important;
+}
+
+.vilg ul li{
+	display: block;
+   }
+.vilg ul li{
+	display: block !important;
+}
+.district p{
+	display: block !important;
+}
+.stdata input{
+	display: block !important;
+}
+
+/* Gratiutyform end*/
+
 .application_logo{
 	text-align: center;
 }
@@ -8502,3 +8527,19 @@ padding-top: 2rem;
 	vertical-align: middle;
 }
 
+.district p{
+	display: flex;
+	align-items: center;
+}
+
+.district label{
+margin: 0;
+}
+
+.vilg{
+	margin-bottom: 1%;
+}
+.vilg ul li{
+ display: flex;
+ align-items: center;
+}

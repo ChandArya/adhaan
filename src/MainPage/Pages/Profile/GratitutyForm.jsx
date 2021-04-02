@@ -175,52 +175,48 @@ class GratitutyForm extends Component {
                 top: 'inherit'
             }}>
                 
-                        
-
-                       
-
-
-                      
-                
-
+      
                 {/*GratitutyForm page */}
 
                 
-                      <div className="border" id='uu'style={{overflowX:'auto'}}>
+                      <div className="border" id='uu'style={{overflowX:'auto', background:'#fff'}}>
                         < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
-                            <div style={{marginLeft:'30px', marginRight:'30px'}}>
+                            <div style={{marginLeft:'1%', marginRight:'1%'}} className="nominat">
                                 <div className="title  text-center font-weight-bold">
-                                    <p>
-                                  FORM 'F'</p>
+                                    <h3 className="font-weight-bold">
+                                  FORM 'F'</h3>
                                 
 
                                    <p style={{fontWeight:'normal'}}> [See sub-rule(1) of rule 6]</p>
                                     
-                                   <p> Nomination</p>
+                                   <h3> Nomination</h3>
                                 </div>
 
-                               <div  className="text-center"> 
-                                    To &nbsp; &nbsp;  <span>Adhaan Solution Pvt. Ltd.</span> </div>
+                                  <div  className="d-flex"> 
+                                   <span className="mr-1" style={{lineHeight:3}}>To</span> 
+                                    <input type="text" className="form-control" placeholder="Adhaan Solution Pvt. Ltd" disabled="disabled"></input>   
+                                  </div>
                                
-                               <div  className="text-center"> 
+                               <div  className="mt-4"> 
                                [Give here name or description of the establishment with full address]</div>
                              <div > 
-                             <ul  style={{listStyleType:'decimal'}}>
+                             <ul  style={{listStyleType:'decimal'}} className="pl-4 mt-4">
                              <li>
-                                            I. Shri/Shrimati/Kumari whose particulars are given in the statement below,<input  defaultValue={this.state.name}></input>
+                                           Shri/Shrimati/Kumari whose particulars are given in the statement below,
+                                            <input disabled="disabled" className="form-control w-auto d-inline-block mx-2"  defaultValue={this.state.name}></input>
                            
 hereby nominate the person(s) mentioned below to receive the gratuity payable after my death as also the gratuity standing to my credit in the event of my death before that amount has become payable, or having become payable has not been paid and direct that the said amount of gratuity shall be paid in proportion indicated against the name(s) of the nominee(s).
 </li>
+<li>I hearby certify that the person(s) mentioned is a/are member(s) of my family within the meaning of clause (h) of section (2) of the Payment of Gratuity Act, 1972.</li>
                                              <li>
                                               I hereby declare that I have no family within the meaning of clause (h) of section 	(2) of the said Act.
                                              </li>
                                              <li>
-                                             (a)  My father/mother/parents is/are not dependent on me.
-                                             </li>
-                                             <li>
+                                             (a)  My father/mother/parents is/are not dependent on me.<br></br>
                                              (b)  my husband's father/mother/parents is/are not dependent on my husband.
                                              </li>
+                                            
                                              <li>
                                               I have excluded my husband from my family by a notice dated the to the Controlling Authority in terms of the proviso to clause (h) of section 2 of the said Act.
                                              </li>
@@ -232,7 +228,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
 
                                              <div  className="text-center">
-                                             <p className="font-weight-bold"> Nominee(s)</p>
+                                             <h3 className=""> Nominee(s)</h3>
                                               <div className='table-responsive'>
                                             <table className="table table-bordered">
                                                 <tbody>
@@ -253,7 +249,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                         Age of nominee
                                                             </td>
                                                         <td >
-                                                        the gratuity will be shared
+                                                        Proportion by which the gratuity will be shared
 
                                                             </td>
                                                        
@@ -263,19 +259,19 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                      
                                                      <td >
                                                          
-                                                     <input type="text" name="" value={document.name}style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                     <input className="form-control" disabled="disabled" type="text" name="" value={document.name}/>
 
                                                      </td>
                                                  <td>
-                                                     <input type="text" name=""value={document.relation} style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                     <input className="form-control" disabled="disabled" type="text" name=""value={document.relation}/>
 
                                                  </td>
                                                  <td>
-                                                     <input type="text" name="" value={document.dob}style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                     <input className="form-control" disabled="disabled" type="text" name="" value={document.dob} />
 
                                                  </td>
                                                  <td>
-                                                     <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                     <input className="form-control" type="text" name=""/>
 
                                                  </td>
                                                
@@ -294,30 +290,35 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                             
                                 </div>
                                 <div  className="text-center font-weight-bold"> 
-                                                      Statement
+                                                      <h3>Statement</h3>
                                                         </div>
                                                         
-                                                        <ul  style={{listStyleType:'decimal'}}>
-                             <li>
-                                        1.	Name of employee in full: &nbsp; &nbsp; <label>{this.state.name}</label></li>
-                                    <li>Sex. &nbsp; &nbsp; <label>{this.state.gender} </label>       </li>
-                                             <li>
-                                        Religion. &nbsp; &nbsp; <label>{this.state.religion} </label>
+                                                        <ul  style={{listStyleType:'decimal'}} className="pl-4 mt-4 stdata">
+                             <li className="mb-2">
+                                       Name of employee in full: &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.name}></input></li>
+                                    <li className="mb-2">Sex. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.gender}></input>
+                                           </li>
+                                             <li className="mb-2">
+                                        Religion. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.religion}></input>
+                                        
                                              </li>
-                                             <li>
-                                        Whether unmarried/married/widow/widower. &nbsp; &nbsp; <label>{this.state.marital_status}</label>
+                                             <li className="mb-2">
+                                        Whether unmarried/married/widow/widower. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.marital_status}></input>
+                                        
                                              </li>
-                                             <li>
-                                        Department/Branch/Section where employed.&nbsp; &nbsp; <label>{this.state.branch_name}</label>
+                                             <li className="mb-2">
+                                        Department/Branch/Section where employed.&nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.branch_name}></input>
+                                       
                                              </li>
-                                             <li>
-                                             Post held with Ticket or Serial No., if any.
+                                             <li className="mb-2">
+                                             Post held with Ticket or Serial No., if any.<input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" ></input>
                                              </li>
-                                             <li>
+                                             {/* <li>
                                         	Date of appointment.{today}
-                                             </li>
+                                             </li> */}
                                              <li>
-                                        Permanent address. &nbsp; &nbsp; <label>{this.state.p_full_address}</label></li>
+                                        Permanent address. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.p_full_address}></input>
+                                       </li>
                                              </ul>
                                              
                                                  </div>
@@ -326,29 +327,28 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                 </div><br/>
 
                                 {/* gratituty form page 2 */}
-                                <div className="border" style={{overflowX:'auto'}}>
-                        < div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
+                                <div className="border" style={{overflowX:'auto' , background:'#fff'}}>
+                        <div className="row " style={{ marginTop: '2%', marginLeft: 'auto', marginRight: 'auto' }}>
                             <div className="col-md-12">
-                            <div style={{ marginLeft: '5%', marginRight: '5%' }}>
-                                <div className="d-flex" style={{marginTop:'5%'}}>
-                                
-                                    <p  style={{marginLeft:'3%'}} >Village .................</p>
-                                    <p style={{marginLeft:'3%'}}>Thana  .................</p>
-                                    <p style={{marginLeft:'3%'}}>Sub-division .................</p>
-                                    <p style={{marginLeft:'3%'}}>Post Office.................</p><br/>
-                                   
+                            <div style={{ marginLeft: '1%', marginRight: '1%' }}>
+                                <div className="d-inline-block vilg" style={{marginTop:'4%'}}>
+                                    <ul className="list-unstyled">
+                                        <li className="float-left mr-1"><label className="mr-2">Village</label> <input disabled="disabled" type="text" className="form-control"></input></li>
+                                        <li className="float-left mr-1"><label className="mr-2">Thana</label>   <input disabled="disabled" type="text" className="form-control"></input></li>
+                                        <li className="float-left mr-1"><label className="mr-2">Sub-division</label>  <input disabled="disabled" type="text" className="form-control"></input></li>
+                                        <li className="float-left mr-1"><label className="mr-2">Post Office</label> <input disabled="disabled" type="text" className="form-control"></input></li><br/>
+                                    </ul>   
                                     </div>
-                                    <div className="d-flex">
-                                
-                              
-                                    <p style={{ marginLeft: '3%' }}>District : &nbsp; &nbsp;{this.state.c_city}</p>
-                                <p style={{marginLeft:'3%'}}>State : &nbsp; &nbsp;{this.state.c_state}</p>
+                                    <div className="d-flex district">
+                                           
+                                    <p className="mr-4"><label className="mr-1">District</label>  &nbsp; &nbsp; <input className="form-control" disabled="disabled" typet="text" defaultValue={this.state.c_city}></input></p> &nbsp; &nbsp;
+                                <p><label className="mr-1">State</label>  <input className="form-control" disabled="disabled" typet="text" defaultValue={this.state.c_state}></input></p>
                                 </div>
 
-                                < div className="title d-flex p-3" style={{ marginLeft: '1%', marginRight: '1%' }}>
+                                <div className="title d-flex mt-2">
                                              
                                              <p>
-                                             Place<br/>Date {today}
+                                             Place<br/>Date: {today}
 
                                                                                           
                                             </p>
@@ -363,12 +363,12 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                  <div  className="text-center "> 
                                  <i>Declaration by witnesses</i>
                                                         </div>
-                                                        <div className="title" style={{marginLeft:'3%'}}>
+                                                        <div className="title">
                                                         Nomination signed/thumb impressed before me.
                                                         </div>
 
                                </div>
-                               < div className="title d-flex p-3" style={{marginLeft:'6%', marginRight:'5%'}}>
+                               < div className="title d-flex mt-3 adwitn" style={{marginLeft:'1%', marginRight:'1%'}}>
                                              
                                              <p>
                                              Name in full and full <br/>address of witnesses
@@ -378,7 +378,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                     <p style={{marginLeft:'auto'}}> Signature of witnesses.</p>
                                   
                                 </div>
-                            <div className="title d-flex p-3" style={{ marginLeft: '11%', marginRight: '20%'}}>
+                            <div className="title d-flex" style={{ marginLeft: '1%', marginRight: '14%'}}>
                             <p>
                                 1. <inpu ></inpu>
                                     <br />2. <inpu ></inpu> </p>
@@ -387,10 +387,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                             </p>
                             </div>
-                            < div className="title d-flex p-3" style={{ marginLeft: '10%', marginRight: '10%' }}>
+                            < div className="title d-flex" style={{ marginLeft: '1%', marginRight: '1%' }}>
                                 
                                 <p>
-                                    Place<br />Date &nbsp; { today}
+                                    Place<br />Date: &nbsp; { today}
 
 
                                             </p>
@@ -401,7 +401,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                             <div className="text-center ">
                                 <i>Certificate by the employer</i>
                             </div><br/>
-                            <div className="title" style={{ marginLeft: '7%' }}>
+                            <div className="title" style={{ marginLeft: '1%' }}>
                                 Certified that the particulars of the above nomination have been verified and recorded in this establishment.
                                 
                                 <div className="mt-3">
@@ -409,9 +409,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                         </div>
                                                         </div>
-                            <div className="title d-flex p-3 mt-3" style={{ marginLeft: '11%', marginRight: '10%' }}>
-                                <br/>
-                                <br/>
+                            <div className="title d-flex mt-3 sigem" style={{ marginLeft: '1%', marginRight: '1%' }}>
+                               
                                 <p> Date </p>{ today}
                                 <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br />Designation :&nbsp; &nbsp;<label>{this.state.designation}</label>
                                <br/> <br />Name and address of establishment or rubber stamp thereof
@@ -425,13 +424,13 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                             <div className="text-center mt-3 ">
                                 <i>Acknowledgement by the employee</i>
                             </div>
-                            < div className="title d-flex p-3 mt-3" style={{ marginLeft: '10%', marginRight: '10%' }}>
+                            < div className="title d-flex mt-3" style={{ marginLeft: '1%', marginRight: '1%' }}>
                                              
                                              <p>
                                              Date:{today}
                                                                                           
                                             </p> 
-                                <p  style={{ marginLeft: '60%' }}>
+                                <p className="ml-auto">
                                     <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
                                     <br/>Signature of the employee</p>
                                 
