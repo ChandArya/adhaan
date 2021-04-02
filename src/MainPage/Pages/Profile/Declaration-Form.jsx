@@ -31,7 +31,10 @@ class DeclrationForm extends Component {
             window.location.reload(false);
             localStorage.setItem("count", 3);
         }
-       this.state = {...this.props.location.state,error1:''}
+       this.state = {...this.props.location.state,error1:'',
+           Is1952: false,
+           Is1995: false
+    }
        document.documentElement.scrollTop = 0;
       
     
@@ -126,26 +129,24 @@ class DeclrationForm extends Component {
 
     }
     // function for disable UAN  by twinkle
-    yes1Click =(e) =>{
+    yes1Click =(e,id) =>{
        
-        console.log(e.target.id)
-        
+      //  console.log(e.target.id)
+        console.log(id)
+        if(id==1){
+            this.setState({ Is1952:false})
+        }
+       else if(id==3){
+            this.setState({ Is1995: false })
+        }
+        else{
+            this.setState({Is1952:true,Is1995:true})
+        }
       
-    //         // var ckName = document.getElementsByName(el.name);
-    //         // for (var i = 0, c; c = ckName[i]; i++) {
-              
-            
-    //    //}
-    //     c.disabled = !(!el.checked || c === el);
-    //     return { checked: true }
-        // if (this.checked) {
-        //    1.disabled = false;
-        // } else {
-        //     checkme2.disabled = false;
-      
+       
     }
-
-
+   
+    
 
 
 
@@ -681,9 +682,6 @@ class DeclrationForm extends Component {
         var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
             console.log('family1111', this.state.family)
-            console.log('saroy', this.state.family.length)
-            console.log('saroy', this.state.is_nominee)
-
             family = {
                 'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,
                 'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation
@@ -693,6 +691,7 @@ class DeclrationForm extends Component {
         catch (err) {
             console.log("family111", err);
         }
+
         var family1 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
             console.log('family111', this.state.family)
@@ -716,6 +715,42 @@ class DeclrationForm extends Component {
 
         catch (err) {
             // console.log("family111",err);
+        }
+        var family3 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            //console.log('family1111',this.state.family)
+            family3 = {
+                'name': this.state.family[3].name, 'aadhaar_no': this.state.family[3].aadhaar_no,
+                'dob': this.state.family[3].dob, 'is_nominee': this.state.family[3].is_nominee, 'relation': this.state.family[3].relation
+            }
+        }
+
+        catch (err) {
+            // console.log("family111",err);
+        }
+        var family4 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family4 = {
+                'name': this.state.family[4].name, 'aadhaar_no': this.state.family[4].aadhaar_no,
+                'dob': this.state.family[4].dob, 'is_nominee': this.state.family[4].is_nominee, 'relation': this.state.family[4].relation
+            }
+        }
+
+        catch (err) {
+            //console.log("family111",err);
+        }
+        var family5 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family5 = {
+                'name': this.state.family[5].name, 'aadhaar_no': this.state.family[5].aadhaar_no,
+                'dob': this.state.family[5].dob, 'is_nominee': this.state.family[5].is_nominee, 'relation': this.state.family[5].relation
+            }
+        }
+
+        catch (err) {
+            //console.log("family111",err);
         }
 
 
@@ -786,7 +821,7 @@ class DeclrationForm extends Component {
         } catch (err) {
             console.log("hjhj", err)
         }
-
+console.log("state print", this.state)
 
         return (
 
@@ -852,8 +887,10 @@ class DeclrationForm extends Component {
                                    
                             1) &nbsp; NAME &nbsp; &nbsp; (TITLE)
                                         <div className=" "  style={{ display: 'inline-flex' , marginLeft:'5%'}} >
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MR.</div>
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>Ms.</div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>MR.
+                                                <input type="checkbox" defaultChecked={this.state.gender == "male"} ></input></div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>Ms.
+                                                  <input type="checkbox" defaultChecked={this.state.gender == "female"} ></input></div>
                                                 
                                        <br />
                                         </div>
@@ -1159,8 +1196,8 @@ OF (3) ABOVE <br /><br />
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td style={{ textAlign: 'center' }}> <input type="radio" id="yes"   name="optradio" onClick={this.yes1Click}></input></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={this.yes1Click}/> </td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes"   name="optradio" onClick={(e)=>this.yes1Click(e,1)}></input></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e)=>this.yes1Click(e,2)}/> </td>
                                                     </tr>
                                                     </table>
                                            </div>
@@ -1181,8 +1218,8 @@ OF (3) ABOVE <br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" class="radio"  onClick={this.yes2Click} style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" class="radio"  onClick={this.no2Click} style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" name="optradio" onClick={(e) => this.yes1Click(e, 3)}/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e) => this.yes1Click(e, 4)} /></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -1238,7 +1275,7 @@ OF (3) ABOVE <br /><br />
 
                                         <input key={document.key} type="text" style={{ width: '40px' }}></input>
                                     ))} */}
-                                            <input  onChange={this.setuan} defaultValue={otherdetails.uan} key={document.key} type="text" style={{ width: '100%'  }} className="form-control"></input>
+                                            <input onChange={this.setuan} defaultValue={otherdetails.uan} readOnly={this.state.Is1952} key={document.key} type="text" style={{ width: '100%'  }} className="form-control"></input>
 
                                     </div>   </div><br></br>
 
@@ -1281,12 +1318,12 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control"/></td>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td className="text-center"><input readOnly={this.state.Is1952} type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"/></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
                                             </tr>
                                            
 
@@ -1320,7 +1357,7 @@ OF (3) ABOVE <br /><br />
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                             ))} */}
-                                                <input type="date" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="date" key={document.key} type="text" className="form-control"></input>
 
                                         </div><br />
 
@@ -1365,7 +1402,7 @@ OF (3) ABOVE <br /><br />
                                           
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                                
-                                                <input type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1386,7 +1423,7 @@ OF (3) ABOVE <br /><br />
 
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
-                                                <input type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
