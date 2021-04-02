@@ -175,7 +175,6 @@ class EsicdeclrationForm extends Component {
         catch (err) {
             console.log("hjhj", err);
         }
-
         //family data
         var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
@@ -190,7 +189,66 @@ class EsicdeclrationForm extends Component {
             console.log("family111", err);
         }
 
+        var family1 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family111', this.state.family)
+            family1 = {
+                'name': this.state.family[1].name, 'aadhaar_no': this.state.family[1].aadhaar_no,
+                'dob': this.state.family[1].dob, 'is_nominee': this.state.family[1].is_nominee, 'relation': this.state.family[1].relation
+            }
+        }
 
+        catch (err) {
+            //console.log("family222",err);
+        }
+        var family2 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            //console.log('family11',this.state.family)
+            family2 = {
+                'name': this.state.family[2].name, 'aadhaar_no': this.state.family[2].aadhaar_no,
+                'dob': this.state.family[2].dob, 'is_nominee': this.state.family[2].is_nominee, 'relation': this.state.family[2].relation
+            }
+        }
+
+        catch (err) {
+            // console.log("family111",err);
+        }
+        var family3 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            //console.log('family1111',this.state.family)
+            family3 = {
+                'name': this.state.family[3].name, 'aadhaar_no': this.state.family[3].aadhaar_no,
+                'dob': this.state.family[3].dob, 'is_nominee': this.state.family[3].is_nominee, 'relation': this.state.family[3].relation
+            }
+        }
+
+        catch (err) {
+            // console.log("family111",err);
+        }
+        var family4 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family4 = {
+                'name': this.state.family[4].name, 'aadhaar_no': this.state.family[4].aadhaar_no,
+                'dob': this.state.family[4].dob, 'is_nominee': this.state.family[4].is_nominee, 'relation': this.state.family[4].relation
+            }
+        }
+
+        catch (err) {
+            //console.log("family111",err);
+        }
+        var family5 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        try {
+            console.log('family1111', this.state.family)
+            family5 = {
+                'name': this.state.family[5].name, 'aadhaar_no': this.state.family[5].aadhaar_no,
+                'dob': this.state.family[5].dob, 'is_nominee': this.state.family[5].is_nominee, 'relation': this.state.family[5].relation
+            }
+        }
+
+        catch (err) {
+            //console.log("family111",err);
+        }
 
 
 
@@ -261,7 +319,7 @@ class EsicdeclrationForm extends Component {
                                 <div className="row row-no-gutter" style={{ boder: '1px solid' }}>
 
                                     <div className="col-md-6 pr-0">
-                                        <div className='table-responsive' style={{ overflowX: 'hidden' }}>
+                                        <div className='table-responsive' style={{ overflow: 'hidden' }}>
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -392,7 +450,7 @@ class EsicdeclrationForm extends Component {
                                     </div>
 
                                     <div className="col-md-6 pl-0">
-                                        <div className='table-responsive' style={{ overflow: 'hidden' }}>
+                                        <div className='table-responsive' style={{ overflow: 'hidden' }} >
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -482,6 +540,10 @@ class EsicdeclrationForm extends Component {
 
                                                              <input defaultValue={this.state.c_email} type="text" name="" className="form-control" /><br />
                                                             </div>
+
+                                                            <div style={{ width: '50px', height: '86px' }}>
+
+                                                            </div>
                                                         </td>
 
 
@@ -501,7 +563,7 @@ class EsicdeclrationForm extends Component {
 
                                 <div className="col-md-12 pl-0 pr-0">
 
-                                    <div className='table-responsive' style={{ overflow: 'hidden' }}>
+                                    <div className='table-responsive' style={{ overflow: 'auto' }}>
                                         <table className="table table-bordered">
                                             <tbody>
                                                 <tr>
@@ -544,7 +606,7 @@ class EsicdeclrationForm extends Component {
                                                     <td >
                                                         नाम / Name
                                                             </td>
-                                                    <td >फॉर्म भरने तारिख आयु
+                                                    <td >फॉर्म भरने तारिख /आयु
                                                             <br />
                                                             Date of Birth / Age as on
                                                             date of filling form
@@ -591,19 +653,19 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                     </td>
                                                     <td>
@@ -615,23 +677,23 @@ class EsicdeclrationForm extends Component {
                                                 <tr>
 
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input type="text" name="" className="form-control" placeholder="2" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family1.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family1.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family1.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
                                                         {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
@@ -641,23 +703,23 @@ class EsicdeclrationForm extends Component {
                                                 <tr>
 
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input type="text" name="" className="form-control" placeholder="3" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family2.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family2.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family2.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
                                                         <input type="text" name="" className="form-control" />
@@ -667,23 +729,23 @@ class EsicdeclrationForm extends Component {
                                                 <tr>
 
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input type="text" name="" className="form-control" placeholder="4" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family3.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family3.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input defaultValue={family3.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                     </td>
                                                     <td>
@@ -705,7 +767,7 @@ class EsicdeclrationForm extends Component {
                                     <div className="row">
                                         <div className="col-md-6">
 
-                                            <div className="table-responsive" style={{ overflow: 'hidden' }}>
+                                            <div className="table-responsive" style={{ overflow: "auto" }}>
 
                                                 <table class="table table-bordered">
                                                     <caption style={{ captionSide: 'top', textAlign: 'center' }}>
@@ -752,7 +814,7 @@ class EsicdeclrationForm extends Component {
                                                             <td >
                                                                 औषधालय
                                                                 <br />Dispensary
-                                                                    <input defaultValue={this.state.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                    <input defaultValue={this.state.candidate_other_data.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                             </td>
 
                                                         </tr>
@@ -783,7 +845,7 @@ class EsicdeclrationForm extends Component {
 
                                         <div className="col-md-6">
                                             <div className="row">
-                                                <div className="table-responsive" style={{ overflow: 'hidden' }}>
+                                                <div className="table-responsive" style={{ overflow: 'auto' }}>
                                                     <table class="table table-bordered">
                                                         <caption style={{ captionSide: 'top', textAlign: 'center' }}>
                                                             (नियुक्ति कि तिथि 3 मास वैध)<br />
@@ -997,7 +1059,7 @@ subject to fulfillment of contributory conditions</li>
                                                     नाम/ Name
                                                             </td>
                                                 <td >
-                                                    फॉर्म भरने तारिख आयु/Date of Birth / Age as on
+                                                    फॉर्म भरने तारिख/ आयु / Date of Birth / Age as on
                                                     date of filling form
                                                             </td>
                                                 <td >
@@ -1035,26 +1097,28 @@ subject to fulfillment of contributory conditions</li>
                                             <tr>
 
                                                 <td>
-                                                    <input type="text" name="" className="form-control " placeholder="1" />
+                                                    <input type="text" name="" className="form-control" placeholder="1" />
+
+                                                </td>
+                                                <td>
+                                                    <input defaultValue={family.name} type="text" name="" className="form-control" />
+
+                                                </td>
+                                                <td>
+                                                    <input defaultValue={family.dob} type="text" name="" className="form-control" />
+
+                                                </td>
+                                                <td>
+                                                    <input defaultValue={family.relation} type="text" name="" className="form-control" />
+
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
                                                     <input type="text" name="" className="form-control" />
 
-                                                </td>
-                                                <td>
-                                                    <input defaultValue={otherdetails.family_relation} type="text" name="" className="form-control" />
-
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="" className="form-control" />
-
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="" className="form-control" />
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="" className="form-control" />
                                                 </td>
                                             </tr>
 
@@ -1065,21 +1129,22 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family1.name} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family1.dob} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family1.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
+                                                    {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
                                                     <input type="text" name="" className="form-control" />
                                                 </td>
                                             </tr>
@@ -1090,19 +1155,19 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family2.name} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family2.dob} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family2.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
                                                     <input type="text" name="" className="form-control" />
@@ -1116,19 +1181,19 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family3.name} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family3.dob} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input defaultValue={family3.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
@@ -1136,6 +1201,7 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                             </tr>
+
 
                                         </tbody>
 
