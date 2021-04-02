@@ -243,14 +243,14 @@ class EsicdeclrationForm extends Component {
                          <div className="border border-dark" style={{overflowX:'hidden'}} >
                                        
                                     <div className=" font-weight-bold text-right mt-2 mr-2 "> (FORM - 1)</div>
-                                    <div className="  mt-2 text-center font-weight-bold d-flex esic_box">
+                                    <div className="  mt-2 text-center font-weight-bold d-flex">
                                           
-                                         <div className="account-logo pl-2">
+                                         <div className="account-logo  ">
                                             <a href="#"><
                                             img src={epfs} alt="Adhaan" /></a>
                                         </div> 
                                      
-                                        <h1 className="heading-sm" style={{margin:'auto'}}>
+                                        <h1 style={{margin:'auto'}}>
                                             घोषणा पत्र / ESIC DECLARATION FORM
                                            </h1>
                                         
@@ -263,7 +263,7 @@ class EsicdeclrationForm extends Component {
                                       
                                           <div className="row row-no-gutter" style={{boder:'1px solid'}}>
                                    
-                                              <div className="col-md-6 pr-0 paading-auto">
+                                              <div className="col-md-6 pr-0">
                                                 <div className='table-responsive' style={{overflowX:'hidden'}}>
                                                 <table className="table table-bordered">
                                                     <thead>
@@ -280,19 +280,19 @@ class EsicdeclrationForm extends Component {
                                                                 बीमा संख्या
 
                                                             </td>
-                                                        <td colSpan="3"><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td colSpan="3"><input  className="form-control" type="text" name=""  /></td>
 
                                                         </tr>
                                                         <tr>
                                                         <td> 2. नाम स्पष्ट अक्षर में
                                                                 <br />
                                                              Name (in block letters)</td>
-                                                        <td colSpan="3"><input defaultValue={this.state.name}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' ,width:'100%'}} /></td>
+                                                        <td colSpan="3"><input className="form-control" defaultValue={this.state.name}type="text" name="" /></td>
                                                         </tr>
                                                         <tr>
                                                         <td>पिता/ पति का नाम <br/>
                                                              3. Father / Husbands Name</td>
-                                                        <td colSpan="3"><input defaultValue={this.state.father_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' ,width:'100%'}} /></td>
+                                                        <td colSpan="3"><input defaultValue={this.state.father_name} type="text" name="" className="form-control" /></td>
                                                         </tr>
 
                                                         <tr>
@@ -301,10 +301,10 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                                                 ))} */}
-                                                            <input defaultValue={this.state.dob}  type="text" className="form-control"></input>
+                                                            <input className="form-control" defaultValue={this.state.dob}  type="text" ></input>
                                                             </td>
                                                             <td colSpan="3">
-                                                            5.वैवाहिक स्तर <br/>
+                                                            4.वैवाहिक स्तर <br/>
                                                                   Marital Status 
                                                                {/* <p className="text-right">  वि/अ/वि<br/>
                                                                 M/U/W</p> */}
@@ -321,10 +321,10 @@ class EsicdeclrationForm extends Component {
                                                         <td colSpan="1">स्थायी पता
                                                         /Current Address
                                                                 <hr/>
-                                                            <input defaultValue={this.state.c_full_address} type="text" style={{ width: '100%' ,  border: ' none', backgroundColor: ' #ffffff0a'}}></input>
+                                                            <input defaultValue={this.state.c_full_address} type="text" className="form-control"></input>
 
                                                             <hr/>
-                                                            <input defaultValue={this.state.c_country}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input defaultValue={this.state.c_country} type="text" className="form-control"></input>
                                                                 <br/>
                                                                 <hr/>
                                                             <div className="d-flex">पिन कोड<br/>
@@ -334,13 +334,13 @@ class EsicdeclrationForm extends Component {
                                                                         <input key={document.key} type="text" style={{ width: '10%' }}></input>
                                                                        
                                                                     ))} */}
-                                                                <input defaultValue={this.state.c_pin_code} style={{width:'40%',height:'auto'}} type="text" className="form-control"></input>
+                                                                <input defaultValue={this.state.c_pin_code} style={{ width: '40%', height: 'auto' }} type="text" className="form-control" ></input>
                                                                 </div>
                                                                 <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल
                                                                 / E-mail Address
                                                                   </div>
-                                                            <input className="form-control" defaultValue={this.state.p_email}type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input defaultValue={this.state.p_email} type="text" className="form-control"></input>
 
                                                             </td>
 
@@ -348,9 +348,9 @@ class EsicdeclrationForm extends Component {
                                                         <td colSpan="3">वर्तमान पता
                                                         /Present Address
                                                              <hr />
-                                                                <input defaultValue={this.state.p_full_address} type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
+                                                            <input defaultValue={this.state.p_full_address} type="text" className="form-control"></input>
                                                                 <hr/>
-                                                            <input defaultValue={this.state.p_country}type="text" style={{ width: '100%' , border: ' none', backgroundColor: ' #ffffff0a'}}></input>
+                                                            <input defaultValue={this.state.p_country} type="text" className="form-control"></input>
                                                                 <br />
                                                                 <hr />
                                                             <div className="d-flex">पिन कोड<br />
@@ -360,12 +360,12 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '10%' }}></input>
 
                                                                 ))} */}
-                                                                <input className="form-control" defaultValue={this.state.p_pin_code} type="text" style={{ width: '40%', height:'auto' }}></input>
+                                                                <input defaultValue={this.state.p_pin_code} type="text" className="form-control"></input>
                                                                 </div>
                                                                 <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल / E-mail Address
                                                                   </div>
-                                                            <input defaultValue={this.state.p_email} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input>
+                                                            <input defaultValue={this.state.p_email} type="text" className="form-control"></input>
 
                                                              </td>
                                                           
@@ -375,14 +375,14 @@ class EsicdeclrationForm extends Component {
                                                             शाखा कार्यालय<br/>
                                                             Branch Office
                                                                 {/* <input defaultValue={this.state.branch_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input> */}
-                                                            <input className="form-control" defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a',height:'90px' }}></input>
+                                                            <input defaultValue={this.state.branch_name} type="text" className="form-control"></input>
                                                            
                                                             </td>
                                                             <td colSpan="2">
                                                             औषधालय<br/>
                                                             Dispensary
                                                          
-                                                            <input className="form-control" defaultValue={this.state.esic_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a', height: '90px' }}></input><br/>
+                                                            <input defaultValue={this.state.candidate_other_data.esic_name} type="text" className="form-control"></input><br/>
 
                                                            </td>
                                                         </tr>
@@ -394,7 +394,7 @@ class EsicdeclrationForm extends Component {
                                                
                                               </div>
 
-                                              <div className="col-md-6 pl-0 paading-auto">
+                                              <div className="col-md-6 pl-0">
                                         <div className='table-responsive' style={{ overflow: 'hidden' }}>
                                                 <table className="table table-bordered">
                                                     <thead>
@@ -414,7 +414,7 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '5%' }}></input>
 
                                                                 ))} */}
-                                                            <input  type="text" className="form-control"></input>
+                                                            <input  className="form-control" type="text"></input>
                                                                 </td>
                                                                 
                                                         </tr>
@@ -434,17 +434,16 @@ class EsicdeclrationForm extends Component {
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                 </div> */}
-                                                            <input type="text" className="form-control"></input>
+                                                            <input className="form-control" type="text" ></input>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                         <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
-                                                        Adhaan Solution Pvt. Ltd.<br></br>
-                                            Times Square Arcade,<br></br>
-                                            Office No – 712 / 712-A,  Opp-Rambaug<br></br>                                   
-Nr Ravija Plaza ,Thaltej-shilaj Road,<br></br>
-Thaltej,
-Ahmedabad-380059 <br></br>
+                                                                <b>Adhaan Solution Pvt. Ltd</b><br></br>
+                                            807, 8th Floor, Dev Aurum,<br></br>
+                                            Nr. Anand Nagar Cross Road,<br></br>
+                                            100ft Road,Prahladnagar,<br></br>
+                                            Ahmedabad-380015 <br></br>
                                                                 </td>
                                                         </tr>
                                                         <tr>
@@ -459,7 +458,7 @@ Ahmedabad-380059 <br></br>
                                                         <tr>
                                                         <td colSpan="4"><br />(क)बीमा संख्या<br/>
                                                                 a) Previous Ins. No. 
-                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                             <input  type="text" name="" className="form-control" /><br />
                                                          </td>
 
                                                         </tr>
@@ -468,30 +467,28 @@ Ahmedabad-380059 <br></br>
                                                             (ख)नियोजक का कृष्ट संख्या<br />
                                                                 b) Emplr's Code No.
 
-                                                             <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                             <input type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
                                                         <tr>
                                                         <td colspan="4" scope="col">(ग) नियोजक का नाम  और पता  <br />
                                                                 <b>Name & Address of the Employer</b><br /><br />
-                                                               
-                                                                Adhaan Solution Pvt. Ltd.<br></br>
-                                            Times Square Arcade,<br></br>
-                                            Office No – 712 / 712-A,  Opp-Rambaug<br></br>                                   
-Nr Ravija Plaza ,Thaltej-shilaj Road,<br></br>
-Thaltej,
-Ahmedabad-380059 <br></br>
+                                                                <b>Adhaan Solution Pvt. Ltd</b><br></br>
+                                            807, 8th Floor, Dev Aurum,<br></br>
+                                            Nr. Anand Nagar Cross Road,<br></br>
+                                            100ft Road,Prahladnagar,<br></br>
+                                            Ahmedabad-380015 <br></br>
                                                             {/* <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br /> */}
                                                             
                                                         
-                                                              <div className="text-center">
+                                                              <div className="float-left d-flex ">
                                                                 इ-मेल / E-mail Address
 
-                                                             <input defaultValue={this.state.c_email} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                             <input defaultValue={this.state.c_email} type="text" name="" className="form-control"/><br />
                                                                 </div>
                                                             </td>
-                                                           <br/>
+                                                          
                                                            
                                                         </tr>
                                                        
@@ -509,7 +506,7 @@ Ahmedabad-380059 <br></br>
 
                                         <div className="col-md-12 pl-0 pr-0">
                          
-                                    <div className='table-responsive'>
+                                    <div className='table-responsive' style={{ overflow: 'hidden' }}>
                                             <table className="table table-bordered">
                                                 <tbody>
                                                     <tr>
@@ -595,104 +592,107 @@ Ahmedabad-380059 <br></br>
                                                     <tr>
                                                      
                                                             <td>
-                                                        <input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input  type="text" name="" className="form-control" placeholder="1" />
 
                                                             </td>
                                                         <td>
-                                                        <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input  type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                        <input defaultValue= {otherdetails.family_relation} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input  type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            
+                                                        <input  type="text" name="" className="form-control" />
+
                                                         </td>
                                                         <td>
-                                                           
+                                                        <input  type="text" name="" className="form-control" />
+
                                                         </td>
                                                     </tr>
 
                                                     <tr>
 
                                                         <td>
-                                                            <input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input  type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
                                                         </td>
                                                         <td>
-                                                        {/* <input defaultValue={this.state.c_city}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /> */}
+                                                        {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
+                                                        <input type="text" name="" className="form-control" />
                                                         </td>
                                                     </tr>
                                                     <tr>
 
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                     </tr>
                                                     <tr>
 
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                            <input type="text" name="" className="form-control" />
 
                                                         </td>
                                                     </tr>
@@ -724,7 +724,7 @@ Ahmedabad-380059 <br></br>
                                                             </td>
                                                             <td >
                                                                 
-                                                                <input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input  defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                             </td>
 
                                                         </tr>
@@ -769,7 +769,7 @@ Ahmedabad-380059 <br></br>
                                                             </td>
                                                                 <td >
                                                                    
-                                                                <input defaultValue={ otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input  type="text"  name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
                                                                 </td>
 
                                                             </tr>
@@ -797,8 +797,8 @@ Ahmedabad-380059 <br></br>
 
                                                               
                                                                    
-                                                                <tr style={{height:'150px'}}>
-                                                                    <td></td>
+                                                                <tr>
+                                                                  <div></div>
                                                                 </tr>
 
                                                             
@@ -828,8 +828,8 @@ Ahmedabad-380059 <br></br>
                                             
                                         <p style={{ marginLeft: '30%' }}> मोहर सहिल
  शाखा कार्यालय प्रबंधक के हस्ताक्षर /Signature of B.M. with Seal</p>
- {/* <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />*/}
-                                        </div> 
+ <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                                        </div>
 
 
 
@@ -848,7 +848,7 @@ Ahmedabad-380059 <br></br>
 
 
 
-                <div className="">
+                <div className="border">
                     < div  className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
         <div className="col-md-12">
             <div className="border border-dark" style={{overflow:'hidden'}}>
@@ -864,8 +864,8 @@ in the membership of my family within 15 days of such change
                                              Counter Signature by the Employer
                                              <br/>
                                           Signature with seal
-                                          {/* <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
-                                          <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />              */}
+                                          <img src={CompnyThum} id="sign" alt=" " className="img-fluid1" />
+                                          <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />             
 
                                                  
                                             </p>
@@ -983,7 +983,7 @@ subject to fulfillment of contributory conditions</li>
 
 
 
-                                        <div className='table-responsive'>
+                                        <div className='table-responsive' style={{overflow:'hidden'}}>
                                             <table className="table table-bordered">
                                                 <tbody>
                                                   
