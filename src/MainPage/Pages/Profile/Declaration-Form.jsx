@@ -125,6 +125,31 @@ class DeclrationForm extends Component {
        
 
     }
+    // function for disable UAN  by twinkle
+    yes1Click =(e) =>{
+       
+        console.log(e.target.id)
+        
+      
+    //         // var ckName = document.getElementsByName(el.name);
+    //         // for (var i = 0, c; c = ckName[i]; i++) {
+              
+            
+    //    //}
+    //     c.disabled = !(!el.checked || c === el);
+    //     return { checked: true }
+        // if (this.checked) {
+        //    1.disabled = false;
+        // } else {
+        //     checkme2.disabled = false;
+      
+    }
+
+
+
+
+
+
     addEducationData = (e) => {
         e.preventDefault();
         this.setState({ error1: "This field can not be empty" })
@@ -829,7 +854,7 @@ class DeclrationForm extends Component {
                                         <div className=" "  style={{ display: 'inline-flex' , marginLeft:'5%'}} >
                                                 <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MR.</div>
                                                 <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>Ms.</div>
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MRs.</div>
+                                                
                                        <br />
                                         </div>
                                         
@@ -1134,8 +1159,8 @@ OF (3) ABOVE <br /><br />
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}> <input type="radio" id="yes"   name="optradio" onClick={this.yes1Click}></input></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={this.yes1Click}/> </td>
                                                     </tr>
                                                     </table>
                                            </div>
@@ -1156,8 +1181,8 @@ OF (3) ABOVE <br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" class="radio"  onClick={this.yes2Click} style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" class="radio"  onClick={this.no2Click} style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -1471,8 +1496,8 @@ OF (3) ABOVE <br /><br />
                                                 </tr>
                                                 <tr>
 
-                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" disabled="disabled"/></td>
+                                                    <td><input type="text" name="" className="px-0 py-0 border-0 form-control" disabled="disabled"/></td>
                                                 </tr>
 
 
@@ -1489,13 +1514,13 @@ OF (3) ABOVE <br /><br />
                                     < div className="row">
                                         <div className=" col-md-6 float-left " >
 
-                                            PASSPORT NUMBER
+                                            13(B)   PASSPORT NUMBER
                                     </div>
                                         <div className="col-md-6">
 
-                                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
+                                            <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px'  }}>
 
-                                                <input type="text" type="text" className="form-control"></input>
+                                                <input type="text" type="text" className="form-control" disabled="disabled"></input>
 
                                             </div><br />
 
@@ -1519,7 +1544,7 @@ OF (3) ABOVE <br /><br />
 
                                     <div className="col-md-3">
                                       
-                                                <input className="form-control m-3"  key={document.key} type="text" ></input>
+                                            <input className="form-control m-3" key={document.key} type="text" disabled="disabled" ></input>
 
                                              
                                            
@@ -1532,7 +1557,7 @@ OF (3) ABOVE <br /><br />
                                       </div>
                                         <div className="col-md-3">
                                           
-                                            <input type="text" className="m-3 form-control" ></input>
+                                            <input type="text" className="m-3 form-control" disabled="disabled" ></input>
                                                 
 
 
@@ -1792,11 +1817,11 @@ OF (3) ABOVE <br /><br />
                                                             <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                             <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>DRIVING LICENCE</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no?this.state.candidate_other_data.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
                                                             <td><input defaultValue={this.state.candidate_other_data.dl_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
@@ -1817,7 +1842,7 @@ OF (3) ABOVE <br /><br />
                                                 </tr>
                                                 <tr>
                                                     <td>ESIC CARD</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no?this.state.candidate_other_data.esic_name:''}type="text" name="" style={{ border: ' none',width: "100%" , backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no?this.state.name:''}type="text" name="" style={{ border: ' none',width: "100%" , backgroundColor: ' #ffffff0a' }} /></td>
                                                             <td><input defaultValue={this.state.candidate_other_data.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
 
                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
@@ -1894,9 +1919,9 @@ OF (3) ABOVE <br /><br />
                                         <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
-                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input    value={this.state.name}></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input  ></input>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input value={this.state.name}></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input disabled="disabled" ></input>
                                                 &nbsp; &nbsp;   AND HAS BEEN <br/>
-                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input   style={{  marginTop:'1%'}} ></input>
+                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input style={{ marginTop: '1%' }} disabled="disabled" ></input>
 
                                         </li>
                                         <li>
@@ -1904,7 +1929,7 @@ OF (3) ABOVE <br /><br />
                                         </li>
                                                 <ul style={{ display: 'contents' }}>
                                             <li>
-                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input ></input>
+                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input disabled="disabled" ></input>
                                             </li>
                                             <li>
                                                 PLEASE TICK THE APPROPRIATE OPTION:<br/>
@@ -1939,7 +1964,7 @@ OF (3) ABOVE <br /><br />
                                                     <ul style={{ listStyleType: 'square', display: 'contents' , paddingRight:'5%'}}>
                                                 <li style={{paddingRight:'3%'}}>
                                                             THE KYC DETAILS OF THE ABOVE MEMBER IN THE UANDATABASE HAVE BEEN APPROVED WITH  DIGITAL SIGNATURE CERTIFICATE AND TRANSFER
-                                                    REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox"></input>
+                                                    REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox" defaultChecked="true"></input>
                                                 </li>
                                                         <li style={{ paddingRight: '3%' }}>
                                                             AS THE DSC OF ESTABLISHMENT ARE NOT REGISTERED WITH EPFO, THE MEMBER HAS BEEN INFORMED TO THE PHYSICAL CLAIM (FORM-13) FOR
@@ -2030,13 +2055,13 @@ Employee's Pension Scheme,</h4>
                                     <div className="col-sm-6">
                                         <div className="form-group ">
                                             <label htmlFor="" className="mb-0 text-uppercase">* Name in Full (In block letters): </label>
-                                            <input   name="name" defaultValue={this.state.name}  />
+                                            <input    name="name" defaultValue={this.state.name}  />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <label htmlFor="" className="mb-0 text-uppercase">* Account No.: GJ/AHD/56271 :</label>
-                                            <input defaultValue={this.state.account_number} type="text" name="father-name" className="px-0 py-1 form-control" />
+                                            <input disabled="disabled" type="text" name="father-name" className="px-0 py-1 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -2126,7 +2151,7 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input type="text" name="" defaultValue={document.dob}  className="px-0 py-0 text-center border-0 form-control"
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" placeholder="%" ></input></td>
                                                 <td><input className="px-0 py-0 border-0 form-control" ></input></td>
                                             </tr>
                                                
@@ -2259,6 +2284,17 @@ Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Date of Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
 
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input disabled="disabled" className="form-control"></input>
+                                                </td>
+                                                <td>
+                                                    <input disabled="disabled" className="form-control"></input>
+                                                </td>
+                                                <td>
+                                                    <input disabled="disabled" className="form-control"></input>
+                                                </td>
                                             </tr>
                                           
                                               
