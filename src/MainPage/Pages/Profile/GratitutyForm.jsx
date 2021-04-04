@@ -75,7 +75,8 @@ class GratitutyForm extends Component {
         var self =this;
         var formData=new FormData();
         formData.append("candidate", "" + localStorage.getItem("can"))
-        formData.append("pdf_document_4",new File([data], this.state.name+'_gra.pdf'))
+        // formData.append("pdf_document_4",new File([data], this.state.name+'_gra.pdf'))
+        formData.append("pdf_document_4",null)
         // var data = JSON.stringify({
         //             "candidate": localStorage.getItem("can"),
                     
@@ -195,7 +196,7 @@ class GratitutyForm extends Component {
 
                                   <div  className="d-flex"> 
                                    <span className="mr-1" style={{lineHeight:3}}>To</span> 
-                                    <input type="text" className="form-control" placeholder="Adhaan Solution Pvt. Ltd" disabled="disabled"></input>   
+                                    <input autoFocus type="text" className="form-control" placeholder="Adhaan Solution Pvt. Ltd" disabled="disabled"></input>   
                                   </div>
                                
                                <div  className="mt-4"> 
@@ -443,7 +444,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                     </ div><br />
                 </div><br />
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf} >Submit</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.submitbtn} >Submit</button>
                     <label className='text-danger'>{this.state.error1}</label>
                 </div>
                

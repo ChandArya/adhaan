@@ -85,6 +85,7 @@ class ApplicationForm extends Component {
         var formData = new FormData();
         formData.append("candidate", "" + localStorage.getItem("can"))
         formData.append("pdf_document_1", new File([data], this.state.name + '_form.pdf'))
+        formData.append("pdf_document_1", null)
 
         var data = JSON.stringify({
             "candidate": localStorage.getItem("can"),
@@ -487,7 +488,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto">
                                                     <label className="m-0">Client Name:</label>
                                                 </div>
-                                                <input disabled="disabled" type="text" name="client-name" className=" mx-2 form-control" />
+                                                <input autoFocus disabled="disabled" type="text" name="client-name" className=" mx-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-4">
@@ -790,7 +791,7 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.school} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.location} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.passing_year} /></td>
-                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.percentage} /></td>
+                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_10thdata.percentage?_10thdata.percentage:''} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">XII Std/Equiv.(12<sup>th</sup>)</td>
@@ -799,7 +800,7 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.school} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.location} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.passing_year} /></td>
-                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.percentage} /></td>
+                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={_12thdata.percentage!=0?_12thdata.percentage:''} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">Graduate</td>
@@ -808,7 +809,7 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.school} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.location} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.passing_year} /></td>
-                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.percentage} /></td>
+                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={graduate.percentage!=0?graduate.percentage:''} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">P.G.</td>
@@ -817,7 +818,7 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.school} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.location} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.passing_year} /></td>
-                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.percentage} /></td>
+                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={post_graduate.percentage!=0?post_graduate.percentage:''} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">Others</td>
@@ -826,7 +827,7 @@ class ApplicationForm extends Component {
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.school} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.location} /></td>
                                                 <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.passing_year} /></td>
-                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.percentage} /></td>
+                                                <td><input type="text" disabled="disabled" name="" className="px-0 py-0 border-0 form-control" defaultValue={other.percentage?other.percentage:''} /></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -965,42 +966,42 @@ class ApplicationForm extends Component {
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.name} /></td>
                                                 <td className="text-center"><input disabled="disabled" type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family.dob} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.aadhaar_no} /></td>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.is_nominee ? "Yes" : "No"} /></td>
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family.is_nominee ? "Yes" : ""} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family1.relation}</td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.name} /></td>
                                                 <td className="text-center"><input disabled="disabled" type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family1.dob} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.aadhaar_no} /></td>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.is_nominee ? "Yes" : "No"} /></td>
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family1.is_nominee ? "Yes" : ""} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family2.relation}</td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.name} /></td>
                                                 <td className="text-center"><input disabled="disabled" type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family2.dob} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.aadhaar_no} /></td>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.is_nominee ? "Yes" : "No"} /></td>
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family2.is_nominee ? "Yes" : ""} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family3.relation}</td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.name} /></td>
                                                 <td className="text-center"><input disabled="disabled" type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family3.dob} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.aadhaar_no} /></td>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.is_nominee ? "Yes" : "No"} /></td>
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family3.is_nominee ? "Yes" : ""} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family4.relation}</td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.name} /></td>
                                                 <td className="text-center"><input disabled="disabled" type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family4.dob} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.aadhaar_no} /></td>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.is_nominee ? "Yes" : "No"} /></td>
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family4.is_nominee ? "Yes" : ""} /></td>
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold">{family5.relation}</td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.name} /></td>
                                                 <td className="text-center"><input disabled="disabled" type="date" name="" className="px-0 py-0 text-center border-0 form-control" defaultValue={family5.dob} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.aadhaar_no} /></td>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.is_nominee ? "Yes" : "No"} /></td>
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={family5.is_nominee ? "Yes" : ""} /></td>
                                             </tr>
                                         </table></div>
                                     <div className="row no-gutters border border-dark p-2">
@@ -1098,7 +1099,7 @@ class ApplicationForm extends Component {
                 {/* /Page Content */}
 
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
                     <label className='text-danger'>{this.state.error1}</label>
                     {/* <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Generate Pdf</button> */}
                 </div>

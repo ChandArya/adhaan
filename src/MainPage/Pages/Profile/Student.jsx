@@ -227,6 +227,7 @@ export default class Student extends Component {
             refflag:false,
             expflag:false,
             bankflag:false,
+            familyflag:false,
             eductionFlag:false,
             eductionerro:'',
             isopenProfileModel: false,
@@ -354,13 +355,13 @@ export default class Student extends Component {
 
 
     onSelectFile = e => {
-        if (e.target.files && e.target.files.length > 0) {
-            const reader = new FileReader();
-            reader.addEventListener('load', () =>
-                this.setState({ src: reader.result })
-            );
-            reader.readAsDataURL(e.target.files[0]);
-        }
+        // if (e.target.files && e.target.files.length > 0) {
+        //     const reader = new FileReader();
+        //     reader.addEventListener('load', () =>
+        //         this.setState({ src: reader.result })
+        //     );
+        //     reader.readAsDataURL(e.target.files[0]);
+        // }
         try {
             console.log("files", e.target.files)
             var files = e.target.files;
@@ -504,7 +505,7 @@ export default class Student extends Component {
 
     addEducationData = (e) => {
         e.preventDefault();
-        this.setState({ error1: "This field can not be empty" })
+        this.setState({ eductionerro: "This field can not be empty" })
         var data = { "degree": this.state.degree, "board_university": this.state.board, "school": this.state.school, "location": this.state.location, "passing_year": this.state.passing_year, "percentage": this.state.percentage?this.state.percentage:0, "candidate": this.state.user, "education_level": this.state.edulevel }
         var data1 = { 'candidate': this.state.user }
         let final = {
@@ -1011,10 +1012,13 @@ export default class Student extends Component {
 
     }
     setDocName(value) {
+        this.setState({ docname: value })
+        $('#document_checklist').modal('show');
+
         // let val = e.target.dataset.value;
         // console.log("ggggg");
         // alert('hhhhhh')
-        this.setState({ docname: value })
+       
     }
     setFamilyAdhar = (e) => {
         const re = /^[0-9]+$/;
@@ -1063,7 +1067,7 @@ export default class Student extends Component {
         // alert("iiiiid",id)
         // console.log("hhhhhhhhh",id)
         // this.setState({id:id });
-        if((this.state.candidate_documents_data.length>7 )&&(this.state.isProfile)&&(this.state.otherdetolsFlag)&&(this.state.refflag))
+        if((this.state.candidate_documents_data.length>6 )&&(this.state.isProfile)&&(this.state.otherdetolsFlag)&&(this.state.refflag)&&(this.state.bankflag))
         {
             this.props.history.push({
                 pathname: path,
@@ -1072,6 +1076,7 @@ export default class Student extends Component {
             })
         }else
         {
+            this.setState({errorp:"This field cant not be empty",bankerror:"This field cant not be empty",errormain:'This field cant not be empty'})
             Swal.fire(
                 'Fill all required field ',
                 '',
@@ -1166,6 +1171,7 @@ export default class Student extends Component {
 
     }
     apicall = () => {
+        
         var url1 = 'https://aadhaan.ddns.net/api/candidate/full-information/' + this.state.user
         var url = 'https://aadhaan.ddns.net/api/candidate/dashboard';
         var config = {
@@ -1382,7 +1388,7 @@ export default class Student extends Component {
                         this.setState({
                             // addfamilyvar:false,
                         
-                            
+                            familyflag:true,
                             family: candidate_family_data
 
                         });
@@ -1485,6 +1491,7 @@ export default class Student extends Component {
     //endfamily data
     componentDidMount = () => {
         this.apicall();
+        // window.scrollTo(0, -1000)
 
 
     }
@@ -1502,6 +1509,7 @@ export default class Student extends Component {
         console.log("click")
         var datat = this.state.resume_file
         console.log("datat", datat)
+       
         // var d='Resume/ Bio-DATA'
         var d = this.state.docname
         if (datat == '') {
@@ -1512,6 +1520,7 @@ export default class Student extends Component {
               )
             return
           }
+          
         this.documentUpload(this, datat, d, this.state.user);
 
     }
@@ -1612,7 +1621,7 @@ export default class Student extends Component {
                                                                 <div className="col-md-6">
                                                                     <div className="form-group">
                                                                         <label>Full Name<span className="text-danger">*</span></label>
-                                                                        <input type="text" required className="form-control" onChange={this.setName} defaultValue={this.state.name} />
+                                                                        <input type="text" autoFocus required className="form-control" onChange={this.setName} defaultValue={this.state.name} />
                                                                         {this.isBlank(this.state.name) ?
                                                                             <span className="text-danger">{this.state.errormain}</span>
                                                                             :
@@ -1633,7 +1642,18 @@ export default class Student extends Component {
                                                                 </div>
                                                                 <div className="col-md-6">
                                                                     <div className="form-group">
-                                                                        <label className="w-100">Birth Date<span className="text-danger">*</span><DatePicker className="form-control floating datetimepicker"
+                                                                        <label className="w-100">Birth Date<span className="text-danger">*</span>
+                                                                        <DatePicker
+                                                                        disabledDate={(current) => {
+
+                                                                            const start = Moment().subtract(18, 'years');
+                                                                            return current > start;
+                                                                        }}
+                                                               className="form-control floating datetimepicker" onChange={(e) => this.setDob(e)} 
+                                                               value={
+
+                                                                   this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') :undefined }></DatePicker>
+                                                                        {/* <DatePicker className="form-control floating datetimepicker"
                                                                             disabledDate={(current) => {
 
                                                                                 const start = Moment().subtract(18, 'years');
@@ -1643,7 +1663,8 @@ export default class Student extends Component {
 
                                                                             value={
 
-                                                                                this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment().subtract(18, 'years')}>{this.state.dob ? '' : "Select Date"}</DatePicker> </label>
+                                                                                this.state.dob ? Moment(this.state.dob, 'YYYY-MM-DD') : Moment().subtract(18, 'years')}>{this.state.dob ? '' : "Select Date"}</DatePicker> */}
+                                                                                 </label>
                                                                     </div>
                                                                     {/* <label>{this.state.dob} </label> */}
                                                                 </div>
@@ -2078,15 +2099,21 @@ export default class Student extends Component {
                                                             <div className="form-group row">
                                                                 <label className="col-sm-4 col-form-label">Marriage Date</label>
                                                                 <div className="col-sm-8">
-                                                                    <DatePicker
+                                                                <DatePicker
                                                                         disabledDate={(current) => {
 
                                                                             const start = Moment();
                                                                             return current > start;
                                                                         }}
+                                                               className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)} 
+                                                               value={
+
+                                                                this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') :undefined }></DatePicker>
+                                                                    {/* <DatePicker
+                                                                       
                                                                         value={
 
-                                                                            this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker>
+                                                                            this.state.marrage_date ? Moment(this.state.marrage_date, 'YYYY-MM-DD') : Moment()} className="form-control floating datetimepicker" onChange={(e) => this.setMarriageDate(e)}></DatePicker> */}
                                                                 </div>
 
                                                             </div>
@@ -2182,13 +2209,13 @@ export default class Student extends Component {
                                                 <input className="form-control" value={this.state.ref_loc} type="text" onChange={this.setReferenceLocation} />
                                             </div>
                                         </div>
-                                        <div className="submit-section float-right">
-                                        <button className="btn btn-primary submit-btn" onClick={this.addRef}>Save</button>
-                                    </div>
+                                        
                                     </div>:''}
                      
                 
-                                    
+                                    {this.state.addrefvar?<div className="submit-section float-right">
+                                        <button className="btn btn-primary submit-btn" onClick={this.addRef}>Save</button>
+                                    </div>:''}
 
                                     
 
@@ -2418,7 +2445,8 @@ export default class Student extends Component {
                                            </div>
                                            <div className="col-md-6">
                                                <div className="form-group">
-                                                   <label>Date of birth <span className="text-danger">*</span><DatePicker
+                                                   <label>Date of birth <span className="text-danger">*</span>
+                                                   <DatePicker
                                                        disabledDate={(current) => {
 
                                                            const start = Moment();
@@ -2447,12 +2475,13 @@ export default class Student extends Component {
                                                    <label className="ml-2">Is Nominee</label>
                                                </div>
                                            </div>
-                                           <div className="submit-section float-right">
-                                                <button className="btn btn-primary submit-btn" onClick={this.addFamilyData}>Save</button>
-                                            </div>
+                                           
                                        </div>:''}
                                             
 
+                                       {this.state.addfamilyvar? <div className="submit-section float-right">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addFamilyData}>Save</button>
+                                            </div>:''}
                                             
                                             {/* <label className="text-danger">{this.state.error}</label> */}
 
@@ -2510,12 +2539,12 @@ export default class Student extends Component {
 
 
 
-                                                    {this.isBlank(this.state.school) ?
+                                                    {/* {this.isBlank(this.state.school) ?
                                                         <span className="text-danger">{this.state.eductionerro}</span>
                                                         :
 
                                                         ''
-                                                    }
+                                                    } */}
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group form-focus focused">
@@ -2547,11 +2576,11 @@ export default class Student extends Component {
                                                     </div>
 
 
-                                                    {this.isBlank(this.state.board) ?
+                                                    {/* {this.isBlank(this.state.board) ?
                                                         <span className="text-danger">{this.state.eductionerro}</span>
                                                         :
                                                         ''
-                                                    }
+                                                    } */}
 
 
                                                 </div>
@@ -2569,21 +2598,21 @@ export default class Student extends Component {
 
 
 
-                                                    {this.isBlank(this.state.percentage) ?
+                                                    {/* {this.isBlank(this.state.percentage) ?
                                                         <span className="text-danger">{this.state.eductionerro}</span>
                                                         :
                                                         ''
-                                                    }
+                                                    } */}
                                                 </div>
-                                                <div className="submit-section float-right">
-                                                <button className="btn btn-primary submit-btn" onClick={this.addEducationData}>Save</button>
-                                            </div>
+                                                
                                             </div>:''}
                                             
                                             
                                             {/* <label className="text-danger">{this.state.error}</label> */}
 
-
+                                            {this.state.eduvar?<div className="submit-section float-right">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addEducationData}>Save</button>
+                                            </div>:''}
                                         </div>
                                     </div>
                                 </div>
@@ -2691,10 +2720,11 @@ export default class Student extends Component {
                                                     </div>
 
                                                 </div>
-                                                <div className="submit-section float-right">
-                                                <button className="btn btn-primary submit-btn" onClick={this.addExperienceData}>Save</button>
-                                            </div>
+                                                
 
+                                            </div>:''}
+                                            {this.state.expvar? <div className="submit-section float-right">
+                                                <button className="btn btn-primary submit-btn" onClick={this.addExperienceData}>Save</button>
                                             </div>:''}
                                            
                                            
@@ -2891,63 +2921,63 @@ export default class Student extends Component {
                                             <ul className="personal-info">
                                             <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Front")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal"  ><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Back")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Resume/ Bio-DATA")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
                                                 </li>
                                                 <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Passport Size Photo")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
                                                 </li>
                                                 <li><div className="title">Bank Passbook/Cancelled Cheque<span class="text-danger">*</span></div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Bank Passbook/Cancelled Cheque")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Cancelled Cheque")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Cancelled Cheque")}></i></a>
                                                 </li>
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Signature/Thumb Impression")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
                                                 </li>
                                                 <li>
                                                     <div className="title">Pan Card</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Pan Card")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
                                                 <li><div className="title">Marriage Certificate</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Marriage Certificate")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
                                                  <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Driving License Front")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal"onClick={() => this.setDocName("Driving License Front")} ><i class="fa fa-upload"></i></a>
                                                 </li>
                                                 <li><div className="title">Driving License Back</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Driving License Back")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Voter Id Card Front</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Voter Id Front")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Front")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Front")}></i></a></li>
 
                                                 <li><div className="title">Voter Id Card Back</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Back")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
                                                
                                                 <li><div className="title">Ration Card</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Ration Card")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
                                                 <li><div className="title">Rent Agreement/ Electricity Bill</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Rent Agreement")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
                                                
                                                 {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"></i></a></li> */}
                                                     </ul>
 
 
@@ -2962,7 +2992,7 @@ export default class Student extends Component {
                                                     <li key={document.key} >
                                                         <div className="title">{document.document_type}</div>
                                                         <input type="checkbox" className="" defaultChecked="true" />
-                                                        <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist" id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
+                                                        <a href="#" className="edit-icon" data-toggle="modal"  id={document.document_type}><i className="fa fa-upload" onClick={() => this.setDocName(document.document_type)} /></a>
 
                                                     </li>
                                                 ))}
@@ -2971,7 +3001,7 @@ export default class Student extends Component {
                                                     <li key={document.key} >
                                                         <div className="title">{document}</div>
                                                         <input type="checkbox" className="" />
-                                                        <a href="#" className="edit-icon" data-toggle="modal" data-target="#document_checklist"><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
+                                                        <a href="#" className="edit-icon" data-toggle="modal" ><i className="fa fa-upload" onClick={() => this.setDocName(document)} /></a>
 
 
                                                     </li>
@@ -2981,63 +3011,63 @@ export default class Student extends Component {
                                             <ul className="personal-info">
                                                 <li><div className="title">Adhaar Card Front<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Front")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Adhaar Card Back<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Adhaar Card Back")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Adhaar Card Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Resume/ Bio-DATA<span class="text-danger">*</span></div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Resume/ Bio-DATA")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Resume/ Bio-DATA")} ></i></a>
                                                 </li>
                                                 <li><div className="title">Passport Size Photo<span class="text-danger">*</span></div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Passport Size Photo")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Passport Size Photo")}></i></a>
                                                 </li>
                                                 <li><div className="title">Bank Passbook/Cancelled Cheque<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Bank Passbook/Cancelled Cheque")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Cancelled Cheque")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Bank Passbook/Cancelled Cheque")}></i></a>
                                                 </li>
                                                 <li><div className="title">Signature/Thumb Impression<span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Signature/Thumb Impression")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Signature/Thumb Impression")}></i></a>
                                                 </li> 
                                                 <li>
                                                     <div className="title">Pan Card</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Pan Card")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Pan Card")}></i></a></li>
                                                     <li><div className="title">Marriage Certificate</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Marriage Certificate")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Marriage Certificate")}></i></a></li>
                                                 <br></br>
                                                 <p style={{ fontWeight: 'bold' }}>Please upload Any One/Mandatory fields marked below:</p>
                                                 <li><div className="title">Driving License Front <span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Driving License Front")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Front")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload" onClick={() => this.setDocName("Driving License Front")}></i></a>
                                                 </li>
                                                 <li><div className="title">Driving License Back <span class="text-danger">*</span></div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Driving License Back")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Driving License Back")}></i></a>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Driving License Back")}></i></a>
                                                 </li>
                                                 <li><div className="title">Voter Id Card Front</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Front")} ></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Front")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Front")}></i></a></li>
 
                                                 <li><div className="title">Voter Id Card Back</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Voter Id Back")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Voter Id Back")}></i></a></li>
                                                
                                                 <li><div className="title">Ration Card</div>
                                                     <input type="checkbox"checked={candidate_doc_list.includes("Ration Card")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Ration Card")}></i></a></li>
                                                 <li><div className="title">Rent Agreement/Electricity Bill</div>
                                                     <input type="checkbox" checked={candidate_doc_list.includes("Rent Agreement")}></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"onClick={() => this.setDocName("Rent Agreement")}></i></a></li>
                                                
                                                 {/* <li><div className="title">Thumb Impression</div>
                                                     <input type="checkbox"></input>
-                                                    <a href="#" class="edit-icon" data-toggle="modal" data-target="#document_checklist"><i class="fa fa-upload"></i></a></li> */}
+                                                    <a href="#" class="edit-icon" data-toggle="modal" ><i class="fa fa-upload"></i></a></li> */}
                                                     </ul>
 
 
@@ -3888,7 +3918,8 @@ export default class Student extends Component {
                                         <div className="col-md-12">
                                             <div className="form-group row">
                                                 <label className="col my-auto">{this.state.docname}</label>
-                                                <input type="file" className="form-control col" onChange={(event) => this.onSelectFile(event)} /><label className="col my-auto">Max{ } Size{ } 10{ } mb</label>
+                                                <input type="file" id="file-upload"className="form-control col" 
+                                                onChange={(event) => this.onSelectFile(event)} /><label className="col my-auto">Max{ } Size{ } 10{ } mb</label>
                                             </div>
 
                                         </div>
@@ -4752,7 +4783,7 @@ export default class Student extends Component {
               )
         } else {
             self.setState({
-              
+                familyflag:true,
                 error: "", error1: '', family_adhar: '',
                 family_name: '',
                 addfamilyvar:false,
@@ -4943,7 +4974,8 @@ export default class Student extends Component {
     //upload doc
     documentUpload = (self, data, document_type, candidate) => {
         console.log("dadsggshfdhgdsghffsd" + JSON.stringify(data))
-
+       
+       
         // self.setState({ error: "Please wait file is uploading" })
         let formData = new FormData();
         formData.append("document_type", "" + document_type)
@@ -4962,8 +4994,9 @@ export default class Student extends Component {
 
         axios(config)
             .then(function (response) {
+                $( "#file-upload" ).val("")
                 console.log(JSON.stringify(response.data));
-                self.setState({ resume_file: '' });
+                self.setState({ resume_file: '' ,docname:''});
                 if (response.data.status == true) {
                     //let path='app/profile/candidate-profile';
                     // alert(document_type + ' uploaded successfully  ✅')
@@ -5147,8 +5180,8 @@ export default class Student extends Component {
     }
     closeDocument = (e) => {
         // e.preventDefault();
-
-        this.setState({ error: "", error1: '' })
+        $( "#file-upload" ).val("")
+        this.setState({ error: "", error1: '',resume_file:'',docname:'' })
         $("#document_checklist").modal("hide");
     }
     closeOther = (e) => {
