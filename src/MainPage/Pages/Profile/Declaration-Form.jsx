@@ -891,7 +891,7 @@ console.log("state print", this.state)
                                                 <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>MR.
                                                 <input type="checkbox" defaultChecked={this.state.gender == "male"} ></input></div>
                                                 <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>Ms.
-                                                  <input type="checkbox" defaultChecked={this.state.gender == "female"} ></input></div>
+                                                  <input   type="checkbox" defaultChecked={this.state.gender == "female"} ></input></div>
                                                 
                                        <br />
                                         </div>

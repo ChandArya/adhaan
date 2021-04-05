@@ -144,7 +144,8 @@ class EsicdeclrationForm extends Component {
             console.log('twinkle', this.state)
 
             console.log('sssss', this.state.candidate_documents_data[1].document_type);
-            console.log('sssss', this.state.candidate_documents_data[0].document_type)
+            console.log('print', this.state.candidate_documents_data[0].document_type);
+            console.log('nominee print', this.state.isNomnieeList);
 
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
 
@@ -254,7 +255,9 @@ class EsicdeclrationForm extends Component {
         var isNomnieeList = this.state.family.filter(function (data) {
             return data.is_nominee
         })
-
+        console.log('nominee print', this.state.isNomnieeList);
+        console.log('nominee print', this.state.is_nominee);
+        console.log('nominee print111', this.state);
 
 
 
@@ -322,7 +325,7 @@ class EsicdeclrationForm extends Component {
                                 <div className="row row-no-gutter" style={{ boder: '1px solid' }}>
 
                                     <div className="col-md-6 pr-0">
-                                        <div className='table-responsive' style={{ overflow: 'hidden' }}>
+                                        <div className='table-responsive' style={{ overflow: 'inherit' }}>
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -345,12 +348,12 @@ class EsicdeclrationForm extends Component {
                                                         <td> 2. नाम स्पष्ट अक्षर में
                                                                 <br />
                                                              Name (in block letters)</td>
-                                                        <td colSpan="3"><input className="form-control" defaultValue={this.state.name} autoFocus type="text" name="" /></td>
+                                                        <td colSpan="3"><input className="form-control" disabled="disabled" defaultValue={this.state.name} autoFocus type="text" name="" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td>पिता/ पति का नाम <br />
                                                              3. Father / Husbands Name</td>
-                                                        <td colSpan="3"><input defaultValue={this.state.father_name} type="text" name="" className="form-control" /></td>
+                                                        <td colSpan="3"><input defaultValue={this.state.father_name} disabled="disabled" type="text" name="" className="form-control" /></td>
                                                     </tr>
 
                                                     <tr>
@@ -359,18 +362,19 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                                                 ))} */}
-                                                            <input className="form-control" defaultValue={this.state.dob} type="text" ></input>
+                                                            <input className="form-control" disabled="disabled" defaultValue={this.state.dob} type="text" ></input>
                                                         </td>
                                                         <td colSpan="3">
                                                             4.वैवाहिक स्तर <br />
                                                                   Marital Status
                                                                {/* <p className="text-right">  वि/अ/वि<br/>
                                                                 M/U/W</p> */}
-                                                            <p className="text-right">{this.state.marital_status}</p>
-                                                            <div className=" row border "></div>
+                                                            <input className=" text-uppercase form-control" disabled="disabled" defaultValue={this.state.marital_status} />
+                                                            {/* <div className=" row border "></div> */}
                                                             लिंग /Sex
                                                                {/* <p className="text-right"> /Male / Female</p> */}
-                                                            <p className="text-right">{this.state.gender} </p>
+                                                            {/* <p className="text-right text-uppercase" disabled="disabled">{this.state.gender} </p> */}
+                                                            <input className=" text-uppercase form-control" disabled="disabled" defaultValue={this.state.gender} />
 
                                                         </td>
 
@@ -379,10 +383,10 @@ class EsicdeclrationForm extends Component {
                                                         <td colSpan="1">स्थायी पता
                                                         /Current Address
                                                                 <hr />
-                                                            <input defaultValue={this.state.c_full_address} type="text" className="form-control"></input>
+                                                            <input defaultValue={this.state.c_full_address} disabled="disabled" type="text" className="form-control text-uppercase"></input>
 
                                                             <hr />
-                                                            <input defaultValue={this.state.c_country} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.c_country} type="text" className="form-control text-uppercase"></input>
                                                             <br />
                                                             <hr />
                                                             <div className="d-flex">पिन कोड<br />
@@ -392,13 +396,13 @@ class EsicdeclrationForm extends Component {
                                                                         <input key={document.key} type="text" style={{ width: '10%' }}></input>
                                                                        
                                                                     ))} */}
-                                                                <input defaultValue={this.state.c_pin_code} style={{ width: '40%', height: 'auto' }} type="text" className="form-control" ></input>
+                                                                <input disabled="disabled" defaultValue={this.state.c_pin_code} style={{ width: '40%', height: 'auto' }} type="text" className="form-control" ></input>
                                                             </div>
                                                             <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल
                                                                 / E-mail Address
                                                                   </div>
-                                                            <input defaultValue={this.state.p_email} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.p_email} type="text" className="form-control"></input>
 
                                                         </td>
 
@@ -406,9 +410,9 @@ class EsicdeclrationForm extends Component {
                                                         <td colSpan="3">वर्तमान पता
                                                         /Present Address
                                                              <hr />
-                                                            <input defaultValue={this.state.p_full_address} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.p_full_address} type="text" className="form-control text-uppercase"></input>
                                                             <hr />
-                                                            <input defaultValue={this.state.p_country} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.p_country} type="text" className="form-control text-uppercase"></input>
                                                             <br />
                                                             <hr />
                                                             <div className="d-flex">पिन कोड<br />
@@ -418,12 +422,12 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '10%' }}></input>
 
                                                                 ))} */}
-                                                                <input defaultValue={this.state.p_pin_code} type="text" className="form-control"></input>
+                                                                <input disabled="disabled"  defaultValue={this.state.p_pin_code} type="text" className="form-control"></input>
                                                             </div>
                                                             <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल / E-mail Address
                                                                   </div>
-                                                            <input defaultValue={this.state.p_email} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.p_email} type="text" className="form-control"></input>
 
                                                         </td>
 
@@ -433,14 +437,14 @@ class EsicdeclrationForm extends Component {
                                                             शाखा कार्यालय<br />
                                                             Branch Office
                                                                 {/* <input defaultValue={this.state.branch_name} type="text" style={{ width: '100%', border: ' none', backgroundColor: ' #ffffff0a' }}></input> */}
-                                                            <input defaultValue={this.state.branch_name} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.branch_name} type="text" className="form-control"></input>
 
                                                         </td>
                                                         <td colSpan="2">
                                                             औषधालय<br />
                                                             Dispensary
 
-                                                            <input defaultValue={this.state.candidate_other_data.esic_name} type="text" className="form-control"></input><br />
+                                                            <input disabled="disabled" defaultValue={this.state.candidate_other_data.esic_name} type="text" className="form-control"></input><br />
 
                                                         </td>
                                                     </tr>
@@ -453,7 +457,7 @@ class EsicdeclrationForm extends Component {
                                     </div>
 
                                     <div className="col-md-6 pl-0">
-                                        <div className='table-responsive' style={{ overflow: 'hidden' }} >
+                                        <div className='table-responsive' style={{ overflow: 'inherit' }} >
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -472,7 +476,7 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '5%' }}></input>
 
                                                                 ))} */}
-                                                            <input className="form-control" type="text"></input>
+                                                            <input  className="form-control" type="text"></input>
                                                         </td>
 
                                                     </tr>
@@ -521,7 +525,7 @@ class EsicdeclrationForm extends Component {
                                                     </tr>
                                                     <tr>
                                                         <td colSpan="4">
-                                                            (ख)नियोजक का कृष्ट संख्या<br />
+                                                            (ख)नियोजक का कूट संख्या<br />
                                                                 b) Emplr's Code No.
 
                                                              <input type="text" name="" className="form-control" /><br />
@@ -534,19 +538,23 @@ class EsicdeclrationForm extends Component {
                                                             Times Square Arcade, Office No-712/712<br></br>
                                            A,Opp-Rambaug,NR Ravija Plaza,<br></br>
                                            Thaltej-shila Road<br></br>
-                                            Ahmedabad-380059 <br />
+                                            Ahmedabad-380059 <br />    <br />
                                                             {/* <input defaultValue={otherdetails.esic_name + "" + otherdetails.esic_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br /> */}
 
-
+                                                           
                                                             <div className="float-left d-flex ">
                                                                 इ-मेल / E-mail Address
-
-                                                             <input defaultValue={this.state.c_email} type="text" name="" className="form-control" /><br />
+                                                              
+                                                        
                                                             </div>
 
-                                                            <div style={{ width: '50px', height: '86px' }}>
+                                                            <br />
+                                                       
+                                                            <input disabled="disabled" defaultValue={this.state.c_email}  style= {{height:'52px'}} type="text" name="" className="form-control" />
 
-                                                            </div>
+                                                       
+                                                       
+                                                          
                                                         </td>
 
 
@@ -566,7 +574,7 @@ class EsicdeclrationForm extends Component {
 
                                 <div className="col-md-12 pl-0 pr-0">
 
-                                    <div className='table-responsive' style={{ overflow: 'auto' }}>
+                                    <div className='table-responsive twinkle' style={{ overflowX:'auto'}}>
                                         <table className="table table-bordered">
                                             <tbody>
                                                 <tr>
@@ -599,11 +607,11 @@ class EsicdeclrationForm extends Component {
                                                     {isNomnieeList.map(document => (
 
                                                         <tr>
-                                                            <td colSpan="2"><input type="text" name="" defaultValue={document.name} className="form-control" /></td>
-                                                            <td className="text-center" ><input type="text" name="" defaultValue={document.relation} 
+                                                            <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
+                                                            <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
                                                                 placeholder="" onFocus="(this.type='date')" className="form-control" /></td>
-                                                            <td colSpan="4" className="text-center"><input type="text" name="" defaultValue={document.address}
-                                                                placeholder="" onFocus="(this.type='date')" className="form-control"/></td>
+                                                            <td colSpan="4" className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.address}
+                                                                placeholder="" onFocus="(this.type='date')"  className="form-control"/></td>
                                                            
                                                         </tr>
 
@@ -667,19 +675,19 @@ class EsicdeclrationForm extends Component {
                                                 <tr>
 
                                                     <td>
-                                                        <input type="text" name="" className="form-control" placeholder="1" />
+                                                        <input  disabled="disabled" type="text" name="" className="form-control" placeholder="1" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family.name} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family.dob} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family.relation} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
@@ -687,7 +695,7 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -695,79 +703,79 @@ class EsicdeclrationForm extends Component {
                                                 <tr>
 
                                                     <td>
-                                                        <input type="text" name="" className="form-control" placeholder="2" />
+                                                        <input  disabled="disabled" type="text" name="" className="form-control" placeholder="2" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family1.name} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family1.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family1.dob} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family1.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family1.relation} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family1.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
-                                                        {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                        <input type="text" name="" className="form-control" />
+                                                        {/* <input style={{width:'auto'}} defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
+                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
                                                     </td>
                                                 </tr>
                                                 <tr>
 
                                                     <td>
-                                                        <input type="text" name="" className="form-control" placeholder="3" />
+                                                        <input  disabled="disabled"  type="text" name="" className="form-control" placeholder="3" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family2.name} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family2.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family2.dob} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family2.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family2.relation} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled" defaultValue={family2.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
                                                 <tr>
 
                                                     <td>
-                                                        <input type="text" name="" className="form-control" placeholder="4" />
+                                                        <input  disabled="disabled"  type="text" name="" className="form-control" placeholder="4" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family3.name} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled"  defaultValue={family3.name} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family3.dob} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled"  defaultValue={family3.dob} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input defaultValue={family3.relation} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} disabled="disabled"  defaultValue={family3.relation} type="text" name="" className="form-control" />
 
                                                     </td>
                                                     <td>
-                                                        <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -799,7 +807,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input disabled="disabled"  defaultValue={this.state.name} type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -809,7 +817,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -819,7 +827,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -827,12 +835,12 @@ class EsicdeclrationForm extends Component {
                                                             <td >
                                                                 शाखा कार्यालय
                                                                 <br />Branch Office
-                                                       <input defaultValue={this.state.branch_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                       <input disabled="disabled"  defaultValue={this.state.branch_name} type="text" name="" className="form-control" /><br />
                                                             </td>
                                                             <td >
                                                                 औषधालय
                                                                 <br />Dispensary
-                                                                    <input defaultValue={this.state.candidate_other_data.esic_name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                    <input disabled="disabled"  defaultValue={this.state.candidate_other_data.esic_name} type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -844,7 +852,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} /><br />
+                                                                <input type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -949,8 +957,8 @@ in the membership of my family within 15 days of such change
                                     </p>
                                     <p style={{ marginLeft: '10%' }}>For,<b> Adhaan Solution Pvt. Ltd.</b></p>
 
-                                    <div style={{ marginLeft: '15%', float: 'right', paddingRight: '3%', width: '25%', height: '100px', overflow: 'hidden' }} className='border border-dark' >
-                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" />
+                                    <div style={{ marginLeft: '15%', float: 'right', paddingRight: '3%', overflow: 'hidden' }} className='border border-dark' >
+                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" style={{marginLeft:'inherit'}} />
                                         <p style={{ marginLeft: '15%', paddingRight: '3%' }}>बीमाकृत व्यक्ति के हस्ताक्षर/अंगूठे का निशान
                                   Signature/T.I. of IP</p>
 
@@ -1030,21 +1038,21 @@ subject to fulfillment of contributory conditions</li>
 
                                             <li>
                                                 बीमा संख्या  आवंटन की तिथि / Date of Allotment of Ins. No.:
-                                                <span style={{ border: '1px solid black', display: "inline-block", width: '50%' }}></span>
+                                                <input   className="form-control"></input>
                                             </li>
 
                                             <li>
-                                                अ.प.प. के जारी करने की तिथि / Date of Issue of TIC : <span style={{ border: '1px solid black', display: "inline-block", width: '50%' }}></span>
+                                                अ.प.प. के जारी करने की तिथि / Date of Issue of TIC : <input className="form-control"></input>
                                             </li>
                                             <li>
 
-                                                औषधालय का नाम / Name/No. of Disp.: <span style={{ border: '1px solid black', display: "inline-block", width: '50%' }}></span>
+                                                औषधालय का नाम / Name/No. of Disp.: <input className="form-control"></input>
                                             </li>
                                             <li>
-                                                क्या पारस्परिक चिकित्सा व्यवस्था शामिल है? यदि हाँ, तो कृपया सूचित करें /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate : <span style={{ border: '1px solid black', display: "inline-block", width: '50%' }}></span>
+                                                क्या पारस्परिक चिकित्सा व्यवस्था शामिल है? यदि हाँ, तो कृपया सूचित करें /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate : <input className="form-control"></input>
                                             </li>
                                             <li>
-                                                शाखा प्रबंधक का हस्ताक्षर/ Signature of Branch Manager: <span style={{ border: '1px solid black', display: "inline-block", width: '50%' }}></span>
+                                                शाखा प्रबंधक का हस्ताक्षर/ Signature of Branch Manager: <input className="form-control"></input>
                                             </li>
                                         </ul>
 
@@ -1061,7 +1069,7 @@ subject to fulfillment of contributory conditions</li>
 
 
 
-                                <div className='table-responsive' style={{ overflow: 'hidden' }}>
+                                <div className='table-responsive' style={{ overflow: 'auto' }}>
                                     <table className="table table-bordered">
                                         <tbody>
 
@@ -1115,27 +1123,27 @@ subject to fulfillment of contributory conditions</li>
                                             <tr>
 
                                                 <td>
-                                                    <input type="text" name="" className="form-control" placeholder="1" />
+                                                    <input disabled="disabled" type="text" name="" className="form-control" placeholder="1" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family.name} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled"  defaultValue={family.name} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family.dob} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }} disabled="disabled"  defaultValue={family.dob} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family.relation} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled"  defaultValue={family.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
@@ -1143,23 +1151,23 @@ subject to fulfillment of contributory conditions</li>
                                             <tr>
 
                                                 <td>
-                                                    <input type="text" name="" className="form-control" placeholder="2" />
+                                                    <input disabled="disabled" type="text" name="" className="form-control" placeholder="2" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family1.name} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled"  defaultValue={family1.name} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family1.dob} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled"  defaultValue={family1.dob} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family1.relation} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled" defaultValue={family1.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input style={{ width: 'auto' }} type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
                                                     {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
@@ -1169,53 +1177,53 @@ subject to fulfillment of contributory conditions</li>
                                             <tr>
 
                                                 <td>
-                                                    <input type="text" name="" className="form-control" placeholder="3" />
+                                                    <input disabled="disabled"type="text" name="" className="form-control" placeholder="3" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family2.name} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled" defaultValue={family2.name} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family2.dob} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled"  defaultValue={family2.dob} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family2.relation} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }} disabled="disabled"  defaultValue={family2.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
                                             <tr>
 
                                                 <td>
-                                                    <input type="text" name="" className="form-control" placeholder="4" />
+                                                    <input disabled="disabled" type="text" name="" className="form-control" placeholder="4" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family3.name} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled" defaultValue={family3.name} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family3.dob} type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }}  disabled="disabled" defaultValue={family3.dob} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input defaultValue={family3.relation} type="text" name="" className="form-control" />
+                                                    <input style={{width: 'auto'}}  disabled="disabled" defaultValue={family3.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input style={{width: 'auto'}}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="" className="form-control" />
+                                                    <input style={{ width: 'auto' }} type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
