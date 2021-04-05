@@ -927,7 +927,7 @@ console.log("state print", this.state)
 
 
                                     </div> */}
-                                                <input readOnly className="form-control" onChange={this.setName} autoFocus defaultValue={this.state.name} key={document.key} type="text" ></input>
+                                                <input  disabled="disabled" className="form-control" onChange={this.setName} autoFocus defaultValue={this.state.name} key={document.key} type="text" ></input>
                                  </div>  
                                  
                              </div>
@@ -966,7 +966,7 @@ console.log("state print", this.state)
                                                 // </li>
                                             ))} */}
                                                
-                                                <input readOnly className="form-control" onChange={(e) => this.setDob(e)} defaultValue={this.state.dob} key={document.key} type="text" ></input>
+                                                <input disabled="disabled" className="form-control" onChange={(e) => this.setDob(e)} defaultValue={this.state.dob} key={document.key} type="text" ></input>
                                                   
                                              
 
@@ -1024,7 +1024,7 @@ console.log("state print", this.state)
 
 
                                     <br /><br /> */}
-                                     <input readOnly onChange={this.setFat_Name} defaultValue={this.state.father_name} key={document.key} type="text" className="form-control"></input>
+                                                <input disabled="disabled" onChange={this.setFat_Name} defaultValue={this.state.father_name} key={document.key} type="text" className="form-control"></input>
                                             </div>
                                             
                                            
@@ -1061,7 +1061,7 @@ OF (3) ABOVE <br /><br />
 
                                     <br /> */}
 
-                                                <input readOnly onChange={this.setFamilyRelation} placeholder="Father" type="text" className="form-control"></input>
+                                                <input disabled="disabled" onChange={this.setFamilyRelation} placeholder="FATHER" type="text" className="form-control"></input>
                                         </div>
 
 
@@ -1091,7 +1091,7 @@ OF (3) ABOVE <br /><br />
                                                 <input defaultValue={this.state.gender} key={document.key} type="text" style={{ width: '120px' }}></input>
 
                                             ))} */}
-                                                <input readOnly onChange={this.setgender} defaultValue={this.state.gender} key={document.key} type="text" className="form-control"></input>
+                                                <input disabled="disabled" onChange={this.setgender} defaultValue={this.state.gender} key={document.key} type="text" className="form-control text-uppercase"></input>
 
 
                                         </div><br />
@@ -1120,7 +1120,7 @@ OF (3) ABOVE <br /><br />
 
                                         ))} */}
                                                
-                                                <input readOnly onChange={this.setPermanentMobile} defaultValue={this.state.mobile_no} key={document.key} type="text" className="form-control"></input>
+                                                <input disabled="disabled" onChange={this.setPermanentMobile} defaultValue={this.state.mobile_no} key={document.key} type="text" className="form-control"></input>
 
                                               
 
@@ -1172,7 +1172,7 @@ OF (3) ABOVE <br /><br />
 
                                     </div> */}
                                             <div style={{  marginLeft: '30px' }}>
-                                                     <input readOnly onChange={this.setEmail} defaultValue={this.state.c_email} key={document.key} type="text" className="form-control"></input>
+                                                <input disabled="disabled" onChange={this.setEmail} defaultValue={this.state.c_email} key={document.key} type="text" className="form-control"></input>
                                                    
                                          
 
@@ -1197,7 +1197,7 @@ OF (3) ABOVE <br /><br />
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes"   name="optradio" onClick={(e)=>this.yes1Click(e,1)}></input></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes"   name="optradio"  onClick={(e)=>this.yes1Click(e,1)}></input></td>
                                                         <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e)=>this.yes1Click(e,2)}/> </td>
                                                     </tr>
                                                     </table>
@@ -1268,9 +1268,8 @@ OF (3) ABOVE <br /><br />
                                  
                                 <div className="col-md-12">
                                  <div className="font-weight-bold d-flex justify-content-center align-items-center">
-                                        <label>UAN</label>
-
-                                        <input onChange={this.setuan} defaultValue={otherdetails.uan} readOnly={this.state.Is1952} key={document.key} type="text" style={{ width: '100%'  }} className="form-control w-25 ml-2"></input>
+                                        <label>UAN</label>                                    
+                                            <input disabled="disabled" onChange={this.setuan} defaultValue={otherdetails.uan} readOnly={this.state.Is1952||this.state.Is1955} key={document.key} type="text" className="form-control w-25 ml-2"></input>
 
                                    </div>
                                 
@@ -1577,7 +1576,7 @@ OF (3) ABOVE <br /><br />
 
                                     <div className="col-md-3">
                                       
-                                            <input className="form-control m-3" key={document.key} type="text" disabled="disabled" ></input>
+                                            <input className="form-control" key={document.key} type="text" disabled="disabled" style={{ width: 'auto' }} ></input>
 
                                              
                                            
@@ -1590,7 +1589,7 @@ OF (3) ABOVE <br /><br />
                                       </div>
                                         <div className="col-md-3">
                                           
-                                            <input type="text" className="m-3 form-control" disabled="disabled" ></input>
+                                            <input type="text" className="form-control" disabled="disabled"  style={{width:'auto'}}></input>
                                                 
 
 
@@ -1693,7 +1692,7 @@ OF (3) ABOVE <br /><br />
                                             <input type="text" style={{ width: '100px' }}></input>
                                             <input type="text" style={{ width: '100px' }}></input> */}
                                            
-                                                <input defaultValue={this.state.marital_status} className="form-control" type="text" ></input>
+                                                <input disabled="disabled" defaultValue={this.state.marital_status} className="form-control" type="text" ></input>
 
 
                                         </div>
@@ -1824,61 +1823,61 @@ OF (3) ABOVE <br /><br />
                                             <tbody>
                                                 <tr>
                                                     <td>BANK ACCOUNT 1*</td>
-                                                            <td><input defaultValue={this.state.account_number?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"}}/></td>
-                                                            <td><input defaultValue={this.state.account_number} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a'}} /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.account_number?this.state.name:''} type="text" name="" className="form-control"/></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.account_number} type="text" name="" className="form-control"/></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control" /></td>
                                                     {/* <td><input type="text" name="" className="px-0 py-0 border-0 form-control" style={{ backgroundColor: ' #ffffff0a' }} /></td> */}
 
                                                 </tr>
                                                 <tr>
                                                     <td>NPR / AADHAAR</td>
-                                                            <td><input defaultValue={this.state.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"}} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.aadhaar_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.name} type="text" name="" className="form-control" /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.aadhaar_no} type="text" name="" className="form-control" /></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>PERMANENT ACCOUNT NUMBER (PAN)</td>
-                                                            <td ><input defaultValue={this.state.candidate_other_data.pan_card_no?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%" }} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.pan_card_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%" }} /></td>
+                                                            <td ><input disabled="disabled" defaultValue={this.state.candidate_other_data.pan_card_no ? this.state.name : ''} type="text" name="" className="form-control" /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.pan_card_no} type="text" name="" className="form-control" /></td>
  
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td>PASSPORT </td>
-                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input disabled="disabled" type="text" name="" className="form-control" /></td>
+                                                            <td><input disabled="disabled" type="text" name="" className="form-control"   /></td>
 
-                                                     <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>DRIVING LICENCE</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.dl_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.dl_no ? this.state.name : ''} type="text" name="" className="form-control" /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.dl_no} type="text" name="" className="form-control" /></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>ELECTION CARD</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.eid_no?this.state.name:''} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.eid_no}type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.eid_no ? this.state.name : ''} type="text" name="" className="form-control" /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.eid_no} type="text" name="" className="form-control" /></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td>RATION CARD</td>
-                                                            <td><input  type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
-                                                            <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a',width: "100%"  }} /></td>
+                                                            <td><input disabled="disabled" type="text" name="" className="form-control" /></td>
+                                                            <td><input disabled="disabled" type="text" name="" className="form-control"/></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td>ESIC CARD</td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no?this.state.name:''}type="text" name="" style={{ border: ' none',width: "100%" , backgroundColor: ' #ffffff0a' }} /></td>
-                                                            <td><input defaultValue={this.state.candidate_other_data.esic_no} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.esic_no ? this.state.name : ''} type="text" name="" className="form-control" /></td>
+                                                            <td><input disabled="disabled" defaultValue={this.state.candidate_other_data.esic_no} type="text" name="" className="form-control"/></td>
 
-                                                    <td><input type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                            <td><input type="text" name="" className="form-control" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td colSpan="4">
@@ -2050,7 +2049,7 @@ OF (3) ABOVE <br /><br />
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0">Mobile No.: </label>
                                             </div>
-                                            <input defaultValue={this.state.mobile_no} type="text" name="doj" className="px-0 py-1 mx-2 form-control" />
+                                            <input  disabled="disabled" defaultValue={this.state.mobile_no} type="text" name="doj" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     {/* <div className="col-sm-4">
@@ -2086,15 +2085,15 @@ Employee's Pension Scheme,</h4>
 
                                 <div className="row  p-2 ">
                                     <div className="col-sm-6">
-                                        <div className="form-group ">
+                                        <div className="form-group input-group">
                                             <label htmlFor="" className="mb-0 text-uppercase">* Name in Full (In block letters): </label>
-                                            <input    name="name" defaultValue={this.state.name}  />
+                                            <input disabled="disabled" name="name" defaultValue={this.state.name} className="px-0 py-1 form-control" style={{width:'auto'}} />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group input-group">
                                             <label htmlFor="" className="mb-0 text-uppercase">* Account No.: GJ/AHD/56271 :</label>
-                                            <input disabled="disabled" type="text" name="father-name" className="px-0 py-1 form-control" />
+                                            <input disabled="disabled" type="text" name="father-name" className="px-0 py-1 form-control" style={{ width: 'auto' }} />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -2102,7 +2101,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Father's/Husband's Name <br></br>(in case of married woman) :</label>
                                             </div>
-                                            <input defaultValue={this.state.father_name} type="text" name="designation" className="px-0 mx-2 py-1 form-control" />
+                                            <input disabled="disabled" defaultValue={this.state.father_name} type="text" name="designation" className="px-0 mx-2 py-1 form-control" style={{ width: 'auto' }}  />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -2110,7 +2109,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Permanent Address:</label>
                                             </div>
-                                            <input defaultValue={this.state.p_full_address} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
+                                            <input disabled="disabled" defaultValue={this.state.p_full_address} type="text" name="location" className="px-0 mx-2 py-1 form-control" style={{ width: 'auto' }}  />
                                         </div>
                                     </div>
 
@@ -2119,7 +2118,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Date of Birth</label>
                                             </div>
-                                            <input defaultValue={this.state.dob} type="text" name="designation" className="px-0 mx-2 py-1 form-control" onChange={this.setDob} />
+                                            <input disabled="disabled" defaultValue={this.state.dob} type="text" name="designation" className="px-0 mx-2 py-1 form-control" onChange={this.setDob} style={{ width: 'auto' }}  />
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -2127,7 +2126,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Temporary Address:</label>
                                             </div>
-                                            <input defaultValue={this.state.c_full_address} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
+                                            <input disabled="disabled" defaultValue={this.state.c_full_address} type="text" name="location" className="px-0 mx-2 py-1 form-control" style={{ width: 'auto' }} />
                                         </div>
                                     </div>
 
@@ -2136,7 +2135,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase w-20">Sex</label>
                                             </div>
-                                            <input defaultValue={this.state.gender} type="text" name="designation" className="px-0 mx-2 py-1 form-control" />
+                                            <input disabled="disabled" defaultValue={this.state.gender} type="text" name="designation" className="px-0 mx-2 py-1 form-control" style={{ width: 'auto' }}  />
                                             <br/>
                                                      Male &nbsp; <input type="checkbox" value="gender"  checked={this.state.gender === "male"} ></input> &nbsp;
                                                      Female &nbsp;<input type="checkbox" value="gender" checked={this.state.gender === "female"}></input>
@@ -2147,7 +2146,7 @@ Employee's Pension Scheme,</h4>
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0 text-uppercase">Marital Status:</label>
                                             </div>
-                                            <input defaultValue={this.state.marital_status} type="text" name="location" className="px-0 mx-2 py-1 form-control" />
+                                            <input disabled="disabled" defaultValue={this.state.marital_status} type="text" name="location" className="px-0 mx-2 py-1 form-control" style={{ width: 'auto' }}  />
                                         </div>
                                     </div>
 
@@ -2179,13 +2178,13 @@ the minority of nominee</th>
                                         {isNomnieeList.map(document => (
 
                                             <tr>
-                                                <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name}/></td>
-                                                <td className="text-center"><input type="text" name="" defaultValue={document.relation}  className="px-0 py-0 text-center border-0 form-control"
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} style={{ width: 'auto' }} /></td>
+                                                <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td className="text-center"><input type="text" name="" defaultValue={document.dob}  className="px-0 py-0 text-center border-0 form-control"
+                                                <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" placeholder="%" ></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" ></input></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" placeholder="%" style={{ width: 'auto' }} ></input></td>
+                                                <td><input className="px-0 py-0 border-0 form-control" style={{ width: 'auto' }}  ></input></td>
                                             </tr>
                                                
                                             ))}
@@ -2220,16 +2219,19 @@ the minority of nominee</th>
                                             <td className="border-0 w-50">
                                                 <table className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                                     <tr>
-                                                        <td>Dt. of Joining E.P.F. </td>
-                                                        <td>/ / 20</td>
+                                                        <td>Dt. of Joining E.P.F.
+                                                             </td>
+                                                        <td><input className=" form-control" type="date" placeholder="/ / 20" ></input></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Past Service ...................... years</td>
-                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                           <input className=" form-control" type="text"  ></input>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Date of Joining EPS</td>
-                                                        <td>/ / 20</td>
+                                                        <td><input className=" form-control" type="date"  /></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -2237,16 +2239,22 @@ the minority of nominee</th>
                                             <td className="border-0 w-50">
                                                 <table className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                                     <tr>
-                                                        <td colSpan="3" className="text-center">ENTRIES VERIFIED</td>
+                                                        <td colSpan="3" className="text-center">ENTRIES VERIFIED
+                                                        </td>
 
                                                     </tr>
                                                     <tr>
-                                                        <td colSpan="3">&nbsp;</td>
+                                                        <td colSpan="3"> <input className=" form-control" type="text"  ></input></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>D.A.</td>
-                                                        <td>S.S. </td>
-                                                        <td>A.A.O.</td>
+                                                        <td>D.A.
+                                                             <input className=" form-control" type="text"  ></input>
+                                                        </td>
+                                                        <td>S.S.
+                                                             <input className=" form-control" type="text"  ></input> </td>
+                                                        <td>A.A.O.
+                                                             <input className=" form-control" type="text"  ></input>
+                                                        </td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -2286,11 +2294,11 @@ Birth</th>
 
                                                     <tr>
                                                         <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
-                                                        <td className="text-center"><input type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
+                                                        <td><input disabled="disabled"type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
+                                                        <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                        <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
-                                                        <td className="text-center"><input type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"
+                                                        <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
 
                                                     </tr>
