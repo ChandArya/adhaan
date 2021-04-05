@@ -76,7 +76,8 @@ class EsicdeclrationForm extends Component {
         var self = this;
         var formData = new FormData();
         formData.append("candidate", "" + localStorage.getItem("can"))
-        formData.append("pdf_document_3", new File([data], this.state.name + '_eic.pdf'))
+        // formData.append("pdf_document_3", new File([data], this.state.name + '_eic.pdf'))
+        formData.append("pdf_document_3", null)
         console.log("called")
         var config = {
             method: 'post',
@@ -344,7 +345,7 @@ class EsicdeclrationForm extends Component {
                                                         <td> 2. नाम स्पष्ट अक्षर में
                                                                 <br />
                                                              Name (in block letters)</td>
-                                                        <td colSpan="3"><input className="form-control" defaultValue={this.state.name} type="text" name="" /></td>
+                                                        <td colSpan="3"><input className="form-control" defaultValue={this.state.name} autoFocus type="text" name="" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td>पिता/ पति का नाम <br />
@@ -1253,7 +1254,7 @@ subject to fulfillment of contributory conditions</li>
 
 
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
                     <label className='text-danger'>{this.state.error1}</label>
                 </div>
                 <br />

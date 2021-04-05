@@ -90,6 +90,7 @@ class DeclrationForm extends Component {
                 var formData=new FormData();
                 formData.append("candidate", "" + localStorage.getItem("can"))
                 formData.append("pdf_document_2", new File([data], this.state.name+'_pf.pdf'))
+                formData.append("pdf_document_2", null)
                 console.log("called")
                 var config = {
                     method: 'post',
@@ -926,7 +927,7 @@ console.log("state print", this.state)
 
 
                                     </div> */}
-                                                <input className="form-control" onChange={this.setName} defaultValue={this.state.name} key={document.key} type="text" ></input>
+                                                <input className="form-control" onChange={this.setName} autoFocus defaultValue={this.state.name} key={document.key} type="text" ></input>
                                  </div>  
                                  
                              </div>
@@ -2429,7 +2430,7 @@ by him/her.</h4>
                 </div>
                 <br/>
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.generatePdf}>Continue</button>
+                    <button class="btn btn-primary btn-lg active mr-2" role="button" aria-pressed="true" onClick={this.savebtn}>Continue</button>
                     <label className='text-danger'>{this.state.error1}</label>
                 </div>
                 <br/>

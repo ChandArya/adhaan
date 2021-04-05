@@ -83,7 +83,7 @@ class OTPscreen extends Component {
           self.setState({ error: ee.data.message })
           console.log("resend otp", ee)
           // if (ee.data.is_kyc_verified == true) {
-          let path = '/app/profile/candidate-profile';
+          let path = '/app/profile/student';
           self.props.history.push({
             pathname: path,
             state: self.state
