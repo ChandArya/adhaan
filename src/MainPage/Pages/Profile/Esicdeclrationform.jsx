@@ -250,7 +250,9 @@ class EsicdeclrationForm extends Component {
             //console.log("family111",err);
         }
 
-
+        var isNomnieeList = this.state.family.filter(function (data) {
+            return data.is_nominee
+        })
 
 
 
@@ -577,21 +579,36 @@ class EsicdeclrationForm extends Component {
                                                 <tr>
                                                     <td colSpan="2">
                                                         नाम /Name
-                                                        <input defaultValue={family.name} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                       
 
 
                                                     </td>
                                                     <td>
                                                         सम्बन्ध/ Relationship
-                                                         <input defaultValue={family.relation} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                      
 
                                                     </td>
                                                     <td colSpan="4">
                                                         पता /Address
-                                                         <input defaultValue={this.state.p_full_address} type="text" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a', width: '100%' }} />
+                                                        
 
                                                     </td>
+                                                
                                                 </tr>
+                                                    {isNomnieeList.map(document => (
+
+                                                        <tr>
+                                                            <td colSpan="2"><input type="text" name="" defaultValue={document.name} className="form-control" /></td>
+                                                            <td className="text-center" ><input type="text" name="" defaultValue={document.relation} 
+                                                                placeholder="" onFocus="(this.type='date')" className="form-control" /></td>
+                                                            <td colSpan="4" className="text-center"><input type="text" name="" defaultValue={document.address}
+                                                                placeholder="" onFocus="(this.type='date')" className="form-control"/></td>
+                                                           
+                                                        </tr>
+
+                                                    ))}
+
+                                               
 
 
                                                 <tr className="text-center">
