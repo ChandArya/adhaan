@@ -1727,7 +1727,7 @@ table.dataTable thead > tr > td.sorting {
 	padding: 30px;
 }
 .account-logo {
-	margin-bottom: 30px;
+	/* margin-bottom: 30px; */
 	text-align: center;
 }
 .account-box .form-group {
@@ -8219,6 +8219,28 @@ padding-top: 2rem;
 }
 
 /* Gratiutyform end*/
+
+/* Declaration-form */
+.decla_fom{
+	margin: 0 !important;
+}
+.decla_fom>h3{
+ text-align: center !important;
+ padding: 0 !important;
+}
+.decla_fom> p{
+	text-align: center !important;
+   }
+.account-logo{
+float: none !important;
+margin: 0 !important;
+}
+.emp_org{
+	margin-right: 0 !important;
+    padding: 5px;
+}
+
+/* Declaration-form end*/
 
 .application_logo{
 	text-align: center;

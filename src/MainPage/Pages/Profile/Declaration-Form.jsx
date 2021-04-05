@@ -836,7 +836,7 @@ console.log("state print", this.state)
 
                    
 
-                    <div className="row " style={{ marginTop: '5%', marginLeft: 'none', marginRight: 'none' }}>
+                    <div className="row " style={{ marginTop: '3%', marginLeft: 'none', marginRight: 'none' }}>
 
                         
 
@@ -845,8 +845,8 @@ console.log("state print", this.state)
                             {/* <div className="account-logo" style={{ float: "left", marginRight: '60px' }}>
                                 <a href=""><img src={Applogo} alt="Adhaan" /></a>
                             </div> */}
-                            <div className="ml-3" style={{ float: 'right', }}>
-                                <h3 className='font-weight-bold'>DECLARATION FORM</h3>
+                            <div className="ml-3 decla_fom" style={{ float: 'right', }}>
+                                <h3 className='font-weight-bold text-right pr-3'>DECLARATION FORM</h3>
                                 <p className="mr-3">(To be retained by the Employer for future reference)</p>
                             </div>
                           
@@ -854,7 +854,7 @@ console.log("state print", this.state)
                                 <a href="#"><img src={epfs} alt="Adhaan" /></a>
                             </div>
 
-                            <div className="text-center mr-3" style={{marginTop:'7%'}}>
+                            <div className="text-center mr-3 emp_org" style={{marginTop:'7%'}}>
                                 <h3 className='font-weight-bold'>
                                     EMPLOYEES PROVIDENT FUND ORGANIZATION</h3>
                                 <div className="  title-text-sm font-weight-bold">
@@ -889,9 +889,9 @@ console.log("state print", this.state)
                             1) &nbsp; NAME &nbsp; &nbsp; (TITLE)
                                         <div className=" "  style={{ display: 'inline-flex' , marginLeft:'5%'}} >
                                                 <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>MR.
-                                                <input type="checkbox" defaultChecked={this.state.gender == "male"} ></input></div>
+                                                <input readOnly type="checkbox" defaultChecked={this.state.gender == "male"} ></input></div>
                                                 <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>Ms.
-                                                  <input type="checkbox" defaultChecked={this.state.gender == "female"} ></input></div>
+                                                  <input readOnly type="checkbox" defaultChecked={this.state.gender == "female"} ></input></div>
                                                 
                                        <br />
                                         </div>
@@ -927,7 +927,7 @@ console.log("state print", this.state)
 
 
                                     </div> */}
-                                                <input className="form-control" onChange={this.setName} autoFocus defaultValue={this.state.name} key={document.key} type="text" ></input>
+                                                <input readOnly className="form-control" onChange={this.setName} autoFocus defaultValue={this.state.name} key={document.key} type="text" ></input>
                                  </div>  
                                  
                              </div>
@@ -966,7 +966,7 @@ console.log("state print", this.state)
                                                 // </li>
                                             ))} */}
                                                
-                                                <input className="form-control" onChange={(e) => this.setDob(e)} defaultValue={this.state.dob} key={document.key} type="text" ></input>
+                                                <input readOnly className="form-control" onChange={(e) => this.setDob(e)} defaultValue={this.state.dob} key={document.key} type="text" ></input>
                                                   
                                              
 
@@ -1024,7 +1024,7 @@ console.log("state print", this.state)
 
 
                                     <br /><br /> */}
-                                     <input onChange={this.setFat_Name} defaultValue={this.state.father_name} key={document.key} type="text" className="form-control"></input>
+                                     <input readOnly onChange={this.setFat_Name} defaultValue={this.state.father_name} key={document.key} type="text" className="form-control"></input>
                                             </div>
                                             
                                            
@@ -1061,7 +1061,7 @@ OF (3) ABOVE <br /><br />
 
                                     <br /> */}
 
-                                                <input onChange={this.setFamilyRelation} placeholder="Father" type="text" className="form-control"></input>
+                                                <input readOnly onChange={this.setFamilyRelation} placeholder="Father" type="text" className="form-control"></input>
                                         </div>
 
 
@@ -1091,7 +1091,7 @@ OF (3) ABOVE <br /><br />
                                                 <input defaultValue={this.state.gender} key={document.key} type="text" style={{ width: '120px' }}></input>
 
                                             ))} */}
-                                                <input onChange={this.setgender} defaultValue={this.state.gender} key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly onChange={this.setgender} defaultValue={this.state.gender} key={document.key} type="text" className="form-control"></input>
 
 
                                         </div><br />
@@ -1120,7 +1120,7 @@ OF (3) ABOVE <br /><br />
 
                                         ))} */}
                                                
-                                                <input onChange={this.setPermanentMobile} defaultValue={this.state.mobile_no} key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly onChange={this.setPermanentMobile} defaultValue={this.state.mobile_no} key={document.key} type="text" className="form-control"></input>
 
                                               
 
@@ -1172,7 +1172,7 @@ OF (3) ABOVE <br /><br />
 
                                     </div> */}
                                             <div style={{  marginLeft: '30px' }}>
-                                                     <input onChange={this.setEmail} defaultValue={this.state.c_email} key={document.key} type="text" className="form-control"></input>
+                                                     <input readOnly onChange={this.setEmail} defaultValue={this.state.c_email} key={document.key} type="text" className="form-control"></input>
                                                    
                                          
 
@@ -1219,8 +1219,8 @@ OF (3) ABOVE <br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" name="optradio1" onClick={(e) => this.yes1Click(e, 3)}/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio1" onClick={(e) => this.yes1Click(e, 4)} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" name="optradio" onClick={(e) => this.yes1Click(e, 3)}/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e) => this.yes1Click(e, 4)} /></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -1264,23 +1264,18 @@ OF (3) ABOVE <br /><br />
                                      
                            
                         </div>
-                                <br />  <div className="col-md-12"  >
-                                <div className=" float-left font-weight-bold" style={{ marginLeft: '30px' }} >
-                                        UAN
+                                <br/> 
+                                 
+                                <div className="col-md-12">
+                                 <div className="font-weight-bold d-flex justify-content-center align-items-center">
+                                        <label>UAN</label>
+
+                                        <input onChange={this.setuan} defaultValue={otherdetails.uan} readOnly={this.state.Is1952} key={document.key} type="text" style={{ width: '100%'  }} className="form-control w-25 ml-2"></input>
+
                                    </div>
+                                
 
-
-                                <div className="text-center">
-                                <div  style={{ display: 'inline-flex' }}>
-                                    {/* {candidate_uan_no.map(document => (
-
-                                        <input key={document.key} type="text" style={{ width: '40px' }}></input>
-                                    ))} */}
-                                            <input onChange={this.setuan} defaultValue={otherdetails.uan} readOnly={this.state.Is1952||this.state.Is1955} key={document.key} type="text" style={{ width: '100%'  }} className="form-control"></input>
-
-                                    </div>   </div><br></br>
-
-                            <div className="title text-center">OR</div><br/><br/>
+                            <div className="title text-center my-4">OR</div>
 
                                 <div className="title font-weight-bold" style={{ marginLeft: '15px', marginTop: '20px' }}>
                                     PREVIOUS PF MEMBER ID
@@ -1319,12 +1314,12 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952||this.state.Is1955} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
                                                 <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input readOnly={this.state.Is1952||this.state.Is1955} type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                                <td><input readOnly={this.state.Is1952||this.state.Is1955} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td><input readOnly={this.state.Is1952||this.state.Is1955} type="text" name="" className="px-0 py-0 border-0 form-control"/></td>
-                                                <td><input readOnly={this.state.Is1952||this.state.Is1955} type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                <td className="text-center"><input readOnly={this.state.Is1952} type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"/></td>
+                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
                                             </tr>
                                            
 
@@ -1358,7 +1353,7 @@ OF (3) ABOVE <br /><br />
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                             ))} */}
-                                                <input readOnly={this.state.Is1952||this.state.Is1955} type="date" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="date" key={document.key} type="text" className="form-control"></input>
 
                                         </div><br />
 
@@ -1403,7 +1398,7 @@ OF (3) ABOVE <br /><br />
                                           
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                                
-                                                <input readOnly={this.state.Is1952||this.state.Is1955} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1424,7 +1419,7 @@ OF (3) ABOVE <br /><br />
 
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
-                                                <input readOnly={this.state.Is1952||this.state.Is1955} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1957,9 +1952,9 @@ OF (3) ABOVE <br /><br />
                                         <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
-                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input value={this.state.name}></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input disabled="disabled" ></input>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input value={this.state.name} className="form-control w-auto d-inline-block"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input disabled="disabled" className="form-control w-auto d-inline-block"></input>
                                                 &nbsp; &nbsp;   AND HAS BEEN <br/>
-                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input style={{ marginTop: '1%' }} disabled="disabled" ></input>
+                                        ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input style={{ marginTop: '1%' }} disabled="disabled" className="form-control w-auto d-inline-block"></input>
 
                                         </li>
                                         <li>
@@ -1967,7 +1962,7 @@ OF (3) ABOVE <br /><br />
                                         </li>
                                                 <ul style={{ display: 'contents' }}>
                                             <li>
-                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input disabled="disabled" ></input>
+                                                        (POST ALLOTMENT OF UAN) THE UNALLOWTTED FOR THE MEMBER IS <input disabled="disabled" className="form-control w-auto d-inline-block"></input>
                                             </li>
                                             <li>
                                                 PLEASE TICK THE APPROPRIATE OPTION:<br/>
