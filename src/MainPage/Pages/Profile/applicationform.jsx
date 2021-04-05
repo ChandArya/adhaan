@@ -20,7 +20,7 @@ class ApplicationForm extends Component {
 
     backClick = (e) => {
 
-        let path = './candidate-profile';
+        let path = './student';
         var id = this.props.location.state.user
         // alert("iiiiid",id)
         console.log("hhhhhhhhh", id)
