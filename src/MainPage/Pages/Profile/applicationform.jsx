@@ -523,7 +523,9 @@ class ApplicationForm extends Component {
                                                 <div className="image-upload">
                                                     <label htmlFor="Uploadphoto" className="mb-0">
                                                         {/* <img src="upload-photo.png" id="photo" alt="Upload Photo" className="img-fluid" /> */}
+                                                        {/* <img alt="" src={this.state.pic} id="photo" alt="Upload Photo" className="img-fluid" /> */}
                                                         <img alt="" src={this.state.pic} id="photo" alt="Upload Photo" className="img-fluid" />
+
                                                     </label>
                                                     {/* <input id="Uploadphoto" type="file" onchange="readURL(this);" /> */}
                                                 </div>
