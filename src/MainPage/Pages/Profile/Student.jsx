@@ -1928,8 +1928,8 @@ export default class Student extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="submit-section float-right float-sm-none">
-                                                        <button className="btn btn-primary submit-btn" onClick={this.addBasicDetails}>Save</button>
+                                                    <div className="submit-section float-right float_none">
+                                                        <button className="btn btn-primary submit-btn " onClick={this.addBasicDetails}>Save</button>
                                                     </div>
                                                     <label className="text-danger">{this.state.error}</label>
                                                 </form>
@@ -2112,7 +2112,7 @@ export default class Student extends Component {
                                                 }
 
 
-                                                <div className="submit-section float-right">
+                                                <div className="submit-section float-right float_none">
                                                     <button className="btn btn-primary submit-btn" onClick={this.addPersonalInfoData}>Save</button>
                                                 </div>
 
@@ -2203,7 +2203,7 @@ export default class Student extends Component {
                                             </div> : ''}
 
 
-                                            {this.state.addrefvar ? <div className="submit-section float-right">
+                                            {this.state.addrefvar ? <div className="submit-section float-right float_none">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addRef}>Save</button>
                                             </div> : ''}
 
@@ -2305,7 +2305,7 @@ export default class Student extends Component {
                                                     <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
                                                 </div> */}
                                             {
-                                                this.state.bankflag ? '' : <div className="submit-section float-right">
+                                                this.state.bankflag ? '' : <div className="submit-section float-right float_none">
                                                     <button onClick={this.addBankDetails} className="btn btn-primary submit-btn">Save</button>
                                                 </div>
                                             }
@@ -2469,7 +2469,7 @@ export default class Student extends Component {
                                             </div> : ''}
 
 
-                                            {this.state.addfamilyvar ? <div className="submit-section float-right">
+                                            {this.state.addfamilyvar ? <div className="submit-section float-right float_none">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addFamilyData}>Save</button>
                                             </div> : ''}
 
@@ -2600,7 +2600,7 @@ export default class Student extends Component {
 
                                             {/* <label className="text-danger">{this.state.error}</label> */}
 
-                                            {this.state.eduvar ? <div className="submit-section float-right">
+                                            {this.state.eduvar ? <div className="submit-section float-right float_none">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addEducationData}>Save</button>
                                             </div> : ''}
                                         </div>
@@ -2713,7 +2713,7 @@ export default class Student extends Component {
 
 
                                             </div> : ''}
-                                            {this.state.expvar ? <div className="submit-section float-right">
+                                            {this.state.expvar ? <div className="submit-section float-right float_none">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addExperienceData}>Save</button>
                                             </div> : ''}
 
@@ -2890,7 +2890,7 @@ export default class Student extends Component {
 
                                             </div>
 
-                                            <div className="submit-section float-right">
+                                            <div className="submit-section float-right float_none">
                                                 <button className="btn btn-primary submit-btn" onClick={this.addOtherDetails}>Save</button>
                                             </div>
                                             {/* <label className="text-danger">{this.state.error}</label> */}
@@ -3527,7 +3527,7 @@ export default class Student extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="submit-section float-right">
+                                        <div className="submit-section float-right float_none">
                                             <button className="btn btn-primary submit-btn" type="submit">Save</button>
                                         </div>
                                     </form>

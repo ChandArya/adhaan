@@ -485,7 +485,7 @@ class ApplicationForm extends Component {
                                     <div className="row no-gutters mb-4">
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0">Client Name:</label>
                                                 </div>
                                                 <input autoFocus disabled="disabled" type="text" name="client-name" className=" mx-2 form-control" />
@@ -493,7 +493,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0">Date of Joining:</label>
                                                 </div>
                                                 <input disabled="disabled" type="text" name="doj" className=" mx-2 form-control" />
@@ -501,7 +501,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0">Employee Code:</label>
                                                 </div>
                                                 <input disabled="disabled" type="text" name="employee-code" className="ml-2 form-control" />
@@ -553,7 +553,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Designation:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.designation} type="text" name="designation" className=" mx-2 form-control" />
@@ -561,7 +561,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Location</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.job_location} type="text" name="location" className="mx-2 form-control" />
@@ -569,7 +569,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Department</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.department} type="text" name="department" className="ml-2 form-control" />
@@ -579,7 +579,7 @@ class ApplicationForm extends Component {
                                     <div className="row no-gutters border border-dark p-2">
                                         <div className="col-sm-12">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Communication Address</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.c_house_no} type="text" name="communication-address" className="ml-2 form-control" />
@@ -587,7 +587,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Landmark:</label>
                                                 </div>
                                                 <input disabled="disabled" type="text" name="landmark" className="mx-2 form-control" />
@@ -595,7 +595,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">City:</label>
                                                 </div>
 
@@ -604,7 +604,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">State:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.c_state} type="text" name="state" className="mx-2 form-control" />
@@ -612,7 +612,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Pin Code:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.c_pin_code} type="text" name="pincode" className="mx-2 form-control" />
@@ -620,7 +620,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Mobile Number:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.c_mobile_no} type="text" name="mobile-number" className="ml-2 form-control" />
@@ -630,7 +630,7 @@ class ApplicationForm extends Component {
                                     <div className="row no-gutters border border-dark p-2">
                                         <div className="col-sm-12">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Permament Address</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.p_house_no} type="text" name="parmement-address" className="ml-2 form-control" />
@@ -638,7 +638,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Landmark:</label>
                                                 </div>
                                                 <input disabled="disabled" type="text" name="landmark" className="mx-2 form-control" />
@@ -646,7 +646,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">City:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.p_city} type="text" name="city" className="ml-2 form-control" />
@@ -654,7 +654,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">State:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.p_state} type="text" name="state" className="mx-2 form-control" />
@@ -662,7 +662,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Pin Code:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.p_pin_code} type="text" name="pincode" className="mx-2 form-control" />
@@ -670,7 +670,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-4">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Mobile Number:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.p_mobile_no} type="text" name="mobile-number2" className="ml-2 form-control" />
@@ -678,7 +678,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Emergency Mobile No.:</label>
                                                 </div>
 
@@ -688,7 +688,7 @@ class ApplicationForm extends Component {
 
                                         <div className="col-sm-6">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Emergency Person Name:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.contperson} type="text" name="person-name" className="ml-2 form-control" />
@@ -696,7 +696,7 @@ class ApplicationForm extends Component {
                                         </div>
                                         <div className="col-sm-12">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">E-Mail:</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.p_email} type="email" name="email" className="ml-2 form-control" />
@@ -707,7 +707,7 @@ class ApplicationForm extends Component {
                                     <div className="row no-gutters border border-dark">
                                         <div className="col-sm-4 border-right border-dark p-2">
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Date of Birth</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.dob} type="text" name="dob" className="ml-2 form-control" />
@@ -722,7 +722,7 @@ class ApplicationForm extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Marriage Date</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.marrage_date} type="text" name="dom" className="ml-2 form-control" />
@@ -740,7 +740,7 @@ class ApplicationForm extends Component {
                                             </div>
                                         </div>
                                         <div className="col-sm-6 p-2">
-                                            <div className="form-group input-group">
+                                            <div className="form-group input-group radio_margin">
                                                 <div className="input-group-prepend my-auto">
                                                     <label htmlFor="" className="m-0 text-uppercase">Category:</label>
                                                 </div>
@@ -750,25 +750,25 @@ class ApplicationForm extends Component {
                                             <input type="radio" className="ml-4 mr-2 my-auto" checked={this.state.category === "OPEN"} /> OPEN
                                         </div>
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Nationality</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.nationality} type="text" name="nationality" className="ml-2 form-control" />
                                             </div>
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">*Blood Group</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.blood_group} type="text" name="blood-group" className="ml-2 form-control" />
                                             </div>
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Mother Tongue</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.mother_tongue} type="text" name="mother-tongue" className="ml-2 form-control" />
                                             </div>
                                             <div className="form-group input-group">
-                                                <div className="input-group-prepend my-auto">
+                                                <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Religion</label>
                                                 </div>
                                                 <input disabled="disabled" defaultValue={this.state.religion} type="text" name="religion" className="ml-2 form-control" />
@@ -845,11 +845,11 @@ class ApplicationForm extends Component {
                                                 <th width="25%" className="text-uppercase font-weight-bold text-center">Reason for Separation</th>
                                             </tr>
                                             <tr>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.organization} /></td>
-                                                <td className="text-center"><input disabled="disabled" type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control full-input" defaultValue={work_experience.organization} /></td>
+                                                <td className="text-center"><input disabled="disabled" type="text" name="" className="px-0 py-0 text-center border-0 form-control full-input"
 
                                                     placeholder="From" onFocus="(this.type='date')" defaultValue={work_experience.start_date} /></td>
-                                                <td className="text-center"><input disabled="disabled" type="text" name="" className="px-0 py-0 text-center border-0 form-control"
+                                                <td className="text-center"><input disabled="disabled" type="text" name="" className="px-0 py-0 text-center border-0 form-control full-input"
 
                                                     placeholder="To" onfocus="(this.type='date')" defaultValue={work_experience.end_date} /></td>
                                                 <td><textarea disabled="disabled" className="px-0 py-0 border-0 form-control" defaultValue={work_experience.designation}></textarea></td>
@@ -921,7 +921,7 @@ class ApplicationForm extends Component {
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.vehicle_no} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.pan_card_no} /></td>
                                                 <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.eid_no} /></td>
-                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={otherdetails.aadhaar_no} /></td>
+                                                <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control full-input" defaultValue={otherdetails.aadhaar_no} /></td>
                                             </tr>
                                             <tr>
                                                 <th className="text-uppercase font-weight-bold text-center">*Old PF No.</th>
@@ -947,10 +947,10 @@ class ApplicationForm extends Component {
                                                 <th width="25%" className="text-uppercase font-weight-bold text-center">Branch Name</th>
                                             </tr>
                                             <tr>
-                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.bank_name} /></td>
-                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.account_number} /></td>
-                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.ifsc_code} /></td>
-                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={this.state.branch_name} /></td>
+                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control full-input" defaultValue={this.state.bank_name} /></td>
+                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control full-input" defaultValue={this.state.account_number} /></td>
+                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control full-input" defaultValue={this.state.ifsc_code} /></td>
+                                                <td><input disabled="disabled" disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control full-input" defaultValue={this.state.branch_name} /></td>
                                             </tr>
                                         </table></div>
                                     <div className="table-responsive">

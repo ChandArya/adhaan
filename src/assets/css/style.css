@@ -8249,6 +8249,42 @@ margin: 0 !important;
 
 /* Declaration-form end*/
 
+/* student */
+
+.personal-info li .title {
+	font-size: 11px;
+	width: 61% !important
+	}
+	
+	/* .edit-icon {
+	font-size: 11px;
+	line-height: 12px;
+	width:auto
+	  
+	} */
+
+/* student end*/
+
+/* application*/
+
+.full-input{
+	width: auto !important;
+}
+
+.full_width{
+	width: 100%!important;
+}
+
+.float_none{
+	float: none !important;
+}
+.radio_margin input[type="radio"]{
+margin: 3px 5px !important;
+}
+
+
+/* application end*/
+
 .application_logo{
 	text-align: center;
 }
