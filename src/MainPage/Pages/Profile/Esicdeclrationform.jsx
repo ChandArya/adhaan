@@ -315,10 +315,10 @@ class EsicdeclrationForm extends Component {
                                         घोषणा पत्र / ESIC DECLARATION FORM
                                            </h1>
 
-                                   <p className="text-center" style={{}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
-                                        size photographs are to be attached with this form.This form if free of cost.</p><br />
+                                   
                                 </div>
-                                
+                                <p className="text-center" style={{}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
+                                        size photographs are to be attached with this form.This form if free of cost.</p><br />
 
 
 
@@ -575,7 +575,7 @@ class EsicdeclrationForm extends Component {
 
                                 <div className="col-md-12 pl-0 pr-0">
 
-                                    <div className='table-responsive twinkle' style={{ overflowX:'auto'}}>
+                                    <div className='table-responsive twinkle'>
                                         <table className="table table-bordered">
                                             <tbody>
                                                 <tr>
@@ -784,7 +784,7 @@ class EsicdeclrationForm extends Component {
                                             </tbody>
 
                                         </table>
-                                        <hr style={{ width: '100%', border: '1px solid black', marginTop: '1%', marginBottom: '1%' }}></hr>
+                                        {/* <hr style={{ width: '100%', border: '1px solid black', marginTop: '1%', marginBottom: '1%' }}></hr> */}
 
                                     </div>
                                 </div>
@@ -935,7 +935,7 @@ class EsicdeclrationForm extends Component {
 
 
 
-                <div className="border">
+                <div>
                     < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
                         <div className="col-md-12">
                             <div className="border border-dark bg-white" style={{ overflow: 'hidden' }}>
@@ -1244,21 +1244,6 @@ subject to fulfillment of contributory conditions</li>
 
                         </ div><br />
                     </div><br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 </div><br />
 
