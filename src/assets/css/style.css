@@ -8190,14 +8190,20 @@ padding-top: 2rem;
 
 /* ESI CSS	 */
 
-.heading-sm{
+.heading_sm{
  font-size: 25px;
+ margin-top: 10px !important;
 }
 .esic_box{
 	display: block !important;
 }
-.paading-auto{
-	padding: 13px !important;
+.esic_box p{
+	padding: 10px;
+    margin: 0;
+}
+.padding_auto{
+	padding-left: 15px !important;
+	padding-right: 15px !important;
 }
 
 /* ESI CSS end */

@@ -285,7 +285,7 @@ class EsicdeclrationForm extends Component {
                 {/*Esic-declrationForm page */}
 
 
-                <div id='#uu' className="border" >
+                <div id='#uu'>
                     < div className="row " style={{ marginTop: '2%', marginLeft: 'none', marginRight: 'none' }}>
                         <div className="col-md-12">
 
@@ -304,27 +304,28 @@ class EsicdeclrationForm extends Component {
                             <div className="border border-dark bg-white" style={{ overflowX: 'hidden' }} >
 
                                 <div className=" font-weight-bold text-right mt-2 mr-2 "> (FORM - 1)</div>
-                                <div className="  mt-2 text-center font-weight-bold d-flex">
+                                <div className="mt-2 text-center font-weight-bold d-flex esic_box">
 
-                                    <div className="account-logo  ">
+                                    <div className="account-logo">
                                         <a href="#"><
                                             img src={epfs} alt="Adhaan" /></a>
                                     </div>
 
-                                    <h1 style={{ margin: 'auto' }}>
+                                    <h1 style={{ margin: 'auto' }} className="heading_sm">
                                         घोषणा पत्र / ESIC DECLARATION FORM
                                            </h1>
 
-                                </div>
-                                <p className="text-center" style={{}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
+                                   <p className="text-center" style={{}}>To be filled in by the employee after reading instructions overleaf. Two Postcard
                                         size photographs are to be attached with this form.This form if free of cost.</p><br />
+                                </div>
+                                
 
 
 
 
                                 <div className="row row-no-gutter" style={{ boder: '1px solid' }}>
 
-                                    <div className="col-md-6 pr-0">
+                                    <div className="col-md-6 pr-0 padding_auto">
                                         <div className='table-responsive' style={{ overflow: 'inherit' }}>
                                             <table className="table table-bordered">
                                                 <thead>
@@ -456,7 +457,7 @@ class EsicdeclrationForm extends Component {
 
                                     </div>
 
-                                    <div className="col-md-6 pl-0">
+                                    <div className="col-md-6 pl-0 padding_auto">
                                         <div className='table-responsive' style={{ overflow: 'inherit' }} >
                                             <table className="table table-bordered">
                                                 <thead>
