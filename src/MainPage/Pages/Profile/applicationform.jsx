@@ -14,7 +14,7 @@ class ApplicationForm extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { ...this.props.location.state, pic: '', ispdf: true, error1: '' }
+        this.state = { ...this.props.location.state, pic: '', ispdf: true, error1: '', profilepic1: '', Sign: '' }
         document.documentElement.scrollTop = 0;
     }
 
@@ -155,7 +155,7 @@ class ApplicationForm extends Component {
                     // console.log("++++++++++++++++++++++++++++++++++",pic)
                     this.setState({ pic: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
                 }
-                if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
+                if (this.state.candidate_documents_data[i].document_type == "Signature/Thumb Impression") {
                     this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
                 }
 

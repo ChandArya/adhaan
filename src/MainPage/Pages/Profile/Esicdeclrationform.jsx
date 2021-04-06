@@ -1038,21 +1038,22 @@ subject to fulfillment of contributory conditions</li>
 
                                             <li>
                                                 बीमा संख्या  आवंटन की तिथि / Date of Allotment of Ins. No.:
-                                                <input   className="form-control"></input>
+                                                <input disabled="disabled" className="form-control"></input>
                                             </li>
 
                                             <li>
-                                                अ.प.प. के जारी करने की तिथि / Date of Issue of TIC : <input className="form-control"></input>
+                                                अ.प.प. के जारी करने की तिथि / Date of Issue of TIC : <input disabled="disabled"  className="form-control"></input>
                                             </li>
                                             <li>
 
-                                                औषधालय का नाम / Name/No. of Disp.: <input className="form-control"></input>
+                                                औषधालय का नाम / Name/No. of Disp.: <input disabled="disabled"  className="form-control"></input>
                                             </li>
                                             <li>
-                                                क्या पारस्परिक चिकित्सा व्यवस्था शामिल है? यदि हाँ, तो कृपया सूचित करें /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate : <input className="form-control"></input>
+                                                क्या पारस्परिक चिकित्सा व्यवस्था शामिल है? यदि हाँ, तो कृपया सूचित करें /Whether reciprocal Medical Arrangements Involved ? If Yes, Please Indicate : 
+                                                <input disabled="disabled"  className="form-control"></input>
                                             </li>
                                             <li>
-                                                शाखा प्रबंधक का हस्ताक्षर/ Signature of Branch Manager: <input className="form-control"></input>
+                                                शाखा प्रबंधक का हस्ताक्षर/ Signature of Branch Manager: <input disabled="disabled" className="form-control"></input>
                                             </li>
                                         </ul>
 
