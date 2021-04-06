@@ -342,7 +342,7 @@ class EsicdeclrationForm extends Component {
                                                                 बीमा संख्या
 
                                                             </td>
-                                                        <td colSpan="3"><input className="form-control" type="text" name="" /></td>
+                                                        <td colSpan="3"><input disabled="disabled" className="form-control" type="text" name="" /></td>
 
                                                     </tr>
                                                     <tr>
@@ -445,7 +445,7 @@ class EsicdeclrationForm extends Component {
                                                             औषधालय<br />
                                                             Dispensary
 
-                                                            <input disabled="disabled" defaultValue={this.state.candidate_other_data.esic_name} type="text" className="form-control"></input><br />
+                                                            <input disabled="disabled"  type="text" className="form-control"></input><br />
 
                                                         </td>
                                                     </tr>
@@ -477,7 +477,7 @@ class EsicdeclrationForm extends Component {
                                                                     <input key={document.key} type="text" style={{ width: '5%' }}></input>
 
                                                                 ))} */}
-                                                            <input  className="form-control" type="text"></input>
+                                                            <input disabled="disabled" className="form-control" type="text"></input>
                                                         </td>
 
                                                     </tr>
@@ -520,7 +520,7 @@ class EsicdeclrationForm extends Component {
                                                     <tr>
                                                         <td colSpan="4"><br />(क)बीमा संख्या<br />
                                                                 a) Previous Ins. No.
-                                                             <input type="text" name="" className="form-control" /><br />
+                                                             <input disabled="disabled" type="text" name="" className="form-control" /><br />
                                                         </td>
 
                                                     </tr>
@@ -529,7 +529,7 @@ class EsicdeclrationForm extends Component {
                                                             (ख)नियोजक का कूट संख्या<br />
                                                                 b) Emplr's Code No.
 
-                                                             <input type="text" name="" className="form-control" /><br />
+                                                             <input disabled="disabled" type="text" name="" className="form-control" /><br />
                                                         </td>
 
                                                     </tr>
@@ -551,7 +551,7 @@ class EsicdeclrationForm extends Component {
 
                                                             <br />
                                                        
-                                                            <input disabled="disabled" defaultValue={this.state.c_email}  style= {{height:'52px'}} type="text" name="" className="form-control" />
+                                                            <input disabled="disabled"   style= {{height:'52px'}} type="text" name="" className="form-control" />
 
                                                        
                                                        
@@ -611,7 +611,7 @@ class EsicdeclrationForm extends Component {
                                                             <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
                                                             <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
                                                                 placeholder="" onFocus="(this.type='date')" className="form-control" /></td>
-                                                            <td colSpan="4" className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.address}
+                                                            <td colSpan="4" className="text-center"><input  type="text" name="" defaultValue={document.address}
                                                                 placeholder="" onFocus="(this.type='date')"  className="form-control"/></td>
                                                            
                                                         </tr>
@@ -818,7 +818,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input type="text" name="" className="form-control" /><br />
+                                                                <input disabled="disabled" type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -828,7 +828,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input type="text" name="" className="form-control" /><br />
+                                                                <input disabled="disabled" type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -841,7 +841,7 @@ class EsicdeclrationForm extends Component {
                                                             <td >
                                                                 औषधालय
                                                                 <br />Dispensary
-                                                                    <input disabled="disabled"  defaultValue={this.state.candidate_other_data.esic_name} type="text" name="" className="form-control" /><br />
+                                                                    <input disabled="disabled"   type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>
@@ -853,7 +853,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input type="text" name="" className="form-control" /><br />
+                                                                <input disabled="disabled" type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>

@@ -272,7 +272,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                  </td>
                                                  <td>
-                                                     <input className="form-control" type="text" name=""/>
+                                                     <input className="form-control text-center" placeholder="%" type="text" name=""/>
 
                                                  </td>
                                                
@@ -342,8 +342,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                     </div>
                                     <div className="d-flex district">
                                            
-                                    <p className="mr-4"><label className="mr-1">District</label>  &nbsp; &nbsp; <input className="form-control" disabled="disabled" typet="text" defaultValue={this.state.c_city}></input></p> &nbsp; &nbsp;
-                                <p><label className="mr-1">State</label>  <input className="form-control" disabled="disabled" typet="text" defaultValue={this.state.c_state}></input></p>
+                                    <p className="mr-4"><label className="mr-1">District</label>  &nbsp; &nbsp; <input className="form-control" disabled="disabled" typet="text" ></input></p> &nbsp; &nbsp;
+                                <p><label className="mr-1">State</label>  <input className="form-control" disabled="disabled" typet="text" ></input></p>
                                 </div>
 
                                 <div className="title d-flex mt-2">
@@ -354,7 +354,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                                                           
                                             </p>
                                     <p style={{marginLeft:'auto'}}>
-                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1" /><br/>
+                                        <img src={this.state.Sign} id="sign" alt=" " className="img-fluid1 text-center" /><br/>
                                          Signature/Thumb impression of the employee</p>
                                    
                                         
@@ -412,7 +412,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                         </div>
                             <div className="title d-flex mt-3 sigem" style={{ marginLeft: '1%', marginRight: '1%' }}>
                                
-                                <p> Date </p>{ today}
+                                <p> Date: </p> &nbsp; &nbsp;{ today}
                                 <p style={{ marginLeft: 'auto' }}>  Signature of the employer/ officer authorised<br /> <br />Designation :&nbsp; &nbsp;<label>{this.state.designation}</label>
                                <br/> <br />Name and address of establishment or rubber stamp thereof
                                {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1" />

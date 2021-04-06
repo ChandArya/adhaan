@@ -130,23 +130,51 @@ class DeclrationForm extends Component {
 
     }
     // function for disable UAN  by twinkle
-    yes1Click =(e,id) =>{
+    // yes1Click =(e,id) =>{
        
-      //  console.log(e.target.id)
-        console.log(id)
-        if(id==1){
-            this.setState({ Is1952:false})
-        }
-       else if(id==3){
-            this.setState({ Is1995: false })
-        }
-        else{
-            this.setState({Is1952:true,Is1995:true})
-        }
+    //   //  console.log(e.target.id)
+    //     console.log(id)
+    //     if(id==1){
+    //         this.setState({ Is1952:false})
+    //     }
+    //    else if(id==3){
+    //         this.setState({ Is1995: false })
+    //     }
+    //     else{
+    //         this.setState({Is1952:true,Is1995:true})
+    //     }
       
        
-    }
+    // }
    
+    yes1Click = (e, id) => {
+
+        //  console.log(e.target.id)
+        console.log(id)
+        if (id == 1) {
+            this.setState({ Is1952: false })
+        }
+        else{
+            this.setState({ Is1952: true})
+        }
+        
+
+    }
+
+    yes2Click = (e, id) => {
+
+        //  console.log(e.target.id)
+        console.log(id)
+        if (id == 3) {
+            this.setState({ Is1995: false })
+        }
+        else {
+            this.setState({ Is1995: true })
+        }
+
+
+    }
+
     
 
 
@@ -551,6 +579,13 @@ class DeclrationForm extends Component {
         this.setState({ account_number: value });
     }
 
+    setPercentage =(e) =>{
+        const percentage = e.target.value
+        this.setState({ percentage:'%' });
+        console.log('percentage')
+       
+    }
+
 
 
     render() {
@@ -888,10 +923,10 @@ console.log("state print", this.state)
                                    
                             1) &nbsp; NAME &nbsp; &nbsp; (TITLE)
                                         <div className=" "  style={{ display: 'inline-flex' , marginLeft:'5%'}} >
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>MR.
-                                                <input readOnly type="checkbox" defaultChecked={this.state.gender == "male"} ></input></div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>Mr.
+                                                <input readOnly type="checkbox" checked={this.state.gender == "male"} ></input></div>
                                                 <div className='border border-dark text-center' style={{ width: '40px', height: '45px' }}>Ms.
-                                                  <input readOnly type="checkbox" defaultChecked={this.state.gender == "female"} ></input></div>
+                                                  <input readOnly type="checkbox" checked={this.state.gender == "female"} ></input></div>
                                                 
                                        <br />
                                         </div>
@@ -989,7 +1024,7 @@ console.log("state print", this.state)
                                             3) &nbsp; FATHERS /
                               HUSBANDS NAME
                               <div className=" " style={{ display: 'inline-flex', marginLeft: '5%' }} >
-                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>MR.</div>
+                                                <div className='border border-dark text-center' style={{ width: '40px', height: '30px' }}>Mr.</div>
                                                 
                                                 <br />
                                             </div> <br /><br />
@@ -1219,8 +1254,8 @@ OF (3) ABOVE <br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" name="optradio" onClick={(e) => this.yes1Click(e, 3)}/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e) => this.yes1Click(e, 4)} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes1" name="optradio1" onClick={(e) => this.yes1Click(e, 3)}/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no1" name="optradio1" onClick={(e) => this.yes1Click(e, 4)}/></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -1269,7 +1304,7 @@ OF (3) ABOVE <br /><br />
                                 <div className="col-md-12">
                                  <div className="font-weight-bold d-flex justify-content-center align-items-center">
                                         <label>UAN</label>                                    
-                                            <input disabled="disabled" onChange={this.setuan} defaultValue={otherdetails.uan} readOnly={this.state.Is1952||this.state.Is1955} key={document.key} type="text" className="form-control w-25 ml-2"></input>
+                                            <input  onChange={this.setuan}  readOnly={this.state.Is1952||this.state.Is1995} key={document.key} type="text" className="form-control w-25 ml-2"></input>
 
                                    </div>
                                 
@@ -1306,19 +1341,19 @@ OF (3) ABOVE <br /><br />
                                         <table width="50%" className="table mb-0 border-dark table-bordered" cellSpacing="0">
                                             <tr>
                                                 <th  className="text-uppercase text-center">REGION CODE</th>
-                                                <th  className="text-uppercase text-center">	OFFICE CODE</th>
-                                                <th  className="text-uppercase text-center">Date of Birth</th>
+                                                <th  className="text-uppercase text-center">OFFICE CODE</th>
+                                                <th  className="text-uppercase text-center">DATE OF BIRTH</th>
                                                 <th  className="text-uppercase text-center">ESTABLISHMENT ID</th>
                                                 <th  className="text-uppercase text-center small font-weight-bold">EXTENSION</th>
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td className="text-center"><input readOnly={this.state.Is1952} type="date" name="" className="px-0 py-0 text-center border-0 form-control" /></td>
-                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control" /></td>
-                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"/></td>
-                                                <td><input readOnly={this.state.Is1952} type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952 || this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td><input readOnly={this.state.Is1952 || this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td className="text-center"><input readOnly={this.state.Is1952 || this.state.Is1995} type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
+                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control"/></td>
+                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control"  /></td>
                                             </tr>
                                            
 
@@ -1654,16 +1689,16 @@ OF (3) ABOVE <br /><br />
                                                 </tr>
                                                 <tr>
                                                             <td style={{ textAlign: 'center' }} className="text-uppercase font-weight-bold">
-                                                                <input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}   /></td>
-                                                            <td style={{ textAlign: 'center' }}>
-                                                                <input type="checkbox" name=""  style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                                <input disabled type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}   /></td>
+                                                            <td   style={{ textAlign: 'center' }}>
+                                                                <input  disabled type="checkbox" name=""  style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                             <td className="text-center">
-                                                                <input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['10'].level == 10} /></td>
-                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['12'].level==12}/></td>
-                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} defaultChecked={this.state.education_data['graduate'].level === 'graduate' } /></td>
-                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['post_graduate'].level === 'post_graduate'}/></td>
-                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  defaultChecked={this.state.education_data['other'].level === 'other'}/></td>
-                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} efaultChecked={this.state.education_data['other'].level === 'other'}/></td>
+                                                                <input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} checked={this.state.education_data['10'].level == 10} /></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} checked={this.state.education_data['12'].level==12}/></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}checked={this.state.education_data['graduate'].level === 'graduate' } /></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} checked={this.state.education_data['post_graduate'].level === 'post_graduate'}/></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} checked={this.state.education_data['other'].level === 'other'}/></td>
+                                                            <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} disabled /></td>
                                                     
                                                 </tr>
 
@@ -1721,8 +1756,8 @@ OF (3) ABOVE <br /><br />
                                                     </tr>
                                                     <tr>
 
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}   /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }}  /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio"  name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" name="radio"/></td>
                                                     </tr>
 
 
@@ -1772,9 +1807,9 @@ OF (3) ABOVE <br /><br />
 
                                                     </tr>
                                                     <tr>
-                                                        <td style={{textAlign:'center'}}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{textAlign:'center'}}><input type="radio"  name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio"  name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio"  name="radio"/></td>
                                                     </tr>
 
 
@@ -1969,13 +2004,13 @@ OF (3) ABOVE <br /><br />
                                             </li>
                                             <ul style={{ listStyleType:'square' , display:'contents'}}>
                                                 <li>
-                                                    HAVE NOT BEEN UPLOADED: <input type="checkbox"></input>
+                                                            HAVE NOT BEEN UPLOADED: <input disabled="disabled" type="checkbox"></input>
                                                 </li>
                                                 <li>
-                                                 HAVE  BEEN UPLOADED BUT NOT APPROVED : <input type="checkbox"></input>
+                                                            HAVE  BEEN UPLOADED BUT NOT APPROVED : <input disabled="disabled" type="checkbox"></input>
                                                 </li>
                                                 <li>
-                                                 HAVE NOT BEEN UPLOADED AND APPROVED WITH DSC : <input type="checkbox"></input>
+                                                            HAVE NOT BEEN UPLOADED AND APPROVED WITH DSC : <input disabled="disabled" type="checkbox"></input>
                                                 </li>
                                                
 
@@ -1996,11 +2031,11 @@ OF (3) ABOVE <br /><br />
                                                     <ul style={{ listStyleType: 'square', display: 'contents' , paddingRight:'5%'}}>
                                                 <li style={{paddingRight:'3%'}}>
                                                             THE KYC DETAILS OF THE ABOVE MEMBER IN THE UANDATABASE HAVE BEEN APPROVED WITH  DIGITAL SIGNATURE CERTIFICATE AND TRANSFER
-                                                    REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox" defaultChecked="true"></input>
+                                                    REQUEST HAS BEEN CENTRATED ON PORTAL: <input type="checkbox" checked="true"></input>
                                                 </li>
                                                         <li style={{ paddingRight: '3%' }}>
                                                             AS THE DSC OF ESTABLISHMENT ARE NOT REGISTERED WITH EPFO, THE MEMBER HAS BEEN INFORMED TO THE PHYSICAL CLAIM (FORM-13) FOR
-                                                  TRANSFER OF FUNDS FROM HIS ESTABLISHMENET: <input type="checkbox"></input>
+                                                  TRANSFER OF FUNDS FROM HIS ESTABLISHMENET: <input disabled="disabled" type="checkbox"></input>
                                                 </li>
                                                 
 
@@ -2183,8 +2218,8 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" placeholder="%" style={{ width: 'auto' }} ></input></td>
-                                                <td><input className="px-0 py-0 border-0 form-control" style={{ width: 'auto' }}  ></input></td>
+                                                <td><input className="px-0 py-0 form-control" placeholder="%"   onClick={this.setPercentage} style={{ width: 'auto' }} ></input></td>
+                                                <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }}  ></input></td>
                                             </tr>
                                                
                                             ))}
@@ -2221,7 +2256,7 @@ the minority of nominee</th>
                                                     <tr>
                                                         <td>Dt. of Joining E.P.F.
                                                              </td>
-                                                        <td><input disabled="disabled" className=" form-control" type="date" placeholder="/ / 20" ></input></td>
+                                                        <td><input  className=" form-control" type="date" placeholder="/ / 20" ></input></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Past Service ...................... years</td>
@@ -2231,7 +2266,7 @@ the minority of nominee</th>
                                                     </tr>
                                                     <tr>
                                                         <td>Date of Joining EPS</td>
-                                                        <td><input disabled="disabled" className=" form-control" type="date"  /></td>
+                                                        <td><input  className=" form-control" type="date"  /></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -2282,7 +2317,7 @@ the minority of nominee</th>
                                             <tr>
                                                 <th width="5%" className="text-uppercase font-weight-bold text-center">Sl.
 No</th>
-                                                <th width="20%" className="text-uppercase font-weight-bold text-center">Name of the Family Member member
+                                                <th width="20%" className="text-uppercase font-weight-bold text-center">Name of the Family member
                                                 </th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Address</th>
                                                 <th width="10%" className="text-uppercase font-weight-bold text-center">Date of
@@ -2295,8 +2330,8 @@ Birth</th>
                                                     <tr key={i+1}>
                                                         <td>{i+1}</td>
                                                         <td><input disabled="disabled"type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
-                                                        <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
-                                                        <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
+                                                        <td><input  type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                        <td className="text-center"><input  type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
                                                         <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
@@ -2366,8 +2401,8 @@ Birth</th>
                                             <h2 className="text-center">CERTIFIED BY EMPLOYER
 </h2>
                                             <h4 className="text-center">Certified that the above declaration and nomination has been signed / thumb impressed before me by </h4>
-                                            <h4 className="font-weight-normal">Shri./Smt./Kum :  &nbsp; &nbsp; <label>{this.state.name}</label>
-                                            <hr/>
+                                            <h4 className="font-weight-normal">Shri./Smt./Kum : <input disabled="disabled" type="text" name="" className="m-0 form-control w-auto d-inline-block" defaultValue={this.state.name} />
+                                           
                                             <br/>
                                            
 employed in my establishment after he/she has read the entries/entries have been read over to him/her by me and got confirmed
@@ -2380,7 +2415,7 @@ by him/her.</h4>
                                           Times Square Arcade, Office No-712/712<br></br>
                                            A,Opp-Rambaug,NR Ravija Plaza,<br></br>
                                            Thaltej-shila Road<br></br>
-                                            Ahmedabad-380059 <br/>
+                                            Ahmedabad-380059 <br /><br />
                                             Date <input type="text" value={today}></input>
                                         </div>
 
