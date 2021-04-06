@@ -559,22 +559,22 @@ class DeclrationForm extends Component {
         var selectedDocumentList = [];
         var pic = ''
 
-        try {
-            for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
-                selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
-                if (this.state.candidate_documents_data[i].document_type == "Passport Size Photo") {
-                    // console.log("++++++++++++++++++++++++++++++++++",pic)
-                    this.setState({ pic: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
-                }
-                if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
-                    this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
-                }
+        // try {
+        //     for (var i = 0; i < this.state.candidate_documents_data.length; i++) {
+        //         selectedDocumentList.push(this.state.candidate_documents_data[i].document_type)
+        //         if (this.state.candidate_documents_data[i].document_type == "Passport Size Photo") {
+        //             // console.log("++++++++++++++++++++++++++++++++++",pic)
+        //             this.setState({ pic: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+        //         }
+        //         // if (this.state.candidate_documents_data[i].document_type == "Signature" || this.state.candidate_documents_data[i].document_type == "Thumb Impression") {
+        //         //     this.setState({ Sign: "https://aadhaan.ddns.net" + this.state.candidate_documents_data[i].document })
+        //         // }
 
-            }
-        }
-        catch (error) {
-            console.log(error)
-        }
+        //     }
+        // }
+        // catch (error) {
+        //     console.log(error)
+        // }
         // const candidate_name = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
         // const candidate_doc_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
@@ -1951,7 +1951,7 @@ OF (3) ABOVE <br /><br />
                                         <div className="title" style={{ overflowX: 'auto' }}>
                      
                                     <ul  classname="text-justify" style={{ listStyleType:'upper-alpha' , width:'100%'}}>
-                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input value={this.state.name} className="form-control w-auto d-inline-block"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input disabled="disabled" className="form-control w-auto d-inline-block"></input>
+                                                <li>THE MEMBER Mr./Ms./Mrs &nbsp; &nbsp; <input disabled="disabled" value={this.state.name} className="form-control w-auto d-inline-block"></input> &nbsp; &nbsp;  HAS JOINED ON &nbsp; &nbsp; <input disabled="disabled" className="form-control w-auto d-inline-block"></input>
                                                 &nbsp; &nbsp;   AND HAS BEEN <br/>
                                         ALLOTTED PF MEMBER ID  &nbsp; &nbsp;  <input style={{ marginTop: '1%' }} disabled="disabled" className="form-control w-auto d-inline-block"></input>
 
@@ -2221,17 +2221,17 @@ the minority of nominee</th>
                                                     <tr>
                                                         <td>Dt. of Joining E.P.F.
                                                              </td>
-                                                        <td><input className=" form-control" type="date" placeholder="/ / 20" ></input></td>
+                                                        <td><input disabled="disabled" className=" form-control" type="date" placeholder="/ / 20" ></input></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Past Service ...................... years</td>
                                                         <td>
-                                                           <input className=" form-control" type="text"  ></input>
+                                                            <input disabled="disabled"  className=" form-control" type="text"  ></input>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Date of Joining EPS</td>
-                                                        <td><input className=" form-control" type="date"  /></td>
+                                                        <td><input disabled="disabled" className=" form-control" type="date"  /></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -2244,16 +2244,16 @@ the minority of nominee</th>
 
                                                     </tr>
                                                     <tr>
-                                                        <td colSpan="3"> <input className=" form-control" type="text"  ></input></td>
+                                                        <td colSpan="3"> <input disabled="disabled"  className=" form-control" type="text"  ></input></td>
                                                     </tr>
                                                     <tr>
                                                         <td>D.A.
-                                                             <input className=" form-control" type="text"  ></input>
+                                                             <input disabled="disabled"  className=" form-control" type="text"  ></input>
                                                         </td>
                                                         <td>S.S.
-                                                             <input className=" form-control" type="text"  ></input> </td>
+                                                             <input disabled="disabled"  className=" form-control" type="text"  ></input> </td>
                                                         <td>A.A.O.
-                                                             <input className=" form-control" type="text"  ></input>
+                                                             <input disabled="disabled"  className=" form-control" type="text"  ></input>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -2290,10 +2290,10 @@ Birth</th>
                                                 <th width="20%" className="text-uppercase font-weight-bold text-center">Relationship with member</th>
                                             </tr>
                                             
-                                                {isNomnieeList.map(document => (
+                                                {isNomnieeList.map((document,i) => (
 
-                                                    <tr>
-                                                        <td><input type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
+                                                    <tr key={i+1}>
+                                                        <td>{i+1}</td>
                                                         <td><input disabled="disabled"type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
                                                         <td><input disabled="disabled" type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
                                                         <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
