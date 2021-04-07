@@ -497,14 +497,14 @@ class EsicdeclrationForm extends Component {
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                     <input type="text" style={{width:'60px' }}></input>
                                                                 </div> */}
-                                                            <input className="form-control" type="text" ></input>
+                                                            <input disabled="disabled" className="form-control" type="text" ></input>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="4" scope="col">11. नियोजक का नाम और पता /Name & Address of the Employer<br />
-                                                            Times Square Arcade, Office No-712/712<br></br>
+                                                            Times Square Arcade, Office No-712/712,<br></br>
                                            A,Opp-Rambaug,NR Ravija Plaza,<br></br>
-                                           Thaltej-shila Road<br></br>
+                                           Thaltej-shila Road,<br></br>
                                             Ahmedabad-380059 <br />
                                                         </td>
                                                     </tr>
@@ -605,9 +605,9 @@ class EsicdeclrationForm extends Component {
                                                     </td>
                                                 
                                                 </tr>
-                                                    {isNomnieeList.map(document => (
+                                                    {isNomnieeList.map((document,id) => (
 
-                                                        <tr>
+                                                        <tr key={id}>
                                                             <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
                                                             <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
                                                                 placeholder="" onFocus="(this.type='date')" className="form-control" /></td>
@@ -828,7 +828,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
 
-                                                                <input disabled="disabled" type="text" name="" className="form-control" /><br />
+                                                                <input  disabled="disabled" type="text" name="" className="form-control" /><br />
                                                             </td>
 
                                                         </tr>

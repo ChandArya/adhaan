@@ -33,7 +33,10 @@ class DeclrationForm extends Component {
         }
        this.state = {...this.props.location.state,error1:'',
            Is1952: false,
-           Is1995: false
+           Is1995: false,
+           value: 1,
+           percentage:'%'
+           
     }
        document.documentElement.scrollTop = 0;
       
@@ -130,50 +133,56 @@ class DeclrationForm extends Component {
 
     }
     // function for disable UAN  by twinkle
-    // yes1Click =(e,id) =>{
+    yes1Click =(e,id) =>{
        
-    //   //  console.log(e.target.id)
-    //     console.log(id)
-    //     if(id==1){
-    //         this.setState({ Is1952:false})
-    //     }
-    //    else if(id==3){
-    //         this.setState({ Is1995: false })
-    //     }
-    //     else{
-    //         this.setState({Is1952:true,Is1995:true})
-    //     }
-      
-       
-    // }
-   
-    yes1Click = (e, id) => {
-
-        //  console.log(e.target.id)
+      //  console.log(e.target.id)
         console.log(id)
-        if (id == 1) {
-            this.setState({ Is1952: false })
+        if(id==1){
+            this.setState({ value: id, Is1952:false})
         }
-        else{
-            this.setState({ Is1952: true})
+        if(id==2){
+            this.setState({ value: id,Is1952: true })
         }
         
-
-    }
-
-    yes2Click = (e, id) => {
-
-        //  console.log(e.target.id)
-        console.log(id)
-        if (id == 3) {
-            this.setState({ Is1995: false })
+        if(id==3)
+        {
+            this.setState({ value: id, Is1995: false })
         }
-        else {
-            this.setState({ Is1995: true })
+        if (id == 4){
+            this.setState({ value: id,Is1995: true })
+           
         }
-
-
+      
+       
     }
+   
+    // yes1Click = (e, id) => {
+
+    //     //  console.log(e.target.id)
+    //     console.log(id)
+    //     if (id == 1) {
+    //         this.setState({ Is1952: false })
+    //     }
+    //     else{
+    //         this.setState({ Is1952: true})
+    //     }
+        
+
+    // }
+
+    // yes2Click = (e, id) => {
+
+    //     //  console.log(e.target.id)
+    //     console.log(id)
+    //     if (id == 3) {
+    //         this.setState({ Is1995: false })
+    //     }
+    //     else {
+    //         this.setState({ Is1995: true })
+    //     }
+
+
+    // }
 
     
 
@@ -579,9 +588,10 @@ class DeclrationForm extends Component {
         this.setState({ account_number: value });
     }
 
+    // setPercentage on input field
     setPercentage =(e) =>{
-        const percentage = e.target.value
-        this.setState({ percentage:'%' });
+        const value = e.target.value
+        this.setState({ percentage :'%' });
         console.log('percentage')
        
     }
@@ -1304,7 +1314,7 @@ OF (3) ABOVE <br /><br />
                                 <div className="col-md-12">
                                  <div className="font-weight-bold d-flex justify-content-center align-items-center">
                                         <label>UAN</label>                                    
-                                            <input  onChange={this.setuan}  readOnly={this.state.Is1952||this.state.Is1995} key={document.key} type="text" className="form-control w-25 ml-2"></input>
+                                        <input onChange={this.setuan} readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} key={document.key} type="text" className="form-control w-25 ml-2"></input>
 
                                    </div>
                                 
@@ -1961,7 +1971,7 @@ OF (3) ABOVE <br /><br />
     </ul>
 
     <div className="title font-weight-bold float-left ml-3">
-        DATE {today}
+        DATE : {today}
     </div>
     <br/><br/>
     <div className="title font-weight-bold float-left ml-3">
@@ -2044,7 +2054,7 @@ OF (3) ABOVE <br /><br />
                                               </ul><br/>
 
                                         <div className="col-md-12">
-                                    <div className="title font-weight-bold float-left "> DATE {today}</div>
+                                    <div className="title font-weight-bold float-left "> DATE : {today}</div>
                                    
                                             <div className="title font-weight-bold float-right"> 
                                             {/* <img src={CompnySign} id="sign" alt=" " className="img-fluid1" /> */}
@@ -2076,7 +2086,7 @@ OF (3) ABOVE <br /><br />
                                             <div className="input-group-prepend my-auto">
                                                 <label className="m-0">Employee Code:</label>
                                             </div>
-                                            <input type="text" name="client-name" className="px-0 py-1 mx-2 form-control" />
+                                            <input disabled type="text" name="client-name" className="px-0 py-1 mx-2 form-control" />
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
@@ -2218,7 +2228,7 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 form-control" placeholder="%"   onClick={this.setPercentage} style={{ width: 'auto' }} ></input></td>
+                                                <td><input className="px-0 py-0 form-control" defaultValue={this.state.percentage}  onChange={this.setPercentage} style={{ width: 'auto' }} ></input></td>
                                                 <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }}  ></input></td>
                                             </tr>
                                                
@@ -2256,7 +2266,7 @@ the minority of nominee</th>
                                                     <tr>
                                                         <td>Dt. of Joining E.P.F.
                                                              </td>
-                                                        <td><input  className=" form-control" type="date" placeholder="/ / 20" ></input></td>
+                                                        <td><input disabled="disabled"   className=" form-control" type="date" placeholder="/ / 20" ></input></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Past Service ...................... years</td>
@@ -2266,7 +2276,7 @@ the minority of nominee</th>
                                                     </tr>
                                                     <tr>
                                                         <td>Date of Joining EPS</td>
-                                                        <td><input  className=" form-control" type="date"  /></td>
+                                                        <td><input disabled="disabled"   className=" form-control" type="date"  /></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -2330,10 +2340,10 @@ Birth</th>
                                                     <tr key={i+1}>
                                                         <td>{i+1}</td>
                                                         <td><input disabled="disabled"type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
-                                                        <td><input  type="text" name="" className="px-0 py-0 border-0 form-control"  /></td>
-                                                        <td className="text-center"><input  type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control"
+                                                        <td><input type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                        <td className="text-center"><input disabled="disabled"  type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center  form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
-                                                        <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center border-0 form-control"
+                                                        <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center  form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
 
                                                     </tr>
@@ -2379,7 +2389,7 @@ Birth</th>
                                         </table>
                                         <table width="100%" className="table mb-0 " cellSpacing="0">
                                             <tr>
-                                                <td>Date  <input type="text" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} value={today}></input>
+                                                <td>Date: <input type="text" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} value={today}></input>
                                                 </td>
                                                
                                             </tr>
@@ -2416,7 +2426,7 @@ by him/her.</h4>
                                            A,Opp-Rambaug,NR Ravija Plaza,<br></br>
                                            Thaltej-shila Road<br></br>
                                             Ahmedabad-380059 <br /><br />
-                                            Date <input type="text" value={today}></input>
+                                            Date :<input type="text" value={today}></input>
                                         </div>
 
                                         <div className="col-md-8">

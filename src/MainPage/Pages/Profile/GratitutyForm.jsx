@@ -25,7 +25,8 @@ class GratitutyForm extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {...this.props.location.state,error1:''}
+        this.state = {...this.props.location.state,error1:'',
+        percentage:'%'}
         document.documentElement.scrollTop = 0;
     }
 
@@ -108,7 +109,12 @@ class GratitutyForm extends Component {
 
     }
     
-
+//percentage on input field
+setPercentage =(e)=>
+{
+    const value= e.target.value
+    this.setState({percentage:'%'})
+}
 
 
 
@@ -196,7 +202,10 @@ class GratitutyForm extends Component {
 
                                   <div  className="d-flex"> 
                                    <span className="mr-1" style={{lineHeight:3}}>To</span> 
-                                    <input autoFocus type="text" className="form-control" placeholder="Adhaan Solution Pvt. Ltd" disabled="disabled"></input>   
+                                    <input autoFocus type="text" className="form-control" placeholder="Adhaan Solution Pvt.Ltd(Times Square Arcade,Office No-712/712,
+A,Opp-Rambaug,NR Ravija Plaza,
+Thaltej-shila Road,
+Ahmedabad-380059)" disabled="disabled"></input>
                                   </div>
                                
                                <div  className="mt-4"> 
@@ -272,7 +281,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                  </td>
                                                  <td>
-                                                     <input className="form-control text-center" placeholder="%" type="text" name=""/>
+                                                     <input className="form-control text-center"  type="text" name="" defaultValue={this.state.percentage} onChange={this.setPercentage} />
 
                                                  </td>
                                                
