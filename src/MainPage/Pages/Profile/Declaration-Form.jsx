@@ -35,7 +35,9 @@ class DeclrationForm extends Component {
            Is1952: false,
            Is1995: false,
            value: 1,
-           percentage:'%'
+           percentage:'%',
+           Isabled: false
+
            
     }
        document.documentElement.scrollTop = 0;
@@ -183,8 +185,21 @@ class DeclrationForm extends Component {
 
 
     // }
-
     
+
+    //Specailly abled 
+    abledClick = (e, id) => {
+
+        //  console.log(e.target.id)
+        console.log(id)
+        if (id == 1) {
+            this.setState({ Isabled: false })
+        }
+        else{
+            this.setState({ Isabled:true })
+        }
+
+    }
 
 
 
@@ -1766,8 +1781,8 @@ OF (3) ABOVE <br /><br />
                                                     </tr>
                                                     <tr>
 
-                                                        <td style={{ textAlign: 'center' }}><input type="radio"  name="radio"/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="radio1" onClick={(e) => this.abledClick(e, 1)}  name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="radio1" onClick={(e) => this.abledClick(e, 2)} name="radio"/></td>
                                                     </tr>
 
 
@@ -1817,9 +1832,9 @@ OF (3) ABOVE <br /><br />
 
                                                     </tr>
                                                     <tr>
-                                                        <td style={{textAlign:'center'}}><input type="radio"  name="radio"/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio"  name="radio"/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio"  name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" disabled={this.state.Isabled}  name="radio1"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" disabled={this.state.Isabled}  name="radio1"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" disabled={this.state.Isabled}  name="radio1"/></td>
                                                     </tr>
 
 

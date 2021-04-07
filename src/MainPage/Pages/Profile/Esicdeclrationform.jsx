@@ -605,16 +605,16 @@ class EsicdeclrationForm extends Component {
                                                     </td>
                                                 
                                                 </tr>
-                                                    {isNomnieeList.map((document,id) => (
-
-                                                        <tr key={id}>
+                                                    {isNomnieeList.map((document,index) => (
+                                                           index==0? 
+                                                        <tr key={index}>
                                                             <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
                                                             <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
                                                                 placeholder="" onFocus="(this.type='date')" className="form-control" /></td>
                                                             <td colSpan="4" className="text-center"><input  type="text" name="" defaultValue={document.address}
                                                                 placeholder="" onFocus="(this.type='date')"  className="form-control"/></td>
                                                            
-                                                        </tr>
+                                                        </tr>:''
 
                                                     ))}
 
