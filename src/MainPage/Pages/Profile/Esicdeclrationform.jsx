@@ -656,7 +656,7 @@ class EsicdeclrationForm extends Component {
                                                             </td>
                                                             <td >
                                                                 नहीं/ No
-
+                                                                
                                                             </td>
                                                             If yes Please Tick
                                                         </div>
@@ -694,11 +694,11 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input disabled="disabled" type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                     </td>
                                                     <td>
-                                                        <input disabled="disabled"style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -722,11 +722,11 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input disabled="disabled" type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
                                                         {/* <input style={{width:'auto'}} defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                        <input disabled="disabled" style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input  style={{width:'auto'}} type="text" name="" className="form-control" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -748,10 +748,10 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input disabled="disabled" type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
-                                                        <input disabled="disabled" style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input  style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -774,11 +774,11 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input disabled="disabled" type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                     </td>
                                                     <td>
-                                                        <input disabled="disabled"style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -1144,11 +1144,11 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input  style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input disabled="disabled" style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
-                                                    <input  style={{ width: 'auto' }}  type="text" name="" className="form-control" />
+                                                    <input disabled="disabled" style={{ width: 'auto' }}  type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
@@ -1172,11 +1172,11 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input  style={{ width: 'auto' }} type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input disabled="disabled" style={{ width: 'auto' }} type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
                                                     {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                    <input  type="text" name="" className="form-control" />
+                                                    <input disabled="disabled" type="text" name="" className="form-control" />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -1198,10 +1198,10 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input  style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input disabled="disabled" style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
-                                                    <input style={{ width: 'auto' }}  type="text" name="" className="form-control" />
+                                                    <input disabled="disabled"style={{ width: 'auto' }}  type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
@@ -1224,11 +1224,11 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input  style={{width: 'auto'}}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input disabled="disabled" style={{width: 'auto'}}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
-                                                    <input  style={{ width: 'auto' }} type="text" name="" className="form-control" />
+                                                    <input disabled="disabled" style={{ width: 'auto' }} type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
