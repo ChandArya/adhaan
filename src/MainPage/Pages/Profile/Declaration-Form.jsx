@@ -1373,13 +1373,20 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952 || this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td><input readOnly={this.state.Is1952 || this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td className="text-center"><input readOnly={this.state.Is1952 || this.state.Is1995} type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
-                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control"/></td>
-                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control"  /></td>
+                                                <td className="text-uppercase font-weight-bold"><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td className="text-center"><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
+                                                <td><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" name="" className="px-0 py-0  form-control"/></td>
+                                              
+                                                {/* <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control"  /></td> */}
+                                                <td><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" name="" className="px-0 py-0  form-control" /></td>
+
+
+
+
                                             </tr>
+
                                            
 
                                            </table>
@@ -1412,7 +1419,7 @@ OF (3) ABOVE <br /><br />
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                             ))} */}
-                                                <input readOnly={this.state.Is1952} type="date" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="date" key={document.key} type="text" className="form-control"></input>
 
                                         </div><br />
 
@@ -1457,7 +1464,7 @@ OF (3) ABOVE <br /><br />
                                           
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                                
-                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1478,7 +1485,7 @@ OF (3) ABOVE <br /><br />
 
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
-                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -2441,7 +2448,7 @@ by him/her.</h4>
                                            A,Opp-Rambaug,NR Ravija Plaza,<br></br>
                                            Thaltej-shila Road<br></br>
                                             Ahmedabad-380059 <br /><br />
-                                            Date :<input type="text" value={today}></input>
+                                            Date :{today} 
                                         </div>
 
                                         <div className="col-md-8">

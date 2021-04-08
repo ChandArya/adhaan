@@ -633,7 +633,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">Permament Address</label>
                                                 </div>
-                                                <input disabled="disabled" defaultValue={this.state.p_house_no} type="text" name="parmement-address" className="ml-2 form-control" />
+                                                <input disabled="disabled" value={this.state.p_full_address} type="text" name="parmement-address" className="ml-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -673,7 +673,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Mobile Number:</label>
                                                 </div>
-                                                <input disabled="disabled" defaultValue={this.state.p_mobile_no} type="text" name="mobile-number2" className="ml-2 form-control" />
+                                                <input disabled="disabled" defaultValue={this.state.mobile_no} type="text" name="mobile-number2" className="ml-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -699,7 +699,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto full_width">
                                                     <label htmlFor="" className="m-0 text-uppercase">E-Mail:</label>
                                                 </div>
-                                                <input disabled="disabled" defaultValue={this.state.p_email} type="email" name="email" className="ml-2 form-control" />
+                                                <input disabled="disabled" defaultValue={this.state.c_email} type="email" name="email" className="ml-2 form-control" />
                                             </div>
                                         </div>
                                     </div>
