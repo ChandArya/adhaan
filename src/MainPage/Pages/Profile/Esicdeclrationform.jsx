@@ -1109,7 +1109,7 @@ subject to fulfillment of contributory conditions</li>
                                                         <td scope="col">
                                                             नहीं/No
                                                             </td>
-                                                            if yes Please Tick
+                                                            If yes Please Tick
                                                     </div>
                                                 </td>
                                                 <td >
