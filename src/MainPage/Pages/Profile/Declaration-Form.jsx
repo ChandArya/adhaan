@@ -6,7 +6,7 @@ var baseurl = 'https://aadhaan.ddns.net';
 
 var today = new Date();
 var dd = today.getDate();
-
+import Swal from 'sweetalert2'
 var mm = today.getMonth()+1; 
 var yyyy = today.getFullYear();
 if(dd<10) 
@@ -35,10 +35,26 @@ class DeclrationForm extends Component {
            Is1952: false,
            Is1995: false,
            value: 1,
-           percentage:0,
-           Isabled: false
-
-           
+           percentage:'%',
+           Isabled: false,
+           ablity8:'',
+           ablity9:'',
+           regioncode:'',
+           officecode:'',
+           pre_mem_dob:'',
+           estabid:'',
+           extension:'',
+           pre_mem_account_no:'',
+           pre_mem_date_exit:'',
+           scheme_certificate_no:'',
+           ppo_no:'',
+           total_amt_per:'',
+           nominee_is_minor:'',
+           nominee_address:'',
+           spcially_abled:'',
+           category_abled:'',
+           uan:''
+        
     }
        document.documentElement.scrollTop = 0;
       
@@ -86,17 +102,151 @@ class DeclrationForm extends Component {
     }
 
 
-    savebtn = (data) => {
-        var self =this;
-        // var data = JSON.stringify({
-        //             "candidate": localStorage.getItem("can"),
+
+    savebtn2 = (e, data) => {
+        // e.preventDefault();
+        var self = this;
+        var isNomnieeList = this.state.family.filter(function (data) {
+            return data.is_nominee
+        })
+        console.log("fffff", isNomnieeList);
+        var n_data=[]
+        for (var i = 0; i < isNomnieeList.length;i++)
+            {   
+                var per=''
+                try{
+                    per = isNomnieeList[i].percent
+                }catch(error)
+                {
+                    per=''
+                }
+            var minor = ''
+                try{
+                     minor = isNomnieeList[i].minor
+                }
+        catch (error) {
+                    minor = ''
+            }
+             var add = ''
+            try {
+                add = isNomnieeList[i].address
+            }
+            catch (error) {
+                add = ''
+            }
+           
+                var dataaa = {
+                    "id": isNomnieeList[i].id,
+                   
+                    "pf_percent_share": per,
+                   
+                   
+                    "guardian_details": minor,
+                    "address": add
+                }
+            n_data.push(dataaa)
+           
+           
+           
+        }
+        // return
+        var eps=false
+        var epf=false
+        var spcially_abled = false
+        {
+            this.state.spcially_abled? spcially_abled = true : spcially_abled = false}
+        { this.state.ablity8 ? eps = true : eps =false }
+        { this.state.ablity9 ? epf = true : epf = false }
+        var data = JSON.stringify({
+            "candidate": this.state.canid,
+            "member_of_epfs": eps,
+            "member_of_eps": epf,
+            "uan": this.state.uan,
+            "prev_region_code": this.state.regioncode,
+            "prev_office_code": this.state.officecode,
+            "prev_dob": this.state.pre_mem_dob,
+            "prev_establishment_id":this.state.estabid,
+            "prev_extension": this.state.extension ,
+            "prev_account_no": this.state.pre_mem_account_no,
+            "prev_date_of_exit": this.state.pre_mem_date_exit,
+            "prev_scheme_certificate_no": this.state.scheme_certificate_no,
+            "prev_ppo_no": this.state.ppo_no,
+            "specially_abled": spcially_abled,
+            "pwd_category": this.state.category_abled,
+            "date_of_joining_epf": '',
+            "date_of_joining_eps": '',
+            "past_service_years": 0,
+            "no_family_nominee_details": "",
+            "no_family_dob": "",
+            "no_family_relationship": "",
+            "nominee_details": n_data,
+        
+        });
+       
+        var config = {
+            method: 'post',
+            url: baseurl + '/api/declaration-form/pf',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+console.log("apiii", data)
+
+
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                // self.setState({ error: response.data.message })
+                // if (response.data.status == true) {
+                // let path = './Esic-declrationForm';
+                // var id = self.props.location.state.user
+                // // alert("iiiiid",id)
+                // console.log("hhhhhhhhh", id)
+
+                // self.setState({ id: id, back: true });
+
+                // self.props.history.push({
+                //     pathname: path,
+                //     state: self.state
+
+                // })
+
+                // }else{
                     
-        //         });
+                // }
+            })
+            .catch(function (error) {
+                // console.log(error);
+                // self.setState({ error: "network issue" })
+                // console.log("onchange twinkle", this.state)
+            });
+
+
+    }
+
+
+
+
+
+    savebtn = (e,data) => {
+      // e.preventDefault();
+
+        this.savebtn2(this)
+
+        var self =this;
+        var data = JSON.stringify({
+                    "candidate": localStorage.getItem("can"),
+                    
+                });
                 var formData=new FormData();
                 formData.append("candidate", "" + localStorage.getItem("can"))
                 formData.append("pdf_document_2", new File([data], this.state.name+'_pf.pdf'))
                 formData.append("pdf_document_2", null)
                 console.log("called")
+        console.log("onchange twinkle", this.state)
                 var config = {
                     method: 'post',
                     url: baseurl + '/api/v1/candidate-percentage',
@@ -105,7 +255,11 @@ class DeclrationForm extends Component {
                     },
                     data: formData
                 };
-    
+
+
+
+        
+      
                 axios(config)
                     .then(function (response) {
                         console.log(JSON.stringify(response.data));
@@ -115,6 +269,7 @@ class DeclrationForm extends Component {
                             var id = self.props.location.state.user
                             // alert("iiiiid",id)
                             console.log("hhhhhhhhh", id)
+                      
                             self.setState({ id: id, back: true });
 
                             self.props.history.push({
@@ -122,18 +277,30 @@ class DeclrationForm extends Component {
                                 state: self.state
 
                             })
-                       
-
+                    //    
+                      
                     // }
                 })
                 .catch(function (error) {
                     // console.log(error);
                     // self.setState({ error: "network issue" })
+                   // console.log("onchange twinkle", this.state)
                 });
-                      
        
 
     }
+
+
+
+
+
+
+
+
+
+
+
+    
     // function for disable UAN  by twinkle
     yes1Click =(e,id) =>{
        
@@ -567,8 +734,8 @@ class DeclrationForm extends Component {
 
 
         const value = e.target.value;
-        var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": value, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
-        this.setState({ candidate_other_data: data });
+       // var data = { "name": this.state.candidate_other_data.name, "esic_address": this.state.candidate_other_data.esic_address, "esic_name": this.state.candidate_other_data.esic_name, "esic_no": this.state.candidate_other_data.esic_no, "uan": value, "pf_no": this.state.candidate_other_data.pf_no, "aadhaar_no": this.state.candidate_other_data.aadhaar_no, "eid_no": this.state.candidate_other_data.eid_no, "pan_card_no": this.state.candidate_other_data.pan_card_no, "vehicle_no": this.state.candidate_other_data.vehicle_no, "valid_up_to": this.state.candidate_other_data.valid_up_to, "place_of_issue": this.state.candidate_other_data.place_of_issue, "dl_no": this.state.candidate_other_data.dl_no }
+        this.setState({ uan: value });
         console.log("00", this.state.uan)
     }
     setPf = (e) => {
@@ -603,18 +770,177 @@ class DeclrationForm extends Component {
         this.setState({ account_number: value });
     }
 
-    // setPercentage on input field
-    setPercentage =(e) =>{
-        const re = /^[0-9]+$/;
-    const value = e.target.value;
-   
-                var aa=value.substring(0, value.length).replace("%","") + "%"
-              
-                this.setState({percentage:aa})
-          
+    // setPercentage on  input field twinkle
+    // setPercentage =(e) =>{
+    //     const value = e.target.value
+    //     this.setState({ percentage :'%' });
+    //     console.log('percentage')
        
+    // }
+
+    //set onchange for  remaining fields twinkle  08/04/2021
+    setAblity8 = (e) => {
+      
+        const value = e.target.value
+        this.setState({ ablity8: value });
+        console.log('setAblity8')
+
+        
     }
 
+    setAblity9 = (e) => {
+       
+        const value = e.target.value
+        this.setState({ ablity9: value });
+        console.log('setAblity9')
+
+
+    }
+
+    setRegioncode = (e) => {
+       
+        const value = e.target.value
+        this.setState({ regioncode: value });
+        console.log('regioncode')
+      
+
+
+    }
+
+    setOfficecode = (e) => {
+        
+        const value = e.target.value
+        this.setState({ officecode: value });
+        console.log('officecode')
+      
+
+
+    }
+
+    setPredob = (e) => {
+        const value = e.target.value
+        this.setState({ pre_mem_dob: value });
+        console.log('pre_mem_dob')
+
+
+    }
+
+    setEstabid = (e) => {
+        const value = e.target.value
+        this.setState({ estabid: value });
+        console.log('estabid')
+
+
+    }
+    setEstabid = (e) => {
+        const value = e.target.value
+        this.setState({ estabid: value });
+        console.log('estabid')
+
+
+    }
+
+    setExtension=(e)=>{
+        const value = e.target.value
+      
+        this.setState({extension: value });
+        console.log('extension')
+    }
+
+    setPreMemAccNo = (e) => {
+        const value = e.target.value
+      
+        this.setState({pre_mem_account_no: value });
+        console.log('pre_mem_account_no')
+    }
+    
+    setDateOfExit=(e)=>{
+        const value = e.target.value
+        this.setState({pre_mem_date_exit:value})
+        console.log('pre_mem_date_exit')
+
+    }
+
+    setSchemeNo = (e) => {
+        const value = e.target.value
+        this.setState({ scheme_certificate_no: value })
+        console.log('scheme_certificate_no')
+
+    }
+
+    setPensionNo = (e) => {
+        const value = e.target.value
+        this.setState({ppo_no: value })
+        console.log('ppo_no')
+
+    }
+
+    setSpeciallyAbled =(e)=>{
+        const value = e.target.value
+        this.setState({spcially_abled:value})
+        console.log('spcially_abled')
+    }
+
+    setCategoryAbled = (e) => {
+        const value = e.target.value
+        this.setState({category_abled: value })
+        console.log('category_abled')
+    }
+
+    setTotalAmount =(e,data)=>{
+        const value = e.target.value
+        for (var j=0;j<this.state.family.length;j++)
+        {
+           
+            if (this.state.family[j].id == data.id)
+            {
+                var datagg=this.state.family[j]
+                datagg['percent']=value
+                var listof = this.state.family
+                listof[j] = datagg;
+                this.setState({family: listof});
+
+            }
+            
+        }
+       
+        
+        // this.setState({ family: { key: value} , percentage: '%'  })
+        console.log('total_amt_per')
+    }
+
+    setNomineeMinor=(e,data)=>{
+        const value = e.target.value
+        for (var j = 0; j < this.state.family.length; j++) {
+
+            if (this.state.family[j].id == data.id) {
+                var datagg = this.state.family[j]
+                datagg['minor'] = value
+                var listof = this.state.family
+                listof[j] = datagg;
+                this.setState({ family: listof });
+
+            }
+
+        }
+
+    }
+
+    setNomineeAddress=(e,data)=>{
+        const value = e. target.value
+        for (var j = 0; j < this.state.family.length; j++) {
+
+            if (this.state.family[j].id == data.id) {
+                var datagg = this.state.family[j]
+                datagg['address'] = value
+                var listof = this.state.family
+                listof[j] = datagg;
+                this.setState({ family: listof });
+
+            }
+
+        }
+    }
 
 
     render() {
@@ -887,6 +1213,14 @@ class DeclrationForm extends Component {
             console.log("hjhj", err)
         }
 console.log("state print", this.state)
+
+//remaining field
+       
+
+
+
+
+
 
         return (
 
@@ -1261,8 +1595,13 @@ OF (3) ABOVE <br /><br />
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes"   name="optradio"  onClick={(e)=>this.yes1Click(e,1)}></input></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" name="optradio" onClick={(e)=>this.yes1Click(e,2)}/> </td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" value="Yes" 
+                                                            onChange={this.setAblity8} defaultChecked={this.state.ablity8=== "yes"}
+                                                          name="optradio"  onClick={(e)=>this.yes1Click(e,1)}></input></td>
+
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" value="No" 
+                                                            onChange={this.setAblity8} defaultChecked={this.state.ablity8 === "no"}
+                                                          name="optradio" onClick={(e)=>this.yes1Click(e,2)}/> </td>
                                                     </tr>
                                                     </table>
                                            </div>
@@ -1283,8 +1622,13 @@ OF (3) ABOVE <br /><br />
 
                                                         </tr>
                                                         <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes1" name="optradio1" onClick={(e) => this.yes1Click(e, 3)}/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no1" name="optradio1" onClick={(e) => this.yes1Click(e, 4)}/></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes1" value="yes" 
+                                                            onChange={this.setAblity9} defaultChecked={this.state.ablity9 === "yes"}
+                                                         name="optradio1" onClick={(e) => this.yes1Click(e, 3)}/></td>
+
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no1"  value="no"
+                                                            onChange={this.setAblity9} defaultChecked={this.state.ablity9 === "no"}
+                                                          name="optradio1" onClick={(e) => this.yes1Click(e, 4)}/></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -1333,7 +1677,7 @@ OF (3) ABOVE <br /><br />
                                 <div className="col-md-12">
                                  <div className="font-weight-bold d-flex justify-content-center align-items-center">
                                         <label>UAN</label>                                    
-                                        <input onChange={this.setuan} readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} key={document.key} type="text" className="form-control w-25 ml-2"></input>
+                                        <input onChange={this.setUan} defaultValue={this.state.uan} readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} key={document.key} type="text" className="form-control w-25 ml-2"></input>
 
                                    </div>
                                 
@@ -1377,13 +1721,38 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td className="text-center"><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
-                                                <td><input  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td><input  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control"/></td>
-                                                <td><input  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control"  /></td>
+                                                <td className="text-uppercase font-weight-bold"><input onChange={this.setRegioncode} value={this.state.regioncode}
+                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                    name="" className="px-0 py-0  form-control"  /></td>
+
+                                                <td><input onChange={this.setOfficecode} defaultValue={this.state.officecode}
+                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                    name="" className="px-0 py-0  form-control" defaultValue={this.state.officecode} /></td>
+
+                                                <td className="text-center"><input onChange={this.setPredob} defaultValue={this.state.pre_mem_dob}
+                                                readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false}
+                                                 type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
+
+                                                <td><input onChange={this.setEstabid} defaultValue={this.state.estabid}
+                                                readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                 name="" className="px-0 py-0  form-control" /></td>
+
+                                                <td><input onChange={this.setExtension} defaultValue={this.state.extension}
+                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                 name="" className="px-0 py-0  form-control"/></td>
+                                              
+                                                {/* <td><input  readOnly={this.state.Is1952||this.state.Is1995} 
+                                                 name="" className="px-0 py-0  form-control"  /></td> */}
+
+                                                <td><input onChange={this.setPreMemAccNo} defaultValue={this.state.pre_mem_account_no}
+                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                 name="" className="px-0 py-0  form-control" /></td>
+
+
+
+
                                             </tr>
+
                                            
 
                                            </table>
@@ -1416,7 +1785,8 @@ OF (3) ABOVE <br /><br />
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                             ))} */}
-                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="date" key={document.key} type="text" className="form-control"></input>
+                                                <input onChange={this.setDateOfExit} defaultValue={this.state.pre_mem_date_exit}
+                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="date" key={document.key} type="date" className="form-control"></input>
 
                                         </div><br />
 
@@ -1461,7 +1831,8 @@ OF (3) ABOVE <br /><br />
                                           
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                                
-                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input  onChange={this.setSchemeNo} defaultValue={this.state.scheme_certificate_no}
+                                                readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1482,7 +1853,8 @@ OF (3) ABOVE <br /><br />
 
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
-                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input onChange={this.setPensionNo} defaultValue={this.state.ppo_no}
+                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1536,8 +1908,10 @@ OF (3) ABOVE <br /><br />
                                                     </tr>
                                                     <tr>
                                                        
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" disabled name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="checkbox" checked name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input type="checkbox"
+                                                         disabled name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
+                                                        <td style={{ textAlign: 'center' }}><input 
+                                                        type="checkbox" checked name="" style={{ border: ' none', backgroundColor: ' #ffffff0a' }} /></td>
                                                     </tr>
 
 
@@ -1785,8 +2159,15 @@ OF (3) ABOVE <br /><br />
                                                     </tr>
                                                     <tr>
 
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="radio1" onClick={(e) => this.abledClick(e, 1)}  name="radio"/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="radio1" onClick={(e) => this.abledClick(e, 2)} name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input
+                                                         onChange={this.setSpeciallyAbled} value="yes" 
+                                                            checked={this.state.spcially_abled === "yes"}
+                                                          type="radio" id="radio1" onClick={(e) => this.abledClick(e, 1)} 
+                                                           name="radio"/></td>
+                                                        <td style={{ textAlign: 'center' }}><input 
+                                                        onChange={this.setSpeciallyAbled} value="no" 
+                                                            checked={this.state.spcially_abled  === "no"}
+                                                        type="radio" id="radio1" onClick={(e) => this.abledClick(e, 2)} name="radio"/></td>
                                                     </tr>
 
 
@@ -1836,9 +2217,23 @@ OF (3) ABOVE <br /><br />
 
                                                     </tr>
                                                     <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" disabled={this.state.Isabled}  name="radio1"/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" disabled={this.state.Isabled}  name="radio1"/></td>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" disabled={this.state.Isabled}  name="radio1"/></td>
+                                                        <td style={{ textAlign: 'center' }}>
+                                                        <input onChange={this.setCategoryAbled}
+                                                                checked={this.state.category_abled === "locomotive"}
+                                                         type="radio" disabled={this.state.Isabled} 
+                                                          name="radio1"  value="locomotive" /></td>
+
+                                                        <td style={{ textAlign: 'center' }}>
+                                                            <input onChange={this.setCategoryAbled}
+                                                                checked={this.state.category_abled === "visual"}
+                                                         type="radio" disabled={this.state.Isabled} 
+                                                            name="radio1" value="visual"/></td>
+
+                                                        <td style={{ textAlign: 'center' }}>
+                                                            <input onChange={this.setCategoryAbled}
+                                                                checked={this.state.category_abled === "Hearing"}
+                                                         type="radio" disabled={this.state.Isabled} 
+                                                            name="radio1" value="Hearing"/></td>
                                                     </tr>
 
 
@@ -2247,8 +2642,8 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 form-control" placeHolder="%"value={this.state.percentage==0?'':this.state.percentage}  maxLength='4'onChange={this.setPercentage} style={{ width: 'auto' }} ></input></td>
-                                                <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }}  ></input></td>
+                                                <td><input className="px-0 py-0 form-control" defaultValue={document.total_amt_per} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }} ></input></td>
+                                                <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }} defaultValue={document.nominee_is_minor} onChange={(e) => this.setNomineeMinor(e, document)} ></input></td>
                                             </tr>
                                                
                                             ))}
@@ -2359,7 +2754,7 @@ Birth</th>
                                                     <tr key={i+1}>
                                                         <td>{i+1}</td>
                                                         <td><input disabled="disabled"type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
-                                                        <td><input type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                        <td><input onChange={(e) => this.setNomineeAddress(e, document)} defaultValue={document.nominee_address} type="text" name="" className="px-0 py-0  form-control" /></td>
                                                         <td className="text-center"><input disabled="disabled"  type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center  form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
                                                         <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center  form-control"
@@ -2445,7 +2840,7 @@ by him/her.</h4>
                                            A,Opp-Rambaug,NR Ravija Plaza,<br></br>
                                            Thaltej-shila Road<br></br>
                                             Ahmedabad-380059 <br /><br />
-                                            Date :<input type="text" value={today}></input>
+                                            Date :{today} 
                                         </div>
 
                                         <div className="col-md-8">

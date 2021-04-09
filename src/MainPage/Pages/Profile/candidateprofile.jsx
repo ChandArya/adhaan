@@ -199,7 +199,7 @@ var bankdata = {
   "VIJAYA BANK": "VIJAYABANK"
 }
 var banklist = Object.keys(bankdata);
-banklist=banklist.sort();
+banklist = banklist.sort();
 export default class EmployeeProfile extends Component {
   constructor(...props) {
     super(...props)
@@ -221,7 +221,7 @@ export default class EmployeeProfile extends Component {
 
     // if(typeof this.props.location.state.back===undefined)
     // {
-   
+
     this.state = {
       isopenProfileModel: false,
       isLoaded: false,
@@ -322,11 +322,11 @@ export default class EmployeeProfile extends Component {
       },
       jobtype: '',
 
-      
+
 
 
     }
-   
+
 
 
   }
@@ -850,7 +850,7 @@ export default class EmployeeProfile extends Component {
 
   }
   setEmail = (e) => {
-    const value = e.target.value;
+    const value = e.target.value
     this.setState({ c_email: value })
   }
 
@@ -2651,7 +2651,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Email <span className="text-danger">*</span></label>
-                        <input type="text" defaultValue={this.state.c_email} className="form-control" onChange={this.setEmail} />
+                        <input type="email" id="email" pattern="[^ @]*@[^ @]*" defaultValue={this.state.c_email} className="form-control" onChange={this.setEmail} />
                       </div>
                     </div>
                     <div className="col-md-6">
@@ -2789,7 +2789,7 @@ export default class EmployeeProfile extends Component {
                     <div className="col-md-6">
                       <div className="form-group">
                         <label>Marital status <span className="text-danger">*</span></label>
-                        <select value={this.state.marital_status} className=" form-control" onChange={this.setMarriageStatus}>
+                        <select defaultvalue={this.state.marital_status} className=" form-control" onChange={this.setMarriageStatus}>
                           <option value="0">Select marital status</option>
                           <option>Single</option>
                           <option>Married</option>
@@ -3200,7 +3200,7 @@ export default class EmployeeProfile extends Component {
 
 
                         </div>
-                        
+
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>Relationship <span className="text-danger">*</span></label>
