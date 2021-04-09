@@ -37,8 +37,8 @@ class DeclrationForm extends Component {
            value: 1,
            percentage:'%',
            Isabled: false,
-           ablity8:'',
-           ablity9:'',
+           ablity8:false,
+           ablity9:false,
            regioncode:'',
            officecode:'',
            pre_mem_dob:'',
@@ -155,12 +155,17 @@ class DeclrationForm extends Component {
         var spcially_abled = false
         {
             this.state.spcially_abled? spcially_abled = true : spcially_abled = false}
-        { this.state.ablity8 ? eps = true : eps =false }
-        { this.state.ablity9 ? epf = true : epf = false }
+        { this.state.ablity8=='Yes' ? eps = true : eps =false }
+        { this.state.ablity9=='Yes' ? epf = true : epf = false }
+        console.log("eps",eps)
+        console.log("epf", epf)
+        console.log("ablity8",this.state.ablity8)
+        console.log("ablity9", this.state.ablity9)
+
         var data = JSON.stringify({
             "candidate": this.state.canid,
-            "member_of_epfs": eps,
-            "member_of_eps": epf,
+            "member_of_epfs":epf,
+            "member_of_eps": eps,
             "uan": this.state.uan,
             "prev_region_code": this.state.regioncode,
             "prev_office_code": this.state.officecode,
@@ -247,6 +252,8 @@ console.log("apiii", data)
                 formData.append("pdf_document_2", null)
                 console.log("called")
         console.log("onchange twinkle", this.state)
+      
+
                 var config = {
                     method: 'post',
                     url: baseurl + '/api/v1/candidate-percentage',
@@ -2231,9 +2238,9 @@ OF (3) ABOVE <br /><br />
 
                                                         <td style={{ textAlign: 'center' }}>
                                                             <input onChange={this.setCategoryAbled}
-                                                                checked={this.state.category_abled === "Hearing"}
+                                                                checked={this.state.category_abled === "hearing"}
                                                          type="radio" disabled={this.state.Isabled} 
-                                                            name="radio1" value="Hearing"/></td>
+                                                            name="radio1" value="hearing"/></td>
                                                     </tr>
 
 
