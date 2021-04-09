@@ -35,7 +35,7 @@ class DeclrationForm extends Component {
            Is1952: false,
            Is1995: false,
            value: 1,
-           percentage:'%',
+           percentage:0,
            Isabled: false
 
            
@@ -605,9 +605,13 @@ class DeclrationForm extends Component {
 
     // setPercentage on input field
     setPercentage =(e) =>{
-        const value = e.target.value
-        this.setState({ percentage :'%' });
-        console.log('percentage')
+        const re = /^[0-9]+$/;
+    const value = e.target.value;
+   
+                var aa=value.substring(0, value.length).replace("%","") + "%"
+              
+                this.setState({percentage:aa})
+          
        
     }
 
@@ -1373,12 +1377,12 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input readOnly={this.state.Is1952 || this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td><input readOnly={this.state.Is1952 || this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td className="text-center"><input readOnly={this.state.Is1952 || this.state.Is1995} type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
-                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control" /></td>
-                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control"/></td>
-                                                <td><input  readOnly={this.state.Is1952||this.state.Is1995} type="text" name="" className="px-0 py-0  form-control"  /></td>
+                                                <td className="text-uppercase font-weight-bold"><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td className="text-center"><input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
+                                                <td><input  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                <td><input  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control"/></td>
+                                                <td><input  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" name="" className="px-0 py-0  form-control"  /></td>
                                             </tr>
                                            
 
@@ -1412,7 +1416,7 @@ OF (3) ABOVE <br /><br />
                                                 <input key={document.key} type="text" style={{ width: '27px' }}></input>
 
                                             ))} */}
-                                                <input readOnly={this.state.Is1952} type="date" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="date" key={document.key} type="text" className="form-control"></input>
 
                                         </div><br />
 
@@ -1457,7 +1461,7 @@ OF (3) ABOVE <br /><br />
                                           
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                                
-                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1478,7 +1482,7 @@ OF (3) ABOVE <br /><br />
 
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
-                                                <input readOnly={this.state.Is1952} type="text" key={document.key} type="text" className="form-control"></input>
+                                                <input readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -2243,7 +2247,7 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 form-control" defaultValue={this.state.percentage}  onChange={this.setPercentage} style={{ width: 'auto' }} ></input></td>
+                                                <td><input className="px-0 py-0 form-control" placeHolder="%"value={this.state.percentage==0?'':this.state.percentage}  maxLength='4'onChange={this.setPercentage} style={{ width: 'auto' }} ></input></td>
                                                 <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }}  ></input></td>
                                             </tr>
                                                
