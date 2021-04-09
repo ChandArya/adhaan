@@ -225,6 +225,7 @@ export default class Student extends Component {
             isProfile: false,
             otherdetolsFlag: false,
             refflag: false,
+            canid: '',
             expflag: false,
             bankflag: false,
             familyflag: false,
@@ -1213,7 +1214,7 @@ export default class Student extends Component {
                             branch_name: candidate_bank_data.branch_name,
                             account_number: candidate_bank_data.account_number,
                             ifsc_code: candidate_bank_data.ifsc_code,
-
+                            canid: candidate_bank_data.candidate
 
 
                         });

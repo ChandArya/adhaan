@@ -382,12 +382,12 @@ class EsicdeclrationForm extends Component {
                                                     </tr>
                                                     <tr>
                                                         <td colSpan="1">स्थायी पता
-                                                        /Current Address
+                                                        /Permanant Address
                                                                 <hr />
-                                                            <input defaultValue={this.state.c_full_address} disabled="disabled" type="text" className="form-control text-uppercase"></input>
+                                                            <input defaultValue={this.state.p_full_address} disabled="disabled" type="text" className="form-control text-uppercase"></input>
 
                                                             <hr />
-                                                            <input disabled="disabled" defaultValue={this.state.c_country} type="text" className="form-control text-uppercase"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.p_country} type="text" className="form-control text-uppercase"></input>
                                                             <br />
                                                             <hr />
                                                             <div className="d-flex">पिन कोड<br />
@@ -409,11 +409,11 @@ class EsicdeclrationForm extends Component {
 
 
                                                         <td colSpan="3">वर्तमान पता
-                                                        /Present Address
+                                                        /Current Address
                                                              <hr />
-                                                            <input disabled="disabled" defaultValue={this.state.p_full_address} type="text" className="form-control text-uppercase"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.c_full_address} type="text" className="form-control text-uppercase"></input>
                                                             <hr />
-                                                            <input disabled="disabled" defaultValue={this.state.p_country} type="text" className="form-control text-uppercase"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.c_country} type="text" className="form-control text-uppercase"></input>
                                                             <br />
                                                             <hr />
                                                             <div className="d-flex">पिन कोड<br />
