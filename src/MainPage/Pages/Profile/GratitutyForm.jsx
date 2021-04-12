@@ -26,7 +26,7 @@ class GratitutyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {...this.props.location.state,error1:'',
-        percentage:0,addnom:''}
+            percentage: 0, addnom: '',}
         document.documentElement.scrollTop = 0;
 
     }
@@ -123,19 +123,27 @@ class GratitutyForm extends Component {
     
 //percentage on input field
 setPercentage =(e)=>
+
 {
-    const re = /^[0-9]+$/;
-    const value = e.target.value;
    
-                var aa=value.substring(0, value.length).replace("%","") + "%"
-              
-                this.setState({percentage:aa})
-          
-       
+    const re = /^[0-9]+$/;
+   // const value = e.target.value;
+   
+    // var aa=value.substring(0, value.length).replace("%","") + "%"
+      
+        if (e.target.value == '' || re.test(e.target.value)) {
+            this.setState({ percentage:value })
+        }
+    
+
+    
     
    
-    // }
-}
+     
+    }
+
+    
+   
 
 
 
@@ -293,7 +301,10 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                        
                                                          </tr>
 
-                                                         {isNomnieeList.map(document => ( <tr>
+                                                {isNomnieeList.map((document, index) => (
+                                                    
+                                                        <tr key={index}>
+                                                        
                                                      
                                                      <td >
                                                          
@@ -309,10 +320,11 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                  </td>
                                                  <td>
-                                                     <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage,"%"} maxLength="4"onChange={this.setPercentage} />
+                                                     {/* <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage,"%"} maxLength="4"onChange={this.setPercentage} /> */}
+                                                            <input className="form-control text-center" type="text" name="%" defaultValue={this.state.percentage,"%"} maxLength="4" onChange={this.setPercentage} />
 
                                                  </td>
-                                               
+                                                       
                                                
                                              </tr>
                                                          ))}
