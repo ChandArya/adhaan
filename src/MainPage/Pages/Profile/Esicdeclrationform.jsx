@@ -25,7 +25,7 @@ class EsicdeclrationForm extends Component {
     constructor(props) {
         super(props);
         this.state = { ...this.props.location.state, error1: '',listofcheck:[],ischecked3:false ,ischecked1:false ,ischecked2:false ,ischecked0:false,
-            residing_with_candidate: false, residing_town_state:'' }
+            residing_with_candidate: false, residing_town_state1: '', residing_town_state2: '', residing_town_state3: '', residing_town_state4: ''  }
         document.documentElement.scrollTop = 0;
         
         
@@ -134,7 +134,10 @@ class EsicdeclrationForm extends Component {
             "nominee_details": n_data,
             "residing_town_state":this.state.residing_town_state,
             'residing_with_candidate': this.state.residing_with_candidate,
-            "nominee_details_list": this.state.family
+            "nominee_details_list": this.state.residing_town_state1,
+            "nominee_details_list": this.state.residing_town_state2,
+             "nominee_details_list": this.state.residing_town_state3,
+            "nominee_details_list": this.state.residing_town_state4 
 
 
         });
@@ -336,57 +339,45 @@ class EsicdeclrationForm extends Component {
         }
     }
 
-    setFamilyResiding=(e)=>{
+    setFamilyResiding=(e,id)=>{
+        e.preventDefault();
        const value= e.target.value
        this.setState({residing_with_candidate:value})
         console.log("residing_with_candidate", this.state.residing_with_candidate)
     }
 
     setResidingTown1=(e)=>{
+        e.preventDefault();
         const value = e.target.value 
-        this.setState({residing_town_state:value});
-        console.log("residing_town_state", this.state.residing_town_state)
+        this.setState({residing_town_state1:value});
+        console.log("residing_town_state1", this.state.residing_town_state1)
     }
-     setResidingTown1=(e)=>{
+     setResidingTown2=(e)=>{
+         e.preventDefault();
         const value = e.target.value 
-        this.setState({residing_town_state:value});
-        console.log("residing_town_state", this.state.residing_town_state)
+        this.setState({residing_town_state2:value});
+        console.log("residing_town_state2", this.state.residing_town_state2)
+    }
+    setResidingTown3 = (e) => {
+        e.preventDefault();
+        const value = e.target.value
+        this.setState({ residing_town_state3: value });
+        console.log("residing_town_state3", this.state.residing_town_state3)
+    }
+    setResidingTown4 = (e) => {
+        e.preventDefault();
+        const value = e.target.value
+        this.setState({ residing_town_state4: value });
+        console.log("residing_town_state4", this.state.residing_town_state4)
     }
 
-    // setResidingTown = (e, data) => {
-    //     const value = e.target.value
-    //     for (var j = 0; j < this.state.family.length; j++) {
 
-    //         if (this.state.family[j].id == data.id) {
-    //             var datagg = this.state.family[j]
-    //             datagg['residing_with_candidate'] = value
-    //             var listof = this.state.family
-    //             listof[j] = datagg;
-    //             this.setState({ family: listof });
 
-    //         }
 
-    //     }
 
-    // }
+  
 
-    // setFamilyResiding = (e, data) => {
-    //     const value = e.target.value
-    //     for (var j = 0; j < this.state.family.length; j++) {
-
-    //         if (this.state.family[j].id == data.id) {
-    //             var datagg = this.state.family[j]
-    //             datagg[''] = value
-    //             var listof = this.state.family
-    //             listof[j] = datagg;
-    //             this.setState({ family: listof });
-
-    //         }
-
-    //     }
-
-    // }
-
+    
 
 
 
@@ -653,7 +644,7 @@ class EsicdeclrationForm extends Component {
                                                     </tr>
                                                     <tr>
                                                         <td colSpan="1">स्थायी पता
-                                                        /Permanant Address
+                                                        /Permanent Address
                                                                 <hr />
                                                             <input defaultValue={this.state.p_full_address} disabled="disabled" type="text" className="form-control text-uppercase"></input>
 
@@ -972,7 +963,7 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input readOnly={this.state.ischecked0}  onChange={this.setResidingTown}  defaultValue={family.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={this.state.ischecked0}  onChange={(e)=>this.setResidingTown1(e)}  defaultValue={this.state.residing_town_state1} style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -1004,7 +995,7 @@ class EsicdeclrationForm extends Component {
                                                     </td>
                                                     <td>
                                                         {/* <input style={{width:'auto'}} defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                        <input readOnly={this.state.ischecked1} onChange={this.setResidingTown} defaultValue={family1.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={this.state.ischecked1} onChange={this.setResidingTown2} defaultValue={this.state.residing_town_state2} style={{width:'auto'}} type="text" name="" className="form-control" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1033,7 +1024,7 @@ class EsicdeclrationForm extends Component {
                                                     </td>
                                                     <td>
                                                         <input readOnly={this.state.ischecked2} style={{ width: 'auto' }}
-                                                         onChange={this.setResidingTown} defaultValue={family2.residing_town_state} type="text" name="" className="form-control" />
+                                                         onChange={this.setResidingTown3} defaultValue={this.state.residing_town_state3} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -1064,7 +1055,7 @@ class EsicdeclrationForm extends Component {
                                                     </td>
                                                     <td>
                                                         <input readOnly={this.state.ischecked3}
-                                                            onChange={this.setResidingTown} defaultValue={family3.residing_town_state}
+                                                            onChange={this.setResidingTown4} defaultValue={this.state.residing_town_state4}
                                                              style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
@@ -1439,7 +1430,7 @@ subject to fulfillment of contributory conditions</li>
                                                 </td>
                                                 <td>
                                                     <input disabled="disabled"
-                                                        defaultValue={family.residing_town_state}
+                                                        defaultValue={this.state.residing_town_state1}
                                                      style={{ width: 'auto' }} 
                                                       type="text" name="" className="form-control" />
 
@@ -1472,7 +1463,7 @@ subject to fulfillment of contributory conditions</li>
                                                 <td>
                                                     {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
                                                     <input disabled="disabled" type="text"
-                                                        defaultValue={family1.residing_town_state}
+                                                        defaultValue={this.state.residing_town_state2}
                                                      name="" className="form-control" />
                                                 </td>
                                             </tr>
@@ -1503,7 +1494,7 @@ subject to fulfillment of contributory conditions</li>
                                                 </td>
                                                 <td>
                                                     <input disabled="disabled"style={{ width: 'auto' }} 
-                                                        defaultValue={family2.residing_town_state}
+                                                        defaultValue={this.state.residing_town_state3}
                                                      type="text" name="" className="form-control" />
 
                                                 </td>
@@ -1537,7 +1528,7 @@ subject to fulfillment of contributory conditions</li>
                                                 </td>
                                                 <td>
                                                     <input disabled="disabled" 
-                                                        defaultValue={family3.residing_town_state}
+                                                        defaultValue={this.state.residing_town_state4}
                                                     style={{ width: 'auto' }} type="text" name="" className="form-control" />
 
                                                 </td>
