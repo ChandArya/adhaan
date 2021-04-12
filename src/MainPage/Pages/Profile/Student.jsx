@@ -1332,17 +1332,21 @@ export default class Student extends Component {
                     if (other_details_len > 0) {
                         var other_details = data.candidate_personal_data.other_details
                         var single = other_details.marital_status
+                        var isSigle1=false
                         if (single == 'un_married') {
                             single = "Single";
                         }else
                         {
                             single = "Married";
+                            isSigle1=true
+                            
                         }
                         this.setState({
 
                             dob: Moment(other_details.dob).format("YYYY/MM/DD"),
                             otherdetolsFlag: true,
                             marital_status: single,
+                            isSigle:isSigle1,
                             marrage_date: other_details.marrage_date,
                             gender: other_details.gender,
                             category: other_details.category,
