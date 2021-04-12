@@ -5,7 +5,7 @@ var baseurl = 'https://aadhaan.ddns.net';
 import { CompnySign,CompnyThum } from '../../../Entryfile/imagepath.jsx'
 var today = new Date();
 var dd = today.getDate();
-
+import Swal from 'sweetalert2'
 var mm = today.getMonth()+1; 
 var yyyy = today.getFullYear();
 if(dd<10) 
@@ -101,7 +101,12 @@ class GratitutyForm extends Component {
     
                 axios(config)
                     .then(function (response) {
-                      alert("you save successfully submitted all data.")
+                        Swal.fire(
+                            'you save successfully submitted all data. ',
+                            '',
+                            'success'
+                        )
+                    //   alert("")s
                         //  path = './PrintPage';
                         // let path = './PrintPage';
                         // self.props.history.push({
@@ -135,10 +140,17 @@ setPercentage =(e)=>
 
 
     render() {
-        var isNomnieeList = this.state.family.filter(function(data)
+        var isNomnieeList=[]
+        try{
+             isNomnieeList = this.state.family.filter(function(data)
+            {
+                return data.is_nominee
+            })
+        }catch(error)
         {
-            return data.is_nominee
-        })
+
+        }
+       
         try {
            
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }

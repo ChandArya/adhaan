@@ -99,46 +99,56 @@ class EsicdeclrationForm extends Component {
 
 
     savebtn = (data) => {
+        let path = './Gratituty-form';
+        var id = this.props.location.state.user
+        // alert("iiiiid",id)
+        console.log("hhhhhhhhh", id)
+        this.setState({ id: id, back: true });
 
-        var self = this;
-        var formData = new FormData();
-        formData.append("candidate", "" + localStorage.getItem("can"))
-        // formData.append("pdf_document_3", new File([data], this.state.name + '_eic.pdf'))
-        formData.append("pdf_document_3", null)
-        console.log("called")
-        var config = {
-            method: 'post',
-            url: baseurl + '/api/v1/candidate-percentage',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: formData
-        };
+        this.props.history.push({
+            pathname: path,
+            state: self.state
 
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                // self.setState({ error: response.data.message })
-                // if (response.data.status == true) {
-                let path = './Gratituty-form';
-                var id = self.props.location.state.user
-                // alert("iiiiid",id)
-                console.log("hhhhhhhhh", id)
-                self.setState({ id: id, back: true });
+        })
+        // var self = this;
+        // var formData = new FormData();
+        // formData.append("candidate", "" + localStorage.getItem("can"))
+        // // formData.append("pdf_document_3", new File([data], this.state.name + '_eic.pdf'))
+        // formData.append("pdf_document_3", null)
+        // console.log("called")
+        // var config = {
+        //     method: 'post',
+        //     url: baseurl + '/api/v1/candidate-percentage',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     data: formData
+        // };
 
-                self.props.history.push({
-                    pathname: path,
-                    state: self.state
+        // axios(config)
+        //     .then(function (response) {
+        //         console.log(JSON.stringify(response.data));
+        //         // self.setState({ error: response.data.message })
+        //         // if (response.data.status == true) {
+        //         let path = './Gratituty-form';
+        //         var id = self.props.location.state.user
+        //         // alert("iiiiid",id)
+        //         console.log("hhhhhhhhh", id)
+        //         self.setState({ id: id, back: true });
 
-                })
+        //         self.props.history.push({
+        //             pathname: path,
+        //             state: self.state
+
+        //         })
 
 
-                // }
-            })
-            .catch(function (error) {
-                // console.log(error);
-                // self.setState({ error: "network issue" })
-            });
+        //         // }
+        //     })
+        //     .catch(function (error) {
+        //         // console.log(error);
+        //         // self.setState({ error: "network issue" })
+        //     });
 
 
 
