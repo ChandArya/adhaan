@@ -37,8 +37,8 @@ class DeclrationForm extends Component {
            value: 1,
            percentage:'%',
            Isabled: false,
-           ablity8:'',
-           ablity9:'',
+           ablity8:false,
+           ablity9:false,
            regioncode:'',
            officecode:'',
            pre_mem_dob:'',
@@ -155,12 +155,17 @@ class DeclrationForm extends Component {
         var spcially_abled = false
         {
             this.state.spcially_abled? spcially_abled = true : spcially_abled = false}
-        { this.state.ablity8 ? eps = true : eps =false }
-        { this.state.ablity9 ? epf = true : epf = false }
+        { this.state.ablity8=='Yes' ? eps = true : eps =false }
+        { this.state.ablity9=='Yes' ? epf = true : epf = false }
+        console.log("eps",eps)
+        console.log("epf", epf)
+        console.log("ablity8",this.state.ablity8)
+        console.log("ablity9", this.state.ablity9)
+
         var data = JSON.stringify({
             "candidate": this.state.canid,
-            "member_of_epfs": eps,
-            "member_of_eps": epf,
+            "member_of_epfs":epf,
+            "member_of_eps": eps,
             "uan": this.state.uan,
             "prev_region_code": this.state.regioncode,
             "prev_office_code": this.state.officecode,
@@ -1689,7 +1694,11 @@ OF (3) ABOVE <br /><br />
                                 <div className="col-md-12">
                                  <div className="font-weight-bold d-flex justify-content-center align-items-center">
                                         <label>UAN</label>                                    
-                                        <input onChange={this.setUan} defaultValue={this.state.uan} readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} key={document.key} type="text" className="form-control w-25 ml-2"></input>
+                                        <input onChange={this.setUan}
+                                        
+                                         defaultValue={this.state.uan}
+                                          readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false}
+                                           key={document.key} type="text" className="form-control w-25 ml-2"></input>
 
                                    </div>
                                 
@@ -1733,7 +1742,7 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input onChange={this.setRegioncode} value={this.state.regioncode}
+                                                <td className="text-uppercase font-weight-bold"><input  onChange={this.setRegioncode} value={this.state.regioncode}
                                                  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
                                                     name="" className="px-0 py-0  form-control"  /></td>
 
@@ -2243,9 +2252,9 @@ OF (3) ABOVE <br /><br />
 
                                                         <td style={{ textAlign: 'center' }}>
                                                             <input onChange={this.setCategoryAbled}
-                                                                checked={this.state.category_abled === "Hearing"}
+                                                                checked={this.state.category_abled === "hearing"}
                                                          type="radio" disabled={this.state.Isabled} 
-                                                            name="radio1" value="Hearing"/></td>
+                                                            name="radio1" value="hearing"/></td>
                                                     </tr>
 
 
@@ -2654,7 +2663,7 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 form-control" defaultValue={document.total_amt_per,"%"} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }} ></input></td>
+                                                <td><input className="px-0 py-0 form-control" defaultValue={document.total_amt_per, '%'} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }}  ></input></td>
                                                 <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }} defaultValue={document.nominee_is_minor} onChange={(e) => this.setNomineeMinor(e, document)} ></input></td>
                                             </tr>
                                                
