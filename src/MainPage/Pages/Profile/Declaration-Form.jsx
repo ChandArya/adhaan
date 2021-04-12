@@ -2649,7 +2649,7 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 form-control" defaultValue={document.total_amt_per} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }} ></input></td>
+                                                <td><input className="px-0 py-0 form-control" defaultValue={document.total_amt_per, '%'} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }}  ></input></td>
                                                 <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }} defaultValue={document.nominee_is_minor} onChange={(e) => this.setNomineeMinor(e, document)} ></input></td>
                                             </tr>
                                                

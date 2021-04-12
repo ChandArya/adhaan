@@ -297,7 +297,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                  </td>
                                                  <td>
-                                                     <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage} maxLength="4"onChange={this.setPercentage} />
+                                                     <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage,"%"} maxLength="4"onChange={this.setPercentage} />
 
                                                  </td>
                                                

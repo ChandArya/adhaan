@@ -24,7 +24,8 @@ class EsicdeclrationForm extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { ...this.props.location.state, error1: '',listofcheck:[],ischecked3:false ,ischecked1:false ,ischecked2:false ,ischecked0:false }
+        this.state = { ...this.props.location.state, error1: '',listofcheck:[],ischecked3:false ,ischecked1:false ,ischecked2:false ,ischecked0:false,
+            residing_with_candidate: false, residing_town_state:'' }
         document.documentElement.scrollTop = 0;
         
         
@@ -97,33 +98,164 @@ class EsicdeclrationForm extends Component {
         // this.setState({listofcheck:[]})
     }
 
-
-    savebtn = (data) => {
-
+    savebtn2 = (e, data) => {
+        // e.preventDefault();
         var self = this;
-        var formData = new FormData();
-        formData.append("candidate", "" + localStorage.getItem("can"))
-        // formData.append("pdf_document_3", new File([data], this.state.name + '_eic.pdf'))
-        formData.append("pdf_document_3", null)
-        console.log("called")
+        var isNomnieeList = this.state.family.filter(function (data) {
+            return data.is_nominee
+        })
+        console.log("fffff", isNomnieeList);
+        var n_data = []
+        for (var i = 0; i < isNomnieeList.length; i++) {
+                    
+            var add = ''
+            try {
+                add = isNomnieeList[i].address
+            }
+            catch (error) {
+                add = ''
+            }
+
+            var dataaa = {
+                "id": isNomnieeList[i].id,
+                 "address": add,
+               
+
+            }
+            n_data.push(dataaa)
+
+
+
+        }
+
+      
+        var data = JSON.stringify({
+            "candidate": this.state.canid,
+            "nominee_details": n_data,
+            "residing_town_state":this.state.residing_town_state,
+            'residing_with_candidate': this.state.residing_with_candidate,
+            "nominee_details_list": this.state.family
+
+
+        });
+
         var config = {
             method: 'post',
-            url: baseurl + '/api/v1/candidate-percentage',
+           // url: baseurl + '/api/declaration-form/esic',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        console.log("apiii", data)
+
+
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+               
+            })
+            .catch(function (error) {
+                // console.log(error);
+                // self.setState({ error: "network issue" })
+                // console.log("onchange twinkle", this.state)
+            });
+
+
+    }
+
+
+
+    // savebtn = (data) => {
+
+    //     var self = this;
+    //     var formData = new FormData();
+    //     formData.append("candidate", "" + localStorage.getItem("can"))
+    //     // formData.append("pdf_document_3", new File([data], this.state.name + '_eic.pdf'))
+    //     formData.append("pdf_document_3", null)
+    //     console.log("called")
+    //     var config = {
+    //         method: 'post',
+    //         url: baseurl + '/api/v1/candidate-percentage',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         data: formData
+    //     };
+
+    //     axios(config)
+    //         .then(function (response) {
+    //             console.log(JSON.stringify(response.data));
+    //             // self.setState({ error: response.data.message })
+    //             // if (response.data.status == true) {
+    //             let path = './Gratituty-form';
+    //             var id = self.props.location.state.user
+    //             // alert("iiiiid",id)
+    //             console.log("hhhhhhhhh", id)
+    //             self.setState({ id: id, back: true });
+
+    //             self.props.history.push({
+    //                 pathname: path,
+    //                 state: self.state
+
+    //             })
+
+
+    //             // }
+    //         })
+    //         .catch(function (error) {
+    //             // console.log(error);
+    //             // self.setState({ error: "network issue" })
+    //         });
+
+
+
+
+    // }
+
+    savebtn = (e, data) => {
+        // e.preventDefault();
+
+        this.savebtn2(this)
+
+        var self = this;
+        var data = JSON.stringify({
+            "candidate": localStorage.getItem("can"),
+
+        });
+        var formData = new FormData();
+        formData.append("candidate", "" + localStorage.getItem("can"))
+        formData.append("pdf_document_2", new File([data], this.state.name + '_pf.pdf'))
+        formData.append("pdf_document_2", null)
+        console.log("called")
+        console.log("onchange twinkle", this.state)
+
+
+        var config = {
+            method: 'post',
+           // url: baseurl + '/api/v1/candidate-percentage',
             headers: {
                 'Content-Type': 'application/json'
             },
             data: formData
         };
 
+
+
+
+
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
                 // self.setState({ error: response.data.message })
                 // if (response.data.status == true) {
-                let path = './Gratituty-form';
+               let path = './Gratituty-form';
                 var id = self.props.location.state.user
                 // alert("iiiiid",id)
                 console.log("hhhhhhhhh", id)
+
                 self.setState({ id: id, back: true });
 
                 self.props.history.push({
@@ -131,19 +263,40 @@ class EsicdeclrationForm extends Component {
                     state: self.state
 
                 })
-
+                //    
 
                 // }
             })
             .catch(function (error) {
                 // console.log(error);
                 // self.setState({ error: "network issue" })
+                // console.log("onchange twinkle", this.state)
             });
 
 
-
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     setAddress=(e,data,from)=>
@@ -159,34 +312,94 @@ class EsicdeclrationForm extends Component {
         this.setState({family:family1})
         // this.setState({this.state.family[0]['address']=e.target.value};
         // var value=
-        // console.log("data","",data)
+     console.log("data","",data)
+     console.log("adredsss", this.state.address)
+         }
 
+
+
+
+    setNomineeAddress = (e, data) => {
+        const value = e.target.value
+        for (var j = 0; j < this.state.family.length; j++) {
+
+            if (this.state.family[j].id == data.id) {
+                var datagg = this.state.family[j]
+                datagg['address'] = value
+                var listof = this.state.family
+                listof[j] = datagg;
+                this.setState({ family: listof });
+                console.log("nominee adress 12", this.state.nominee_address)
+
+            }
+
+        }
     }
+
+    setFamilyResiding=(e)=>{
+       const value= e.target.value
+       this.setState({residing_with_candidate:value})
+        console.log("residing_with_candidate", this.state.residing_with_candidate)
+    }
+
+    setResidingTown=(e)=>{
+        const value = e.target.value 
+        this.setState({residing_town_state:value});
+        console.log("residing_town_state", this.state.residing_town_state)
+    }
+
+    // setResidingTown = (e, data) => {
+    //     const value = e.target.value
+    //     for (var j = 0; j < this.state.family.length; j++) {
+
+    //         if (this.state.family[j].id == data.id) {
+    //             var datagg = this.state.family[j]
+    //             datagg['residing_with_candidate'] = value
+    //             var listof = this.state.family
+    //             listof[j] = datagg;
+    //             this.setState({ family: listof });
+
+    //         }
+
+    //     }
+
+    // }
+
+    // setFamilyResiding = (e, data) => {
+    //     const value = e.target.value
+    //     for (var j = 0; j < this.state.family.length; j++) {
+
+    //         if (this.state.family[j].id == data.id) {
+    //             var datagg = this.state.family[j]
+    //             datagg[''] = value
+    //             var listof = this.state.family
+    //             listof[j] = datagg;
+    //             this.setState({ family: listof });
+
+    //         }
+
+    //     }
+
+    // }
+
+
+
 
 
 
 
     render() {
-        const candidate_doc_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-        const candidate_dob_list = [1, 2, 3, 4, 5, 6, 7, 8]
-        const candidate_name_list = [1, 2, 3]
-        const candidate_fname_list = [1, 2]
-        const candidate_gender_list = [1, 2, 3]
-        const candidate_mobile_no = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        const candidate_email_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,]
-        const candidate_uan_no = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        const member_id_date = [1, 2, 3, 4, 5, 6, 7, 8]
-        const passport_valid_from = [1, 2, 3, 4, 5, 6, 7, 8]
-        const passport_valid_till = [1, 2, 3, 4, 5, 6, 7, 8]
-        const emp_code_no = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+        
+       
 
 
         try {
             console.log('wwww', this.state.candidate_doc_list)
-            console.log('twinkle', this.state)
+           // console.log('twinkle', this.state)
 
-            console.log('sssss', this.state.candidate_documents_data[1].document_type);
-            console.log('print', this.state.candidate_documents_data[0].document_type);
+            //console.log('sssss', this.state.candidate_documents_data[1].document_type);
+           // console.log('print', this.state.candidate_documents_data[0].document_type);
             console.log('nominee print', this.state.isNomnieeList);
 
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
@@ -220,12 +433,13 @@ class EsicdeclrationForm extends Component {
             console.log("hjhj", err);
         }
         //family data
-        var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
+        var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '','residing_with_candidate':'','residing_town_state':'' }
         try {
             console.log('family1111', this.state.family)
             family = {
                 'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,
-                'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation
+                'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation,
+                'residing_with_candidate':this.state.family[0].residing_with_candidate, 'residing_town_state':this.state.family[0].residing_town_state
             }
         }
 
@@ -235,10 +449,11 @@ class EsicdeclrationForm extends Component {
 
         var family1 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
-            console.log('family111', this.state.family)
+           // console.log('family111', this.state.family)
             family1 = {
                 'name': this.state.family[1].name, 'aadhaar_no': this.state.family[1].aadhaar_no,
-                'dob': this.state.family[1].dob, 'is_nominee': this.state.family[1].is_nominee, 'relation': this.state.family[1].relation
+                'dob': this.state.family[1].dob, 'is_nominee': this.state.family[1].is_nominee, 'relation': this.state.family[1].relation,
+                 'residing_with_candidate': this.state.family[1].residing_with_candidate, 'residing_town_state': this.state.family[1].residing_town_state
             }
         }
 
@@ -250,7 +465,8 @@ class EsicdeclrationForm extends Component {
             //console.log('family11',this.state.family)
             family2 = {
                 'name': this.state.family[2].name, 'aadhaar_no': this.state.family[2].aadhaar_no,
-                'dob': this.state.family[2].dob, 'is_nominee': this.state.family[2].is_nominee, 'relation': this.state.family[2].relation
+                'dob': this.state.family[2].dob, 'is_nominee': this.state.family[2].is_nominee, 'relation': this.state.family[2].relation,
+                'residing_with_candidate': this.state.family[2].residing_with_candidate, 'residing_town_state': this.state.family[2].residing_town_state
             }
         }
 
@@ -262,7 +478,8 @@ class EsicdeclrationForm extends Component {
             //console.log('family1111',this.state.family)
             family3 = {
                 'name': this.state.family[3].name, 'aadhaar_no': this.state.family[3].aadhaar_no,
-                'dob': this.state.family[3].dob, 'is_nominee': this.state.family[3].is_nominee, 'relation': this.state.family[3].relation
+                'dob': this.state.family[3].dob, 'is_nominee': this.state.family[3].is_nominee, 'relation': this.state.family[3].relation,
+                'residing_with_candidate': this.state.family[3].residing_with_candidate, 'residing_town_state': this.state.family[3].residing_town_state
             }
         }
 
@@ -271,10 +488,11 @@ class EsicdeclrationForm extends Component {
         }
         var family4 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
-            console.log('family1111', this.state.family)
+            //console.log('family1111', this.state.family)
             family4 = {
                 'name': this.state.family[4].name, 'aadhaar_no': this.state.family[4].aadhaar_no,
-                'dob': this.state.family[4].dob, 'is_nominee': this.state.family[4].is_nominee, 'relation': this.state.family[4].relation
+                'dob': this.state.family[4].dob, 'is_nominee': this.state.family[4].is_nominee, 'relation': this.state.family[4].relation,
+                'residing_with_candidate': this.state.family[4].residing_with_candidate, 'residing_town_state': this.state.family[4].residing_town_state
             }
         }
 
@@ -283,10 +501,11 @@ class EsicdeclrationForm extends Component {
         }
         var family5 = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
-            console.log('family1111', this.state.family)
+            //console.log('family1111', this.state.family)
             family5 = {
                 'name': this.state.family[5].name, 'aadhaar_no': this.state.family[5].aadhaar_no,
-                'dob': this.state.family[5].dob, 'is_nominee': this.state.family[5].is_nominee, 'relation': this.state.family[5].relation
+                'dob': this.state.family[5].dob, 'is_nominee': this.state.family[5].is_nominee, 'relation': this.state.family[5].relation,
+                'residing_with_candidate': this.state.family[5].residing_with_candidate, 'residing_town_state': this.state.family[5].residing_town_state
             }
         }
 
@@ -297,7 +516,11 @@ class EsicdeclrationForm extends Component {
         var isNomnieeList = this.state.family.filter(function (data) {
             return data.is_nominee
         })
-       
+
+
+        var nominee_details_list = this.state.family.filter(function (data) {
+            return data.residing_town_state
+        })
 
 
 
@@ -651,7 +874,7 @@ class EsicdeclrationForm extends Component {
                                                             <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
                                                             <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
                                                                 placeholder="" className="form-control" /></td>
-                                                            <td colSpan="4" className="text-center"><input  onChange={(e,data)=>this.setAddress(e,document,1)}type="text" name="" value={document.address}
+                                                                <td colSpan="4" className="text-center"><input onChange={(e) => this.setNomineeAddress(e, document)} defaultValue={document.nominee_address}type="text" name="" value={document.address}
                                                                 placeholder=""   className="form-control"/></td>
                                                            
                                                         </tr>:''
@@ -736,11 +959,12 @@ class EsicdeclrationForm extends Component {
                                                     <td>
                                                         <input  type="checkbox" 
                                                         onChange={(e)=>this.setCheck(e,0)}
-                                                        className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                            defaultChecked={this.state.ischecked0}
+                                                        className="form-control" style={{ width: '11%', margin: 'auto' }}  />
 
                                                     </td>
                                                     <td>
-                                                        <input readOnly={!this.state.ischecked0}style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={!this.state.ischecked0}  onChange={this.setResidingTown}  defaultValue={family.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -766,11 +990,13 @@ class EsicdeclrationForm extends Component {
                                                     <td>
                                                         <input  type="checkbox" 
                                                       onChange={(e)=>this.setCheck(e,1)}
+                                                            defaultChecked={this.state.ischecked1}
+
                                                       className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
                                                         {/* <input style={{width:'auto'}} defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                        <input readOnly={!this.state.ischecked1} style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={!this.state.ischecked1} onChange={this.setResidingTown} defaultValue={family1.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -794,10 +1020,12 @@ class EsicdeclrationForm extends Component {
                                                     <td>
                                                         <input  type="checkbox" 
                                                        onChange={(e)=>this.setCheck(e,2)}
+                                                            defaultChecked={this.state.ischecked2}
                                                        className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
-                                                        <input  readOnly={!this.state.ischecked2}style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={!this.state.ischecked2} style={{ width: 'auto' }}
+                                                         onChange={this.setResidingTown} defaultValue={family2.residing_town_state} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -821,11 +1049,15 @@ class EsicdeclrationForm extends Component {
                                                     </td>
                                                     <td>
                                                         <input  type="checkbox" 
-                                                       className="form-control" style={{ width: '11%', margin: 'auto' }} onChange={(e)=>this.setCheck(e,3)}/>
+                                                       className="form-control" style={{ width: '11%', margin: 'auto' }}
+                                                        onChange={(e)=>this.setCheck(e,3)}
+                                                            defaultChecked={this.state.ischecked3}/>
 
                                                     </td>
                                                     <td>
-                                                        <input readOnly={!this.state.ischecked3} style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={!this.state.ischecked3}
+                                                            onChange={this.setResidingTown} defaultValue={family3.residing_town_state}
+                                                             style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -1191,11 +1423,17 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input disabled="disabled" style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input 
+                                                  checked={this.state.ischecked0}
+                                                    style={{ width: 'auto' }}
+                                                      type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
-                                                    <input disabled="disabled" style={{ width: 'auto' }}  type="text" name="" className="form-control" />
+                                                    <input disabled="disabled"
+                                                        defaultValue={family.residing_town_state}
+                                                     style={{ width: 'auto' }} 
+                                                      type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
@@ -1219,11 +1457,15 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input disabled="disabled" style={{ width: 'auto' }} type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input 
+                                                        checked={this.state.ischecked1}
+                                                    style={{ width: 'auto' }} type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
                                                     {/* <input defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                    <input disabled="disabled" type="text" name="" className="form-control" />
+                                                    <input disabled="disabled" type="text"
+                                                        defaultValue={family1.residing_town_state}
+                                                     name="" className="form-control" />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -1245,10 +1487,16 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input disabled="disabled" style={{ width: 'auto' }}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input
+                                                    style={{ width: 'auto' }}  
+                                                  checked={this.state.ischecked2}
+                                                    type="checkbox" name="" 
+                                                    className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                 </td>
                                                 <td>
-                                                    <input disabled="disabled"style={{ width: 'auto' }}  type="text" name="" className="form-control" />
+                                                    <input disabled="disabled"style={{ width: 'auto' }} 
+                                                        defaultValue={family2.residing_town_state}
+                                                     type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
@@ -1267,15 +1515,22 @@ subject to fulfillment of contributory conditions</li>
 
                                                 </td>
                                                 <td>
-                                                    <input style={{width: 'auto'}}  disabled="disabled" defaultValue={family3.relation} type="text" name="" className="form-control" />
+                                                    <input style={{width: 'auto'}}
+                                                        disabled="disabled"
+                                                       
+                                                       defaultValue={family3.relation} type="text" name="" className="form-control" />
 
                                                 </td>
                                                 <td>
-                                                    <input disabled="disabled" style={{width: 'auto'}}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                    <input  
+                                                    checked={this.state.ischecked3}
+                                                    style={{width: 'auto'}}  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                 </td>
                                                 <td>
-                                                    <input disabled="disabled" style={{ width: 'auto' }} type="text" name="" className="form-control" />
+                                                    <input disabled="disabled" 
+                                                        defaultValue={family3.residing_town_state}
+                                                    style={{ width: 'auto' }} type="text" name="" className="form-control" />
 
                                                 </td>
                                             </tr>
