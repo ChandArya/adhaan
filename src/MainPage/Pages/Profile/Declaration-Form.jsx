@@ -32,8 +32,8 @@ class DeclrationForm extends Component {
             localStorage.setItem("count", 3);
         }
        this.state = {...this.props.location.state,error1:'',
-           Is1952: false,
-           Is1995: false,
+           Is1952: true,
+           Is1995: true,
            value: 1,
            percentage:'%',
            Isabled: false,
@@ -1684,7 +1684,11 @@ OF (3) ABOVE <br /><br />
                                 <div className="col-md-12">
                                  <div className="font-weight-bold d-flex justify-content-center align-items-center">
                                         <label>UAN</label>                                    
-                                        <input onChange={this.setUan} defaultValue={this.state.uan} readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false} key={document.key} type="text" className="form-control w-25 ml-2"></input>
+                                        <input onChange={this.setUan}
+                                        
+                                         defaultValue={this.state.uan}
+                                          readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false}
+                                           key={document.key} type="text" className="form-control w-25 ml-2"></input>
 
                                    </div>
                                 
@@ -1728,7 +1732,7 @@ OF (3) ABOVE <br /><br />
                                                 <th  className="text-uppercase text-center small font-weight-bold">ACCOUNT NUMBER</th>
                                             </tr>
                                             <tr>
-                                                <td className="text-uppercase font-weight-bold"><input onChange={this.setRegioncode} value={this.state.regioncode}
+                                                <td className="text-uppercase font-weight-bold"><input  onChange={this.setRegioncode} value={this.state.regioncode}
                                                  readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
                                                     name="" className="px-0 py-0  form-control"  /></td>
 

@@ -343,7 +343,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                         	Date of appointment.{today}
                                              </li> */}
                                              <li>
-                                        Permanent address. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.addnom}></input>
+                                        Permanent address. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.p_full_address}></input>
                                        </li>
                                              </ul>
                                              

@@ -235,7 +235,7 @@ class EsicdeclrationForm extends Component {
 
         var config = {
             method: 'post',
-           // url: baseurl + '/api/v1/candidate-percentage',
+            url: baseurl + '/api/v1/candidate-percentage',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -342,7 +342,12 @@ class EsicdeclrationForm extends Component {
         console.log("residing_with_candidate", this.state.residing_with_candidate)
     }
 
-    setResidingTown=(e)=>{
+    setResidingTown1=(e)=>{
+        const value = e.target.value 
+        this.setState({residing_town_state:value});
+        console.log("residing_town_state", this.state.residing_town_state)
+    }
+     setResidingTown1=(e)=>{
         const value = e.target.value 
         this.setState({residing_town_state:value});
         console.log("residing_town_state", this.state.residing_town_state)
@@ -432,6 +437,9 @@ class EsicdeclrationForm extends Component {
         catch (err) {
             console.log("hjhj", err);
         }
+
+
+        
         //family data
         var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '','residing_with_candidate':'','residing_town_state':'' }
         try {
@@ -439,7 +447,7 @@ class EsicdeclrationForm extends Component {
             family = {
                 'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,
                 'dob': this.state.family[0].dob, 'is_nominee': this.state.family[0].is_nominee, 'relation': this.state.family[0].relation,
-                'residing_with_candidate':this.state.family[0].residing_with_candidate, 'residing_town_state':this.state.family[0].residing_town_state
+                'residing_with_candidate':this.state.family[0].residing_with_candidate, 'residing_town_state':this.state.residing_town_state
             }
         }
 
@@ -453,7 +461,7 @@ class EsicdeclrationForm extends Component {
             family1 = {
                 'name': this.state.family[1].name, 'aadhaar_no': this.state.family[1].aadhaar_no,
                 'dob': this.state.family[1].dob, 'is_nominee': this.state.family[1].is_nominee, 'relation': this.state.family[1].relation,
-                 'residing_with_candidate': this.state.family[1].residing_with_candidate, 'residing_town_state': this.state.family[1].residing_town_state
+                 'residing_with_candidate': this.state.family[1].residing_with_candidate, 'residing_town_state': this.state.residing_town_state
             }
         }
 
@@ -466,7 +474,7 @@ class EsicdeclrationForm extends Component {
             family2 = {
                 'name': this.state.family[2].name, 'aadhaar_no': this.state.family[2].aadhaar_no,
                 'dob': this.state.family[2].dob, 'is_nominee': this.state.family[2].is_nominee, 'relation': this.state.family[2].relation,
-                'residing_with_candidate': this.state.family[2].residing_with_candidate, 'residing_town_state': this.state.family[2].residing_town_state
+                'residing_with_candidate': this.state.family[2].residing_with_candidate, 'residing_town_state': this.state.residing_town_state
             }
         }
 
@@ -479,7 +487,7 @@ class EsicdeclrationForm extends Component {
             family3 = {
                 'name': this.state.family[3].name, 'aadhaar_no': this.state.family[3].aadhaar_no,
                 'dob': this.state.family[3].dob, 'is_nominee': this.state.family[3].is_nominee, 'relation': this.state.family[3].relation,
-                'residing_with_candidate': this.state.family[3].residing_with_candidate, 'residing_town_state': this.state.family[3].residing_town_state
+                'residing_with_candidate': this.state.family[3].residing_with_candidate, 'residing_town_state': this.state.residing_town_state
             }
         }
 
@@ -492,7 +500,7 @@ class EsicdeclrationForm extends Component {
             family4 = {
                 'name': this.state.family[4].name, 'aadhaar_no': this.state.family[4].aadhaar_no,
                 'dob': this.state.family[4].dob, 'is_nominee': this.state.family[4].is_nominee, 'relation': this.state.family[4].relation,
-                'residing_with_candidate': this.state.family[4].residing_with_candidate, 'residing_town_state': this.state.family[4].residing_town_state
+                'residing_with_candidate': this.state.family[4].residing_with_candidate, 'residing_town_state': this.state.residing_town_state
             }
         }
 
@@ -505,7 +513,7 @@ class EsicdeclrationForm extends Component {
             family5 = {
                 'name': this.state.family[5].name, 'aadhaar_no': this.state.family[5].aadhaar_no,
                 'dob': this.state.family[5].dob, 'is_nominee': this.state.family[5].is_nominee, 'relation': this.state.family[5].relation,
-                'residing_with_candidate': this.state.family[5].residing_with_candidate, 'residing_town_state': this.state.family[5].residing_town_state
+                'residing_with_candidate': this.state.family[5].residing_with_candidate, 'residing_town_state': this.state.residing_town_state
             }
         }
 
@@ -964,7 +972,7 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input readOnly={!this.state.ischecked0}  onChange={this.setResidingTown}  defaultValue={family.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={this.state.ischecked0}  onChange={this.setResidingTown}  defaultValue={family.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -996,7 +1004,7 @@ class EsicdeclrationForm extends Component {
                                                     </td>
                                                     <td>
                                                         {/* <input style={{width:'auto'}} defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                        <input readOnly={!this.state.ischecked1} onChange={this.setResidingTown} defaultValue={family1.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={this.state.ischecked1} onChange={this.setResidingTown} defaultValue={family1.residing_town_state} style={{width:'auto'}} type="text" name="" className="form-control" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1024,7 +1032,7 @@ class EsicdeclrationForm extends Component {
                                                        className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
-                                                        <input readOnly={!this.state.ischecked2} style={{ width: 'auto' }}
+                                                        <input readOnly={this.state.ischecked2} style={{ width: 'auto' }}
                                                          onChange={this.setResidingTown} defaultValue={family2.residing_town_state} type="text" name="" className="form-control" />
 
                                                     </td>
@@ -1055,7 +1063,7 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input readOnly={!this.state.ischecked3}
+                                                        <input readOnly={this.state.ischecked3}
                                                             onChange={this.setResidingTown} defaultValue={family3.residing_town_state}
                                                              style={{width:'auto'}} type="text" name="" className="form-control" />
 
