@@ -1069,7 +1069,7 @@ export default class Student extends Component {
         // alert("iiiiid",id)
         // console.log("hhhhhhhhh",id)
         // this.setState({id:id });
-        if ((this.state.candidate_documents_data.length > 6) && (this.state.isProfile) && (this.state.otherdetolsFlag) && (this.state.refflag) && (this.state.bankflag)) {
+        if ((this.state.candidate_documents_data.length > 6) && (this.state.isProfile) && (this.state.otherdetolsFlag) && (this.state.bankflag)) {
             this.props.history.push({
                 pathname: path,
                 state: this.state
@@ -1211,7 +1211,7 @@ export default class Student extends Component {
                         this.setState({
 
                             bankflag: true,
-                            bank_name: candidate_bank_data.bank_name,
+                            bank_name: candidate_bank_data.bank_name.toUpperCase(),
                             branch_name: candidate_bank_data.branch_name,
                             account_number: candidate_bank_data.account_number,
                             ifsc_code: candidate_bank_data.ifsc_code,
@@ -1254,6 +1254,7 @@ export default class Student extends Component {
                             jobtype: basic_details.job_type,
                             contperson: basic_details.emergency_contact_name,
                             emergencyNo: basic_details.emergency_contact_number,
+                            c_email:basic_details.email,
                             // profile_picture
 
                             profilepic: "https://aadhaan.ddns.net" + basic_details.profile_picture
@@ -1276,7 +1277,7 @@ export default class Student extends Component {
                             c_house_no: current_address_data.house_no,
                             c_full_address: current_address_data.full_address,
                             c_mobile_no: current_address_data.mobile_no,
-                            c_email: current_address_data.email,
+                            // c_email: current_address_data.email,
                             c_pin_code: current_address_data.pin_code,
                             stateListOfCountry: worldMapData.getAllStatesFromCountry(current_address_data.country)
 
@@ -1333,6 +1334,9 @@ export default class Student extends Component {
                         var single = other_details.marital_status
                         if (single == 'un_married') {
                             single = "Single";
+                        }else
+                        {
+                            single = "Married";
                         }
                         this.setState({
 
@@ -4495,8 +4499,8 @@ export default class Student extends Component {
         } else {
             
                 const re=/^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/;
-                const value = e.target.value;
-                if (this.state.ifsc.match(re)) {
+                // const value = e.target.value;
+                if (ifsc.match(re)) {
                     console.log("valid ifsc")
                 }else{
                     Swal.fire(
@@ -4636,7 +4640,7 @@ export default class Student extends Component {
             formData.append("permanenet_landmark", "" + data.p_full_address)
             formData.append("permanenet_address", "" + data.p_full_address)
             formData.append("permanenet_mobile_no", "" + data.p_mobile_no)
-            formData.append("permanenet_email", "" + data.c_email)
+            formData.append("email", "" + data.c_email)
             formData.append("permanenet_pin_code", "" + data.p_pin_code)
             formData.append("dob", "" + Moment(data.dob).format("YYYY-MM-DD"))
             // formData.append("marital_status",""+data.marital_status)

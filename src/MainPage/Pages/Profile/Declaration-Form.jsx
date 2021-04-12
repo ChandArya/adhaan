@@ -242,37 +242,7 @@ console.log("apiii", data)
         this.savebtn2(this)
 
         var self =this;
-        var data = JSON.stringify({
-                    "candidate": localStorage.getItem("can"),
-                    
-                });
-                var formData=new FormData();
-                formData.append("candidate", "" + localStorage.getItem("can"))
-                formData.append("pdf_document_2", new File([data], this.state.name+'_pf.pdf'))
-                formData.append("pdf_document_2", null)
-                console.log("called")
-        console.log("onchange twinkle", this.state)
-      
-
-                var config = {
-                    method: 'post',
-                    url: baseurl + '/api/v1/candidate-percentage',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: formData
-                };
-
-
-
-        
-      
-                axios(config)
-                    .then(function (response) {
-                        console.log(JSON.stringify(response.data));
-                        // self.setState({ error: response.data.message })
-                        // if (response.data.status == true) {
-                            let path = './Esic-declrationForm';
+        let path = './Esic-declrationForm';
                             var id = self.props.location.state.user
                             // alert("iiiiid",id)
                             console.log("hhhhhhhhh", id)
@@ -284,15 +254,55 @@ console.log("apiii", data)
                                 state: self.state
 
                             })
-                    //    
+        // var data = JSON.stringify({
+        //             "candidate": localStorage.getItem("can"),
+                    
+        //         });
+        //         var formData=new FormData();
+        //         formData.append("candidate", "" + localStorage.getItem("can"))
+        //         formData.append("pdf_document_2", new File([data], this.state.name+'_pf.pdf'))
+        //         formData.append("pdf_document_2", null)
+        //         console.log("called")
+        // console.log("onchange twinkle", this.state)
+        //         var config = {
+        //             method: 'post',
+        //             url: baseurl + '/api/v1/candidate-percentage',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             data: formData
+        //         };
+
+
+
+        
+      
+        //         axios(config)
+        //             .then(function (response) {
+        //                 console.log(JSON.stringify(response.data));
+        //                 // self.setState({ error: response.data.message })
+        //                 // if (response.data.status == true) {
+        //                     let path = './Esic-declrationForm';
+        //                     var id = self.props.location.state.user
+        //                     // alert("iiiiid",id)
+        //                     console.log("hhhhhhhhh", id)
                       
-                    // }
-                })
-                .catch(function (error) {
-                    // console.log(error);
-                    // self.setState({ error: "network issue" })
-                   // console.log("onchange twinkle", this.state)
-                });
+        //                     self.setState({ id: id, back: true });
+
+        //                     self.props.history.push({
+        //                         pathname: path,
+        //                         state: self.state
+
+        //                     })
+        //             //    
+                      
+        //             // }
+        //         })
+        //         .catch(function (error) {
+        //             // console.log(error);
+        //             // self.setState({ error: "network issue" })
+        //            // console.log("onchange twinkle", this.state)
+        //         });
        
 
     }
