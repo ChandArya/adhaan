@@ -882,6 +882,7 @@ export default class Student extends Component {
 
     }
     setEmail = (e) => {
+      
         const value = e.target.value;
         this.setState({ c_email: value })
     }
@@ -4481,6 +4482,7 @@ export default class Student extends Component {
     //upload bank
     addBank = (self, bankname, branchname, acountno, ifsc, userid) => {
         console.log("bankdetails", bankname, branchname, acountno, ifsc, userid)
+        
         if (this.isBlank(bankname) || this.isBlank(acountno) ||
             this.isBlank(ifsc)) {
             Swal.fire(
@@ -4491,6 +4493,20 @@ export default class Student extends Component {
 
             // self.setState({ error: "Please fill all required details" })
         } else {
+            
+                const re=/^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/;
+                const value = e.target.value;
+                if (this.state.ifsc.match(re)) {
+                    console.log("valid ifsc")
+                }else{
+                    Swal.fire(
+                        '',
+                        'Please Enter Valid Ifsc Code',
+                        'error'
+                    )
+                    return 
+                }
+           
             var data = JSON.stringify({
                 "candidate": userid,
                 "bank_name": bankname,
@@ -4582,7 +4598,19 @@ export default class Student extends Component {
             )
         } else {
 
-
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(re.test(String(data.c_email).toLowerCase()))
+            {
+                console.log("valid email")
+            }else
+            {
+                Swal.fire(
+                    '',
+                    'Please enter valid email id',
+                    'error'
+                )
+                return
+            }
             // this.aler
             this.setState({ isProfile: true, error1: "" });
             // self.setState({ error: "Please wait profile is updating" })

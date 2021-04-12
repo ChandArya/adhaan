@@ -24,8 +24,10 @@ class EsicdeclrationForm extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { ...this.props.location.state, error1: '' }
+        this.state = { ...this.props.location.state, error1: '',listofcheck:[],ischecked3:false ,ischecked1:false ,ischecked2:false ,ischecked0:false }
         document.documentElement.scrollTop = 0;
+        
+        
     }
 
 
@@ -68,7 +70,32 @@ class EsicdeclrationForm extends Component {
         });
 
     }
+    setCheck=(e,value)=>
+    {
+        console.log("dtata",);
+        if(value==3)
+        {
+            this.setState({ischecked3:e.target.checked })
+        }
+        if(value==2)
+        {
+            this.setState({ischecked2:e.target.checked })
+        }
+        if(value==1)
+        {
+            this.setState({ischecked1:e.target.checked })
+        }
+        if(value==0)
+        {
+            this.setState({ischecked0:e.target.checked })
+        }
 
+       
+        // e.preventDefault();
+        // var value=e.target.value
+       
+        // this.setState({listofcheck:[]})
+    }
 
 
     savebtn = (data) => {
@@ -119,7 +146,22 @@ class EsicdeclrationForm extends Component {
     }
 
 
+    setAddress=(e,data,from)=>
+    {
+        e.preventDefault();
 
+        data['address']=e.target.value
+        data['city']=''
+        console.log("fff",data);
+        var family1=this.state.family
+        console.log("fff",data);
+        family1[0]=data
+        this.setState({family:family1})
+        // this.setState({this.state.family[0]['address']=e.target.value};
+        // var value=
+        // console.log("data","",data)
+
+    }
 
 
 
@@ -255,9 +297,7 @@ class EsicdeclrationForm extends Component {
         var isNomnieeList = this.state.family.filter(function (data) {
             return data.is_nominee
         })
-        console.log('nominee print', this.state.isNomnieeList);
-        console.log('nominee print', this.state.is_nominee);
-        console.log('nominee print111', this.state);
+       
 
 
 
@@ -610,9 +650,9 @@ class EsicdeclrationForm extends Component {
                                                         <tr key={index}>
                                                             <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
                                                             <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
-                                                                placeholder="" onFocus="(this.type='date')" className="form-control" /></td>
-                                                            <td colSpan="4" className="text-center"><input  type="text" name="" defaultValue={document.address}
-                                                                placeholder="" onFocus="(this.type='date')"  className="form-control"/></td>
+                                                                placeholder="" className="form-control" /></td>
+                                                            <td colSpan="4" className="text-center"><input  onChange={(e,data)=>this.setAddress(e,document,1)}type="text" name="" value={document.address}
+                                                                placeholder=""   className="form-control"/></td>
                                                            
                                                         </tr>:''
 
@@ -694,11 +734,13 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" 
+                                                        onChange={(e)=>this.setCheck(e,0)}
+                                                        className="form-control" style={{ width: '11%', margin: 'auto' }} />
 
                                                     </td>
                                                     <td>
-                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={!this.state.ischecked0}style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -722,11 +764,13 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" 
+                                                      onChange={(e)=>this.setCheck(e,1)}
+                                                      className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
                                                         {/* <input style={{width:'auto'}} defaultValue={this.state.c_city}type="text" name="" className="form-control" /> */}
-                                                        <input  style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={!this.state.ischecked1} style={{width:'auto'}} type="text" name="" className="form-control" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -748,10 +792,12 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" 
+                                                       onChange={(e)=>this.setCheck(e,2)}
+                                                       className="form-control" style={{ width: '11%', margin: 'auto' }} />
                                                     </td>
                                                     <td>
-                                                        <input  style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input  readOnly={!this.state.ischecked2}style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>
@@ -774,11 +820,12 @@ class EsicdeclrationForm extends Component {
 
                                                     </td>
                                                     <td>
-                                                        <input  type="checkbox" name="" className="form-control" style={{ width: '11%', margin: 'auto' }} />
+                                                        <input  type="checkbox" 
+                                                       className="form-control" style={{ width: '11%', margin: 'auto' }} onChange={(e)=>this.setCheck(e,3)}/>
 
                                                     </td>
                                                     <td>
-                                                        <input style={{width:'auto'}} type="text" name="" className="form-control" />
+                                                        <input readOnly={!this.state.ischecked3} style={{width:'auto'}} type="text" name="" className="form-control" />
 
                                                     </td>
                                                 </tr>

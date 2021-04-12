@@ -26,10 +26,17 @@ class GratitutyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {...this.props.location.state,error1:'',
-        percentage:'%'}
+        percentage:0,addnom:''}
         document.documentElement.scrollTop = 0;
-    }
 
+    }
+    setAddNominne=(e)=>
+    {
+        e.preventDafault();
+        
+        this.setState({addnom:e.target.value})
+
+    }
     generatePdf=(e)=>
     {
         document.documentElement.scrollTop = 0;
@@ -112,8 +119,17 @@ class GratitutyForm extends Component {
 //percentage on input field
 setPercentage =(e)=>
 {
-    const value= e.target.value
-    this.setState({percentage:'%'})
+    const re = /^[0-9]+$/;
+    const value = e.target.value;
+   
+                var aa=value.substring(0, value.length).replace("%","") + "%"
+              
+                this.setState({percentage:aa})
+          
+       
+    
+   
+    // }
 }
 
 
@@ -281,7 +297,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                  </td>
                                                  <td>
-                                                     <input className="form-control text-center"  type="text" name="" defaultValue={this.state.percentage} onChange={this.setPercentage} />
+                                                     <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage} maxLength="4"onChange={this.setPercentage} />
 
                                                  </td>
                                                
@@ -327,7 +343,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                         	Date of appointment.{today}
                                              </li> */}
                                              <li>
-                                        Permanent address. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.p_full_address}></input>
+                                        Permanent address. &nbsp; &nbsp; <input type="text" disabled="disabled" className="m-0 form-control w-auto d-inline-block" value={this.state.addnom}></input>
                                        </li>
                                              </ul>
                                              
