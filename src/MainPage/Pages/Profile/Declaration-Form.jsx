@@ -159,7 +159,7 @@ class DeclrationForm extends Component {
                     pre_mem_date_exit: prev_date_of_exit,
                     scheme_certificate_no: prev_scheme_certificate_no,
                     ppo_no: prev_ppo_no,
-                    spcially_abled: specially_abled,
+                    spcially_abled: specially_abled ? 'yes' : "no",
                     category_abled: pwd_category,
                      per: gratiuty_percent_share,
                     add: address
