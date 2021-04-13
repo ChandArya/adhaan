@@ -1003,7 +1003,7 @@ console.log("apiii", data)
             if (this.state.family[j].id == data.id)
             {
                 var datagg=this.state.family[j]
-                datagg['percent']=value
+                datagg['pf_percent_share']=value
                 var listof = this.state.family
                 listof[j] = datagg;
                 this.setState({family: listof});
@@ -2755,8 +2755,9 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 form-control" defaultValue={ document.pf_percent_share? document.pf_percent_share : document.total_amt_per, '%'} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }}  ></input></td>
-                                                <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }} defaultValue={document.nominee_is_minor} onChange={(e) => this.setNomineeMinor(e, document)} ></input></td>
+                                                <td><div className='row' style={{left:'150px'}}><input className="px-0 py-0 form-control" value={document.pf_percent_share} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }}  ></input><i >%</i></div>
+</td>
+                                                <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }} value={document.nominee_is_minor||document.guardian_details} onChange={(e) => this.setNomineeMinor(e, document)} ></input></td>
                                             </tr>
                                                
                                             ))}
@@ -2867,7 +2868,7 @@ Birth</th>
                                                     <tr key={i+1}>
                                                         <td>{i+1}</td>
                                                         <td><input disabled="disabled"type="text" name="" className="px-0 py-0 border-0 form-control" defaultValue={document.name} /></td>
-                                                        <td><input onChange={(e) => this.setNomineeAddress(e, document)} defaultValue={document.nominee_address} type="text" name="" className="px-0 py-0  form-control" /></td>
+                                                        <td><input onChange={(e) => this.setNomineeAddress(e, document)} defaultValue={document.address} type="text" name="" className="px-0 py-0  form-control" /></td>
                                                         <td className="text-center"><input disabled="disabled"  type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center  form-control"
                                                             placeholder="" onFocus="(this.type='date')" /></td>
                                                         <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.relation} className="px-0 py-0 text-center  form-control"

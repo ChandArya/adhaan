@@ -234,42 +234,78 @@ class EsicdeclrationForm extends Component {
                 var residing_town_state2=''
                 var residing_town_state3=''
                 var residing_town_state4=''
-                for(var i=0;i<response.data.candidate_esic_data.length;i++)
+                for(var i=0;i<family.length;i++)
                 {
                     if(i==0)
                     {
                         add=family[i].address;
-                        residing_town_state1=response.data.candidate_esic_data[i].residing_town_state
+                        residing_town_state1=family[0].residing_town_state
                     }
                     if(i==1)
                     {
                       
-                        residing_town_state2=response.data.candidate_esic_data[i].residing_town_state
+                        residing_town_state2=family[i].residing_town_state
                     }
                     if(i==2)
                     {
                         
-                        residing_town_state3=response.data.candidate_esic_data[i].residing_town_state
+                        residing_town_state3=family[i].residing_town_state
                     }
                     if(i==3)
                     {
                         
-                        residing_town_state4=response.data.candidate_esic_data[i].residing_town_state
+                        residing_town_state4=family[i].residing_town_state
                     }
                     
                 }
-                this.setState({
+
+                self.setState({
                     family: family,
                    
                     residing_town_state1:residing_town_state1,
-                    // residing_town_state1:residing_town_state1,
-                    // residing_town_state4:residing_town_state4,
-                    // residing_town_state3:residing_town_state3
+                    residing_town_state2:residing_town_state2,
+                    residing_town_state4:residing_town_state4,
+                    residing_town_state3:residing_town_state3
                     
 
 
 
                 })
+               
+                try{
+                    var checked0=family[0].residing_with_candidate;
+                    // this.setState({checked0:checked2})
+                    console.log(residing_town_state1,"firsttttttt",checked0)
+                }catch(error)
+                {
+    
+                }
+                try{
+                    var checked3=this.state.family[3].residing_with_candidate;
+                    // this.setState({checked1:checked3})
+                    console.log("secondddddd",checked3)
+                }catch(error)
+                {
+    
+                }
+                 try{
+                    var checked3=this.state.family[2].residing_with_candidate;
+                    // this.setState({checked1:checked3})
+                    console.log("secthhththhthtondddddd",checked3)
+            }catch(error)
+            {
+
+            }
+            try{
+                var checked1=this.state.family[1].residing_with_candidate;
+                // this.setState({checked3:checked3})
+                // var checked3=this.state.family[3].residing_with_candidate;
+                // this.setState({checked1:checked3})
+                console.log("forth",checked1)
+            }catch(error)
+            {
+
+            }
             })
             .catch(function (error) {
 
@@ -520,7 +556,16 @@ class EsicdeclrationForm extends Component {
 
 
         try {
-           console.log('nominee print', this.state);
+          
+           
+            
+
+           
+           
+            
+
+        //    console.log('nominee print', this.state);
+           
            // console.log('twinkle', this.state)
 
             //console.log('sssss', this.state.candidate_documents_data[1].document_type);
@@ -1002,7 +1047,7 @@ class EsicdeclrationForm extends Component {
                                                             <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
                                                             <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
                                                                 placeholder="" className="form-control" /></td>
-                                                                <td colSpan="4" className="text-center"><input onChange={(e) => this.setNomineeAddress(e, document)} defaultValue={document.nominee_address}type="text" name="" value={document.addres}
+                                                                <td colSpan="4" className="text-center"><input onChange={(e) => this.setNomineeAddress(e, document)} type="text" name="" value={document.address}
                                                                 placeholder=""   className="form-control"/></td>
                                                            
                                                         </tr>:''
