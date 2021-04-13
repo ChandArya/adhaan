@@ -186,21 +186,27 @@ class GratitutyForm extends Component {
 
     }
 
+
+
+
+
+
+//get api 
     apicall = () => {
 
-        var url1 = 'https://aadhaan.ddns.net/api/candidate/full-information/' + this.state.user
-        //var url = 'https://aadhaan.ddns.net/api/candidate/dashboard';
         var config = {
             method: 'get',
-            url: url1,
+            url: baseurl + '/api/declaration-form/gratuity/136',
             headers: {
-                'Content-Type': 'application/json',
-
-
-
+                'Content-Type': 'application/json'
             },
             data: ''
         };
+
+        //console.log("twinkle getapi", data)
+
+        
+        
 
         axios(config)
             .then((response) => {
@@ -208,26 +214,33 @@ class GratitutyForm extends Component {
                 var data = response.data;
                 console.log("fgdfgfggf", data)
 
-                try {
+                var self = this;
+                var isNomnieeList = this.state.family.filter(function (data) {
+                    return data.is_nominee
+                })
 
-
-                    var candidate_education_data_len = Object.keys(data.candidate_education_data).length
-                    if (candidate_education_data_len > 0) {
-                        var candidate_education_data = data.candidate_education_data
-                        this.setState(
-                            {
-                                // eduvar:false,
-                                education_data: candidate_education_data
-                            }
-                        );
-                        console.log("educationdata", candidate_education_data);
+                var n_data = []
+                for (var i = 0; i < isNomnieeList.length; i++) {
+                    var per = ''
+                    try {
+                        per = isNomnieeList[i].percent
+                    } catch (error) {
+                        per = ''
                     }
 
 
-                } catch (err) {
-                    console.log("error", err)
-                    // document.getElementById("demo").innerHTML = err.message;
+
+                    var dataaa = {
+                        "id": isNomnieeList[i].id,
+
+                        "gratiuty_percent_share": per.substring(0, per.length - 1),
+
+
+                    }
+                    n_data.push(dataaa)
+
                 }
+
                 })
           
 
