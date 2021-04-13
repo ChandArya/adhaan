@@ -101,7 +101,50 @@ class DeclrationForm extends Component {
         
     }
 
+    apicall = () => {
+        var self = this;
 
+
+        var config = {
+            method: 'Get',
+            url: baseurl + '/api/declaration-form/gratuity/' + this.state.canid,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+           
+        };
+
+        console.log("apiii", this.state)
+
+
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                var candidate_gratuity_pf_detail = response.data.candidate_gratuity_pf_detail
+                var family = candidate_gratuity_pf_detail.family
+                this.setState({
+                    family: family,
+
+
+
+                })
+            })
+            .catch(function (error) {
+
+            });
+
+    }
+
+
+    //endfamily data
+    componentDidMount = () => {
+        this.apicall();
+
+        // window.scrollTo(0, -1000)
+
+
+    }
 
     savebtn2 = (e, data) => {
         // e.preventDefault();

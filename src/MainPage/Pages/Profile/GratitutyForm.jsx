@@ -6,6 +6,7 @@ import { CompnySign,CompnyThum } from '../../../Entryfile/imagepath.jsx'
 var today = new Date();
 var dd = today.getDate();
 import Swal from 'sweetalert2'
+import { data } from 'jquery';
 var mm = today.getMonth()+1; 
 var yyyy = today.getFullYear();
 if(dd<10) 
@@ -29,7 +30,7 @@ class GratitutyForm extends Component {
             percentage: '', addnom: '', per:''}
 
 
-        this.setPercentage = this.setPercentage.bind(this);
+        //this.setPercentage = this.setPercentage.bind(this);
 
         document.documentElement.scrollTop = 0;
 
@@ -193,56 +194,37 @@ class GratitutyForm extends Component {
 
 //get api 
     apicall = () => {
-
+        var self = this;
+      
+        
         var config = {
-            method: 'get',
-            url: baseurl + '/api/declaration-form/gratuity/136',
+            method: 'Get',
+            url: baseurl + '/api/declaration-form/gratuity/' + this.state.canid,
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: ''
+           
         };
 
-        //console.log("twinkle getapi", data)
+        console.log("apiii", this.state)
 
-        
-        
+
 
         axios(config)
-            .then((response) => {
-                console.log("fgdfgfggf")
-                var data = response.data;
-                console.log("fgdfgfggf", data)
-
-                var self = this;
-                var isNomnieeList = this.state.family.filter(function (data) {
-                    return data.is_nominee
-                })
-
-                var n_data = []
-                for (var i = 0; i < isNomnieeList.length; i++) {
-                    var per = ''
-                    try {
-                        per = isNomnieeList[i].percent
-                    } catch (error) {
-                        per = ''
-                    }
-
-
-
-                    var dataaa = {
-                        "id": isNomnieeList[i].id,
-
-                        "gratiuty_percent_share": per.substring(0, per.length - 1),
-
-
-                    }
-                    n_data.push(dataaa)
-
-                }
-
-                })
-          
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                var candidate_gratuity_pf_detail = response.data.candidate_gratuity_pf_detail
+                var family = candidate_gratuity_pf_detail.family
+                this.setState({
+                    family: family,
+                    
+                
+               
+            })
+        })
+            .catch(function (error) {
+               
+            });
 
     }
 
@@ -250,30 +232,11 @@ class GratitutyForm extends Component {
     //endfamily data
     componentDidMount = () => {
         this.apicall();
+      
         // window.scrollTo(0, -1000)
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     submitbtn = (data) => {
         this.savebtn2(this)
@@ -307,29 +270,6 @@ class GratitutyForm extends Component {
                 });
 
     }
-
-
-
-
-
-
-
-
-
-    
-//percentage on input field
-    setPercentage = (e,i) => {
-       // e.preventDafault();
-        const re = /^[0-9]+$/;
-        const value = e.target.value;
-        // alert("got data"+value)
-        // if (value === '' || value.match(re)) {
-            this.setState({ percentage: value });
-        // }
-
-
-    }
-   
 
 
 
