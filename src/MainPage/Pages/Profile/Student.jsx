@@ -1050,6 +1050,18 @@ export default class Student extends Component {
                 job_location: this.state.job_location,
                 p_email: this.state.c_email
             })
+        }else
+        {
+            this.setState({
+                p_full_address: "",
+                p_city: "",
+                p_country: "",
+                p_state: "", pstateListOfCountry: this.state.stateListOfCountry,
+                p_pin_code: '',
+                p_mobile_no: '',
+                job_location: '',
+                p_email: ''
+            })
         }
 
     }
@@ -4972,7 +4984,7 @@ export default class Student extends Component {
                     if (response.data.status == true) {
                         //let path='app/profile/candidate-profile';
                         Swal.fire(
-                            'Other Details Successfully Submitted ',
+                            'Personal Details Successfully Submitted ',
                             '',
                             'success'
                         )

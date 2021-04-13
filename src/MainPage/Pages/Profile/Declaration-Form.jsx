@@ -34,7 +34,10 @@ class DeclrationForm extends Component {
        this.state = {...this.props.location.state,error1:'',
            Is1952: true,
            Is1995: true,
-           value: 1,
+           value: 0,
+           value1:0,
+           value2:0,
+           value4:0,
            percentage:'%',
            Isabled: false,
            ablity8:false,
@@ -107,7 +110,7 @@ class DeclrationForm extends Component {
 
         var config = {
             method: 'Get',
-            url: baseurl + '/api/declaration-form/gratuity/' + this.state.canid,
+            url: baseurl + '/api/declaration-form/pf/' + this.state.canid,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -121,14 +124,18 @@ class DeclrationForm extends Component {
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                var candidate_gratuity_pf_detail = response.data.candidate_gratuity_pf_detail
-                var family = candidate_gratuity_pf_detail.family
-                this.setState({
-                    family: family,
+                var candidate_gratuity_pf_detail = response.data.candidate_pf_detail
+                var member_of_epfs=candidate_gratuity_pf_detail[0].member_of_epfs
+                var prev_region_code=candidate_gratuity_pf_detail[0].prev_region_code
+                console.log("fffff",member_of_epfs)
+                self.setState({epf:false,regioncode:prev_region_code})
+                // var family = candidate_gratuity_pf_detail.family
+                // this.setState({
+                //     family: family,
 
 
 
-                })
+                // })
             })
             .catch(function (error) {
 
@@ -163,12 +170,12 @@ class DeclrationForm extends Component {
         var n_data=[]
         for (var i = 0; i < isNomnieeList.length;i++)
             {   
-                var per=''
+                var per=0
                 try{
-                    per = isNomnieeList[i].percent
+                    per = isNomnieeList[i].percent.subString(0,isNomnieeList[i].percent.length-1)
                 }catch(error)
                 {
-                    per=''
+                    per=0
                 }
             var minor = ''
                 try{
@@ -249,7 +256,7 @@ class DeclrationForm extends Component {
 
 console.log("apiii", data)
 
-
+// return
 
         axios(config)
             .then(function (response) {
@@ -290,7 +297,7 @@ console.log("apiii", data)
       // e.preventDefault();
 
         this.savebtn2(this)
-
+        return
         var self =this;
         let path = './Esic-declrationForm';
                             var id = self.props.location.state.user
@@ -377,15 +384,15 @@ console.log("apiii", data)
             this.setState({ value: id, Is1952:false})
         }
         if(id==2){
-            this.setState({ value: id,Is1952: true })
+            this.setState({ value1: id,Is1952: true,value:0 })
         }
         
         if(id==3)
         {
-            this.setState({ value: id, Is1995: false })
+            this.setState({ value2: id, Is1995: false })
         }
         if (id == 4){
-            this.setState({ value: id,Is1995: true })
+            this.setState({ value3: id,Is1995: true,value2:0 })
            
         }
       
@@ -1748,7 +1755,7 @@ OF (3) ABOVE <br /><br />
                                         <input onChange={this.setUan}
                                         
                                          defaultValue={this.state.uan}
-                                          readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995)))?false:true:false}
+                                          readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false}
                                            key={document.key} type="text" className="form-control w-25 ml-2"></input>
 
                                    </div>
@@ -1794,30 +1801,30 @@ OF (3) ABOVE <br /><br />
                                             </tr>
                                             <tr>
                                                 <td className="text-uppercase font-weight-bold"><input  onChange={this.setRegioncode} value={this.state.regioncode}
-                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                 readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false}
                                                     name="" className="px-0 py-0  form-control"  /></td>
 
                                                 <td><input onChange={this.setOfficecode} defaultValue={this.state.officecode}
-                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                 readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false}
                                                     name="" className="px-0 py-0  form-control" defaultValue={this.state.officecode} /></td>
 
                                                 <td className="text-center"><input onChange={this.setPredob} defaultValue={this.state.pre_mem_dob}
-                                                readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false}
+                                                readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false}
                                                  type="date" name="" className="px-0 py-0 text-center  form-control" /></td>
 
                                                 <td><input onChange={this.setEstabid} defaultValue={this.state.estabid}
-                                                readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false}
                                                  name="" className="px-0 py-0  form-control" /></td>
 
                                                 <td><input onChange={this.setExtension} defaultValue={this.state.extension}
-                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false}
                                                  name="" className="px-0 py-0  form-control"/></td>
                                               
                                                 {/* <td><input  readOnly={this.state.Is1952||this.state.Is1995} 
                                                  name="" className="px-0 py-0  form-control"  /></td> */}
 
                                                 <td><input onChange={this.setPreMemAccNo} defaultValue={this.state.pre_mem_account_no}
-                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} 
+                                                 readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false}
                                                  name="" className="px-0 py-0  form-control" /></td>
 
 
@@ -1858,7 +1865,7 @@ OF (3) ABOVE <br /><br />
 
                                             ))} */}
                                                 <input onChange={this.setDateOfExit} defaultValue={this.state.pre_mem_date_exit}
-                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="date" key={document.key} type="date" className="form-control"></input>
+                                                 readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false} type="date" key={document.key} type="date" className="form-control"></input>
 
                                         </div><br />
 
@@ -1904,7 +1911,7 @@ OF (3) ABOVE <br /><br />
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
                                                
                                                 <input  onChange={this.setSchemeNo} defaultValue={this.state.scheme_certificate_no}
-                                                readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" key={document.key} type="text" className="form-control"></input>
+                                               readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
@@ -1926,7 +1933,7 @@ OF (3) ABOVE <br /><br />
                                             <div className="text-center" style={{ display: 'inline-flex', marginLeft: '30px' }}>
 
                                                 <input onChange={this.setPensionNo} defaultValue={this.state.ppo_no}
-                                                 readOnly={((this.state.Is1952) && (this.state.Is1995)) ? true : ((this.state.value == 2 || this.state.value == 4) && ((!this.state.Is1952) || (!this.state.Is1995))) ? ((this.state.value == 3 || this.state.value == 1) && ((!this.state.Is1952) || (!this.state.Is1995))) ? false : true : false} type="text" key={document.key} type="text" className="form-control"></input>
+                                                 readOnly={(this.state.value==0)&&(this.state.value2==0)?true:false} type="text" key={document.key} type="text" className="form-control"></input>
 
                                             </div><br />
 
