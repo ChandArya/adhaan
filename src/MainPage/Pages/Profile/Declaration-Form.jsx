@@ -106,9 +106,16 @@ class DeclrationForm extends Component {
     savebtn2 = (e, data) => {
         // e.preventDefault();
         var self = this;
-        var isNomnieeList = this.state.family.filter(function (data) {
-            return data.is_nominee
-        })
+        var isNomnieeList =[]
+        try{
+            isNomnieeList = this.state.family.filter(function (data) {
+                return data.is_nominee
+            })
+        }catch(error)
+        {
+
+        }
+       
         console.log("fffff", isNomnieeList);
         var n_data=[]
         for (var i = 0; i < isNomnieeList.length;i++)
@@ -1082,13 +1089,14 @@ console.log("apiii", data)
 
         
 
-        var isNomnieeList = this.state.family.filter(function(data)
-        {
-            return data.is_nominee
-        })
+       
         //family data
         var family = { "name": '', "aadhaar_no": '', "dob": '', 'is_nominee': '', 'relation': '' }
         try {
+            var isNomnieeList = this.state.family.filter(function(data)
+            {
+                return data.is_nominee
+            })
             console.log('family1111', this.state.family)
             family = {
                 'name': this.state.family[0].name, 'aadhaar_no': this.state.family[0].aadhaar_no,

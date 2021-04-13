@@ -323,9 +323,9 @@ class GratitutyForm extends Component {
         const re = /^[0-9]+$/;
         const value = e.target.value;
         // alert("got data"+value)
-        if (value === '' || value.match(re)) {
+        // if (value === '' || value.match(re)) {
             this.setState({ percentage: value });
-        }
+        // }
 
 
     }
