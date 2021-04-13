@@ -26,7 +26,7 @@ class EsicdeclrationForm extends Component {
         super(props);
         this.state = { ...this.props.location.state, error1: '',listofcheck:[],ischecked3:false ,ischecked1:false ,ischecked2:false ,ischecked0:false,
             residing_with_candidate: false,
-            residing_town_state:'', residing_town_state1: '', residing_town_state2: '', residing_town_state3: '', residing_town_state4: ''  }
+            residing_town_state:'', residing_town_state1: '', residing_town_state2: '', residing_town_state3: '', residing_town_state4: '' ,addiii:'' }
         document.documentElement.scrollTop = 0;
         
         
@@ -116,14 +116,18 @@ class EsicdeclrationForm extends Component {
             catch (error) {
                 add = ''
             }
-
-            var dataaa = {
-                "id": isNomnieeList[i].id,
-                 "address": add,
-               
-
+            if(i==0)
+            {
+                var dataaa = {
+                    "id": isNomnieeList[i].id,
+                     "address": add,
+                   
+    
+                }
+                
+                n_data.push(dataaa)
             }
-            n_data.push(dataaa)
+            
 
 
 
@@ -134,28 +138,27 @@ class EsicdeclrationForm extends Component {
         var nominee_details= []
         for (var i = 0; i <nominee_details_list.length; i++) {
 
-            var residing_with_candidate= ''
-            try {
-                residing_with_candidate = nominee_details_list[i].residing_with_candidate
-            }
-            catch (error) {
-                residing_with_candidate = ''
-            }
+            var residing_with_candidate= this.state.checked+i
+           
 
             var residing_town_state = ''
-            try {
-                residing_town_state = nominee_details_list[i].residing_town_state
-            }
-            catch (error) {
-                residing_town_state = ''
-            }
-
+            
+            if(i==0)
+            {
+                 residing_town_state = this.state.residing_town_state1
+            }else  if(i==1){
+                 residing_town_state = this.state.residing_town_state2
+            }else  if(i==2){
+                residing_town_state = this.state.residing_town_state3
+           }else  if(i==3){
+            residing_town_state = this.state.residing_town_state4
+       }
 
 
             var nominee_details_data = {
                 "id": nominee_details_list[i].id,
                 "residing_town_state": residing_town_state,
-                'residing_with_candidate':  residing_with_candidate
+                'residing_with_candidate':  residing_with_candidate==1?true:false
 
 
             }
@@ -175,7 +178,8 @@ class EsicdeclrationForm extends Component {
 
 
         });
-
+        console.log("++++++++++++++++++++++++++++++++++",data)
+        
         var config = {
             method: 'post',
            url: baseurl + '/api/declaration-form/esic',
@@ -209,7 +213,7 @@ class EsicdeclrationForm extends Component {
 
         var config = {
             method: 'Get',
-            url: baseurl + '/api/declaration-form/gratuity/' + this.state.canid,
+            url: baseurl + '/api/declaration-form/esic/' + this.state.canid,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -223,10 +227,45 @@ class EsicdeclrationForm extends Component {
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                var candidate_gratuity_pf_detail = response.data.candidate_gratuity_pf_detail
+                var candidate_gratuity_pf_detail = response.data.candidate_esic_data
                 var family = candidate_gratuity_pf_detail.family
+                var add=''
+                var residing_town_state1=''
+                var residing_town_state2=''
+                var residing_town_state3=''
+                var residing_town_state4=''
+                for(var i=0;i<response.data.candidate_esic_data.length;i++)
+                {
+                    if(i==0)
+                    {
+                        add=family[i].address;
+                        residing_town_state1=response.data.candidate_esic_data[i].residing_town_state
+                    }
+                    if(i==1)
+                    {
+                      
+                        residing_town_state2=response.data.candidate_esic_data[i].residing_town_state
+                    }
+                    if(i==2)
+                    {
+                        
+                        residing_town_state3=response.data.candidate_esic_data[i].residing_town_state
+                    }
+                    if(i==3)
+                    {
+                        
+                        residing_town_state4=response.data.candidate_esic_data[i].residing_town_state
+                    }
+                    
+                }
                 this.setState({
                     family: family,
+                   
+                    residing_town_state1:residing_town_state1,
+                    // residing_town_state1:residing_town_state1,
+                    // residing_town_state4:residing_town_state4,
+                    // residing_town_state3:residing_town_state3
+                    
 
 
 
@@ -300,7 +339,7 @@ class EsicdeclrationForm extends Component {
         // e.preventDefault();
 
         this.savebtn2(this)
-
+        // return
         var self = this;
         let path = './Gratituty-form';
         var id = self.props.location.state.user
@@ -963,7 +1002,7 @@ class EsicdeclrationForm extends Component {
                                                             <td colSpan="2"><input disabled="disabled"  type="text" name="" defaultValue={document.name} className="form-control" /></td>
                                                             <td className="text-center" ><input disabled="disabled" type="text" name="" defaultValue={document.relation}
                                                                 placeholder="" className="form-control" /></td>
-                                                                <td colSpan="4" className="text-center"><input onChange={(e) => this.setNomineeAddress(e, document)} defaultValue={document.nominee_address}type="text" name="" value={document.address}
+                                                                <td colSpan="4" className="text-center"><input onChange={(e) => this.setNomineeAddress(e, document)} defaultValue={document.nominee_address}type="text" name="" value={document.addres}
                                                                 placeholder=""   className="form-control"/></td>
                                                            
                                                         </tr>:''

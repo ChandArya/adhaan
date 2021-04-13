@@ -297,7 +297,7 @@ console.log("apiii", data)
       // e.preventDefault();
 
         this.savebtn2(this)
-        return
+        // return
         var self =this;
         let path = './Esic-declrationForm';
                             var id = self.props.location.state.user
