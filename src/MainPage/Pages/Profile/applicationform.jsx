@@ -727,7 +727,7 @@ class ApplicationForm extends Component {
                                                 <label className="text-uppercase d-block">*Marital Status:</label>
                                                 <div className="row">
                                                     <div className="col-sm-8 text-uppercase">Married</div>
-                                                    <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Married" checked={this.state.marital_status === "married"} defaultValue={this.state.marital_status} /></div>
+                                                    <div className="col-sm-4 text-right"><input type="radio" name="marital-status" value="Married" checked={this.state.marital_status === "Married"} defaultValue={this.state.marital_status} /></div>
                                                     <div className="col-sm-8 text-uppercase">Unmarried</div>
                                                     <div className="col-sm-4 text-right"><input type="radio" checked={this.state.marital_status === "Single"} name="marital-status" value="Unmarried" /></div>
                                                 </div>

@@ -26,10 +26,17 @@ class GratitutyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {...this.props.location.state,error1:'',
-            percentage: 0, addnom: '',}
+            percentage: '', addnom: '', gratiuty_percent_share:''}
+
+
+        this.setPercentage = this.setPercentage.bind(this);
+
         document.documentElement.scrollTop = 0;
 
     }
+
+
+    
     setAddNominne=(e)=>
     {
         e.preventDafault();
@@ -78,6 +85,130 @@ class GratitutyForm extends Component {
         
     }
 
+    savebtn2 = (e, data) => {
+        // e.preventDefault();
+        var self = this;
+        var isNomnieeList = this.state.family.filter(function (data) {
+            return data.is_nominee
+        })
+        console.log("fffff", isNomnieeList);
+        var n_data = []
+        for (var i = 0; i < isNomnieeList.length; i++) {
+
+            var add = ''
+            try {
+                add = isNomnieeList[i].address
+            }
+            catch (error) {
+                add = ''
+            }
+
+            var dataaa = {
+                "id": isNomnieeList[i].id,
+                "address": add,
+
+
+            }
+            n_data.push(dataaa)
+
+
+
+        }
+        var nominee_details_list = this.state.family.filter(function (data) {
+            return !data.is_nominee
+        })
+        var nominee_details = []
+        for (var i = 0; i < nominee_details_list.length; i++) {
+
+            var residing_with_candidate = ''
+            try {
+                residing_with_candidate = 'werwr'
+            }
+            catch (error) {
+                residing_with_candidate = ''
+            }
+
+            var residing_town_state = ''
+            try {
+                residing_town_state = 'wrwr'
+            }
+            catch (error) {
+                residing_town_state = ''
+            }
+
+
+
+            var nominee_details_data = {
+                "id": nominee_details_list[i].id,
+                "residing_town_state": residing_town_state,
+                'residing_with_candidate': residing_with_candidate
+
+
+            }
+            nominee_details.push(nominee_details_data)
+            console.log("qqqq", nominee_details_data)
+
+
+        }
+
+
+
+
+        var data = JSON.stringify({
+            "candidate": this.state.canid,
+            "nominee_address": n_data,
+            'nominee_details_list': nominee_details
+
+
+        });
+
+        var config = {
+            method: 'post',
+            url: baseurl + '/api/declaration-form/esic',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        console.log("apiii", data)
+
+
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+
+            })
+            .catch(function (error) {
+                // console.log(error);
+                // self.setState({ error: "network issue" })
+                // console.log("onchange twinkle", this.state)
+            });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     submitbtn = (data) => {
         var self =this;
@@ -120,29 +251,28 @@ class GratitutyForm extends Component {
                 });
 
     }
+
+
+
+
+
+
+
+
+
     
 //percentage on input field
-setPercentage =(e)=>
+    setPercentage = (e,i) => {
+       // e.preventDafault();
+        const re = /^[0-9]+$/;
+        const value = e.target.value;
+        // alert("got data"+value)
+        // if (value === '' || value.match(re)) {
+            this.setState({ percentage: value });
+        // }
 
-{
-   
-    const re = /^[0-9]+$/;
-   // const value = e.target.value;
-   
-    // var aa=value.substring(0, value.length).replace("%","") + "%"
-      
-        if (e.target.value == '' || re.test(e.target.value)) {
-            this.setState({ percentage:value })
-        }
-    
 
-    
-    
-   
-     
     }
-
-    
    
 
 
@@ -301,9 +431,9 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                        
                                                          </tr>
 
-                                                {isNomnieeList.map((document, index) => (
-                                                    
-                                                        <tr key={index}>
+                                                {isNomnieeList.map((document,i) => (
+                                                
+                                                        <tr key={i}>
                                                         
                                                      
                                                      <td >
@@ -320,7 +450,8 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
 
                                                  </td>
                                                  <td>
-                                                     <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage} maxLength="4"onChange={this.setPercentage} />
+                                                     {/* <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage,"%"} maxLength="4"onChange={this.setPercentage} /> */}
+                                                            <input className="form-control text-center" type="text" defaultValue={this.state.percentage.i,"%"} maxLength="4" onChange={(e)=>this.setPercentage(e,document)} />
 
                                                  </td>
                                                        

@@ -15,7 +15,7 @@ if (dd < 10) {
 }
 
 if (mm < 10) {
-    mm = '0' + mm;
+    mm = '0' + mm; 
 }
 today = mm + '-' + dd + '-' + yyyy;
 console.log(today);
@@ -25,7 +25,8 @@ class EsicdeclrationForm extends Component {
     constructor(props) {
         super(props);
         this.state = { ...this.props.location.state, error1: '',listofcheck:[],ischecked3:false ,ischecked1:false ,ischecked2:false ,ischecked0:false,
-            residing_with_candidate: false, residing_town_state1: '', residing_town_state2: '', residing_town_state3: '', residing_town_state4: ''  }
+            residing_with_candidate: false,
+            residing_town_state:'', residing_town_state1: '', residing_town_state2: '', residing_town_state3: '', residing_town_state4: ''  }
         document.documentElement.scrollTop = 0;
         
         
@@ -127,24 +128,57 @@ class EsicdeclrationForm extends Component {
 
 
         }
+        var nominee_details_list = this.state.family.filter(function (data) {
+            return data.is_nominee
+        })
+        var nominee_details= []
+        for (var i = 0; i <nominee_details_list.length; i++) {
+
+            var residing_with_candidate= ''
+            try {
+                residing_with_candidate = nominee_details_list[i].residing_with_candidate
+            }
+            catch (error) {
+                residing_with_candidate = ''
+            }
+
+            var residing_town_state = ''
+            try {
+                residing_town_state = nominee_details_list[i].residing_town_state
+            }
+            catch (error) {
+                residing_town_state = ''
+            }
+
+
+
+            var nominee_details_data = {
+                "id": nominee_details_list[i].id,
+                "residing_town_state": residing_town_state,
+                'residing_with_candidate':  residing_with_candidate
+
+
+            }
+            nominee_details.push(nominee_details_data)
+            console.log("qqqq", nominee_details_data)
+
+
+        }
+
+
 
       
         var data = JSON.stringify({
             "candidate": this.state.canid,
-            "nominee_details": n_data,
-            "residing_town_state":this.state.residing_town_state,
-            'residing_with_candidate': this.state.residing_with_candidate,
-            "nominee_details_list": this.state.residing_town_state1,
-            "nominee_details_list": this.state.residing_town_state2,
-             "nominee_details_list": this.state.residing_town_state3,
-            "nominee_details_list": this.state.residing_town_state4 
+            "nominee_address": n_data,
+            'nominee_details_list': nominee_details
 
 
         });
 
         var config = {
             method: 'post',
-           // url: baseurl + '/api/declaration-form/esic',
+           url: baseurl + '/api/declaration-form/esic',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -403,12 +437,12 @@ class EsicdeclrationForm extends Component {
 
 
         try {
-            console.log('wwww', this.state.candidate_doc_list)
+           console.log('nominee print', this.state);
            // console.log('twinkle', this.state)
 
             //console.log('sssss', this.state.candidate_documents_data[1].document_type);
            // console.log('print', this.state.candidate_documents_data[0].document_type);
-            console.log('nominee print', this.state.isNomnieeList);
+           
 
             candidate_documents_data = { 'document_type': this.candidate_documents_data[0].document_type }
 
@@ -677,7 +711,7 @@ class EsicdeclrationForm extends Component {
                                                                 टेलीफोन नंबर /इ-मेल
                                                                 / E-mail Address
                                                                   </div>
-                                                            <input disabled="disabled" defaultValue={this.state.email} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.p_mobile_no} type="text" className="form-control"></input>
 
                                                         </td>
 
@@ -702,7 +736,7 @@ class EsicdeclrationForm extends Component {
                                                             <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल / E-mail Address
                                                                   </div>
-                                                            <input disabled="disabled" defaultValue={this.state.email} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.c_mobile_no} type="text" className="form-control"></input>
 
                                                         </td>
 
