@@ -56,7 +56,9 @@ class DeclrationForm extends Component {
            nominee_address:'',
            spcially_abled:'',
            category_abled:'',
-           uan:''
+           uan:'',
+           pf_percent_share:''
+
         
     }
        document.documentElement.scrollTop = 0;
@@ -127,15 +129,47 @@ class DeclrationForm extends Component {
                 var candidate_gratuity_pf_detail = response.data.candidate_pf_detail
                 var member_of_epfs=candidate_gratuity_pf_detail[0].member_of_epfs
                 var prev_region_code=candidate_gratuity_pf_detail[0].prev_region_code
+                var prev_office_code = candidate_gratuity_pf_detail[0].prev_office_code
+                var uan = candidate_gratuity_pf_detail[0].uan
+                var member_of_eps = candidate_gratuity_pf_detail[0].member_of_eps
+                var prev_dob = candidate_gratuity_pf_detail[0].prev_dob
+                var prev_establishment_id = candidate_gratuity_pf_detail[0].prev_establishment_id
+                var prev_extension = candidate_gratuity_pf_detail[0].prev_extension
+                var prev_account_no = candidate_gratuity_pf_detail[0].prev_account_no
+                var prev_date_of_exit = candidate_gratuity_pf_detail[0].prev_date_of_exit
+                var prev_scheme_certificate_no = candidate_gratuity_pf_detail[0].prev_scheme_certificate_no
+                var prev_ppo_no = candidate_gratuity_pf_detail[0].prev_ppo_no
+                var specially_abled = candidate_gratuity_pf_detail[0].specially_abled
+                var pwd_category = candidate_gratuity_pf_detail[0].pwd_category
+                var gratiuty_percent_share = candidate_gratuity_pf_detail[0].gratiuty_percent_share
+                var address = candidate_gratuity_pf_detail[0].address
+                var family = candidate_gratuity_pf_detail[1].family
                 console.log("fffff",member_of_epfs)
-                self.setState({epf:false,regioncode:prev_region_code})
-                // var family = candidate_gratuity_pf_detail.family
-                // this.setState({
-                //     family: family,
+                self.setState({
+                    family: family,
+                    ablity8: member_of_epfs ? 'no' : "yes",
+                    ablity9: member_of_eps?'no':"yes",
+                    regioncode: prev_region_code, 
+                    officecode: prev_office_code,
+                    uan:uan,
+                    pre_mem_dob: prev_dob,
+                    estabid: prev_establishment_id,
+                    extension: prev_extension,
+                    pre_mem_account_no: prev_account_no,
+                    pre_mem_date_exit: prev_date_of_exit,
+                    scheme_certificate_no: prev_scheme_certificate_no,
+                    ppo_no: prev_ppo_no,
+                    spcially_abled: specially_abled,
+                    category_abled: pwd_category,
+                     per: gratiuty_percent_share,
+                    add: address
+                   
 
 
+                })
+                
+              
 
-                // })
             })
             .catch(function (error) {
 
@@ -212,8 +246,8 @@ class DeclrationForm extends Component {
         var spcially_abled = false
         {
             this.state.spcially_abled? spcially_abled = true : spcially_abled = false}
-        { this.state.ablity8=='Yes' ? eps = true : eps =false }
-        { this.state.ablity9=='Yes' ? epf = true : epf = false }
+        { this.state.ablity8=='yes' ? eps = true : eps =false }
+        { this.state.ablity9=='yes' ? epf = true : epf = false }
         console.log("eps",eps)
         console.log("epf", epf)
         console.log("ablity8",this.state.ablity8)
@@ -297,7 +331,7 @@ console.log("apiii", data)
       // e.preventDefault();
 
         this.savebtn2(this)
-        return
+        // return
         var self =this;
         let path = './Esic-declrationForm';
                             var id = self.props.location.state.user
@@ -1670,12 +1704,12 @@ OF (3) ABOVE <br /><br />
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" value="Yes" 
-                                                            onChange={this.setAblity8} defaultChecked={this.state.ablity8=== "yes"}
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="yes" value="yes" 
+                                                            onChange={this.setAblity8} checked={this.state.ablity8=== "yes"}
                                                           name="optradio"  onClick={(e)=>this.yes1Click(e,1)}></input></td>
 
-                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" value="No" 
-                                                            onChange={this.setAblity8} defaultChecked={this.state.ablity8 === "no"}
+                                                        <td style={{ textAlign: 'center' }}><input type="radio" id="no" value="no" 
+                                                            onChange={this.setAblity8} checked={this.state.ablity8 === "no"}
                                                           name="optradio" onClick={(e)=>this.yes1Click(e,2)}/> </td>
                                                     </tr>
                                                     </table>
@@ -1698,11 +1732,11 @@ OF (3) ABOVE <br /><br />
                                                         </tr>
                                                         <tr>
                                                         <td style={{ textAlign: 'center' }}><input type="radio" id="yes1" value="yes" 
-                                                            onChange={this.setAblity9} defaultChecked={this.state.ablity9 === "yes"}
+                                                            onChange={this.setAblity9} checked={this.state.ablity9 === "yes"}
                                                          name="optradio1" onClick={(e) => this.yes1Click(e, 3)}/></td>
 
                                                         <td style={{ textAlign: 'center' }}><input type="radio" id="no1"  value="no"
-                                                            onChange={this.setAblity9} defaultChecked={this.state.ablity9 === "no"}
+                                                            onChange={this.setAblity9} checked={this.state.ablity9 === "no"}
                                                           name="optradio1" onClick={(e) => this.yes1Click(e, 4)}/></td>
                                                         </tr>
                                                     </table>
@@ -2721,7 +2755,7 @@ the minority of nominee</th>
                                                     placeholder="" onFocus="(this.type='date')" /></td>
                                                 <td className="text-center"><input disabled="disabled" type="text" name="" defaultValue={document.dob} className="px-0 py-0 text-center border-0 form-control" style={{ width: 'auto' }}
                                                     placeholder="" onFocus="(this.type='date')" /></td>
-                                                <td><input className="px-0 py-0 form-control" defaultValue={document.total_amt_per, '%'} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }}  ></input></td>
+                                                <td><input className="px-0 py-0 form-control" defaultValue={ document.pf_percent_share? document.pf_percent_share : document.total_amt_per, '%'} onChange={(e) => this.setTotalAmount(e, document)} style={{ width: 'auto' }}  ></input></td>
                                                 <td><input className="px-0 py-0 form-control" style={{ width: 'auto' }} defaultValue={document.nominee_is_minor} onChange={(e) => this.setNomineeMinor(e, document)} ></input></td>
                                             </tr>
                                                
