@@ -26,7 +26,7 @@ class GratitutyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {...this.props.location.state,error1:'',
-            percentage: '', addnom: '', gratiuty_percent_share:''}
+            percentage: '', addnom: '', per:''}
 
 
         this.setPercentage = this.setPercentage.bind(this);
@@ -44,6 +44,34 @@ class GratitutyForm extends Component {
         this.setState({addnom:e.target.value})
 
     }
+    setTotalAmount = (e, data) => {
+           
+        const value = e.target.value
+        for (var j = 0; j < this.state.family.length; j++) {
+
+            if (this.state.family[j].id == data.id) {
+                var datagg = this.state.family[j]
+                datagg['percent'] = value
+                var listof = this.state.family
+                listof[j] = datagg;
+                this.setState({ family: listof });
+
+            }
+
+        }
+
+
+       
+       
+    }
+
+
+
+
+
+
+
+
     generatePdf=(e)=>
     {
         document.documentElement.scrollTop = 0;
@@ -91,62 +119,32 @@ class GratitutyForm extends Component {
         var isNomnieeList = this.state.family.filter(function (data) {
             return data.is_nominee
         })
-        console.log("fffff", isNomnieeList);
+        
         var n_data = []
         for (var i = 0; i < isNomnieeList.length; i++) {
-
-            var add = ''
+            var per = ''
             try {
-                add = isNomnieeList[i].address
+                per = isNomnieeList[i].percent
+            } catch (error) {
+                per = ''
             }
-            catch (error) {
-                add = ''
-            }
+           
+          
 
             var dataaa = {
                 "id": isNomnieeList[i].id,
-                "address": add,
+
+                "gratiuty_percent_share": per.substring(0, per.length - 1),
 
 
             }
             n_data.push(dataaa)
 
 
+        
+        
 
-        }
-        var nominee_details_list = this.state.family.filter(function (data) {
-            return !data.is_nominee
-        })
-        var nominee_details = []
-        for (var i = 0; i < nominee_details_list.length; i++) {
-
-            var residing_with_candidate = ''
-            try {
-                residing_with_candidate = 'werwr'
-            }
-            catch (error) {
-                residing_with_candidate = ''
-            }
-
-            var residing_town_state = ''
-            try {
-                residing_town_state = 'wrwr'
-            }
-            catch (error) {
-                residing_town_state = ''
-            }
-
-
-
-            var nominee_details_data = {
-                "id": nominee_details_list[i].id,
-                "residing_town_state": residing_town_state,
-                'residing_with_candidate': residing_with_candidate
-
-
-            }
-            nominee_details.push(nominee_details_data)
-            console.log("qqqq", nominee_details_data)
+            
 
 
         }
@@ -156,15 +154,14 @@ class GratitutyForm extends Component {
 
         var data = JSON.stringify({
             "candidate": this.state.canid,
-            "nominee_address": n_data,
-            'nominee_details_list': nominee_details
+            'nominee_details_list': n_data
 
 
         });
 
         var config = {
             method: 'post',
-            url: baseurl + '/api/declaration-form/esic',
+            url: baseurl + '/api/declaration-form/gratuity',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -189,6 +186,61 @@ class GratitutyForm extends Component {
 
     }
 
+    apicall = () => {
+
+        var url1 = 'https://aadhaan.ddns.net/api/candidate/full-information/' + this.state.user
+        //var url = 'https://aadhaan.ddns.net/api/candidate/dashboard';
+        var config = {
+            method: 'get',
+            url: url1,
+            headers: {
+                'Content-Type': 'application/json',
+
+
+
+            },
+            data: ''
+        };
+
+        axios(config)
+            .then((response) => {
+                console.log("fgdfgfggf")
+                var data = response.data;
+                console.log("fgdfgfggf", data)
+
+                try {
+
+
+                    var candidate_education_data_len = Object.keys(data.candidate_education_data).length
+                    if (candidate_education_data_len > 0) {
+                        var candidate_education_data = data.candidate_education_data
+                        this.setState(
+                            {
+                                // eduvar:false,
+                                education_data: candidate_education_data
+                            }
+                        );
+                        console.log("educationdata", candidate_education_data);
+                    }
+
+
+                } catch (err) {
+                    console.log("error", err)
+                    // document.getElementById("demo").innerHTML = err.message;
+                }
+                })
+          
+
+    }
+
+
+    //endfamily data
+    componentDidMount = () => {
+        this.apicall();
+        // window.scrollTo(0, -1000)
+
+
+    }
 
 
 
@@ -211,15 +263,12 @@ class GratitutyForm extends Component {
 
 
     submitbtn = (data) => {
+        this.savebtn2(this)
         var self =this;
         var formData=new FormData();
         formData.append("candidate", "" + localStorage.getItem("can"))
-        // formData.append("pdf_document_4",new File([data], this.state.name+'_gra.pdf'))
         formData.append("pdf_document_4",null)
-        // var data = JSON.stringify({
-        //             "candidate": localStorage.getItem("can"),
-                    
-        //         });
+      
                 console.log("called")
                 var config = {
                     method: 'post',
@@ -237,13 +286,7 @@ class GratitutyForm extends Component {
                             '',
                             'success'
                         )
-                    //   alert("")s
-                        //  path = './PrintPage';
-                        // let path = './PrintPage';
-                        // self.props.history.push({
-                        //     pathname: path,
-                        //     state: self.state
-                        // })
+                  
                 })
                 .catch(function (error) {
                     // console.log(error);
@@ -451,7 +494,7 @@ hereby nominate the person(s) mentioned below to receive the gratuity payable af
                                                  </td>
                                                  <td>
                                                      {/* <input className="form-control text-center"  type="text" name="%" value={this.state.percentage==0?'':this.state.percentage,"%"} maxLength="4"onChange={this.setPercentage} /> */}
-                                                            <input className="form-control text-center" type="text" defaultValue={this.state.percentage.i,"%"} maxLength="4" onChange={(e)=>this.setPercentage(e,document)} />
+                                                            <input className="form-control text-center" type="text" maxLength="4" defaultValue={document.total_amt_per, '%'} onChange={(e) => this.setTotalAmount(e, document)} />
 
                                                  </td>
                                                        
