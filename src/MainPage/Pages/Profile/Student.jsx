@@ -1386,7 +1386,7 @@ export default class Student extends Component {
                     if (candidate_family_data > 0) {
                         var candidate_family_data = data.candidate_family_data.family
                         this.setState({
-                            // addfamilyvar:false,
+                            addfamilyvar:false,
 
                             familyflag: true,
                             family: candidate_family_data
@@ -4894,7 +4894,7 @@ export default class Student extends Component {
 
                     // window.location.reload(false);
                     Swal.fire(
-                        'Personal Details Successfully Submitted ',
+                        'Other Details Successfully Submitted ',
                         '',
                         'success'
                     )
@@ -4972,7 +4972,7 @@ export default class Student extends Component {
                     if (response.data.status == true) {
                         //let path='app/profile/candidate-profile';
                         Swal.fire(
-                            'Personal Details Successfully Submitted ',
+                            'Other Details Successfully Submitted ',
                             '',
                             'success'
                         )

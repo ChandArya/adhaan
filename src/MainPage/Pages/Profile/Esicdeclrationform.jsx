@@ -224,57 +224,69 @@ class EsicdeclrationForm extends Component {
         this.savebtn2(this)
 
         var self = this;
-        var data = JSON.stringify({
-            "candidate": localStorage.getItem("can"),
+        let path = './Gratituty-form';
+        var id = self.props.location.state.user
+        // alert("iiiiid",id)
+        console.log("hhhhhhhhh", id)
 
-        });
-        var formData = new FormData();
-        formData.append("candidate", "" + localStorage.getItem("can"))
-        formData.append("pdf_document_2", new File([data], this.state.name + '_pf.pdf'))
-        formData.append("pdf_document_2", null)
-        console.log("called")
-        console.log("onchange twinkle", this.state)
+        self.setState({ id: id, back: true });
+
+        self.props.history.push({
+            pathname: path,
+            state: self.state
+
+        })
+        // var data = JSON.stringify({
+        //     "candidate": localStorage.getItem("can"),
+
+        // });
+        // var formData = new FormData();
+        // formData.append("candidate", "" + localStorage.getItem("can"))
+        // formData.append("pdf_document_2", new File([data], this.state.name + '_pf.pdf'))
+        // formData.append("pdf_document_2", null)
+        // console.log("called")
+        // console.log("onchange twinkle", this.state)
 
 
-        var config = {
-            method: 'post',
-            url: baseurl + '/api/v1/candidate-percentage',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: formData
-        };
+        // var config = {
+        //     method: 'post',
+        //     url: baseurl + '/api/v1/candidate-percentage',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     data: formData
+        // };
 
 
 
 
 
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                // self.setState({ error: response.data.message })
-                // if (response.data.status == true) {
-               let path = './Gratituty-form';
-                var id = self.props.location.state.user
-                // alert("iiiiid",id)
-                console.log("hhhhhhhhh", id)
+        // axios(config)
+        //     .then(function (response) {
+        //         console.log(JSON.stringify(response.data));
+        //         // self.setState({ error: response.data.message })
+        //         // if (response.data.status == true) {
+        //        let path = './Gratituty-form';
+        //         var id = self.props.location.state.user
+        //         // alert("iiiiid",id)
+        //         console.log("hhhhhhhhh", id)
 
-                self.setState({ id: id, back: true });
+        //         self.setState({ id: id, back: true });
 
-                self.props.history.push({
-                    pathname: path,
-                    state: self.state
+        //         self.props.history.push({
+        //             pathname: path,
+        //             state: self.state
 
-                })
-                //    
+        //         })
+        //         //    
 
-                // }
-            })
-            .catch(function (error) {
-                // console.log(error);
-                // self.setState({ error: "network issue" })
-                // console.log("onchange twinkle", this.state)
-            });
+        //         // }
+        //     })
+        //     .catch(function (error) {
+        //         // console.log(error);
+        //         // self.setState({ error: "network issue" })
+        //         // console.log("onchange twinkle", this.state)
+        //     });
 
 
     }
@@ -665,7 +677,7 @@ class EsicdeclrationForm extends Component {
                                                                 टेलीफोन नंबर /इ-मेल
                                                                 / E-mail Address
                                                                   </div>
-                                                            <input disabled="disabled" defaultValue={this.state.p_email} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.email} type="text" className="form-control"></input>
 
                                                         </td>
 
@@ -690,7 +702,7 @@ class EsicdeclrationForm extends Component {
                                                             <div className="text-center">
                                                                 टेलीफोन नंबर /इ-मेल / E-mail Address
                                                                   </div>
-                                                            <input disabled="disabled" defaultValue={this.state.p_email} type="text" className="form-control"></input>
+                                                            <input disabled="disabled" defaultValue={this.state.email} type="text" className="form-control"></input>
 
                                                         </td>
 

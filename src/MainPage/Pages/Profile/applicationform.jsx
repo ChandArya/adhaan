@@ -82,6 +82,17 @@ class ApplicationForm extends Component {
         //     return
         // }
         var self = this;
+        let path = './declaration-form';
+        var id = self.props.location.state.user
+        // alert("iiiiid",id)
+        console.log("hhhhhhhhh", id)
+        self.setState({ id: id, back: true });
+
+        self.props.history.push({
+            pathname: path,
+            state: self.state
+
+        })
         var formData = new FormData();
         formData.append("candidate", "" + localStorage.getItem("can"))
         formData.append("pdf_document_1", new File([data], this.state.name + '_form.pdf'))
@@ -101,29 +112,29 @@ class ApplicationForm extends Component {
             data: formData
         };
 
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
+        // axios(config)
+        //     .then(function (response) {
+        //         console.log(JSON.stringify(response.data));
 
-                let path = './declaration-form';
-                var id = self.props.location.state.user
-                // alert("iiiiid",id)
-                console.log("hhhhhhhhh", id)
-                self.setState({ id: id, back: true });
+        //         let path = './declaration-form';
+        //         var id = self.props.location.state.user
+        //         // alert("iiiiid",id)
+        //         console.log("hhhhhhhhh", id)
+        //         self.setState({ id: id, back: true });
 
-                self.props.history.push({
-                    pathname: path,
-                    state: self.state
+        //         self.props.history.push({
+        //             pathname: path,
+        //             state: self.state
 
-                })
+        //         })
 
 
-                // }
-            })
-            .catch(function (error) {
-                // console.log(error);
-                // self.setState({ error: "network issue" })
-            });
+        //         // }
+        //     })
+        //     .catch(function (error) {
+        //         // console.log(error);
+        //         // self.setState({ error: "network issue" })
+        //     });
 
 
         // return
@@ -564,7 +575,7 @@ class ApplicationForm extends Component {
                                                 <div className="input-group-prepend my-auto full_width">
                                                     <label className="m-0 text-uppercase">Location</label>
                                                 </div>
-                                                <input disabled="disabled" defaultValue={this.state.job_location} type="text" name="location" className="mx-2 form-control" />
+                                                <input disabled="disabled"  type="text" name="location" className="mx-2 form-control" />
                                             </div>
                                         </div>
                                         <div className="col-sm-4">
