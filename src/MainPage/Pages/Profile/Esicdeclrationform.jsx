@@ -234,26 +234,32 @@ class EsicdeclrationForm extends Component {
                 var residing_town_state2=''
                 var residing_town_state3=''
                 var residing_town_state4=''
+                var checked0=false
+                var checked3=false
+                var checked1=false
+                var checked2=false
                 for(var i=0;i<family.length;i++)
                 {
                     if(i==0)
                     {
                         add=family[i].address;
+                        checked0=family[0].residing_with_candidate;
                         residing_town_state1=family[0].residing_town_state
                     }
                     if(i==1)
                     {
-                      
+                        checked1=family[i].residing_with_candidate
                         residing_town_state2=family[i].residing_town_state
                     }
                     if(i==2)
                     {
                         
+                        checked2=family[i].residing_with_candidate
                         residing_town_state3=family[i].residing_town_state
                     }
                     if(i==3)
                     {
-                        
+                        checked3=family[i].residing_with_candidate
                         residing_town_state4=family[i].residing_town_state
                     }
                     
@@ -265,8 +271,10 @@ class EsicdeclrationForm extends Component {
                     residing_town_state1:residing_town_state1,
                     residing_town_state2:residing_town_state2,
                     residing_town_state4:residing_town_state4,
-                    residing_town_state3:residing_town_state3
-                    
+                    residing_town_state3:residing_town_state3,
+                    checked0:checked0,
+                    checked3:checked3,
+                    checked2:checked2
 
 
 

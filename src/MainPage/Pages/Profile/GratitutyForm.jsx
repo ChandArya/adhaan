@@ -239,7 +239,7 @@ class GratitutyForm extends Component {
     }
 
     submitbtn = (data) => {
-        this.savebtn2(this)
+        
         var self =this;
         var formData=new FormData();
         formData.append("candidate", "" + localStorage.getItem("can"))
@@ -268,6 +268,7 @@ class GratitutyForm extends Component {
                     // console.log(error);
                     // self.setState({ error: "network issue" })
                 });
+                this.savebtn2(this)
 
     }
 
