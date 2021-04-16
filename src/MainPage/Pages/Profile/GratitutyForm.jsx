@@ -257,11 +257,19 @@ class GratitutyForm extends Component {
     
                 axios(config)
                     .then(function (response) {
-                        Swal.fire(
-                            'you save successfully submitted all data. ',
-                            '',
-                            'success'
-                        )
+                        let path = './PrintPage';
+                                  
+                    
+                                    self.props.history.push({
+                                        pathname: path,
+                                        state: self.state
+                    
+                                    })
+                        // Swal.fire(
+                        //     'you save successfully submitted all data. ',
+                        //     '',
+                        //     'success'
+                        // )
                   
                 })
                 .catch(function (error) {

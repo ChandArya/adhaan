@@ -8614,3 +8614,7 @@ margin: 0;
  display: flex;
  align-items: center;
 }
+
+.linear{
+	background: linear-gradient(to right, #fff 0%, #e2e2e2 100%);
+}
